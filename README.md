@@ -15,8 +15,7 @@ A responsive, static portfolio website built with HTML, CSS and vanilla JavaScri
 ## Run locally
 Open `index.html` in a browser, or use VS Code's Live Server extension.
 
-## Add your résumé PDF
-Copy your approved PDF into `assets/Sai-Vinay-Mullapudi.pdf`. The download button is already wired to that path. If you use a different filename, update the link in `index.html`.
+
 
 ## Personalize before publishing
 1. Confirm the displayed dates, role descriptions and certification names against your latest résumé.
