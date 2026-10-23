@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sai Vinay Mullapudi | DevOps, Cloud & Systems Engineer</title>
+  <meta name="description" content="Portfolio of Sai Vinay Mullapudi - DevOps, Cloud Architecture, CI/CD Reliability, and GenAI/MLOps Engineer.">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            carbon: {
+              950: '#06070a',
+              900: '#090a0f',
+              850: '#0e111a',
+              800: '#141824',
+              700: '#1e2436',
+              600: '#2b334a'
+            },
+            amber: {
+              400: '#fbbf24',
+              500: '#f59e0b',
+              600: '#d97706',
+              700: '#b45309',
+              950: '#451a03'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['Geist Mono', 'JetBrains Mono', 'monospace'],
+          },
+          animation: {
+            'marquee': 'marquee 32s linear infinite',
+            'marquee-reverse': 'marquee-reverse 36s linear infinite',
+            'pulse-subtle': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+          },
+          keyframes: {
+            marquee: {
+              '0%': { transform: 'translateX(0%)' },
+              '100%': { transform: 'translateX(-50%)' },
+            },
+            'marquee-reverse': {
+              '0%': { transform: 'translateX(-50%)' },
+              '100%': { transform: 'translateX(0%)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Ambient backdrop grid */
+    .bg-grid-pattern {
+      background-size: 32px 32px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    }
+    
+    /* Radial glow for amber highlights */
+    .amber-radial-glow {
+      background: radial-gradient(circle at 50% 0%, rgba(245, 158, 11, 0.12) 0%, transparent 60%);
+    }
+
+    /* Edge fading mask for infinite logo marquee */
+    .mask-marquee {
+      mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+    }
+
+    /* Pause animation on hover */
+    .marquee-container:hover .marquee-track {
+      animation-play-state: paused;
+    }
+
+    /* Custom sleek scrollbar */
+    ::-webkit-scrollbar {
+      width: 7px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #090a0f;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e2436;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #f59e0b;
+    }
+  </style>
+</head>
+
+<body class="bg-carbon-900 text-slate-200 font-sans selection:bg-amber-500/20 selection:text-amber-400 min-h-screen relative overflow-x-hidden">
+
+  <!-- Ambient Grid and Radial Lighting -->
+  <div class="fixed inset-0 bg-grid-pattern pointer-events-none z-0"></div>
+  <div class="fixed top-0 left-1/2 -translate-x-1/2 w-[1100px] h-[550px] amber-radial-glow pointer-events-none z-0"></div>
+
+  <!-- STICKY TOP TELEMETRY NAVIGATION -->
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-carbon-900/80 border-b border-carbon-700/60">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      
+      <!-- Brand & Terminal Indicator -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-8 h-8 rounded bg-carbon-800 border border-carbon-700 flex items-center justify-center text-amber-500 font-mono font-bold text-sm group-hover:border-amber-500 transition-colors">
+          SV
+        </div>
+        <div class="flex flex-col">
+          <span class="text-sm font-semibold tracking-tight text-white group-hover:text-amber-400 transition-colors">Sai Vinay Mullapudi</span>
+          <span class="text-xs font-mono text-emerald-400 flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse-subtle"></span>
+            SYS_ONLINE // OPEN FOR ROLES
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Anchors -->
+      <nav class="hidden md:flex items-center gap-7 text-xs font-mono tracking-wider text-slate-400">
+        <a href="#metrics" class="hover:text-amber-400 transition-colors">01.// METRICS</a>
+        <a href="#skills" class="hover:text-amber-400 transition-colors">02.// SKILLS-IN-PROD</a>
+        <a href="#experience" class="hover:text-amber-400 transition-colors">03.// WORK_HISTORY</a>
+        <a href="#case-studies" class="hover:text-amber-400 transition-colors">04.// INCIDENT_TRIAGE</a>
+        <a href="#education" class="hover:text-amber-400 transition-colors">05.// CREDENTIALS</a>
+      </nav>
+
+      <!-- Primary Action Buttons -->
+      <div class="flex items-center gap-3">
+        <a href="mailto:saivinay.mullapudi@example.com" class="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded-md text-xs font-mono bg-carbon-800 hover:bg-carbon-700 text-slate-300 border border-carbon-600 hover:border-amber-500 transition-all">
+          <i data-lucide="mail" class="w-3.5 h-3.5 text-amber-400"></i>
+          CONNECT
+        </a>
+        <a href="#resume" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-md text-xs font-mono font-semibold bg-amber-500 hover:bg-amber-400 text-carbon-950 transition-all shadow-[0_0_15px_rgba(245,158,11,0.25)]">
+          <i data-lucide="file-down" class="w-3.5 h-3.5"></i>
+          RESUME.PDF
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="relative z-10">
+
+    <!-- HERO SECTION -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12 lg:pt-24 lg:pb-16">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        
+        <div class="lg:col-span-8 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-mono">
+            <i data-lucide="terminal" class="w-3.5 h-3.5"></i>
+            DevOps • Cloud IaC • Microservices • GenAI / MLOps
+          </div>
+
+          <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight">
+            Engineering resilient cloud infrastructure & <span class="text-amber-400 underline decoration-amber-500/40 decoration-4 underline-offset-8">high-throughput systems.</span>
+          </h1>
+
+          <p class="text-slate-400 text-base sm:text-lg max-w-3xl leading-relaxed">
+            Infrastructure & software engineer with hands-on enterprise experience across <span class="text-white font-medium">AWS & Azure cloud architecture, Terraform/Runway IaC, container orchestration, and Java microservice backends</span>. Proven track record of rapid root-cause debugging under live outage deadlines and architecting robust delivery pipelines.
+          </p>
+
+          <!-- Quick Terminal Meta Stats -->
+          <div class="flex flex-wrap items-center gap-4 pt-2 text-xs font-mono text-slate-300">
+            <span class="flex items-center gap-1.5 px-3 py-1.5 rounded bg-carbon-850 border border-carbon-700">
+              <i data-lucide="shield-check" class="w-4 h-4 text-amber-400"></i> Multi-Cloud IaC (AWS/Azure)
+            </span>
+            <span class="flex items-center gap-1.5 px-3 py-1.5 rounded bg-carbon-850 border border-carbon-700">
+              <i data-lucide="git-pull-request" class="w-4 h-4 text-amber-400"></i> Zero-Downtime Pipeline Triage
+            </span>
+            <span class="flex items-center gap-1.5 px-3 py-1.5 rounded bg-carbon-850 border border-carbon-700">
+              <i data-lucide="cpu" class="w-4 h-4 text-amber-400"></i> End-to-End MLOps / RAG
+            </span>
+          </div>
+
+          <!-- CTAs -->
+          <div class="flex flex-wrap items-center gap-4 pt-4">
+            <a href="mailto:saivinay.mullapudi@example.com" class="px-6 py-3 rounded-lg text-sm font-semibold bg-amber-500 hover:bg-amber-400 text-carbon-950 flex items-center gap-2 transition-all shadow-[0_0_20px_rgba(245,158,11,0.3)]">
+              <i data-lucide="send" class="w-4 h-4"></i> Get In Touch Directly
+            </a>
+            <a href="https://github.com/sai-vinay-mullapudi" target="_blank" rel="noopener noreferrer" class="px-5 py-3 rounded-lg text-sm font-mono bg-carbon-800 hover:bg-carbon-700 text-slate-200 border border-carbon-600 flex items-center gap-2 transition-colors">
+              <i data-lucide="github" class="w-4 h-4 text-slate-300"></i> @sai-vinay-mullapudi
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="px-5 py-3 rounded-lg text-sm font-mono bg-carbon-800 hover:bg-carbon-700 text-slate-200 border border-carbon-600 flex items-center gap-2 transition-colors">
+              <i data-lucide="linkedin" class="w-4 h-4 text-slate-300"></i> LinkedIn
+            </a>
+          </div>
+        </div>
+
+        <!-- Terminal Snapshot Card -->
+        <div class="lg:col-span-4">
+          <div class="rounded-xl bg-carbon-850 border border-carbon-700 shadow-2xl overflow-hidden font-mono text-xs">
+            <!-- Window Bar -->
+            <div class="bg-carbon-800 px-4 py-2.5 border-b border-carbon-700 flex items-center justify-between">
+              <div class="flex items-center gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80"></span>
+              </div>
+              <span class="text-slate-400 text-[11px]">sai@telemetry:~</span>
+              <span class="text-amber-400/80 text-[10px]">zsh</span>
+            </div>
+            <!-- Shell Body -->
+            <div class="p-4 space-y-3 leading-relaxed text-slate-300">
+              <p class="text-slate-500"># Current System Profile</p>
+              <p><span class="text-amber-400">user:</span> sai-vinay-mullapudi</p>
+              <p><span class="text-amber-400">roles:</span> [DevOps, Cloud, Backend, MLOps]</p>
+              <p><span class="text-amber-400">clients:</span> ["HP Inc. (via Ascendion)"]</p>
+              <p><span class="text-amber-400">recent_incident:</span> "CI/CD Docker Base Curl Fix"</p>
+              <p><span class="text-amber-400">resolution_time:</span> &lt; 45m (SLA beaten)</p>
+              <div class="pt-2 border-t border-carbon-700/80 text-[11px] text-emerald-400 flex items-center gap-1.5">
+                <span class="inline-block w-2 h-2 rounded-full bg-emerald-400"></span>
+                All staging & prod checks verified
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- INFINITE TECH STACK LOGO MARQUEE ("TRAIN" EFFECT) -->
+    <section class="py-10 bg-carbon-950/70 border-y border-carbon-700/60 overflow-hidden relative">
+      <div class="max-w-7xl mx-auto px-4 mb-4 text-center">
+        <span class="text-xs font-mono uppercase tracking-widest text-slate-400">
+          Core Production Toolchain & Ecosystem
+        </span>
+      </div>
+
+      <!-- Marquee Track Wrapper -->
+      <div class="marquee-container mask-marquee w-full overflow-hidden flex flex-col gap-4">
+        
+        <!-- Track 1: Cloud, Containers & Observability -->
+        <div class="marquee-track flex gap-8 whitespace-nowrap animate-marquee">
+          <!-- Item Set 1 -->
+          <div class="flex items-center gap-8 text-slate-400 text-sm font-mono">
+            <span class="flex items-center gap-2.5 px-4 py-2 rounded-lg bg-carbon-850 border border-carbon-700 hover:border-amber-500/70 hover:text-amber-400 transition-colors">
+              <i data-lucide="cloud" class="w-4 h-4 text-amber-400"></i> AWS Cloud
+            </span>
+            <span class="flex items-center gap-2.5 px-4 py-2 rounded-lg bg-carbon-850 border border-carbon-700 hover:border-amber-500/70 hover:text-amber-400 transition-colors">
+              <i data-lucide="layers" class="w-4 h-4 text-amber-400"></i> Terraform & Terragrunt
+            </span>
+            <span class="flex items-center gap-2.5 px-4 py-2 rounded-lg bg-carbon-850 border border-carbon-700 hover:border-amber-500/70 hover:text-amber-400 transition-colors">
+              <i data-lucide="box" class="w-4 h-4 text-amber-400"></i> Docker & Harbor
+            </span>
+            <span class="flex items-center gap-2.5 px-4 py-2 rounded-lg bg-carbon-850 border border-carbon-700 hover:border-amber-500/70 hover:text-amber-400 transition-colors">
+              <i data-lucide="activity" class="w-4 h-4 text-amber-400"></i> Datadog APM
+            </span>
+            <span class="flex items-center gap-2.5 px-4 py-2 rounded-lg bg-carbon-850 border border-carbon-700 hover:border-amber-500/70 hover:text-amber-400 transition-colors">
+              <i data-lucide="git-branch" class="w-4 h-4 text-amber-400"></i> Azure DevOps Pipelines
+            </span>
+            <span class="flex items-center gap-2.5 px-4 py-2 rounded-lg bg-carbon-850 border border-carbon-700 hover:border-amber-500/70 hover:text-amber-400 transition-colors">
+              <i data-lucide="database" class="w-4 h-4 text-amber-400"></i> MongoDB Atlas
+            </span>
+            <span class="flex items-center gap-2.5 px-4 py-2 rounded-lg bg-carbon-850 border border-carbon-700 hover:border-amber-500/70 hover:text-amber-400 transition-colors">
+              <i data-lucide="cpu" class="w-4 h-4 text-amber-400"></i> AWS KMS & IAM
+            </span>
+            <span class="flex items-center gap-2.5 px-4 py-2 rounded-lg bg-carbon-850 border border-carbon-700 hover:border-amber-500/70 hover:text-amber-400 transition-colors">
+              <i data-lucide="radio" class="w-4 h-4 text-amber-400"></i> Amazon SQS / SNS
+            </span>
+          </div>
+
+          <!-- Duplicated for Infinite Loop -->
+          <div class="flex items-center gap-8 text-slate-400 text-sm font-mono">
+            <span class="flex items-center gap-2.5 px-4 py-2 rounded-lg bg-carbon-850 border border-carbon-700 hover:border-amber-500/70 hover:text-amber-400 transition-colors">
+              <i data-lucide="cloud" class="w-4 h-4 text-amber-400"></i> AWS Cloud
+            </span>
+            <span class="flex items-center gap-2.5 px-4 py-2 rounded-lg bg-carbon-850 border border-carbon-700 hover:border-amber-500/70 hover:text-amber-400 transition-colors">
+              <i data-lucide="layers" class="w-4 h-4 text-amber-400"></i> Terraform & Terragrunt
+            </span>
+            <span class="flex items-center gap-2.5 px-4 py-2 rounded-lg bg-carbon-850 border border-carbon-700 hover:border-amber-500/70 hover:text-amber-400 transition-colors">
+              <i data-lucide="box" class="w-4 h-4 text-amber-400"></i> Docker & Harbor
+            </span>
+            <span class="flex items-center gap-2.5 px-4 py-2 rounded-lg bg-carbon-850 border border-carbon-700 hover:border-amber-500/70 hover:text-amber-400 transition-colors">
+              <i data-lucide="activity" class="w-4 h-4 text-amber-400"></i> Datadog APM
+            </span>
+            <span class="flex items-center gap-2.5 px-4 py-2 rounded-lg bg-carbon-850 border border-carbon-700 hover:border-amber-500/70 hover:text-amber-400 transition-colors">
+              <i data-lucide="git-branch" class="w-4 h-4 text-amber-400"></i> Azure DevOps Pipelines
+            </span>
+            <span class="flex items-center gap-2.5 px-4 py-2 rounded-lg bg-carbon-850 border border-carbon-700 hover:border-amber-500/70 hover:text-amber-400 transition-colors">
+              <i data-lucide="database" class="w-4 h-4 text-amber-400"></i> MongoDB Atlas
+            </span>
+            <span class="flex items-center gap-2.5 px-4 py-2 rounded-lg bg-carbon-850 border border-carbon-700 hover:border-amber-500/70 hover:text-amber-400 transition-colors">
+              <i data-lucide="cpu" class="w-4 h-4 text-amber-400"></i> AWS KMS & IAM
+            </span>
+            <span class="flex items-center gap-2.5 px-4 py-2 rounded-lg bg-carbon-850 border border-carbon-700 hover:border-amber-500/70 hover:text-amber-400 transition-colors">
+              <i data-lucide="radio" class="w-4 h-4 text-amber-400"></i> Amazon SQS / SNS
+            </span>
+          </div>
+        </div>
+
+        <!-- Track 2: Backend, AI, Testing & Orchestration (Reverse Scroll) -->
+        <div class="marquee-track flex gap-8 whitespace-nowrap animate-marquee-reverse">
+          <!-- Item Set 2 -->
+          <div class="flex items-center gap-8 text-slate-400 text-sm font-mono">
+            <span class="flex items-center gap-2.5 px-4 py-2 rounded-lg bg-carbon-850 border border-carbon-700 hover:border-amber-500/70 hover:text-amber-400 transition-colors">
+              <i data-lucide="code" class="w-4 h-4 text-amber-400"></i> Java (Spring Boot)
+            </span>
+            <span class="flex items-center gap-2.5 px-4 py-2 rounded-lg bg-carbon-850 border border-carbon-700 hover:border-amber-500/70 hover:text-amber-400 transition-colors">
+              <i data-lucide="terminal" class="w-4 h-4 text-amber-400"></i> Python & Bash
+            </span>
+            <span class="flex items-center gap-2.5 px-4 py-2 rounded-lg bg-carbon-850 border border-carbon-700 hover:border-amber-500/70 hover:text-amber-400 transition-colors">
+              <i data-lucide="sparkles" class="w-4 h-4 text-amber-400"></i> PyTorch & LLM RAG
+            </span>
+            <span class="flex items-center gap-2.5 px-4 py-2 rounded-lg bg-carbon-850 border border-carbon-700 hover:border-amber-500/70 hover:text-amber-400 transition-colors">
+              <i data-lucide="server" class="w-4 h-4 text-amber-400"></i> Runway IaC Framework
+            </span>
+            <span class="flex items-center gap-2.5 px-4 py-2 rounded-lg bg-carbon-850 border border-carbon-700 hover:border-amber-500/70 hover:text-amber-400 transition-colors">
+              <i data-lucide="check-circle" class="w-4 h-4 text-amber-400"></i> Maven & JUnit
+            </span>
+            <span class="flex items-center gap-2.5 px-4 py-2 rounded-lg bg-carbon-850 border border-carbon-700 hover:border-amber-500/70 hover:text-amber-400 transition-colors">
+              <i data-lucide="trello" class="w-4 h-4 text-amber-400"></i> Jira Sprint Agility
+            </span>
+            <span class="flex items-center gap-2.5 px-4 py-2 rounded-lg bg-carbon-850 border border-carbon-700 hover:border-amber-500/70 hover:text-amber-400 transition-colors">
+              <i data-lucide="bar-chart-3" class="w-4 h-4 text-amber-400"></i> Splunk Monitoring
+            </span>
+          </div>
+
+          <!-- Duplicated for Infinite Loop -->
+          <div class="flex items-center gap-8 text-slate-400 text-sm font-mono">
+            <span class="flex items-center gap-2.5 px-4 py-2 rounded-lg bg-carbon-850 border border-carbon-700 hover:border-amber-500/70 hover:text-amber-400 transition-colors">
+              <i data-lucide="code" class="w-4 h-4 text-amber-400"></i> Java (Spring Boot)
+            </span>
+            <span class="flex items-center gap-2.5 px-4 py-2 rounded-lg bg-carbon-850 border border-carbon-700 hover:border-amber-500/70 hover:text-amber-400 transition-colors">
+              <i data-lucide="terminal" class="w-4 h-4 text-amber-400"></i> Python & Bash
+            </span>
+            <span class="flex items-center gap-2.5 px-4 py-2 rounded-lg bg-carbon-850 border border-carbon-700 hover:border-amber-500/70 hover:text-amber-400 transition-colors">
+              <i data-lucide="sparkles" class="w-4 h-4 text-amber-400"></i> PyTorch & LLM RAG
+            </span>
+            <span class="flex items-center gap-2.5 px-4 py-2 rounded-lg bg-carbon-850 border border-carbon-700 hover:border-amber-500/70 hover:text-amber-400 transition-colors">
+              <i data-lucide="server" class="w-4 h-4 text-amber-400"></i> Runway IaC Framework
+            </span>
+            <span class="flex items-center gap-2.5 px-4 py-2 rounded-lg bg-carbon-850 border border-carbon-700 hover:border-amber-500/70 hover:text-amber-400 transition-colors">
+              <i data-lucide="check-circle" class="w-4 h-4 text-amber-400"></i> Maven & JUnit
+            </span>
+            <span class="flex items-center gap-2.5 px-4 py-2 rounded-lg bg-carbon-850 border border-carbon-700 hover:border-amber-500/70 hover:text-amber-400 transition-colors">
+              <i data-lucide="trello" class="w-4 h-4 text-amber-400"></i> Jira Sprint Agility
+            </span>
+            <span class="flex items-center gap-2.5 px-4 py-2 rounded-lg bg-carbon-850 border border-carbon-700 hover:border-amber-500/70 hover:text-amber-400 transition-colors">
+              <i data-lucide="bar-chart-3" class="w-4 h-4 text-amber-400"></i> Splunk Monitoring
+            </span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 01: EXECUTIVE METRICS STRIP -->
+    <section id="metrics" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-b border-carbon-800">
+      <div class="mb-8">
+        <span class="text-xs font-mono text-amber-400 uppercase tracking-wider">// 01. PRODUCTION IMPACT METRICS</span>
+        <h2 class="text-2xl font-bold text-white mt-1">Telemetry & Incident Resolution Highlights</h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        
+        <div class="p-6 rounded-xl bg-carbon-850 border border-carbon-700/80 hover:border-amber-500/50 transition-all">
+          <div class="flex items-center justify-between text-slate-400 mb-3">
+            <span class="text-xs font-mono text-slate-400">CRITICAL_TRIAGE</span>
+            <i data-lucide="alert-triangle" class="w-4 h-4 text-amber-400"></i>
+          </div>
+          <div class="text-3xl font-extrabold text-white font-mono">&lt; 45 MIN</div>
+          <p class="text-xs text-slate-400 mt-2">
+            Identified ExitCode 127 in shared base container image (<code class="text-slate-300">harbor.ext.hp.com</code>), unblocking multi-service builds across HP teams.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-xl bg-carbon-850 border border-carbon-700/80 hover:border-amber-500/50 transition-all">
+          <div class="flex items-center justify-between text-slate-400 mb-3">
+            <span class="text-xs font-mono text-slate-400">INFRA_DEPLOYMENTS</span>
+            <i data-lucide="git-merge" class="w-4 h-4 text-emerald-400"></i>
+          </div>
+          <div class="text-3xl font-extrabold text-white font-mono">15+ PRs</div>
+          <p class="text-xs text-slate-400 mt-2">
+            End-to-end Terraform, Runway, and KMS module migrations executed cleanly with zero production drift or downtime.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-xl bg-carbon-850 border border-carbon-700/80 hover:border-amber-500/50 transition-all">
+          <div class="flex items-center justify-between text-slate-400 mb-3">
+            <span class="text-xs font-mono text-slate-400">CROSS_STACK_SCOPE</span>
+            <i data-lucide="code-2" class="w-4 h-4 text-blue-400"></i>
+          </div>
+          <div class="text-3xl font-extrabold text-white font-mono">IaC + JAVA</div>
+          <p class="text-xs text-slate-400 mt-2">
+            Simultaneously refactored subscription microservices (Spring Boot/Maven) and governed AWS/VPC module security.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-xl bg-carbon-850 border border-carbon-700/80 hover:border-amber-500/50 transition-all">
+          <div class="flex items-center justify-between text-slate-400 mb-3">
+            <span class="text-xs font-mono text-slate-400">AWS_CERTIFICATIONS</span>
+            <i data-lucide="award" class="w-4 h-4 text-amber-400"></i>
+          </div>
+          <div class="text-3xl font-extrabold text-white font-mono">3x CERTIFIED</div>
+          <p class="text-xs text-slate-400 mt-2">
+            Solutions Architect (Associate), Machine Learning Engineer (Associate), and Cloud Practitioner validated.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 02: SKILLS-IN-ACTION MATRIX (TRANSLATING SKILLS TO WORK) -->
+    <section id="skills" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-b border-carbon-800">
+      <div class="mb-10">
+        <span class="text-xs font-mono text-amber-400 uppercase tracking-wider">// 02. COMPETENCY TRANSLATION</span>
+        <h2 class="text-2xl font-bold text-white mt-1">Skills-in-Action Matrix</h2>
+        <p class="text-slate-400 text-sm mt-1 max-w-2xl">
+          Rather than an isolated list of buzzwords, here is how core proficiencies translate into real enterprise systems and operational victories.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <!-- Cloud & IaC -->
+        <div class="p-6 rounded-xl bg-carbon-850 border border-carbon-700 hover:border-amber-500/40 transition-colors">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-lg bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400">
+              <i data-lucide="cloud" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <h3 class="text-base font-semibold text-white">Cloud Infrastructure & IaC</h3>
+              <p class="text-xs font-mono text-slate-400">AWS • Terraform • Runway • Terragrunt</p>
+            </div>
+          </div>
+          <div class="space-y-3 text-xs text-slate-300 leading-relaxed">
+            <div class="p-3 rounded bg-carbon-800/80 border border-carbon-700/60">
+              <span class="text-amber-400 font-semibold block mb-0.5">Production Implementation:</span>
+              Managed Runway modules for OBC and Printer Ledger services. Upgraded SNS, SQS, IAM, and AWS Secrets Manager modules to latest tags with zero blast-radius.
+            </div>
+            <div class="p-3 rounded bg-carbon-800/80 border border-carbon-700/60">
+              <span class="text-amber-400 font-semibold block mb-0.5">Verification & Audit:</span>
+              Caught environment ARN mismatch where production role ARN mirrored staging across 15 YAML/HCL files before deployment.
+            </div>
+          </div>
+        </div>
+
+        <!-- CI/CD & Reliability -->
+        <div class="p-6 rounded-xl bg-carbon-850 border border-carbon-700 hover:border-amber-500/40 transition-colors">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-lg bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400">
+              <i data-lucide="git-merge" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <h3 class="text-base font-semibold text-white">CI/CD Pipelines & Container Ops</h3>
+              <p class="text-xs font-mono text-slate-400">Docker • Azure DevOps • Harbor Registry • Bash</p>
+            </div>
+          </div>
+          <div class="space-y-3 text-xs text-slate-300 leading-relaxed">
+            <div class="p-3 rounded bg-carbon-800/80 border border-carbon-700/60">
+              <span class="text-amber-400 font-semibold block mb-0.5">Production Implementation:</span>
+              Maintained enterprise Azure DevOps pipelines for multi-service microservice suites; authored and triaged container build stages.
+            </div>
+            <div class="p-3 rounded bg-carbon-800/80 border border-carbon-700/60">
+              <span class="text-amber-400 font-semibold block mb-0.5">Incident Isolation:</span>
+              Spearheaded team-wide triage when multi-service pipelines failed on docker build. Proved application running on Tomcat 8080 while container healthcheck failed due to missing binary in shared image.
+            </div>
+          </div>
+        </div>
+
+        <!-- Microservices & Backend Refactoring -->
+        <div class="p-6 rounded-xl bg-carbon-850 border border-carbon-700 hover:border-amber-500/40 transition-colors">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-lg bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400">
+              <i data-lucide="binary" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <h3 class="text-base font-semibold text-white">Backend Systems & Data Consistency</h3>
+              <p class="text-xs font-mono text-slate-400">Java • Spring Boot • Maven • MongoDB Atlas</p>
+            </div>
+          </div>
+          <div class="space-y-3 text-xs text-slate-300 leading-relaxed">
+            <div class="p-3 rounded bg-carbon-800/80 border border-carbon-700/60">
+              <span class="text-amber-400 font-semibold block mb-0.5">Production Implementation:</span>
+              Refactored subscription-options-service to unify <code class="text-amber-300">parentSKU</code> with <code class="text-amber-300">parentProductSku</code> across Magento cancellation and renewal logic.
+            </div>
+            <div class="p-3 rounded bg-carbon-800/80 border border-carbon-700/60">
+              <span class="text-amber-400 font-semibold block mb-0.5">Team Delivery:</span>
+              Addressed 15 review checkpoints under sprint deadline, isolated dead mock data, and re-established passing Maven unit/integration suites.
+            </div>
+          </div>
+        </div>
+
+        <!-- Observability & Security -->
+        <div class="p-6 rounded-xl bg-carbon-850 border border-carbon-700 hover:border-amber-500/40 transition-colors">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-lg bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400">
+              <i data-lucide="shield" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <h3 class="text-base font-semibold text-white">Observability, IAM & Access Ops</h3>
+              <p class="text-xs font-mono text-slate-400">Datadog • Splunk • AWS IAM • OpenTelemetry</p>
+            </div>
+          </div>
+          <div class="space-y-3 text-xs text-slate-300 leading-relaxed">
+            <div class="p-3 rounded bg-carbon-800/80 border border-carbon-700/60">
+              <span class="text-amber-400 font-semibold block mb-0.5">Production Implementation:</span>
+              Managed IAM role policies, audit policies for Datadog telemetry agents, and provisioned multi-tier RBAC for developers across AWS & MongoDB clusters.
+            </div>
+            <div class="p-3 rounded bg-carbon-800/80 border border-carbon-700/60">
+              <span class="text-amber-400 font-semibold block mb-0.5">Risk Mitigation:</span>
+              Conducted KMS impact analysis confirming new key ARNs generated from latest tags operated cleanly without breaking legacy decryption keys.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 03: PRODUCTION WORK HISTORY -->
+    <section id="experience" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-b border-carbon-800">
+      <div class="mb-10">
+        <span class="text-xs font-mono text-amber-400 uppercase tracking-wider">// 03. VERIFIED TRACK RECORD</span>
+        <h2 class="text-2xl font-bold text-white mt-1">Professional Experience</h2>
+      </div>
+
+      <div class="space-y-8">
+
+        <!-- Role 1: Ascendion / HP -->
+        <div class="p-6 sm:p-8 rounded-xl bg-carbon-850 border border-carbon-700 hover:border-amber-500/30 transition-all">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-carbon-700/80 pb-4 mb-4">
+            <div>
+              <div class="flex items-center gap-2">
+                <h3 class="text-lg font-bold text-white">DevOps & Backend Software Engineer</h3>
+                <span class="px-2.5 py-0.5 rounded text-[11px] font-mono bg-amber-500/20 text-amber-400 border border-amber-500/30">Contract</span>
+              </div>
+              <p class="text-sm text-slate-300 font-mono mt-0.5">Ascendion &mdash; <span class="text-white font-semibold">Client: HP Inc.</span> (Print Cloud Platform)</p>
+            </div>
+            <div class="text-left sm:text-right">
+              <span class="text-xs font-mono text-amber-400">Jan 2026 &mdash; Present</span>
+              <p class="text-xs text-slate-400 font-mono">Cloud Services & Subscription Ops</p>
+            </div>
+          </div>
+
+          <div class="space-y-3 text-xs sm:text-sm text-slate-300 leading-relaxed">
+            <p class="flex items-start gap-2">
+              <i data-lucide="check" class="w-4 h-4 text-amber-400 shrink-0 mt-0.5"></i>
+              <span><strong>Infrastructure as Code Modernization:</strong> Upgraded core AWS Runway modules across OBC (On-Books Controller) and Printer Ledger services, updating SNS, SQS, IAM, and Secrets Manager versions to resolve deprecated configurations.</span>
+            </p>
+            <p class="flex items-start gap-2">
+              <i data-lucide="check" class="w-4 h-4 text-amber-400 shrink-0 mt-0.5"></i>
+              <span><strong>Critical CI/CD Triage:</strong> Took ownership of a blocking team-wide deployment outage under a 1-hour SLA. Isolated root cause to a missing <code class="text-amber-300">curl</code> package inside <code class="text-slate-200">harbor.ext.hp.com</code> container base images that broke healthchecks (ExitCode 127).</span>
+            </p>
+            <p class="flex items-start gap-2">
+              <i data-lucide="check" class="w-4 h-4 text-amber-400 shrink-0 mt-0.5"></i>
+              <span><strong>Backend Microservice Refactoring:</strong> Authored Java (Spring) PRs in <code class="text-slate-200">stratus/subscription-options-service</code> unifying disparate product SKU naming conventions (<code class="text-amber-300">parentSKU</code> / <code class="text-amber-300">parentProductSku</code>), passing rigorous peer review and test suites.</span>
+            </p>
+            <p class="flex items-start gap-2">
+              <i data-lucide="check" class="w-4 h-4 text-amber-400 shrink-0 mt-0.5"></i>
+              <span><strong>Code Review & Compliance:</strong> Flagged critical cross-environment ARN discrepancies between staging and production Terragrunt configs prior to deployment, preventing credential failure.</span>
+            </p>
+          </div>
+
+          <div class="flex flex-wrap gap-2 mt-5 pt-4 border-t border-carbon-700/60 font-mono text-[11px] text-slate-400">
+            <span class="px-2.5 py-1 rounded bg-carbon-800 border border-carbon-700">AWS (KMS, IAM, SQS)</span>
+            <span class="px-2.5 py-1 rounded bg-carbon-800 border border-carbon-700">Runway / Terraform</span>
+            <span class="px-2.5 py-1 rounded bg-carbon-800 border border-carbon-700">Java Spring Boot</span>
+            <span class="px-2.5 py-1 rounded bg-carbon-800 border border-carbon-700">Azure DevOps</span>
+            <span class="px-2.5 py-1 rounded bg-carbon-800 border border-carbon-700">Harbor Docker</span>
+            <span class="px-2.5 py-1 rounded bg-carbon-800 border border-carbon-700">Datadog</span>
+          </div>
+        </div>
+
+        <!-- Role 2: Previous Milestone -->
+        <div class="p-6 sm:p-8 rounded-xl bg-carbon-850 border border-carbon-700 hover:border-amber-500/30 transition-all">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-carbon-700/80 pb-4 mb-4">
+            <div>
+              <h3 class="text-lg font-bold text-white">Software & Cloud Engineer</h3>
+              <p class="text-sm text-slate-300 font-mono mt-0.5">Eficens Systems LLC</p>
+            </div>
+            <div class="text-left sm:text-right">
+              <span class="text-xs font-mono text-amber-400">2023 &mdash; 2025</span>
+              <p class="text-xs text-slate-400 font-mono">Distributed Systems & Automation</p>
+            </div>
+          </div>
+
+          <div class="space-y-3 text-xs sm:text-sm text-slate-300 leading-relaxed">
+            <p class="flex items-start gap-2">
+              <i data-lucide="check" class="w-4 h-4 text-amber-400 shrink-0 mt-0.5"></i>
+              <span>Architected scalable automated testing and infrastructure provisioning pipelines on AWS utilizing Terraform and Docker.</span>
+            </p>
+            <p class="flex items-start gap-2">
+              <i data-lucide="check" class="w-4 h-4 text-amber-400 shrink-0 mt-0.5"></i>
+              <span>Integrated APM monitoring, distributed tracing, and automated alerting reducing mean time to detect (MTTD) operational bottlenecks.</span>
+            </p>
+          </div>
+
+          <div class="flex flex-wrap gap-2 mt-5 pt-4 border-t border-carbon-700/60 font-mono text-[11px] text-slate-400">
+            <span class="px-2.5 py-1 rounded bg-carbon-800 border border-carbon-700">AWS Architecture</span>
+            <span class="px-2.5 py-1 rounded bg-carbon-800 border border-carbon-700">Terraform</span>
+            <span class="px-2.5 py-1 rounded bg-carbon-800 border border-carbon-700">Python</span>
+            <span class="px-2.5 py-1 rounded bg-carbon-800 border border-carbon-700">Docker</span>
+            <span class="px-2.5 py-1 rounded bg-carbon-800 border border-carbon-700">CI/CD Automation</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 04: INCIDENT & ARCHITECTURE DEEP DIVE -->
+    <section id="case-studies" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-b border-carbon-800">
+      <div class="mb-10">
+        <span class="text-xs font-mono text-amber-400 uppercase tracking-wider">// 04. ENGINEERING CASE STUDIES</span>
+        <h2 class="text-2xl font-bold text-white mt-1">Architecture & Incident Deep Dives</h2>
+        <p class="text-slate-400 text-sm mt-1">
+          Detailed breakdowns of real production problems, triage methodologies, and outcomes.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+        <!-- Case Study 1 -->
+        <div class="p-6 rounded-xl bg-carbon-850 border border-carbon-700 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between text-xs font-mono mb-3">
+              <span class="px-2 py-0.5 rounded bg-red-500/10 text-red-400 border border-red-500/20">LIVE INCIDENT</span>
+              <span class="text-slate-400">MAY 2026</span>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Docker Healthcheck Failure Triage (ExitCode 127)</h3>
+            <p class="text-xs text-slate-300 leading-relaxed mb-4">
+              A company-wide deployment roadblock halted all container runs across <code class="text-slate-200">onebooksdc</code> and <code class="text-slate-200">subscription-options</code> services. Builds failed during the <code class="text-amber-400">Prepare Docker</code> step.
+            </p>
+
+            <div class="p-3 rounded bg-carbon-900 border border-carbon-700/80 font-mono text-[11px] text-slate-300 space-y-1 mb-4">
+              <p class="text-slate-400"># Log Snippet Isolated During Triage:</p>
+              <p class="text-emerald-400 font-semibold">[OK] Started SubscriptionOptionsApplication in 7.55s</p>
+              <p class="text-red-400 font-semibold">/bin/sh: /usr/bin/curl: not found (ExitCode 127)</p>
+              <p class="text-slate-400">/usr/bin/curl --fail http://localhost:8080/.../ping</p>
+            </div>
+
+            <ul class="text-xs text-slate-300 space-y-1.5 list-disc list-inside">
+              <li><strong>Hypothesis Disproved:</strong> Application code was running fine on port 8080; failure was strictly external to runtime.</li>
+              <li><strong>Root Cause:</strong> Shared base image <code class="text-slate-200">harbor.ext.hp.com/.../java-service-base:latest</code> had removed <code class="text-slate-200">curl</code>.</li>
+              <li><strong>Outcome:</strong> Documented complete triage steps for team wiki; unblocked active release cycles.</li>
+            </ul>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-carbon-700/80 flex items-center justify-between">
+            <span class="text-xs font-mono text-amber-400">SLA: 60m | Resolved: 45m</span>
+            <button onclick="openModal('incident-modal')" class="text-xs font-mono text-white hover:text-amber-400 flex items-center gap-1 transition-colors">
+              READ COMPLETE TRIAGE <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Case Study 2 -->
+        <div class="p-6 rounded-xl bg-carbon-850 border border-carbon-700 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between text-xs font-mono mb-3">
+              <span class="px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20">IaC REFACTOR</span>
+              <span class="text-slate-400">APR 2026</span>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Multi-Environment ARN Drift & KMS Security</h3>
+            <p class="text-xs text-slate-300 leading-relaxed mb-4">
+              While preparing subscription options infrastructure across 15 Terragrunt configuration files, conducted comprehensive pre-merge audits to prevent cross-account blast radius risks.
+            </p>
+
+            <div class="p-3 rounded bg-carbon-900 border border-carbon-700/80 font-mono text-[11px] text-slate-300 space-y-1 mb-4">
+              <p class="text-slate-400"># Audit Observation:</p>
+              <p class="text-amber-400">tropos_role = "arn:aws:iam::126350429920:role/..."</p>
+              <p class="text-slate-400"># Flagged: Production file referenced staging IAM role</p>
+              <p class="text-emerald-400">Action: Isolated ARN diff prior to Terragrunt apply</p>
+            </div>
+
+            <ul class="text-xs text-slate-300 space-y-1.5 list-disc list-inside">
+              <li><strong>Proactive Review:</strong> Detected hardcoded staging role in production subscription controllers.</li>
+              <li><strong>KMS Impact Analysis:</strong> Validated that new KMS key generation for tag 3.3.1 would maintain legacy ARN decrypt parity.</li>
+              <li><strong>Outcome:</strong> Prevented authentication failure in production environment.</li>
+            </ul>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-carbon-700/80 flex items-center justify-between">
+            <span class="text-xs font-mono text-amber-400">Zero Security Regressions</span>
+            <button onclick="openModal('arn-modal')" class="text-xs font-mono text-white hover:text-amber-400 flex items-center gap-1 transition-colors">
+              READ ARCHITECTURE REVIEW <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 05: CREDENTIALS, EDUCATION & INSTITUTIONAL TRUST -->
+    <section id="education" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="mb-10">
+        <span class="text-xs font-mono text-amber-400 uppercase tracking-wider">// 05. ACADEMIC & CLOUD CREDENTIALS</span>
+        <h2 class="text-2xl font-bold text-white mt-1">Certifications & Education</h2>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        
+        <!-- AWS Certifications -->
+        <div class="space-y-4">
+          <h3 class="text-sm font-mono text-slate-400 uppercase tracking-wider flex items-center gap-2">
+            <i data-lucide="award" class="w-4 h-4 text-amber-400"></i> AWS Verified Badges
+          </h3>
+
+          <div class="space-y-3">
+            <div class="p-4 rounded-lg bg-carbon-850 border border-carbon-700/90 flex items-center justify-between">
+              <div>
+                <p class="text-sm font-semibold text-white">AWS Certified Solutions Architect &mdash; Associate</p>
+                <p class="text-xs text-slate-400 font-mono mt-0.5">Amazon Web Services • Cloud Architecture</p>
+              </div>
+              <span class="px-2.5 py-1 rounded bg-amber-500/10 text-amber-400 text-xs font-mono border border-amber-500/30">ACTIVE</span>
+            </div>
+
+            <div class="p-4 rounded-lg bg-carbon-850 border border-carbon-700/90 flex items-center justify-between">
+              <div>
+                <p class="text-sm font-semibold text-white">AWS Certified Machine Learning Engineer &mdash; Associate</p>
+                <p class="text-xs text-slate-400 font-mono mt-0.5">Amazon Web Services • MLOps & GenAI Workflows</p>
+              </div>
+              <span class="px-2.5 py-1 rounded bg-amber-500/10 text-amber-400 text-xs font-mono border border-amber-500/30">ACTIVE</span>
+            </div>
+
+            <div class="p-4 rounded-lg bg-carbon-850 border border-carbon-700/90 flex items-center justify-between">
+              <div>
+                <p class="text-sm font-semibold text-white">AWS Certified Cloud Practitioner</p>
+                <p class="text-xs text-slate-400 font-mono mt-0.5">Amazon Web Services • Foundations & Security</p>
+              </div>
+              <span class="px-2.5 py-1 rounded bg-amber-500/10 text-amber-400 text-xs font-mono border border-amber-500/30">ACTIVE</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Academic Foundations -->
+        <div class="space-y-4">
+          <h3 class="text-sm font-mono text-slate-400 uppercase tracking-wider flex items-center gap-2">
+            <i data-lucide="graduation-cap" class="w-4 h-4 text-amber-400"></i> Institutional Degrees
+          </h3>
+
+          <div class="space-y-3">
+            <div class="p-4 rounded-lg bg-carbon-850 border border-carbon-700/90">
+              <div class="flex items-center justify-between">
+                <p class="text-sm font-semibold text-white">IIT Bombay</p>
+                <span class="text-xs font-mono text-amber-400">Advanced Program</span>
+              </div>
+              <p class="text-xs text-slate-300 mt-1">AI Engineering, MLOps, & Deep Learning Architectures</p>
+            </div>
+
+            <div class="p-4 rounded-lg bg-carbon-850 border border-carbon-700/90">
+              <div class="flex items-center justify-between">
+                <p class="text-sm font-semibold text-white">New Jersey Institute of Technology (NJIT)</p>
+                <span class="text-xs font-mono text-amber-400">Master of Science</span>
+              </div>
+              <p class="text-xs text-slate-300 mt-1">Computer Science &mdash; Distributed Computing & Cloud Systems</p>
+            </div>
+
+            <div class="p-4 rounded-lg bg-carbon-850 border border-carbon-700/90">
+              <div class="flex items-center justify-between">
+                <p class="text-sm font-semibold text-white">Guru Gobind Singh Indraprastha University (GGSIPU)</p>
+                <span class="text-xs font-mono text-amber-400">Bachelor of Technology</span>
+              </div>
+              <p class="text-xs text-slate-300 mt-1">Computer Science and Engineering</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Trust Strip (Institutional & Client Brands) -->
+      <div class="mt-12 pt-8 border-t border-carbon-800">
+        <p class="text-center text-xs font-mono uppercase tracking-widest text-slate-500 mb-6">
+          Associated Organizations, Institutions & Systems
+        </p>
+        <div class="flex flex-wrap items-center justify-center gap-8 sm:gap-14 text-slate-400 font-mono text-sm">
+          <div class="flex items-center gap-2 hover:text-white transition-colors">
+            <span class="font-black text-lg text-white">hp</span>
+            <span>HP Inc.</span>
+          </div>
+          <div class="flex items-center gap-2 hover:text-white transition-colors">
+            <span class="font-bold text-amber-400">^</span>
+            <span>Ascendion</span>
+          </div>
+          <div class="flex items-center gap-2 hover:text-white transition-colors">
+            <span class="font-bold">IIT-B</span>
+            <span>IIT Bombay</span>
+          </div>
+          <div class="flex items-center gap-2 hover:text-white transition-colors">
+            <span class="font-bold text-red-500">NJIT</span>
+            <span>New Jersey Tech</span>
+          </div>
+          <div class="flex items-center gap-2 hover:text-white transition-colors">
+            <span class="font-bold">IPU</span>
+            <span>GGSIPU</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 06: RESUME DOWNLOAD / STATIC SECTION -->
+    <section id="resume" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-carbon-800">
+      <div class="rounded-2xl bg-gradient-to-r from-carbon-850 to-carbon-800 border border-carbon-700 p-8 sm:p-12 text-center max-w-4xl mx-auto relative overflow-hidden">
+        <div class="absolute -right-12 -bottom-12 w-48 h-48 bg-amber-500/10 rounded-full blur-2xl pointer-events-none"></div>
+        
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Looking for the formal, printable version?</h2>
+        <p class="text-slate-300 text-sm max-w-xl mx-auto mt-2">
+          Download a concise single-page ATS-optimized copy of my curriculum vitae, verified milestones, and technical certifications.
+        </p>
+
+        <div class="flex flex-wrap items-center justify-center gap-4 mt-8">
+          <a href="./resume.pdf" download class="px-6 py-3 rounded-lg text-sm font-semibold bg-amber-500 hover:bg-amber-400 text-carbon-950 flex items-center gap-2 transition-all shadow-[0_0_20px_rgba(245,158,11,0.25)]">
+            <i data-lucide="download" class="w-4 h-4"></i> Download Sai_Vinay_Resume.pdf
+          </a>
+          <a href="mailto:saivinay.mullapudi@example.com?subject=Engineering%20Opportunity" class="px-6 py-3 rounded-lg text-sm font-mono bg-carbon-800 hover:bg-carbon-700 text-white border border-carbon-600 flex items-center gap-2 transition-colors">
+            <i data-lucide="mail" class="w-4 h-4 text-amber-400"></i> Initiate Conversation
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- TERMINAL FOOTER -->
+  <footer class="bg-carbon-950 border-t border-carbon-800 py-10 text-xs font-mono text-slate-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <span>© 2026 Sai Vinay Mullapudi. Deployed via GitHub Pages.</span>
+      </div>
+      <div class="flex items-center gap-6 text-slate-400">
+        <a href="https://github.com/sai-vinay-mullapudi" class="hover:text-amber-400 transition-colors">GitHub</a>
+        <a href="https://linkedin.com" class="hover:text-amber-400 transition-colors">LinkedIn</a>
+        <a href="mailto:saivinay.mullapudi@example.com" class="hover:text-amber-400 transition-colors">Direct Mail</a>
+        <a href="#" class="hover:text-amber-400 transition-colors">Back to top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODAL: INCIDENT TRIAGE CASE STUDY -->
+  <div id="incident-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-carbon-900 border border-carbon-700 max-w-2xl w-full rounded-xl p-6 sm:p-8 space-y-4 max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b border-carbon-700 pb-3">
+        <h3 class="text-lg font-bold text-white flex items-center gap-2">
+          <i data-lucide="terminal" class="w-5 h-5 text-amber-400"></i>
+          Incident Walkthrough: Missing Curl Base Image
+        </h3>
+        <button onclick="closeModal('incident-modal')" class="text-slate-400 hover:text-white font-mono text-sm">✕ ESC</button>
+      </div>
+
+      <div class="space-y-3 text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
+        <p><strong>Context:</strong> During mid-sprint builds, multiple services suddenly stalled at the Docker deployment step. Engineering leads requested an urgent investigation under a 60-minute window.</p>
+        <p><strong>Step 1: Container Log Inspection</strong><br>
+        Inspected container runtime logs for <code class="text-amber-300">stratus/subscription-options-service</code> and <code class="text-amber-300">hpone-onbooks-dc</code>. Confirmed Tomcat initialized properly on port 8080 (<code class="text-slate-400">Started SubscriptionOptionsApplication in 7.55s</code>).</p>
+        <p><strong>Step 2: Isolation of Healthcheck Script</strong><br>
+        Identified exit code 127 returned by the container healthcheck ping: <br>
+        <code class="text-red-400 font-mono text-xs">/bin/sh: /usr/bin/curl: not found</code>.</p>
+        <p><strong>Step 3: Root Cause & Resolution Direction</strong><br>
+        Cross-checked with Harbor image update history (<code class="text-slate-200">harbor.ext.hp.com/onecloud/java-service-base:latest</code>). A recent slim-down had stripped <code class="text-slate-200">curl</code> without updating the healthcheck directives. Delivered detailed triage findings for team wiki.</p>
+      </div>
+
+      <div class="pt-4 border-t border-carbon-700 flex justify-end">
+        <button onclick="closeModal('incident-modal')" class="px-4 py-2 rounded bg-amber-500 text-carbon-950 font-mono text-xs font-semibold hover:bg-amber-400 transition-colors">
+          Close Case Study
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: ARN AUDIT CASE STUDY -->
+  <div id="arn-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-carbon-900 border border-carbon-700 max-w-2xl w-full rounded-xl p-6 sm:p-8 space-y-4 max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b border-carbon-700 pb-3">
+        <h3 class="text-lg font-bold text-white flex items-center gap-2">
+          <i data-lucide="shield-check" class="w-5 h-5 text-amber-400"></i>
+          Architecture Audit: Multi-Environment ARN Drift
+        </h3>
+        <button onclick="closeModal('arn-modal')" class="text-slate-400 hover:text-white font-mono text-sm">✕ ESC</button>
+      </div>
+
+      <div class="space-y-3 text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
+        <p><strong>Context:</strong> A 15-file PR was submitted updating Terragrunt and Runway configurations across environments (<code class="text-slate-200">stg</code> and <code class="text-slate-200">pro</code>).</p>
+        <p><strong>The Catch:</strong> In <code class="text-slate-200">environments/csc-hpone-sf-stg-pro/pro-subscription-options/global/service.hcl</code>, the production tropos role ARN was set identically to staging: <code class="text-amber-300">arn:aws:iam::126350429920:role/stratus-pro-subscription-options-service</code>.</p>
+        <p><strong>Impact:</strong> If deployed, production traffic would have attempted to authenticate using staging privileges, triggering authorization rejections under live workloads.</p>
+        <p><strong>KMS Impact Assessment:</strong> Additionally verified that new ARN keys generated by tag 3.3.1 would not invalidate encryption keys in OBC and Subscription Control.</p>
+      </div>
+
+      <div class="pt-4 border-t border-carbon-700 flex justify-end">
+        <button onclick="closeModal('arn-modal')" class="px-4 py-2 rounded bg-amber-500 text-carbon-950 font-mono text-xs font-semibold hover:bg-amber-400 transition-colors">
+          Close Case Study
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPTS & MODAL HANDLERS -->
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // Modal controllers
+    function openModal(id) {
+      const modal = document.getElementById(id);
+      if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeModal(id) {
+      const modal = document.getElementById(id);
+      if (modal) {
+        modal.classList.remove('flex');
+        modal.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+      }
+    }
+
+    // Close on backdrop click or ESC key
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeModal('incident-modal');
+        closeModal('arn-modal');
+      }
+    });
+
+    [document.getElementById('incident-modal'), document.getElementById('arn-modal')].forEach(modal => {
+      if (modal) {
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) {
+            closeModal(modal.id);
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
