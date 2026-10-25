@@ -598,6 +598,33 @@
       if (isChatMinimized) toggleChatMinimize();
     }
 
+    // Function to visually recover and shut off chaos
+function healProductionSystem() {
+  if (!isChaosActive) return;
+  isChaosActive = false;
+
+  const recoveryLogs = [
+    "[REMEDIATION] Injecting package layer: 'curl' installed into runtime binary path.",
+    "[REMEDIATION] Updating probe definition: exec /usr/bin/curl -f http://localhost:8080/actuator/health",
+    "[HEALTH] Healthcheck probe responded HTTP 200 OK (0.012s).",
+    "[STATUS] Container transition: FAILED -> HEALTHY.",
+    "[SRE COMMAND] Incident resolved. Production cluster stabilized."
+  ];
+
+  recoveryLogs.forEach((log, index) => {
+    setTimeout(() => {
+      logStream.innerHTML += `<div class="log-line py-1 text-success" style="color: #34d399;">${log}</div>`;
+      chaosTerminal.scrollTop = chaosTerminal.scrollHeight;
+    }, index * 200);
+  });
+
+  setTimeout(() => {
+    clusterStatus.className = "badge-status status-optimal";
+    clusterStatus.innerText = "● SYSTEM OPTIMAL";
+    botContextTip.innerText = "Mode Status: Standard Recruiter Agent Active.";
+  }, recoveryLogs.length * 200 + 400);
+}
+
     // 3. Minimize / Expand Chat Window
     function toggleChatMinimize() {
       isChatMinimized = !isChatMinimized;
@@ -607,6 +634,7 @@
     }
 
     // 4. Send Message to Cloudflare Worker
+  // 4. Send Message to Cloudflare Worker
     async function sendMessage() {
       const text = userInput.value.trim();
       if (!text) return;
@@ -624,6 +652,53 @@
           <span></span><span></span><span></span>
         </div>
       `);
+      chatWindow.scrollTop = chatWindow.scrollHeight;
+
+      let systemStateContext = "";
+      if (isChaosActive) {
+        systemStateContext = "[MODE: ACTIVE_INCIDENT_CHAOS. Persona: Calm SRE Commander. Active incident: ExitCode 127. Answer user's direct query or triage prompt.] ";
+      } else if (isConsoleActive) {
+        systemStateContext = "[MODE: TERMINAL_CLI. Persona: Terse, technical engineer.] ";
+      } else {
+        systemStateContext = "[MODE: DEFAULT. Persona: Direct, professional assistant.] ";
+      }
+
+      const contextualPayload = systemStateContext + text;
+
+      try {
+        const response = await fetch(LAMBDA_API_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: contextualPayload, history: chatHistory })
+        });
+        
+        const data = await response.json();
+        document.getElementById(loaderId)?.remove();
+        
+        if (!response.ok || data.error) {
+          appendMessage(`Worker Error: ${data.error || 'Request failed'}`, 'msg-bot error-state');
+        } else {
+          const replyText = data.reply || data.message || "No response received.";
+          appendMessage(replyText, 'msg-bot');
+
+          // Check if Gemini resolved the incident or if the user asked to stop
+          if (data.action === "RESOLVE_INCIDENT") {
+            healProductionSystem();
+          }
+
+          chatHistory.push({ role: "user", parts: [{ text: text }] });
+          chatHistory.push({ role: "model", parts: [{ text: replyText }] });
+        }
+      } catch (err) {
+        document.getElementById(loaderId)?.remove();
+        console.error("Chat communication failure:", err);
+        appendMessage("Network Error: Could not reach Cloudflare Worker. Check DevTools Console (F12).", "msg-bot error-state");
+      } finally {
+        userInput.disabled = false;
+        sendChatBtn.disabled = false;
+        userInput.focus();
+      }
+    }
       chatWindow.scrollTop = chatWindow.scrollHeight;
 
       let systemStateContext = "";
