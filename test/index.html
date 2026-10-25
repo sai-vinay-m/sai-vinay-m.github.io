@@ -8,16 +8,16 @@
   <!-- Fonts & Bootstrap 4 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 
   <style>
-   <style>
     :root {
       --bg-dark: #0a0e17;
-      --card-dark: #0f1626;
-      --border-dark: #1e293b;
+      --card-dark: #101624;
+      --border-dark: #222f49;
       --amber-accent: #f59e0b;
+      --amber-glow: rgba(245, 158, 11, 0.35);
       --text-muted: #94a3b8;
     }
 
@@ -27,167 +27,251 @@
       color: #e2e8f0;
       min-height: 100vh;
       margin: 0;
-      padding-bottom: 80px;
+      padding-bottom: 90px;
       transition: background-color 0.25s ease, color 0.25s ease;
     }
 
-    /* Terminal Console Mode Overrides */
+    /* Terminal Console Mode Layout & Text Overrides */
     body.console-mode {
       font-family: 'Fira Code', monospace !important;
       background-color: #0c0803 !important;
       color: #ffb000 !important;
     }
-    body.console-mode .card, 
     body.console-mode header,
-    body.console-mode .chat-drawer,
-    body.console-mode .interactive-box {
+    body.console-mode .interactive-box,
+    body.console-mode #portfolioChat {
       border: 1px solid #ffb000 !important;
       background: #140d05 !important;
       border-radius: 0px !important;
       box-shadow: none !important;
     }
-
-    /* Lucrative Glassmorphism Chat Drawer */
-    .chat-drawer {
-      width: 400px;
-      max-width: calc(100vw - 24px);
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      z-index: 9999;
-      background: rgba(15, 22, 38, 0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(245, 158, 11, 0.2);
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 30px rgba(245, 158, 11, 0.05);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    body.console-mode h1, 
+    body.console-mode h2, 
+    body.console-mode h3, 
+    body.console-mode .text-white {
+      color: #ffcc00 !important;
+    }
+    body.console-mode .badge {
+      border: 1px solid #ffb000 !important;
+      background: transparent !important;
+      color: #ffb000 !important;
+      border-radius: 0px !important;
+    }
+    body.console-mode .btn-outline-warning {
+      background-color: transparent !important;
+      border: 1px solid #ffb000 !important;
+      color: #ffb000 !important;
+      border-radius: 0px !important;
+    }
+    body.console-mode #userInput {
+      background: #000000 !important;
+      color: #ffb000 !important;
+      border: 1px solid #ffb000 !important;
+      border-radius: 0 !important;
     }
 
-    .chat-header {
-      background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), transparent);
-      padding: 14px 18px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid var(--border-dark);
-      cursor: pointer;
-      user-select: none;
-    }
-
-    .chat-header-actions button {
-      background: transparent;
-      border: none;
-      color: var(--text-muted);
-      cursor: pointer;
-      font-size: 1.1rem;
-      padding: 2px 8px;
-      line-height: 1;
-      border-radius: 6px;
-      transition: all 0.2s;
-    }
-    .chat-header-actions button:hover {
-      color: #ffffff;
-      background: rgba(255, 255, 255, 0.08);
-    }
-
-    .chat-body-scroll {
-      height: 310px;
-      overflow-y: auto;
-      background: rgba(10, 14, 23, 0.5);
+    /* Chaos Outage Streaming Log Terminal */
+    #chaosTerminal {
+      display: none;
+      background: #000000;
+      border: 1px solid #ef4444;
+      color: #f87171;
+      font-family: 'Fira Code', monospace;
       padding: 16px;
-      font-size: 0.9rem;
-      scroll-behavior: smooth;
+      height: 180px;
+      overflow-y: auto;
+      border-radius: 8px;
+      box-shadow: inset 0 0 12px rgba(239, 68, 68, 0.25);
+    }
+    .log-line {
+      line-height: 1.5;
+      font-size: 0.85rem;
     }
 
-    .chat-footer {
-      padding: 12px 16px;
-      background: rgba(13, 19, 31, 0.9);
-      border-top: 1px solid var(--border-dark);
+    /* ========================================================
+       LUCRATIVE HIGH-TECH CHAT DRAWER (SCOPED ID OVERRIDES)
+       ======================================================== */
+    #portfolioChat {
+      width: 410px !important;
+      max-width: calc(100vw - 28px) !important;
+      position: fixed !important;
+      bottom: 24px !important;
+      right: 24px !important;
+      z-index: 99999 !important;
+      background: rgba(14, 20, 34, 0.92) !important;
+      backdrop-filter: blur(16px) !important;
+      -webkit-backdrop-filter: blur(16px) !important;
+      border: 1px solid rgba(245, 158, 11, 0.28) !important;
+      border-radius: 18px !important;
+      overflow: hidden !important;
+      box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.8), 0 0 25px rgba(245, 158, 11, 0.12) !important;
+      transition: height 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s ease !important;
     }
 
-    /* Minimized State */
-    .chat-drawer.minimized .chat-body-scroll,
-    .chat-drawer.minimized .chat-footer {
-      display: none !important;
-    }
-    .chat-drawer.minimized {
-      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-    }
-
-    /* Lucrative Message Bubbles */
-    .msg-user {
-      background: linear-gradient(135deg, #f59e0b, #d97706);
-      color: #0a0e17;
-      font-weight: 600;
-      text-align: right;
-      margin-left: auto;
-      max-width: 85%;
-      padding: 10px 14px;
-      border-radius: 14px 14px 2px 14px;
-      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
-      word-break: break-word;
-      margin-bottom: 12px;
-    }
-    
-    .msg-bot {
-      background: #162032;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      color: #f1f5f9;
-      margin-right: auto;
-      max-width: 90%;
-      padding: 10px 14px;
-      border-radius: 14px 14px 14px 2px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-      word-break: break-word;
-      margin-bottom: 12px;
+    #portfolioChat .chat-header {
+      background: linear-gradient(90deg, rgba(245, 158, 11, 0.14) 0%, rgba(14, 20, 34, 0.8) 100%) !important;
+      padding: 14px 18px !important;
+      display: flex !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+      cursor: pointer !important;
+      user-select: none !important;
     }
 
-    #userInput {
-      background: #0a0e17 !important;
+    #portfolioChat .status-dot {
+      width: 8px;
+      height: 8px;
+      background: #10b981;
+      border-radius: 50%;
+      display: inline-block;
+      box-shadow: 0 0 8px #10b981;
+      margin-right: 8px;
+      animation: pulse-dot 2s infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    #portfolioChat .model-pill {
+      font-size: 11px !important;
+      font-family: 'Fira Code', monospace !important;
+      padding: 2px 8px !important;
+      border-radius: 999px !important;
+      background: rgba(245, 158, 11, 0.12) !important;
+      border: 1px solid rgba(245, 158, 11, 0.3) !important;
+      color: #fbbf24 !important;
+    }
+
+    #portfolioChat .chat-header-actions button {
+      background: transparent !important;
+      border: none !important;
+      color: #94a3b8 !important;
+      cursor: pointer !important;
+      font-size: 1.15rem !important;
+      padding: 2px 8px !important;
+      line-height: 1 !important;
+      border-radius: 6px !important;
+      transition: color 0.15s ease, background 0.15s ease !important;
+    }
+    #portfolioChat .chat-header-actions button:hover {
       color: #ffffff !important;
-      border: 1px solid var(--border-dark) !important;
-      border-radius: 8px !important;
-      padding: 8px 12px;
+      background: rgba(255, 255, 255, 0.1) !important;
+    }
+
+    #portfolioChat .chat-body-scroll {
+      height: 320px !important;
+      overflow-y: auto !important;
+      background: rgba(8, 12, 22, 0.6) !important;
+      padding: 16px !important;
+      font-size: 0.88rem !important;
+      scroll-behavior: smooth !important;
+    }
+
+    #portfolioChat .chat-body-scroll::-webkit-scrollbar {
+      width: 5px;
+    }
+    #portfolioChat .chat-body-scroll::-webkit-scrollbar-thumb {
+      background: rgba(245, 158, 11, 0.2);
+      border-radius: 10px;
+    }
+
+    #portfolioChat .chat-footer {
+      padding: 12px 14px !important;
+      background: rgba(11, 16, 28, 0.95) !important;
+      border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+    }
+
+    /* Lucrative Message Styling */
+    #portfolioChat .msg-user {
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
+      color: #06080e !important;
+      font-weight: 600 !important;
+      text-align: right !important;
+      margin-left: auto !important;
+      max-width: 82% !important;
+      padding: 10px 14px !important;
+      border-radius: 16px 16px 3px 16px !important;
+      box-shadow: 0 4px 14px rgba(245, 158, 11, 0.25) !important;
+      word-break: break-word !important;
+      margin-bottom: 12px !important;
+      line-height: 1.4 !important;
+    }
+
+    #portfolioChat .msg-bot {
+      background: rgba(22, 31, 51, 0.85) !important;
+      border: 1px solid rgba(255, 255, 255, 0.08) !important;
+      color: #f1f5f9 !important;
+      margin-right: auto !important;
+      max-width: 88% !important;
+      padding: 11px 15px !important;
+      border-radius: 16px 16px 16px 3px !important;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+      word-break: break-word !important;
+      margin-bottom: 12px !important;
+      line-height: 1.45 !important;
+    }
+
+    #portfolioChat #userInput {
+      background: #080c16 !important;
+      color: #ffffff !important;
+      border: 1px solid rgba(245, 158, 11, 0.22) !important;
+      border-radius: 10px !important;
+      padding: 9px 13px !important;
+      font-size: 0.86rem !important;
       outline: none !important;
       box-shadow: none !important;
     }
-    #userInput:focus {
+    #portfolioChat #userInput:focus {
       border-color: var(--amber-accent) !important;
-      box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.15) !important;
+      box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.18) !important;
     }
 
-    #sendChatBtn {
-      border-radius: 8px !important;
-      background: var(--amber-accent);
-      border: none;
-      color: #0a0e17;
-      transition: all 0.2s;
+    #portfolioChat #sendChatBtn {
+      border-radius: 10px !important;
+      background: linear-gradient(135deg, #f59e0b, #d97706) !important;
+      border: none !important;
+      color: #06080e !important;
+      font-weight: 700 !important;
+      padding: 0 16px !important;
+      margin-left: 6px !important;
+      transition: transform 0.15s ease, box-shadow 0.15s ease !important;
     }
-    #sendChatBtn:hover {
+    #portfolioChat #sendChatBtn:hover {
+      transform: translateY(-1px) !important;
+      box-shadow: 0 4px 14px rgba(245, 158, 11, 0.4) !important;
+    }
+
+    /* Pulsing Three-Dot Typing Indicator */
+    .typing-bubble {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 10px 14px !important;
+    }
+    .typing-bubble span {
+      width: 6px;
+      height: 6px;
       background: #fbbf24;
-      box-shadow: 0 0 12px rgba(245, 158, 11, 0.4);
+      border-radius: 50%;
+      display: inline-block;
+      animation: bounce-dot 1.2s infinite ease-in-out;
+    }
+    .typing-bubble span:nth-child(2) { animation-delay: 0.2s; }
+    .typing-bubble span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes bounce-dot {
+      0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
+      40% { transform: translateY(-5px); opacity: 1; }
     }
 
-    /* Typing Loader Animation */
-    .typing-indicator span {
-      height: 7px;
-      width: 7px;
-      float: left;
-      background: var(--text-muted);
-      border-radius: 50%;
-      margin-right: 4px;
-      display: inline-block;
-      animation: bounce 1.3s linear infinite;
+    /* Minimized Chat Drawer State */
+    #portfolioChat.minimized .chat-body-scroll,
+    #portfolioChat.minimized .chat-footer {
+      display: none !important;
     }
-    .typing-indicator span:nth-child(2) { animation-delay: -1.1s; }
-    .typing-indicator span:nth-child(3) { animation-delay: -0.9s; }
-    @keyframes bounce {
-      0%, 60%, 100% { transform: translateY(0); }
-      30% { transform: translateY(-4px); }
-    }
-  </style>
+    #portfolioChat.minimized {
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6) !important;
     }
   </style>
 </head>
@@ -235,42 +319,38 @@
   </main>
 
   <!-- Floating Chat Window Drawer Container -->
-  <div class="chat-drawer" id="portfolioChat">
+  <div id="portfolioChat">
     <div class="chat-header" id="chatHeader">
       <div class="d-flex align-items-center">
-        <span class="text-warning font-weight-bold mr-2">&gt;_</span>
-        <h6 class="text-white mb-0 font-weight-bold" style="font-size: 0.95rem;">Sai's Copilot</h6>
-        <span class="badge badge-pill badge-primary interaction-tag small font-weight-bold ml-2">v3.5-flash-lite</span>
+        <span class="status-dot"></span>
+        <h6 class="text-white mb-0 font-weight-bold" style="font-size: 0.95rem; letter-spacing: -0.2px;">Sai's Copilot</h6>
+        <span class="model-pill ml-2.5">v3.5-flash-lite</span>
       </div>
       <div class="chat-header-actions">
-        <!-- Minimize / Expand Toggle Button -->
         <button id="minimizeChatBtn" title="Minimize/Expand chat" type="button">—</button>
       </div>
     </div>
     
     <div class="chat-body-scroll" id="chatWindow">
-      <div class="text-muted small mb-3 border-bottom pb-2" style="border-color: var(--border-dark) !important;" id="botContextTip">
+      <div class="text-muted small mb-3 border-bottom pb-2" style="border-color: rgba(255, 255, 255, 0.06) !important; font-size: 11px;" id="botContextTip">
         Mode Status: Standard Recruiter Agent Active.
       </div>
-      <div class="mb-2 p-2 rounded msg-bot small">
+      <div class="mb-2 msg-bot small">
         Greetings! Ask me anything regarding Sai Vinay's architecture experience, infrastructure design strategies, or production incident runbooks.
       </div>
     </div>
 
     <div class="chat-footer">
-      <div class="input-group">
-        <input type="text" id="userInput" class="form-control form-control-sm" 
+      <div class="d-flex align-items-center">
+        <input type="text" id="userInput" class="form-control" 
                placeholder="Ask about Case Studies, AWS, or Terraform..." 
                autocomplete="off">
-        <div class="input-group-append">
-          <button id="sendChatBtn" class="btn btn-sm btn-warning font-weight-bold px-3" type="button">Send</button>
-        </div>
+        <button id="sendChatBtn" class="btn" type="button">Send</button>
       </div>
     </div>
   </div>
 
   <script>
-    // Cloudflare Worker Live Endpoint
     const LAMBDA_API_ENDPOINT = "https://portfolio-copilot.msaivinay306.workers.dev";
     
     let isConsoleActive = false;
@@ -278,7 +358,6 @@
     let isChatMinimized = false;
     let chatHistory = [];
 
-    // DOM Elements
     const toggleConsoleBtn = document.getElementById('toggleConsoleBtn');
     const triggerChaosBtn = document.getElementById('triggerChaosBtn');
     const clusterStatus = document.getElementById('clusterStatus');
@@ -292,7 +371,6 @@
     const chatHeader = document.getElementById('chatHeader');
     const chatWindow = document.getElementById('chatWindow');
 
-    // 1. Terminal Console Toggle
     function toggleConsoleMode() {
       isConsoleActive = !isConsoleActive;
       document.body.classList.toggle('console-mode', isConsoleActive);
@@ -312,7 +390,6 @@
       }
     }
 
-    // 2. Chaos Incident Outage Stream
     function triggerChaosIncident() {
       isChaosActive = true;
       clusterStatus.className = "badge badge-danger px-3 py-2 font-weight-bold";
@@ -338,11 +415,9 @@
 
       appendMessage("⚠️ ALERT: Outage simulated. Copilot switched to SRE Incident Commander persona. Ask me how to triage ExitCode 127.", "msg-bot text-danger font-weight-bold");
       
-      // Auto expand chat if minimized when chaos strikes
       if (isChatMinimized) toggleChatMinimize();
     }
 
-    // 3. Minimize / Expand Chat Window
     function toggleChatMinimize() {
       isChatMinimized = !isChatMinimized;
       portfolioChat.classList.toggle('minimized', isChatMinimized);
@@ -350,25 +425,32 @@
       minimizeChatBtn.title = isChatMinimized ? "Expand chat" : "Minimize chat";
     }
 
-    // 4. Send Message Functionality
     async function sendMessage() {
       const text = userInput.value.trim();
       if (!text) return;
 
-      appendMessage(text, 'msg-user small font-weight-bold');
+      appendMessage(text, 'msg-user');
       userInput.value = '';
       
-      // Temporary disable input to avoid flood/race conditions
       userInput.disabled = true;
       sendChatBtn.disabled = true;
 
+      // Add typing indicator
+      const loaderId = 'loader-' + Date.now();
+      chatWindow.insertAdjacentHTML('beforeend', `
+        <div id="${loaderId}" class="mb-2 msg-bot typing-bubble">
+          <span></span><span></span><span></span>
+        </div>
+      `);
+      chatWindow.scrollTop = chatWindow.scrollHeight;
+
       let systemStateContext = "";
       if (isChaosActive) {
-        systemStateContext = "[CONTEXT: The user has intentionally broken production. They are looking at ExitCode 127 container failure logs. Act as an expert SRE Incident Commander answering strictly based on Sai's Case Study 01 resolution.] ";
+        systemStateContext = "[MODE: ACTIVE_INCIDENT_CHAOS. Persona: Calm SRE Commander. Note: ExitCode 127 is active on screen, but answer user's specific query directly.] ";
       } else if (isConsoleActive) {
-        systemStateContext = "[CONTEXT: The site layout is switched to terminal mode. Adopt a deep, highly technical DevOps engineer tone.] ";
+        systemStateContext = "[MODE: TERMINAL_CLI. Persona: Terse, technical engineer.] ";
       } else {
-        systemStateContext = "[CONTEXT: Default UI layout mode. Adopt a polished, executive recruiter-friendly tone highlighting career progression and metrics.] ";
+        systemStateContext = "[MODE: DEFAULT. Persona: Direct, professional assistant.] ";
       }
 
       const contextualPayload = systemStateContext + text;
@@ -381,19 +463,21 @@
         });
         
         const data = await response.json();
+        document.getElementById(loaderId)?.remove();
         
         if (!response.ok || data.error) {
-          appendMessage(`Worker Error: ${data.error || 'Request failed'}`, 'msg-bot text-danger small');
+          appendMessage(`Worker Error: ${data.error || 'Request failed'}`, 'msg-bot text-danger');
         } else {
           const replyText = data.reply || data.message || "No response received.";
-          appendMessage(replyText, 'msg-bot small');
+          appendMessage(replyText, 'msg-bot');
 
           chatHistory.push({ role: "user", parts: [{ text: text }] });
           chatHistory.push({ role: "model", parts: [{ text: replyText }] });
         }
       } catch (err) {
+        document.getElementById(loaderId)?.remove();
         console.error("Chat communication failure:", err);
-        appendMessage("Network Error: Could not reach Cloudflare Worker. Check DevTools Console (F12).", "msg-bot text-danger small");
+        appendMessage("Network Error: Could not reach Cloudflare Worker. Check DevTools Console (F12).", "msg-bot text-danger");
       } finally {
         userInput.disabled = false;
         sendChatBtn.disabled = false;
@@ -402,11 +486,10 @@
     }
 
     function appendMessage(text, extraClass) {
-      chatWindow.insertAdjacentHTML('beforeend', `<div class="mb-2 p-2 rounded ${extraClass}">${text}</div>`);
+      chatWindow.insertAdjacentHTML('beforeend', `<div class="mb-2 ${extraClass}">${text}</div>`);
       chatWindow.scrollTop = chatWindow.scrollHeight;
     }
 
-    // Direct Event Listeners (Rock-solid across all browsers)
     toggleConsoleBtn.addEventListener('click', toggleConsoleMode);
     triggerChaosBtn.addEventListener('click', triggerChaosIncident);
     minimizeChatBtn.addEventListener('click', (e) => {
