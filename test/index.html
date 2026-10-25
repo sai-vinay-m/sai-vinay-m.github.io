@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sai Vinay Mullapudi | Interactive SRE Terminal & AI Copilot</title>
+  
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+  <style>
+    :root {
+      --bg-dark: #0a0e17;
+      --card-dark: #101624;
+      --border-dark: #222f49;
+      --amber-accent: #f59e0b;
+      --text-muted: #94a3b8;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg-dark);
+      color: #e2e8f0;
+      min-height: 100vh;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    /* Console Mode Global Textual & Layout Overrides */
+    body.console-mode {
+      font-family: 'Fira Code', monospace !important;
+      background-color: #0c0803 !important;
+      color: #ffb000 !important;
+    }
+    body.console-mode .card, 
+    body.console-mode .navbar, 
+    body.console-mode .chat-drawer,
+    body.console-mode .modal-content {
+      border: 1px solid #ffb000 !important;
+      background: #140d05 !important;
+      border-radius: 0px !important;
+      box-shadow: none !important;
+    }
+    body.console-mode h1, 
+    body.console-mode h2, 
+    body.console-mode h3, 
+    body.console-mode .text-white {
+      color: #ffcc00 !important;
+    }
+    body.console-mode .badge {
+      border: 1px solid #ffb000 !important;
+      background: transparent !important;
+      color: #ffb000 !important;
+      border-radius: 0px !important;
+    }
+    body.console-mode .btn-outline-warning {
+      background-color: transparent !important;
+      border: 1px solid #ffb000 !important;
+      color: #ffb000 !important;
+      border-radius: 0px !important;
+    }
+    body.console-mode #userInput {
+      background: #000000 !important;
+      color: #ffb000 !important;
+      border: 1px solid #ffb000 !important;
+      border-radius: 0 !important;
+    }
+
+    /* Chaos Streaming Terminal Pane */
+    #chaosTerminal {
+      display: none;
+      background: #000000;
+      border: 1px solid #ef4444;
+      color: #f87171;
+      font-family: 'Fira Code', monospace;
+      padding: 16px;
+      height: 180px;
+      overflow-y: auto;
+      border-radius: 8px;
+      box-shadow: inset 0 0 12px rgba(239, 68, 68, 0.25);
+    }
+    .log-line {
+      line-height: 1.5;
+      font-size: 0.85rem;
+    }
+
+    /* Floating Chat Drawer UI */
+    .chat-drawer {
+      width: 380px;
+      max-width: calc(100vw - 32px);
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 1050;
+      border: 1px solid var(--border-dark);
+      background: var(--card-dark);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.4);
+    }
+    .chat-header {
+      background: #0d131f;
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-dark);
+    }
+    .chat-body-scroll {
+      height: 280px;
+      overflow-y: auto;
+      background: #0a0e17;
+      padding: 14px;
+      font-size: 0.9rem;
+    }
+    .chat-footer {
+      padding: 10px;
+      background: #0d131f;
+      border-top: 1px solid var(--border-dark);
+    }
+    .msg-user {
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      color: #fbbf24;
+      text-align: right;
+      margin-left: auto;
+      max-width: 85%;
+    }
+    .msg-bot {
+      background: #161f33;
+      border: 1px solid var(--border-dark);
+      color: #e2e8f0;
+      margin-right: auto;
+      max-width: 90%;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top System Telemetry Navigation Banner -->
+  <header class="d-flex flex-wrap justify-content-between align-items-center p-3 border-bottom" style="border-color: var(--border-dark) !important; background: rgba(10, 14, 23, 0.9);">
+    <div class="d-flex align-items-center mb-2 mb-md-0">
+      <span id="clusterStatus" class="badge badge-success px-3 py-2 font-weight-bold">● SYSTEM OPTIMAL</span>
+      <span class="ml-3 text-muted small font-weight-bold">Target: sai-vinay-m.github.io/test</span>
+    </div>
+    <div class="d-flex align-items-center">
+      <button id="toggleConsoleBtn" class="btn btn-sm btn-outline-warning" onclick="toggleConsoleMode()">
+        [ &gt;_ Activate Terminal Console ]
+      </button>
+      <button id="triggerChaosBtn" class="btn btn-sm btn-danger ml-2" style="display: none;" onclick="triggerChaosIncident()">
+        ⚠️ Inject Production Chaos
+      </button>
+    </div>
+  </header>
+
+  <!-- Chaos Fault Log Terminal -->
+  <div class="container-fluid mt-3 px-4">
+    <div id="chaosTerminal">
+      <div id="logStream"></div>
+    </div>
+  </div>
+
+  <!-- Sandbox Test Body -->
+  <main class="container my-5 text-left">
+    <div class="p-5 rounded-lg border" style="background: var(--card-dark); border-color: var(--border-dark) !important;">
+      <h1 class="text-white font-weight-bold">Hi, I'm Sai Vinay. I untangle complex cloud systems.</h1>
+      <p class="lead text-muted mt-3">
+        Cloud, DevOps, and GenAI Engineer with 4 years of enterprise experience across financial clearing infrastructure, zero-trust cloud automation, and agentic workflows.
+      </p>
+      <div class="mt-4 p-3 rounded" style="background: #090d16; border: 1px dashed var(--border-dark);">
+        <span class="text-warning font-weight-bold">Interactive Sandbox Instructions:</span>
+        <ul class="text-muted small mt-2 mb-0 pl-3">
+          <li>Click <strong>[ &gt;_ Activate Terminal Console ]</strong> to test theme &amp; state transitions.</li>
+          <li>Click <strong>⚠️ Inject Production Chaos</strong> to trigger the ExitCode 127 outage stream.</li>
+          <li>Chat with the Copilot below—its system context automatically pivots based on your active mode.</li>
+        </ul>
+      </div>
+    </div>
+  </main>
+
+  <!-- Floating Chat Window Drawer Container -->
+  <div class="chat-drawer" id="portfolioChat">
+    <div class="chat-header">
+      <div class="d-flex align-items-center">
+        <span class="text-warning font-weight-bold mr-2">&gt;_</span>
+        <h6 class="text-white mb-0 font-weight-bold" style="font-size: 0.95rem;">Sai's Copilot</h6>
+      </div>
+      <span class="badge badge-pill badge-primary interaction-tag small font-weight-bold">v3.5-flash-lite</span>
+    </div>
+    
+    <div class="chat-body-scroll" id="chatWindow">
+      <div class="text-muted small mb-3 border-bottom pb-2" style="border-color: var(--border-dark) !important;" id="botContextTip">
+        Mode Status: Standard Recruiter Agent Active.
+      </div>
+      <div class="mb-2 p-2 rounded msg-bot small">
+        Greetings! Ask me anything regarding Sai Vinay's architecture experience, infrastructure design strategies, or production incident runbooks.
+      </div>
+    </div>
+
+    <div class="chat-footer">
+      <div class="input-group">
+        <input type="text" id="userInput" class="form-control form-control-sm text-white border-0" 
+               style="background: #161f33;" 
+               placeholder="Ask about Case Studies, AWS, or Terraform..." 
+               onkeypress="if(event.key === 'Enter') sendMessage()">
+        <div class="input-group-append">
+          <button class="btn btn-sm btn-warning font-weight-bold" onclick="sendMessage()">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Configuration
+    // Set your AWS API Gateway invoke URL once deployed:
+    const LAMBDA_API_ENDPOINT = "https://your-api-gateway-id.execute-api.us-east-1.amazonaws.com/prod/chat";
+    
+    let isConsoleActive = false;
+    let isChaosActive = false;
+    let chatHistory = [];
+
+    function toggleConsoleMode() {
+      isConsoleActive = !isConsoleActive;
+      document.body.classList.toggle('console-mode', isConsoleActive);
+      
+      const chaosBtn = document.getElementById('triggerChaosBtn');
+      const toggleBtn = document.getElementById('toggleConsoleBtn');
+      const tip = document.getElementById('botContextTip');
+      
+      if (isConsoleActive) {
+        toggleBtn.innerText = "[ Return to Web UI ]";
+        chaosBtn.style.display = "inline-block";
+        tip.innerText = "Mode Status: Terminal Environment active. Deep technical tone primed.";
+      } else {
+        toggleBtn.innerText = "[ >_ Activate Terminal Console ]";
+        chaosBtn.style.display = "none";
+        document.getElementById('chaosTerminal').style.display = "none";
+        document.getElementById('clusterStatus').className = "badge badge-success px-3 py-2 font-weight-bold";
+        document.getElementById('clusterStatus').innerText = "● SYSTEM OPTIMAL";
+        isChaosActive = false;
+        tip.innerText = "Mode Status: Standard Recruiter Agent Active.";
+      }
+    }
+
+    function triggerChaosIncident() {
+      isChaosActive = true;
+      document.getElementById('clusterStatus').className = "badge badge-danger px-3 py-2 font-weight-bold";
+      document.getElementById('clusterStatus').innerText = "● CRITICAL OUTAGE DETECTED";
+      
+      const term = document.getElementById('chaosTerminal');
+      term.style.display = "block";
+      
+      const logs = [
+        "[INFO] Spawning Tomcat runtime execution threads on port 8080...",
+        "[INFO] Java Spring Boot microservice context mapping verified in ~7.55s.",
+        "[WARN] Container orchestrator healthcheck readiness probe initiated against local endpoint.",
+        "[ERROR] /bin/sh: /usr/bin/curl: not found (Runtime signal mapping: ExitCode 127)",
+        "[FATAL] Upstream base target stripped executable dependencies. Release lifecycle pipeline halted."
+      ];
+      
+      const logStream = document.getElementById('logStream');
+      logStream.innerHTML = "";
+      logs.forEach((log, index) => {
+        setTimeout(() => {
+          logStream.innerHTML += `<div class="log-line py-1">${log}</div>`;
+          term.scrollTop = term.scrollHeight;
+        }, index * 300);
+      });
+
+      appendMessage("⚠️ ALERT: Outage simulated. Copilot switched to SRE Incident Commander persona. Ask me how to triage ExitCode 127.", "msg-bot text-danger font-weight-bold");
+    }
+
+    async function sendMessage() {
+      const input = document.getElementById('userInput');
+      const text = input.value.trim();
+      if (!text) return;
+
+      appendMessage(text, 'msg-user small font-weight-bold');
+      input.value = '';
+
+      let systemStateContext = "";
+      if (isChaosActive) {
+        systemStateContext = "[CONTEXT: The user has intentionally broken production. They are looking at ExitCode 127 container failure logs. Act as an expert SRE Incident Commander answering strictly based on Sai's Case Study 01 resolution.] ";
+      } else if (isConsoleActive) {
+        systemStateContext = "[CONTEXT: The site layout is switched to terminal mode. Adopt a deep, highly technical DevOps engineer tone.] ";
+      } else {
+        systemStateContext = "[CONTEXT: Default UI layout mode. Adopt a polished, executive recruiter-friendly tone highlighting career progression and metrics.] ";
+      }
+
+      const contextualPayload = systemStateContext + text;
+
+      try {
+        if (LAMBDA_API_ENDPOINT.includes("your-api-gateway-id")) {
+          // Local fallback simulation when API gateway is not yet linked
+          setTimeout(() => {
+            let mockReply = "Backend proxy placeholder: Connect your AWS API Gateway endpoint in test/index.html to stream live Gemini 3.5 Flash-Lite tokens.";
+            if (isChaosActive) {
+              mockReply = "Case 01 Triage Active: Spring Boot is healthy on 8080, but curl was stripped from the hardened base image. Replace the probe or restore curl in the Dockerfile layer.";
+            }
+            appendMessage(mockReply, 'msg-bot small');
+          }, 600);
+          return;
+        }
+
+        const response = await fetch(LAMBDA_API_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: contextualPayload, history: chatHistory })
+        });
+        
+        const data = await response.json();
+        appendMessage(data.reply, 'msg-bot small');
+        chatHistory.push({ role: "user", parts: [{ text: text }] });
+        chatHistory.push({ role: "model", parts: [{ text: data.reply }] });
+      } catch (err) {
+        appendMessage("System Error: Failed to communicate with backend model proxy.", "msg-bot text-muted small");
+      }
+    }
+
+    function appendMessage(text, extraClass) {
+      const chatWindow = document.getElementById('chatWindow');
+      chatWindow.insertAdjacentHTML('beforeend', `<div class="mb-2 p-2 rounded ${extraClass}">${text}</div>`);
+      chatWindow.scrollTop = chatWindow.scrollHeight;
+    }
+  </script>
+</body>
+</html>
