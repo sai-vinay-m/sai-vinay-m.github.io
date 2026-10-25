@@ -5,74 +5,170 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sai Vinay Mullapudi | Interactive SRE Terminal & AI Copilot</title>
   
-  <!-- Fonts & Bootstrap 4 -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 
   <style>
     :root {
       --bg-dark: #0a0e17;
       --card-dark: #101624;
       --border-dark: #222f49;
+      --border-glow: rgba(245, 158, 11, 0.25);
       --amber-accent: #f59e0b;
-      --amber-glow: rgba(245, 158, 11, 0.35);
+      --amber-hover: #fbbf24;
+      --text-main: #f1f5f9;
       --text-muted: #94a3b8;
     }
 
-    body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      background-color: var(--bg-dark);
-      color: #e2e8f0;
-      min-height: 100vh;
+    * {
+      box-sizing: border-box;
       margin: 0;
-      padding-bottom: 90px;
-      transition: background-color 0.25s ease, color 0.25s ease;
+      padding: 0;
     }
 
-    /* Terminal Console Mode Layout & Text Overrides */
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      min-height: 100vh;
+      line-height: 1.6;
+      transition: background-color 0.25s ease, color 0.25s ease;
+      overflow-x: hidden;
+    }
+
+    /* ========================================================
+       TERMINAL CONSOLE MODE OVERRIDES
+       ======================================================== */
     body.console-mode {
       font-family: 'Fira Code', monospace !important;
       background-color: #0c0803 !important;
       color: #ffb000 !important;
     }
     body.console-mode header,
-    body.console-mode .interactive-box,
+    body.console-mode .sandbox-card,
     body.console-mode #portfolioChat {
-      border: 1px solid #ffb000 !important;
+      border-color: #ffb000 !important;
       background: #140d05 !important;
       border-radius: 0px !important;
       box-shadow: none !important;
     }
     body.console-mode h1, 
-    body.console-mode h2, 
-    body.console-mode h3, 
     body.console-mode .text-white {
       color: #ffcc00 !important;
     }
-    body.console-mode .badge {
+    body.console-mode .badge-status {
       border: 1px solid #ffb000 !important;
       background: transparent !important;
       color: #ffb000 !important;
       border-radius: 0px !important;
     }
-    body.console-mode .btn-outline-warning {
-      background-color: transparent !important;
+    body.console-mode .btn-outline {
       border: 1px solid #ffb000 !important;
       color: #ffb000 !important;
+      background: transparent !important;
       border-radius: 0px !important;
     }
     body.console-mode #userInput {
       background: #000000 !important;
       color: #ffb000 !important;
-      border: 1px solid #ffb000 !important;
-      border-radius: 0 !important;
+      border-color: #ffb000 !important;
+      border-radius: 0px !important;
+    }
+    body.console-mode #userInput::placeholder {
+      color: #996c00 !important;
     }
 
-    /* Chaos Outage Streaming Log Terminal */
+    /* ========================================================
+       PAGE LAYOUT & NAVIGATION
+       ======================================================== */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 28px;
+      border-bottom: 1px solid var(--border-dark);
+      background: rgba(10, 14, 23, 0.95);
+      backdrop-filter: blur(8px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .telemetry-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .badge-status {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      padding: 6px 12px;
+      border-radius: 9999px;
+      text-transform: uppercase;
+      font-family: 'Fira Code', monospace;
+    }
+    .status-optimal {
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+    .status-danger {
+      background: rgba(239, 68, 68, 0.15);
+      color: #f87171;
+      border: 1px solid rgba(239, 68, 68, 0.4);
+    }
+
+    .env-tag {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-family: 'Fira Code', monospace;
+    }
+
+    .controls-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      outline: none;
+      border: none;
+    }
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--amber-accent);
+      color: var(--amber-accent);
+    }
+    .btn-outline:hover {
+      background: rgba(245, 158, 11, 0.12);
+      transform: translateY(-1px);
+    }
+    .btn-danger {
+      background: #ef4444;
+      color: #ffffff;
+    }
+    .btn-danger:hover {
+      background: #dc2626;
+      box-shadow: 0 0 15px rgba(239, 68, 68, 0.4);
+    }
+
+    /* Outage Streaming Terminal */
     #chaosTerminal {
       display: none;
+      margin: 20px auto 0;
+      max-width: 1100px;
+      width: calc(100% - 40px);
       background: #000000;
       border: 1px solid #ef4444;
       color: #f87171;
@@ -80,175 +176,260 @@
       padding: 16px;
       height: 180px;
       overflow-y: auto;
-      border-radius: 8px;
-      box-shadow: inset 0 0 12px rgba(239, 68, 68, 0.25);
+      border-radius: 10px;
+      box-shadow: inset 0 0 16px rgba(239, 68, 68, 0.2);
     }
     .log-line {
-      line-height: 1.5;
       font-size: 0.85rem;
+      line-height: 1.6;
+    }
+
+    /* Main Container */
+    main {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .sandbox-card {
+      background: var(--card-dark);
+      border: 1px solid var(--border-dark);
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    }
+
+    .sandbox-card h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: #ffffff;
+      margin-bottom: 16px;
+    }
+
+    .sandbox-card p.lead {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+
+    .instruction-box {
+      background: rgba(10, 14, 23, 0.7);
+      border: 1px dashed var(--border-dark);
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .instruction-box h4 {
+      color: var(--amber-accent);
+      font-size: 0.95rem;
+      margin-bottom: 10px;
+      font-family: 'Fira Code', monospace;
+    }
+    .instruction-box ul {
+      padding-left: 20px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+    .instruction-box li {
+      margin-bottom: 6px;
     }
 
     /* ========================================================
-       LUCRATIVE HIGH-TECH CHAT DRAWER (SCOPED ID OVERRIDES)
+       HIGH-TECH GLASSMORPHISM CHAT DRAWER
        ======================================================== */
     #portfolioChat {
-      width: 410px !important;
-      max-width: calc(100vw - 28px) !important;
-      position: fixed !important;
-      bottom: 24px !important;
-      right: 24px !important;
-      z-index: 99999 !important;
-      background: rgba(14, 20, 34, 0.92) !important;
-      backdrop-filter: blur(16px) !important;
-      -webkit-backdrop-filter: blur(16px) !important;
-      border: 1px solid rgba(245, 158, 11, 0.28) !important;
-      border-radius: 18px !important;
-      overflow: hidden !important;
-      box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.8), 0 0 25px rgba(245, 158, 11, 0.12) !important;
-      transition: height 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s ease !important;
+      width: 400px;
+      max-width: calc(100vw - 32px);
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 9999;
+      background: rgba(15, 22, 38, 0.94);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border-glow);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.8), 0 0 30px rgba(245, 158, 11, 0.08);
+      transition: height 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s ease;
     }
 
-    #portfolioChat .chat-header {
-      background: linear-gradient(90deg, rgba(245, 158, 11, 0.14) 0%, rgba(14, 20, 34, 0.8) 100%) !important;
-      padding: 14px 18px !important;
-      display: flex !important;
-      justify-content: space-between !important;
-      align-items: center !important;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
-      cursor: pointer !important;
-      user-select: none !important;
+    .chat-header {
+      background: linear-gradient(90deg, rgba(245, 158, 11, 0.12) 0%, rgba(15, 22, 38, 0.6) 100%);
+      padding: 14px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      user-select: none;
     }
 
-    #portfolioChat .status-dot {
+    .header-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .status-dot {
       width: 8px;
       height: 8px;
       background: #10b981;
       border-radius: 50%;
-      display: inline-block;
-      box-shadow: 0 0 8px #10b981;
-      margin-right: 8px;
-      animation: pulse-dot 2s infinite;
+      box-shadow: 0 0 10px #10b981;
+      animation: pulse-dot 2s infinite ease-in-out;
     }
     @keyframes pulse-dot {
       0%, 100% { opacity: 1; transform: scale(1); }
       50% { opacity: 0.4; transform: scale(0.85); }
     }
 
-    #portfolioChat .model-pill {
-      font-size: 11px !important;
-      font-family: 'Fira Code', monospace !important;
-      padding: 2px 8px !important;
-      border-radius: 999px !important;
-      background: rgba(245, 158, 11, 0.12) !important;
-      border: 1px solid rgba(245, 158, 11, 0.3) !important;
-      color: #fbbf24 !important;
+    .chat-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.2px;
     }
 
-    #portfolioChat .chat-header-actions button {
-      background: transparent !important;
-      border: none !important;
-      color: #94a3b8 !important;
-      cursor: pointer !important;
-      font-size: 1.15rem !important;
-      padding: 2px 8px !important;
-      line-height: 1 !important;
-      border-radius: 6px !important;
-      transition: color 0.15s ease, background 0.15s ease !important;
-    }
-    #portfolioChat .chat-header-actions button:hover {
-      color: #ffffff !important;
-      background: rgba(255, 255, 255, 0.1) !important;
+    .copilot-tag {
+      font-size: 0.68rem;
+      font-family: 'Fira Code', monospace;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(245, 158, 11, 0.14);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      color: #fbbf24;
     }
 
-    #portfolioChat .chat-body-scroll {
-      height: 320px !important;
-      overflow-y: auto !important;
-      background: rgba(8, 12, 22, 0.6) !important;
-      padding: 16px !important;
-      font-size: 0.88rem !important;
-      scroll-behavior: smooth !important;
+    .minimize-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 1.1rem;
+      padding: 4px 8px;
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+    .minimize-btn:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.08);
     }
 
-    #portfolioChat .chat-body-scroll::-webkit-scrollbar {
+    .chat-body-scroll {
+      height: 310px;
+      overflow-y: auto;
+      background: rgba(8, 12, 22, 0.65);
+      padding: 16px;
+      font-size: 0.88rem;
+      scroll-behavior: smooth;
+    }
+    .chat-body-scroll::-webkit-scrollbar {
       width: 5px;
     }
-    #portfolioChat .chat-body-scroll::-webkit-scrollbar-thumb {
-      background: rgba(245, 158, 11, 0.2);
+    .chat-body-scroll::-webkit-scrollbar-thumb {
+      background: rgba(245, 158, 11, 0.25);
       border-radius: 10px;
     }
 
-    #portfolioChat .chat-footer {
-      padding: 12px 14px !important;
-      background: rgba(11, 16, 28, 0.95) !important;
-      border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+    .context-tip {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+      font-family: 'Fira Code', monospace;
     }
 
-    /* Lucrative Message Styling */
-    #portfolioChat .msg-user {
-      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
-      color: #06080e !important;
-      font-weight: 600 !important;
-      text-align: right !important;
-      margin-left: auto !important;
-      max-width: 82% !important;
-      padding: 10px 14px !important;
-      border-radius: 16px 16px 3px 16px !important;
-      box-shadow: 0 4px 14px rgba(245, 158, 11, 0.25) !important;
-      word-break: break-word !important;
-      margin-bottom: 12px !important;
-      line-height: 1.4 !important;
+    .chat-footer {
+      padding: 12px 16px;
+      background: rgba(13, 19, 31, 0.95);
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
     }
 
-    #portfolioChat .msg-bot {
-      background: rgba(22, 31, 51, 0.85) !important;
-      border: 1px solid rgba(255, 255, 255, 0.08) !important;
-      color: #f1f5f9 !important;
-      margin-right: auto !important;
-      max-width: 88% !important;
-      padding: 11px 15px !important;
-      border-radius: 16px 16px 16px 3px !important;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
-      word-break: break-word !important;
-      margin-bottom: 12px !important;
-      line-height: 1.45 !important;
+    .input-wrapper {
+      display: flex;
+      gap: 8px;
     }
 
-    #portfolioChat #userInput {
-      background: #080c16 !important;
-      color: #ffffff !important;
-      border: 1px solid rgba(245, 158, 11, 0.22) !important;
-      border-radius: 10px !important;
-      padding: 9px 13px !important;
-      font-size: 0.86rem !important;
-      outline: none !important;
-      box-shadow: none !important;
+    #userInput {
+      flex: 1;
+      background: #080c16;
+      color: #ffffff;
+      border: 1px solid rgba(245, 158, 11, 0.22);
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 0.88rem;
+      font-family: inherit;
+      outline: none;
+      transition: all 0.2s;
     }
-    #portfolioChat #userInput:focus {
-      border-color: var(--amber-accent) !important;
-      box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.18) !important;
-    }
-
-    #portfolioChat #sendChatBtn {
-      border-radius: 10px !important;
-      background: linear-gradient(135deg, #f59e0b, #d97706) !important;
-      border: none !important;
-      color: #06080e !important;
-      font-weight: 700 !important;
-      padding: 0 16px !important;
-      margin-left: 6px !important;
-      transition: transform 0.15s ease, box-shadow 0.15s ease !important;
-    }
-    #portfolioChat #sendChatBtn:hover {
-      transform: translateY(-1px) !important;
-      box-shadow: 0 4px 14px rgba(245, 158, 11, 0.4) !important;
+    #userInput:focus {
+      border-color: var(--amber-accent);
+      box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15);
     }
 
-    /* Pulsing Three-Dot Typing Indicator */
+    #sendChatBtn {
+      background: linear-gradient(135deg, var(--amber-accent), #d97706);
+      color: #06080e;
+      font-weight: 700;
+      border-radius: 10px;
+      padding: 0 18px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    #sendChatBtn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(245, 158, 11, 0.35);
+    }
+    #sendChatBtn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Message Bubbles */
+    .msg-user {
+      background: linear-gradient(135deg, var(--amber-accent) 0%, #d97706 100%);
+      color: #06080e;
+      font-weight: 600;
+      text-align: right;
+      margin-left: auto;
+      max-width: 82%;
+      padding: 10px 14px;
+      border-radius: 16px 16px 3px 16px;
+      box-shadow: 0 4px 14px rgba(245, 158, 11, 0.22);
+      word-break: break-word;
+      margin-bottom: 12px;
+      font-size: 0.88rem;
+    }
+
+    .msg-bot {
+      background: rgba(22, 31, 51, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #f1f5f9;
+      margin-right: auto;
+      max-width: 88%;
+      padding: 11px 15px;
+      border-radius: 16px 16px 16px 3px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+      word-break: break-word;
+      margin-bottom: 12px;
+      font-size: 0.88rem;
+    }
+
+    .msg-bot.error-state {
+      color: #f87171;
+      border-color: rgba(239, 68, 68, 0.3);
+      background: rgba(30, 15, 15, 0.9);
+    }
+
+    /* Typing Animation */
     .typing-bubble {
       display: inline-flex;
       align-items: center;
       gap: 5px;
-      padding: 10px 14px !important;
+      padding: 10px 14px;
     }
     .typing-bubble span {
       width: 6px;
@@ -271,48 +452,47 @@
       display: none !important;
     }
     #portfolioChat.minimized {
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6) !important;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
     }
   </style>
 </head>
 <body>
 
   <!-- Top System Telemetry Banner -->
-  <header class="d-flex flex-wrap justify-content-between align-items-center p-3 border-bottom" style="border-color: var(--border-dark) !important; background: rgba(10, 14, 23, 0.9);">
-    <div class="d-flex align-items-center mb-2 mb-md-0">
-      <span id="clusterStatus" class="badge badge-success px-3 py-2 font-weight-bold">● SYSTEM OPTIMAL</span>
-      <span class="ml-3 text-muted small font-weight-bold">Target: sai-vinay-m.github.io/test</span>
+  <header>
+    <div class="telemetry-left">
+      <span id="clusterStatus" class="badge-status status-optimal">● SYSTEM OPTIMAL</span>
+      <span class="env-tag">Target: sai-vinay-m.github.io/test</span>
     </div>
-    <div class="d-flex align-items-center">
-      <button id="toggleConsoleBtn" type="button" class="btn btn-sm btn-outline-warning">
+    <div class="controls-right">
+      <button id="toggleConsoleBtn" type="button" class="btn btn-outline">
         [ &gt;_ Activate Terminal Console ]
       </button>
-      <button id="triggerChaosBtn" type="button" class="btn btn-sm btn-danger ml-2" style="display: none;">
+      <button id="triggerChaosBtn" type="button" class="btn btn-danger" style="display: none;">
         ⚠️ Inject Production Chaos
       </button>
     </div>
   </header>
 
   <!-- Chaos Fault Log Terminal -->
-  <div class="container-fluid mt-3 px-4">
-    <div id="chaosTerminal">
-      <div id="logStream"></div>
-    </div>
+  <div id="chaosTerminal">
+    <div id="logStream"></div>
   </div>
 
-  <!-- Sandbox Test Body -->
-  <main class="container my-5 text-left">
-    <div class="p-5 rounded-lg border interactive-box" style="background: var(--card-dark); border-color: var(--border-dark) !important;">
-      <h1 class="text-white font-weight-bold">Hi, I'm Sai Vinay. I untangle complex cloud systems.</h1>
-      <p class="lead text-muted mt-3">
+  <!-- Sandbox Main Profile Card -->
+  <main>
+    <div class="sandbox-card">
+      <h1>Hi, I'm Sai Vinay. I untangle complex cloud systems.</h1>
+      <p class="lead">
         Cloud, DevOps, and GenAI Engineer with 4 years of enterprise experience across financial clearing infrastructure, zero-trust cloud automation, and agentic workflows.
       </p>
-      <div class="mt-4 p-3 rounded" style="background: #090d16; border: 1px dashed var(--border-dark);">
-        <span class="text-warning font-weight-bold">Interactive Sandbox Instructions:</span>
-        <ul class="text-muted small mt-2 mb-0 pl-3">
-          <li>Click <strong>[ &gt;_ Activate Terminal Console ]</strong> to test theme &amp; state transitions.</li>
+
+      <div class="instruction-box">
+        <h4>Interactive Sandbox Instructions:</h4>
+        <ul>
+          <li>Click <strong>[ &gt;_ Activate Terminal Console ]</strong> to toggle the terminal theme and reveal chaos controls.</li>
           <li>Click <strong>⚠️ Inject Production Chaos</strong> to trigger the ExitCode 127 outage stream.</li>
-          <li>Chat with the Copilot below — minimize it with the top right <strong>—</strong> button anytime.</li>
+          <li>Chat with the Copilot on the bottom right — minimize it anytime with the <strong>—</strong> button.</li>
         </ul>
       </div>
     </div>
@@ -321,36 +501,33 @@
   <!-- Floating Chat Window Drawer Container -->
   <div id="portfolioChat">
     <div class="chat-header" id="chatHeader">
-      <div class="d-flex align-items-center">
+      <div class="header-info">
         <span class="status-dot"></span>
-        <h6 class="text-white mb-0 font-weight-bold" style="font-size: 0.95rem; letter-spacing: -0.2px;">Sai's Copilot</h6>
-        <span class="model-pill ml-2.5">v3.5-flash-lite</span>
+        <span class="chat-title">Sai's Copilot</span>
+        <span class="copilot-tag">v3.5-flash-lite</span>
       </div>
-      <div class="chat-header-actions">
-        <button id="minimizeChatBtn" title="Minimize/Expand chat" type="button">—</button>
-      </div>
+      <button id="minimizeChatBtn" class="minimize-btn" title="Minimize/Expand chat" type="button">—</button>
     </div>
     
     <div class="chat-body-scroll" id="chatWindow">
-      <div class="text-muted small mb-3 border-bottom pb-2" style="border-color: rgba(255, 255, 255, 0.06) !important; font-size: 11px;" id="botContextTip">
+      <div class="context-tip" id="botContextTip">
         Mode Status: Standard Recruiter Agent Active.
       </div>
-      <div class="mb-2 msg-bot small">
+      <div class="msg-bot">
         Greetings! Ask me anything regarding Sai Vinay's architecture experience, infrastructure design strategies, or production incident runbooks.
       </div>
     </div>
 
     <div class="chat-footer">
-      <div class="d-flex align-items-center">
-        <input type="text" id="userInput" class="form-control" 
-               placeholder="Ask about Case Studies, AWS, or Terraform..." 
-               autocomplete="off">
-        <button id="sendChatBtn" class="btn" type="button">Send</button>
+      <div class="input-wrapper">
+        <input type="text" id="userInput" placeholder="Ask about Case Studies, AWS, or Terraform..." autocomplete="off">
+        <button id="sendChatBtn" type="button">Send</button>
       </div>
     </div>
   </div>
 
   <script>
+    // Live Cloudflare Worker Endpoint
     const LAMBDA_API_ENDPOINT = "https://portfolio-copilot.msaivinay306.workers.dev";
     
     let isConsoleActive = false;
@@ -358,6 +535,7 @@
     let isChatMinimized = false;
     let chatHistory = [];
 
+    // Cached Elements
     const toggleConsoleBtn = document.getElementById('toggleConsoleBtn');
     const triggerChaosBtn = document.getElementById('triggerChaosBtn');
     const clusterStatus = document.getElementById('clusterStatus');
@@ -371,6 +549,7 @@
     const chatHeader = document.getElementById('chatHeader');
     const chatWindow = document.getElementById('chatWindow');
 
+    // 1. Console Mode Toggle
     function toggleConsoleMode() {
       isConsoleActive = !isConsoleActive;
       document.body.classList.toggle('console-mode', isConsoleActive);
@@ -383,16 +562,17 @@
         toggleConsoleBtn.innerText = "[ >_ Activate Terminal Console ]";
         triggerChaosBtn.style.display = "none";
         chaosTerminal.style.display = "none";
-        clusterStatus.className = "badge badge-success px-3 py-2 font-weight-bold";
+        clusterStatus.className = "badge-status status-optimal";
         clusterStatus.innerText = "● SYSTEM OPTIMAL";
         isChaosActive = false;
         botContextTip.innerText = "Mode Status: Standard Recruiter Agent Active.";
       }
     }
 
+    // 2. Production Chaos Incident Injection
     function triggerChaosIncident() {
       isChaosActive = true;
-      clusterStatus.className = "badge badge-danger px-3 py-2 font-weight-bold";
+      clusterStatus.className = "badge-status status-danger";
       clusterStatus.innerText = "● CRITICAL OUTAGE DETECTED";
       
       chaosTerminal.style.display = "block";
@@ -410,14 +590,15 @@
         setTimeout(() => {
           logStream.innerHTML += `<div class="log-line py-1">${log}</div>`;
           chaosTerminal.scrollTop = chaosTerminal.scrollHeight;
-        }, index * 280);
+        }, index * 260);
       });
 
-      appendMessage("⚠️ ALERT: Outage simulated. Copilot switched to SRE Incident Commander persona. Ask me how to triage ExitCode 127.", "msg-bot text-danger font-weight-bold");
+      appendMessage("⚠️ ALERT: Outage simulated. Copilot switched to SRE Incident Commander persona. Ask me how to triage ExitCode 127.", "msg-bot error-state");
       
       if (isChatMinimized) toggleChatMinimize();
     }
 
+    // 3. Minimize / Expand Chat Window
     function toggleChatMinimize() {
       isChatMinimized = !isChatMinimized;
       portfolioChat.classList.toggle('minimized', isChatMinimized);
@@ -425,6 +606,7 @@
       minimizeChatBtn.title = isChatMinimized ? "Expand chat" : "Minimize chat";
     }
 
+    // 4. Send Message to Cloudflare Worker
     async function sendMessage() {
       const text = userInput.value.trim();
       if (!text) return;
@@ -435,10 +617,10 @@
       userInput.disabled = true;
       sendChatBtn.disabled = true;
 
-      // Add typing indicator
+      // Typing loader
       const loaderId = 'loader-' + Date.now();
       chatWindow.insertAdjacentHTML('beforeend', `
-        <div id="${loaderId}" class="mb-2 msg-bot typing-bubble">
+        <div id="${loaderId}" class="msg-bot typing-bubble">
           <span></span><span></span><span></span>
         </div>
       `);
@@ -466,7 +648,7 @@
         document.getElementById(loaderId)?.remove();
         
         if (!response.ok || data.error) {
-          appendMessage(`Worker Error: ${data.error || 'Request failed'}`, 'msg-bot text-danger');
+          appendMessage(`Worker Error: ${data.error || 'Request failed'}`, 'msg-bot error-state');
         } else {
           const replyText = data.reply || data.message || "No response received.";
           appendMessage(replyText, 'msg-bot');
@@ -477,7 +659,7 @@
       } catch (err) {
         document.getElementById(loaderId)?.remove();
         console.error("Chat communication failure:", err);
-        appendMessage("Network Error: Could not reach Cloudflare Worker. Check DevTools Console (F12).", "msg-bot text-danger");
+        appendMessage("Network Error: Could not reach Cloudflare Worker. Check DevTools Console (F12).", "msg-bot error-state");
       } finally {
         userInput.disabled = false;
         sendChatBtn.disabled = false;
@@ -486,10 +668,11 @@
     }
 
     function appendMessage(text, extraClass) {
-      chatWindow.insertAdjacentHTML('beforeend', `<div class="mb-2 ${extraClass}">${text}</div>`);
+      chatWindow.insertAdjacentHTML('beforeend', `<div class="${extraClass}">${text}</div>`);
       chatWindow.scrollTop = chatWindow.scrollHeight;
     }
 
+    // Event Bindings
     toggleConsoleBtn.addEventListener('click', toggleConsoleMode);
     triggerChaosBtn.addEventListener('click', triggerChaosIncident);
     minimizeChatBtn.addEventListener('click', (e) => {
