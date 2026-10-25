@@ -14,6 +14,9 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Calendly Popup Widget Assets -->
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
 
   <script>
     tailwind.config = {
@@ -187,6 +190,9 @@
             <a href="https://linkedin.com/in/sai-vinay-mullapudi" target="_blank" rel="noopener noreferrer" class="px-4 py-3.5 rounded-xl text-base font-mono bg-carbon-850 hover:bg-carbon-800 text-slate-200 border border-carbon-700 flex items-center gap-2 transition-colors">
               <i data-lucide="linkedin" class="w-4 h-4 text-amber-400"></i> LinkedIn-Let's connect!
             </a>
+            <button type="button" onclick="openCalendly()" class="px-4 py-3.5 rounded-xl text-base font-mono bg-carbon-850 hover:bg-carbon-800 text-slate-200 border border-carbon-700 hover:border-amber-400/60 flex items-center gap-2 transition-colors cursor-pointer">
+              <i data-lucide="calendar" class="w-4 h-4 text-amber-400"></i> Schedule a Call
+            </button>
           </div>
         </div>
 
@@ -1177,6 +1183,15 @@
 
   <script>
     lucide.createIcons();
+
+    // Replace with your exact Calendly event link once created
+const CALENDLY_URL = 'https://calendly.com/msaivinay306/30min?hide_gdpr_banner=1&background_color=0a0e17&text_color=e2e8f0&primary_color=f59e0b';    function openCalendly() {
+      if (typeof Calendly !== 'undefined') {
+        Calendly.initPopupWidget({ url: CALENDLY_URL });
+      } else {
+        window.open(CALENDLY_URL, '_blank', 'noopener,noreferrer');
+      }
+    }
 
     function toggleCase(bodyId, iconId) {
       const body = document.getElementById(bodyId);
