@@ -213,116 +213,112 @@
   </div>
 
   <script>
-    // Configuration
-   // Point directly to your active Cloudflare Worker endpoint
-const LAMBDA_API_ENDPOINT = "https://portfolio-copilot.msaivinay306.workers.dev";
+    // Configuration: Points directly to your active Cloudflare Worker endpoint
+    const LAMBDA_API_ENDPOINT = "https://portfolio-copilot.msaivinay306.workers.dev";
+    
+    let isConsoleActive = false;
+    let isChaosActive = false;
+    let chatHistory = [];
 
-let isConsoleActive = false;
-let isChaosActive = false;
-let chatHistory = [];
-
-function toggleConsoleMode() {
-  isConsoleActive = !isConsoleActive;
-  document.body.classList.toggle('console-mode', isConsoleActive);
-
-  const chaosBtn = document.getElementById('triggerChaosBtn');
-  const toggleBtn = document.getElementById('toggleConsoleBtn');
-  const tip = document.getElementById('botContextTip');
-
-  if (isConsoleActive) {
-    toggleBtn.innerText = "[ Return to Web UI ]";
-    chaosBtn.style.display = "inline-block";
-    tip.innerText = "Mode Status: Terminal Environment active. Deep technical tone primed.";
-  } else {
-    toggleBtn.innerText = "[ >_ Activate Terminal Console ]";
-    chaosBtn.style.display = "none";
-    document.getElementById('chaosTerminal').style.display = "none";
-    document.getElementById('clusterStatus').className = "badge badge-success px-3 py-2 font-weight-bold";
-    document.getElementById('clusterStatus').innerText = "● SYSTEM OPTIMAL";
-    isChaosActive = false;
-    tip.innerText = "Mode Status: Standard Recruiter Agent Active.";
-  }
-}
-
-function triggerChaosIncident() {
-  isChaosActive = true;
-  document.getElementById('clusterStatus').className = "badge badge-danger px-3 py-2 font-weight-bold";
-  document.getElementById('clusterStatus').innerText = "● CRITICAL OUTAGE DETECTED";
-
-  const term = document.getElementById('chaosTerminal');
-  term.style.display = "block";
-
-  const logs = [
-    "[INFO] Spawning Tomcat runtime execution threads on port 8080...",
-    "[INFO] Java Spring Boot microservice context mapping verified in ~7.55s.",
-    "[WARN] Container orchestrator healthcheck readiness probe initiated against local endpoint.",
-    "[ERROR] /bin/sh: /usr/bin/curl: not found (Runtime signal mapping: ExitCode 127)",
-    "[FATAL] Upstream base target stripped executable dependencies. Release lifecycle pipeline halted."
-  ];
-
-  const logStream = document.getElementById('logStream');
-  logStream.innerHTML = "";
-  logs.forEach((log, index) => {
-    setTimeout(() => {
-      logStream.innerHTML += `<div class="log-line py-1">${log}</div>`;
-      term.scrollTop = term.scrollHeight;
-    }, index * 300);
-  });
-
-  appendMessage("⚠️ ALERT: Outage simulated. Copilot switched to SRE Incident Commander persona. Ask me how to triage ExitCode 127.", "msg-bot text-danger font-weight-bold");
-}
-
-async function sendMessage() {
-  const input = document.getElementById('userInput');
-  const text = input.value.trim();
-  if (!text) return;
-
-  // Render user prompt immediately
-  appendMessage(text, 'msg-user small font-weight-bold');
-  input.value = '';
-
-  // Append contextual system state header
-  let systemStateContext = "";
-  if (isChaosActive) {
-    systemStateContext = "[CONTEXT: The user has intentionally broken production. They are looking at ExitCode 127 container failure logs. Act as an expert SRE Incident Commander answering strictly based on Sai's Case Study 01 resolution.] ";
-  } else if (isConsoleActive) {
-    systemStateContext = "[CONTEXT: The site layout is switched to terminal mode. Adopt a deep, highly technical DevOps engineer tone.] ";
-  } else {
-    systemStateContext = "[CONTEXT: Default UI layout mode. Adopt a polished, executive recruiter-friendly tone highlighting career progression and metrics.] ";
-  }
-
-  const contextualPayload = systemStateContext + text;
-
-  try {
-    const response = await fetch(LAMBDA_API_ENDPOINT, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message: contextualPayload, history: chatHistory })
-    });
-
-    const data = await response.json();
-
-    if (!response.ok || data.error) {
-      appendMessage(`Worker Error: ${data.error || 'Request failed'}`, 'msg-bot text-danger small');
-      return;
+    function toggleConsoleMode() {
+      isConsoleActive = !isConsoleActive;
+      document.body.classList.toggle('console-mode', isConsoleActive);
+      
+      const chaosBtn = document.getElementById('triggerChaosBtn');
+      const toggleBtn = document.getElementById('toggleConsoleBtn');
+      const tip = document.getElementById('botContextTip');
+      
+      if (isConsoleActive) {
+        toggleBtn.innerText = "[ Return to Web UI ]";
+        chaosBtn.style.display = "inline-block";
+        tip.innerText = "Mode Status: Terminal Environment active. Deep technical tone primed.";
+      } else {
+        toggleBtn.innerText = "[ >_ Activate Terminal Console ]";
+        chaosBtn.style.display = "none";
+        document.getElementById('chaosTerminal').style.display = "none";
+        document.getElementById('clusterStatus').className = "badge badge-success px-3 py-2 font-weight-bold";
+        document.getElementById('clusterStatus').innerText = "● SYSTEM OPTIMAL";
+        isChaosActive = false;
+        tip.innerText = "Mode Status: Standard Recruiter Agent Active.";
+      }
     }
 
-    appendMessage(data.reply, 'msg-bot small');
+    function triggerChaosIncident() {
+      isChaosActive = true;
+      document.getElementById('clusterStatus').className = "badge badge-danger px-3 py-2 font-weight-bold";
+      document.getElementById('clusterStatus').innerText = "● CRITICAL OUTAGE DETECTED";
+      
+      const term = document.getElementById('chaosTerminal');
+      term.style.display = "block";
+      
+      const logs = [
+        "[INFO] Spawning Tomcat runtime execution threads on port 8080...",
+        "[INFO] Java Spring Boot microservice context mapping verified in ~7.55s.",
+        "[WARN] Container orchestrator healthcheck readiness probe initiated against local endpoint.",
+        "[ERROR] /bin/sh: /usr/bin/curl: not found (Runtime signal mapping: ExitCode 127)",
+        "[FATAL] Upstream base target stripped executable dependencies. Release lifecycle pipeline halted."
+      ];
+      
+      const logStream = document.getElementById('logStream');
+      logStream.innerHTML = "";
+      logs.forEach((log, index) => {
+        setTimeout(() => {
+          logStream.innerHTML += `<div class="log-line py-1">${log}</div>`;
+          term.scrollTop = term.scrollHeight;
+        }, index * 300);
+      });
 
-    // Maintain conversation history
-    chatHistory.push({ role: "user", parts: [{ text: text }] });
-    chatHistory.push({ role: "model", parts: [{ text: data.reply }] });
-  } catch (err) {
-    console.error("Chat communication failure:", err);
-    appendMessage("Network Error: Could not reach Cloudflare Worker. Check DevTools Console (F12).", "msg-bot text-danger small");
-  }
-}
+      appendMessage("⚠️ ALERT: Outage simulated. Copilot switched to SRE Incident Commander persona. Ask me how to triage ExitCode 127.", "msg-bot text-danger font-weight-bold");
+    }
 
-function appendMessage(text, extraClass) {
-  const chatWindow = document.getElementById('chatWindow');
-  chatWindow.insertAdjacentHTML('beforeend', `<div class="mb-2 p-2 rounded ${extraClass}">${text}</div>`);
-  chatWindow.scrollTop = chatWindow.scrollHeight;
-}
+    async function sendMessage() {
+      const input = document.getElementById('userInput');
+      const text = input.value.trim();
+      if (!text) return;
+
+      appendMessage(text, 'msg-user small font-weight-bold');
+      input.value = '';
+
+      let systemStateContext = "";
+      if (isChaosActive) {
+        systemStateContext = "[CONTEXT: The user has intentionally broken production. They are looking at ExitCode 127 container failure logs. Act as an expert SRE Incident Commander answering strictly based on Sai's Case Study 01 resolution.] ";
+      } else if (isConsoleActive) {
+        systemStateContext = "[CONTEXT: The site layout is switched to terminal mode. Adopt a deep, highly technical DevOps engineer tone.] ";
+      } else {
+        systemStateContext = "[CONTEXT: Default UI layout mode. Adopt a polished, executive recruiter-friendly tone highlighting career progression and metrics.] ";
+      }
+
+      const contextualPayload = systemStateContext + text;
+
+      try {
+        const response = await fetch(LAMBDA_API_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: contextualPayload, history: chatHistory })
+        });
+        
+        const data = await response.json();
+        
+        if (!response.ok || data.error) {
+          appendMessage(`Worker Error: ${data.error || 'Request failed'}`, 'msg-bot text-danger small');
+          return;
+        }
+
+        const replyText = data.reply || data.message || "No response text found.";
+        appendMessage(replyText, 'msg-bot small');
+
+        chatHistory.push({ role: "user", parts: [{ text: text }] });
+        chatHistory.push({ role: "model", parts: [{ text: replyText }] });
+      } catch (err) {
+        console.error("Chat communication failure:", err);
+        appendMessage("Network Error: Could not reach the Cloudflare Worker. Check DevTools Console (F12).", "msg-bot text-danger small");
+      }
+    }
+
+    function appendMessage(text, extraClass) {
+      const chatWindow = document.getElementById('chatWindow');
+      chatWindow.insertAdjacentHTML('beforeend', `<div class="mb-2 p-2 rounded ${extraClass}">${text}</div>`);
+      chatWindow.scrollTop = chatWindow.scrollHeight;
     }
   </script>
 </body>
