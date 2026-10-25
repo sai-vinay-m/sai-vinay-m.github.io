@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sai Vinay Mullapudi | Interactive SRE Terminal & AI Copilot</title>
   
-  <!-- Fonts & Icons -->
+  <!-- Fonts & Bootstrap 4 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -25,19 +25,21 @@
       background-color: var(--bg-dark);
       color: #e2e8f0;
       min-height: 100vh;
-      transition: background-color 0.2s ease, color 0.2s ease;
+      margin: 0;
+      padding-bottom: 80px;
+      transition: background-color 0.25s ease, color 0.25s ease;
     }
 
-    /* Console Mode Global Textual & Layout Overrides */
+    /* Terminal Console Mode Layout & Text Overrides */
     body.console-mode {
       font-family: 'Fira Code', monospace !important;
       background-color: #0c0803 !important;
       color: #ffb000 !important;
     }
     body.console-mode .card, 
-    body.console-mode .navbar, 
+    body.console-mode header,
     body.console-mode .chat-drawer,
-    body.console-mode .modal-content {
+    body.console-mode .interactive-box {
       border: 1px solid #ffb000 !important;
       background: #140d05 !important;
       border-radius: 0px !important;
@@ -67,8 +69,11 @@
       border: 1px solid #ffb000 !important;
       border-radius: 0 !important;
     }
+    body.console-mode #userInput::placeholder {
+      color: #996c00 !important;
+    }
 
-    /* Chaos Streaming Terminal Pane */
+    /* Chaos Outage Streaming Log Terminal */
     #chaosTerminal {
       display: none;
       background: #000000;
@@ -93,21 +98,42 @@
       position: fixed;
       bottom: 24px;
       right: 24px;
-      z-index: 1050;
+      z-index: 9999;
       border: 1px solid var(--border-dark);
       background: var(--card-dark);
       border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.6), 0 10px 10px -5px rgba(0, 0, 0, 0.4);
+      transition: height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
+
     .chat-header {
       background: #0d131f;
-      padding: 12px 16px;
+      padding: 10px 16px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       border-bottom: 1px solid var(--border-dark);
+      cursor: pointer;
+      user-select: none;
     }
+
+    .chat-header-actions button {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 1rem;
+      padding: 2px 6px;
+      line-height: 1;
+      border-radius: 4px;
+      transition: all 0.2s;
+    }
+    .chat-header-actions button:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
     .chat-body-scroll {
       height: 280px;
       overflow-y: auto;
@@ -115,11 +141,23 @@
       padding: 14px;
       font-size: 0.9rem;
     }
+
     .chat-footer {
       padding: 10px;
       background: #0d131f;
       border-top: 1px solid var(--border-dark);
     }
+
+    /* Minimized Chat Drawer State */
+    .chat-drawer.minimized .chat-body-scroll,
+    .chat-drawer.minimized .chat-footer {
+      display: none !important;
+    }
+    .chat-drawer.minimized {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    }
+
+    /* Message Bubbles */
     .msg-user {
       background: rgba(245, 158, 11, 0.15);
       border: 1px solid rgba(245, 158, 11, 0.3);
@@ -127,6 +165,7 @@
       text-align: right;
       margin-left: auto;
       max-width: 85%;
+      word-break: break-word;
     }
     .msg-bot {
       background: #161f33;
@@ -134,22 +173,34 @@
       color: #e2e8f0;
       margin-right: auto;
       max-width: 90%;
+      word-break: break-word;
+    }
+
+    #userInput {
+      background: #161f33 !important;
+      color: #ffffff !important;
+      border: 1px solid var(--border-dark);
+      outline: none !important;
+      box-shadow: none !important;
+    }
+    #userInput:focus {
+      border-color: var(--amber-accent) !important;
     }
   </style>
 </head>
 <body>
 
-  <!-- Top System Telemetry Navigation Banner -->
+  <!-- Top System Telemetry Banner -->
   <header class="d-flex flex-wrap justify-content-between align-items-center p-3 border-bottom" style="border-color: var(--border-dark) !important; background: rgba(10, 14, 23, 0.9);">
     <div class="d-flex align-items-center mb-2 mb-md-0">
       <span id="clusterStatus" class="badge badge-success px-3 py-2 font-weight-bold">● SYSTEM OPTIMAL</span>
       <span class="ml-3 text-muted small font-weight-bold">Target: sai-vinay-m.github.io/test</span>
     </div>
     <div class="d-flex align-items-center">
-      <button id="toggleConsoleBtn" class="btn btn-sm btn-outline-warning" onclick="toggleConsoleMode()">
+      <button id="toggleConsoleBtn" type="button" class="btn btn-sm btn-outline-warning">
         [ &gt;_ Activate Terminal Console ]
       </button>
-      <button id="triggerChaosBtn" class="btn btn-sm btn-danger ml-2" style="display: none;" onclick="triggerChaosIncident()">
+      <button id="triggerChaosBtn" type="button" class="btn btn-sm btn-danger ml-2" style="display: none;">
         ⚠️ Inject Production Chaos
       </button>
     </div>
@@ -164,7 +215,7 @@
 
   <!-- Sandbox Test Body -->
   <main class="container my-5 text-left">
-    <div class="p-5 rounded-lg border" style="background: var(--card-dark); border-color: var(--border-dark) !important;">
+    <div class="p-5 rounded-lg border interactive-box" style="background: var(--card-dark); border-color: var(--border-dark) !important;">
       <h1 class="text-white font-weight-bold">Hi, I'm Sai Vinay. I untangle complex cloud systems.</h1>
       <p class="lead text-muted mt-3">
         Cloud, DevOps, and GenAI Engineer with 4 years of enterprise experience across financial clearing infrastructure, zero-trust cloud automation, and agentic workflows.
@@ -174,7 +225,7 @@
         <ul class="text-muted small mt-2 mb-0 pl-3">
           <li>Click <strong>[ &gt;_ Activate Terminal Console ]</strong> to test theme &amp; state transitions.</li>
           <li>Click <strong>⚠️ Inject Production Chaos</strong> to trigger the ExitCode 127 outage stream.</li>
-          <li>Chat with the Copilot below—its system context automatically pivots based on your active mode.</li>
+          <li>Chat with the Copilot below — minimize it with the top right <strong>—</strong> button anytime.</li>
         </ul>
       </div>
     </div>
@@ -182,12 +233,16 @@
 
   <!-- Floating Chat Window Drawer Container -->
   <div class="chat-drawer" id="portfolioChat">
-    <div class="chat-header">
+    <div class="chat-header" id="chatHeader">
       <div class="d-flex align-items-center">
         <span class="text-warning font-weight-bold mr-2">&gt;_</span>
         <h6 class="text-white mb-0 font-weight-bold" style="font-size: 0.95rem;">Sai's Copilot</h6>
+        <span class="badge badge-pill badge-primary interaction-tag small font-weight-bold ml-2">v3.5-flash-lite</span>
       </div>
-      <span class="badge badge-pill badge-primary interaction-tag small font-weight-bold">v3.5-flash-lite</span>
+      <div class="chat-header-actions">
+        <!-- Minimize / Expand Toggle Button -->
+        <button id="minimizeChatBtn" title="Minimize/Expand chat" type="button">—</button>
+      </div>
     </div>
     
     <div class="chat-body-scroll" id="chatWindow">
@@ -201,55 +256,67 @@
 
     <div class="chat-footer">
       <div class="input-group">
-        <input type="text" id="userInput" class="form-control form-control-sm text-white border-0" 
-               style="background: #161f33;" 
+        <input type="text" id="userInput" class="form-control form-control-sm" 
                placeholder="Ask about Case Studies, AWS, or Terraform..." 
-               onkeypress="if(event.key === 'Enter') sendMessage()">
+               autocomplete="off">
         <div class="input-group-append">
-          <button class="btn btn-sm btn-warning font-weight-bold" onclick="sendMessage()">Send</button>
+          <button id="sendChatBtn" class="btn btn-sm btn-warning font-weight-bold px-3" type="button">Send</button>
         </div>
       </div>
     </div>
   </div>
 
   <script>
-    // Configuration: Points directly to your active Cloudflare Worker endpoint
+    // Cloudflare Worker Live Endpoint
     const LAMBDA_API_ENDPOINT = "https://portfolio-copilot.msaivinay306.workers.dev";
     
     let isConsoleActive = false;
     let isChaosActive = false;
+    let isChatMinimized = false;
     let chatHistory = [];
 
+    // DOM Elements
+    const toggleConsoleBtn = document.getElementById('toggleConsoleBtn');
+    const triggerChaosBtn = document.getElementById('triggerChaosBtn');
+    const clusterStatus = document.getElementById('clusterStatus');
+    const chaosTerminal = document.getElementById('chaosTerminal');
+    const logStream = document.getElementById('logStream');
+    const botContextTip = document.getElementById('botContextTip');
+    const userInput = document.getElementById('userInput');
+    const sendChatBtn = document.getElementById('sendChatBtn');
+    const portfolioChat = document.getElementById('portfolioChat');
+    const minimizeChatBtn = document.getElementById('minimizeChatBtn');
+    const chatHeader = document.getElementById('chatHeader');
+    const chatWindow = document.getElementById('chatWindow');
+
+    // 1. Terminal Console Toggle
     function toggleConsoleMode() {
       isConsoleActive = !isConsoleActive;
       document.body.classList.toggle('console-mode', isConsoleActive);
-      
-      const chaosBtn = document.getElementById('triggerChaosBtn');
-      const toggleBtn = document.getElementById('toggleConsoleBtn');
-      const tip = document.getElementById('botContextTip');
-      
+
       if (isConsoleActive) {
-        toggleBtn.innerText = "[ Return to Web UI ]";
-        chaosBtn.style.display = "inline-block";
-        tip.innerText = "Mode Status: Terminal Environment active. Deep technical tone primed.";
+        toggleConsoleBtn.innerText = "[ Return to Web UI ]";
+        triggerChaosBtn.style.display = "inline-block";
+        botContextTip.innerText = "Mode Status: Terminal Environment active. Deep technical tone primed.";
       } else {
-        toggleBtn.innerText = "[ >_ Activate Terminal Console ]";
-        chaosBtn.style.display = "none";
-        document.getElementById('chaosTerminal').style.display = "none";
-        document.getElementById('clusterStatus').className = "badge badge-success px-3 py-2 font-weight-bold";
-        document.getElementById('clusterStatus').innerText = "● SYSTEM OPTIMAL";
+        toggleConsoleBtn.innerText = "[ >_ Activate Terminal Console ]";
+        triggerChaosBtn.style.display = "none";
+        chaosTerminal.style.display = "none";
+        clusterStatus.className = "badge badge-success px-3 py-2 font-weight-bold";
+        clusterStatus.innerText = "● SYSTEM OPTIMAL";
         isChaosActive = false;
-        tip.innerText = "Mode Status: Standard Recruiter Agent Active.";
+        botContextTip.innerText = "Mode Status: Standard Recruiter Agent Active.";
       }
     }
 
+    // 2. Chaos Incident Outage Stream
     function triggerChaosIncident() {
       isChaosActive = true;
-      document.getElementById('clusterStatus').className = "badge badge-danger px-3 py-2 font-weight-bold";
-      document.getElementById('clusterStatus').innerText = "● CRITICAL OUTAGE DETECTED";
+      clusterStatus.className = "badge badge-danger px-3 py-2 font-weight-bold";
+      clusterStatus.innerText = "● CRITICAL OUTAGE DETECTED";
       
-      const term = document.getElementById('chaosTerminal');
-      term.style.display = "block";
+      chaosTerminal.style.display = "block";
+      logStream.innerHTML = "";
       
       const logs = [
         "[INFO] Spawning Tomcat runtime execution threads on port 8080...",
@@ -259,25 +326,38 @@
         "[FATAL] Upstream base target stripped executable dependencies. Release lifecycle pipeline halted."
       ];
       
-      const logStream = document.getElementById('logStream');
-      logStream.innerHTML = "";
       logs.forEach((log, index) => {
         setTimeout(() => {
           logStream.innerHTML += `<div class="log-line py-1">${log}</div>`;
-          term.scrollTop = term.scrollHeight;
-        }, index * 300);
+          chaosTerminal.scrollTop = chaosTerminal.scrollHeight;
+        }, index * 280);
       });
 
       appendMessage("⚠️ ALERT: Outage simulated. Copilot switched to SRE Incident Commander persona. Ask me how to triage ExitCode 127.", "msg-bot text-danger font-weight-bold");
+      
+      // Auto expand chat if minimized when chaos strikes
+      if (isChatMinimized) toggleChatMinimize();
     }
 
+    // 3. Minimize / Expand Chat Window
+    function toggleChatMinimize() {
+      isChatMinimized = !isChatMinimized;
+      portfolioChat.classList.toggle('minimized', isChatMinimized);
+      minimizeChatBtn.innerText = isChatMinimized ? "▢" : "—";
+      minimizeChatBtn.title = isChatMinimized ? "Expand chat" : "Minimize chat";
+    }
+
+    // 4. Send Message Functionality
     async function sendMessage() {
-      const input = document.getElementById('userInput');
-      const text = input.value.trim();
+      const text = userInput.value.trim();
       if (!text) return;
 
       appendMessage(text, 'msg-user small font-weight-bold');
-      input.value = '';
+      userInput.value = '';
+      
+      // Temporary disable input to avoid flood/race conditions
+      userInput.disabled = true;
+      sendChatBtn.disabled = true;
 
       let systemStateContext = "";
       if (isChaosActive) {
@@ -301,25 +381,45 @@
         
         if (!response.ok || data.error) {
           appendMessage(`Worker Error: ${data.error || 'Request failed'}`, 'msg-bot text-danger small');
-          return;
+        } else {
+          const replyText = data.reply || data.message || "No response received.";
+          appendMessage(replyText, 'msg-bot small');
+
+          chatHistory.push({ role: "user", parts: [{ text: text }] });
+          chatHistory.push({ role: "model", parts: [{ text: replyText }] });
         }
-
-        const replyText = data.reply || data.message || "No response text found.";
-        appendMessage(replyText, 'msg-bot small');
-
-        chatHistory.push({ role: "user", parts: [{ text: text }] });
-        chatHistory.push({ role: "model", parts: [{ text: replyText }] });
       } catch (err) {
         console.error("Chat communication failure:", err);
-        appendMessage("Network Error: Could not reach the Cloudflare Worker. Check DevTools Console (F12).", "msg-bot text-danger small");
+        appendMessage("Network Error: Could not reach Cloudflare Worker. Check DevTools Console (F12).", "msg-bot text-danger small");
+      } finally {
+        userInput.disabled = false;
+        sendChatBtn.disabled = false;
+        userInput.focus();
       }
     }
 
     function appendMessage(text, extraClass) {
-      const chatWindow = document.getElementById('chatWindow');
       chatWindow.insertAdjacentHTML('beforeend', `<div class="mb-2 p-2 rounded ${extraClass}">${text}</div>`);
       chatWindow.scrollTop = chatWindow.scrollHeight;
     }
+
+    // Direct Event Listeners (Rock-solid across all browsers)
+    toggleConsoleBtn.addEventListener('click', toggleConsoleMode);
+    triggerChaosBtn.addEventListener('click', triggerChaosIncident);
+    minimizeChatBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleChatMinimize();
+    });
+    chatHeader.addEventListener('click', () => {
+      if (isChatMinimized) toggleChatMinimize();
+    });
+    sendChatBtn.addEventListener('click', sendMessage);
+    userInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        sendMessage();
+      }
+    });
   </script>
 </body>
 </html>
