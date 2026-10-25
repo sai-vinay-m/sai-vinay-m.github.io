@@ -82,7 +82,12 @@
         imgEl.src = candidates[idx];
       } else {
         imgEl.style.display = 'none';
-        if (imgEl.nextElementSibling) {
+        const fallback = imgEl.parentElement ? imgEl.parentElement.querySelector('.asset-fallback') : imgEl.nextElementSibling;
+        if (fallback) {
+          fallback.classList.remove('hidden');
+          fallback.style.display = 'flex';
+        } else if (imgEl.nextElementSibling) {
+          imgEl.nextElementSibling.classList.remove('hidden');
           imgEl.nextElementSibling.style.display = 'flex';
         }
       }
@@ -289,7 +294,7 @@
       <a href="#home" class="flex items-center gap-3.5 group shrink-0">
         <div class="w-10 h-10 rounded-lg bg-carbon-800 border border-amber-500/50 overflow-hidden flex items-center justify-center text-amber-400 font-mono font-bold text-base group-hover:border-amber-400 transition-colors">
           <img src="assets/sai-vinay.png" alt="Sai Vinay Mullapudi" class="w-full h-full object-cover" onerror="resolveAsset(this, 'sai-vinay')">
-          <span class="hidden items-center justify-center">SV</span>
+          <span class="asset-fallback hidden items-center justify-center">SV</span>
         </div>
         <div class="flex flex-col">
           <span class="text-base font-bold tracking-tight text-white group-hover:text-amber-400 transition-colors">Sai Vinay Mullapudi</span>
@@ -342,8 +347,9 @@
       <!-- Sticky Profile Sidebar -->
       <aside class="w-full lg:w-[340px] lg:sticky lg:top-28 shrink-0 bg-carbon-850 p-7 rounded-[28px] border border-carbon-700/80 space-y-6 shadow-2xl">
         <div class="flex flex-col items-center lg:items-start text-center lg:text-left">
-          <div class="w-32 h-32 rounded-full overflow-hidden border-4 border-amber-500/40 mb-4 bg-carbon-800 shadow-lg">
+          <div class="w-32 h-32 rounded-full overflow-hidden border-4 border-amber-500/40 mb-4 bg-carbon-800 shadow-lg flex items-center justify-center">
             <img src="assets/sai-vinay.png" alt="Sai Vinay Mullapudi" class="w-full h-full object-cover" onerror="resolveAsset(this, 'sai-vinay')">
+            <span class="asset-fallback hidden font-mono font-bold text-3xl text-amber-400">SV</span>
           </div>
           <h1 class="text-3xl font-extrabold text-white tracking-tight leading-tight">Sai Vinay<br>Mullapudi</h1>
           <p class="text-xs font-mono text-emerald-400 font-semibold mt-1.5">4 Years Enterprise (3.5+ Yrs US)</p>
@@ -445,6 +451,47 @@
               </div>
               <i class="fas fa-download text-amber-400 text-lg"></i>
             </a>
+          </div>
+        </div>
+
+        <!-- Categorized Skills Grid -->
+        <div>
+          <h2 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+            <span>Core Competencies &amp; Keyword Match</span> ⚡
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+            <div class="bento-card p-5 bg-carbon-850 border border-carbon-700 space-y-2.5">
+              <div class="text-amber-400 font-bold font-mono text-xs uppercase flex items-center gap-2">
+                <i class="fas fa-cloud"></i> Cloud &amp; IaC
+              </div>
+              <div class="flex flex-wrap gap-1.5 font-mono text-[11px]">
+                <span class="px-2.5 py-1 rounded-md bg-carbon-800 text-slate-200 border border-carbon-700">AWS (VPC, IAM, KMS)</span>
+                <span class="px-2.5 py-1 rounded-md bg-carbon-800 text-slate-200 border border-carbon-700">Terraform</span>
+                <span class="px-2.5 py-1 rounded-md bg-carbon-800 text-slate-200 border border-carbon-700">Terragrunt</span>
+              </div>
+            </div>
+
+            <div class="bento-card p-5 bg-carbon-850 border border-carbon-700 space-y-2.5">
+              <div class="text-sky-400 font-bold font-mono text-xs uppercase flex items-center gap-2">
+                <i class="fas fa-server"></i> Backend &amp; CI/CD
+              </div>
+              <div class="flex flex-wrap gap-1.5 font-mono text-[11px]">
+                <span class="px-2.5 py-1 rounded-md bg-carbon-800 text-slate-200 border border-carbon-700">Java 17 (Spring Boot)</span>
+                <span class="px-2.5 py-1 rounded-md bg-carbon-800 text-slate-200 border border-carbon-700">Docker &amp; Harbor</span>
+                <span class="px-2.5 py-1 rounded-md bg-carbon-800 text-slate-200 border border-carbon-700">Jenkins &amp; Azure DevOps</span>
+              </div>
+            </div>
+
+            <div class="bento-card p-5 bg-carbon-850 border border-carbon-700 space-y-2.5">
+              <div class="text-emerald-400 font-bold font-mono text-xs uppercase flex items-center gap-2">
+                <i class="fas fa-brain"></i> AI &amp; Observability
+              </div>
+              <div class="flex flex-wrap gap-1.5 font-mono text-[11px]">
+                <span class="px-2.5 py-1 rounded-md bg-carbon-800 text-slate-200 border border-carbon-700">PyTorch &amp; RAG</span>
+                <span class="px-2.5 py-1 rounded-md bg-carbon-800 text-slate-200 border border-carbon-700">Python &amp; Bash</span>
+                <span class="px-2.5 py-1 rounded-md bg-carbon-800 text-slate-200 border border-carbon-700">Datadog &amp; Splunk</span>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -642,7 +689,7 @@
                 <div class="flex flex-col sm:flex-row items-center gap-4 pb-5 border-b border-carbon-700/80 text-center sm:text-left">
                   <div style="width: 300px; height: 300px;" class="w-[300px] h-[300px] rounded-2xl bg-carbon-800 border-2 border-amber-500/60 overflow-hidden shrink-0 flex items-center justify-center shadow-xl">
                     <img src="assets/sai-vinay.png" alt="Sai Vinay Mullapudi" class="w-full h-full object-cover" onerror="resolveAsset(this, 'sai-vinay')">
-                    <div class="hidden w-full h-full bg-gradient-to-br from-amber-500/20 to-blue-500/20 items-center justify-center font-mono font-bold text-2xl text-amber-400">
+                    <div class="asset-fallback hidden w-full h-full bg-gradient-to-br from-amber-500/20 to-blue-500/20 items-center justify-center font-mono font-bold text-2xl text-amber-400">
                       SV
                     </div>
                   </div>
@@ -822,7 +869,7 @@
             <span class="text-slate-400 block text-[10px] uppercase">Code Simplification</span>
             <span class="text-purple-300 text-base font-bold">+315 / -992 LOC</span>
           </div>
-          <div tabindex="0" data-metric-tip="Fleet administration of 200+ AWS compute instances with strict uptime SLAs." class="">
+          <div tabindex="0" data-metric-tip="Fleet administration of 200+ AWS compute instances with strict uptime SLAs.">
             <span class="text-slate-400 block text-[10px] uppercase">Fleet Reliability</span>
             <span class="text-amber-400 text-base font-bold">200+ Nodes / 99% SLA</span>
           </div>
@@ -907,29 +954,24 @@
                   </div>
 
                   <svg viewBox="0 0 520 115" class="w-full h-auto my-2" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Animated Flow Line 1: Spring App -> Health Probe -->
                     <line x1="150" y1="55" x2="195" y2="55" stroke="#34d399" stroke-width="2.5" class="svg-flow-line"/>
                     <polygon points="198,55 190,50 190,60" fill="#34d399"/>
 
-                    <!-- Animated Flow Line 2: Health Probe -> Release -->
                     <line id="case1SvgLine2" x1="325" y1="55" x2="370" y2="55" stroke="#ef4444" stroke-width="2.5" class="svg-flow-line"/>
                     <polygon id="case1SvgArrow2" points="373,55 365,50 365,60" fill="#ef4444"/>
 
-                    <!-- Node 1: Spring App -->
                     <g transform="translate(10, 22)">
                       <rect width="140" height="66" rx="8" fill="#062c22" stroke="#34d399" stroke-width="1.5"/>
                       <text x="70" y="30" text-anchor="middle" fill="#6ee7b7" font-size="12" font-weight="bold">Spring App</text>
                       <text x="70" y="48" text-anchor="middle" fill="#34d399" font-size="10">Port 8080 OK (7.5s)</text>
                     </g>
 
-                    <!-- Node 2: Health Probe -->
                     <g transform="translate(195, 22)">
                       <rect id="case1SvgProbeRect" width="130" height="66" rx="8" fill="#3b0a0a" stroke="#ef4444" stroke-width="1.5"/>
                       <text x="65" y="30" text-anchor="middle" fill="#fca5a5" font-size="12" font-weight="bold">Health Probe</text>
                       <text id="case1SvgProbeText" x="65" y="48" text-anchor="middle" fill="#f87171" font-size="10">curl missing (127)</text>
                     </g>
 
-                    <!-- Node 3: Release -->
                     <g transform="translate(370, 22)">
                       <rect id="case1SvgRelRect" width="140" height="66" rx="8" fill="#161f33" stroke="#475569" stroke-width="1.5"/>
                       <text x="70" y="30" text-anchor="middle" fill="#e2e8f0" font-size="12" font-weight="bold">Release</text>
@@ -941,7 +983,6 @@
                     /bin/sh: /usr/bin/curl: not found (ExitCode 127)
                   </div>
 
-                  <!-- Dev Mode Interactive Simulation Button -->
                   <div id="devPatchRow" style="display: none;" class="pt-3 items-center justify-between">
                     <span class="text-[11px] text-emerald-400">Interactive Probe Patch:</span>
                     <button type="button" onclick="toggleCase1Patch()" id="btnCase1Patch" class="px-3 py-1 rounded bg-emerald-500/20 hover:bg-[#00ff66] text-[#00ff66] hover:text-black font-bold text-[11px] border border-emerald-500/40 transition-colors cursor-pointer">
@@ -1015,30 +1056,24 @@
                   </div>
 
                   <svg viewBox="0 0 520 140" class="w-full h-auto my-1" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Top Root Module -->
                     <rect x="135" y="8" width="250" height="36" rx="8" fill="#172554" stroke="#60a5fa" stroke-width="1.5"/>
                     <text x="260" y="30" text-anchor="middle" fill="#bfdbfe" font-size="11.5" font-weight="bold">Terraform &amp; Terragrunt (30 Files)</text>
 
-                    <!-- Animated Branching Lines from Root to 4 Modules -->
                     <line x1="200" y1="44" x2="65"  y2="82" stroke="#60a5fa" stroke-width="2" class="svg-flow-line"/>
                     <line x1="240" y1="44" x2="195" y2="82" stroke="#60a5fa" stroke-width="2" class="svg-flow-line"/>
                     <line x1="280" y1="44" x2="325" y2="82" stroke="#f59e0b" stroke-width="2.5" class="svg-flow-fast"/>
                     <line x1="320" y1="44" x2="455" y2="82" stroke="#34d399" stroke-width="2" class="svg-flow-line"/>
 
-                    <!-- Module 1: SNS -->
                     <rect x="15" y="82" width="100" height="44" rx="6" fill="#101624" stroke="#314161" stroke-width="1.2"/>
                     <text x="65" y="108" text-anchor="middle" fill="#e2e8f0" font-size="11" font-weight="bold">SNS</text>
 
-                    <!-- Module 2: SQS -->
                     <rect x="145" y="82" width="100" height="44" rx="6" fill="#101624" stroke="#314161" stroke-width="1.2"/>
                     <text x="195" y="108" text-anchor="middle" fill="#e2e8f0" font-size="11" font-weight="bold">SQS</text>
 
-                    <!-- Module 3: IAM (Highlighted Drift Guard) -->
                     <rect x="275" y="82" width="100" height="44" rx="6" fill="#451a03" stroke="#f59e0b" stroke-width="1.8"/>
                     <text x="325" y="102" text-anchor="middle" fill="#fcd34d" font-size="11" font-weight="bold">IAM PoLP</text>
                     <text x="325" y="117" text-anchor="middle" fill="#fbbf24" font-size="8.5">ARN Verified</text>
 
-                    <!-- Module 4: KMS -->
                     <rect x="405" y="82" width="100" height="44" rx="6" fill="#062c22" stroke="#34d399" stroke-width="1.5"/>
                     <text x="455" y="102" text-anchor="middle" fill="#6ee7b7" font-size="11" font-weight="bold">KMS HSM</text>
                     <text x="455" y="117" text-anchor="middle" fill="#34d399" font-size="8.5">Parity OK</text>
@@ -1114,20 +1149,16 @@
                   </div>
 
                   <svg viewBox="0 0 520 125" class="w-full h-auto my-1" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Converging Animated Lines -->
                     <path d="M 175 35 L 295 62" stroke="#c084fc" stroke-width="2.2" fill="none" class="svg-flow-line"/>
                     <path d="M 175 90 L 295 62" stroke="#c084fc" stroke-width="2.2" fill="none" class="svg-flow-line"/>
                     <polygon points="300,62 290,56 290,68" fill="#34d399"/>
 
-                    <!-- Legacy Field 1 -->
                     <rect x="15" y="15" width="160" height="38" rx="6" fill="#2e1065" stroke="#a855f7" stroke-width="1.4"/>
                     <text x="95" y="38" text-anchor="middle" fill="#e9d5ff" font-size="11">parentSKU (Legacy)</text>
 
-                    <!-- Legacy Field 2 -->
                     <rect x="15" y="70" width="160" height="38" rx="6" fill="#2e1065" stroke="#a855f7" stroke-width="1.4"/>
                     <text x="95" y="93" text-anchor="middle" fill="#e9d5ff" font-size="11">parentProductSku</text>
 
-                    <!-- Canonical Output -->
                     <rect x="305" y="27" width="195" height="70" rx="10" fill="#062c22" stroke="#34d399" stroke-width="1.8"/>
                     <text x="402" y="55" text-anchor="middle" fill="#6ee7b7" font-size="12.5" font-weight="bold">Canonical SKU</text>
                     <text x="402" y="75" text-anchor="middle" fill="#34d399" font-size="10">Single Source • Maven OK</text>
@@ -1181,12 +1212,12 @@
                   <div class="flex items-center gap-3">
                     <div class="w-20 h-20 rounded-2xl bg-carbon-900 border border-emerald-500/40 flex items-center justify-center shrink-0 p-2.5 shadow-lg">
                       <img src="assets/ascendion.png" alt="Ascendion" class="w-full h-full object-contain" onerror="resolveAsset(this, 'ascendion')">
-                      <div class="hidden w-full h-full items-center justify-center font-mono font-extrabold text-xl text-emerald-400">ASC</div>
+                      <div class="asset-fallback hidden w-full h-full items-center justify-center font-mono font-extrabold text-xl text-emerald-400">ASC</div>
                     </div>
                     <div class="flex flex-col items-center gap-1">
                       <div class="w-12 h-12 rounded-xl bg-carbon-900 border border-blue-400/40 flex items-center justify-center shrink-0 p-2 shadow-md" title="Client: HP Inc.">
                         <img src="assets/hp.png" alt="HP Inc." class="w-full h-full object-contain" onerror="resolveAsset(this, 'hp')">
-                        <span class="hidden font-mono text-xs font-bold text-blue-400">HP</span>
+                        <span class="asset-fallback hidden font-mono text-xs font-bold text-blue-400">HP</span>
                       </div>
                       <span class="text-[10px] font-mono text-slate-400 uppercase">Client</span>
                     </div>
@@ -1228,7 +1259,7 @@
                 <div class="flex items-center gap-4">
                   <a href="https://www.credly.com/badges/20f333e6-76e8-431a-9603-c22408681cd8" target="_blank" rel="noopener noreferrer" class="w-20 h-20 rounded-xl bg-carbon-850 border border-emerald-500/40 p-2 flex items-center justify-center shrink-0 hover:scale-105 transition-transform">
                     <img src="assets/aws-mla.png" alt="AWS MLA Badge" class="w-full h-full object-contain" onerror="resolveAsset(this, 'aws-mla')">
-                    <svg class="hidden w-14 h-14" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="asset-fallback hidden w-14 h-14" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                       <polygon points="50,4 93,27 93,73 50,96 7,73 7,27" fill="#064e3b" stroke="#34d399" stroke-width="4"/>
                       <text x="50" y="42" text-anchor="middle" fill="#a7f3d0" font-family="JetBrains Mono, monospace" font-size="15" font-weight="700">AWS</text>
                       <text x="50" y="66" text-anchor="middle" fill="#ffffff" font-family="Plus Jakarta Sans, sans-serif" font-size="20" font-weight="800">MLA</text>
@@ -1271,7 +1302,7 @@
                 <div class="flex items-center gap-4">
                   <div class="w-20 h-20 rounded-2xl bg-carbon-900 border border-amber-500/40 flex items-center justify-center shrink-0 p-2.5 shadow-lg">
                     <img src="assets/eficens.png" alt="Eficens Systems" class="w-full h-full object-contain" onerror="resolveAsset(this, 'eficens')">
-                    <div class="hidden w-full h-full items-center justify-center font-mono font-extrabold text-xl text-amber-400">EFC</div>
+                    <div class="asset-fallback hidden w-full h-full items-center justify-center font-mono font-extrabold text-xl text-amber-400">EFC</div>
                   </div>
                   <div>
                     <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Eficens Systems LLC</h3>
@@ -1309,7 +1340,7 @@
                 <div class="flex items-center gap-4">
                   <a href="https://www.credly.com/badges/af2f25bd-7fbe-4e21-92fc-4c39f8e92cf7" target="_blank" rel="noopener noreferrer" class="w-20 h-20 rounded-xl bg-carbon-850 border border-amber-500/40 p-2 flex items-center justify-center shrink-0 hover:scale-105 transition-transform">
                     <img src="assets/aws-saa.png" alt="AWS SAA Badge" class="w-full h-full object-contain" onerror="resolveAsset(this, 'aws-saa')">
-                    <svg class="hidden w-14 h-14" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="asset-fallback hidden w-14 h-14" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                       <polygon points="50,4 93,27 93,73 50,96 7,73 7,27" fill="#1e3a8a" stroke="#fbbf24" stroke-width="4"/>
                       <text x="50" y="42" text-anchor="middle" fill="#fde68a" font-family="JetBrains Mono, monospace" font-size="15" font-weight="700">AWS</text>
                       <text x="50" y="66" text-anchor="middle" fill="#ffffff" font-family="Plus Jakarta Sans, sans-serif" font-size="20" font-weight="800">SAA</text>
@@ -1352,7 +1383,7 @@
                 <div class="flex items-center gap-4">
                   <div class="w-20 h-20 rounded-2xl bg-carbon-900 border border-sky-500/40 flex items-center justify-center shrink-0 p-2.5 shadow-lg">
                     <img src="assets/lotusdata.png" alt="LotusData LLP" class="w-full h-full object-contain" onerror="resolveAsset(this, 'lotusdata')">
-                    <svg class="hidden w-12 h-12" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="asset-fallback hidden w-12 h-12" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <rect width="64" height="64" rx="14" fill="#0c4a6e"/>
                       <path d="M32 14C24 22 20 30 20 38C20 44.6 25.4 50 32 50C38.6 50 44 44.6 44 38C44 30 40 22 32 14Z" stroke="#38bdf8" stroke-width="3"/>
                       <text x="32" y="41" text-anchor="middle" fill="#ffffff" font-family="JetBrains Mono, monospace" font-size="14" font-weight="700">LD</text>
@@ -1394,7 +1425,7 @@
                 <div class="flex items-center gap-4">
                   <a href="https://www.credly.com/badges/582be29e-4701-41a4-b4bb-638b1d675fc2" target="_blank" rel="noopener noreferrer" class="w-20 h-20 rounded-xl bg-carbon-850 border border-sky-500/40 p-2 flex items-center justify-center shrink-0 hover:scale-105 transition-transform">
                     <img src="assets/aws-cpp.png" alt="AWS CPP Badge" class="w-full h-full object-contain" onerror="resolveAsset(this, 'aws-cpp')">
-                    <svg class="hidden w-14 h-14" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="asset-fallback hidden w-14 h-14" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                       <polygon points="50,4 93,27 93,73 50,96 7,73 7,27" fill="#0f172a" stroke="#38bdf8" stroke-width="4"/>
                       <text x="50" y="42" text-anchor="middle" fill="#7dd3fc" font-family="JetBrains Mono, monospace" font-size="15" font-weight="700">AWS</text>
                       <text x="50" y="66" text-anchor="middle" fill="#ffffff" font-family="Plus Jakarta Sans, sans-serif" font-size="20" font-weight="800">CPP</text>
@@ -1443,7 +1474,7 @@
               <div class="flex items-start justify-between gap-3">
                 <div class="w-20 h-20 rounded-2xl bg-carbon-900 border border-emerald-500/40 p-2.5 flex items-center justify-center shadow-lg">
                   <img src="assets/iitb.png" alt="IIT Bombay" class="w-full h-full object-contain" onerror="resolveAsset(this, 'iitb')">
-                  <span class="hidden font-mono text-base font-extrabold text-emerald-400">IIT-B</span>
+                  <span class="asset-fallback hidden font-mono text-base font-extrabold text-emerald-400">IIT-B</span>
                 </div>
                 <span class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 font-mono text-xs border border-emerald-500/30 font-semibold">
                   2026 // ADVANCED
@@ -1468,7 +1499,7 @@
               <div class="flex items-start justify-between gap-3">
                 <div class="w-20 h-20 rounded-2xl bg-carbon-900 border border-red-500/40 p-2.5 flex items-center justify-center shadow-lg">
                   <img src="assets/njit.png" alt="NJIT" class="w-full h-full object-contain" onerror="resolveAsset(this, 'njit')">
-                  <span class="hidden font-mono text-base font-extrabold text-red-400">NJIT</span>
+                  <span class="asset-fallback hidden font-mono text-base font-extrabold text-red-400">NJIT</span>
                 </div>
                 <span class="px-3 py-1 rounded-full bg-carbon-800 text-slate-300 font-mono text-xs border border-carbon-600 font-semibold">
                   DEC 2020 // GRADUATED
@@ -1493,7 +1524,7 @@
               <div class="flex items-start justify-between gap-3">
                 <div class="w-20 h-20 rounded-2xl bg-carbon-900 border border-amber-500/40 p-2.5 flex items-center justify-center shadow-lg">
                   <img src="assets/ggsipu.png" alt="GGSIPU" class="w-full h-full object-contain" onerror="resolveAsset(this, 'ggsipu')">
-                  <span class="hidden font-mono text-base font-extrabold text-amber-400">GGSIPU</span>
+                  <span class="asset-fallback hidden font-mono text-base font-extrabold text-amber-400">GGSIPU</span>
                 </div>
                 <span class="px-3 py-1 rounded-full bg-carbon-800 text-slate-300 font-mono text-xs border border-carbon-600 font-semibold">
                   MAY 2017 // GRADUATED
@@ -1571,7 +1602,6 @@
                     </linearGradient>
                   </defs>
 
-                  <!-- Animated Vertical Connector Line -->
                   <line id="svgConnectorLine" x1="64" y1="75" x2="64" y2="305" stroke="#f59e0b" stroke-width="2.5" class="svg-flow-line"/>
 
                   <!-- PILL 01: EVIDENCE FIRST -->
@@ -1770,6 +1800,18 @@
   </div>
 
   <script>
+    // Defensive DOM scrubber: strips any accidental citation brackets if ever pasted
+    (function scrubStrayCitations() {
+      const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+      const regex = /\[\s*cite:\s*[\d,\s]+\]/gi;
+      let node;
+      while ((node = walker.nextNode())) {
+        if (regex.test(node.nodeValue)) {
+          node.nodeValue = node.nodeValue.replace(regex, '');
+        }
+      }
+    })();
+
     if (window.lucide) {
       lucide.createIcons();
     }
@@ -1896,7 +1938,6 @@
         devWorkflows.forEach(el => el.classList.add('hidden'));
         managerNarratives.forEach(el => el.classList.remove('hidden'));
 
-        // Collapse accordions by default in Manager Mode for clean executive scan
         ['case-1', 'case-2', 'case-3'].forEach(id => {
           const body = document.getElementById(id + '-body');
           const icon = document.getElementById(id + '-icon');
@@ -1920,7 +1961,6 @@
         devWorkflows.forEach(el => el.classList.remove('hidden'));
         managerNarratives.forEach(el => el.classList.add('hidden'));
         
-        // Auto-expand all 3 Case Studies in Dev Mode so animated SVGs & workflow pills are immediately visible
         ['case-1', 'case-2', 'case-3'].forEach(id => {
           const body = document.getElementById(id + '-body');
           const icon = document.getElementById(id + '-icon');
