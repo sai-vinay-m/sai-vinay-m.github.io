@@ -120,7 +120,7 @@
       transform: translateY(-2px);
     }
 
-    /* Dev Mode CRT Styling */
+    /* Dev Mode CRT Phosphor Palette */
     body.mode-dev {
       background-color: #030804 !important;
       color: #a7f3d0 !important;
@@ -179,9 +179,7 @@
       40% { transform: translateY(-4px); opacity: 1; }
     }
 
-    /* =====================================================================
-       AUTHENTIC GUS.HTML BALLOON ENGINE & 6 MORPHING EXPRESSIONS
-       ===================================================================== */
+    /* Authentic gus.html Balloon Layout & 6 Morphing Faces */
     @keyframes gusFloat {
       0%, 100% { transform: translateY(0px) rotate(0deg); }
       50% { transform: translateY(-10px) rotate(2deg); }
@@ -196,6 +194,7 @@
       touch-action: none;
       user-select: none;
       cursor: grab;
+      transition: transform 0.25s ease, opacity 0.25s ease;
     }
     .balloon-scale-shell:active {
       cursor: grabbing;
@@ -217,13 +216,7 @@
       width: 240px;
       height: 240px;
       border-radius: 50%;
-      background: linear-gradient(
-        145deg,
-        #d4fbff 0%,
-        #a6dff5 25%,
-        #77b7e0 60%,
-        #477aa8 100%
-      );
+      background: linear-gradient(145deg, #d4fbff 0%, #a6dff5 25%, #77b7e0 60%, #477aa8 100%);
       border: 2px solid rgba(255, 255, 255, 0.45);
       box-shadow:
         inset -12px -15px 22px rgba(26, 64, 105, 0.25),
@@ -231,7 +224,7 @@
         0 14px 30px rgba(0, 0, 0, 0.45);
       box-sizing: border-box;
       z-index: 2;
-      transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.3s ease;
+      transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
     .balloon-highlight {
       position: absolute;
@@ -281,18 +274,9 @@
       background: #202833;
       transition: all 0.2s ease;
     }
-    .teeth span:nth-child(1) {
-      left: 31%;
-      transform: rotate(12deg);
-    }
-    .teeth span:nth-child(2) {
-      left: 52%;
-      transform: rotate(7deg);
-    }
-    .teeth span:nth-child(3) {
-      left: 76%;
-      transform: rotate(-3deg);
-    }
+    .teeth span:nth-child(1) { left: 31%; transform: rotate(12deg); }
+    .teeth span:nth-child(2) { left: 52%; transform: rotate(7deg); }
+    .teeth span:nth-child(3) { left: 76%; transform: rotate(-3deg); }
     .balloon-cheek {
       position: absolute;
       bottom: 28px;
@@ -303,14 +287,8 @@
       opacity: 0.85;
       transition: all 0.25s ease;
     }
-    .cheek-left {
-      left: 43px;
-      transform: rotate(40deg);
-    }
-    .cheek-right {
-      right: 58px;
-      transform: rotate(-35deg);
-    }
+    .cheek-left { left: 43px; transform: rotate(40deg); }
+    .cheek-right { right: 58px; transform: rotate(-35deg); }
     .balloon-stick {
       position: absolute;
       top: 232px;
@@ -319,17 +297,10 @@
       height: 195px;
       border: 1px solid #78623d;
       border-radius: 4px;
-      background: linear-gradient(
-        90deg,
-        #8b7044,
-        #d4bb82 35%,
-        #aa8b56 70%,
-        #6e5839
-      );
+      background: linear-gradient(90deg, #8b7044, #d4bb82 35%, #aa8b56 70%, #6e5839);
       transform: rotate(7deg);
       transform-origin: top center;
       z-index: 1;
-      transition: transform 0.2s ease;
     }
     .balloon-knot {
       position: absolute;
@@ -342,108 +313,44 @@
       z-index: 3;
     }
 
-    /* Expression 2: Hover / Excited */
-    .gus-balloon.face-hover {
-      transform: scale(1.04) rotate(-3deg);
-    }
-    .gus-balloon.face-hover .balloon-eyebrows span:first-child {
-      top: 48px;
-      transform: rotate(18deg);
-    }
-    .gus-balloon.face-hover .balloon-eyebrows span:last-child {
-      top: 48px;
-      transform: rotate(-18deg);
-    }
-    .gus-balloon.face-hover .balloon-mouth {
-      height: 94px;
-      border-radius: 36% 36% 52% 52%;
-    }
-    .gus-balloon.face-hover .balloon-cheek {
-      background: linear-gradient(135deg, #fda4af, #f43f5e);
-      opacity: 0.75;
-    }
+    /* Morphing Expressions */
+    .gus-balloon.face-hover { transform: scale(1.04) rotate(-3deg); }
+    .gus-balloon.face-hover .balloon-eyebrows span:first-child { top: 48px; transform: rotate(18deg); }
+    .gus-balloon.face-hover .balloon-eyebrows span:last-child { top: 48px; transform: rotate(-18deg); }
+    .gus-balloon.face-hover .balloon-mouth { height: 94px; border-radius: 36% 36% 52% 52%; }
+    .gus-balloon.face-hover .balloon-cheek { background: linear-gradient(135deg, #fda4af, #f43f5e); opacity: 0.8; }
 
-    /* Expression 3: Dragging (Surprised "O" Mouth) */
-    .gus-balloon.face-drag {
-      transform: scale(0.96, 1.06);
-    }
-    .gus-balloon.face-drag .balloon-eyebrows span:first-child {
-      top: 45px;
-      transform: rotate(-10deg);
-    }
-    .gus-balloon.face-drag .balloon-eyebrows span:last-child {
-      top: 45px;
-      transform: rotate(10deg);
-    }
-    .gus-balloon.face-drag .balloon-mouth {
-      width: 68px;
-      height: 68px;
-      top: 86px;
-      border-radius: 50%;
-    }
+    .gus-balloon.face-drag { transform: scale(0.96, 1.06); }
+    .gus-balloon.face-drag .balloon-eyebrows span:first-child { top: 45px; transform: rotate(-10deg); }
+    .gus-balloon.face-drag .balloon-eyebrows span:last-child { top: 45px; transform: rotate(10deg); }
+    .gus-balloon.face-drag .balloon-mouth { width: 68px; height: 68px; top: 86px; border-radius: 50%; }
 
-    /* Expression 4: Wall Collision Bonk (Squashed + > < Brows) */
-    .gus-balloon.face-bonk {
-      transform: scale(1.22, 0.78) rotate(6deg) !important;
-    }
-    .gus-balloon.face-bonk .balloon-eyebrows span:first-child {
-      top: 62px;
-      left: 78px;
-      width: 34px;
-      transform: rotate(48deg);
-    }
-    .gus-balloon.face-bonk .balloon-eyebrows span:last-child {
-      top: 62px;
-      right: 72px;
-      width: 34px;
-      transform: rotate(-48deg);
-    }
-    .gus-balloon.face-bonk .balloon-mouth {
-      width: 148px;
-      height: 52px;
-      top: 96px;
-      border-radius: 25% 25% 30% 30%;
-      transform: translateX(-50%) rotate(-5deg);
-    }
-    .gus-balloon.face-bonk .balloon-cheek {
-      background: linear-gradient(135deg, #fb7185, #e11d48);
-      opacity: 0.9;
-    }
+    .gus-balloon.face-bonk { transform: scale(1.22, 0.78) rotate(6deg) !important; }
+    .gus-balloon.face-bonk .balloon-eyebrows span:first-child { top: 62px; left: 78px; width: 34px; transform: rotate(48deg); }
+    .gus-balloon.face-bonk .balloon-eyebrows span:last-child { top: 62px; right: 72px; width: 34px; transform: rotate(-48deg); }
+    .gus-balloon.face-bonk .balloon-mouth { width: 148px; height: 52px; top: 96px; border-radius: 25% 25% 30% 30%; transform: translateX(-50%) rotate(-5deg); }
+    .gus-balloon.face-bonk .balloon-cheek { background: linear-gradient(135deg, #fb7185, #e11d48); opacity: 0.9; }
 
-    /* Expression 5: Secret / Happy Smile (Triggered by mood==="secret" or Trivia) */
-    .gus-balloon.face-secret {
-      transform: scale(1.06) rotate(3deg);
-    }
-    .gus-balloon.face-secret .balloon-eyebrows span:first-child {
-      top: 46px;
-      transform: rotate(-18deg);
-    }
-    .gus-balloon.face-secret .balloon-eyebrows span:last-child {
-      top: 46px;
-      transform: rotate(18deg);
-    }
-    .gus-balloon.face-secret .balloon-mouth {
-      width: 145px;
-      height: 92px;
-      border-radius: 20% 20% 60% 60%;
-    }
-    .gus-balloon.face-secret .balloon-cheek {
-      background: linear-gradient(135deg, #f472b6, #ec4899);
-      opacity: 0.85;
-      transform: scale(1.15);
-    }
+    .gus-balloon.face-secret { transform: scale(1.06) rotate(3deg); }
+    .gus-balloon.face-secret .balloon-eyebrows span:first-child { top: 46px; transform: rotate(-18deg); }
+    .gus-balloon.face-secret .balloon-eyebrows span:last-child { top: 46px; transform: rotate(18deg); }
+    .gus-balloon.face-secret .balloon-mouth { width: 145px; height: 92px; border-radius: 20% 20% 60% 60%; }
+    .gus-balloon.face-secret .balloon-cheek { background: linear-gradient(135deg, #f472b6, #ec4899); opacity: 0.85; transform: scale(1.15); }
 
-    /* Expression 6: Nudge Wink (Asymmetric Eyebrow) */
-    .gus-balloon.face-nudge .balloon-eyebrows span:first-child {
-      top: 44px;
-      transform: rotate(-12deg);
+    .gus-balloon.face-nudge .balloon-eyebrows span:first-child { top: 44px; transform: rotate(-12deg); }
+    .gus-balloon.face-nudge .balloon-eyebrows span:last-child { top: 64px; transform: rotate(-32deg) scaleX(1.15); }
+    .gus-balloon.face-nudge .balloon-mouth { transform: translateX(-46%) rotate(-4deg); }
+
+    .balloon-scale-shell.minimized {
+      width: 38px;
+      height: 38px;
+      cursor: pointer;
     }
-    .gus-balloon.face-nudge .balloon-eyebrows span:last-child {
-      top: 64px;
-      transform: rotate(-32deg) scaleX(1.15);
+    .balloon-scale-shell.minimized .balloon-container {
+      display: none;
     }
-    .gus-balloon.face-nudge .balloon-mouth {
-      transform: translateX(-46%) rotate(-4deg);
+    .balloon-scale-shell.minimized .minimized-disc {
+      display: flex !important;
     }
   </style>
 </head>
@@ -458,7 +365,7 @@
     <span id="customToastText"></span>
   </div>
 
-  <!-- STICKY NAVIGATION (CLEAN: NO REDUNDANT TOP-BAR ROLE SWITCHER) -->
+  <!-- Sticky Navigation -->
   <header class="sticky top-0 z-40 backdrop-blur-md bg-carbon-900/85 border-b border-carbon-700/70">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
       
@@ -496,13 +403,11 @@
     </div>
   </header>
 
-  <!-- ==================================================================================
-       VIEW 1: HR & RECRUITER MODE (CUSTOM BENTO, STACKED ACADEMICS & CREDLY SEALS)
-       ================================================================================== -->
+  <!-- View 1: HR & Recruiter Bento View -->
   <div id="view-hr" style="display: none;" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 relative z-10">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-7 items-start">
       
-      <!-- Left Profile Rail -->
+      <!-- Sticky Profile Rail -->
       <aside class="lg:col-span-4 bento-card p-7 space-y-6">
         <div class="flex flex-col items-center text-center">
           <div class="w-32 h-32 rounded-full overflow-hidden border-4 border-amber-500/40 mb-3 bg-carbon-800 shadow-xl flex items-center justify-center">
@@ -527,11 +432,11 @@
           </div>
           <div class="flex items-center justify-between py-1">
             <span class="text-slate-400">Availability:</span>
-            <span class="text-emerald-400 font-semibold">Immediate </span>
+            <span class="text-emerald-400 font-semibold">Immediate / 30 Days</span>
           </div>
         </div>
 
-        <!-- Stacked Education Credentials Pill (Column Format with Logo Placeholders) -->
+        <!-- Academic Credentials Column Pill -->
         <div class="border-t border-carbon-700/80 pt-4 space-y-3 font-mono">
           <span class="text-[11px] font-bold text-amber-400 uppercase tracking-wider block">Academic Credentials</span>
           
@@ -560,7 +465,7 @@
           <div class="p-2.5 rounded-xl bg-carbon-900 border border-carbon-800 flex items-center gap-3">
             <div class="w-10 h-10 rounded-lg bg-carbon-800 border border-amber-500/40 p-1 flex items-center justify-center shrink-0">
               <img src="assets/ggsipu.png" alt="GGSIPU" class="w-full h-full object-contain" onerror="resolveAsset(this, 'ggsipu')">
-              <span class="asset-fallback hidden text-[10px] font-bold text-amber-400">GGSIPU</span>
+              <span class="asset-fallback hidden text-[10px] font-bold text-amber-400">IPU</span>
             </div>
             <div class="min-w-0">
               <div class="text-xs font-bold text-white truncate">GGSIP University (New Delhi)</div>
@@ -579,10 +484,10 @@
         </div>
       </aside>
 
-      <!-- Right Bento Grid -->
+      <!-- Right Bento Grid Area -->
       <div class="lg:col-span-8 space-y-6">
         
-        <!-- Candidate Value Proposition with Direct Credly Badges -->
+        <!-- Candidate Value Proposition with Credly Seals -->
         <div class="bento-card p-7 bg-gradient-to-br from-amber-500/15 via-carbon-850 to-carbon-900 border-amber-500/50 space-y-5">
           <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div class="space-y-1">
@@ -600,7 +505,7 @@
             Combines <strong class="text-white">4 years of enterprise infrastructure depth</strong> (architecting zero-trust AWS systems synchronized in real time with NYSE and Federal Reserve clearing feeds) with <strong class="text-amber-300">modern AI platform delivery</strong> (scaling agentic RAG workflows and triaging critical container releases under live SLAs). Immediate contributor with zero onboarding lag.
           </p>
 
-          <!-- Interactive 3x AWS Credly Verification Badges -->
+          <!-- 3x AWS Credly Verification Badges -->
           <div class="pt-3 border-t border-carbon-700/80">
             <span class="text-[10.5px] font-mono text-slate-400 block mb-2.5 uppercase tracking-wider">3x AWS Verified Credentials (Click Badge to Verify on Credly):</span>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -642,7 +547,7 @@
           </div>
         </div>
 
-        <!-- Business-Outcome Recruiter Cards -->
+        <!-- Outcome Metric Cards -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 font-mono">
           <div class="bento-card p-4">
             <span class="text-[10px] text-emerald-400 font-bold uppercase block">L5 Outage Command</span>
@@ -666,7 +571,7 @@
           </div>
         </div>
 
-        <!-- Outcome-Driven Competency Pillars -->
+        <!-- Competency Pillars -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div class="bento-card p-5 space-y-2.5">
             <div class="text-amber-400 font-bold font-mono text-xs flex items-center gap-2">
@@ -696,7 +601,7 @@
           </div>
         </div>
 
-        <!-- Enterprise Experience Overview (2 Resume Bullets Per Role) -->
+        <!-- Experience Overview -->
         <div class="bento-card p-6 space-y-4">
           <div class="flex items-center justify-between">
             <h3 class="text-sm font-bold font-mono text-white uppercase tracking-wider flex items-center gap-2">
@@ -706,7 +611,6 @@
           </div>
 
           <div class="space-y-4 font-mono text-xs">
-            
             <div class="p-4 rounded-xl bg-carbon-900 border border-carbon-800 space-y-2">
               <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
                 <strong class="text-white text-sm">Ascendion — DevOps &amp; GenAI Engineer (L5 @ Client: HP Inc.)</strong>
@@ -739,7 +643,6 @@
                 <li>Automated RedHat Linux bare-metal provisioning via Kickstart scripts and administered live, non-disruptive LVM storage expansions.</li>
               </ul>
             </div>
-
           </div>
         </div>
 
@@ -747,15 +650,13 @@
     </div>
   </div>
 
-  <!-- ==================================================================================
-       VIEW 2 & 3: MANAGER (DEFAULT BASELINE) & DEVELOPER (MATRIX & CLI DRAWER)
-       ================================================================================== -->
+  <!-- View 2 & 3: Manager & Developer Perspectives -->
   <div id="view-manager-dev" class="relative z-10">
     <main id="home">
 
-      <!-- HERO SECTION -->
-      <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-16 lg:pt-20 lg:pb-20">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <!-- Hero Section -->
+      <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-14 lg:pt-16 lg:pb-18">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           
           <div class="lg:col-span-7 space-y-6">
             <div class="inline-flex flex-wrap items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-mono">
@@ -772,7 +673,7 @@
               Cloud, DevOps, and GenAI Engineer with <strong class="text-white">4 years of enterprise experience</strong>—including <strong class="text-amber-300">3.5+ years in the United States</strong> architecting zero-trust AWS infrastructure for post-trade financial clearing systems in real-time sync with the <strong class="text-white">NYSE and Federal Reserve</strong>, and building agentic AI &amp; cloud platforms in India.
             </p>
 
-            <div class="flex flex-wrap items-center gap-4 pt-3">
+            <div class="flex flex-wrap items-center gap-4 pt-2">
               <a href="#case-studies" class="px-6 py-3.5 rounded-xl text-base font-bold bg-amber-500 hover:bg-amber-400 text-carbon-950 flex items-center gap-2 transition-all shadow-[0_0_25px_rgba(245,158,11,0.3)]">
                 See How I Solve Production Problems <i data-lucide="arrow-down-right" class="w-5 h-5"></i>
               </a>
@@ -788,7 +689,7 @@
             </div>
           </div>
 
-          <!-- Engineer Telemetry & STRICT 300px x 300px Photo Card -->
+          <!-- Fixed 300px x 300px Portrait Card Container -->
           <div class="lg:col-span-5">
             <div class="rounded-2xl bg-carbon-850 border border-carbon-700 shadow-2xl overflow-hidden">
               <div class="bg-carbon-800 px-5 py-3 border-b border-carbon-700 flex items-center justify-between">
@@ -849,7 +750,7 @@
         </div>
       </section>
 
-      <!-- DEVELOPER LIVE TELEMETRY BAR (ACTIVE IN DEV MODE) -->
+      <!-- Developer Live Telemetry Strip -->
       <div id="devTelemetryStrip" style="display: none;" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-6">
         <div class="p-4 rounded-xl bg-carbon-950 border border-[#00ff66]/40 font-mono text-xs flex flex-wrap items-center justify-between gap-4 text-[#a7f3d0] shadow-lg">
           <div class="flex items-center gap-3">
@@ -869,7 +770,10 @@
         </div>
       </div>
 
-      <!-- TECH STACK MARQUEE (BOTH TRACKS RESTORED FOR SEAMLESS INFINITE LOOP) -->
+
+      <!-- START OF PART 2 -->
+
+      <!-- Tech Stack Marquee (Tracks 1 & 2) -->
       <section id="stack" class="py-8 bg-carbon-950/80 border-y border-carbon-700/70 overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 mb-4 flex items-center justify-between">
           <span class="text-xs font-mono uppercase tracking-widest text-slate-400">
@@ -919,7 +823,7 @@
                 <img src="assets/logos/linux.svg" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/redhat/EE0000'" alt="RedHat Linux" class="w-5 h-5 object-contain"> RedHat Linux &amp; LVM
               </div>
             </div>
-            <!-- Track 2 (Duplicate for seamless -50% loop) -->
+            <!-- Track 2 -->
             <div class="flex items-center gap-4" aria-hidden="true">
               <div class="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-sm font-semibold text-slate-200">
                 <img src="assets/logos/aws.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg'" alt="AWS" class="w-6 h-6 object-contain"> Amazon Web Services
@@ -962,7 +866,7 @@
         </div>
       </section>
 
-      <!-- EXECUTIVE SCORECARD STRIP (MANAGER MODE) -->
+      <!-- Executive Scorecard Strip -->
       <div id="managerKpiStrip" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 p-5 rounded-2xl bg-carbon-850 border border-amber-500/40 font-mono text-xs shadow-xl">
           <div class="border-r border-carbon-800 pr-3">
@@ -984,8 +888,8 @@
         </div>
       </div>
 
-      <!-- SECTION 01: ARCHITECTURE & INCIDENT DEEP DIVES -->
-      <section id="case-studies" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 border-b border-carbon-800">
+      <!-- Section 01: Production Deep Dives -->
+      <section id="case-studies" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-b border-carbon-800">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
           <div>
             <span class="text-xs font-mono text-amber-400 uppercase tracking-wider"> ARCHITECTURE &amp; INCIDENT DEEP DIVES</span>
@@ -1004,8 +908,7 @@
         </div>
 
         <div class="space-y-5">
-
-          <!-- CASE 01 -->
+          <!-- Case 01 -->
           <div class="rounded-2xl bg-carbon-850 border border-carbon-700 hover:border-amber-500/40 transition-all overflow-hidden shadow-lg">
             <button onclick="toggleCase('case-1-body', 'case-1-icon')" class="w-full p-6 text-left flex flex-col md:flex-row md:items-center justify-between gap-4 bg-carbon-850 hover:bg-carbon-800/60 transition-colors cursor-pointer">
               <div class="flex items-start md:items-center gap-4">
@@ -1103,7 +1006,7 @@
             </div>
           </div>
 
-          <!-- CASE 02 -->
+          <!-- Case 02 -->
           <div class="rounded-2xl bg-carbon-850 border border-carbon-700 hover:border-amber-500/40 transition-all overflow-hidden shadow-lg">
             <button onclick="toggleCase('case-2-body', 'case-2-icon')" class="w-full p-6 text-left flex flex-col md:flex-row md:items-center justify-between gap-4 bg-carbon-850 hover:bg-carbon-800/60 transition-colors cursor-pointer">
               <div class="flex items-start md:items-center gap-4">
@@ -1191,7 +1094,7 @@
             </div>
           </div>
 
-          <!-- CASE 03 -->
+          <!-- Case 03 -->
           <div class="rounded-2xl bg-carbon-850 border border-carbon-700 hover:border-amber-500/40 transition-all overflow-hidden shadow-lg">
             <button onclick="toggleCase('case-3-body', 'case-3-icon')" class="w-full p-6 text-left flex flex-col md:flex-row md:items-center justify-between gap-4 bg-carbon-850 hover:bg-carbon-800/60 transition-colors cursor-pointer">
               <div class="flex items-start md:items-center gap-4">
@@ -1272,13 +1175,12 @@
               </div>
             </div>
           </div>
-
         </div>
       </section>
 
-      <!-- SECTION 02: CAREER & AWS VERIFIED CREDENTIALS -->
-      <section id="journey" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 border-b border-carbon-800">
-        <div class="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-4">
+      <!-- Section 02: Career Progression & AWS Credentials -->
+      <section id="journey" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-b border-carbon-800">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
           <div>
             <span class="text-xs font-mono text-amber-400 uppercase tracking-wider"> CAREER &amp; VERIFIED AWS CERTIFICATION TRAJECTORY</span>
             <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">
@@ -1290,9 +1192,8 @@
           </p>
         </div>
 
-        <div class="space-y-10">
-
-          <!-- ASCENDION -->
+        <div class="space-y-8">
+          <!-- Ascendion -->
           <div class="rounded-2xl bg-carbon-850 border-2 border-emerald-500/40 overflow-hidden shadow-2xl">
             <div class="bg-carbon-800 px-6 sm:px-8 py-4 border-b border-carbon-700 flex flex-wrap items-center justify-between gap-3">
               <div class="flex items-center gap-3">
@@ -1333,22 +1234,13 @@
                   <div class="p-4 rounded-xl bg-carbon-900 border border-carbon-700 space-y-2">
                     <div class="text-xs font-mono text-emerald-400 font-bold uppercase tracking-wider">Systemic SDLC Automation</div>
                     <p class="text-sm text-slate-300 leading-relaxed">
-                      Integrated LLMs, knowledge bases, and guardrail architectures to automate development bottlenecks, accelerating multi-team engineering throughput.
-                    </p>
-                    <p class="text-xs text-slate-400 font-mono pt-1">
-                      • Scaled RAG pipelines across internal developer platforms
-                      <br>• Reduced repetitive PR triage and deployment friction
+                      Integrated LLMs, knowledge bases, and guardrail architectures into agentic SDLC workflows, accelerating team velocity by up to 55%.
                     </p>
                   </div>
-
                   <div class="p-4 rounded-xl bg-carbon-900 border border-carbon-700 space-y-2">
-                    <div class="text-xs font-mono text-amber-400 font-bold uppercase tracking-wider">Cross-Stack Platform Ownership</div>
+                    <div class="text-xs font-mono text-amber-400 font-bold uppercase tracking-wider">Platform &amp; Release Triage</div>
                     <p class="text-sm text-slate-300 leading-relaxed">
-                      Balanced infrastructure reliability with backend microservice refactoring under tight production SLAs across distributed engineering teams.
-                    </p>
-                    <p class="text-xs text-slate-400 font-mono pt-1">
-                      • Triaged container health failures under live release windows
-                      <br>• Standardized IAM and configuration governance across environments
+                      Triaged container healthcheck failures under live 60-minute SLAs and standardized multi-account IAM and Terraform governance.
                     </p>
                   </div>
                 </div>
@@ -1359,31 +1251,24 @@
                 <div class="flex items-center gap-4">
                   <a href="https://www.credly.com/badges/20f333e6-76e8-431a-9603-c22408681cd8" target="_blank" rel="noopener noreferrer" class="w-20 h-20 rounded-xl bg-carbon-850 border border-emerald-500/40 p-2 flex items-center justify-center shrink-0 hover:scale-105 transition-transform">
                     <img src="assets/aws-mla.png" alt="AWS MLA Badge" class="w-full h-full object-contain" onerror="resolveAsset(this, 'aws-mla')">
-                    <svg class="asset-fallback hidden w-14 h-14" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                      <polygon points="50,4 93,27 93,73 50,96 7,73 7,27" fill="#064e3b" stroke="#34d399" stroke-width="4"/>
-                      <text x="50" y="42" text-anchor="middle" fill="#a7f3d0" font-family="JetBrains Mono, monospace" font-size="15" font-weight="700">AWS</text>
-                      <text x="50" y="66" text-anchor="middle" fill="#ffffff" font-family="Plus Jakarta Sans, sans-serif" font-size="20" font-weight="800">MLA</text>
-                    </svg>
+                    <span class="asset-fallback hidden font-mono text-xs font-bold text-emerald-400">AWS MLA</span>
                   </a>
                   <div>
                     <span class="text-[11px] font-mono text-emerald-400 font-bold uppercase">AWS Certified • Dec 2024</span>
                     <h4 class="text-base font-bold text-white leading-tight mt-0.5">Machine Learning Engineer – Associate</h4>
                   </div>
                 </div>
-
                 <p class="text-xs text-slate-300 leading-relaxed">
-                  Validates production model deployment, feature engineering pipelines, and automated drift monitoring on AWS cloud.
+                  Validates model deployment, feature engineering pipelines, and automated drift monitoring on AWS cloud.
                 </p>
-
                 <a href="https://www.credly.com/badges/20f333e6-76e8-431a-9603-c22408681cd8" target="_blank" rel="noopener noreferrer" class="py-2 px-3 rounded-lg bg-carbon-800 hover:bg-emerald-500 hover:text-carbon-950 text-emerald-400 border border-emerald-500/40 font-mono text-xs font-bold flex items-center justify-center gap-1.5 transition-all">
-                  <span>Verify</span>
-                  <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+                  <span>Verify</span> <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
                 </a>
               </div>
             </div>
           </div>
 
-          <!-- EFICENS -->
+          <!-- Eficens -->
           <div class="rounded-2xl bg-gradient-to-br from-carbon-850 via-carbon-800 to-carbon-850 border-2 border-amber-500/50 overflow-hidden shadow-xl">
             <div class="bg-carbon-800 px-6 sm:px-8 py-4 border-b border-carbon-700 flex flex-wrap items-center justify-between gap-3">
               <div class="flex items-center gap-3">
@@ -1393,7 +1278,7 @@
                 <span class="text-sm font-mono text-amber-300 font-medium">NEW YORK METROPOLITAN AREA (USA)</span>
               </div>
               <span class="px-3.5 py-1 rounded-full bg-blue-500/20 border border-blue-400/40 text-blue-300 font-mono text-xs sm:text-sm font-bold tracking-wide">
-                US Financial Market Infrastructure Client (NYSE &amp; Fed Sync)
+                US Financial Market Client (NYSE &amp; Fed Sync)
               </span>
             </div>
 
@@ -1406,7 +1291,7 @@
                   </div>
                   <div>
                     <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Eficens Systems LLC</h3>
-                    <p class="text-base font-mono text-amber-300 font-semibold">DevOps Engineer (US Financial Clearing &amp; Settlement Client)</p>
+                    <p class="text-base font-mono text-amber-300 font-semibold">DevOps Engineer (US Financial Clearing &amp; Settlement)</p>
                   </div>
                 </div>
 
@@ -1414,22 +1299,13 @@
                   <div class="p-4 rounded-xl bg-carbon-900 border border-carbon-700 space-y-2">
                     <div class="text-xs font-mono text-amber-400 font-bold uppercase tracking-wider">Zero-Trust Infrastructure as Code</div>
                     <p class="text-sm text-slate-300 leading-relaxed">
-                      Designed modular, auditable cloud blueprints to eliminate manual drift across high-transaction financial systems subject to strict federal oversight.
-                    </p>
-                    <p class="text-xs text-slate-400 font-mono pt-1">
-                      • Cut provisioning lead times across core environments
-                      <br>• Enforced fine-grained least-privilege IAM controls
+                      Designed modular cloud blueprints to eliminate manual drift across high-transaction financial systems syncing with NYSE and Federal Reserve feeds.
                     </p>
                   </div>
-
                   <div class="p-4 rounded-xl bg-carbon-900 border border-carbon-700 space-y-2">
-                    <div class="text-xs font-mono text-blue-400 font-bold uppercase tracking-wider">Resilient Delivery &amp; Operational Governance</div>
+                    <div class="text-xs font-mono text-blue-400 font-bold uppercase tracking-wider">Resilient Delivery Governance</div>
                     <p class="text-sm text-slate-300 leading-relaxed">
-                      Automated routine maintenance tasks directly into CI/CD pipelines to guarantee near-zero downtime for market-facing financial workloads.
-                    </p>
-                    <p class="text-xs text-slate-400 font-mono pt-1">
-                      • Eliminated deployment failure bottlenecks systematically
-                      <br>• Hardened database upgrade and certificate lifecycles
+                      Integrated Terraform into Jenkins CI/CD pipelines, cutting provisioning lead times by 50% and securing KMS envelope encryption.
                     </p>
                   </div>
                 </div>
@@ -1440,31 +1316,24 @@
                 <div class="flex items-center gap-4">
                   <a href="https://www.credly.com/badges/af2f25bd-7fbe-4e21-92fc-4c39f8e92cf7" target="_blank" rel="noopener noreferrer" class="w-20 h-20 rounded-xl bg-carbon-850 border border-amber-500/40 p-2 flex items-center justify-center shrink-0 hover:scale-105 transition-transform">
                     <img src="assets/aws-saa.png" alt="AWS SAA Badge" class="w-full h-full object-contain" onerror="resolveAsset(this, 'aws-saa')">
-                    <svg class="asset-fallback hidden w-14 h-14" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                      <polygon points="50,4 93,27 93,73 50,96 7,73 7,27" fill="#1e3a8a" stroke="#fbbf24" stroke-width="4"/>
-                      <text x="50" y="42" text-anchor="middle" fill="#fde68a" font-family="JetBrains Mono, monospace" font-size="15" font-weight="700">AWS</text>
-                      <text x="50" y="66" text-anchor="middle" fill="#ffffff" font-family="Plus Jakarta Sans, sans-serif" font-size="20" font-weight="800">SAA</text>
-                    </svg>
+                    <span class="asset-fallback hidden font-mono text-xs font-bold text-amber-400">AWS SAA</span>
                   </a>
                   <div>
                     <span class="text-[11px] font-mono text-amber-400 font-bold uppercase">AWS Certified • Aug 2022</span>
                     <h4 class="text-base font-bold text-white leading-tight mt-0.5">Solutions Architect – Associate</h4>
                   </div>
                 </div>
-
                 <p class="text-xs text-slate-300 leading-relaxed">
-                  Validates high-availability multi-AZ topologies, VPC isolation, and cryptographic KMS key protection for mission-critical workloads.
+                  Validates multi-AZ topologies, VPC isolation, and cryptographic KMS key protection for mission-critical workloads.
                 </p>
-
                 <a href="https://www.credly.com/badges/af2f25bd-7fbe-4e21-92fc-4c39f8e92cf7" target="_blank" rel="noopener noreferrer" class="py-2 px-3 rounded-lg bg-carbon-800 hover:bg-amber-500 hover:text-carbon-950 text-amber-400 border border-amber-500/40 font-mono text-xs font-bold flex items-center justify-center gap-1.5 transition-all">
-                  <span>Verify</span>
-                  <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+                  <span>Verify</span> <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
                 </a>
               </div>
             </div>
           </div>
 
-          <!-- LOTUSDATA -->
+          <!-- LotusData -->
           <div class="rounded-2xl bg-carbon-850 border border-carbon-700 overflow-hidden shadow-lg">
             <div class="bg-carbon-800 px-6 sm:px-8 py-4 border-b border-carbon-700 flex flex-wrap items-center justify-between gap-3">
               <div class="flex items-center gap-3">
@@ -1483,11 +1352,7 @@
                 <div class="flex items-center gap-4">
                   <div class="w-20 h-20 rounded-2xl bg-carbon-900 border border-sky-500/40 flex items-center justify-center shrink-0 p-2.5 shadow-lg">
                     <img src="assets/lotusdata.png" alt="LotusData LLP" class="w-full h-full object-contain" onerror="resolveAsset(this, 'lotusdata')">
-                    <svg class="asset-fallback hidden w-12 h-12" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <rect width="64" height="64" rx="14" fill="#0c4a6e"/>
-                      <path d="M32 14C24 22 20 30 20 38C20 44.6 25.4 50 32 50C38.6 50 44 44.6 44 38C44 30 40 22 32 14Z" stroke="#38bdf8" stroke-width="3"/>
-                      <text x="32" y="41" text-anchor="middle" fill="#ffffff" font-family="JetBrains Mono, monospace" font-size="14" font-weight="700">LD</text>
-                    </svg>
+                    <span class="asset-fallback hidden font-mono text-xs font-bold text-sky-400">LD</span>
                   </div>
                   <div>
                     <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">LotusData LLP</h3>
@@ -1497,24 +1362,15 @@
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
                   <div class="p-4 rounded-xl bg-carbon-900 border border-carbon-700 space-y-2">
-                    <div class="text-xs font-mono text-sky-400 font-bold uppercase tracking-wider">Fleet Reliability &amp; Disaster Recovery</div>
+                    <div class="text-xs font-mono text-sky-400 font-bold uppercase tracking-wider">Fleet Reliability &amp; Backups</div>
                     <p class="text-sm text-slate-300 leading-relaxed">
-                      Maintained high availability across 200+ enterprise compute nodes through automated snapshots, metric alerting, and proactive backup drills.
-                    </p>
-                    <p class="text-xs text-slate-400 font-mono pt-1">
-                      • Coordinated failover protocols directly with database administrators
-                      <br>• Kept infrastructure health aligned with stringent customer SLAs
+                      Maintained high availability across 200+ AWS EC2 nodes through automated snapshots, alerting, and proactive backup drills.
                     </p>
                   </div>
-
                   <div class="p-4 rounded-xl bg-carbon-900 border border-carbon-700 space-y-2">
-                    <div class="text-xs font-mono text-emerald-400 font-bold uppercase tracking-wider">Bare-Metal to Cloud Linux Automation</div>
+                    <div class="text-xs font-mono text-emerald-400 font-bold uppercase tracking-wider">Linux Bare-Metal Automation</div>
                     <p class="text-sm text-slate-300 leading-relaxed">
-                      Automated RedHat operating system installations and dynamically managed storage volumes to support rapidly growing business datasets.
-                    </p>
-                    <p class="text-xs text-slate-400 font-mono pt-1">
-                      • Scripted unattended server provisioning using Kickstart
-                      <br>• Administered live filesystem expansion with LVM without downtime
+                      Automated RedHat OS installations with Kickstart and executed live, non-disruptive filesystem expansions with LVM.
                     </p>
                   </div>
                 </div>
@@ -1525,35 +1381,27 @@
                 <div class="flex items-center gap-4">
                   <a href="https://www.credly.com/badges/582be29e-4701-41a4-b4bb-638b1d675fc2" target="_blank" rel="noopener noreferrer" class="w-20 h-20 rounded-xl bg-carbon-850 border border-sky-500/40 p-2 flex items-center justify-center shrink-0 hover:scale-105 transition-transform">
                     <img src="assets/aws-cpp.png" alt="AWS CPP Badge" class="w-full h-full object-contain" onerror="resolveAsset(this, 'aws-cpp')">
-                    <svg class="asset-fallback hidden w-14 h-14" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                      <polygon points="50,4 93,27 93,73 50,96 7,73 7,27" fill="#0f172a" stroke="#38bdf8" stroke-width="4"/>
-                      <text x="50" y="42" text-anchor="middle" fill="#7dd3fc" font-family="JetBrains Mono, monospace" font-size="15" font-weight="700">AWS</text>
-                      <text x="50" y="66" text-anchor="middle" fill="#ffffff" font-family="Plus Jakarta Sans, sans-serif" font-size="20" font-weight="800">CPP</text>
-                    </svg>
+                    <span class="asset-fallback hidden font-mono text-xs font-bold text-sky-400">AWS CPP</span>
                   </a>
                   <div>
                     <span class="text-[11px] font-mono text-sky-400 font-bold uppercase">AWS Certified • Feb 2021</span>
                     <h4 class="text-base font-bold text-white leading-tight mt-0.5">Cloud Practitioner</h4>
                   </div>
                 </div>
-
                 <p class="text-xs text-slate-300 leading-relaxed">
-                  Established core foundational competencies across cloud networking (VPC/Subnets), compute virtualization, shared security responsibility, and storage tiering.
+                  Validates core cloud networking (VPC/Subnets), compute virtualization, and shared security architecture.
                 </p>
-
                 <a href="https://www.credly.com/badges/582be29e-4701-41a4-b4bb-638b1d675fc2" target="_blank" rel="noopener noreferrer" class="py-2 px-3 rounded-lg bg-carbon-800 hover:bg-sky-500 hover:text-carbon-950 text-sky-400 border border-sky-500/40 font-mono text-xs font-bold flex items-center justify-center gap-1.5 transition-all">
-                  <span>Verify</span>
-                  <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+                  <span>Verify</span> <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
                 </a>
               </div>
             </div>
           </div>
-
         </div>
       </section>
 
-      <!-- SECTION 03: ACADEMIC FOUNDATIONS -->
-      <section id="education" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 border-b border-carbon-800">
+      <!-- Section 03: Academic Foundations -->
+      <section id="education" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-b border-carbon-800">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
           <div>
             <span class="text-xs font-mono text-amber-400 uppercase tracking-wider"> ACADEMIC FOUNDATIONS</span>
@@ -1567,12 +1415,11 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-
           <!-- IIT Bombay -->
           <div class="p-6 rounded-2xl bg-carbon-850 border border-carbon-700 hover:border-amber-500/40 transition-all flex flex-col justify-between">
             <div class="space-y-4">
               <div class="flex items-start justify-between gap-3">
-                <div class="w-20 h-20 rounded-2xl bg-carbon-900 border border-emerald-500/40 p-2.5 flex items-center justify-center shadow-lg">
+                <div class="w-16 h-16 rounded-2xl bg-carbon-900 border border-emerald-500/40 p-2 flex items-center justify-center shadow-lg">
                   <img src="assets/iitb.png" alt="IIT Bombay" class="w-full h-full object-contain" onerror="resolveAsset(this, 'iitb')">
                   <span class="asset-fallback hidden font-mono text-base font-extrabold text-emerald-400">IIT-B</span>
                 </div>
@@ -1585,7 +1432,7 @@
                 <p class="text-base font-mono font-bold text-amber-400 mt-1">Executive Certificate in AI Engineering &amp; MLOps</p>
               </div>
               <p class="text-xs text-slate-300 leading-relaxed">
-                Specialized curriculum emphasizing High-Performance Computing (HPC), distributed training with Message Passing Interface (MPI), and containerized ML pipelines.
+                High-Performance Computing (HPC), distributed training with Message Passing Interface (MPI), and containerized ML pipelines.
               </p>
             </div>
             <div class="mt-6 pt-3 border-t border-carbon-700/80 text-[11px] font-mono text-slate-400">
@@ -1610,7 +1457,7 @@
                 <p class="text-base font-mono font-bold text-amber-400 mt-1">Master of Science in Computer Science</p>
               </div>
               <p class="text-xs text-slate-300 leading-relaxed">
-                Newark, New Jersey. Advanced graduate studies in distributed cloud computing, operating systems internals, networking algorithms, and systems architecture.
+                Newark, New Jersey. Advanced graduate studies in distributed cloud computing, kernel internals, and systems architecture.
               </p>
             </div>
             <div class="mt-6 pt-3 border-t border-carbon-700/80 text-[11px] font-mono text-slate-400">
@@ -1635,21 +1482,19 @@
                 <p class="text-base font-mono font-bold text-amber-400 mt-1">Bachelor of Technology in Computer Science</p>
               </div>
               <p class="text-xs text-slate-300 leading-relaxed">
-                New Delhi, India. Core engineering curriculum covering data structures, object-oriented programming, database management systems, and computer networks.
+                New Delhi, India. Core curriculum covering data structures, object-oriented programming, and computer networking.
               </p>
             </div>
             <div class="mt-6 pt-3 border-t border-carbon-700/80 text-[11px] font-mono text-slate-400">
               Undergraduate Engineering Foundation
             </div>
           </div>
-
         </div>
       </section>
 
-      <!-- SECTION 04: OPERATING SYSTEM & DIRECT CONTACT -->
-      <section id="contact" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <!-- Section 04: Operating Mindset & Direct Contact -->
+      <section id="contact" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div class="rounded-3xl bg-gradient-to-br from-carbon-850 via-carbon-800 to-carbon-900 border border-carbon-700 p-8 sm:p-12 shadow-2xl">
-          
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             
             <div class="lg:col-span-6 space-y-6">
@@ -1673,7 +1518,7 @@
                 </a>
               </div>
 
-              <!-- Phone Protected from Web Scrapers -->
+              <!-- Base64 Phone Reveal -->
               <div class="text-xs font-mono text-slate-400 pt-1 flex items-center gap-2">
                 <span>Direct Phone:</span>
                 <span id="phoneContainer">
@@ -1686,7 +1531,7 @@
               </div>
             </div>
 
-            <!-- Single Integrated SVG Mindset Blueprint -->
+            <!-- Operating Loop SVG -->
             <div class="lg:col-span-6">
               <div class="rounded-2xl bg-carbon-950 border border-carbon-700 p-5 shadow-2xl">
                 <div class="flex items-center justify-between text-xs font-mono text-slate-400 mb-3 px-1">
@@ -1712,7 +1557,6 @@
 
                   <line x1="64" y1="75" x2="64" y2="305" stroke="#f59e0b" stroke-width="2.5" class="svg-flow-line"/>
 
-                  <!-- PILL 01: EVIDENCE FIRST -->
                   <g transform="translate(20, 20)">
                     <rect width="560" height="88" rx="14" fill="url(#amberGrad)" stroke="#f59e0b" stroke-width="1.5"/>
                     <rect x="18" y="20" width="48" height="48" rx="10" fill="#161f33" stroke="#fbbf24" stroke-width="1.2"/>
@@ -1721,7 +1565,6 @@
                     <text x="82" y="62" fill="#cbd5e1" font-family="Plus Jakarta Sans, sans-serif" font-size="13">Follow runtime logs, container exit codes &amp; dependencies first.</text>
                   </g>
 
-                  <!-- PILL 02: DESIGN FOR CONSISTENCY -->
                   <g transform="translate(20, 136)">
                     <rect width="560" height="88" rx="14" fill="url(#blueGrad)" stroke="#38bdf8" stroke-width="1.5"/>
                     <rect x="18" y="20" width="48" height="48" rx="10" fill="#161f33" stroke="#38bdf8" stroke-width="1.2"/>
@@ -1730,7 +1573,6 @@
                     <text x="82" y="62" fill="#cbd5e1" font-family="Plus Jakarta Sans, sans-serif" font-size="13">Enforce repeatable Terraform IaC, canonical schemas &amp; PoLP IAM.</text>
                   </g>
 
-                  <!-- PILL 03: MAKE COMPLEXITY LEGIBLE -->
                   <g transform="translate(20, 252)">
                     <rect width="560" height="96" rx="14" fill="url(#emeraldGrad)" stroke="#34d399" stroke-width="1.5"/>
                     <rect x="18" y="24" width="48" height="48" rx="10" fill="#161f33" stroke="#34d399" stroke-width="1.2"/>
@@ -1744,137 +1586,15 @@
             </div>
 
           </div>
-
         </div>
       </section>
 
     </main>
   </div>
 
-  <!-- ==================================================================================
-       DEVELOPER MODE DIAGNOSTIC CLI DRAWER (COMMAND SHORTCUTS INCLUDED)
-       ================================================================================== -->
-  <div id="devCliDrawer" style="display: none;" class="fixed bottom-0 left-0 right-0 z-30 bg-carbon-950/95 border-t border-[#00ff66]/40 p-4 backdrop-blur-xl font-mono text-xs shadow-2xl">
-    <div class="max-w-7xl mx-auto space-y-3">
-      <div class="flex flex-wrap items-center justify-between gap-3 text-[#a7f3d0]">
-        <div class="flex items-center gap-2">
-          <span class="w-2.5 h-2.5 rounded-full bg-[#00ff66]"></span>
-          <span class="font-bold text-white tracking-wider">VinayOS Diagnostic Shell</span>
-          <span class="text-[11px] text-slate-400">[v4.2.0 • x86_64-pc-none]</span>
-        </div>
-        <div class="flex flex-wrap items-center gap-2">
-          <span class="text-[10px] text-slate-400">Quick Commands:</span>
-          <button onclick="runCliCommand('cat stack.json')" class="px-2 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] border border-[#00ff66]/30 text-[10px] cursor-pointer">💡 cat stack.json</button>
-          <button onclick="runCliCommand('curl -I /health')" class="px-2 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] border border-[#00ff66]/30 text-[10px] cursor-pointer">💡 curl -I /health</button>
-          <button onclick="runCliCommand('git log -n 3')" class="px-2 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] border border-[#00ff66]/30 text-[10px] cursor-pointer">💡 git log</button>
-          <button onclick="runCliCommand('whoami')" class="px-2 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] border border-[#00ff66]/30 text-[10px] cursor-pointer">💡 whoami</button>
-        </div>
-      </div>
-      <div id="cliOutput" class="h-24 overflow-y-auto p-2.5 rounded bg-black/80 border border-carbon-800 space-y-1 text-slate-300 text-[11px]">
-        <div class="text-slate-400">Type 'help' or click any prompt shortcut above to inspect live system specifications.</div>
-      </div>
-      <div class="flex items-center gap-2">
-        <span class="text-[#00ff66] font-bold">sai@prod-bastion:~$</span>
-        <input type="text" id="cliInput" class="flex-1 bg-transparent border-none outline-none text-[#00ff66] font-mono text-xs" placeholder="Type a command and press Enter..." autocomplete="off">
-      </div>
-    </div>
-  </div>
-
-  <!-- ==================================================================================
-       AUTHENTIC GUS.HTML BALLOON "AirHead.cs~1.6" (DRAGGABLE, 6 FACES, 25 REAL TRIVIA)
-       ================================================================================== -->
-  <div id="balloonContainer" style="left: 24px; bottom: 20px;" class="fixed z-40 flex flex-col items-start select-none">
-    
-    <!-- Trivia & Nudge Speech Bubble -->
-    <div id="balloonTriviaBubble" class="hidden mb-2 p-4 max-w-xs sm:max-w-sm rounded-2xl bg-carbon-900/95 border border-amber-500/60 text-xs font-mono shadow-2xl backdrop-blur-xl">
-      <div class="flex items-center justify-between text-[10px] text-amber-400 pb-1.5 border-b border-carbon-700">
-        <span id="balloonFactLabel" class="font-bold flex items-center gap-1">🎈 AirHead.cs~1.6</span>
-        <button onclick="dismissBalloonBubble()" class="text-slate-400 hover:text-white cursor-pointer px-1">✕</button>
-      </div>
-      <div id="balloonFactTitle" class="text-white font-bold text-xs mt-2"></div>
-      <div id="balloonFactText" class="text-slate-200 mt-1 leading-relaxed font-sans text-xs"></div>
-      <div class="mt-3 pt-2 border-t border-carbon-800 flex items-center justify-between gap-2">
-        <button id="askCopilotTriviaBtn" type="button" onclick="askCopilotAboutCurrentTrivia()" class="px-2.5 py-1 rounded-lg bg-amber-500/15 hover:bg-amber-500 text-amber-300 hover:text-carbon-950 font-mono text-[10px] font-bold border border-amber-500/40 transition-colors cursor-pointer">
-          💬 Ask Copilot more
-        </button>
-        <span class="text-[9.5px] text-slate-400">Click balloon for next 🎈</span>
-      </div>
-    </div>
-
-    <!-- Exact gus.html DOM inside Scaled Interactive Shell -->
-    <div id="gusBalloon" class="balloon-scale-shell gus-float-anim" title="AirHead.cs~1.6 — Drag me around or click for tech trivia!">
-      <div class="balloon-container">
-        <div id="gusStick" class="balloon-stick"></div>
-
-        <div id="gusSphere" class="gus-balloon">
-          <div class="balloon-highlight"></div>
-
-          <div class="balloon-eyebrows">
-            <span></span>
-            <span></span>
-          </div>
-
-          <div class="balloon-mouth">
-            <div class="teeth">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-          </div>
-
-          <div class="balloon-cheek cheek-left"></div>
-          <div class="balloon-cheek cheek-right"></div>
-        </div>
-
-        <div class="balloon-knot"></div>
-      </div>
-
-      <div class="absolute top-0 right-1 px-1.5 py-0.5 rounded-full bg-amber-500 text-carbon-950 font-mono text-[9px] font-extrabold shadow-md">
-        cs~1.6
-      </div>
-    </div>
-  </div>
-
-  <!-- ==========================================================
-       VINAY'S COPILOT CHAT WIDGET (CONNECTED TO CLOUDFLARE WORKER)
-       ========================================================== -->
-  <div id="portfolioChat" class="fixed bottom-5 right-5 z-40 w-[370px] max-w-[calc(100vw-24px)] rounded-2xl bg-carbon-850/95 backdrop-blur-xl border border-amber-500/30 shadow-2xl overflow-hidden transition-all duration-300">
-    <div id="chatHeader" class="bg-carbon-800 px-4 py-3 border-b border-carbon-700/80 flex items-center justify-between cursor-pointer select-none">
-      <div class="flex items-center gap-2.5">
-        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399] animate-pulse"></span>
-        <span class="font-bold text-sm text-white tracking-tight">Vinay's Copilot</span>
-        <span class="px-2 py-0.5 rounded-full text-[10px] font-mono bg-amber-500/10 border border-amber-500/30 text-amber-300">Adaptive</span>
-      </div>
-      <button id="minimizeChatBtn" type="button" class="text-slate-400 hover:text-white text-base px-1.5 py-0.5 rounded transition-colors cursor-pointer">—</button>
-    </div>
-
-    <div id="chatBodyContainer" class="flex flex-col">
-      <div id="chatWindow" class="h-64 overflow-y-auto p-4 space-y-3 bg-carbon-950/80 text-xs text-slate-200">
-        <div class="p-3 rounded-2xl rounded-tl-sm bg-carbon-800 border border-carbon-700 text-slate-200 leading-relaxed">
-          Hey! Ask me anything about Sai Vinay's background, the <strong class="text-amber-400">AirHead.cs~1.6</strong> balloon trivia, or switch the site view below for <strong class="text-amber-400">HR</strong>, <strong class="text-amber-400">Manager</strong>, or <strong class="text-amber-400">Dev Mode</strong>.
-        </div>
-      </div>
-
-      <div class="px-3 pt-2 pb-1.5 bg-carbon-900 border-t border-carbon-800 flex items-center gap-1.5 overflow-x-auto whitespace-nowrap text-[10.5px] font-mono">
-        <button type="button" onclick="sendQuickPrompt('Switch to HR Mode')" class="px-2.5 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-amber-300 border border-carbon-700 shrink-0 cursor-pointer">👔 HR Mode</button>
-        <button type="button" onclick="sendQuickPrompt('Switch to Manager Mode')" class="px-2.5 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-sky-300 border border-carbon-700 shrink-0 cursor-pointer">📊 Manager</button>
-        <button type="button" onclick="sendQuickPrompt('Switch to Dev Mode')" class="px-2.5 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-emerald-300 border border-carbon-700 shrink-0 cursor-pointer">💻 Dev Mode</button>
-        <button type="button" onclick="sendQuickPrompt('What does cs~1.6 mean?')" class="px-2.5 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-purple-300 border border-carbon-700 shrink-0 cursor-pointer">🎮 cs~1.6?</button>
-        <button type="button" onclick="sendQuickPrompt('whoami')" class="px-2.5 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-amber-400 border border-carbon-700 shrink-0 cursor-pointer">☕ whoami</button>
-      </div>
-
-      <div class="p-3 bg-carbon-900 border-t border-carbon-700 flex items-center gap-2">
-        <input type="text" id="userInput" class="flex-1 bg-carbon-950 border border-carbon-700 focus:border-amber-500 rounded-xl px-3 py-2 text-xs text-white outline-none font-sans placeholder-slate-500" placeholder="Ask about Vinay, trivia, or switch modes..." autocomplete="off">
-        <button id="sendChatBtn" type="button" class="px-3.5 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-carbon-950 font-bold text-xs font-mono shrink-0 cursor-pointer">Send</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ==================================================================================
-       5 SANITIZED DEEP DIVE MODALS (STRICT PERSPECTIVE DECOUPLING: MANAGER vs DEV)
-       ================================================================================== -->
+  <!-- Deep Dive Modals (Sanitized Enterprise Blueprints) -->
   
-  <!-- MODAL 1: DOCKER READINESS PROBE TRIAGE -->
+  <!-- Modal 1: Container Incident -->
   <div id="modal-incident" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
     <div class="bg-carbon-900 border border-carbon-700 max-w-3xl w-full rounded-2xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
       <div class="px-6 py-4 bg-carbon-850 border-b border-carbon-700 flex items-center justify-between">
@@ -1943,7 +1663,7 @@
     </div>
   </div>
 
-  <!-- MODAL 2: 15-FILE MULTI-ENV IAC AUDIT -->
+  <!-- Modal 2: Multi-Env IaC Audit -->
   <div id="modal-arn" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
     <div class="bg-carbon-900 border border-carbon-700 max-w-3xl w-full rounded-2xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
       <div class="px-6 py-4 bg-carbon-850 border-b border-carbon-700 flex items-center justify-between">
@@ -2007,7 +1727,7 @@
     </div>
   </div>
 
-  <!-- MODAL 3: CANONICAL SKU REFACTOR -->
+  <!-- Modal 3: SKU Refactor -->
   <div id="modal-java" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
     <div class="bg-carbon-900 border border-carbon-700 max-w-3xl w-full rounded-2xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
       <div class="px-6 py-4 bg-carbon-850 border-b border-carbon-700 flex items-center justify-between">
@@ -2069,7 +1789,7 @@
     </div>
   </div>
 
-  <!-- MODAL A: ZERO-TRUST MULTI-ACCOUNT ACCESS MATRIX (FULLY SANITIZED) -->
+  <!-- Modal A: Zero-Trust Access Matrix -->
   <div id="modal-zero-trust" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
     <div class="bg-carbon-900 border border-carbon-700 max-w-2xl w-full rounded-2xl p-6 space-y-4 max-h-[90vh] overflow-y-auto shadow-2xl font-mono text-xs">
       <div class="flex items-center justify-between border-b border-carbon-700 pb-3">
@@ -2093,7 +1813,7 @@
     </div>
   </div>
 
-  <!-- MODAL B: IAC MODULE PROMOTION PIPELINE (FULLY SANITIZED) -->
+  <!-- Modal B: IaC Promotion Pipeline -->
   <div id="modal-pipeline" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
     <div class="bg-carbon-900 border border-carbon-700 max-w-2xl w-full rounded-2xl p-6 space-y-4 max-h-[90vh] overflow-y-auto shadow-2xl font-mono text-xs">
       <div class="flex items-center justify-between border-b border-carbon-700 pb-3">
@@ -2116,7 +1836,7 @@
     </div>
   </div>
 
-  <!-- FOOTER -->
+  <!-- Footer -->
   <footer class="bg-carbon-950 border-t border-carbon-800 py-10 text-xs font-mono text-slate-400 relative z-10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
       <div>
@@ -2131,6 +1851,134 @@
     </div>
   </footer>
 
+  <!-- START OF PART 3 -->
+
+  <!-- Developer Mode Diagnostic CLI Drawer -->
+  <div id="devCliDrawer" style="display: none;" class="fixed bottom-0 left-0 right-0 z-30 bg-carbon-950/95 border-t border-[#00ff66]/40 p-4 backdrop-blur-xl font-mono text-xs shadow-2xl">
+    <div class="max-w-7xl mx-auto space-y-3">
+      <div class="flex flex-wrap items-center justify-between gap-3 text-[#a7f3d0]">
+        <div class="flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-[#00ff66]"></span>
+          <span class="font-bold text-white tracking-wider">VinayOS Diagnostic Shell</span>
+          <span class="text-[11px] text-slate-400">[v4.2.0 • Real Hardware &amp; Network Engine]</span>
+        </div>
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="text-[10px] text-slate-400">Quick Commands:</span>
+          <button onclick="runCliCommand('top')" class="px-2 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] border border-[#00ff66]/30 text-[10px] cursor-pointer">💡 top</button>
+          <button onclick="runCliCommand('dig github.com')" class="px-2 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] border border-[#00ff66]/30 text-[10px] cursor-pointer">💡 dig</button>
+          <button onclick="runCliCommand('ping')" class="px-2 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] border border-[#00ff66]/30 text-[10px] cursor-pointer">💡 ping</button>
+          <button onclick="runCliCommand('curl https://cloudflare.com/cdn-cgi/trace')" class="px-2 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] border border-[#00ff66]/30 text-[10px] cursor-pointer">💡 curl trace</button>
+          <button onclick="runCliCommand('whoami')" class="px-2 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] border border-[#00ff66]/30 text-[10px] cursor-pointer">💡 whoami</button>
+        </div>
+      </div>
+      <div id="cliOutput" class="h-28 overflow-y-auto p-2.5 rounded bg-black/80 border border-carbon-800 space-y-1 text-slate-300 text-[11px]">
+        <div class="text-slate-400">Type 'help' or click any prompt shortcut above to run real live diagnostic commands.</div>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="text-[#00ff66] font-bold">sai@prod-bastion:~$</span>
+        <input type="text" id="cliInput" class="flex-1 bg-transparent border-none outline-none text-[#00ff66] font-mono text-xs" placeholder="Type a command (top, dig, ping, curl, free, uname, uptime)..." autocomplete="off">
+      </div>
+    </div>
+  </div>
+
+  <!-- Authentic gus.html Balloon AirHead.cs~1.6 -->
+  <div id="balloonContainer" style="left: 24px; bottom: 20px;" class="fixed z-40 flex flex-col items-start select-none">
+    
+    <!-- Trivia & Nudge Speech Bubble -->
+    <div id="balloonTriviaBubble" class="hidden mb-2 p-4 max-w-xs sm:max-w-sm rounded-2xl bg-carbon-900/95 border border-amber-500/60 text-xs font-mono shadow-2xl backdrop-blur-xl">
+      <div class="flex items-center justify-between text-[10px] text-amber-400 pb-1.5 border-b border-carbon-700">
+        <span id="balloonFactLabel" class="font-bold flex items-center gap-1">🎈 AirHead.cs~1.6</span>
+        <button onclick="dismissBalloonBubble()" class="text-slate-400 hover:text-white cursor-pointer px-1">✕</button>
+      </div>
+      <div id="balloonFactTitle" class="text-white font-bold text-xs mt-2"></div>
+      <div id="balloonFactText" class="text-slate-200 mt-1 leading-relaxed font-sans text-xs"></div>
+      <div class="mt-3 pt-2 border-t border-carbon-800 flex items-center justify-between gap-2">
+        <button id="askCopilotTriviaBtn" type="button" onclick="askCopilotAboutCurrentTrivia()" class="px-2.5 py-1 rounded-lg bg-amber-500/15 hover:bg-amber-500 text-amber-300 hover:text-carbon-950 font-mono text-[10px] font-bold border border-amber-500/40 transition-colors cursor-pointer">
+          💬 Ask Copilot more
+        </button>
+        <span class="text-[9.5px] text-slate-400">Click balloon for next 🎈</span>
+      </div>
+    </div>
+
+    <!-- Scaled Gus.html Shell with Minimize [X] Button -->
+    <div id="gusBalloon" class="balloon-scale-shell gus-float-anim relative" title="AirHead.cs~1.6 — Drag me around or click for tech trivia!">
+      
+      <!-- Close / Minimize [X] Button -->
+      <button id="btnMinimizeBalloon" type="button" onclick="toggleBalloonMinimize(event)" class="absolute -top-1.5 -right-1.5 z-30 w-5 h-5 rounded-full bg-carbon-800 border border-carbon-600 hover:border-amber-400 text-slate-300 hover:text-white text-[10px] font-mono flex items-center justify-center cursor-pointer shadow-md" title="Minimize Balloon">
+        ✕
+      </button>
+
+      <!-- Minimized Disc Indicator -->
+      <div class="minimized-disc hidden w-9 h-9 rounded-full bg-gradient-to-br from-[#d4fbff] to-[#477aa8] border-2 border-white/60 shadow-xl items-center justify-center font-mono font-bold text-xs text-carbon-950">
+        🎈
+      </div>
+
+      <!-- gus.html DOM Nodes -->
+      <div class="balloon-container">
+        <div id="gusStick" class="balloon-stick"></div>
+
+        <div id="gusSphere" class="gus-balloon">
+          <div class="balloon-highlight"></div>
+
+          <div class="balloon-eyebrows">
+            <span></span>
+            <span></span>
+          </div>
+
+          <div class="balloon-mouth">
+            <div class="teeth">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+          <div class="balloon-cheek cheek-left"></div>
+          <div class="balloon-cheek cheek-right"></div>
+        </div>
+
+        <div class="balloon-knot"></div>
+      </div>
+
+      <div id="csBadge" class="absolute top-0 right-1 px-1.5 py-0.5 rounded-full bg-amber-500 text-carbon-950 font-mono text-[9px] font-extrabold shadow-md pointer-events-none">
+        cs~1.6
+      </div>
+    </div>
+  </div>
+
+  <!-- Vinay's Copilot Chat Widget -->
+  <div id="portfolioChat" class="fixed bottom-5 right-5 z-40 w-[370px] max-w-[calc(100vw-24px)] rounded-2xl bg-carbon-850/95 backdrop-blur-xl border border-amber-500/30 shadow-2xl overflow-hidden transition-all duration-300">
+    <div id="chatHeader" class="bg-carbon-800 px-4 py-3 border-b border-carbon-700/80 flex items-center justify-between cursor-pointer select-none">
+      <div class="flex items-center gap-2.5">
+        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399] animate-pulse"></span>
+        <span class="font-bold text-sm text-white tracking-tight">Vinay's Copilot</span>
+        <span class="px-2 py-0.5 rounded-full text-[10px] font-mono bg-amber-500/10 border border-amber-500/30 text-amber-300">AirHead.cs~1.6</span>
+      </div>
+      <button id="minimizeChatBtn" type="button" class="text-slate-400 hover:text-white text-base px-1.5 py-0.5 rounded transition-colors cursor-pointer">—</button>
+    </div>
+
+    <div id="chatBodyContainer" class="flex flex-col">
+      <div id="chatWindow" class="h-64 overflow-y-auto p-4 space-y-3 bg-carbon-950/80 text-xs text-slate-200">
+        <div class="p-3 rounded-2xl rounded-tl-sm bg-carbon-800 border border-carbon-700 text-slate-200 leading-relaxed">
+          Hey! Ask me anything about Sai Vinay's background, the <strong class="text-amber-400">AirHead.cs~1.6</strong> balloon trivia, or switch the site view below for <strong class="text-amber-400">HR</strong>, <strong class="text-amber-400">Manager</strong>, or <strong class="text-amber-400">Dev Mode</strong>.
+        </div>
+      </div>
+
+      <div class="px-3 pt-2 pb-1.5 bg-carbon-900 border-t border-carbon-800 flex items-center gap-1.5 overflow-x-auto whitespace-nowrap text-[10.5px] font-mono">
+        <button type="button" onclick="sendQuickPrompt('Switch to HR Mode')" class="px-2.5 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-amber-300 border border-carbon-700 shrink-0 cursor-pointer">👔 HR Mode</button>
+        <button type="button" onclick="sendQuickPrompt('Switch to Manager Mode')" class="px-2.5 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-sky-300 border border-carbon-700 shrink-0 cursor-pointer">📊 Manager</button>
+        <button type="button" onclick="sendQuickPrompt('Switch to Dev Mode')" class="px-2.5 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-emerald-300 border border-carbon-700 shrink-0 cursor-pointer">💻 Dev Mode</button>
+        <button type="button" onclick="sendQuickPrompt('What does cs~1.6 mean?')" class="px-2.5 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-purple-300 border border-carbon-700 shrink-0 cursor-pointer">🎮 cs~1.6?</button>
+        <button type="button" onclick="sendQuickPrompt('whoami')" class="px-2.5 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-amber-400 border border-carbon-700 shrink-0 cursor-pointer">☕ whoami</button>
+      </div>
+
+      <div class="p-3 bg-carbon-900 border-t border-carbon-700 flex items-center gap-2">
+        <input type="text" id="userInput" class="flex-1 bg-carbon-950 border border-carbon-700 focus:border-amber-500 rounded-xl px-3 py-2 text-xs text-white outline-none font-sans placeholder-slate-500" placeholder="Ask about Vinay, trivia, or switch modes..." autocomplete="off">
+        <button id="sendChatBtn" type="button" class="px-3.5 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-carbon-950 font-bold text-xs font-mono shrink-0 cursor-pointer">Send</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Core JavaScript Runtime -->
   <script>
     // Defensive DOM Scrubber
     (function scrubStrayCitations() {
@@ -2148,10 +1996,9 @@
       lucide.createIcons();
     }
 
-    // Anti-scraping phone number decoder
+    // Exact Base64 Decoder for Phone Protection (+91 9899109594)
     function revealPhone(btn) {
-      const reversedB64 = "=0VN5kTN5UTNzETO";
-      const b64 = reversedB64.split("").reverse().join("");
+      const b64 = "KzkxIDk4OTkxMDk1OTQ=";
       const decoded = atob(b64);
       const container = document.getElementById('phoneContainer');
       if (container) {
@@ -2235,7 +2082,7 @@
       }
     });
 
-    /* PERSPECTIVE SWITCHER */
+    /* Perspective Switcher */
     function setPerspective(role, showNotification = true) {
       document.body.classList.remove('mode-hr', 'mode-manager', 'mode-dev');
       
@@ -2284,7 +2131,7 @@
         devWorkflows.forEach(el => el.classList.remove('hidden'));
         managerNarratives.forEach(el => el.classList.add('hidden'));
         devWorkbenches.forEach(el => el.classList.remove('hidden'));
-        managerBriefs.forEach(el => el.classList.add('hidden'));
+        managerBriefs.forEach(el => el.classList.remove('hidden'));
 
         ['case-1', 'case-2', 'case-3'].forEach(id => {
           const body = document.getElementById(id + '-body');
@@ -2301,7 +2148,7 @@
       }
     }
 
-    /* REAL-TIME TELEMETRY REFRESH */
+    /* Real-Time Telemetry Refresh */
     let packetCount = 1420;
     setInterval(() => {
       packetCount += Math.floor(Math.random() * 4) + 1;
@@ -2333,45 +2180,14 @@
       }
     }, 3500);
 
-    /* INTERACTIVE CLI DRAWER */
+    /* Real Linux & Diagnostic Shell */
     const cliInput = document.getElementById('cliInput');
     const cliOutput = document.getElementById('cliOutput');
-
-    function runCliCommand(cmd) {
-      if (!cmd) return;
-      printCliLine(`sai@prod-bastion:~$ ${cmd}`, 'text-[#00ff66] font-bold');
-      const clean = cmd.trim().toLowerCase();
-
-      if (clean === 'cat stack.json') {
-        printCliLine(`{
-  "cloud": ["AWS (VPC, IAM, KMS, SQS, SNS, NLB)"],
-  "iac": ["Terraform", "Terragrunt"],
-  "backend": ["Java 17 (Spring Boot)", "Docker", "Harbor"],
-  "ai_mlops": ["Python", "PyTorch", "Agentic RAG"]
-}`, 'text-amber-300');
-      } else if (clean === 'curl -i /health' || clean === 'curl /health') {
-        printCliLine(`HTTP/1.1 200 OK
-Content-Type: application/json;charset=UTF-8
-{"status":"UP","diskSpace":{"status":"UP"},"db":{"status":"UP"}}`, 'text-emerald-400');
-      } else if (clean.startsWith('git log')) {
-        printCliLine(`* f82a9d1 (HEAD -> main) docs: finalize production deep dive runbooks
-* b4c3102 fix(container): resolve curl missing in base image probe
-* 19a0e44 refactor(sku): unify parentSKU into canonical entity model`, 'text-sky-300');
-      } else if (clean === 'whoami') {
-        printCliLine(`uid=1000(sai-vinay-mullapudi) gid=1000(devops-genai)
-☕ Converting dark roast into zero-drift Terraform blueprints!`, 'text-amber-400');
-      } else if (clean === 'help') {
-        printCliLine(`Available: cat stack.json | curl -I /health | git log | whoami | clear`, 'text-slate-300');
-      } else if (clean === 'clear') {
-        cliOutput.innerHTML = '';
-      } else {
-        printCliLine(`bash: ${clean}: command not found. Type 'help' for available commands.`, 'text-red-400');
-      }
-      cliOutput.scrollTop = cliOutput.scrollHeight;
-      if (cliInput) cliInput.value = '';
-    }
+    let commandHistory = [];
+    let historyIndex = -1;
 
     function printCliLine(text, className = '') {
+      if (!cliOutput) return;
       const div = document.createElement('div');
       div.className = className;
       div.innerText = text;
@@ -2379,17 +2195,184 @@ Content-Type: application/json;charset=UTF-8
       cliOutput.scrollTop = cliOutput.scrollHeight;
     }
 
+    async function runCliCommand(rawCmd) {
+      const cmd = rawCmd.trim();
+      if (!cmd) return;
+
+      commandHistory.push(cmd);
+      historyIndex = commandHistory.length;
+
+      printCliLine(`sai@prod-bastion:~$ ${cmd}`, 'text-[#00ff66] font-bold');
+      if (cliInput) cliInput.value = '';
+
+      const args = cmd.split(/\s+/);
+      const base = args[0].toLowerCase();
+
+      switch (base) {
+        case 'help':
+          printCliLine(`VinayOS Diagnostic Shell — Supported Commands:
+  curl <url>      : Real HTTP fetch (e.g. curl https://cloudflare.com/cdn-cgi/trace)
+  dig <domain>    : Real DNS resolution via Cloudflare DoH (e.g. dig github.com)
+  ping [host]     : Real client RTT latency measurement
+  top / htop      : Real hardware logical cores & active JS heap memory
+  free -m         : Real device memory tier & heap metrics
+  uname -a        : Real operating system & browser platform architecture
+  date            : Real client local time and timezone
+  uptime          : Real active session elapsed time
+  whoami          : User identity & credentials
+  history         : Commands executed in this session
+  clear           : Wipe terminal screen`, 'text-slate-300');
+          break;
+
+        case 'clear':
+          cliOutput.innerHTML = '';
+          break;
+
+        case 'date':
+          printCliLine(new Date().toString(), 'text-amber-300');
+          break;
+
+        case 'uptime': {
+          const totalSec = Math.floor(performance.now() / 1000);
+          const hrs = Math.floor(totalSec / 3600);
+          const mins = Math.floor((totalSec % 3600) / 60);
+          const secs = totalSec % 60;
+          const nowStr = new Date().toLocaleTimeString();
+          printCliLine(`${nowStr} up ${hrs}h ${mins}m ${secs}s, 1 user, load average: 0.08, 0.04, 0.01`, 'text-emerald-400');
+          break;
+        }
+
+        case 'uname':
+          printCliLine(`Linux prod-bastion 6.6.0-cloud-amd64 #1 SMP PREEMPT ${navigator.userAgent}`, 'text-sky-300');
+          break;
+
+        case 'whoami':
+          printCliLine(`uid=1000(sai-vinay-mullapudi) gid=1000(devops-genai)
+A Cloud & DevOps engineer fueled by espresso. I take my coffee seriously and my infrastructure idempotently. ☕`, 'text-amber-400');
+          break;
+
+        case 'history':
+          commandHistory.forEach((h, idx) => {
+            printCliLine(`  ${idx + 1}  ${h}`, 'text-slate-400');
+          });
+          break;
+
+        case 'top':
+        case 'htop': {
+          const cores = navigator.hardwareConcurrency || 'Unknown';
+          let memStr = 'Memory API unavailable (browser restriction)';
+          if (performance.memory) {
+            const used = (performance.memory.usedJSHeapSize / 1048576).toFixed(1);
+            const total = (performance.memory.totalJSHeapSize / 1048576).toFixed(1);
+            const limit = (performance.memory.jsHeapSizeLimit / 1048576).toFixed(1);
+            memStr = `Heap Used: ${used}MB / Allocated: ${total}MB / Limit: ${limit}MB`;
+          }
+          printCliLine(`top - ${new Date().toLocaleTimeString()} up session active, 1 task
+CPU Cores / Logical Threads: ${cores} detected via navigator.hardwareConcurrency
+${memStr}`, 'text-emerald-400');
+          break;
+        }
+
+        case 'free': {
+          const ramTier = navigator.deviceMemory ? `~${navigator.deviceMemory} GB` : 'Tier not exposed';
+          let heapUsed = 'N/A';
+          let heapTotal = 'N/A';
+          if (performance.memory) {
+            heapUsed = Math.round(performance.memory.usedJSHeapSize / 1048576) + 'M';
+            heapTotal = Math.round(performance.memory.totalJSHeapSize / 1048576) + 'M';
+          }
+          printCliLine(`              total        used        free
+Physical:    ${ramTier.padEnd(10)}  (Device Memory Tier)
+JS Heap:     ${heapTotal.padEnd(10)}  ${heapUsed.padEnd(10)}  (Active Browser Tab)`, 'text-sky-300');
+          break;
+        }
+
+        case 'ping': {
+          const targetHost = args[1] || window.location.hostname || 'cloud-edge';
+          printCliLine(`PING ${targetHost} (measuring real client RTT)...`, 'text-slate-400');
+          for (let seq = 1; seq <= 3; seq++) {
+            const t0 = performance.now();
+            try {
+              await fetch(window.location.href + '?ping=' + Date.now() + '-' + seq, { method: 'HEAD', cache: 'no-cache' });
+              const ms = (performance.now() - t0).toFixed(1);
+              printCliLine(`64 bytes from ${targetHost}: icmp_seq=${seq} ttl=58 time=${ms} ms`, 'text-emerald-400');
+            } catch {
+              printCliLine(`Request timeout for icmp_seq ${seq}`, 'text-red-400');
+            }
+          }
+          break;
+        }
+
+        case 'dig': {
+          const domain = args[1] || 'github.com';
+          printCliLine(`; <<>> DiG via Cloudflare DoH <<>> ${domain}`, 'text-slate-400');
+          try {
+            const res = await fetch(`https://cloudflare-dns.com/dns-query?name=${encodeURIComponent(domain)}&type=A`, {
+              headers: { 'Accept': 'application/dns-json' }
+            });
+            const data = await res.json();
+            if (data.Answer && data.Answer.length > 0) {
+              printCliLine(`;; ANSWER SECTION:`, 'text-amber-400');
+              data.Answer.forEach(ans => {
+                printCliLine(`${ans.name.padEnd(20)} ${ans.TTL}   IN   A   ${ans.data}`, 'text-emerald-400');
+              });
+            } else {
+              printCliLine(`;; Status: ${data.Status === 3 ? 'NXDOMAIN' : 'NOERROR (No A records)'}`, 'text-yellow-400');
+            }
+          } catch (err) {
+            printCliLine(`dig: failed to query Cloudflare DNS-over-HTTPS: ${err.message}`, 'text-red-400');
+          }
+          break;
+        }
+
+        case 'curl': {
+          const url = args[1];
+          if (!url) {
+            printCliLine('curl: missing URL argument. Try: curl https://cloudflare.com/cdn-cgi/trace', 'text-yellow-400');
+            return;
+          }
+          printCliLine(`* Fetching ${url}...`, 'text-slate-400');
+          try {
+            const res = await fetch(url);
+            const text = await res.text();
+            printCliLine(text.slice(0, 800) + (text.length > 800 ? '\n... [truncated]' : ''), 'text-slate-200');
+          } catch (err) {
+            printCliLine(`curl: (7) Failed to connect to ${url} (CORS or network policy): ${err.message}`, 'text-red-400');
+          }
+          break;
+        }
+
+        default:
+          printCliLine(`bash: ${base}: command not found. Type 'help' for available commands.`, 'text-red-400');
+          break;
+      }
+      cliOutput.scrollTop = cliOutput.scrollHeight;
+    }
+
     if (cliInput) {
       cliInput.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
           runCliCommand(cliInput.value);
+        } else if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          if (historyIndex > 0) {
+            historyIndex--;
+            cliInput.value = commandHistory[historyIndex] || '';
+          }
+        } else if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          if (historyIndex < commandHistory.length - 1) {
+            historyIndex++;
+            cliInput.value = commandHistory[historyIndex] || '';
+          } else {
+            historyIndex = commandHistory.length;
+            cliInput.value = '';
+          }
         }
       });
     }
 
-    /* =====================================================================
-       AUTHENTIC GUS.HTML BALLOON "AirHead.cs~1.6" + 25 CURATED TRIVIA ITEMS
-       ===================================================================== */
+    /* Authentic Balloon AirHead.cs~1.6 Engine */
     const balloon = document.getElementById('gusBalloon');
     const gusSphere = document.getElementById('gusSphere');
     const balloonContainer = document.getElementById('balloonContainer');
@@ -2398,6 +2381,28 @@ Content-Type: application/json;charset=UTF-8
     const factTitle = document.getElementById('balloonFactTitle');
     const factText = document.getElementById('balloonFactText');
     const askCopilotBtn = document.getElementById('askCopilotTriviaBtn');
+    const btnMinimize = document.getElementById('btnMinimizeBalloon');
+    const csBadge = document.getElementById('csBadge');
+
+    let isBalloonMinimized = false;
+
+    function toggleBalloonMinimize(e) {
+      if (e) e.stopPropagation();
+      isBalloonMinimized = !isBalloonMinimized;
+      balloon.classList.toggle('minimized', isBalloonMinimized);
+      if (isBalloonMinimized) {
+        balloon.classList.remove('gus-float-anim');
+        if (csBadge) csBadge.style.display = 'none';
+        btnMinimize.innerText = '+';
+        btnMinimize.title = 'Expand Balloon';
+        dismissBalloonBubble();
+      } else {
+        balloon.classList.add('gus-float-anim');
+        if (csBadge) csBadge.style.display = 'block';
+        btnMinimize.innerText = '✕';
+        btnMinimize.title = 'Minimize Balloon';
+      }
+    }
 
     function setBalloonFace(faceName) {
       if (!gusSphere) return;
@@ -2407,7 +2412,6 @@ Content-Type: application/json;charset=UTF-8
       }
     }
 
-    // 25 Curated Trivia Entries from Specification
     const CURATED_TRIVIA = [
       { category: "Tech History", title: "ChatGPT's Calendar Coincidence", fact: "ChatGPT was publicly introduced on November 30, 2022—which also happens to be Computer Security Day (established in 1988)." },
       { category: "Tech History", title: "The Internet's First Message", fact: "On October 29, 1969, UCLA tried sending 'LOGIN' over ARPANET to Stanford. The system crashed after two letters, making the first message 'LO'." },
@@ -2439,12 +2443,12 @@ Content-Type: application/json;charset=UTF-8
     let unplayedTrivia = [...Array(CURATED_TRIVIA.length).keys()];
     let currentTriviaItem = null;
 
-    // 2D Drag & Wall Collision Physics
     let isDragging = false;
     let hasMoved = false;
     let dragStartX = 0, dragStartY = 0, containerStartX = 0, containerStartY = 0;
 
     balloon.addEventListener('pointerdown', (e) => {
+      if (isBalloonMinimized) return;
       isDragging = true;
       hasMoved = false;
       balloon.setPointerCapture(e.pointerId);
@@ -2491,11 +2495,17 @@ Content-Type: application/json;charset=UTF-8
       }
     });
 
+    balloon.addEventListener('click', (e) => {
+      if (isBalloonMinimized) {
+        toggleBalloonMinimize(e);
+      }
+    });
+
     balloon.addEventListener('mouseenter', () => {
-      if (!isDragging) setBalloonFace('hover');
+      if (!isDragging && !isBalloonMinimized) setBalloonFace('hover');
     });
     balloon.addEventListener('mouseleave', () => {
-      if (!isDragging) setBalloonFace('default');
+      if (!isDragging && !isBalloonMinimized) setBalloonFace('default');
     });
 
     function triggerBonk() {
@@ -2506,6 +2516,7 @@ Content-Type: application/json;charset=UTF-8
     }
 
     function popTrivia() {
+      if (isBalloonMinimized) return;
       if (unplayedTrivia.length === 0) unplayedTrivia = [...Array(CURATED_TRIVIA.length).keys()];
       const randomIdx = Math.floor(Math.random() * unplayedTrivia.length);
       const factIdx = unplayedTrivia.splice(randomIdx, 1)[0];
@@ -2529,7 +2540,6 @@ Content-Type: application/json;charset=UTF-8
       setBalloonFace('default');
     }
 
-    // Autonomous Nudge Timer (Every 30-40 seconds)
     const NUDGES = [
       "Psst! Tell Vinay's Copilot 'Switch to Dev Mode' to see Matrix phosphor rain!",
       "Try clicking 'HR Mode' in the Copilot chat to see the Recruiter Bento grid!",
@@ -2539,7 +2549,7 @@ Content-Type: application/json;charset=UTF-8
     ];
 
     function runPeriodicNudge() {
-      if (triviaBubble.classList.contains('hidden')) {
+      if (!isBalloonMinimized && triviaBubble.classList.contains('hidden')) {
         const randomNudge = NUDGES[Math.floor(Math.random() * NUDGES.length)];
         factLabel.textContent = "🎈 AirHead.cs~1.6";
         factTitle.textContent = "Quick Tip";
@@ -2552,14 +2562,14 @@ Content-Type: application/json;charset=UTF-8
           if (factTitle.textContent === "Quick Tip") {
             dismissBalloonBubble();
           }
-        }, 6000);
+        }, 6500);
       }
-      const nextInterval = Math.floor(Math.random() * 10000) + 30000; // 30-40s
+      const nextInterval = Math.floor(Math.random() * 10000) + 35000;
       setTimeout(runPeriodicNudge, nextInterval);
     }
-    setTimeout(runPeriodicNudge, 32000);
+    setTimeout(runPeriodicNudge, 35000);
 
-    /* MATRIX CANVAS ANIMATION */
+    /* Matrix Rain Animation */
     const canvas = document.getElementById('matrixCanvas');
     const ctx = canvas.getContext('2d');
     let matrixTimer = null;
@@ -2610,9 +2620,7 @@ Content-Type: application/json;charset=UTF-8
       }
     }
 
-    /* =====================================================================
-       VINAY'S COPILOT (LIVE CLOUDFLARE WORKER + SECRET MOOD + CS 1.6 LORE)
-       ===================================================================== */
+    /* Copilot Chat Controller */
     const LAMBDA_API_ENDPOINT = "https://portfolio-copilot.msaivinay306.workers.dev";
     let isChatMinimized = false;
     let chatHistory = [];
@@ -2654,7 +2662,6 @@ Content-Type: application/json;charset=UTF-8
       userInput.value = '';
       const lower = text.toLowerCase();
 
-      // Direct switch commands from quick chips
       if (lower === 'switch to hr mode') {
         applyRoleFromChat('recruiter', 'HR / Recruiter Bento View');
         return;
@@ -2669,7 +2676,7 @@ Content-Type: application/json;charset=UTF-8
       }
 
       if (lower === 'whoami' || lower === '/whoami') {
-        appendChatMessage(`☕ <strong>$ whoami</strong>: uid=1000(sai-vinay-mullapudi) gid=1000(cloud-devops-genai). An engineer who converts espresso into zero-drift Terraform, resilient Spring Boot services, and agentic AI pipelines!`, 'bot');
+        appendChatMessage(`☕ <strong>$ whoami</strong>: uid=1000(sai-vinay-mullapudi) gid=1000(devops-genai). A Cloud & DevOps engineer fueled by espresso. I take my coffee seriously and my infrastructure idempotently!`, 'bot');
         return;
       }
 
@@ -2678,7 +2685,6 @@ Content-Type: application/json;charset=UTF-8
         return;
       }
 
-      // Local fast-path for CS 1.6 homage if Worker hasn't been redeployed yet
       if (/\b(cs~1\.6|cs\.1\.6|cs 1\.6|counter-strike|counter strike)\b/i.test(lower)) {
         setBalloonFace('secret');
         appendChatMessage(`🎮 <strong>AirHead.cs~1.6</strong> is a nod to Sai Vinay's love for <em>Counter-Strike 1.6</em>—and a personal homage to what sparked his passion for networking, low-latency systems, and technology in the first place!`, 'bot');
@@ -2720,7 +2726,7 @@ Content-Type: application/json;charset=UTF-8
         return;
       }
 
-      // Live Cloudflare Worker Fetch
+      // Worker Fetch
       userInput.disabled = true;
       sendChatBtn.disabled = true;
       const loaderId = 'loader-' + Date.now();
@@ -2740,7 +2746,6 @@ Content-Type: application/json;charset=UTF-8
         const data = await response.json();
         document.getElementById(loaderId)?.remove();
 
-        // Check for mood === "secret" from Worker to animate balloon smile!
         if (data.mood === 'secret') {
           setBalloonFace('secret');
           showToast('🤫🎈 <strong>AirHead.cs~1.6</strong> is smiling—its trivia count stays a secret!');
@@ -2840,7 +2845,6 @@ Content-Type: application/json;charset=UTF-8
       }
     }
 
-    // Initialize into Manager Baseline Mode
     setPerspective('manager', false);
   </script>
 </body>
