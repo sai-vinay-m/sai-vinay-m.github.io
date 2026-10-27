@@ -179,7 +179,7 @@
       40% { transform: translateY(-4px); opacity: 1; }
     }
 
-    /* 25% Smaller Gus.html Balloon Engine */
+    /* Scaled Gus.html Balloon Engine (25% Smaller) */
     @keyframes gusFloat {
       0%, 100% { transform: translateY(0px) rotate(0deg); }
       50% { transform: translateY(-8px) rotate(2deg); }
@@ -365,7 +365,7 @@
     <span id="customToastText"></span>
   </div>
 
-  <!-- Sticky Navigation with whitespace-nowrap & aligned spacing -->
+  <!-- Navigation with Strict No-Wrap -->
   <header class="sticky top-0 z-40 backdrop-blur-md bg-carbon-900/85 border-b border-carbon-700/70">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
       
@@ -407,7 +407,7 @@
   <div id="view-hr" style="display: none;" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 relative z-10">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-7 items-start">
       
-      <!-- Sticky Profile Rail -->
+      <!-- Profile Rail -->
       <aside class="lg:col-span-4 bento-card p-7 space-y-6">
         <div class="flex flex-col items-center text-center">
           <div class="w-32 h-32 rounded-full overflow-hidden border-4 border-amber-500/40 mb-3 bg-carbon-800 shadow-xl flex items-center justify-center">
@@ -436,7 +436,7 @@
           </div>
         </div>
 
-        <!-- Academic Credentials Column Pill -->
+        <!-- Academic Credentials Column -->
         <div class="border-t border-carbon-700/80 pt-4 space-y-3 font-mono">
           <span class="text-[11px] font-bold text-amber-400 uppercase tracking-wider block">Academic Credentials</span>
           
@@ -547,7 +547,7 @@
           </div>
         </div>
 
-        <!-- Single Comprehensive Tech Stack Pill (Replaces 4 pills) -->
+        <!-- Single Clean Tech Stack Matrix Pill -->
         <div class="bento-card p-6 space-y-4">
           <div class="flex items-center justify-between border-b border-carbon-700/80 pb-3">
             <h3 class="text-sm font-bold font-mono text-white uppercase tracking-wider flex items-center gap-2">
@@ -1873,8 +1873,6 @@
     </div>
   </footer>
 
-  <!-- START OF PART 3 -->
-
   <!-- Developer Mode Diagnostic CLI Drawer -->
   <div id="devCliDrawer" style="display: none;" class="fixed bottom-0 left-0 right-0 z-30 bg-carbon-950/95 border-t border-[#00ff66]/40 p-4 backdrop-blur-xl font-mono text-xs shadow-2xl">
     <div class="max-w-7xl mx-auto space-y-3">
@@ -1996,7 +1994,6 @@
       </div>
     </div>
   </div>
-
   <!-- Core JavaScript Runtime -->
   <script>
     // Defensive DOM Scrubber
@@ -2199,7 +2196,7 @@
       }
     }, 3500);
 
-    /* Unbreakable Live Diagnostic Shell (With Ctrl+C and Escape Breakers) */
+    /* Robust Linux & Diagnostic Shell (Input Sanitized, Scheme-Aware & Non-Breaking) */
     const cliInput = document.getElementById('cliInput');
     const cliOutput = document.getElementById('cliOutput');
     let commandHistory = [];
@@ -2244,7 +2241,7 @@
       switch (base) {
         case 'help':
           printCliLine(`VinayOS Diagnostic Shell — Supported Commands:
-  curl <url>      : Real HTTP fetch with 4s timeout (e.g. curl https://cloudflare.com/cdn-cgi/trace)
+  curl <url>      : Real HTTP fetch (e.g. curl https://cloudflare.com/cdn-cgi/trace)
   dig <domain>    : Real DNS resolution via Cloudflare DoH (e.g. dig github.com)
   ping [host]     : Real client RTT latency measurement
   top / htop      : Real hardware logical cores & active JS heap memory
@@ -2351,7 +2348,8 @@ JS Heap:     ${heapTotal.padEnd(10)}  ${heapUsed.padEnd(10)}  (Active Browser Ta
         }
 
         case 'dig': {
-          const domain = args[1] || 'github.com';
+          let domain = args[1] || 'github.com';
+          domain = domain.replace(/^https?:\/\//i, '').replace(/\/.*$/, '').trim();
           printCliLine(`; <<>> DiG via Cloudflare DoH <<>> ${domain}`, 'text-slate-400');
           activeCliAbortController = new AbortController();
           const timeoutId = setTimeout(() => activeCliAbortController?.abort(), 4000);
@@ -2384,25 +2382,39 @@ JS Heap:     ${heapTotal.padEnd(10)}  ${heapUsed.padEnd(10)}  (Active Browser Ta
         }
 
         case 'curl': {
-          const url = args[1];
-          if (!url) {
+          let urlArg = args[1];
+          if (!urlArg) {
             printCliLine('curl: missing URL argument. Try: curl https://cloudflare.com/cdn-cgi/trace', 'text-yellow-400');
             return;
           }
-          printCliLine(`* Fetching ${url} (Press ESC or Ctrl+C to abort)...`, 'text-slate-400');
+          if (urlArg === 'trace' || urlArg === '/trace') {
+            urlArg = 'https://cloudflare.com/cdn-cgi/trace';
+          } else if (!/^https?:\/\//i.test(urlArg)) {
+            urlArg = 'https://' + urlArg;
+          }
+
+          printCliLine(`* Fetching ${urlArg} (Press ESC or Ctrl+C to abort)...`, 'text-slate-400');
           activeCliAbortController = new AbortController();
           const timeoutId = setTimeout(() => activeCliAbortController?.abort(), 4500);
+
           try {
-            const res = await fetch(url, { signal: activeCliAbortController.signal });
+            const res = await fetch(urlArg, { signal: activeCliAbortController.signal });
             clearTimeout(timeoutId);
+            
+            const contentType = res.headers.get('content-type') || '';
             const text = await res.text();
-            printCliLine(text.slice(0, 800) + (text.length > 800 ? '\n... [truncated]' : ''), 'text-slate-200');
+
+            if (contentType.includes('text/html') || text.trim().startsWith('<!DOCTYPE') || text.trim().startsWith('<html')) {
+              printCliLine(`curl: (7) Connection established, but endpoint returned raw HTML/document. For CORS-friendly plain text try: curl https://cloudflare.com/cdn-cgi/trace`, 'text-yellow-400');
+            } else {
+              printCliLine(text.slice(0, 800) + (text.length > 800 ? '\n... [truncated]' : ''), 'text-slate-200');
+            }
           } catch (err) {
             clearTimeout(timeoutId);
             if (err.name === 'AbortError') {
               printCliLine(`curl: (28) Operation timed out or cancelled by user`, 'text-red-400');
             } else {
-              printCliLine(`curl: (7) Connection error or blocked by CORS: ${err.message}`, 'text-red-400');
+              printCliLine(`curl: (7) Connection blocked by browser CORS policy or domain unreachable.`, 'text-red-400');
             }
           } finally {
             activeCliAbortController = null;
@@ -2941,4 +2953,3 @@ JS Heap:     ${heapTotal.padEnd(10)}  ${heapUsed.padEnd(10)}  (Active Browser Ta
   </script>
 </body>
 </html>
-<!-- END OF PART 3 -->
