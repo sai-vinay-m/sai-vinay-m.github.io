@@ -45,16 +45,11 @@
           animation: {
             'marquee': 'marquee 42s linear infinite',
             'pulse-subtle': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-            'float-slow': 'floatBalloon 4s ease-in-out infinite',
           },
           keyframes: {
             marquee: {
               '0%': { transform: 'translateX(0%)' },
               '100%': { transform: 'translateX(-50%)' },
-            },
-            floatBalloon: {
-              '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
-              '50%': { transform: 'translateY(-12px) rotate(2deg)' }
             }
           }
         }
@@ -113,15 +108,15 @@
     }
 
     .bento-card {
-      background: rgba(16, 22, 36, 0.85);
-      border: 1px solid rgba(49, 65, 97, 0.6);
+      background: linear-gradient(145deg, rgba(16, 22, 36, 0.92), rgba(10, 14, 23, 0.95));
+      border: 1px solid rgba(49, 65, 97, 0.65);
       backdrop-filter: blur(14px);
       border-radius: 22px;
       transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
     }
     .bento-card:hover {
       border-color: rgba(245, 158, 11, 0.55);
-      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.55);
       transform: translateY(-2px);
     }
 
@@ -170,15 +165,285 @@
       animation: svgPacketFlow 1s linear infinite;
     }
 
-    /* Balloon Physics & Collision Deformation */
-    #gusBalloon {
+    .typing-dot {
+      width: 5px; height: 5px;
+      background: #fbbf24;
+      border-radius: 50%;
+      display: inline-block;
+      animation: bounceDot 1.2s infinite ease-in-out;
+    }
+    .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes bounceDot {
+      0%, 80%, 100% { transform: translateY(0); opacity: 0.35; }
+      40% { transform: translateY(-4px); opacity: 1; }
+    }
+
+    /* =====================================================================
+       AUTHENTIC GUS.HTML BALLOON ENGINE & 6 MORPHING EXPRESSIONS
+       ===================================================================== */
+    @keyframes gusFloat {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(2deg); }
+    }
+    .gus-float-anim {
+      animation: gusFloat 3.8s ease-in-out infinite;
+    }
+    .balloon-scale-shell {
+      width: 110px;
+      height: 185px;
+      position: relative;
       touch-action: none;
       user-select: none;
-      transition: transform 0.08s ease-out;
+      cursor: grab;
     }
-    #gusBalloon.bonking {
-      transform: scale(1.22, 0.78) !important;
-      transition: transform 0.16s ease-out;
+    .balloon-scale-shell:active {
+      cursor: grabbing;
+    }
+    .balloon-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 260px;
+      height: 440px;
+      transform: scale(0.42);
+      transform-origin: top left;
+      pointer-events: none;
+    }
+    .gus-balloon {
+      position: absolute;
+      top: 0;
+      left: 10px;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: linear-gradient(
+        145deg,
+        #d4fbff 0%,
+        #a6dff5 25%,
+        #77b7e0 60%,
+        #477aa8 100%
+      );
+      border: 2px solid rgba(255, 255, 255, 0.45);
+      box-shadow:
+        inset -12px -15px 22px rgba(26, 64, 105, 0.25),
+        inset 8px 8px 18px rgba(255, 255, 255, 0.3),
+        0 14px 30px rgba(0, 0, 0, 0.45);
+      box-sizing: border-box;
+      z-index: 2;
+      transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.3s ease;
+    }
+    .balloon-highlight {
+      position: absolute;
+      width: 62px;
+      height: 28px;
+      top: 17px;
+      right: 23px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.95);
+      transform: rotate(38deg);
+    }
+    .balloon-eyebrows span {
+      position: absolute;
+      top: 57px;
+      width: 27px;
+      height: 8px;
+      border-radius: 6px;
+      background: #17212b;
+      transition: all 0.22s ease;
+    }
+    .balloon-eyebrows span:first-child {
+      left: 86px;
+      transform: rotate(35deg);
+    }
+    .balloon-eyebrows span:last-child {
+      right: 75px;
+      transform: rotate(-22deg);
+    }
+    .balloon-mouth {
+      position: absolute;
+      top: 77px;
+      left: 50%;
+      width: 137px;
+      height: 85px;
+      overflow: hidden;
+      border: 2.5px solid #202833;
+      border-radius: 42% 42% 45% 45%;
+      background: #f9fcff;
+      transform: translateX(-50%) rotate(2deg);
+      transition: all 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .teeth span {
+      position: absolute;
+      top: -5px;
+      width: 2.5px;
+      height: 100px;
+      background: #202833;
+      transition: all 0.2s ease;
+    }
+    .teeth span:nth-child(1) {
+      left: 31%;
+      transform: rotate(12deg);
+    }
+    .teeth span:nth-child(2) {
+      left: 52%;
+      transform: rotate(7deg);
+    }
+    .teeth span:nth-child(3) {
+      left: 76%;
+      transform: rotate(-3deg);
+    }
+    .balloon-cheek {
+      position: absolute;
+      bottom: 28px;
+      width: 35px;
+      height: 23px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #b8e6fa, #7caed6);
+      opacity: 0.85;
+      transition: all 0.25s ease;
+    }
+    .cheek-left {
+      left: 43px;
+      transform: rotate(40deg);
+    }
+    .cheek-right {
+      right: 58px;
+      transform: rotate(-35deg);
+    }
+    .balloon-stick {
+      position: absolute;
+      top: 232px;
+      left: 128px;
+      width: 11px;
+      height: 195px;
+      border: 1px solid #78623d;
+      border-radius: 4px;
+      background: linear-gradient(
+        90deg,
+        #8b7044,
+        #d4bb82 35%,
+        #aa8b56 70%,
+        #6e5839
+      );
+      transform: rotate(7deg);
+      transform-origin: top center;
+      z-index: 1;
+      transition: transform 0.2s ease;
+    }
+    .balloon-knot {
+      position: absolute;
+      top: 229px;
+      left: 121px;
+      width: 19px;
+      height: 10px;
+      border-radius: 50% 50% 20% 20%;
+      background: #b5e8f8;
+      z-index: 3;
+    }
+
+    /* Expression 2: Hover / Excited */
+    .gus-balloon.face-hover {
+      transform: scale(1.04) rotate(-3deg);
+    }
+    .gus-balloon.face-hover .balloon-eyebrows span:first-child {
+      top: 48px;
+      transform: rotate(18deg);
+    }
+    .gus-balloon.face-hover .balloon-eyebrows span:last-child {
+      top: 48px;
+      transform: rotate(-18deg);
+    }
+    .gus-balloon.face-hover .balloon-mouth {
+      height: 94px;
+      border-radius: 36% 36% 52% 52%;
+    }
+    .gus-balloon.face-hover .balloon-cheek {
+      background: linear-gradient(135deg, #fda4af, #f43f5e);
+      opacity: 0.75;
+    }
+
+    /* Expression 3: Dragging (Surprised "O" Mouth) */
+    .gus-balloon.face-drag {
+      transform: scale(0.96, 1.06);
+    }
+    .gus-balloon.face-drag .balloon-eyebrows span:first-child {
+      top: 45px;
+      transform: rotate(-10deg);
+    }
+    .gus-balloon.face-drag .balloon-eyebrows span:last-child {
+      top: 45px;
+      transform: rotate(10deg);
+    }
+    .gus-balloon.face-drag .balloon-mouth {
+      width: 68px;
+      height: 68px;
+      top: 86px;
+      border-radius: 50%;
+    }
+
+    /* Expression 4: Wall Collision Bonk (Squashed + > < Brows) */
+    .gus-balloon.face-bonk {
+      transform: scale(1.22, 0.78) rotate(6deg) !important;
+    }
+    .gus-balloon.face-bonk .balloon-eyebrows span:first-child {
+      top: 62px;
+      left: 78px;
+      width: 34px;
+      transform: rotate(48deg);
+    }
+    .gus-balloon.face-bonk .balloon-eyebrows span:last-child {
+      top: 62px;
+      right: 72px;
+      width: 34px;
+      transform: rotate(-48deg);
+    }
+    .gus-balloon.face-bonk .balloon-mouth {
+      width: 148px;
+      height: 52px;
+      top: 96px;
+      border-radius: 25% 25% 30% 30%;
+      transform: translateX(-50%) rotate(-5deg);
+    }
+    .gus-balloon.face-bonk .balloon-cheek {
+      background: linear-gradient(135deg, #fb7185, #e11d48);
+      opacity: 0.9;
+    }
+
+    /* Expression 5: Secret / Happy Smile (Triggered by mood==="secret" or Trivia) */
+    .gus-balloon.face-secret {
+      transform: scale(1.06) rotate(3deg);
+    }
+    .gus-balloon.face-secret .balloon-eyebrows span:first-child {
+      top: 46px;
+      transform: rotate(-18deg);
+    }
+    .gus-balloon.face-secret .balloon-eyebrows span:last-child {
+      top: 46px;
+      transform: rotate(18deg);
+    }
+    .gus-balloon.face-secret .balloon-mouth {
+      width: 145px;
+      height: 92px;
+      border-radius: 20% 20% 60% 60%;
+    }
+    .gus-balloon.face-secret .balloon-cheek {
+      background: linear-gradient(135deg, #f472b6, #ec4899);
+      opacity: 0.85;
+      transform: scale(1.15);
+    }
+
+    /* Expression 6: Nudge Wink (Asymmetric Eyebrow) */
+    .gus-balloon.face-nudge .balloon-eyebrows span:first-child {
+      top: 44px;
+      transform: rotate(-12deg);
+    }
+    .gus-balloon.face-nudge .balloon-eyebrows span:last-child {
+      top: 64px;
+      transform: rotate(-32deg) scaleX(1.15);
+    }
+    .gus-balloon.face-nudge .balloon-mouth {
+      transform: translateX(-46%) rotate(-4deg);
     }
   </style>
 </head>
@@ -193,7 +458,7 @@
     <span id="customToastText"></span>
   </div>
 
-  <!-- STICKY NAVIGATION (ROLE SWITCHER REMOVED) -->
+  <!-- STICKY NAVIGATION (CLEAN: NO REDUNDANT TOP-BAR ROLE SWITCHER) -->
   <header class="sticky top-0 z-40 backdrop-blur-md bg-carbon-900/85 border-b border-carbon-700/70">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
       
@@ -232,12 +497,12 @@
   </header>
 
   <!-- ==================================================================================
-       VIEW 1: HR & RECRUITER MODE (UNIQUE BENTO GRID, STACKED EDUCATION & CREDLY BADGES)
+       VIEW 1: HR & RECRUITER MODE (CUSTOM BENTO, STACKED ACADEMICS & CREDLY SEALS)
        ================================================================================== -->
   <div id="view-hr" style="display: none;" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 relative z-10">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-7 items-start">
       
-      <!-- Sticky Profile Rail -->
+      <!-- Left Profile Rail -->
       <aside class="lg:col-span-4 bento-card p-7 space-y-6">
         <div class="flex flex-col items-center text-center">
           <div class="w-32 h-32 rounded-full overflow-hidden border-4 border-amber-500/40 mb-3 bg-carbon-800 shadow-xl flex items-center justify-center">
@@ -266,12 +531,12 @@
           </div>
         </div>
 
-        <!-- Stacked Education Credentials Pill -->
+        <!-- Stacked Education Credentials Pill (Column Format with Logo Placeholders) -->
         <div class="border-t border-carbon-700/80 pt-4 space-y-3 font-mono">
           <span class="text-[11px] font-bold text-amber-400 uppercase tracking-wider block">Academic Credentials</span>
           
           <div class="p-2.5 rounded-xl bg-carbon-900 border border-carbon-800 flex items-center gap-3">
-            <div class="w-9 h-9 rounded-lg bg-carbon-800 border border-emerald-500/40 p-1 flex items-center justify-center shrink-0">
+            <div class="w-10 h-10 rounded-lg bg-carbon-800 border border-emerald-500/40 p-1 flex items-center justify-center shrink-0">
               <img src="assets/iitb.png" alt="IIT Bombay" class="w-full h-full object-contain" onerror="resolveAsset(this, 'iitb')">
               <span class="asset-fallback hidden text-[10px] font-bold text-emerald-400">IIT-B</span>
             </div>
@@ -282,7 +547,7 @@
           </div>
 
           <div class="p-2.5 rounded-xl bg-carbon-900 border border-carbon-800 flex items-center gap-3">
-            <div class="w-9 h-9 rounded-lg bg-carbon-800 border border-red-500/40 p-1 flex items-center justify-center shrink-0">
+            <div class="w-10 h-10 rounded-lg bg-carbon-800 border border-red-500/40 p-1 flex items-center justify-center shrink-0">
               <img src="assets/njit.png" alt="NJIT" class="w-full h-full object-contain" onerror="resolveAsset(this, 'njit')">
               <span class="asset-fallback hidden text-[10px] font-bold text-red-400">NJIT</span>
             </div>
@@ -293,9 +558,9 @@
           </div>
 
           <div class="p-2.5 rounded-xl bg-carbon-900 border border-carbon-800 flex items-center gap-3">
-            <div class="w-9 h-9 rounded-lg bg-carbon-800 border border-amber-500/40 p-1 flex items-center justify-center shrink-0">
+            <div class="w-10 h-10 rounded-lg bg-carbon-800 border border-amber-500/40 p-1 flex items-center justify-center shrink-0">
               <img src="assets/ggsipu.png" alt="GGSIPU" class="w-full h-full object-contain" onerror="resolveAsset(this, 'ggsipu')">
-              <span class="asset-fallback hidden text-[10px] font-bold text-amber-400">IPU</span>
+              <span class="asset-fallback hidden text-[10px] font-bold text-amber-400">GGSIPU</span>
             </div>
             <div class="min-w-0">
               <div class="text-xs font-bold text-white truncate">GGSIP University (New Delhi)</div>
@@ -314,10 +579,10 @@
         </div>
       </aside>
 
-      <!-- Right Bento Area -->
+      <!-- Right Bento Grid -->
       <div class="lg:col-span-8 space-y-6">
         
-        <!-- Upgraded Candidate Value Proposition with Embedded Credly Badges -->
+        <!-- Candidate Value Proposition with Direct Credly Badges -->
         <div class="bento-card p-7 bg-gradient-to-br from-amber-500/15 via-carbon-850 to-carbon-900 border-amber-500/50 space-y-5">
           <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div class="space-y-1">
@@ -327,49 +592,49 @@
               <h2 class="text-xl sm:text-2xl font-extrabold text-white">Enterprise Cloud Reliability Meets Production GenAI</h2>
             </div>
             <button onclick="openCalendly()" class="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-carbon-950 font-bold text-xs font-mono shrink-0 shadow-lg cursor-pointer">
-              Schedule 30m Intro
+              Schedule 30m Intro Call
             </button>
           </div>
 
           <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-            Combines <strong class="text-white">4 years of enterprise infrastructure depth</strong> (architecting zero-trust AWS systems synchronized in real time with NYSE and Federal Reserve clearing feeds) with <strong class="text-amber-300">modern AI platform delivery</strong> (scaling agentic RAG workflows and triaging critical container releases under live SLAs). An immediate contributor requiring zero onboarding lag.
+            Combines <strong class="text-white">4 years of enterprise infrastructure depth</strong> (architecting zero-trust AWS systems synchronized in real time with NYSE and Federal Reserve clearing feeds) with <strong class="text-amber-300">modern AI platform delivery</strong> (scaling agentic RAG workflows and triaging critical container releases under live SLAs). Immediate contributor with zero onboarding lag.
           </p>
 
           <!-- Interactive 3x AWS Credly Verification Badges -->
-          <div class="pt-2 border-t border-carbon-700/80">
-            <span class="text-[10.5px] font-mono text-slate-400 block mb-2.5 uppercase tracking-wider">3x AWS Verified Credentials (Click to Verify Live on Credly):</span>
+          <div class="pt-3 border-t border-carbon-700/80">
+            <span class="text-[10.5px] font-mono text-slate-400 block mb-2.5 uppercase tracking-wider">3x AWS Verified Credentials (Click Badge to Verify on Credly):</span>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
               
-              <a href="https://www.credly.com/badges/20f333e6-76e8-431a-9603-c22408681cd8" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl bg-carbon-900/90 border border-emerald-500/40 hover:border-emerald-400 flex items-center gap-3 transition-transform hover:scale-102 group">
-                <div class="w-10 h-10 rounded-lg bg-carbon-850 p-1 flex items-center justify-center shrink-0 border border-emerald-500/30">
+              <a href="https://www.credly.com/badges/20f333e6-76e8-431a-9603-c22408681cd8" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl bg-carbon-900/90 border border-emerald-500/40 hover:border-emerald-400 flex items-center gap-3 transition-transform hover:scale-105 group">
+                <div class="w-11 h-11 rounded-lg bg-carbon-850 p-1 flex items-center justify-center shrink-0 border border-emerald-500/30">
                   <img src="assets/aws-mla.png" alt="AWS MLA" class="w-full h-full object-contain" onerror="resolveAsset(this, 'aws-mla')">
                   <span class="asset-fallback hidden text-[10px] font-bold text-emerald-400">MLA</span>
                 </div>
                 <div class="min-w-0">
-                  <div class="text-[11px] font-bold text-white group-hover:text-emerald-400 transition-colors">AWS Machine Learning</div>
-                  <div class="text-[9.5px] font-mono text-emerald-400 flex items-center gap-1">Verified Credly <i data-lucide="arrow-up-right" class="w-2.5 h-2.5"></i></div>
+                  <div class="text-[11px] font-bold text-white group-hover:text-emerald-400 transition-colors">ML Engineer Assoc.</div>
+                  <div class="text-[9.5px] font-mono text-emerald-400 flex items-center gap-1">Verify Credly ↗</div>
                 </div>
               </a>
 
-              <a href="https://www.credly.com/badges/af2f25bd-7fbe-4e21-92fc-4c39f8e92cf7" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl bg-carbon-900/90 border border-amber-500/40 hover:border-amber-400 flex items-center gap-3 transition-transform hover:scale-102 group">
-                <div class="w-10 h-10 rounded-lg bg-carbon-850 p-1 flex items-center justify-center shrink-0 border border-amber-500/30">
+              <a href="https://www.credly.com/badges/af2f25bd-7fbe-4e21-92fc-4c39f8e92cf7" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl bg-carbon-900/90 border border-amber-500/40 hover:border-amber-400 flex items-center gap-3 transition-transform hover:scale-105 group">
+                <div class="w-11 h-11 rounded-lg bg-carbon-850 p-1 flex items-center justify-center shrink-0 border border-amber-500/30">
                   <img src="assets/aws-saa.png" alt="AWS SAA" class="w-full h-full object-contain" onerror="resolveAsset(this, 'aws-saa')">
                   <span class="asset-fallback hidden text-[10px] font-bold text-amber-400">SAA</span>
                 </div>
                 <div class="min-w-0">
-                  <div class="text-[11px] font-bold text-white group-hover:text-amber-400 transition-colors">AWS Solutions Architect</div>
-                  <div class="text-[9.5px] font-mono text-amber-400 flex items-center gap-1">Verified Credly <i data-lucide="arrow-up-right" class="w-2.5 h-2.5"></i></div>
+                  <div class="text-[11px] font-bold text-white group-hover:text-amber-400 transition-colors">Solutions Architect</div>
+                  <div class="text-[9.5px] font-mono text-amber-400 flex items-center gap-1">Verify Credly ↗</div>
                 </div>
               </a>
 
-              <a href="https://www.credly.com/badges/582be29e-4701-41a4-b4bb-638b1d675fc2" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl bg-carbon-900/90 border border-sky-500/40 hover:border-sky-400 flex items-center gap-3 transition-transform hover:scale-102 group">
-                <div class="w-10 h-10 rounded-lg bg-carbon-850 p-1 flex items-center justify-center shrink-0 border border-sky-500/30">
+              <a href="https://www.credly.com/badges/582be29e-4701-41a4-b4bb-638b1d675fc2" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl bg-carbon-900/90 border border-sky-500/40 hover:border-sky-400 flex items-center gap-3 transition-transform hover:scale-105 group">
+                <div class="w-11 h-11 rounded-lg bg-carbon-850 p-1 flex items-center justify-center shrink-0 border border-sky-500/30">
                   <img src="assets/aws-cpp.png" alt="AWS CPP" class="w-full h-full object-contain" onerror="resolveAsset(this, 'aws-cpp')">
                   <span class="asset-fallback hidden text-[10px] font-bold text-sky-400">CPP</span>
                 </div>
                 <div class="min-w-0">
-                  <div class="text-[11px] font-bold text-white group-hover:text-sky-400 transition-colors">AWS Cloud Practitioner</div>
-                  <div class="text-[9.5px] font-mono text-sky-400 flex items-center gap-1">Verified Credly <i data-lucide="arrow-up-right" class="w-2.5 h-2.5"></i></div>
+                  <div class="text-[11px] font-bold text-white group-hover:text-sky-400 transition-colors">Cloud Practitioner</div>
+                  <div class="text-[9.5px] font-mono text-sky-400 flex items-center gap-1">Verify Credly ↗</div>
                 </div>
               </a>
 
@@ -377,31 +642,31 @@
           </div>
         </div>
 
-        <!-- Recruiter Impact Metrics (Business-Driven) -->
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 font-mono">
-          <div class="bento-card p-4 text-center">
-            <span class="text-[10px] text-slate-400 block uppercase">Incident Recovery</span>
-            <div class="text-xl font-extrabold text-emerald-400 mt-0.5">L5 Fast-Track</div>
-            <span class="text-[10.5px] text-slate-300 mt-1 block">Solved in 45m vs 60m SLA</span>
+        <!-- Business-Outcome Recruiter Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 font-mono">
+          <div class="bento-card p-4">
+            <span class="text-[10px] text-emerald-400 font-bold uppercase block">L5 Outage Command</span>
+            <div class="text-sm font-extrabold text-white mt-1">25% Under SLA</div>
+            <p class="text-[10.5px] text-slate-300 mt-1 font-sans leading-snug">Unblocked multi-team release stalls in 45m under a 60m SLA window.</p>
           </div>
-          <div class="bento-card p-4 text-center">
-            <span class="text-[10px] text-slate-400 block uppercase">IaC Governance</span>
-            <div class="text-xl font-extrabold text-sky-400 mt-0.5">Zero Drift</div>
-            <span class="text-[10.5px] text-slate-300 mt-1 block">15-File Prod Terraform Audit</span>
+          <div class="bento-card p-4">
+            <span class="text-[10px] text-sky-400 font-bold uppercase block">Zero-Trust Cloud</span>
+            <div class="text-sm font-extrabold text-white mt-1">100% Audit Pass</div>
+            <p class="text-[10.5px] text-slate-300 mt-1 font-sans leading-snug">Intercepted cross-account permission leaks prior to production merge.</p>
           </div>
-          <div class="bento-card p-4 text-center">
-            <span class="text-[10px] text-slate-400 block uppercase">Architecture</span>
-            <div class="text-xl font-extrabold text-purple-400 mt-0.5">Model Parity</div>
-            <span class="text-[10.5px] text-slate-300 mt-1 block">-992 LOC Debt Cleaned</span>
+          <div class="bento-card p-4">
+            <span class="text-[10px] text-purple-400 font-bold uppercase block">Codebase Velocity</span>
+            <div class="text-sm font-extrabold text-white mt-1">100% Test Parity</div>
+            <p class="text-[10.5px] text-slate-300 mt-1 font-sans leading-snug">Unified e-commerce data models while stripping 992 lines of debt.</p>
           </div>
-          <div class="bento-card p-4 text-center">
-            <span class="text-[10px] text-slate-400 block uppercase">Infrastructure</span>
-            <div class="text-xl font-extrabold text-amber-400 mt-0.5">99.0% SLA</div>
-            <span class="text-[10.5px] text-slate-300 mt-1 block">200+ Nodes High-Availability</span>
+          <div class="bento-card p-4">
+            <span class="text-[10px] text-amber-400 font-bold uppercase block">Fleet Reliability</span>
+            <div class="text-sm font-extrabold text-white mt-1">200+ AWS Nodes</div>
+            <p class="text-[10.5px] text-slate-300 mt-1 font-sans leading-snug">Maintained 99.0% SLA with automated DR &amp; live storage scaling.</p>
           </div>
         </div>
 
-        <!-- High-Impact Competencies -->
+        <!-- Outcome-Driven Competency Pillars -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div class="bento-card p-5 space-y-2.5">
             <div class="text-amber-400 font-bold font-mono text-xs flex items-center gap-2">
@@ -431,7 +696,7 @@
           </div>
         </div>
 
-        <!-- Work Experience Overview (Strict 2 Resume Bullets Each) -->
+        <!-- Enterprise Experience Overview (2 Resume Bullets Per Role) -->
         <div class="bento-card p-6 space-y-4">
           <div class="flex items-center justify-between">
             <h3 class="text-sm font-bold font-mono text-white uppercase tracking-wider flex items-center gap-2">
@@ -444,12 +709,12 @@
             
             <div class="p-4 rounded-xl bg-carbon-900 border border-carbon-800 space-y-2">
               <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
-                <strong class="text-white text-sm">Ascendion — DevOps &amp; GenAI Engineer (L5 @ HP Inc. Client)</strong>
+                <strong class="text-white text-sm">Ascendion — DevOps &amp; GenAI Engineer (L5 @ Client: HP Inc.)</strong>
                 <span class="text-emerald-400 font-bold">Dec '25 – Aug '26</span>
               </div>
-              <ul class="space-y-1.5 text-slate-300 text-[11px] list-disc list-inside">
-                <li>Integrated LLMs, vector knowledge bases, and guardrail architectures to automate development bottlenecks and accelerate team throughput.</li>
-                <li>Triaged critical container health-check failures under live 60-minute release SLAs, unblocking multiple microservice pipelines with zero downtime.</li>
+              <ul class="space-y-1.5 text-slate-300 text-[11px] list-disc list-inside font-sans">
+                <li>Integrated LLMs, vector knowledge bases, and guardrail architectures into agentic SDLC workflows, accelerating engineering velocity by up to 55%.</li>
+                <li>Triaged critical container health-check failures under live 60-minute release SLAs and standardized multi-account IAM and Terraform governance.</li>
               </ul>
             </div>
 
@@ -458,9 +723,9 @@
                 <strong class="text-white text-sm">Eficens Systems LLC — DevOps Engineer (US Financial Client)</strong>
                 <span class="text-amber-400 font-bold">Dec '21 – Aug '24</span>
               </div>
-              <ul class="space-y-1.5 text-slate-300 text-[11px] list-disc list-inside">
+              <ul class="space-y-1.5 text-slate-300 text-[11px] list-disc list-inside font-sans">
                 <li>Architected zero-trust AWS infrastructure syncing in real-time with NYSE and Federal Reserve clearing feeds under strict regulatory oversight.</li>
-                <li>Engineered modular, multi-environment Terraform/Terragrunt blueprints with KMS envelope encryption, eliminating configuration drift across Dev, Staging, and Production.</li>
+                <li>Built reusable Terraform modules into Jenkins CI/CD pipelines, cutting provisioning time by over 50% and reducing monthly deployment defects.</li>
               </ul>
             </div>
 
@@ -469,8 +734,8 @@
                 <strong class="text-white text-sm">LotusData LLP — Jr. Cloud Administrator (Princeton, NJ)</strong>
                 <span class="text-sky-400 font-bold">Mar '21 – Dec '21</span>
               </div>
-              <ul class="space-y-1.5 text-slate-300 text-[11px] list-disc list-inside">
-                <li>Maintained a 99% uptime SLA across 200+ AWS compute nodes through automated snapshots, metric alerting, and proactive disaster recovery drills.</li>
+              <ul class="space-y-1.5 text-slate-300 text-[11px] list-disc list-inside font-sans">
+                <li>Maintained a 99% uptime SLA across 200+ AWS EC2 compute instances through automated AMI/EBS snapshots and disaster recovery drills.</li>
                 <li>Automated RedHat Linux bare-metal provisioning via Kickstart scripts and administered live, non-disruptive LVM storage expansions.</li>
               </ul>
             </div>
@@ -538,7 +803,6 @@
 
               <div class="p-6 space-y-5">
                 <div class="flex flex-col sm:flex-row items-center gap-4 pb-5 border-b border-carbon-700/80 text-center sm:text-left">
-                  <!-- EXACT 300px x 300px Container Preserved -->
                   <div style="width: 300px; height: 300px;" class="w-[300px] h-[300px] rounded-2xl bg-carbon-800 border-2 border-amber-500/60 overflow-hidden shrink-0 flex items-center justify-center shadow-xl">
                     <img src="assets/sai-vinay.png" alt="Sai Vinay Mullapudi" class="w-full h-full object-cover" onerror="resolveAsset(this, 'sai-vinay')">
                     <div class="asset-fallback hidden w-full h-full bg-gradient-to-br from-amber-500/20 to-blue-500/20 items-center justify-center font-mono font-bold text-2xl text-amber-400">
@@ -593,11 +857,11 @@
               <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00ff66] opacity-75"></span>
               <span class="relative inline-flex rounded-full h-3 w-3 bg-[#00ff66]"></span>
             </span>
-            <span class="font-bold text-white tracking-wider">LIVE OPERATIONAL TELEMETRY:</span>
+            <span class="font-bold text-white tracking-wider">LIVE CLIENT TELEMETRY:</span>
           </div>
           <div class="flex flex-wrap items-center gap-5 text-[11px]">
             <span>HEARTBEAT: <strong id="devPacketCounter" class="text-[#00ff66]">001420</strong> PKTS</span>
-            <span>RTT PING: <strong id="devPingVal" class="text-[#00ff66]">-- ms</strong></span>
+            <span>RTT PING: <strong id="devPingVal" class="text-[#00ff66]">12 ms</strong></span>
             <span>LOCAL CLOCK: <strong id="devClockVal" class="text-[#00ff66]">--:--:--</strong></span>
             <span>UPLINK: <strong id="devNetVal" class="text-[#00ff66]">4G / BroadBand</strong></span>
             <span>VIEWPORT: <strong id="devResVal" class="text-[#00ff66]">1920x1080</strong></span>
@@ -605,7 +869,7 @@
         </div>
       </div>
 
-      <!-- TECH STACK MARQUEE -->
+      <!-- TECH STACK MARQUEE (BOTH TRACKS RESTORED FOR SEAMLESS INFINITE LOOP) -->
       <section id="stack" class="py-8 bg-carbon-950/80 border-y border-carbon-700/70 overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 mb-4 flex items-center justify-between">
           <span class="text-xs font-mono uppercase tracking-widest text-slate-400">
@@ -616,7 +880,47 @@
 
         <div class="marquee-container mask-marquee w-full overflow-hidden">
           <div class="marquee-track flex gap-4 whitespace-nowrap animate-marquee w-max">
+            <!-- Track 1 -->
             <div class="flex items-center gap-4">
+              <div class="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-sm font-semibold text-slate-200">
+                <img src="assets/logos/aws.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg'" alt="AWS" class="w-6 h-6 object-contain"> Amazon Web Services
+              </div>
+              <div class="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-sm font-semibold text-slate-200">
+                <img src="assets/logos/terraform.svg" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/terraform/844FBA'" alt="Terraform" class="w-5 h-5 object-contain"> Terraform &amp; Terragrunt
+              </div>
+              <div class="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-sm font-semibold text-slate-200">
+                <img src="assets/logos/jenkins.svg" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/jenkins/D24939'" alt="Jenkins" class="w-5 h-5 object-contain"> Jenkins CI/CD
+              </div>
+              <div class="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-sm font-semibold text-slate-200">
+                <img src="assets/logos/java.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg'" alt="Java" class="w-5 h-5 object-contain"> Java (Spring Boot)
+              </div>
+              <div class="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-sm font-semibold text-slate-200">
+                <img src="assets/logos/docker.svg" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/docker/2496ED'" alt="Docker" class="w-5 h-5 object-contain"> Docker
+              </div>
+              <div class="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-sm font-semibold text-slate-200">
+                <img src="assets/logos/harbor.svg" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/harbor/60B932'" alt="Harbor" class="w-5 h-5 object-contain"> Harbor Registry
+              </div>
+              <div class="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-sm font-semibold text-slate-200">
+                <img src="assets/logos/azure-devops.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azuredevops/azuredevops-original.svg'" alt="Azure DevOps" class="w-5 h-5 object-contain"> Azure DevOps
+              </div>
+              <div class="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-sm font-semibold text-slate-200">
+                <img src="assets/logos/python.svg" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/python/3776AB'" alt="Python" class="w-5 h-5 object-contain"> Python &amp; Bash
+              </div>
+              <div class="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-sm font-semibold text-slate-200">
+                <img src="assets/logos/pytorch.svg" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/pytorch/EE4C2C'" alt="PyTorch" class="w-5 h-5 object-contain"> PyTorch &amp; Agentic RAG
+              </div>
+              <div class="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-sm font-semibold text-slate-200">
+                <img src="assets/logos/datadog.svg" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/datadog/632CA6'" alt="Datadog" class="w-5 h-5 object-contain"> Datadog APM
+              </div>
+              <div class="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-sm font-semibold text-slate-200">
+                <img src="assets/logos/splunk.svg" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/splunk/65A637'" alt="Splunk" class="w-5 h-5 object-contain"> Splunk
+              </div>
+              <div class="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-sm font-semibold text-slate-200">
+                <img src="assets/logos/linux.svg" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/redhat/EE0000'" alt="RedHat Linux" class="w-5 h-5 object-contain"> RedHat Linux &amp; LVM
+              </div>
+            </div>
+            <!-- Track 2 (Duplicate for seamless -50% loop) -->
+            <div class="flex items-center gap-4" aria-hidden="true">
               <div class="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-sm font-semibold text-slate-200">
                 <img src="assets/logos/aws.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg'" alt="AWS" class="w-6 h-6 object-contain"> Amazon Web Services
               </div>
@@ -749,6 +1053,9 @@
                     <div class="p-3 rounded-lg bg-carbon-950 border border-[#00ff66]/60 text-[#00ff66]">
                       <strong>[04 // REMEDIATION]:</strong> Layered curl package in shared base definition; verified HTTP 200 return in 45m.
                     </div>
+                    <button onclick="openModal('modal-incident')" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-500/20 hover:bg-[#00ff66] text-[#00ff66] hover:text-black font-mono text-xs font-bold transition-all border border-[#00ff66]/40 cursor-pointer">
+                      <i data-lucide="terminal" class="w-4 h-4"></i> INSPECT DIAGNOSTIC WORKBENCH ↗
+                    </button>
                   </div>
                 </div>
 
@@ -844,6 +1151,9 @@
                     <div class="p-3 rounded-lg bg-carbon-950 border border-[#00ff66]/60 text-[#00ff66]">
                       <strong>[04 // OUTCOME]:</strong> Zero production auth regressions and eliminated cross-account permission deadlocks.
                     </div>
+                    <button onclick="openModal('modal-arn')" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-500/20 hover:bg-[#00ff66] text-[#00ff66] hover:text-black font-mono text-xs font-bold transition-all border border-[#00ff66]/40 cursor-pointer">
+                      <i data-lucide="shield-check" class="w-4 h-4"></i> INSPECT HCL DIFF &amp; KMS WORKBENCH ↗
+                    </button>
                   </div>
                 </div>
 
@@ -874,7 +1184,7 @@
                   </svg>
 
                   <div class="px-3 py-2 rounded bg-carbon-900 border border-amber-500/30 text-amber-300 truncate mt-2">
-                    arn:aws:iam::126350******:role/prod-service-role
+                    arn:aws:iam::126350******:role/prod-billing-events-service
                   </div>
                 </div>
               </div>
@@ -929,6 +1239,9 @@
                     <div class="p-3 rounded-lg bg-carbon-950 border border-[#00ff66]/60 text-[#00ff66]">
                       <strong>[04 // TEST PARITY]:</strong> Verified 100% green Maven suites across 15 addressed review comments before final merge.
                     </div>
+                    <button onclick="openModal('modal-java')" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-500/20 hover:bg-[#00ff66] text-[#00ff66] hover:text-black font-mono text-xs font-bold transition-all border border-[#00ff66]/40 cursor-pointer">
+                      <i data-lucide="code-2" class="w-4 h-4"></i> INSPECT DTO DIFF &amp; MAVEN WORKBENCH ↗
+                    </button>
                   </div>
                 </div>
 
@@ -1468,103 +1781,97 @@
   </div>
 
   <!-- ==================================================================================
-       GUS'S SPOOKY BALLOON "AirHead~w0w" (PHYSICS, 6 FACES, 30-40s NUDGES)
+       AUTHENTIC GUS.HTML BALLOON "AirHead.cs~1.6" (DRAGGABLE, 6 FACES, 25 REAL TRIVIA)
        ================================================================================== -->
-  <div id="balloonContainer" style="left: 24px; bottom: 32px;" class="fixed z-40 flex flex-col items-start select-none">
+  <div id="balloonContainer" style="left: 24px; bottom: 20px;" class="fixed z-40 flex flex-col items-start select-none">
     
-    <!-- Speech Bubble -->
-    <div id="balloonTriviaBubble" class="hidden mb-3 p-4 max-w-xs sm:max-w-sm rounded-2xl bg-carbon-850/95 border border-amber-500/50 text-xs font-mono shadow-2xl backdrop-blur-md">
+    <!-- Trivia & Nudge Speech Bubble -->
+    <div id="balloonTriviaBubble" class="hidden mb-2 p-4 max-w-xs sm:max-w-sm rounded-2xl bg-carbon-900/95 border border-amber-500/60 text-xs font-mono shadow-2xl backdrop-blur-xl">
       <div class="flex items-center justify-between text-[10px] text-amber-400 pb-1.5 border-b border-carbon-700">
-        <span id="balloonFactLabel" class="font-bold flex items-center gap-1">🎈 AirHead~w0w</span>
-        <button onclick="dismissBalloonBubble()" class="text-slate-400 hover:text-white cursor-pointer">✕</button>
+        <span id="balloonFactLabel" class="font-bold flex items-center gap-1">🎈 AirHead.cs~1.6</span>
+        <button onclick="dismissBalloonBubble()" class="text-slate-400 hover:text-white cursor-pointer px-1">✕</button>
       </div>
-      <div id="balloonFactText" class="text-slate-200 mt-2 leading-relaxed"></div>
-      <div class="text-[9px] text-slate-400 mt-2 text-right">Drag me around or click for trivia! 🎈</div>
+      <div id="balloonFactTitle" class="text-white font-bold text-xs mt-2"></div>
+      <div id="balloonFactText" class="text-slate-200 mt-1 leading-relaxed font-sans text-xs"></div>
+      <div class="mt-3 pt-2 border-t border-carbon-800 flex items-center justify-between gap-2">
+        <button id="askCopilotTriviaBtn" type="button" onclick="askCopilotAboutCurrentTrivia()" class="px-2.5 py-1 rounded-lg bg-amber-500/15 hover:bg-amber-500 text-amber-300 hover:text-carbon-950 font-mono text-[10px] font-bold border border-amber-500/40 transition-colors cursor-pointer">
+          💬 Ask Copilot more
+        </button>
+        <span class="text-[9.5px] text-slate-400">Click balloon for next 🎈</span>
+      </div>
     </div>
 
-    <!-- Draggable Gus Balloon (Vector Shaded with Reference Texture & Nubs) -->
-    <div id="gusBalloon" class="relative cursor-grab active:cursor-grabbing animate-float-slow group" title="Drag me anywhere or click for trivia!">
-      <svg id="balloonSvg" width="84" height="112" viewBox="0 0 100 130" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <radialGradient id="gusBalloonShade" cx="38%" cy="30%" r="65%">
-            <stop offset="0%" stop-color="#d8f0ff"/>
-            <stop offset="35%" stop-color="#9fd5f6"/>
-            <stop offset="75%" stop-color="#5a95be"/>
-            <stop offset="100%" stop-color="#386685"/>
-          </radialGradient>
-          <radialGradient id="nubShade" cx="40%" cy="35%" r="60%">
-            <stop offset="0%" stop-color="#a8ddfc"/>
-            <stop offset="100%" stop-color="#3c6b8c"/>
-          </radialGradient>
-        </defs>
+    <!-- Exact gus.html DOM inside Scaled Interactive Shell -->
+    <div id="gusBalloon" class="balloon-scale-shell gus-float-anim" title="AirHead.cs~1.6 — Drag me around or click for tech trivia!">
+      <div class="balloon-container">
+        <div id="gusStick" class="balloon-stick"></div>
 
-        <!-- String -->
-        <path d="M 50 96 Q 44 112 52 128" stroke="#cbd5e1" stroke-width="2.4" stroke-linecap="round" fill="none"/>
-        
-        <!-- Balloon Spherical Body -->
-        <circle cx="50" cy="50" r="44" fill="url(#gusBalloonShade)"/>
-        
-        <!-- Two Spherical Bottom Nubs (Reference Match) -->
-        <circle cx="34" cy="80" r="7.5" fill="url(#nubShade)"/>
-        <circle cx="66" cy="80" r="7.5" fill="url(#nubShade)"/>
-        
-        <!-- Balloon Tied Knot / Collar -->
-        <rect x="44" y="92" width="12" height="5" rx="2.5" fill="#bae6fd"/>
+        <div id="gusSphere" class="gus-balloon">
+          <div class="balloon-highlight"></div>
 
-        <!-- DYNAMIC MORPHING FACE GROUP (6 FACES) -->
-        <g id="balloonFaceGroup">
-          <!-- Default Reference Face: Gus's Wide Segmented Grin & Angled Slits -->
-          <path d="M 33 34 L 43 38" stroke="#1e293b" stroke-width="3" stroke-linecap="round"/>
-          <path d="M 67 34 L 57 38" stroke="#1e293b" stroke-width="3" stroke-linecap="round"/>
-          <path d="M 28 50 C 28 36 72 36 72 50 C 72 68 28 68 28 50 Z" fill="#ffffff" stroke="#1e293b" stroke-width="2.5"/>
-          <path d="M 28 50 L 72 50" stroke="#1e293b" stroke-width="2"/>
-          <path d="M 40 40 L 40 60" stroke="#1e293b" stroke-width="2"/>
-          <path d="M 50 38 L 50 62" stroke="#1e293b" stroke-width="2"/>
-          <path d="M 60 40 L 60 60" stroke="#1e293b" stroke-width="2"/>
-        </g>
-      </svg>
-      <div class="absolute -top-1 -right-1 px-1.5 py-0.5 rounded-full bg-amber-500 text-carbon-950 font-mono text-[9px] font-extrabold shadow">
-        ?
+          <div class="balloon-eyebrows">
+            <span></span>
+            <span></span>
+          </div>
+
+          <div class="balloon-mouth">
+            <div class="teeth">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+
+          <div class="balloon-cheek cheek-left"></div>
+          <div class="balloon-cheek cheek-right"></div>
+        </div>
+
+        <div class="balloon-knot"></div>
+      </div>
+
+      <div class="absolute top-0 right-1 px-1.5 py-0.5 rounded-full bg-amber-500 text-carbon-950 font-mono text-[9px] font-extrabold shadow-md">
+        cs~1.6
       </div>
     </div>
   </div>
 
   <!-- ==========================================================
-       VINAY'S COPILOT CHAT WIDGET
+       VINAY'S COPILOT CHAT WIDGET (CONNECTED TO CLOUDFLARE WORKER)
        ========================================================== -->
-  <div id="portfolioChat" class="fixed bottom-5 right-5 z-40 w-[360px] max-w-[calc(100vw-24px)] rounded-2xl bg-carbon-850/95 backdrop-blur-xl border border-amber-500/30 shadow-2xl overflow-hidden transition-all duration-300">
+  <div id="portfolioChat" class="fixed bottom-5 right-5 z-40 w-[370px] max-w-[calc(100vw-24px)] rounded-2xl bg-carbon-850/95 backdrop-blur-xl border border-amber-500/30 shadow-2xl overflow-hidden transition-all duration-300">
     <div id="chatHeader" class="bg-carbon-800 px-4 py-3 border-b border-carbon-700/80 flex items-center justify-between cursor-pointer select-none">
       <div class="flex items-center gap-2.5">
         <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399] animate-pulse"></span>
         <span class="font-bold text-sm text-white tracking-tight">Vinay's Copilot</span>
-        <span class="px-2 py-0.5 rounded-full text-[10px] font-mono bg-amber-500/10 border border-amber-500/30 text-amber-300">Adaptive</span>
+        <span class="px-2 py-0.5 rounded-full text-[10px] font-mono bg-amber-500/10 border border-amber-500/30 text-amber-300">AirHead.cs~1.6</span>
       </div>
       <button id="minimizeChatBtn" type="button" class="text-slate-400 hover:text-white text-base px-1.5 py-0.5 rounded transition-colors cursor-pointer">—</button>
     </div>
 
     <div id="chatBodyContainer" class="flex flex-col">
-      <div id="chatWindow" class="h-60 overflow-y-auto p-4 space-y-3 bg-carbon-950/80 text-xs text-slate-200">
+      <div id="chatWindow" class="h-64 overflow-y-auto p-4 space-y-3 bg-carbon-950/80 text-xs text-slate-200">
         <div class="p-3 rounded-2xl rounded-tl-sm bg-carbon-800 border border-carbon-700 text-slate-200 leading-relaxed">
-          Ask me anything about Sai Vinay's background, or let me know if you are visiting as <strong class="text-amber-400">HR / Recruiter</strong>, <strong class="text-amber-400">Manager</strong>, or <strong class="text-amber-400">Developer</strong> to alter the site perspective.
+          Hey! Ask me anything about Sai Vinay's background, the <strong class="text-amber-400">AirHead.cs~1.6</strong> balloon trivia, or switch the site view below for <strong class="text-amber-400">HR</strong>, <strong class="text-amber-400">Manager</strong>, or <strong class="text-amber-400">Dev Mode</strong>.
         </div>
       </div>
 
       <div class="px-3 pt-2 pb-1.5 bg-carbon-900 border-t border-carbon-800 flex items-center gap-1.5 overflow-x-auto whitespace-nowrap text-[10.5px] font-mono">
-        <button type="button" onclick="sendQuickPrompt('I am a Recruiter')" class="px-2.5 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-amber-300 border border-carbon-700 shrink-0 cursor-pointer">👔 HR Mode</button>
-        <button type="button" onclick="sendQuickPrompt('I am a Hiring Manager')" class="px-2.5 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-sky-300 border border-carbon-700 shrink-0 cursor-pointer">📊 Manager Mode</button>
-        <button type="button" onclick="sendQuickPrompt('I am a Developer')" class="px-2.5 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-emerald-300 border border-carbon-700 shrink-0 cursor-pointer">💻 Dev Mode</button>
+        <button type="button" onclick="sendQuickPrompt('Switch to HR Mode')" class="px-2.5 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-amber-300 border border-carbon-700 shrink-0 cursor-pointer">👔 HR Mode</button>
+        <button type="button" onclick="sendQuickPrompt('Switch to Manager Mode')" class="px-2.5 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-sky-300 border border-carbon-700 shrink-0 cursor-pointer">📊 Manager</button>
+        <button type="button" onclick="sendQuickPrompt('Switch to Dev Mode')" class="px-2.5 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-emerald-300 border border-carbon-700 shrink-0 cursor-pointer">💻 Dev Mode</button>
+        <button type="button" onclick="sendQuickPrompt('What does cs~1.6 mean?')" class="px-2.5 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-purple-300 border border-carbon-700 shrink-0 cursor-pointer">🎮 cs~1.6?</button>
         <button type="button" onclick="sendQuickPrompt('whoami')" class="px-2.5 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-amber-400 border border-carbon-700 shrink-0 cursor-pointer">☕ whoami</button>
       </div>
 
       <div class="p-3 bg-carbon-900 border-t border-carbon-700 flex items-center gap-2">
-        <input type="text" id="userInput" class="flex-1 bg-carbon-950 border border-carbon-700 focus:border-amber-500 rounded-xl px-3 py-2 text-xs text-white outline-none font-sans placeholder-slate-500" placeholder="Type a message or state your role..." autocomplete="off">
+        <input type="text" id="userInput" class="flex-1 bg-carbon-950 border border-carbon-700 focus:border-amber-500 rounded-xl px-3 py-2 text-xs text-white outline-none font-sans placeholder-slate-500" placeholder="Ask about Vinay, trivia, or switch modes..." autocomplete="off">
         <button id="sendChatBtn" type="button" class="px-3.5 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-carbon-950 font-bold text-xs font-mono shrink-0 cursor-pointer">Send</button>
       </div>
     </div>
   </div>
 
   <!-- ==================================================================================
-       DEEP DIVE MODALS (STRICT PERSPECTIVE DECOUPLING: MANAGER vs DEVELOPER)
+       5 SANITIZED DEEP DIVE MODALS (STRICT PERSPECTIVE DECOUPLING: MANAGER vs DEV)
        ================================================================================== -->
   
   <!-- MODAL 1: DOCKER READINESS PROBE TRIAGE -->
@@ -1586,21 +1893,18 @@
         <svg viewBox="0 0 600 115" class="w-full h-auto bg-[#080d16] rounded-xl border border-carbon-800 p-2" xmlns="http://www.w3.org/2000/svg">
           <line x1="140" y1="58" x2="220" y2="58" stroke="#34d399" stroke-width="2.5" class="svg-flow-line"/>
           <line x1="360" y1="58" x2="440" y2="58" stroke="#ef4444" stroke-width="2.5" class="svg-flow-line"/>
-
           <g transform="translate(10, 18)">
             <rect width="130" height="74" rx="8" fill="#101624" stroke="#38bdf8" stroke-width="1.5"/>
             <text x="65" y="32" text-anchor="middle" fill="#7dd3fc" font-size="11" font-weight="bold">Base Registry</text>
             <text x="65" y="50" text-anchor="middle" fill="#94a3b8" font-size="8.5">enterprise-java-base</text>
             <text x="65" y="64" text-anchor="middle" fill="#38bdf8" font-size="8">hardened (no curl)</text>
           </g>
-
           <g transform="translate(220, 18)">
             <rect width="140" height="74" rx="8" fill="#062c22" stroke="#34d399" stroke-width="1.5"/>
             <text x="70" y="32" text-anchor="middle" fill="#6ee7b7" font-size="11" font-weight="bold">Spring Boot App</text>
             <text x="70" y="50" text-anchor="middle" fill="#34d399" font-size="8.5">Port 8080 Alive</text>
             <text x="70" y="64" text-anchor="middle" fill="#a7f3d0" font-size="8">Initialized: ~7.55s</text>
           </g>
-
           <g transform="translate(440, 18)">
             <rect width="150" height="74" rx="8" fill="#3b0a0a" stroke="#ef4444" stroke-width="1.5"/>
             <text x="75" y="32" text-anchor="middle" fill="#fca5a5" font-size="11" font-weight="bold">Readiness Probe</text>
@@ -1611,13 +1915,11 @@
       </div>
 
       <div class="p-6 overflow-y-auto space-y-4 text-xs">
-        <!-- Rendered in Manager Mode -->
         <div class="modal-manager-brief space-y-3 leading-relaxed text-slate-300">
           <p><strong>Executive Business Impact:</strong> A blocking deployment halt disrupted release schedules across multiple decoupled subscription and domain controller microservices under an active 60-minute SLA window.</p>
-          <p><strong>Incident Command &amp; Resolution:</strong> Volunteered to lead live triage. Within 15 minutes, telemetry proved the application logic and embedded Tomcat server were healthy on port 8080. Traced the blocker to a stripped utility in the base container layer and published a permanent mitigation runbook in 45 minutes.</p>
+          <p><strong>Incident Command &amp; Resolution:</strong> Volunteered to lead live triage. Within 15 minutes, telemetry proved the application logic and embedded Tomcat server were healthy on port 8080. Traced the blocker to a stripped utility in the shared base container layer and published a permanent mitigation runbook in 45 minutes.</p>
         </div>
 
-        <!-- Rendered strictly in Dev Mode -->
         <div class="modal-dev-workbench hidden space-y-3 font-mono text-[11px] text-slate-300">
           <div class="p-3 rounded bg-carbon-950 border border-carbon-800">
             <span class="text-amber-400 block mb-1"># Sanitized Runtime Telemetry Log:</span>
@@ -1627,7 +1929,7 @@
             <div class="text-slate-400 mt-1">Probe Command: /usr/bin/curl --fail --noproxy "*" http://localhost:8080/api/v1/health/ping</div>
           </div>
           <div class="p-3 rounded bg-carbon-950 border border-carbon-800">
-            <span class="text-sky-400 block mb-1"># Dockerfile Layer Patch:</span>
+            <span class="text-sky-400 block mb-1"># Dockerfile Layer Remediation:</span>
             <div class="text-slate-300">FROM registry.internal-cloud.net/core/enterprise-java-base:latest</div>
             <div class="text-emerald-400">+ RUN apk add --no-cache curl || apt-get update &amp;&amp; apt-get install -y curl</div>
             <div class="text-slate-300">HEALTHCHECK --interval=10s --timeout=3s CMD curl -f http://localhost:8080/health || exit 1</div>
@@ -1660,23 +1962,20 @@
         <svg viewBox="0 0 600 115" class="w-full h-auto bg-[#080d16] rounded-xl border border-carbon-800 p-2" xmlns="http://www.w3.org/2000/svg">
           <line x1="160" y1="58" x2="230" y2="38" stroke="#f59e0b" stroke-width="2" class="svg-flow-line"/>
           <line x1="160" y1="58" x2="230" y2="80" stroke="#34d399" stroke-width="2" class="svg-flow-line"/>
-
           <g transform="translate(10, 24)">
             <rect width="150" height="68" rx="8" fill="#172554" stroke="#60a5fa" stroke-width="1.5"/>
-            <text x="75" y="34" text-anchor="middle" fill="#bfdbfe" font-size="11" font-weight="bold">PR [PR-CORE-7625]</text>
+            <text x="75" y="34" text-anchor="middle" fill="#bfdbfe" font-size="11" font-weight="bold">PR [IAC-AUDIT-225]</text>
             <text x="75" y="50" text-anchor="middle" fill="#93c5fd" font-size="8.5">15 Config Files Audited</text>
           </g>
-
           <g transform="translate(230, 10)">
             <rect width="350" height="44" rx="6" fill="#451a03" stroke="#f59e0b" stroke-width="1.5"/>
             <text x="175" y="20" text-anchor="middle" fill="#fcd34d" font-size="9" font-weight="bold">INTERCEPTED: Staging Role in Prod HCL</text>
-            <text x="175" y="34" text-anchor="middle" fill="#fef08a" font-size="8">arn:aws:iam::126350******:role/prod-service-role</text>
+            <text x="175" y="34" text-anchor="middle" fill="#fef08a" font-size="8">arn:aws:iam::126350******:role/stg-billing-events-service</text>
           </g>
-
           <g transform="translate(230, 60)">
             <rect width="350" height="44" rx="6" fill="#062c22" stroke="#34d399" stroke-width="1.5"/>
             <text x="175" y="20" text-anchor="middle" fill="#6ee7b7" font-size="9" font-weight="bold">CORRECTED: Account-Scoped Prod Principal</text>
-            <text x="175" y="34" text-anchor="middle" fill="#a7f3d0" font-size="8">arn:aws:iam::&lt;PROD_ACCOUNT_ID&gt;:role/prod-service-role</text>
+            <text x="175" y="34" text-anchor="middle" fill="#a7f3d0" font-size="8">arn:aws:iam::984120******:role/prod-billing-events-service</text>
           </g>
         </svg>
       </div>
@@ -1691,8 +1990,8 @@
           <div class="p-3 rounded bg-carbon-950 border border-carbon-800">
             <span class="text-amber-400 block mb-1"># Sanitized Terragrunt service.hcl Intercept:</span>
             <div class="text-slate-400">environments/prod-cloud-infra/modules/billing-service/service.hcl</div>
-            <div class="text-red-400">- tropos_role = "arn:aws:iam::126350******:role/prod-billing-events-service"</div>
-            <div class="text-emerald-400">+ tropos_role = "arn:aws:iam::&lt;PROD_ACCOUNT_ID&gt;:role/prod-billing-events-service"</div>
+            <div class="text-red-400">- service_role = "arn:aws:iam::126350******:role/stg-billing-events-service"</div>
+            <div class="text-emerald-400">+ service_role = "arn:aws:iam::984120******:role/prod-billing-events-service"</div>
           </div>
           <div class="p-3 rounded bg-carbon-950 border border-carbon-800">
             <span class="text-emerald-400 block mb-1"># KMS Module Semantic Parity:</span>
@@ -1727,17 +2026,14 @@
         <svg viewBox="0 0 600 110" class="w-full h-auto bg-[#080d16] rounded-xl border border-carbon-800 p-2" xmlns="http://www.w3.org/2000/svg">
           <path d="M 180 32 L 280 55" stroke="#c084fc" stroke-width="2" fill="none" class="svg-flow-line"/>
           <path d="M 180 80 L 280 55" stroke="#c084fc" stroke-width="2" fill="none" class="svg-flow-line"/>
-
           <g transform="translate(15, 12)">
             <rect width="160" height="38" rx="6" fill="#2e1065" stroke="#a855f7" stroke-width="1.2"/>
             <text x="80" y="24" text-anchor="middle" fill="#e9d5ff" font-size="10">parentSKU (Dead Docstring)</text>
           </g>
-
           <g transform="translate(15, 60)">
             <rect width="160" height="38" rx="6" fill="#2e1065" stroke="#a855f7" stroke-width="1.2"/>
             <text x="80" y="24" text-anchor="middle" fill="#e9d5ff" font-size="10">parentProductSku (Active)</text>
           </g>
-
           <g transform="translate(290, 20)">
             <rect width="290" height="70" rx="8" fill="#062c22" stroke="#34d399" stroke-width="1.5"/>
             <text x="145" y="35" text-anchor="middle" fill="#6ee7b7" font-size="11.5" font-weight="bold">Unified Canonical SKU</text>
@@ -1755,7 +2051,7 @@
         <div class="modal-dev-workbench hidden space-y-3 font-mono text-[11px] text-slate-300">
           <div class="p-3 rounded bg-carbon-950 border border-carbon-800">
             <span class="text-purple-400 block mb-1"># Sanitized Java Entity Diff:</span>
-            <div class="text-slate-400">core-service/.../SubscriptionEntity.java</div>
+            <div class="text-slate-400">core-subscription-service/.../SubscriptionEntity.java</div>
             <div class="text-red-400">- // private String parentSku; (Unused dead field &amp; docstrings stripped)</div>
             <div class="text-emerald-400">+ private String parentProductSku; // Single Canonical Identifier</div>
           </div>
@@ -1768,4 +2064,784 @@
       </div>
 
       <div class="px-6 py-3 bg-carbon-850 border-t border-carbon-800 flex justify-end">
-        <button onclick="closeModal('modal-java')" class="px-4 py-2 rounded-lg bg-amber-500 text-carbon-950 font-mono text-xs font-bold hover:bg-amber-400 cursor-pointer">Close Walkthrough
+        <button onclick="closeModal('modal-java')" class="px-4 py-2 rounded-lg bg-amber-500 text-carbon-950 font-mono text-xs font-bold hover:bg-amber-400 cursor-pointer">Close Walkthrough</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL A: ZERO-TRUST MULTI-ACCOUNT ACCESS MATRIX (FULLY SANITIZED) -->
+  <div id="modal-zero-trust" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="bg-carbon-900 border border-carbon-700 max-w-2xl w-full rounded-2xl p-6 space-y-4 max-h-[90vh] overflow-y-auto shadow-2xl font-mono text-xs">
+      <div class="flex items-center justify-between border-b border-carbon-700 pb-3">
+        <h3 class="text-sm font-bold text-white flex items-center gap-2">
+          <i data-lucide="shield-check" class="w-4 h-4 text-emerald-400"></i> Zero-Trust Multi-Account Access Matrix
+        </h3>
+        <button onclick="closeModal('modal-zero-trust')" class="text-slate-400 hover:text-white cursor-pointer">✕ ESC</button>
+      </div>
+      <p class="text-slate-300 leading-relaxed font-sans text-xs">
+        Replaced standing administrative cloud credentials with corporate SSO/SAML role federation, assigning time-bounded, least-privilege roles across isolated enterprise AWS accounts.
+      </p>
+      <div class="p-3.5 rounded-xl bg-carbon-950 border border-carbon-800 space-y-2 text-[11px]">
+        <div class="flex justify-between py-1 border-b border-carbon-800"><span class="text-slate-400">Account: ent-cloud-ledger-stg-pro (1264********)</span><span class="text-emerald-400 font-bold">READONLY</span></div>
+        <div class="flex justify-between py-1 border-b border-carbon-800"><span class="text-slate-400">Account: ent-cloud-telemetry-stg-pro (9621********)</span><span class="text-amber-400 font-bold">OPERATOR</span></div>
+        <div class="flex justify-between py-1 border-b border-carbon-800"><span class="text-slate-400">Account: ent-core-billing-stg-pro (0532********)</span><span class="text-emerald-400 font-bold">READONLY</span></div>
+        <div class="flex justify-between py-1"><span class="text-slate-400">Account: ent-subscription-sf-stg-pro (8607********)</span><span class="text-amber-400 font-bold">OPERATOR</span></div>
+      </div>
+      <div class="flex justify-end pt-2">
+        <button onclick="closeModal('modal-zero-trust')" class="px-4 py-2 rounded-lg bg-amber-500 text-carbon-950 font-bold hover:bg-amber-400 cursor-pointer">Close Matrix</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL B: IAC MODULE PROMOTION PIPELINE (FULLY SANITIZED) -->
+  <div id="modal-pipeline" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="bg-carbon-900 border border-carbon-700 max-w-2xl w-full rounded-2xl p-6 space-y-4 max-h-[90vh] overflow-y-auto shadow-2xl font-mono text-xs">
+      <div class="flex items-center justify-between border-b border-carbon-700 pb-3">
+        <h3 class="text-sm font-bold text-white flex items-center gap-2">
+          <i data-lucide="package" class="w-4 h-4 text-sky-400"></i> IaC Module Promotion Pipeline
+        </h3>
+        <button onclick="closeModal('modal-pipeline')" class="text-slate-400 hover:text-white cursor-pointer">✕ ESC</button>
+      </div>
+      <p class="text-slate-300 leading-relaxed font-sans text-xs">
+        Standardized infrastructure module upgrades (SNS, SQS, Secrets Manager, IAM) across development, staging, and production tiers with automated semantic tag verification.
+      </p>
+      <div class="space-y-2 text-[11px]">
+        <div class="p-2.5 rounded bg-carbon-950 border border-sky-500/30 text-sky-300">1. Semantic Release Tagging (e.g., core-iac/terraform-aws-secrets-manager:v3.3.1)</div>
+        <div class="p-2.5 rounded bg-carbon-950 border border-amber-500/30 text-amber-300">2. Staging Parity Verification &amp; KMS Key Envelope Validation</div>
+        <div class="p-2.5 rounded bg-carbon-950 border border-emerald-500/30 text-emerald-300">3. Production Zero-Drift Apply via Automated CI/CD</div>
+      </div>
+      <div class="flex justify-end pt-2">
+        <button onclick="closeModal('modal-pipeline')" class="px-4 py-2 rounded-lg bg-amber-500 text-carbon-950 font-bold hover:bg-amber-400 cursor-pointer">Close Pipeline</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="bg-carbon-950 border-t border-carbon-800 py-10 text-xs font-mono text-slate-400 relative z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        © 2026 Sai Vinay Mullapudi • 4 Years Enterprise Experience (US &amp; India)
+      </div>
+      <div class="flex items-center gap-6">
+        <a href="https://github.com/sai-vinay-mullapudi" target="_blank" rel="noreferrer" class="hover:text-amber-400">GitHub</a>
+        <a href="https://linkedin.com/in/sai-vinay-mullapudi" target="_blank" rel="noreferrer" class="hover:text-amber-400">LinkedIn</a>
+        <a href="https://www.credly.com/users/sai-vinay-mullapudi" target="_blank" rel="noreferrer" class="hover:text-amber-400">Credly</a>
+        <a href="#home" class="hover:text-amber-400">Top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Defensive DOM Scrubber
+    (function scrubStrayCitations() {
+      const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+      const regex = /\[\s*cite:\s*[\d,\s]+\]/gi;
+      let node;
+      while ((node = walker.nextNode())) {
+        if (regex.test(node.nodeValue)) {
+          node.nodeValue = node.nodeValue.replace(regex, '');
+        }
+      }
+    })();
+
+    if (window.lucide) {
+      lucide.createIcons();
+    }
+
+    // Anti-scraping phone number decoder
+    function revealPhone(btn) {
+      const reversedB64 = "=0VN5kTN5UTNzETO";
+      const b64 = reversedB64.split("").reverse().join("");
+      const decoded = atob(b64);
+      const container = document.getElementById('phoneContainer');
+      if (container) {
+        container.innerHTML = `<a href="tel:${decoded.replace(/\s+/g, '')}" class="text-amber-400 font-bold hover:underline">${decoded}</a>`;
+      }
+    }
+
+    const openRolesBadge = document.getElementById('openRolesBadge');
+    if (openRolesBadge) {
+      openRolesBadge.addEventListener('dblclick', () => {
+        showToast('⚡ <strong>Recruiter Fast-Track:</strong> Sai Vinay responds to interview outreach within 24 hours!');
+      });
+    }
+
+    const CALENDLY_URL = 'https://calendly.com/msaivinay306/30min?hide_gdpr_banner=1&background_color=0a0e17&text_color=e2e8f0&primary_color=f59e0b';
+    function openCalendly() {
+      if (typeof Calendly !== 'undefined') {
+        Calendly.initPopupWidget({ url: CALENDLY_URL });
+      } else {
+        window.open(CALENDLY_URL, '_blank', 'noopener,noreferrer');
+      }
+    }
+
+    function showToast(message, duration = 4000) {
+      const toast = document.getElementById('customToast');
+      const text = document.getElementById('customToastText');
+      if (!toast || !text) return;
+      text.innerHTML = message;
+      toast.classList.remove('hidden');
+      toast.classList.add('flex');
+      clearTimeout(window.toastTimer);
+      window.toastTimer = setTimeout(() => {
+        toast.classList.remove('flex');
+        toast.classList.add('hidden');
+      }, duration);
+    }
+
+    function toggleCase(bodyId, iconId) {
+      const body = document.getElementById(bodyId);
+      const icon = document.getElementById(iconId);
+      if (body) {
+        const isHidden = body.classList.contains('hidden');
+        body.classList.toggle('hidden', !isHidden);
+        if (icon) {
+          icon.style.transform = isHidden ? 'rotate(180deg)' : 'rotate(0deg)';
+        }
+      }
+    }
+
+    const ALL_MODALS = ['modal-incident', 'modal-arn', 'modal-java', 'modal-zero-trust', 'modal-pipeline'];
+    function openModal(id) {
+      const modal = document.getElementById(id);
+      if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeModal(id) {
+      const modal = document.getElementById(id);
+      if (modal) {
+        modal.classList.remove('flex');
+        modal.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+      }
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        ALL_MODALS.forEach(closeModal);
+      }
+    });
+
+    ALL_MODALS.forEach(id => {
+      const modal = document.getElementById(id);
+      if (modal) {
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) closeModal(id);
+        });
+      }
+    });
+
+    /* PERSPECTIVE SWITCHER */
+    function setPerspective(role, showNotification = true) {
+      document.body.classList.remove('mode-hr', 'mode-manager', 'mode-dev');
+      
+      const viewHr = document.getElementById('view-hr');
+      const viewManagerDev = document.getElementById('view-manager-dev');
+      const managerKpi = document.getElementById('managerKpiStrip');
+      const devTelemetry = document.getElementById('devTelemetryStrip');
+      const devCliDrawer = document.getElementById('devCliDrawer');
+      const devPatchRow = document.getElementById('devPatchRow');
+      const devWorkflows = document.querySelectorAll('.workflow-dev');
+      const managerNarratives = document.querySelectorAll('.narrative-manager');
+      const devWorkbenches = document.querySelectorAll('.modal-dev-workbench');
+      const managerBriefs = document.querySelectorAll('.modal-manager-brief');
+
+      if (role === 'recruiter') {
+        document.body.classList.add('mode-hr');
+        viewHr.style.display = 'block';
+        viewManagerDev.style.display = 'none';
+        devCliDrawer.style.display = 'none';
+        stopMatrixRain();
+        setBalloonFace('secret');
+        if (showNotification) showToast('👔 <strong>HR / Recruiter Mode:</strong> Custom Bento layout, Credly seals &amp; 30m call booking.');
+      } else if (role === 'manager') {
+        document.body.classList.add('mode-manager');
+        viewHr.style.display = 'none';
+        viewManagerDev.style.display = 'block';
+        if (managerKpi) managerKpi.style.display = 'block';
+        if (devTelemetry) devTelemetry.style.display = 'none';
+        if (devCliDrawer) devCliDrawer.style.display = 'none';
+        if (devPatchRow) devPatchRow.style.display = 'none';
+        devWorkflows.forEach(el => el.classList.add('hidden'));
+        managerNarratives.forEach(el => el.classList.remove('hidden'));
+        devWorkbenches.forEach(el => el.classList.add('hidden'));
+        managerBriefs.forEach(el => el.classList.remove('hidden'));
+        stopMatrixRain();
+        setBalloonFace('default');
+        if (showNotification) showToast('📊 <strong>Hiring Manager Mode:</strong> Executive baseline &amp; SLA metrics.');
+      } else if (role === 'engineer') {
+        document.body.classList.add('mode-dev');
+        viewHr.style.display = 'none';
+        viewManagerDev.style.display = 'block';
+        if (managerKpi) managerKpi.style.display = 'none';
+        if (devTelemetry) devTelemetry.style.display = 'block';
+        if (devCliDrawer) devCliDrawer.style.display = 'block';
+        if (devPatchRow) devPatchRow.style.display = 'flex';
+        devWorkflows.forEach(el => el.classList.remove('hidden'));
+        managerNarratives.forEach(el => el.classList.add('hidden'));
+        devWorkbenches.forEach(el => el.classList.remove('hidden'));
+        managerBriefs.forEach(el => el.classList.add('hidden'));
+
+        ['case-1', 'case-2', 'case-3'].forEach(id => {
+          const body = document.getElementById(id + '-body');
+          const icon = document.getElementById(id + '-icon');
+          if (body && body.classList.contains('hidden')) {
+            body.classList.remove('hidden');
+            if (icon) icon.style.transform = 'rotate(180deg)';
+          }
+        });
+
+        startMatrixRain();
+        setBalloonFace('hover');
+        if (showNotification) showToast('💻 <strong>Matrix Developer Mode:</strong> Interactive shell, telemetry &amp; live probes.');
+      }
+    }
+
+    /* REAL-TIME TELEMETRY REFRESH */
+    let packetCount = 1420;
+    setInterval(() => {
+      packetCount += Math.floor(Math.random() * 4) + 1;
+      const countEl = document.getElementById('devPacketCounter');
+      if (countEl) countEl.textContent = String(packetCount).padStart(6, '0');
+
+      const clockEl = document.getElementById('devClockVal');
+      if (clockEl) {
+        clockEl.textContent = new Date().toLocaleTimeString(undefined, { timeZoneName: 'short' });
+      }
+      const resEl = document.getElementById('devResVal');
+      if (resEl) resEl.textContent = `${window.innerWidth}x${window.innerHeight}`;
+      const netEl = document.getElementById('devNetVal');
+      if (netEl && navigator.connection) {
+        netEl.textContent = `${(navigator.connection.effectiveType || '4G').toUpperCase()} (~${navigator.connection.downlink || '10'}Mbps)`;
+      }
+    }, 250);
+
+    setInterval(() => {
+      const pingEl = document.getElementById('devPingVal');
+      if (pingEl && document.body.classList.contains('mode-dev')) {
+        const start = performance.now();
+        fetch(window.location.href + '?t=' + Date.now(), { method: 'HEAD', cache: 'no-cache' })
+          .then(() => {
+            const rtt = Math.round(performance.now() - start);
+            pingEl.textContent = rtt + ' ms';
+          })
+          .catch(() => { pingEl.textContent = '12 ms'; });
+      }
+    }, 3500);
+
+    /* INTERACTIVE CLI DRAWER */
+    const cliInput = document.getElementById('cliInput');
+    const cliOutput = document.getElementById('cliOutput');
+
+    function runCliCommand(cmd) {
+      if (!cmd) return;
+      printCliLine(`sai@prod-bastion:~$ ${cmd}`, 'text-[#00ff66] font-bold');
+      const clean = cmd.trim().toLowerCase();
+
+      if (clean === 'cat stack.json') {
+        printCliLine(`{
+  "cloud": ["AWS (VPC, IAM, KMS, SQS, SNS, NLB)"],
+  "iac": ["Terraform", "Terragrunt"],
+  "backend": ["Java 17 (Spring Boot)", "Docker", "Harbor"],
+  "ai_mlops": ["Python", "PyTorch", "Agentic RAG"]
+}`, 'text-amber-300');
+      } else if (clean === 'curl -i /health' || clean === 'curl /health') {
+        printCliLine(`HTTP/1.1 200 OK
+Content-Type: application/json;charset=UTF-8
+{"status":"UP","diskSpace":{"status":"UP"},"db":{"status":"UP"}}`, 'text-emerald-400');
+      } else if (clean.startsWith('git log')) {
+        printCliLine(`* f82a9d1 (HEAD -> main) docs: finalize production deep dive runbooks
+* b4c3102 fix(container): resolve curl missing in base image probe
+* 19a0e44 refactor(sku): unify parentSKU into canonical entity model`, 'text-sky-300');
+      } else if (clean === 'whoami') {
+        printCliLine(`uid=1000(sai-vinay-mullapudi) gid=1000(devops-genai)
+☕ Converting dark roast into zero-drift Terraform blueprints!`, 'text-amber-400');
+      } else if (clean === 'help') {
+        printCliLine(`Available: cat stack.json | curl -I /health | git log | whoami | clear`, 'text-slate-300');
+      } else if (clean === 'clear') {
+        cliOutput.innerHTML = '';
+      } else {
+        printCliLine(`bash: ${clean}: command not found. Type 'help' for available commands.`, 'text-red-400');
+      }
+      cliOutput.scrollTop = cliOutput.scrollHeight;
+      if (cliInput) cliInput.value = '';
+    }
+
+    function printCliLine(text, className = '') {
+      const div = document.createElement('div');
+      div.className = className;
+      div.innerText = text;
+      cliOutput.appendChild(div);
+      cliOutput.scrollTop = cliOutput.scrollHeight;
+    }
+
+    if (cliInput) {
+      cliInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          runCliCommand(cliInput.value);
+        }
+      });
+    }
+
+    /* =====================================================================
+       AUTHENTIC GUS.HTML BALLOON "AirHead.cs~1.6" + 25 CURATED TRIVIA ITEMS
+       ===================================================================== */
+    const balloon = document.getElementById('gusBalloon');
+    const gusSphere = document.getElementById('gusSphere');
+    const balloonContainer = document.getElementById('balloonContainer');
+    const triviaBubble = document.getElementById('balloonTriviaBubble');
+    const factLabel = document.getElementById('balloonFactLabel');
+    const factTitle = document.getElementById('balloonFactTitle');
+    const factText = document.getElementById('balloonFactText');
+    const askCopilotBtn = document.getElementById('askCopilotTriviaBtn');
+
+    function setBalloonFace(faceName) {
+      if (!gusSphere) return;
+      gusSphere.classList.remove('face-hover', 'face-drag', 'face-bonk', 'face-secret', 'face-nudge');
+      if (faceName && faceName !== 'default') {
+        gusSphere.classList.add('face-' + faceName);
+      }
+    }
+
+    // 25 Curated Trivia Entries from Specification
+    const CURATED_TRIVIA = [
+      { category: "Tech History", title: "ChatGPT's Calendar Coincidence", fact: "ChatGPT was publicly introduced on November 30, 2022—which also happens to be Computer Security Day (established in 1988)." },
+      { category: "Tech History", title: "The Internet's First Message", fact: "On October 29, 1969, UCLA tried sending 'LOGIN' over ARPANET to Stanford. The system crashed after two letters, making the first message 'LO'." },
+      { category: "Tech History", title: "The Unix Epoch", fact: "Many Unix-like systems measure time as seconds elapsed since January 1, 1970 at 00:00:00 UTC." },
+      { category: "Tech History", title: "The Famous Computer Moth", fact: "In 1947, Harvard Mark II engineers taped a real moth into their logbook after it got trapped in a relay—popularizing the term 'computer bug'." },
+      { category: "Tech History", title: "The Year 2038 Problem", fact: "Legacy systems storing Unix time as a signed 32-bit integer will overflow on January 19, 2038." },
+      { category: "Artificial Intelligence", title: "The Transformer Revolution", fact: "The 2017 paper 'Attention Is All You Need' introduced the Transformer architecture behind modern LLMs." },
+      { category: "Artificial Intelligence", title: "AI Hallucinations", fact: "LLMs predict plausible token sequences rather than verifying facts natively—which is why RAG and guardrails matter." },
+      { category: "Artificial Intelligence", title: "Context Window != Memory", fact: "A model's context window only holds tokens for the current request; persistent memory requires external storage and retrieval." },
+      { category: "Artificial Intelligence", title: "Tool-Calling Agents", fact: "Modern AI agents don't just chat—they invoke structured APIs, query databases, and execute validated workflows." },
+      { category: "Artificial Intelligence", title: "The Model Arms Race", fact: "The 'latest' model isn't always best; production engineering balances latency, token cost, and task accuracy." },
+      { category: "Computing & Web", title: "The First Website", fact: "Created at CERN by Tim Berners-Lee, the very first website explained what the World Wide Web was and how to use it." },
+      { category: "Computing & Web", title: "The First .com Domain", fact: "Symbolics.com was registered on March 15, 1985—making it the internet's first .com domain." },
+      { category: "Computing & Web", title: "What HTTP 404 Means", fact: "HTTP 404 means the server is reachable, but the specific requested resource could not be found at that URI." },
+      { category: "Computing & Web", title: "The QWERTY Keyboard", fact: "Named after the top-left six keys, QWERTY emerged from mechanical typewriters and became the global standard." },
+      { category: "Computing & Web", title: "Anatomy of a URL", fact: "A single URL packs a scheme, hostname, port, path, query parameters, and fragment identifier." },
+      { category: "Cloud & DevOps", title: "Shared Responsibility in Cloud", fact: "Cloud providers secure the physical data center, but customers remain responsible for IAM, encryption, and configuration." },
+      { category: "Cloud & DevOps", title: "Containers vs. VMs", fact: "Containers share the host OS kernel for lightweight isolation, whereas VMs virtualize an entire guest OS." },
+      { category: "Cloud & DevOps", title: "Kubernetes' Greek Roots", fact: "Kubernetes comes from the Greek word for 'helmsman' or 'pilot'—steering container workloads across clusters." },
+      { category: "Cloud & DevOps", title: "Infrastructure as Code (IaC)", fact: "Defining cloud topologies in Terraform/HCL makes environments reproducible, auditable, and version-controlled." },
+      { category: "Cloud & DevOps", title: "Supply-Chain Dependencies", fact: "A single stripped binary (like curl in a base image!) or compromised upstream package can halt an entire CI/CD pipeline." },
+      { category: "Gaming & Future Tech", title: "GPUs: From Gaming to AI", fact: "Built for parallel 3D pixel shading in games like CS 1.6, GPUs turned out to be ideal for neural-network matrix math." },
+      { category: "Gaming & Future Tech", title: "FPS vs. Frame Pacing", fact: "High average FPS can still feel choppy if frame-time variance and input latency aren't consistent." },
+      { category: "Gaming & Future Tech", title: "Low Ping != Zero Lag", fact: "Even with a 12ms ping, packet loss and network jitter can still cause rubber-banding in real-time systems." },
+      { category: "Gaming & Future Tech", title: "Quantum Computing", fact: "Quantum computers use qubits for specialized cryptographic and optimization problems rather than replacing everyday CPUs." },
+      { category: "Gaming & Future Tech", title: "Beyond Smaller Transistors", fact: "Modern chip performance relies on 3D packaging, memory bandwidth, and interconnect efficiency—not just nanometer shrinkage." }
+    ];
+
+    let unplayedTrivia = [...Array(CURATED_TRIVIA.length).keys()];
+    let currentTriviaItem = null;
+
+    // 2D Drag & Wall Collision Physics
+    let isDragging = false;
+    let hasMoved = false;
+    let dragStartX = 0, dragStartY = 0, containerStartX = 0, containerStartY = 0;
+
+    balloon.addEventListener('pointerdown', (e) => {
+      isDragging = true;
+      hasMoved = false;
+      balloon.setPointerCapture(e.pointerId);
+      dragStartX = e.clientX;
+      dragStartY = e.clientY;
+      const rect = balloonContainer.getBoundingClientRect();
+      containerStartX = rect.left;
+      containerStartY = rect.top;
+      balloon.classList.remove('gus-float-anim');
+      setBalloonFace('drag');
+    });
+
+    window.addEventListener('pointermove', (e) => {
+      if (!isDragging) return;
+      const dx = e.clientX - dragStartX;
+      const dy = e.clientY - dragStartY;
+      if (Math.abs(dx) > 4 || Math.abs(dy) > 4) hasMoved = true;
+
+      let newX = containerStartX + dx;
+      let newY = containerStartY + dy;
+
+      const maxX = window.innerWidth - 115;
+      const maxY = window.innerHeight - 190;
+
+      if (newX <= 8 || newX >= maxX || newY <= 8 || newY >= maxY) {
+        triggerBonk();
+      }
+
+      newX = Math.max(8, Math.min(maxX, newX));
+      newY = Math.max(8, Math.min(maxY, newY));
+
+      balloonContainer.style.left = `${newX}px`;
+      balloonContainer.style.top = `${newY}px`;
+      balloonContainer.style.bottom = 'auto';
+    });
+
+    window.addEventListener('pointerup', () => {
+      if (!isDragging) return;
+      isDragging = false;
+      balloon.classList.add('gus-float-anim');
+      setBalloonFace('default');
+      if (!hasMoved) {
+        popTrivia();
+      }
+    });
+
+    balloon.addEventListener('mouseenter', () => {
+      if (!isDragging) setBalloonFace('hover');
+    });
+    balloon.addEventListener('mouseleave', () => {
+      if (!isDragging) setBalloonFace('default');
+    });
+
+    function triggerBonk() {
+      setBalloonFace('bonk');
+      setTimeout(() => {
+        if (!isDragging) setBalloonFace('default');
+      }, 650);
+    }
+
+    function popTrivia() {
+      if (unplayedTrivia.length === 0) unplayedTrivia = [...Array(CURATED_TRIVIA.length).keys()];
+      const randomIdx = Math.floor(Math.random() * unplayedTrivia.length);
+      const factIdx = unplayedTrivia.splice(randomIdx, 1)[0];
+      currentTriviaItem = CURATED_TRIVIA[factIdx];
+
+      factLabel.textContent = `🎈 AirHead.cs~1.6 • ${currentTriviaItem.category}`;
+      factTitle.textContent = currentTriviaItem.title;
+      factText.textContent = currentTriviaItem.fact;
+      if (askCopilotBtn) askCopilotBtn.style.display = 'inline-block';
+      triviaBubble.classList.remove('hidden');
+      setBalloonFace('secret');
+    }
+
+    function askCopilotAboutCurrentTrivia() {
+      if (!currentTriviaItem) return;
+      sendQuickPrompt(`Tell me more about "${currentTriviaItem.title}"`);
+    }
+
+    function dismissBalloonBubble() {
+      triviaBubble.classList.add('hidden');
+      setBalloonFace('default');
+    }
+
+    // Autonomous Nudge Timer (Every 30-40 seconds)
+    const NUDGES = [
+      "Psst! Tell Vinay's Copilot 'Switch to Dev Mode' to see Matrix phosphor rain!",
+      "Try clicking 'HR Mode' in the Copilot chat to see the Recruiter Bento grid!",
+      "Curious why I'm named AirHead.cs~1.6? Ask Vinay's Copilot!",
+      "Ask Vinay's Copilot how many trivia secrets I'm hiding!",
+      "Click me anytime to pop a random tech or gaming trivia card!"
+    ];
+
+    function runPeriodicNudge() {
+      if (triviaBubble.classList.contains('hidden')) {
+        const randomNudge = NUDGES[Math.floor(Math.random() * NUDGES.length)];
+        factLabel.textContent = "🎈 AirHead.cs~1.6";
+        factTitle.textContent = "Quick Tip";
+        factText.textContent = randomNudge;
+        if (askCopilotBtn) askCopilotBtn.style.display = 'none';
+        triviaBubble.classList.remove('hidden');
+        setBalloonFace('nudge');
+
+        setTimeout(() => {
+          if (factTitle.textContent === "Quick Tip") {
+            dismissBalloonBubble();
+          }
+        }, 6000);
+      }
+      const nextInterval = Math.floor(Math.random() * 10000) + 30000; // 30-40s
+      setTimeout(runPeriodicNudge, nextInterval);
+    }
+    setTimeout(runPeriodicNudge, 32000);
+
+    /* MATRIX CANVAS ANIMATION */
+    const canvas = document.getElementById('matrixCanvas');
+    const ctx = canvas.getContext('2d');
+    let matrixTimer = null;
+
+    function resizeMatrix() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeMatrix);
+    resizeMatrix();
+
+    const matrixChars = '0123456789ABCDEFGHXYZ';
+    const charSize = 14;
+    let rainDrops = [];
+
+    function resetRain() {
+      const columns = Math.floor(canvas.width / charSize);
+      rainDrops = Array(columns).fill(1);
+    }
+    resetRain();
+
+    function renderMatrix() {
+      ctx.fillStyle = 'rgba(3, 8, 4, 0.08)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#00ff66';
+      ctx.font = charSize + 'px monospace';
+      for (let i = 0; i < rainDrops.length; i++) {
+        const glyph = matrixChars.charAt(Math.floor(Math.random() * matrixChars.length));
+        ctx.fillText(glyph, i * charSize, rainDrops[i] * charSize);
+        if (rainDrops[i] * charSize > canvas.height && Math.random() > 0.975) {
+          rainDrops[i] = 0;
+        }
+        rainDrops[i]++;
+      }
+    }
+
+    function startMatrixRain() {
+      canvas.style.opacity = '0.22';
+      if (!matrixTimer) matrixTimer = setInterval(renderMatrix, 42);
+    }
+
+    function stopMatrixRain() {
+      canvas.style.opacity = '0';
+      if (matrixTimer) {
+        clearInterval(matrixTimer);
+        matrixTimer = null;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+    }
+
+    /* =====================================================================
+       VINAY'S COPILOT (LIVE CLOUDFLARE WORKER + SECRET MOOD + CS 1.6 LORE)
+       ===================================================================== */
+    const LAMBDA_API_ENDPOINT = "https://portfolio-copilot.msaivinay306.workers.dev";
+    let isChatMinimized = false;
+    let chatHistory = [];
+    let pendingRoleSelection = null;
+
+    const userInput = document.getElementById('userInput');
+    const sendChatBtn = document.getElementById('sendChatBtn');
+    const chatWindow = document.getElementById('chatWindow');
+    const chatHeader = document.getElementById('chatHeader');
+    const chatBodyContainer = document.getElementById('chatBodyContainer');
+    const minimizeChatBtn = document.getElementById('minimizeChatBtn');
+
+    function toggleChatMinimize() {
+      isChatMinimized = !isChatMinimized;
+      chatBodyContainer.style.display = isChatMinimized ? 'none' : 'flex';
+      minimizeChatBtn.innerText = isChatMinimized ? '▢' : '—';
+    }
+
+    chatHeader.addEventListener('click', () => { if (isChatMinimized) toggleChatMinimize(); });
+    minimizeChatBtn.addEventListener('click', (e) => { e.stopPropagation(); toggleChatMinimize(); });
+
+    function sendQuickPrompt(promptText) {
+      if (isChatMinimized) toggleChatMinimize();
+      userInput.value = promptText;
+      sendMessage();
+    }
+
+    function applyRoleFromChat(role, label) {
+      setPerspective(role, true);
+      pendingRoleSelection = null;
+      appendChatMessage(`✓ Switched portfolio perspective to <strong>${label}</strong>!`, 'bot');
+    }
+
+    async function sendMessage() {
+      const text = userInput.value.trim();
+      if (!text) return;
+
+      appendChatMessage(text, 'user');
+      userInput.value = '';
+      const lower = text.toLowerCase();
+
+      // Direct switch commands from quick chips
+      if (lower === 'switch to hr mode') {
+        applyRoleFromChat('recruiter', 'HR / Recruiter Bento View');
+        return;
+      }
+      if (lower === 'switch to manager mode') {
+        applyRoleFromChat('manager', 'Hiring Manager Scorecard View');
+        return;
+      }
+      if (lower === 'switch to dev mode') {
+        applyRoleFromChat('engineer', 'Developer Matrix & Diagnostic View');
+        return;
+      }
+
+      if (lower === 'whoami' || lower === '/whoami') {
+        appendChatMessage(`☕ <strong>$ whoami</strong>: uid=1000(sai-vinay-mullapudi) gid=1000(cloud-devops-genai). An engineer who converts espresso into zero-drift Terraform, resilient Spring Boot services, and agentic AI pipelines!`, 'bot');
+        return;
+      }
+
+      if (lower.includes('sudo hire sai')) {
+        appendChatMessage('👑 <strong>[EXECUTIVE CLEARANCE GRANTED]:</strong> Sai Vinay is ready for technical architecture and leadership rounds. <button onclick="openCalendly()" class="underline text-amber-400 font-mono cursor-pointer">Schedule a 30m call ↗</button>', 'bot');
+        return;
+      }
+
+      // Local fast-path for CS 1.6 homage if Worker hasn't been redeployed yet
+      if (/\b(cs~1\.6|cs\.1\.6|cs 1\.6|counter-strike|counter strike)\b/i.test(lower)) {
+        setBalloonFace('secret');
+        appendChatMessage(`🎮 <strong>AirHead.cs~1.6</strong> is a nod to Sai Vinay's love for <em>Counter-Strike 1.6</em>—and a personal homage to what sparked his passion for networking, low-latency systems, and technology in the first place!`, 'bot');
+        return;
+      }
+
+      if (pendingRoleSelection && /^(yes|yeah|yep|sure|ok|okay|please|switch|do it|y)$/i.test(lower)) {
+        applyRoleFromChat(pendingRoleSelection.role, pendingRoleSelection.label);
+        return;
+      }
+
+      let detected = null;
+      if (/\b(i am a recruiter|i'm a recruiter|hr mode|recruiter view)\b/i.test(lower)) {
+        detected = { role: 'recruiter', label: 'HR / Recruiter View (Bento Grid + Credly Seals)' };
+      } else if (/\b(i am a hiring manager|i'm a manager|manager mode|manager view)\b/i.test(lower)) {
+        detected = { role: 'manager', label: 'Hiring Manager View (KPI Scorecard + SLA Metrics)' };
+      } else if (/\b(i am a developer|i'm a dev|dev mode|matrix mode)\b/i.test(lower)) {
+        detected = { role: 'engineer', label: 'Developer Matrix View (Diagnostic Shell + Live Telemetry)' };
+      }
+
+      if (detected) {
+        pendingRoleSelection = detected;
+        const btnId = 'role-btn-' + Date.now();
+        appendChatMessage(`
+          <div class="space-y-2">
+            <div>Would you like me to switch the website to the tailored <strong>${detected.label}</strong>?</div>
+            <div class="flex items-center gap-2">
+              <button id="${btnId}" type="button" class="px-3 py-1 rounded-lg bg-amber-500 hover:bg-amber-400 text-carbon-950 font-mono font-bold text-[11px] cursor-pointer">
+                ✓ Yes, switch view
+              </button>
+              <span class="text-[10px] font-mono text-slate-400">(or reply "yes")</span>
+            </div>
+          </div>
+        `, 'bot');
+        setTimeout(() => {
+          const btn = document.getElementById(btnId);
+          if (btn) btn.onclick = () => applyRoleFromChat(detected.role, detected.label);
+        }, 30);
+        return;
+      }
+
+      // Live Cloudflare Worker Fetch
+      userInput.disabled = true;
+      sendChatBtn.disabled = true;
+      const loaderId = 'loader-' + Date.now();
+      chatWindow.insertAdjacentHTML('beforeend', `
+        <div id="${loaderId}" class="p-3 rounded-2xl rounded-tl-sm bg-carbon-800 border border-carbon-700 w-fit flex items-center gap-1.5">
+          <span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span>
+        </div>
+      `);
+      chatWindow.scrollTop = chatWindow.scrollHeight;
+
+      try {
+        const response = await fetch(LAMBDA_API_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: text, history: chatHistory })
+        });
+        const data = await response.json();
+        document.getElementById(loaderId)?.remove();
+
+        // Check for mood === "secret" from Worker to animate balloon smile!
+        if (data.mood === 'secret') {
+          setBalloonFace('secret');
+          showToast('🤫🎈 <strong>AirHead.cs~1.6</strong> is smiling—its trivia count stays a secret!');
+        }
+
+        if (!response.ok || data.error) {
+          appendChatMessage(data.error || 'Unable to reach assistant worker.', 'bot-error');
+        } else {
+          const replyText = data.reply || 'No response received.';
+          appendChatMessage(replyText, 'bot');
+          chatHistory.push({ role: 'user', parts: [{ text: text }] });
+          chatHistory.push({ role: 'model', parts: [{ text: replyText }] });
+        }
+      } catch (err) {
+        document.getElementById(loaderId)?.remove();
+        appendChatMessage('Network error: Could not reach Cloudflare Worker endpoint.', 'bot-error');
+      } finally {
+        userInput.disabled = false;
+        sendChatBtn.disabled = false;
+        userInput.focus();
+      }
+    }
+
+    function appendChatMessage(htmlOrText, type) {
+      const div = document.createElement('div');
+      if (type === 'user') {
+        div.className = "p-3 rounded-2xl rounded-tr-sm bg-amber-500 text-carbon-950 font-semibold ml-auto max-w-[85%] break-words shadow-sm";
+      } else if (type === 'bot') {
+        div.className = "p-3 rounded-2xl rounded-tl-sm bg-carbon-800 border border-carbon-700 text-slate-200 mr-auto max-w-[90%] break-words leading-relaxed";
+      } else {
+        div.className = "p-3 rounded-2xl rounded-tl-sm bg-red-950/60 border border-red-500/40 text-red-300 mr-auto max-w-[90%] text-xs font-mono";
+      }
+      div.innerHTML = htmlOrText;
+      chatWindow.appendChild(div);
+      chatWindow.scrollTop = chatWindow.scrollHeight;
+    }
+
+    sendChatBtn.addEventListener('click', sendMessage);
+    userInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        sendMessage();
+      }
+    });
+
+    /* Case 1 Interactive Probe Patch */
+    let isCase1Patched = false;
+    function toggleCase1Patch() {
+      isCase1Patched = !isCase1Patched;
+      const badge = document.getElementById('case1StatusBadge');
+      const probeRect = document.getElementById('case1SvgProbeRect');
+      const probeText = document.getElementById('case1SvgProbeText');
+      const relRect = document.getElementById('case1SvgRelRect');
+      const relText = document.getElementById('case1SvgRelText');
+      const line2 = document.getElementById('case1SvgLine2');
+      const arrow2 = document.getElementById('case1SvgArrow2');
+      const logLine = document.getElementById('case1LogLine');
+      const btn = document.getElementById('btnCase1Patch');
+
+      if (isCase1Patched) {
+        badge.textContent = "HTTP 200 OK";
+        badge.className = "text-[#00ff66] font-semibold";
+        probeRect.setAttribute('fill', '#062c22');
+        probeRect.setAttribute('stroke', '#00ff66');
+        probeText.textContent = "curl OK (200)";
+        probeText.setAttribute('fill', '#00ff66');
+        relRect.setAttribute('fill', '#062c22');
+        relRect.setAttribute('stroke', '#00ff66');
+        relText.textContent = "UNBLOCKED";
+        relText.setAttribute('fill', '#00ff66');
+        line2.setAttribute('stroke', '#00ff66');
+        if (arrow2) arrow2.setAttribute('fill', '#00ff66');
+        if (logLine) {
+          logLine.innerHTML = `<span class="text-emerald-400">GET /api/v1/health/ping HTTP/1.1 200 OK (Verified in 11ms)</span>`;
+          logLine.className = "px-3 py-2 rounded bg-carbon-900 border border-emerald-500/40 text-emerald-300 truncate";
+        }
+        btn.textContent = "[ ↺ Rollback Patch ]";
+        showToast('✓ Patch applied: curl binary restored in base image layer');
+      } else {
+        badge.textContent = "EXIT CODE 127";
+        badge.className = "text-red-400 font-semibold";
+        probeRect.setAttribute('fill', '#3b0a0a');
+        probeRect.setAttribute('stroke', '#ef4444');
+        probeText.textContent = "curl missing (127)";
+        probeText.setAttribute('fill', '#f87171');
+        relRect.setAttribute('fill', '#161f33');
+        relRect.setAttribute('stroke', '#475569');
+        relText.textContent = "Pipeline Blocked";
+        relText.setAttribute('fill', '#94a3b8');
+        line2.setAttribute('stroke', '#ef4444');
+        if (arrow2) arrow2.setAttribute('fill', '#ef4444');
+        if (logLine) {
+          logLine.textContent = "/bin/sh: /usr/bin/curl: not found (ExitCode 127)";
+          logLine.className = "px-3 py-2 rounded bg-carbon-900 border border-red-500/25 text-red-300 truncate";
+        }
+        btn.textContent = "[ >_ Run Patch: +curl ]";
+      }
+    }
+
+    // Initialize into Manager Baseline Mode
+    setPerspective('manager', false);
+  </script>
+</body>
+</html>
