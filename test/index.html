@@ -54,14 +54,13 @@
             },
             floatBalloon: {
               '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
-              '50%': { transform: 'translateY(-10px) rotate(2deg)' }
+              '50%': { transform: 'translateY(-12px) rotate(2deg)' }
             }
           }
         }
       }
     }
 
-    // Multi-extension fallback resolver
     function resolveAsset(imgEl, baseName) {
       const candidates = [
         `assets/${baseName}.png`,
@@ -116,17 +115,17 @@
     .bento-card {
       background: rgba(16, 22, 36, 0.85);
       border: 1px solid rgba(49, 65, 97, 0.6);
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(14px);
       border-radius: 22px;
-      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
     }
     .bento-card:hover {
-      border-color: rgba(245, 158, 11, 0.5);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+      border-color: rgba(245, 158, 11, 0.55);
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.5);
       transform: translateY(-2px);
     }
 
-    /* Dev Mode (Matrix CRT) */
+    /* Dev Mode CRT Styling */
     body.mode-dev {
       background-color: #030804 !important;
       color: #a7f3d0 !important;
@@ -141,7 +140,7 @@
     }
     body.mode-dev h1, body.mode-dev h2, body.mode-dev h3, body.mode-dev h4, body.mode-dev .text-white {
       color: #00ff66 !important;
-      text-shadow: 0 0 10px rgba(0, 255, 102, 0.3);
+      text-shadow: 0 0 10px rgba(0, 255, 102, 0.32);
     }
     body.mode-dev .text-amber-400, body.mode-dev .text-amber-300, body.mode-dev .text-emerald-400 {
       color: #00ff66 !important;
@@ -149,7 +148,7 @@
     body.mode-dev .bg-amber-500 {
       background-color: #00ff66 !important;
       color: #020603 !important;
-      box-shadow: 0 0 20px rgba(0, 255, 102, 0.4) !important;
+      box-shadow: 0 0 20px rgba(0, 255, 102, 0.45) !important;
     }
     body.mode-dev::after {
       content: " ";
@@ -171,15 +170,15 @@
       animation: svgPacketFlow 1s linear infinite;
     }
 
-    /* Balloon Physics & Smooth Expression Transitions */
+    /* Balloon Physics & Collision Deformation */
     #gusBalloon {
       touch-action: none;
       user-select: none;
       transition: transform 0.08s ease-out;
     }
     #gusBalloon.bonking {
-      transform: scale(1.18, 0.82) !important;
-      transition: transform 0.15s ease-out;
+      transform: scale(1.22, 0.78) !important;
+      transition: transform 0.16s ease-out;
     }
   </style>
 </head>
@@ -189,7 +188,7 @@
   <div class="fixed inset-0 bg-grid-pattern pointer-events-none z-0"></div>
   <div class="fixed top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[600px] hero-glow pointer-events-none z-0"></div>
 
-  <!-- Custom Toast -->
+  <!-- Toast Notification -->
   <div id="customToast" class="fixed top-24 left-1/2 -translate-x-1/2 z-50 hidden items-center gap-3 px-5 py-3 rounded-xl bg-carbon-950/95 border border-amber-500/60 text-white font-mono text-xs shadow-2xl backdrop-blur-md">
     <span id="customToastText"></span>
   </div>
@@ -233,11 +232,12 @@
   </header>
 
   <!-- ==================================================================================
-       VIEW 1: HR & RECRUITER BENTO MODE (UNIQUE FORMAT, REPO REMOVED, STAT-RICH)
+       VIEW 1: HR & RECRUITER MODE (UNIQUE BENTO GRID, STACKED EDUCATION & CREDLY BADGES)
        ================================================================================== -->
   <div id="view-hr" style="display: none;" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 relative z-10">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-7 items-start">
       
+      <!-- Sticky Profile Rail -->
       <aside class="lg:col-span-4 bento-card p-7 space-y-6">
         <div class="flex flex-col items-center text-center">
           <div class="w-32 h-32 rounded-full overflow-hidden border-4 border-amber-500/40 mb-3 bg-carbon-800 shadow-xl flex items-center justify-center">
@@ -247,7 +247,7 @@
           <h1 class="text-2xl font-extrabold text-white">Sai Vinay Mullapudi</h1>
           <p class="text-xs font-mono text-emerald-400 font-bold mt-1">4 Yrs Enterprise (3.5+ Yrs US &amp; India)</p>
           <p class="text-xs text-slate-300 mt-3 leading-relaxed">
-            Cloud, DevOps &amp; GenAI Engineer specialized in zero-trust financial infrastructure, resilient Java services, and agentic AI pipelines.
+            Cloud, DevOps &amp; GenAI Engineer specialized in zero-trust financial infrastructure, resilient Java microservices, and enterprise agentic AI.
           </p>
         </div>
 
@@ -257,16 +257,50 @@
             <span class="text-white font-semibold">DevOps / Cloud / MLOps / SRE</span>
           </div>
           <div class="flex items-center justify-between py-1 border-b border-carbon-800">
-            <span class="text-slate-400">Credentials:</span>
-            <span class="text-amber-400 font-semibold">3x AWS Certified</span>
-          </div>
-          <div class="flex items-center justify-between py-1 border-b border-carbon-800">
-            <span class="text-slate-400">Education:</span>
-            <span class="text-white">M.S. CS @NJIT • IIT-B</span>
+            <span class="text-slate-400">Mobility:</span>
+            <span class="text-white">Bengaluru // Open Globally</span>
           </div>
           <div class="flex items-center justify-between py-1">
             <span class="text-slate-400">Availability:</span>
             <span class="text-emerald-400 font-semibold">Immediate / 30 Days</span>
+          </div>
+        </div>
+
+        <!-- Stacked Education Credentials Pill -->
+        <div class="border-t border-carbon-700/80 pt-4 space-y-3 font-mono">
+          <span class="text-[11px] font-bold text-amber-400 uppercase tracking-wider block">Academic Credentials</span>
+          
+          <div class="p-2.5 rounded-xl bg-carbon-900 border border-carbon-800 flex items-center gap-3">
+            <div class="w-9 h-9 rounded-lg bg-carbon-800 border border-emerald-500/40 p-1 flex items-center justify-center shrink-0">
+              <img src="assets/iitb.png" alt="IIT Bombay" class="w-full h-full object-contain" onerror="resolveAsset(this, 'iitb')">
+              <span class="asset-fallback hidden text-[10px] font-bold text-emerald-400">IIT-B</span>
+            </div>
+            <div class="min-w-0">
+              <div class="text-xs font-bold text-white truncate">IIT Bombay</div>
+              <div class="text-[10px] text-amber-300 truncate">Exec. Cert AI &amp; MLOps (2026)</div>
+            </div>
+          </div>
+
+          <div class="p-2.5 rounded-xl bg-carbon-900 border border-carbon-800 flex items-center gap-3">
+            <div class="w-9 h-9 rounded-lg bg-carbon-800 border border-red-500/40 p-1 flex items-center justify-center shrink-0">
+              <img src="assets/njit.png" alt="NJIT" class="w-full h-full object-contain" onerror="resolveAsset(this, 'njit')">
+              <span class="asset-fallback hidden text-[10px] font-bold text-red-400">NJIT</span>
+            </div>
+            <div class="min-w-0">
+              <div class="text-xs font-bold text-white truncate">NJIT (Newark, NJ, USA)</div>
+              <div class="text-[10px] text-amber-300 truncate">M.S. in Computer Science (2020)</div>
+            </div>
+          </div>
+
+          <div class="p-2.5 rounded-xl bg-carbon-900 border border-carbon-800 flex items-center gap-3">
+            <div class="w-9 h-9 rounded-lg bg-carbon-800 border border-amber-500/40 p-1 flex items-center justify-center shrink-0">
+              <img src="assets/ggsipu.png" alt="GGSIPU" class="w-full h-full object-contain" onerror="resolveAsset(this, 'ggsipu')">
+              <span class="asset-fallback hidden text-[10px] font-bold text-amber-400">IPU</span>
+            </div>
+            <div class="min-w-0">
+              <div class="text-xs font-bold text-white truncate">GGSIP University (New Delhi)</div>
+              <div class="text-[10px] text-amber-300 truncate">B.Tech Computer Science (2017)</div>
+            </div>
           </div>
         </div>
 
@@ -275,82 +309,129 @@
             <i data-lucide="mail" class="w-4 h-4"></i> Direct Email Inquiry
           </a>
           <button type="button" onclick="openCalendly()" class="w-full py-2.5 rounded-xl bg-carbon-800 hover:bg-carbon-700 text-slate-200 border border-carbon-600 text-xs font-mono flex items-center justify-center gap-2 transition-all cursor-pointer">
-            <i data-lucide="calendar" class="w-4 h-4 text-amber-400"></i> Schedule 20-Min Intro Call
+            <i data-lucide="calendar" class="w-4 h-4 text-amber-400"></i> Schedule a 30m Intro Call
           </button>
         </div>
       </aside>
 
+      <!-- Right Bento Area -->
       <div class="lg:col-span-8 space-y-6">
-        <div class="bento-card p-7 bg-gradient-to-r from-amber-500/20 via-carbon-850 to-carbon-850 border-amber-500/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
-          <div>
-            <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-amber-500/10 border border-amber-500/30 text-amber-400 text-[11px] font-mono mb-2">
-              <i data-lucide="zap" class="w-3.5 h-3.5"></i> CANDIDATE VALUE PROPOSITION
+        
+        <!-- Upgraded Candidate Value Proposition with Embedded Credly Badges -->
+        <div class="bento-card p-7 bg-gradient-to-br from-amber-500/15 via-carbon-850 to-carbon-900 border-amber-500/50 space-y-5">
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div class="space-y-1">
+              <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-amber-500/15 border border-amber-500/40 text-amber-400 text-[11px] font-mono font-bold">
+                <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> CANDIDATE VALUE PROPOSITION
+              </div>
+              <h2 class="text-xl sm:text-2xl font-extrabold text-white">Enterprise Cloud Reliability Meets Production GenAI</h2>
             </div>
-            <h2 class="text-xl font-bold text-white">Full-Stack Cloud Delivery with Direct Business Impact</h2>
-            <p class="text-xs text-slate-300 mt-1 max-w-xl leading-relaxed">
-              Proven track record managing NYSE/Fed Reserve clearing feeds in the US and enterprise print cloud operations in India.
+            <button onclick="openCalendly()" class="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-carbon-950 font-bold text-xs font-mono shrink-0 shadow-lg cursor-pointer">
+              Schedule 30m Intro
+            </button>
+          </div>
+
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+            Combines <strong class="text-white">4 years of enterprise infrastructure depth</strong> (architecting zero-trust AWS systems synchronized in real time with NYSE and Federal Reserve clearing feeds) with <strong class="text-amber-300">modern AI platform delivery</strong> (scaling agentic RAG workflows and triaging critical container releases under live SLAs). An immediate contributor requiring zero onboarding lag.
+          </p>
+
+          <!-- Interactive 3x AWS Credly Verification Badges -->
+          <div class="pt-2 border-t border-carbon-700/80">
+            <span class="text-[10.5px] font-mono text-slate-400 block mb-2.5 uppercase tracking-wider">3x AWS Verified Credentials (Click to Verify Live on Credly):</span>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              
+              <a href="https://www.credly.com/badges/20f333e6-76e8-431a-9603-c22408681cd8" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl bg-carbon-900/90 border border-emerald-500/40 hover:border-emerald-400 flex items-center gap-3 transition-transform hover:scale-102 group">
+                <div class="w-10 h-10 rounded-lg bg-carbon-850 p-1 flex items-center justify-center shrink-0 border border-emerald-500/30">
+                  <img src="assets/aws-mla.png" alt="AWS MLA" class="w-full h-full object-contain" onerror="resolveAsset(this, 'aws-mla')">
+                  <span class="asset-fallback hidden text-[10px] font-bold text-emerald-400">MLA</span>
+                </div>
+                <div class="min-w-0">
+                  <div class="text-[11px] font-bold text-white group-hover:text-emerald-400 transition-colors">AWS Machine Learning</div>
+                  <div class="text-[9.5px] font-mono text-emerald-400 flex items-center gap-1">Verified Credly <i data-lucide="arrow-up-right" class="w-2.5 h-2.5"></i></div>
+                </div>
+              </a>
+
+              <a href="https://www.credly.com/badges/af2f25bd-7fbe-4e21-92fc-4c39f8e92cf7" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl bg-carbon-900/90 border border-amber-500/40 hover:border-amber-400 flex items-center gap-3 transition-transform hover:scale-102 group">
+                <div class="w-10 h-10 rounded-lg bg-carbon-850 p-1 flex items-center justify-center shrink-0 border border-amber-500/30">
+                  <img src="assets/aws-saa.png" alt="AWS SAA" class="w-full h-full object-contain" onerror="resolveAsset(this, 'aws-saa')">
+                  <span class="asset-fallback hidden text-[10px] font-bold text-amber-400">SAA</span>
+                </div>
+                <div class="min-w-0">
+                  <div class="text-[11px] font-bold text-white group-hover:text-amber-400 transition-colors">AWS Solutions Architect</div>
+                  <div class="text-[9.5px] font-mono text-amber-400 flex items-center gap-1">Verified Credly <i data-lucide="arrow-up-right" class="w-2.5 h-2.5"></i></div>
+                </div>
+              </a>
+
+              <a href="https://www.credly.com/badges/582be29e-4701-41a4-b4bb-638b1d675fc2" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl bg-carbon-900/90 border border-sky-500/40 hover:border-sky-400 flex items-center gap-3 transition-transform hover:scale-102 group">
+                <div class="w-10 h-10 rounded-lg bg-carbon-850 p-1 flex items-center justify-center shrink-0 border border-sky-500/30">
+                  <img src="assets/aws-cpp.png" alt="AWS CPP" class="w-full h-full object-contain" onerror="resolveAsset(this, 'aws-cpp')">
+                  <span class="asset-fallback hidden text-[10px] font-bold text-sky-400">CPP</span>
+                </div>
+                <div class="min-w-0">
+                  <div class="text-[11px] font-bold text-white group-hover:text-sky-400 transition-colors">AWS Cloud Practitioner</div>
+                  <div class="text-[9.5px] font-mono text-sky-400 flex items-center gap-1">Verified Credly <i data-lucide="arrow-up-right" class="w-2.5 h-2.5"></i></div>
+                </div>
+              </a>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Recruiter Impact Metrics (Business-Driven) -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 font-mono">
+          <div class="bento-card p-4 text-center">
+            <span class="text-[10px] text-slate-400 block uppercase">Incident Recovery</span>
+            <div class="text-xl font-extrabold text-emerald-400 mt-0.5">L5 Fast-Track</div>
+            <span class="text-[10.5px] text-slate-300 mt-1 block">Solved in 45m vs 60m SLA</span>
+          </div>
+          <div class="bento-card p-4 text-center">
+            <span class="text-[10px] text-slate-400 block uppercase">IaC Governance</span>
+            <div class="text-xl font-extrabold text-sky-400 mt-0.5">Zero Drift</div>
+            <span class="text-[10.5px] text-slate-300 mt-1 block">15-File Prod Terraform Audit</span>
+          </div>
+          <div class="bento-card p-4 text-center">
+            <span class="text-[10px] text-slate-400 block uppercase">Architecture</span>
+            <div class="text-xl font-extrabold text-purple-400 mt-0.5">Model Parity</div>
+            <span class="text-[10.5px] text-slate-300 mt-1 block">-992 LOC Debt Cleaned</span>
+          </div>
+          <div class="bento-card p-4 text-center">
+            <span class="text-[10px] text-slate-400 block uppercase">Infrastructure</span>
+            <div class="text-xl font-extrabold text-amber-400 mt-0.5">99.0% SLA</div>
+            <span class="text-[10.5px] text-slate-300 mt-1 block">200+ Nodes High-Availability</span>
+          </div>
+        </div>
+
+        <!-- High-Impact Competencies -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="bento-card p-5 space-y-2.5">
+            <div class="text-amber-400 font-bold font-mono text-xs flex items-center gap-2">
+              <i data-lucide="cloud" class="w-4 h-4"></i> Cloud Architecture &amp; IaC
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Zero-Trust VPCs, Least-Privilege IAM governance, KMS HSM envelope encryption, and modular multi-environment Terragrunt automation.
             </p>
           </div>
-          <a href="https://linkedin.com/in/sai-vinay-mullapudi" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-xl bg-[#0077b5] hover:bg-[#006097] text-white font-bold text-xs shrink-0 flex items-center gap-2 transition-transform hover:scale-105">
-            <span>LinkedIn Profile</span>
-            <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
-          </a>
-        </div>
 
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-          <div class="bento-card p-4 text-center">
-            <div class="text-2xl font-extrabold text-emerald-400 font-mono">45 min</div>
-            <div class="text-[11px] text-slate-300 font-mono mt-1">Live RCA Resolution (vs 60m SLA)</div>
-          </div>
-          <div class="bento-card p-4 text-center">
-            <div class="text-2xl font-extrabold text-sky-400 font-mono">0 Drift</div>
-            <div class="text-[11px] text-slate-300 font-mono mt-1">15-File Prod Terraform Audit</div>
-          </div>
-          <div class="bento-card p-4 text-center">
-            <div class="text-2xl font-extrabold text-purple-400 font-mono">-992 LOC</div>
-            <div class="text-[11px] text-slate-300 font-mono mt-1">Java Microservice Cleanup</div>
-          </div>
-          <div class="bento-card p-4 text-center">
-            <div class="text-2xl font-extrabold text-amber-400 font-mono">200+ Nodes</div>
-            <div class="text-[11px] text-slate-300 font-mono mt-1">AWS Fleet Administration</div>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div class="bento-card p-5 space-y-3">
-            <div class="text-amber-400 font-bold font-mono text-xs flex items-center gap-2">
-              <i data-lucide="cloud" class="w-4 h-4"></i> Cloud Architecture
-            </div>
-            <div class="flex flex-wrap gap-1.5 font-mono text-[11px]">
-              <span class="px-2 py-1 rounded bg-carbon-800 border border-carbon-700 text-slate-200">AWS VPC &amp; IAM</span>
-              <span class="px-2 py-1 rounded bg-carbon-800 border border-carbon-700 text-slate-200">Terraform / Terragrunt</span>
-              <span class="px-2 py-1 rounded bg-carbon-800 border border-carbon-700 text-slate-200">KMS HSM Parity</span>
-            </div>
-          </div>
-
-          <div class="bento-card p-5 space-y-3">
+          <div class="bento-card p-5 space-y-2.5">
             <div class="text-sky-400 font-bold font-mono text-xs flex items-center gap-2">
-              <i data-lucide="layers" class="w-4 h-4"></i> DevOps &amp; Backend
+              <i data-lucide="layers" class="w-4 h-4"></i> DevOps &amp; Microservices
             </div>
-            <div class="flex flex-wrap gap-1.5 font-mono text-[11px]">
-              <span class="px-2 py-1 rounded bg-carbon-800 border border-carbon-700 text-slate-200">Java Spring Boot</span>
-              <span class="px-2 py-1 rounded bg-carbon-800 border border-carbon-700 text-slate-200">Docker &amp; Harbor</span>
-              <span class="px-2 py-1 rounded bg-carbon-800 border border-carbon-700 text-slate-200">CI/CD Automation</span>
-            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Hardened container delivery pipelines (Docker &amp; Harbor), zero-downtime deployment runs, Java 17 Spring Boot reliability, and CI/CD triage.
+            </p>
           </div>
 
-          <div class="bento-card p-5 space-y-3">
+          <div class="bento-card p-5 space-y-2.5">
             <div class="text-emerald-400 font-bold font-mono text-xs flex items-center gap-2">
-              <i data-lucide="bot" class="w-4 h-4"></i> GenAI &amp; Reliability
+              <i data-lucide="bot" class="w-4 h-4"></i> Applied GenAI &amp; Reliability
             </div>
-            <div class="flex flex-wrap gap-1.5 font-mono text-[11px]">
-              <span class="px-2 py-1 rounded bg-carbon-800 border border-carbon-700 text-slate-200">Agentic RAG</span>
-              <span class="px-2 py-1 rounded bg-carbon-800 border border-carbon-700 text-slate-200">PyTorch &amp; Python</span>
-              <span class="px-2 py-1 rounded bg-carbon-800 border border-carbon-700 text-slate-200">Datadog APM &amp; Splunk</span>
-            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Production agentic RAG workflows, PyTorch MLOps pipelines, automated metric alerting with Datadog APM, and Splunk telemetry.
+            </p>
           </div>
         </div>
 
+        <!-- Work Experience Overview (Strict 2 Resume Bullets Each) -->
         <div class="bento-card p-6 space-y-4">
           <div class="flex items-center justify-between">
             <h3 class="text-sm font-bold font-mono text-white uppercase tracking-wider flex items-center gap-2">
@@ -359,30 +440,41 @@
             <span class="text-xs font-mono text-slate-400">Ascendion • Eficens • LotusData</span>
           </div>
 
-          <div class="space-y-3 font-mono text-xs">
-            <div class="p-3.5 rounded-xl bg-carbon-900 border border-carbon-700/80 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-              <div>
-                <strong class="text-white block">Ascendion (Bengaluru) — DevOps &amp; GenAI Engineer (L5 @ HP Inc. Client)</strong>
-                <span class="text-slate-400 text-[11px]">Unblocked deployment stalls, scaled GenAI agentic workflows, enforced multi-account IAM.</span>
+          <div class="space-y-4 font-mono text-xs">
+            
+            <div class="p-4 rounded-xl bg-carbon-900 border border-carbon-800 space-y-2">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                <strong class="text-white text-sm">Ascendion — DevOps &amp; GenAI Engineer (L5 @ HP Inc. Client)</strong>
+                <span class="text-emerald-400 font-bold">Dec '25 – Aug '26</span>
               </div>
-              <span class="text-emerald-400 font-bold shrink-0">Dec '25 – Aug '26</span>
+              <ul class="space-y-1.5 text-slate-300 text-[11px] list-disc list-inside">
+                <li>Integrated LLMs, vector knowledge bases, and guardrail architectures to automate development bottlenecks and accelerate team throughput.</li>
+                <li>Triaged critical container health-check failures under live 60-minute release SLAs, unblocking multiple microservice pipelines with zero downtime.</li>
+              </ul>
             </div>
 
-            <div class="p-3.5 rounded-xl bg-carbon-900 border border-carbon-700/80 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-              <div>
-                <strong class="text-white block">Eficens Systems LLC (NY Metro) — DevOps Engineer</strong>
-                <span class="text-slate-400 text-[11px]">Zero-trust cloud architecture in direct synchronization with NYSE &amp; Fed Reserve feeds.</span>
+            <div class="p-4 rounded-xl bg-carbon-900 border border-carbon-800 space-y-2">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                <strong class="text-white text-sm">Eficens Systems LLC — DevOps Engineer (US Financial Client)</strong>
+                <span class="text-amber-400 font-bold">Dec '21 – Aug '24</span>
               </div>
-              <span class="text-amber-400 font-bold shrink-0">Dec '21 – Aug '24</span>
+              <ul class="space-y-1.5 text-slate-300 text-[11px] list-disc list-inside">
+                <li>Architected zero-trust AWS infrastructure syncing in real-time with NYSE and Federal Reserve clearing feeds under strict regulatory oversight.</li>
+                <li>Engineered modular, multi-environment Terraform/Terragrunt blueprints with KMS envelope encryption, eliminating configuration drift across Dev, Staging, and Production.</li>
+              </ul>
             </div>
 
-            <div class="p-3.5 rounded-xl bg-carbon-900 border border-carbon-700/80 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-              <div>
-                <strong class="text-white block">LotusData LLP (Princeton, NJ) — Jr. Cloud Administrator</strong>
-                <span class="text-slate-400 text-[11px]">Maintained 99% SLA across 200+ AWS nodes; automated Linux storage expansions.</span>
+            <div class="p-4 rounded-xl bg-carbon-900 border border-carbon-800 space-y-2">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                <strong class="text-white text-sm">LotusData LLP — Jr. Cloud Administrator (Princeton, NJ)</strong>
+                <span class="text-sky-400 font-bold">Mar '21 – Dec '21</span>
               </div>
-              <span class="text-sky-400 font-bold shrink-0">Mar '21 – Dec '21</span>
+              <ul class="space-y-1.5 text-slate-300 text-[11px] list-disc list-inside">
+                <li>Maintained a 99% uptime SLA across 200+ AWS compute nodes through automated snapshots, metric alerting, and proactive disaster recovery drills.</li>
+                <li>Automated RedHat Linux bare-metal provisioning via Kickstart scripts and administered live, non-disruptive LVM storage expansions.</li>
+              </ul>
             </div>
+
           </div>
         </div>
 
@@ -506,7 +598,7 @@
           <div class="flex flex-wrap items-center gap-5 text-[11px]">
             <span>HEARTBEAT: <strong id="devPacketCounter" class="text-[#00ff66]">001420</strong> PKTS</span>
             <span>RTT PING: <strong id="devPingVal" class="text-[#00ff66]">-- ms</strong></span>
-            <span>CLIENT CLOCK: <strong id="devClockVal" class="text-[#00ff66]">--:--:--</strong></span>
+            <span>LOCAL CLOCK: <strong id="devClockVal" class="text-[#00ff66]">--:--:--</strong></span>
             <span>UPLINK: <strong id="devNetVal" class="text-[#00ff66]">4G / BroadBand</strong></span>
             <span>VIEWPORT: <strong id="devResVal" class="text-[#00ff66]">1920x1080</strong></span>
           </div>
@@ -597,9 +689,14 @@
               Real production problems <span class="text-amber-400">I’ve untangled.</span>
             </h2>
           </div>
-          <p class="text-slate-300 text-base max-w-md">
-            Click any case banner below to expand the technical breakdown, architectural pipeline diagram, and triage details.
-          </p>
+          <div class="flex flex-wrap items-center gap-3">
+            <button onclick="openModal('modal-pipeline')" class="px-4 py-2 rounded-xl bg-carbon-850 hover:bg-carbon-800 text-sky-300 border border-sky-500/40 text-xs font-mono font-bold flex items-center gap-1.5 transition-all cursor-pointer">
+              <i data-lucide="package" class="w-3.5 h-3.5"></i> IaC Module Promotion Pipeline ↗
+            </button>
+            <button onclick="openModal('modal-zero-trust')" class="px-4 py-2 rounded-xl bg-carbon-850 hover:bg-carbon-800 text-emerald-300 border border-emerald-500/40 text-xs font-mono font-bold flex items-center gap-1.5 transition-all cursor-pointer">
+              <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Zero-Trust Access Matrix ↗
+            </button>
+          </div>
         </div>
 
         <div class="space-y-5">
@@ -1142,7 +1239,7 @@
         </div>
       </section>
 
-      <!-- SECTION 03: ACADEMIC FOUNDATIONS (3-COLUMN LAYOUT WITH MONOGRAM FALLBACKS) -->
+      <!-- SECTION 03: ACADEMIC FOUNDATIONS -->
       <section id="education" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 border-b border-carbon-800">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
           <div>
@@ -1371,35 +1468,59 @@
   </div>
 
   <!-- ==================================================================================
-       GUS'S SPOOKY FLOATING BALLOON (DRAG PHYSICS, 6 FACES, 10-15s NUDGES)
+       GUS'S SPOOKY BALLOON "AirHead~w0w" (PHYSICS, 6 FACES, 30-40s NUDGES)
        ================================================================================== -->
   <div id="balloonContainer" style="left: 24px; bottom: 32px;" class="fixed z-40 flex flex-col items-start select-none">
     
-    <!-- Speech Bubble (Trivia & Autonomous Nudges) -->
+    <!-- Speech Bubble -->
     <div id="balloonTriviaBubble" class="hidden mb-3 p-4 max-w-xs sm:max-w-sm rounded-2xl bg-carbon-850/95 border border-amber-500/50 text-xs font-mono shadow-2xl backdrop-blur-md">
       <div class="flex items-center justify-between text-[10px] text-amber-400 pb-1.5 border-b border-carbon-700">
-        <span id="balloonFactLabel" class="font-bold flex items-center gap-1">🎈 Balloon Nudge</span>
+        <span id="balloonFactLabel" class="font-bold flex items-center gap-1">🎈 AirHead~w0w</span>
         <button onclick="dismissBalloonBubble()" class="text-slate-400 hover:text-white cursor-pointer">✕</button>
       </div>
       <div id="balloonFactText" class="text-slate-200 mt-2 leading-relaxed"></div>
       <div class="text-[9px] text-slate-400 mt-2 text-right">Drag me around or click for trivia! 🎈</div>
     </div>
 
-    <!-- Draggable Balloon SVG -->
+    <!-- Draggable Gus Balloon (Vector Shaded with Reference Texture & Nubs) -->
     <div id="gusBalloon" class="relative cursor-grab active:cursor-grabbing animate-float-slow group" title="Drag me anywhere or click for trivia!">
-      <svg id="balloonSvg" width="80" height="105" viewBox="0 0 100 130" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M 50 92 Q 42 108 52 125" stroke="#94a3b8" stroke-width="2.2" stroke-linecap="round" fill="none"/>
-        <ellipse cx="50" cy="50" rx="38" ry="42" fill="#0ea5e9" id="balloonSkin" class="group-hover:fill-[#38bdf8] transition-colors"/>
-        <polygon points="50,90 44,96 56,96" fill="#0284c7"/>
+      <svg id="balloonSvg" width="84" height="112" viewBox="0 0 100 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="gusBalloonShade" cx="38%" cy="30%" r="65%">
+            <stop offset="0%" stop-color="#d8f0ff"/>
+            <stop offset="35%" stop-color="#9fd5f6"/>
+            <stop offset="75%" stop-color="#5a95be"/>
+            <stop offset="100%" stop-color="#386685"/>
+          </radialGradient>
+          <radialGradient id="nubShade" cx="40%" cy="35%" r="60%">
+            <stop offset="0%" stop-color="#a8ddfc"/>
+            <stop offset="100%" stop-color="#3c6b8c"/>
+          </radialGradient>
+        </defs>
+
+        <!-- String -->
+        <path d="M 50 96 Q 44 112 52 128" stroke="#cbd5e1" stroke-width="2.4" stroke-linecap="round" fill="none"/>
         
-        <!-- DYNAMIC FACE RENDER CONTAINER -->
+        <!-- Balloon Spherical Body -->
+        <circle cx="50" cy="50" r="44" fill="url(#gusBalloonShade)"/>
+        
+        <!-- Two Spherical Bottom Nubs (Reference Match) -->
+        <circle cx="34" cy="80" r="7.5" fill="url(#nubShade)"/>
+        <circle cx="66" cy="80" r="7.5" fill="url(#nubShade)"/>
+        
+        <!-- Balloon Tied Knot / Collar -->
+        <rect x="44" y="92" width="12" height="5" rx="2.5" fill="#bae6fd"/>
+
+        <!-- DYNAMIC MORPHING FACE GROUP (6 FACES) -->
         <g id="balloonFaceGroup">
-          <!-- Default Idle Smile -->
-          <circle cx="38" cy="46" r="4.5" fill="#ffffff"/>
-          <circle cx="38" cy="46" r="2.2" fill="#0f172a"/>
-          <circle cx="62" cy="46" r="4.5" fill="#ffffff"/>
-          <circle cx="62" cy="46" r="2.2" fill="#0f172a"/>
-          <path d="M 42 62 Q 50 70 58 62" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+          <!-- Default Reference Face: Gus's Wide Segmented Grin & Angled Slits -->
+          <path d="M 33 34 L 43 38" stroke="#1e293b" stroke-width="3" stroke-linecap="round"/>
+          <path d="M 67 34 L 57 38" stroke="#1e293b" stroke-width="3" stroke-linecap="round"/>
+          <path d="M 28 50 C 28 36 72 36 72 50 C 72 68 28 68 28 50 Z" fill="#ffffff" stroke="#1e293b" stroke-width="2.5"/>
+          <path d="M 28 50 L 72 50" stroke="#1e293b" stroke-width="2"/>
+          <path d="M 40 40 L 40 60" stroke="#1e293b" stroke-width="2"/>
+          <path d="M 50 38 L 50 62" stroke="#1e293b" stroke-width="2"/>
+          <path d="M 60 40 L 60 60" stroke="#1e293b" stroke-width="2"/>
         </g>
       </svg>
       <div class="absolute -top-1 -right-1 px-1.5 py-0.5 rounded-full bg-amber-500 text-carbon-950 font-mono text-[9px] font-extrabold shadow">
@@ -1443,14 +1564,12 @@
   </div>
 
   <!-- ==================================================================================
-       DEEP DIVE MODALS (TOP ANIMATION + SANITIZED MANAGER/DEV TABS)
+       DEEP DIVE MODALS (STRICT PERSPECTIVE DECOUPLING: MANAGER vs DEVELOPER)
        ================================================================================== -->
   
   <!-- MODAL 1: DOCKER READINESS PROBE TRIAGE -->
   <div id="modal-incident" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
     <div class="bg-carbon-900 border border-carbon-700 max-w-3xl w-full rounded-2xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
-      
-      <!-- Header -->
       <div class="px-6 py-4 bg-carbon-850 border-b border-carbon-700 flex items-center justify-between">
         <div class="flex items-center gap-3">
           <span class="px-2.5 py-1 rounded bg-red-500/20 text-red-400 font-mono text-xs font-bold border border-red-500/40">[INC-CONTAINER-127]</span>
@@ -1459,62 +1578,57 @@
         <button onclick="closeModal('modal-incident')" class="text-slate-400 hover:text-white font-mono text-sm cursor-pointer">✕ ESC</button>
       </div>
 
-      <!-- Top Component Topology Animation -->
-      <div class="p-6 bg-carbon-950 border-b border-carbon-800">
+      <div class="modal-dev-workbench hidden p-6 bg-carbon-950 border-b border-carbon-800">
         <div class="flex items-center justify-between text-xs font-mono text-slate-400 mb-2">
           <span>TOPOLOGY: HARBOR_BASE_IMAGE ➔ JVM_APP ➔ PROBE_AGENT</span>
-          <span class="text-emerald-400 font-bold">INTERACTIVE INSPECTOR</span>
+          <span class="text-emerald-400 font-bold">COMPONENT TELEMETRY</span>
         </div>
-        <svg viewBox="0 0 600 120" class="w-full h-auto bg-[#080d16] rounded-xl border border-carbon-800 p-2" xmlns="http://www.w3.org/2000/svg">
-          <line x1="140" y1="60" x2="220" y2="60" stroke="#34d399" stroke-width="2.5" class="svg-flow-line"/>
-          <line x1="360" y1="60" x2="440" y2="60" stroke="#ef4444" stroke-width="2.5" class="svg-flow-line"/>
+        <svg viewBox="0 0 600 115" class="w-full h-auto bg-[#080d16] rounded-xl border border-carbon-800 p-2" xmlns="http://www.w3.org/2000/svg">
+          <line x1="140" y1="58" x2="220" y2="58" stroke="#34d399" stroke-width="2.5" class="svg-flow-line"/>
+          <line x1="360" y1="58" x2="440" y2="58" stroke="#ef4444" stroke-width="2.5" class="svg-flow-line"/>
 
-          <g transform="translate(10, 20)">
-            <rect width="130" height="76" rx="8" fill="#101624" stroke="#38bdf8" stroke-width="1.5"/>
-            <text x="65" y="32" text-anchor="middle" fill="#7dd3fc" font-size="11" font-weight="bold">Harbor Registry</text>
-            <text x="65" y="52" text-anchor="middle" fill="#94a3b8" font-size="9">java-service-base</text>
-            <text x="65" y="66" text-anchor="middle" fill="#38bdf8" font-size="8.5">hardened (no curl)</text>
+          <g transform="translate(10, 18)">
+            <rect width="130" height="74" rx="8" fill="#101624" stroke="#38bdf8" stroke-width="1.5"/>
+            <text x="65" y="32" text-anchor="middle" fill="#7dd3fc" font-size="11" font-weight="bold">Base Registry</text>
+            <text x="65" y="50" text-anchor="middle" fill="#94a3b8" font-size="8.5">enterprise-java-base</text>
+            <text x="65" y="64" text-anchor="middle" fill="#38bdf8" font-size="8">hardened (no curl)</text>
           </g>
 
-          <g transform="translate(220, 20)">
-            <rect width="140" height="76" rx="8" fill="#062c22" stroke="#34d399" stroke-width="1.5"/>
+          <g transform="translate(220, 18)">
+            <rect width="140" height="74" rx="8" fill="#062c22" stroke="#34d399" stroke-width="1.5"/>
             <text x="70" y="32" text-anchor="middle" fill="#6ee7b7" font-size="11" font-weight="bold">Spring Boot App</text>
-            <text x="70" y="52" text-anchor="middle" fill="#34d399" font-size="9">Port 8080 Alive</text>
-            <text x="70" y="66" text-anchor="middle" fill="#a7f3d0" font-size="8.5">Initialized: ~7.55s</text>
+            <text x="70" y="50" text-anchor="middle" fill="#34d399" font-size="8.5">Port 8080 Alive</text>
+            <text x="70" y="64" text-anchor="middle" fill="#a7f3d0" font-size="8">Initialized: ~7.55s</text>
           </g>
 
-          <g transform="translate(440, 20)">
-            <rect width="150" height="76" rx="8" fill="#3b0a0a" stroke="#ef4444" stroke-width="1.5"/>
+          <g transform="translate(440, 18)">
+            <rect width="150" height="74" rx="8" fill="#3b0a0a" stroke="#ef4444" stroke-width="1.5"/>
             <text x="75" y="32" text-anchor="middle" fill="#fca5a5" font-size="11" font-weight="bold">Readiness Probe</text>
-            <text x="75" y="52" text-anchor="middle" fill="#ef4444" font-size="9">/bin/sh: curl missing</text>
-            <text x="75" y="66" text-anchor="middle" fill="#f87171" font-size="8.5">ExitCode 127</text>
+            <text x="75" y="50" text-anchor="middle" fill="#ef4444" font-size="8.5">/bin/sh: curl missing</text>
+            <text x="75" y="64" text-anchor="middle" fill="#f87171" font-size="8">ExitCode 127</text>
           </g>
         </svg>
       </div>
 
-      <!-- Bottom Sanitized Deep Breakdown Tabs -->
       <div class="p-6 overflow-y-auto space-y-4 text-xs">
-        <div class="flex items-center gap-3 border-b border-carbon-800 pb-2">
-          <button onclick="switchModalTab('modal-incident', 'manager')" id="modal-incident-tab-manager" class="font-bold text-amber-400 border-b-2 border-amber-400 pb-1 cursor-pointer">📊 Executive Overview</button>
-          <button onclick="switchModalTab('modal-incident', 'dev')" id="modal-incident-tab-dev" class="text-slate-400 hover:text-white pb-1 cursor-pointer">💻 Technical Deep Dive (Dev)</button>
+        <!-- Rendered in Manager Mode -->
+        <div class="modal-manager-brief space-y-3 leading-relaxed text-slate-300">
+          <p><strong>Executive Business Impact:</strong> A blocking deployment halt disrupted release schedules across multiple decoupled subscription and domain controller microservices under an active 60-minute SLA window.</p>
+          <p><strong>Incident Command &amp; Resolution:</strong> Volunteered to lead live triage. Within 15 minutes, telemetry proved the application logic and embedded Tomcat server were healthy on port 8080. Traced the blocker to a stripped utility in the base container layer and published a permanent mitigation runbook in 45 minutes.</p>
         </div>
 
-        <div id="modal-incident-content-manager" class="space-y-3 leading-relaxed text-slate-300">
-          <p><strong>Business Impact:</strong> Blocking deployment failure halted builds across multiple subscription and domain controller services during a live release window. Volunteers were requested under an active 60-minute SLA.</p>
-          <p><strong>Executive Outcome:</strong> Took voluntary ownership of the outage, proving within 15 minutes that the application logic and embedded Tomcat server were healthy. Isolated the root cause to a container dependency mismatch and published a permanent engineering runbook in 45 minutes.</p>
-        </div>
-
-        <div id="modal-incident-content-dev" class="hidden space-y-3 font-mono text-[11px] text-slate-300">
+        <!-- Rendered strictly in Dev Mode -->
+        <div class="modal-dev-workbench hidden space-y-3 font-mono text-[11px] text-slate-300">
           <div class="p-3 rounded bg-carbon-950 border border-carbon-800">
             <span class="text-amber-400 block mb-1"># Sanitized Runtime Telemetry Log:</span>
             <div class="text-emerald-400">[INFO] Tomcat started on port 8080 (http) with context path '/'</div>
-            <div class="text-emerald-400">[INFO] Started SubscriptionOptionsApplication in 7.552 seconds</div>
+            <div class="text-emerald-400">[INFO] Started ServiceApplication in 7.552 seconds</div>
             <div class="text-red-400 mt-1">/bin/sh: /usr/bin/curl: not found (ExitCode 127)</div>
-            <div class="text-slate-400 mt-1">Probe Command: /usr/bin/curl --fail --noproxy "*" http://localhost:8080/***/ping</div>
+            <div class="text-slate-400 mt-1">Probe Command: /usr/bin/curl --fail --noproxy "*" http://localhost:8080/api/v1/health/ping</div>
           </div>
           <div class="p-3 rounded bg-carbon-950 border border-carbon-800">
-            <span class="text-sky-400 block mb-1"># Dockerfile Multi-Stage Remediation:</span>
-            <div class="text-slate-300">FROM harbor.corp-internal.net/onecloud/java-service-base:latest</div>
+            <span class="text-sky-400 block mb-1"># Dockerfile Layer Patch:</span>
+            <div class="text-slate-300">FROM registry.internal-cloud.net/core/enterprise-java-base:latest</div>
             <div class="text-emerald-400">+ RUN apk add --no-cache curl || apt-get update &amp;&amp; apt-get install -y curl</div>
             <div class="text-slate-300">HEALTHCHECK --interval=10s --timeout=3s CMD curl -f http://localhost:8080/health || exit 1</div>
           </div>
@@ -1530,7 +1644,6 @@
   <!-- MODAL 2: 15-FILE MULTI-ENV IAC AUDIT -->
   <div id="modal-arn" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
     <div class="bg-carbon-900 border border-carbon-700 max-w-3xl w-full rounded-2xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
-      
       <div class="px-6 py-4 bg-carbon-850 border-b border-carbon-700 flex items-center justify-between">
         <div class="flex items-center gap-3">
           <span class="px-2.5 py-1 rounded bg-blue-500/20 text-blue-400 font-mono text-xs font-bold border border-blue-500/40">[IAC-AUDIT-225]</span>
@@ -1539,57 +1652,52 @@
         <button onclick="closeModal('modal-arn')" class="text-slate-400 hover:text-white font-mono text-sm cursor-pointer">✕ ESC</button>
       </div>
 
-      <div class="p-6 bg-carbon-950 border-b border-carbon-800">
+      <div class="modal-dev-workbench hidden p-6 bg-carbon-950 border-b border-carbon-800">
         <div class="flex items-center justify-between text-xs font-mono text-slate-400 mb-2">
           <span>TOPOLOGY: TERRAGRUNT ➔ STG_ROLE vs PROD_ROLE</span>
           <span class="text-sky-400 font-bold">CROSS-ACCOUNT INTERCEPT</span>
         </div>
-        <svg viewBox="0 0 600 120" class="w-full h-auto bg-[#080d16] rounded-xl border border-carbon-800 p-2" xmlns="http://www.w3.org/2000/svg">
-          <line x1="160" y1="60" x2="230" y2="40" stroke="#f59e0b" stroke-width="2" class="svg-flow-line"/>
-          <line x1="160" y1="60" x2="230" y2="85" stroke="#34d399" stroke-width="2" class="svg-flow-line"/>
+        <svg viewBox="0 0 600 115" class="w-full h-auto bg-[#080d16] rounded-xl border border-carbon-800 p-2" xmlns="http://www.w3.org/2000/svg">
+          <line x1="160" y1="58" x2="230" y2="38" stroke="#f59e0b" stroke-width="2" class="svg-flow-line"/>
+          <line x1="160" y1="58" x2="230" y2="80" stroke="#34d399" stroke-width="2" class="svg-flow-line"/>
 
-          <g transform="translate(10, 25)">
-            <rect width="150" height="70" rx="8" fill="#172554" stroke="#60a5fa" stroke-width="1.5"/>
-            <text x="75" y="34" text-anchor="middle" fill="#bfdbfe" font-size="11" font-weight="bold">PR #225 (15 Files)</text>
-            <text x="75" y="52" text-anchor="middle" fill="#93c5fd" font-size="9">service.hcl / env configs</text>
+          <g transform="translate(10, 24)">
+            <rect width="150" height="68" rx="8" fill="#172554" stroke="#60a5fa" stroke-width="1.5"/>
+            <text x="75" y="34" text-anchor="middle" fill="#bfdbfe" font-size="11" font-weight="bold">PR [PR-CORE-7625]</text>
+            <text x="75" y="50" text-anchor="middle" fill="#93c5fd" font-size="8.5">15 Config Files Audited</text>
           </g>
 
           <g transform="translate(230, 10)">
-            <rect width="350" height="46" rx="6" fill="#451a03" stroke="#f59e0b" stroke-width="1.5"/>
-            <text x="175" y="22" text-anchor="middle" fill="#fcd34d" font-size="9.5" font-weight="bold">INTERCEPTED: Staging Role in Prod HCL</text>
-            <text x="175" y="36" text-anchor="middle" fill="#fef08a" font-size="8.5">arn:aws:iam::126350******:role/prod-service-role</text>
+            <rect width="350" height="44" rx="6" fill="#451a03" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="175" y="20" text-anchor="middle" fill="#fcd34d" font-size="9" font-weight="bold">INTERCEPTED: Staging Role in Prod HCL</text>
+            <text x="175" y="34" text-anchor="middle" fill="#fef08a" font-size="8">arn:aws:iam::126350******:role/prod-service-role</text>
           </g>
 
-          <g transform="translate(230, 65)">
-            <rect width="350" height="46" rx="6" fill="#062c22" stroke="#34d399" stroke-width="1.5"/>
-            <text x="175" y="22" text-anchor="middle" fill="#6ee7b7" font-size="9.5" font-weight="bold">CORRECTED: Account-Scoped Prod Principal</text>
-            <text x="175" y="36" text-anchor="middle" fill="#a7f3d0" font-size="8.5">arn:aws:iam::&lt;PROD_ACCOUNT_ID&gt;:role/prod-service-role</text>
+          <g transform="translate(230, 60)">
+            <rect width="350" height="44" rx="6" fill="#062c22" stroke="#34d399" stroke-width="1.5"/>
+            <text x="175" y="20" text-anchor="middle" fill="#6ee7b7" font-size="9" font-weight="bold">CORRECTED: Account-Scoped Prod Principal</text>
+            <text x="175" y="34" text-anchor="middle" fill="#a7f3d0" font-size="8">arn:aws:iam::&lt;PROD_ACCOUNT_ID&gt;:role/prod-service-role</text>
           </g>
         </svg>
       </div>
 
       <div class="p-6 overflow-y-auto space-y-4 text-xs">
-        <div class="flex items-center gap-3 border-b border-carbon-800 pb-2">
-          <button onclick="switchModalTab('modal-arn', 'manager')" id="modal-arn-tab-manager" class="font-bold text-amber-400 border-b-2 border-amber-400 pb-1 cursor-pointer">📊 Executive Overview</button>
-          <button onclick="switchModalTab('modal-arn', 'dev')" id="modal-arn-tab-dev" class="text-slate-400 hover:text-white pb-1 cursor-pointer">💻 Technical Deep Dive (Dev)</button>
+        <div class="modal-manager-brief space-y-3 leading-relaxed text-slate-300">
+          <p><strong>Executive Business Impact:</strong> A 15-file infrastructure PR contained a cross-account role assumption that would have caused immediate authentication failures and downtime upon production merge.</p>
+          <p><strong>Audit &amp; Cryptographic Parity:</strong> Intercepted the misconfiguration during review, aligned synchronously with the engineer, and proved that upgrading shared KMS modules maintained 100% decryption parity across active workloads with zero production drift.</p>
         </div>
 
-        <div id="modal-arn-content-manager" class="space-y-3 leading-relaxed text-slate-300">
-          <p><strong>Business Impact:</strong> Infrastructure PR spanning 15 files across Dev, Staging, and Production tiers contained an improper role reference that would have broken production service authorization upon deployment.</p>
-          <p><strong>Executive Outcome:</strong> Intercepted the misconfiguration during review, coordinated synchronous alignment with the author, and verified that semantic KMS updates maintained complete decryption parity across existing data stores.</p>
-        </div>
-
-        <div id="modal-arn-content-dev" class="hidden space-y-3 font-mono text-[11px] text-slate-300">
+        <div class="modal-dev-workbench hidden space-y-3 font-mono text-[11px] text-slate-300">
           <div class="p-3 rounded bg-carbon-950 border border-carbon-800">
             <span class="text-amber-400 block mb-1"># Sanitized Terragrunt service.hcl Intercept:</span>
-            <div class="text-slate-400">environments/csc-hpone-sf-stg-pro/pro-subscription-options/_global/service.hcl</div>
-            <div class="text-red-400">- tropos_role = "arn:aws:iam::126350******:role/stratus-pro-subscription-options-service"</div>
-            <div class="text-emerald-400">+ tropos_role = "arn:aws:iam::&lt;PROD_ACCOUNT_ID&gt;:role/stratus-pro-subscription-options-service"</div>
+            <div class="text-slate-400">environments/prod-cloud-infra/modules/billing-service/service.hcl</div>
+            <div class="text-red-400">- tropos_role = "arn:aws:iam::126350******:role/prod-billing-events-service"</div>
+            <div class="text-emerald-400">+ tropos_role = "arn:aws:iam::&lt;PROD_ACCOUNT_ID&gt;:role/prod-billing-events-service"</div>
           </div>
           <div class="p-3 rounded bg-carbon-950 border border-carbon-800">
-            <span class="text-emerald-400 block mb-1"># Technical Impact Analysis (KMS / HSM Parity):</span>
-            <div class="text-slate-300">• Validated KMS module tag upgrade (v3.3.1) in Printer Ledger</div>
-            <div class="text-slate-300">• Confirmed new ARN key generation did not invalidate existing ciphertext envelopes</div>
+            <span class="text-emerald-400 block mb-1"># KMS Module Semantic Parity:</span>
+            <div class="text-slate-300">• Evaluated KMS module upgrade to tag v3.3.1</div>
+            <div class="text-slate-300">• Verified new key ARN generation did not break decryption of existing ciphertext envelopes</div>
           </div>
         </div>
       </div>
@@ -1603,7 +1711,6 @@
   <!-- MODAL 3: CANONICAL SKU REFACTOR -->
   <div id="modal-java" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
     <div class="bg-carbon-900 border border-carbon-700 max-w-3xl w-full rounded-2xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
-      
       <div class="px-6 py-4 bg-carbon-850 border-b border-carbon-700 flex items-center justify-between">
         <div class="flex items-center gap-3">
           <span class="px-2.5 py-1 rounded bg-purple-500/20 text-purple-400 font-mono text-xs font-bold border border-purple-500/40">[REFACTOR-SKU-286]</span>
@@ -1612,7 +1719,7 @@
         <button onclick="closeModal('modal-java')" class="text-slate-400 hover:text-white font-mono text-sm cursor-pointer">✕ ESC</button>
       </div>
 
-      <div class="p-6 bg-carbon-950 border-b border-carbon-800">
+      <div class="modal-dev-workbench hidden p-6 bg-carbon-950 border-b border-carbon-800">
         <div class="flex items-center justify-between text-xs font-mono text-slate-400 mb-2">
           <span>TOPOLOGY: EVENT_INGESTION ➔ DTO_CONVERGENCE ➔ TEST_SUITE</span>
           <span class="text-purple-400 font-bold">CANONICAL ENTITY MODEL</span>
@@ -1640,674 +1747,25 @@
       </div>
 
       <div class="p-6 overflow-y-auto space-y-4 text-xs">
-        <div class="flex items-center gap-3 border-b border-carbon-800 pb-2">
-          <button onclick="switchModalTab('modal-java', 'manager')" id="modal-java-tab-manager" class="font-bold text-amber-400 border-b-2 border-amber-400 pb-1 cursor-pointer">📊 Executive Overview</button>
-          <button onclick="switchModalTab('modal-java', 'dev')" id="modal-java-tab-dev" class="text-slate-400 hover:text-white pb-1 cursor-pointer">💻 Technical Deep Dive (Dev)</button>
+        <div class="modal-manager-brief space-y-3 leading-relaxed text-slate-300">
+          <p><strong>Executive Business Impact:</strong> Divergent data representations of product SKUs created technical debt across e-commerce cancellation and subscription renewal pipelines.</p>
+          <p><strong>Engineering Ownership:</strong> Consolidated schemas into a single canonical definition across controllers, mappers, and payload contracts. Navigated multi-lead review iterations, resolved complex merge conflicts in 20 minutes under release deadlines, and merged cleanly with 100% passing tests.</p>
         </div>
 
-        <div id="modal-java-content-manager" class="space-y-3 leading-relaxed text-slate-300">
-          <p><strong>Business Impact:</strong> Dual data representations of product SKUs created technical debt and maintenance overhead across e-commerce cancellation and subscription renewal pipelines.</p>
-          <p><strong>Executive Outcome:</strong> Consolidated schemas into a single canonical definition across controllers, mappers, and payload contracts; navigated multi-lead review rounds, addressed 15 review comments, and merged cleanly under tight sprint deadlines.</p>
-        </div>
-
-        <div id="modal-java-content-dev" class="hidden space-y-3 font-mono text-[11px] text-slate-300">
+        <div class="modal-dev-workbench hidden space-y-3 font-mono text-[11px] text-slate-300">
           <div class="p-3 rounded bg-carbon-950 border border-carbon-800">
             <span class="text-purple-400 block mb-1"># Sanitized Java Entity Diff:</span>
-            <div class="text-slate-400">stratus/subscription-options-service/.../SubscriptionEntity.java</div>
+            <div class="text-slate-400">core-service/.../SubscriptionEntity.java</div>
             <div class="text-red-400">- // private String parentSku; (Unused dead field &amp; docstrings stripped)</div>
             <div class="text-emerald-400">+ private String parentProductSku; // Single Canonical Identifier</div>
           </div>
           <div class="p-3 rounded bg-carbon-950 border border-carbon-800">
             <span class="text-emerald-400 block mb-1"># Build &amp; Test Verification:</span>
-            <div class="text-slate-300">• Resolved git merge conflict in 20 minutes under active release window</div>
+            <div class="text-slate-300">• Resolved git merge conflict in 20 minutes under release freeze</div>
             <div class="text-slate-300">• Verified: [INFO] BUILD SUCCESS across all Maven unit &amp; integration tests</div>
           </div>
         </div>
       </div>
 
       <div class="px-6 py-3 bg-carbon-850 border-t border-carbon-800 flex justify-end">
-        <button onclick="closeModal('modal-java')" class="px-4 py-2 rounded-lg bg-amber-500 text-carbon-950 font-mono text-xs font-bold hover:bg-amber-400 cursor-pointer">Close Walkthrough</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- FOOTER -->
-  <footer class="bg-carbon-950 border-t border-carbon-800 py-10 text-xs font-mono text-slate-400 relative z-10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <div>
-        © 2026 Sai Vinay Mullapudi • 4 Years Enterprise Experience (US &amp; India)
-      </div>
-      <div class="flex items-center gap-6">
-        <a href="https://github.com/sai-vinay-mullapudi" target="_blank" rel="noreferrer" class="hover:text-amber-400">GitHub</a>
-        <a href="https://linkedin.com/in/sai-vinay-mullapudi" target="_blank" rel="noreferrer" class="hover:text-amber-400">LinkedIn</a>
-        <a href="https://www.credly.com/users/sai-vinay-mullapudi" target="_blank" rel="noreferrer" class="hover:text-amber-400">Credly</a>
-        <a href="#home" class="hover:text-amber-400">Top ↑</a>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    // Defensive scrubber to strip accidental markdown citations if ever pasted
-    (function scrubStrayCitations() {
-      const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
-      const regex = /\[\s*cite:\s*[\d,\s]+\]/gi;
-      let node;
-      while ((node = walker.nextNode())) {
-        if (regex.test(node.nodeValue)) {
-          node.nodeValue = node.nodeValue.replace(regex, '');
-        }
-      }
-    })();
-
-    if (window.lucide) {
-      lucide.createIcons();
-    }
-
-    // Anti-scraping phone number reveal
-    function revealPhone(btn) {
-      // Obfuscated string: reversed Base64 of "+91 9899109594"
-      const reversedB64 = "=0VN5kTN5UTNzETO";
-      const b64 = reversedB64.split("").reverse().join("");
-      const decoded = atob(b64);
-      const container = document.getElementById('phoneContainer');
-      if (container) {
-        container.innerHTML = `<a href="tel:${decoded.replace(/\s+/g, '')}" class="text-amber-400 font-bold hover:underline">${decoded}</a>`;
-      }
-    }
-
-    const CALENDLY_URL = 'https://calendly.com/msaivinay306/30min?hide_gdpr_banner=1&background_color=0a0e17&text_color=e2e8f0&primary_color=f59e0b';
-    function openCalendly() {
-      if (typeof Calendly !== 'undefined') {
-        Calendly.initPopupWidget({ url: CALENDLY_URL });
-      } else {
-        window.open(CALENDLY_URL, '_blank', 'noopener,noreferrer');
-      }
-    }
-
-    function showToast(message, duration = 4000) {
-      const toast = document.getElementById('customToast');
-      const text = document.getElementById('customToastText');
-      if (!toast || !text) return;
-      text.innerHTML = message;
-      toast.classList.remove('hidden');
-      toast.classList.add('flex');
-      clearTimeout(window.toastTimer);
-      window.toastTimer = setTimeout(() => {
-        toast.classList.remove('flex');
-        toast.classList.add('hidden');
-      }, duration);
-    }
-
-    function toggleCase(bodyId, iconId) {
-      const body = document.getElementById(bodyId);
-      const icon = document.getElementById(iconId);
-      if (body) {
-        const isHidden = body.classList.contains('hidden');
-        body.classList.toggle('hidden', !isHidden);
-        if (icon) {
-          icon.style.transform = isHidden ? 'rotate(180deg)' : 'rotate(0deg)';
-        }
-      }
-    }
-
-    const ALL_MODALS = ['modal-incident', 'modal-arn', 'modal-java'];
-    function openModal(id) {
-      const modal = document.getElementById(id);
-      if (modal) {
-        modal.classList.remove('hidden');
-        modal.classList.add('flex');
-        document.body.style.overflow = 'hidden';
-      }
-    }
-
-    function closeModal(id) {
-      const modal = document.getElementById(id);
-      if (modal) {
-        modal.classList.remove('flex');
-        modal.classList.add('hidden');
-        document.body.style.overflow = 'auto';
-      }
-    }
-
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        ALL_MODALS.forEach(closeModal);
-      }
-    });
-
-    ALL_MODALS.forEach(id => {
-      const modal = document.getElementById(id);
-      if (modal) {
-        modal.addEventListener('click', (e) => {
-          if (e.target === modal) closeModal(id);
-        });
-      }
-    });
-
-    function switchModalTab(modalId, tabName) {
-      const mgrTab = document.getElementById(`${modalId}-tab-manager`);
-      const devTab = document.getElementById(`${modalId}-tab-dev`);
-      const mgrContent = document.getElementById(`${modalId}-content-manager`);
-      const devContent = document.getElementById(`${modalId}-content-dev`);
-
-      if (tabName === 'manager') {
-        mgrTab.className = "font-bold text-amber-400 border-b-2 border-amber-400 pb-1 cursor-pointer";
-        devTab.className = "text-slate-400 hover:text-white pb-1 cursor-pointer";
-        mgrContent.classList.remove('hidden');
-        devContent.classList.add('hidden');
-      } else {
-        devTab.className = "font-bold text-[#00ff66] border-b-2 border-[#00ff66] pb-1 cursor-pointer";
-        mgrTab.className = "text-slate-400 hover:text-white pb-1 cursor-pointer";
-        devContent.classList.remove('hidden');
-        mgrContent.classList.add('hidden');
-      }
-    }
-
-    /* ==========================================================
-       PERSPECTIVE SWITCHER ENGINE
-       ========================================================== */
-    function setPerspective(role, showNotification = true) {
-      document.body.classList.remove('mode-hr', 'mode-manager', 'mode-dev');
-      
-      const viewHr = document.getElementById('view-hr');
-      const viewManagerDev = document.getElementById('view-manager-dev');
-      const managerKpi = document.getElementById('managerKpiStrip');
-      const devTelemetry = document.getElementById('devTelemetryStrip');
-      const devCliDrawer = document.getElementById('devCliDrawer');
-      const devPatchRow = document.getElementById('devPatchRow');
-      const devWorkflows = document.querySelectorAll('.workflow-dev');
-      const managerNarratives = document.querySelectorAll('.narrative-manager');
-
-      if (role === 'recruiter') {
-        document.body.classList.add('mode-hr');
-        viewHr.style.display = 'block';
-        viewManagerDev.style.display = 'none';
-        devCliDrawer.style.display = 'none';
-        stopMatrixRain();
-        setBalloonFace('smile');
-        if (showNotification) showToast('👔 <strong>HR / Recruiter Mode:</strong> Stat-rich Bento layout with 1-click actions.');
-      } else if (role === 'manager') {
-        document.body.classList.add('mode-manager');
-        viewHr.style.display = 'none';
-        viewManagerDev.style.display = 'block';
-        if (managerKpi) managerKpi.style.display = 'block';
-        if (devTelemetry) devTelemetry.style.display = 'none';
-        if (devCliDrawer) devCliDrawer.style.display = 'none';
-        if (devPatchRow) devPatchRow.style.display = 'none';
-        devWorkflows.forEach(el => el.classList.add('hidden'));
-        managerNarratives.forEach(el => el.classList.remove('hidden'));
-        stopMatrixRain();
-        setBalloonFace('idle');
-        if (showNotification) showToast('📊 <strong>Hiring Manager Mode:</strong> Executive baseline &amp; SLA metrics.');
-      } else if (role === 'engineer') {
-        document.body.classList.add('mode-dev');
-        viewHr.style.display = 'none';
-        viewManagerDev.style.display = 'block';
-        if (managerKpi) managerKpi.style.display = 'none';
-        if (devTelemetry) devTelemetry.style.display = 'block';
-        if (devCliDrawer) devCliDrawer.style.display = 'block';
-        if (devPatchRow) devPatchRow.style.display = 'flex';
-        devWorkflows.forEach(el => el.classList.remove('hidden'));
-        managerNarratives.forEach(el => el.classList.add('hidden'));
-
-        // Auto-expand case studies in dev mode
-        ['case-1', 'case-2', 'case-3'].forEach(id => {
-          const body = document.getElementById(id + '-body');
-          const icon = document.getElementById(id + '-icon');
-          if (body && body.classList.contains('hidden')) {
-            body.classList.remove('hidden');
-            if (icon) icon.style.transform = 'rotate(180deg)';
-          }
-        });
-
-        startMatrixRain();
-        setBalloonFace('cheeky');
-        if (showNotification) showToast('💻 <strong>Matrix Developer Mode:</strong> Interactive shell, telemetry &amp; live probes.');
-      }
-    }
-
-    /* ==========================================================
-       REAL-TIME TELEMETRY REFRESH LOOP
-       ========================================================== */
-    let packetCount = 1420;
-    setInterval(() => {
-      packetCount += Math.floor(Math.random() * 4) + 1;
-      const countEl = document.getElementById('devPacketCounter');
-      if (countEl) countEl.textContent = String(packetCount).padStart(6, '0');
-
-      const clockEl = document.getElementById('devClockVal');
-      if (clockEl) {
-        const d = new Date();
-        clockEl.textContent = d.toTimeString().split(' ')[0] + '.' + String(d.getMilliseconds()).padStart(3, '0');
-      }
-    }, 200);
-
-    setInterval(() => {
-      const pingEl = document.getElementById('devPingVal');
-      if (pingEl && document.body.classList.contains('mode-dev')) {
-        const start = performance.now();
-        fetch(window.location.href + '?t=' + Date.now(), { method: 'HEAD', cache: 'no-cache' })
-          .then(() => {
-            const rtt = Math.round(performance.now() - start);
-            pingEl.textContent = rtt + ' ms';
-          })
-          .catch(() => { pingEl.textContent = '14 ms'; });
-      }
-    }, 3500);
-
-    /* ==========================================================
-       INTERACTIVE CLI DRAWER
-       ========================================================== */
-    const cliInput = document.getElementById('cliInput');
-    const cliOutput = document.getElementById('cliOutput');
-
-    function runCliCommand(cmd) {
-      if (!cmd) return;
-      printCliLine(`sai@prod-bastion:~$ ${cmd}`, 'text-[#00ff66] font-bold');
-      const clean = cmd.trim().toLowerCase();
-
-      if (clean === 'cat stack.json') {
-        printCliLine(`{
-  "cloud": ["AWS (VPC, IAM, KMS, SQS, SNS, NLB)"],
-  "iac": ["Terraform", "Terragrunt"],
-  "backend": ["Java 17 (Spring Boot)", "Docker", "Harbor"],
-  "ai_mlops": ["Python", "PyTorch", "Agentic RAG"]
-}`, 'text-amber-300');
-      } else if (clean === 'curl -i /health' || clean === 'curl /health') {
-        printCliLine(`HTTP/1.1 200 OK
-Content-Type: application/json;charset=UTF-8
-{"status":"UP","diskSpace":{"status":"UP"},"db":{"status":"UP"}}`, 'text-emerald-400');
-      } else if (clean.startsWith('git log')) {
-        printCliLine(`* f82a9d1 (HEAD -> main) docs: finalize production deep dive runbooks
-* b4c3102 fix(container): resolve curl missing in base image probe
-* 19a0e44 refactor(sku): unify parentSKU into canonical entity model`, 'text-sky-300');
-      } else if (clean === 'whoami') {
-        printCliLine(`uid=1000(sai-vinay-mullapudi) gid=1000(devops-genai)
-☕ Converting dark roast into zero-drift Terraform blueprints!`, 'text-amber-400');
-      } else if (clean === 'help') {
-        printCliLine(`Available: cat stack.json | curl -I /health | git log | whoami | clear`, 'text-slate-300');
-      } else if (clean === 'clear') {
-        cliOutput.innerHTML = '';
-      } else {
-        printCliLine(`bash: ${clean}: command not found. Type 'help' for available commands.`, 'text-red-400');
-      }
-      cliOutput.scrollTop = cliOutput.scrollHeight;
-      if (cliInput) cliInput.value = '';
-    }
-
-    function printCliLine(text, className = '') {
-      const div = document.createElement('div');
-      div.className = className;
-      div.innerText = text;
-      cliOutput.appendChild(div);
-      cliOutput.scrollTop = cliOutput.scrollHeight;
-    }
-
-    if (cliInput) {
-      cliInput.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') {
-          runCliCommand(cliInput.value);
-        }
-      });
-    }
-
-    /* ==========================================================
-       GUS'S BALLOON PHYSICS, 6 EXPRESSIONS & 10-15s NUDGES
-       ========================================================== */
-    const balloon = document.getElementById('gusBalloon');
-    const balloonContainer = document.getElementById('balloonContainer');
-    const balloonFace = document.getElementById('balloonFaceGroup');
-    const triviaBubble = document.getElementById('balloonTriviaBubble');
-    const factLabel = document.getElementById('balloonFactLabel');
-    const factText = document.getElementById('balloonFactText');
-
-    const BALLOON_FACES = {
-      idle: `
-        <circle cx="38" cy="46" r="4.5" fill="#ffffff"/>
-        <circle cx="38" cy="46" r="2.2" fill="#0f172a"/>
-        <circle cx="62" cy="46" r="4.5" fill="#ffffff"/>
-        <circle cx="62" cy="46" r="2.2" fill="#0f172a"/>
-        <path d="M 42 62 Q 50 70 58 62" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-      `,
-      hover: `
-        <circle cx="38" cy="45" r="5.5" fill="#ffffff"/>
-        <circle cx="38" cy="45" r="3" fill="#0f172a"/>
-        <circle cx="62" cy="45" r="5.5" fill="#ffffff"/>
-        <circle cx="62" cy="45" r="3" fill="#0f172a"/>
-        <ellipse cx="30" cy="54" rx="4" ry="2.5" fill="#f43f5e" opacity="0.6"/>
-        <ellipse cx="70" cy="54" rx="4" ry="2.5" fill="#f43f5e" opacity="0.6"/>
-        <path d="M 38 62 Q 50 76 62 62" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-      `,
-      dragging: `
-        <path d="M 32 46 L 44 46" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
-        <path d="M 56 46 L 68 46" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
-        <circle cx="50" cy="64" r="6" fill="#ffffff"/>
-      `,
-      bonk: `
-        <path d="M 34 42 L 42 50 M 42 42 L 34 50" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M 58 42 L 66 50 M 66 42 L 58 50" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M 40 65 Q 46 58 52 65 Q 58 58 64 65" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-      `,
-      cheeky: `
-        <circle cx="38" cy="45" r="5" fill="#ffffff"/>
-        <circle cx="38" cy="45" r="2.5" fill="#0f172a"/>
-        <path d="M 58 46 Q 63 42 68 46" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
-        <path d="M 42 62 Q 50 72 58 62" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-        <path d="M 48 68 Q 50 76 54 68 Z" fill="#fb7185"/>
-      `,
-      nudge: `
-        <path d="M 33 42 Q 38 38 43 42" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="38" cy="47" r="4" fill="#ffffff"/>
-        <circle cx="38" cy="47" r="2" fill="#0f172a"/>
-        <circle cx="62" cy="45" r="5" fill="#ffffff"/>
-        <circle cx="62" cy="45" r="2.5" fill="#0f172a"/>
-        <path d="M 44 63 Q 52 68 60 61" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-      `
-    };
-
-    function setBalloonFace(faceName) {
-      if (BALLOON_FACES[faceName]) {
-        balloonFace.innerHTML = BALLOON_FACES[faceName];
-      }
-    }
-
-    // Drag-and-drop pointer physics
-    let isDragging = false;
-    let dragStartX, dragStartY, containerStartX, containerStartY;
-
-    balloon.addEventListener('pointerdown', (e) => {
-      isDragging = true;
-      balloon.setPointerCapture(e.pointerId);
-      dragStartX = e.clientX;
-      dragStartY = e.clientY;
-      const rect = balloonContainer.getBoundingClientRect();
-      containerStartX = rect.left;
-      containerStartY = rect.top;
-      balloon.classList.remove('animate-float-slow');
-      setBalloonFace('dragging');
-    });
-
-    window.addEventListener('pointermove', (e) => {
-      if (!isDragging) return;
-      const dx = e.clientX - dragStartX;
-      const dy = e.clientY - dragStartY;
-      let newX = containerStartX + dx;
-      let newY = containerStartY + dy;
-
-      const maxX = window.innerWidth - 90;
-      const maxY = window.innerHeight - 120;
-
-      // Wall collision check
-      if (newX <= 10 || newX >= maxX || newY <= 10 || newY >= maxY) {
-        triggerBonk();
-      }
-
-      newX = Math.max(10, Math.min(maxX, newX));
-      newY = Math.max(10, Math.min(maxY, newY));
-
-      balloonContainer.style.left = `${newX}px`;
-      balloonContainer.style.top = `${newY}px`;
-      balloonContainer.style.bottom = 'auto';
-    });
-
-    window.addEventListener('pointerup', () => {
-      if (!isDragging) return;
-      isDragging = false;
-      balloon.classList.add('animate-float-slow');
-      setBalloonFace('idle');
-    });
-
-    balloon.addEventListener('mouseenter', () => {
-      if (!isDragging) setBalloonFace('hover');
-    });
-    balloon.addEventListener('mouseleave', () => {
-      if (!isDragging) setBalloonFace('idle');
-    });
-
-    function triggerBonk() {
-      balloon.classList.add('bonking');
-      setBalloonFace('bonk');
-      setTimeout(() => {
-        balloon.classList.remove('bonking');
-        if (!isDragging) setBalloonFace('idle');
-      }, 700);
-    }
-
-    // Trivia Facts Array (Placeholders 1-25)
-    const TRIVIA_FACTS = Array.from({ length: 25 }, (_, i) => ({
-      id: i + 1,
-      label: `Fun fact ${i + 1}`,
-      text: `[Placeholder for Fun Fact #${i + 1}]: Personal anecdote or unique technical story to be added here.`
-    }));
-
-    let unplayedTrivia = [...Array(TRIVIA_FACTS.length).keys()];
-
-    balloon.addEventListener('click', () => {
-      if (isDragging) return;
-      popTrivia();
-    });
-
-    function popTrivia() {
-      if (unplayedTrivia.length === 0) unplayedTrivia = [...Array(TRIVIA_FACTS.length).keys()];
-      const randomIdx = Math.floor(Math.random() * unplayedTrivia.length);
-      const factIdx = unplayedTrivia.splice(randomIdx, 1)[0];
-      const fact = TRIVIA_FACTS[factIdx];
-
-      factLabel.textContent = `🎈 ${fact.label}`;
-      factText.textContent = fact.text;
-      triviaBubble.classList.remove('hidden');
-      setBalloonFace('cheeky');
-    }
-
-    function dismissBalloonBubble() {
-      triviaBubble.classList.add('hidden');
-      setBalloonFace('idle');
-    }
-
-    // Autonomous Mode Nudge Timer (Every 10-15 seconds)
-    const NUDGES = [
-      "Psst! Tell Vinay's Copilot 'Dev Mode' to see Matrix phosphor rain!",
-      "Try typing 'I am a Recruiter' in the Copilot chat to view my Bento card!",
-      "Ever typed 'whoami' into the Copilot? Give it a shot!",
-      "Open the Dev Diagnostic Shell and run 'cat stack.json'!",
-      "Ask Vinay's Copilot about my 45-min live outage triage!"
-    ];
-
-    function runPeriodicNudge() {
-      if (triviaBubble.classList.contains('hidden')) {
-        const randomNudge = NUDGES[Math.floor(Math.random() * NUDGES.length)];
-        factLabel.textContent = "🎈 Balloon Nudge";
-        factText.textContent = randomNudge;
-        triviaBubble.classList.remove('hidden');
-        setBalloonFace('nudge');
-
-        setTimeout(() => {
-          if (factLabel.textContent === "🎈 Balloon Nudge") {
-            dismissBalloonBubble();
-          }
-        }, 5000);
-      }
-      const nextInterval = Math.floor(Math.random() * 5000) + 10000; // 10-15s
-      setTimeout(runPeriodicNudge, nextInterval);
-    }
-    setTimeout(runPeriodicNudge, 12000);
-
-    /* ==========================================================
-       MATRIX CANVAS ANIMATION
-       ========================================================== */
-    const canvas = document.getElementById('matrixCanvas');
-    const ctx = canvas.getContext('2d');
-    let matrixTimer = null;
-
-    function resizeMatrix() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    window.addEventListener('resize', resizeMatrix);
-    resizeMatrix();
-
-    const matrixChars = '0123456789ABCDEFGHXYZ';
-    const charSize = 14;
-    let rainDrops = [];
-
-    function resetRain() {
-      const columns = Math.floor(canvas.width / charSize);
-      rainDrops = Array(columns).fill(1);
-    }
-    resetRain();
-
-    function renderMatrix() {
-      ctx.fillStyle = 'rgba(3, 8, 4, 0.08)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = '#00ff66';
-      ctx.font = charSize + 'px monospace';
-      for (let i = 0; i < rainDrops.length; i++) {
-        const glyph = matrixChars.charAt(Math.floor(Math.random() * matrixChars.length));
-        ctx.fillText(glyph, i * charSize, rainDrops[i] * charSize);
-        if (rainDrops[i] * charSize > canvas.height && Math.random() > 0.975) {
-          rainDrops[i] = 0;
-        }
-        rainDrops[i]++;
-      }
-    }
-
-    function startMatrixRain() {
-      canvas.style.opacity = '0.22';
-      if (!matrixTimer) matrixTimer = setInterval(renderMatrix, 42);
-    }
-
-    function stopMatrixRain() {
-      canvas.style.opacity = '0';
-      if (matrixTimer) {
-        clearInterval(matrixTimer);
-        matrixTimer = null;
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-      }
-    }
-
-    /* ==========================================================
-       VINAY'S COPILOT LOGIC
-       ========================================================== */
-    let isChatMinimized = false;
-    const userInput = document.getElementById('userInput');
-    const sendChatBtn = document.getElementById('sendChatBtn');
-    const chatWindow = document.getElementById('chatWindow');
-    const chatHeader = document.getElementById('chatHeader');
-    const chatBodyContainer = document.getElementById('chatBodyContainer');
-    const minimizeChatBtn = document.getElementById('minimizeChatBtn');
-
-    function toggleChatMinimize() {
-      isChatMinimized = !isChatMinimized;
-      chatBodyContainer.style.display = isChatMinimized ? 'none' : 'flex';
-      minimizeChatBtn.innerText = isChatMinimized ? '▢' : '—';
-    }
-
-    chatHeader.addEventListener('click', () => { if (isChatMinimized) toggleChatMinimize(); });
-    minimizeChatBtn.addEventListener('click', (e) => { e.stopPropagation(); toggleChatMinimize(); });
-
-    function sendQuickPrompt(promptText) {
-      if (isChatMinimized) toggleChatMinimize();
-      userInput.value = promptText;
-      sendMessage();
-    }
-
-    function sendMessage() {
-      const text = userInput.value.trim();
-      if (!text) return;
-
-      appendChatMessage(text, 'user');
-      userInput.value = '';
-      const lower = text.toLowerCase();
-
-      if (lower.includes('recruiter') || lower.includes('hr')) {
-        setPerspective('recruiter');
-        appendChatMessage('✓ Switched view to <strong>HR / Recruiter Bento Mode</strong>.', 'bot');
-        return;
-      }
-      if (lower.includes('manager')) {
-        setPerspective('manager');
-        appendChatMessage('✓ Switched view to <strong>Hiring Manager Scorecard Mode</strong>.', 'bot');
-        return;
-      }
-      if (lower.includes('dev') || lower.includes('engineer') || lower.includes('matrix')) {
-        setPerspective('engineer');
-        appendChatMessage('✓ Switched view to <strong>Matrix Dev Mode</strong> with diagnostic shell and telemetry.', 'bot');
-        return;
-      }
-      if (lower.includes('whoami')) {
-        appendChatMessage(`☕ <strong>$ whoami</strong>: uid=1000(sai-vinay-mullapudi) gid=1000(devops-genai). Ready to untangle complex architectures.`, 'bot');
-        return;
-      }
-
-      setTimeout(() => {
-        appendChatMessage("Sai Vinay has 4 years of enterprise experience across US financial clearing (Eficens) and HP print cloud (Ascendion), holding 3x AWS certs. Let me know if you would like his resume or to schedule a call!", 'bot');
-      }, 350);
-    }
-
-    function appendChatMessage(htmlOrText, type) {
-      const div = document.createElement('div');
-      if (type === 'user') {
-        div.className = "p-3 rounded-2xl rounded-tr-sm bg-amber-500 text-carbon-950 font-semibold ml-auto max-w-[85%] break-words shadow-sm";
-      } else {
-        div.className = "p-3 rounded-2xl rounded-tl-sm bg-carbon-800 border border-carbon-700 text-slate-200 mr-auto max-w-[90%] break-words leading-relaxed";
-      }
-      div.innerHTML = htmlOrText;
-      chatWindow.appendChild(div);
-      chatWindow.scrollTop = chatWindow.scrollHeight;
-    }
-
-    sendChatBtn.addEventListener('click', sendMessage);
-    userInput.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') {
-        e.preventDefault();
-        sendMessage();
-      }
-    });
-
-    /* Case 1 interactive patch */
-    let isCase1Patched = false;
-    function toggleCase1Patch() {
-      isCase1Patched = !isCase1Patched;
-      const badge = document.getElementById('case1StatusBadge');
-      const probeRect = document.getElementById('case1SvgProbeRect');
-      const probeText = document.getElementById('case1SvgProbeText');
-      const relRect = document.getElementById('case1SvgRelRect');
-      const relText = document.getElementById('case1SvgRelText');
-      const line2 = document.getElementById('case1SvgLine2');
-      const btn = document.getElementById('btnCase1Patch');
-
-      if (isCase1Patched) {
-        badge.textContent = "HTTP 200 OK";
-        badge.className = "text-[#00ff66] font-semibold";
-        probeRect.setAttribute('fill', '#062c22');
-        probeRect.setAttribute('stroke', '#00ff66');
-        probeText.textContent = "curl OK (200)";
-        probeText.setAttribute('fill', '#00ff66');
-        relRect.setAttribute('fill', '#062c22');
-        relRect.setAttribute('stroke', '#00ff66');
-        relText.textContent = "UNBLOCKED";
-        relText.setAttribute('fill', '#00ff66');
-        line2.setAttribute('stroke', '#00ff66');
-        btn.textContent = "[ ↺ Rollback Patch ]";
-        showToast('✓ Patch applied: curl binary restored in base image layer');
-      } else {
-        badge.textContent = "EXIT CODE 127";
-        badge.className = "text-red-400 font-semibold";
-        probeRect.setAttribute('fill', '#3b0a0a');
-        probeRect.setAttribute('stroke', '#ef4444');
-        probeText.textContent = "curl missing (127)";
-        probeText.setAttribute('fill', '#f87171');
-        relRect.setAttribute('fill', '#161f33');
-        relRect.setAttribute('stroke', '#475569');
-        relText.textContent = "Pipeline Blocked";
-        relText.setAttribute('fill', '#94a3b8');
-        line2.setAttribute('stroke', '#ef4444');
-        btn.textContent = "[ >_ Run Patch: +curl ]";
-      }
-    }
-
-    // Default load into Manager Perspective
-    setPerspective('manager', false);
-  </script>
-</body>
-</html>
+        <button onclick="closeModal('modal-java')" class="px-4 py-2 rounded-lg bg-amber-500 text-carbon-950 font-mono text-xs font-bold hover:bg-amber-400 cursor-pointer">Close Walkthrough
