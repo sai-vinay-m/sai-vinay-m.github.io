@@ -179,7 +179,7 @@
       40% { transform: translateY(-4px); opacity: 1; }
     }
 
-    /* 25% Scaled-Down Balloon Shell */
+    /* Scaled Balloon Shell & Anti-Clipping Facial Geometry */
     @keyframes gusFloat {
       0%, 100% { transform: translateY(0px) rotate(0deg); }
       50% { transform: translateY(-8px) rotate(2deg); }
@@ -238,12 +238,14 @@
     }
     .balloon-eyebrows span {
       position: absolute;
-      top: 57px;
+      top: 52px;
       width: 27px;
       height: 8px;
       border-radius: 6px;
       background: #17212b;
       transition: all 0.22s ease;
+      will-change: transform, top;
+      backface-visibility: hidden;
     }
     .balloon-eyebrows span:first-child {
       left: 86px;
@@ -325,8 +327,8 @@
     .gus-balloon.face-drag .balloon-mouth { width: 68px; height: 68px; top: 86px; border-radius: 50%; }
 
     .gus-balloon.face-bonk { transform: scale(1.22, 0.78) rotate(6deg) !important; }
-    .gus-balloon.face-bonk .balloon-eyebrows span:first-child { top: 62px; left: 78px; width: 34px; transform: rotate(48deg); }
-    .gus-balloon.face-bonk .balloon-eyebrows span:last-child { top: 62px; right: 72px; width: 34px; transform: rotate(-48deg); }
+    .gus-balloon.face-bonk .balloon-eyebrows span:first-child { top: 52px; left: 78px; width: 34px; transform: rotate(48deg); }
+    .gus-balloon.face-bonk .balloon-eyebrows span:last-child { top: 52px; right: 72px; width: 34px; transform: rotate(-48deg); }
     .gus-balloon.face-bonk .balloon-mouth { width: 148px; height: 52px; top: 96px; border-radius: 25% 25% 30% 30%; transform: translateX(-50%) rotate(-5deg); }
     .gus-balloon.face-bonk .balloon-cheek { background: linear-gradient(135deg, #fb7185, #e11d48); opacity: 0.9; }
 
@@ -336,9 +338,9 @@
     .gus-balloon.face-secret .balloon-mouth { width: 145px; height: 92px; border-radius: 20% 20% 60% 60%; }
     .gus-balloon.face-secret .balloon-cheek { background: linear-gradient(135deg, #f472b6, #ec4899); opacity: 0.85; transform: scale(1.15); }
 
-    /* Calibrated Brow Clearance to prevent eye distortion */
-    .gus-balloon.face-nudge .balloon-eyebrows span:first-child { top: 46px; transform: rotate(-12deg); }
-    .gus-balloon.face-nudge .balloon-eyebrows span:last-child { top: 50px; transform: rotate(-22deg) scaleX(1.1); }
+    /* Calibrated Brow Clearance: Stays clear of the 77px mouth boundary */
+    .gus-balloon.face-nudge .balloon-eyebrows span:first-child { top: 48px; transform: rotate(-12deg); }
+    .gus-balloon.face-nudge .balloon-eyebrows span:last-child { top: 51px; transform: rotate(-20deg) scaleX(1.05); }
     .gus-balloon.face-nudge .balloon-mouth { transform: translateX(-46%) rotate(-4deg); }
 
     .balloon-scale-shell.minimized {
@@ -547,7 +549,7 @@
           </div>
         </div>
 
-        <!-- Single Comprehensive Tech Stack Matrix Pill -->
+        <!-- Single Comprehensive Tech Stack Matrix -->
         <div class="bento-card p-6 space-y-4">
           <div class="flex items-center justify-between border-b border-carbon-700/80 pb-3">
             <h3 class="text-sm font-bold font-mono text-white uppercase tracking-wider flex items-center gap-2">
@@ -611,7 +613,7 @@
               </div>
               <ul class="space-y-1.5 text-slate-300 text-[11px] list-disc list-inside font-sans">
                 <li>Integrated LLMs, vector knowledge bases, and guardrail architectures into agentic SDLC workflows.</li>
-                <li>Triaged critical container health-check failures and standardized multi-account IAM and Terraform governance.</li>
+                <li>Standardized multi-account IAM roles and Terraform governance across containerized platform workloads.</li>
               </ul>
             </div>
 
@@ -647,7 +649,7 @@
   <div id="view-manager-dev" class="relative z-10">
     <main id="home">
 
-      <!-- Hero Section -->
+      <!-- Hero Section (Deduplicated: High-Level Focus Only) -->
       <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-14 lg:pt-16 lg:pb-18">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           
@@ -663,7 +665,7 @@
             </h1>
 
             <p class="text-slate-300 text-lg leading-relaxed max-w-2xl">
-              Cloud, DevOps, and GenAI Engineer with enterprise depth architecting zero-trust AWS infrastructure for post-trade financial clearing systems in real-time sync with the <strong class="text-white">NYSE and Federal Reserve</strong>, and building agentic AI platforms in India.
+              Cloud, DevOps, and GenAI Engineer with enterprise depth architecting zero-trust AWS infrastructure for post-trade financial clearing systems in real-time sync with the <strong class="text-white">NYSE and Federal Reserve</strong>, and delivering enterprise agentic AI platforms.
             </p>
 
             <div class="flex flex-wrap items-center gap-4 pt-2">
@@ -682,7 +684,7 @@
             </div>
           </div>
 
-          <!-- Fixed 300px x 300px Portrait Card Container -->
+          <!-- Profile Container -->
           <div class="lg:col-span-5">
             <div class="rounded-2xl bg-carbon-850 border border-carbon-700 shadow-2xl overflow-hidden">
               <div class="bg-carbon-800 px-5 py-3 border-b border-carbon-700 flex items-center justify-between">
@@ -743,7 +745,7 @@
         </div>
       </section>
 
-      <!-- Developer Live Telemetry Strip -->
+      <!-- Developer Live Telemetry Strip (Solely Visible in Dev Mode) -->
       <div id="devTelemetryStrip" style="display: none;" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-6">
         <div class="p-4 rounded-xl bg-carbon-950 border border-[#00ff66]/40 font-mono text-xs flex flex-wrap items-center justify-between gap-4 text-[#a7f3d0] shadow-lg">
           <div class="flex items-center gap-3">
@@ -856,7 +858,7 @@
         </div>
       </section>
 
-      <!-- Section 01: Production Deep Dives (DRY Architecture) -->
+      <!-- Section 01: Production Deep Dives (Canonical Source of Truth for Incidents) -->
       <section id="case-studies" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 border-b border-carbon-800">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
           <div>
@@ -1761,7 +1763,7 @@
     </div>
   </footer>
 
-  <!-- Developer Mode Diagnostic CLI Drawer with Minimize Toggle -->
+  <!-- Developer Mode Diagnostic CLI Drawer with Minimize Toggle (Solely in Dev Mode) -->
   <div id="devCliDrawer" style="display: none;" class="fixed bottom-0 left-0 right-0 z-30 bg-carbon-950/95 border-t border-[#00ff66]/40 p-3 sm:p-4 backdrop-blur-xl font-mono text-xs shadow-2xl transition-all duration-200">
     <div class="max-w-7xl mx-auto space-y-3">
       <div class="flex flex-wrap items-center justify-between gap-3 text-[#a7f3d0]">
@@ -1788,7 +1790,7 @@
       
       <div id="cliBodyWrapper" class="space-y-3">
         <div id="cliOutput" class="h-28 overflow-y-auto p-2.5 rounded bg-black/80 border border-carbon-800 space-y-1 text-slate-300 text-[11px]">
-          <div class="text-slate-400">Type 'help' or click any prompt shortcut above to run real live diagnostic commands. (Press Ctrl+C or ESC to cancel).</div>
+          <div class="text-slate-400">Type 'help' or click any prompt shortcut above to run live diagnostic commands. (Press Ctrl+C or ESC to cancel).</div>
         </div>
         <div class="flex items-center gap-2">
           <span class="text-[#00ff66] font-bold">sai@prod-bastion:~$</span>
@@ -1798,11 +1800,11 @@
     </div>
   </div>
 
-  <!-- Authentic gus.html Balloon (Strictly Lower-Left with Right-Floating Non-Occluding Popover) -->
-  <div id="balloonContainer" style="left: 24px; bottom: 20px; right: auto;" class="fixed z-30 flex flex-col items-start select-none">
+  <!-- Authentic gus.html Balloon (Lower-Left Fixed Anchor with Right-Floating Clamped Popover) -->
+  <div id="balloonContainer" style="left: 24px; bottom: 20px; right: auto;" class="fixed z-30 select-none">
     
-    <!-- Trivia & Nudge Speech Bubble (Floating beside the companion with fixed boundary) -->
-    <div id="balloonTriviaBubble" class="hidden mb-3 p-4 max-w-xs sm:max-w-sm rounded-2xl bg-carbon-900/95 border border-amber-500/60 text-xs font-mono shadow-2xl backdrop-blur-xl max-h-[min(340px,50vh)] overflow-y-auto">
+    <!-- Trivia & Nudge Speech Bubble (Anchored as a Popover to Top-Right of the Companion) -->
+    <div id="balloonTriviaBubble" class="hidden absolute bottom-full left-0 mb-3 ml-2 w-80 max-w-[calc(100vw-48px)] p-4 rounded-2xl bg-carbon-900/95 border border-amber-500/60 text-xs font-mono shadow-2xl backdrop-blur-xl max-h-[min(300px,45vh)] overflow-y-auto">
       <div class="flex items-center justify-between text-[10px] text-amber-400 pb-1.5 border-b border-carbon-700">
         <span id="balloonFactLabel" class="font-bold flex items-center gap-1">🎈 AirHead.cs~1.6</span>
         <button type="button" onclick="dismissBalloonBubble()" class="text-slate-400 hover:text-white cursor-pointer px-1">✕</button>
@@ -1873,7 +1875,7 @@
     <div id="chatBodyContainer" class="flex flex-col">
       <div id="chatWindow" class="h-64 overflow-y-auto p-4 space-y-3 bg-carbon-950/80 text-xs text-slate-200">
         <div class="p-3 rounded-2xl rounded-tl-sm bg-carbon-800 border border-carbon-700 text-slate-200 leading-relaxed">
-          Hey! Ask me anything about Sai Vinay's background, the <strong class="text-amber-400">AirHead.cs~1.6</strong> balloon trivia, or switch the site view below for <strong class="text-amber-400">HR</strong>, <strong class="text-amber-400">Manager</strong>, or <strong class="text-amber-400">Dev Mode</strong>.
+          Hey! Ask me anything about Sai Vinay's background, explore the <strong class="text-amber-400">AirHead.cs~1.6</strong> trivia secrets, or toggle the portfolio view below for <strong class="text-amber-400">HR</strong>, <strong class="text-amber-400">Manager</strong>, or <strong class="text-amber-400">Dev Mode</strong>.
         </div>
       </div>
 
@@ -1894,7 +1896,6 @@
 
   <!-- Core JavaScript Runtime -->
   <script>
-    // Defensive DOM Scrubber
     (function scrubStrayCitations() {
       const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
       const regex = /\[\s*cite:\s*[\d,\s]+\]/gi;
@@ -1996,18 +1997,15 @@
       }
     });
 
-    /* Perspective Switcher */
+    /* Strict Perspective Switcher */
     function setPerspective(role, showNotification = true) {
       document.body.classList.remove('mode-hr', 'mode-manager', 'mode-dev');
       
       const viewHr = document.getElementById('view-hr');
       const viewManagerDev = document.getElementById('view-manager-dev');
-      const managerKpi = document.getElementById('managerKpiStrip');
       const devTelemetry = document.getElementById('devTelemetryStrip');
       const devCliDrawer = document.getElementById('devCliDrawer');
       const devPatchRow = document.getElementById('devPatchRow');
-      const devWorkflows = document.querySelectorAll('.workflow-dev');
-      const managerNarratives = document.querySelectorAll('.narrative-manager');
       const devWorkbenches = document.querySelectorAll('.modal-dev-workbench');
       const managerBriefs = document.querySelectorAll('.modal-manager-brief');
 
@@ -2015,35 +2013,30 @@
         document.body.classList.add('mode-hr');
         viewHr.style.display = 'block';
         viewManagerDev.style.display = 'none';
-        devCliDrawer.style.display = 'none';
+        if (devCliDrawer) devCliDrawer.style.display = 'none';
+        if (devTelemetry) devTelemetry.style.display = 'none';
         stopMatrixRain();
-        setBalloonFace('secret');
-        if (showNotification) showToast('👔 <strong>HR / Recruiter Mode:</strong> Bento Grid, Credly seals &amp; Tech Stack matrix.');
+        setBalloonFace('default');
+        if (showNotification) showToast('👔 <strong>HR / Recruiter Mode:</strong> Executive Bento, verified Credly credentials &amp; printable summary.');
       } else if (role === 'manager') {
         document.body.classList.add('mode-manager');
         viewHr.style.display = 'none';
         viewManagerDev.style.display = 'block';
-        if (managerKpi) managerKpi.style.display = 'block';
         if (devTelemetry) devTelemetry.style.display = 'none';
         if (devCliDrawer) devCliDrawer.style.display = 'none';
         if (devPatchRow) devPatchRow.style.display = 'none';
-        devWorkflows.forEach(el => el.classList.add('hidden'));
-        managerNarratives.forEach(el => el.classList.remove('hidden'));
         devWorkbenches.forEach(el => el.classList.add('hidden'));
         managerBriefs.forEach(el => el.classList.remove('hidden'));
         stopMatrixRain();
         setBalloonFace('default');
-        if (showNotification) showToast('📊 <strong>Hiring Manager Mode:</strong> Executive baseline &amp; architectural trade-offs.');
+        if (showNotification) showToast('📊 <strong>Hiring Manager Mode:</strong> Architectural trade-offs, systems reliability &amp; deep dives.');
       } else if (role === 'engineer') {
         document.body.classList.add('mode-dev');
         viewHr.style.display = 'none';
         viewManagerDev.style.display = 'block';
-        if (managerKpi) managerKpi.style.display = 'none';
         if (devTelemetry) devTelemetry.style.display = 'block';
         if (devCliDrawer) devCliDrawer.style.display = 'block';
         if (devPatchRow) devPatchRow.style.display = 'flex';
-        devWorkflows.forEach(el => el.classList.remove('hidden'));
-        managerNarratives.forEach(el => el.classList.add('hidden'));
         devWorkbenches.forEach(el => el.classList.remove('hidden'));
         managerBriefs.forEach(el => el.classList.add('hidden'));
 
@@ -2058,11 +2051,11 @@
 
         startMatrixRain();
         setBalloonFace('hover');
-        if (showNotification) showToast('💻 <strong>Matrix Developer Mode:</strong> Interactive shell, telemetry &amp; live probes.');
+        if (showNotification) showToast('💻 <strong>Developer Mode:</strong> VinayOS terminal, client hardware telemetry &amp; interactive patch sandbox.');
       }
     }
 
-    /* Real-Time Telemetry Refresh */
+    /* Real-Time Telemetry Refresh (Dev Mode Only) */
     let packetCount = 1420;
     setInterval(() => {
       packetCount += Math.floor(Math.random() * 4) + 1;
@@ -2123,7 +2116,6 @@
       }
     }
 
-    // Toggle CLI Drawer Expand / Collapse
     let isCliDrawerCollapsed = false;
     function toggleCliDrawer() {
       const bodyWrapper = document.getElementById('cliBodyWrapper');
@@ -2317,7 +2309,7 @@ JS Heap:     ${heapTotal.padEnd(10)}  ${heapUsed.padEnd(10)}  (Active Browser Ta
             const text = await res.text();
 
             if (contentType.includes('text/html') || text.trim().startsWith('<!DOCTYPE') || text.trim().startsWith('<html')) {
-              printCliLine(`curl: (7) Connection established, but endpoint returned raw HTML/document. For CORS-friendly plain text try: curl https://cloudflare.com/cdn-cgi/trace`, 'text-yellow-400');
+              printCliLine(`curl: (7) Connection established, but endpoint returned raw HTML. Try: curl https://cloudflare.com/cdn-cgi/trace`, 'text-yellow-400');
             } else {
               printCliLine(text.slice(0, 800) + (text.length > 800 ? '\n... [truncated]' : ''), 'text-slate-200');
             }
@@ -2374,7 +2366,7 @@ JS Heap:     ${heapTotal.padEnd(10)}  ${heapUsed.padEnd(10)}  (Active Browser Ta
       }
     });
 
-    /* Lower-Left Balloon Companion Engine */
+    /* Balloon Companion Engine */
     const balloon = document.getElementById('gusBalloon');
     const gusSphere = document.getElementById('gusSphere');
     const balloonContainer = document.getElementById('balloonContainer');
@@ -2388,14 +2380,9 @@ JS Heap:     ${heapTotal.padEnd(10)}  ${heapUsed.padEnd(10)}  (Active Browser Ta
     let isBalloonMinimized = false;
     let balloonIntroduced = false;
 
-    // Isolate Minimize Button from Drag / Trivia Listeners
     if (btnMinimize) {
-      btnMinimize.addEventListener('pointerdown', (e) => {
-        e.stopPropagation();
-      });
-      btnMinimize.addEventListener('pointerup', (e) => {
-        e.stopPropagation();
-      });
+      btnMinimize.addEventListener('pointerdown', (e) => { e.stopPropagation(); });
+      btnMinimize.addEventListener('pointerup', (e) => { e.stopPropagation(); });
     }
 
     function toggleBalloonMinimize(e) {
@@ -2533,7 +2520,6 @@ JS Heap:     ${heapTotal.padEnd(10)}  ${heapUsed.padEnd(10)}  (Active Browser Ta
     function popTrivia() {
       if (isBalloonMinimized) return;
 
-      // First-Time Companion Introduction
       if (!balloonIntroduced) {
         balloonIntroduced = true;
         factLabel.textContent = "🎈 AirHead.cs~1.6 • Welcome!";
@@ -2600,7 +2586,7 @@ JS Heap:     ${heapTotal.padEnd(10)}  ${heapUsed.padEnd(10)}  (Active Browser Ta
     }
     setTimeout(runPeriodicNudge, 35000);
 
-    /* Matrix Rain Animation */
+    /* Matrix Rain Animation (Strictly Dev Mode) */
     const canvas = document.getElementById('matrixCanvas');
     const ctx = canvas.getContext('2d');
     let matrixTimer = null;
@@ -2727,7 +2713,6 @@ JS Heap:     ${heapTotal.padEnd(10)}  ${heapUsed.padEnd(10)}  (Active Browser Ta
         return;
       }
 
-      // Explicit intent match only (avoids false-positive triggers on informational questions)
       let detected = null;
       if (/^(switch to hr( mode)?|view hr( mode)?|show hr( mode)?)$/i.test(lower)) {
         detected = { role: 'recruiter', label: 'HR / Recruiter View (Bento Grid + Credly Seals)' };
@@ -2758,7 +2743,6 @@ JS Heap:     ${heapTotal.padEnd(10)}  ${heapUsed.padEnd(10)}  (Active Browser Ta
         return;
       }
 
-      // Worker API Fetch
       userInput.disabled = true;
       sendChatBtn.disabled = true;
       const loaderId = 'loader-' + Date.now();
@@ -2823,7 +2807,7 @@ JS Heap:     ${heapTotal.padEnd(10)}  ${heapUsed.padEnd(10)}  (Active Browser Ta
       }
     });
 
-    /* Case 1 Interactive Probe Patch */
+    /* Case 1 Interactive Probe Patch (Dev Mode Workbench) */
     let isCase1Patched = false;
     function toggleCase1Patch() {
       isCase1Patched = !isCase1Patched;
@@ -2881,3 +2865,4 @@ JS Heap:     ${heapTotal.padEnd(10)}  ${heapUsed.padEnd(10)}  (Active Browser Ta
   </script>
 </body>
 </html>
+      
