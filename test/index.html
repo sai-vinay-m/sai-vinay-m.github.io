@@ -120,7 +120,48 @@
       transform: translateY(-2px);
     }
 
-    /* Dev Mode CRT Phosphor Palette */
+    /* Zero Digital Theater Suppression in HR Mode */
+    body.mode-hr #stack,
+    body.mode-hr #matrixCanvas,
+    body.mode-hr .hero-glow,
+    body.mode-hr #balloonContainer,
+    body.mode-hr .bg-grid-pattern {
+      display: none !important;
+    }
+
+    /* Print Stylesheet for 1-Page PDF Export */
+    @media print {
+      body {
+        background: #ffffff !important;
+        color: #0f172a !important;
+        font-size: 12px !important;
+      }
+      header, footer, #portfolioChat, #balloonContainer, #customToast, canvas, #matrixCanvas, .no-print {
+        display: none !important;
+      }
+      #view-hr {
+        display: block !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+      }
+      .bento-card {
+        background: #ffffff !important;
+        border: 1px solid #cbd5e1 !important;
+        box-shadow: none !important;
+        border-radius: 8px !important;
+        padding: 1rem !important;
+        page-break-inside: avoid;
+      }
+      .text-white { color: #0f172a !important; }
+      .text-slate-200, .text-slate-300, .text-slate-400 { color: #334155 !important; }
+      .bg-carbon-900, .bg-carbon-850, .bg-carbon-800, .bg-carbon-950 {
+        background: #f8fafc !important;
+        border-color: #e2e8f0 !important;
+      }
+      a { text-decoration: none !important; color: #0284c7 !important; }
+    }
+
+    /* Dev Mode CRT Phosphor Theme */
     body.mode-dev {
       background-color: #030804 !important;
       color: #a7f3d0 !important;
@@ -179,7 +220,7 @@
       40% { transform: translateY(-4px); opacity: 1; }
     }
 
-    /* Scaled Balloon Shell & Anti-Clipping Facial Geometry */
+    /* Calibrated Facial Coordinates: Brow Clearance Clear of 77px Mouth Box */
     @keyframes gusFloat {
       0%, 100% { transform: translateY(0px) rotate(0deg); }
       50% { transform: translateY(-8px) rotate(2deg); }
@@ -196,9 +237,7 @@
       cursor: grab;
       transition: transform 0.25s ease, opacity 0.25s ease;
     }
-    .balloon-scale-shell:active {
-      cursor: grabbing;
-    }
+    .balloon-scale-shell:active { cursor: grabbing; }
     .balloon-container {
       position: absolute;
       top: 0;
@@ -238,7 +277,7 @@
     }
     .balloon-eyebrows span {
       position: absolute;
-      top: 52px;
+      top: 50px;
       width: 27px;
       height: 8px;
       border-radius: 6px;
@@ -338,7 +377,7 @@
     .gus-balloon.face-secret .balloon-mouth { width: 145px; height: 92px; border-radius: 20% 20% 60% 60%; }
     .gus-balloon.face-secret .balloon-cheek { background: linear-gradient(135deg, #f472b6, #ec4899); opacity: 0.85; transform: scale(1.15); }
 
-    /* Calibrated Brow Clearance: Stays clear of the 77px mouth boundary */
+    /* Precise Anti-Clipping Geometry for .face-nudge */
     .gus-balloon.face-nudge .balloon-eyebrows span:first-child { top: 48px; transform: rotate(-12deg); }
     .gus-balloon.face-nudge .balloon-eyebrows span:last-child { top: 51px; transform: rotate(-20deg) scaleX(1.05); }
     .gus-balloon.face-nudge .balloon-mouth { transform: translateX(-46%) rotate(-4deg); }
@@ -348,12 +387,8 @@
       height: 34px;
       cursor: pointer;
     }
-    .balloon-scale-shell.minimized .balloon-container {
-      display: none;
-    }
-    .balloon-scale-shell.minimized .minimized-disc {
-      display: flex !important;
-    }
+    .balloon-scale-shell.minimized .balloon-container { display: none; }
+    .balloon-scale-shell.minimized .minimized-disc { display: flex !important; }
   </style>
 </head>
 <body class="bg-carbon-900 text-slate-200 font-sans selection:bg-amber-500/20 selection:text-amber-400 min-h-screen relative overflow-x-hidden leading-relaxed mode-manager">
@@ -405,7 +440,7 @@
     </div>
   </header>
 
-  <!-- View 1: Clean, Printable HR & Recruiter Bento View -->
+  <!-- View 1: Clean, Printable HR & Recruiter View (Zero Theater, De-duplicated CTA) -->
   <div id="view-hr" style="display: none;" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 relative z-10">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-7 items-start">
       
@@ -419,7 +454,7 @@
           <h1 class="text-2xl font-extrabold text-white">Sai Vinay Mullapudi</h1>
           <p class="text-xs font-mono text-emerald-400 font-bold mt-1">4 Yrs Enterprise (3.5+ Yrs US &amp; India)</p>
           <p class="text-xs text-slate-300 mt-3 leading-relaxed">
-            Cloud, DevOps &amp; GenAI Engineer specialized in zero-trust financial infrastructure, resilient Java microservices, and enterprise agentic AI.
+            DevOps &amp; GenAI Engineer with experience progressing from secure Linux administration to enterprise AWS cloud architecture and backend Java development. Driving velocity through Zero-Trust CI/CD pipelines, scalable MLOps, and LLM-driven Agentic AI orchestration.
           </p>
         </div>
 
@@ -486,25 +521,20 @@
         </div>
       </aside>
 
-      <!-- Right Bento Grid Area -->
+      <!-- Right Main Content Area -->
       <div class="lg:col-span-8 space-y-6">
         
-        <!-- Candidate Value Proposition with Credly Seals -->
+        <!-- Candidate Value Proposition (Single Focused View, No Duplicate Call CTA) -->
         <div class="bento-card p-7 bg-gradient-to-br from-amber-500/15 via-carbon-850 to-carbon-900 border-amber-500/50 space-y-5">
-          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <div class="space-y-1">
-              <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-amber-500/15 border border-amber-500/40 text-amber-400 text-[11px] font-mono font-bold">
-                <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> CANDIDATE VALUE PROPOSITION
-              </div>
-              <h2 class="text-xl sm:text-2xl font-extrabold text-white">Enterprise Cloud Reliability Meets Production GenAI</h2>
+          <div class="space-y-1">
+            <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-amber-500/15 border border-amber-500/40 text-amber-400 text-[11px] font-mono font-bold">
+              <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> CANDIDATE VALUE PROPOSITION
             </div>
-            <button onclick="openCalendly()" class="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-carbon-950 font-bold text-xs font-mono shrink-0 shadow-lg cursor-pointer">
-              Schedule 30m Intro Call
-            </button>
+            <h2 class="text-xl sm:text-2xl font-extrabold text-white">Enterprise Cloud Reliability Meets Production GenAI</h2>
           </div>
 
           <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-            Architecting zero-trust AWS systems synchronized in real time with NYSE and Federal Reserve clearing feeds, coupled with modern applied AI platform delivery and resilient container governance.
+            Architecting zero-trust AWS systems synchronized in real time with NYSE and Federal Reserve clearing feeds, coupled with applied AI platform delivery and resilient container governance across distributed multi-node environments.
           </p>
 
           <!-- 3x AWS Credly Verification Badges -->
@@ -549,7 +579,7 @@
           </div>
         </div>
 
-        <!-- Single Comprehensive Tech Stack Matrix -->
+        <!-- Comprehensive Production Tech Stack Table -->
         <div class="bento-card p-6 space-y-4">
           <div class="flex items-center justify-between border-b border-carbon-700/80 pb-3">
             <h3 class="text-sm font-bold font-mono text-white uppercase tracking-wider flex items-center gap-2">
@@ -561,7 +591,7 @@
             <div class="p-3.5 rounded-xl bg-carbon-900 border border-carbon-800 space-y-2">
               <span class="text-amber-400 font-bold block">Cloud &amp; Infrastructure as Code:</span>
               <div class="flex flex-wrap gap-1.5 font-sans text-[11px] text-slate-200">
-                <span class="px-2 py-0.5 rounded bg-carbon-800 border border-carbon-700">AWS (VPC, IAM, KMS, RDS, SQS, SNS, S3)</span>
+                <span class="px-2 py-0.5 rounded bg-carbon-800 border border-carbon-700">AWS (VPC, IAM, KMS, RDS, DynamoDB, SQS, SNS, S3)</span>
                 <span class="px-2 py-0.5 rounded bg-carbon-800 border border-carbon-700">Terraform &amp; Terragrunt</span>
                 <span class="px-2 py-0.5 rounded bg-carbon-800 border border-carbon-700">Zero-Trust Architecture</span>
               </div>
@@ -572,7 +602,7 @@
                 <span class="px-2 py-0.5 rounded bg-carbon-800 border border-carbon-700">Docker &amp; Harbor Registry</span>
                 <span class="px-2 py-0.5 rounded bg-carbon-800 border border-carbon-700">Jenkins CI/CD</span>
                 <span class="px-2 py-0.5 rounded bg-carbon-800 border border-carbon-700">Azure DevOps</span>
-                <span class="px-2 py-0.5 rounded bg-carbon-800 border border-carbon-700">Linux / RHEL / LVM</span>
+                <span class="px-2 py-0.5 rounded bg-carbon-800 border border-carbon-700">Linux / RedHat / LVM</span>
               </div>
             </div>
             <div class="p-3.5 rounded-xl bg-carbon-900 border border-carbon-800 space-y-2">
@@ -580,7 +610,7 @@
               <div class="flex flex-wrap gap-1.5 font-sans text-[11px] text-slate-200">
                 <span class="px-2 py-0.5 rounded bg-carbon-800 border border-carbon-700">Java 17 (Spring Boot)</span>
                 <span class="px-2 py-0.5 rounded bg-carbon-800 border border-carbon-700">Maven &amp; JUnit</span>
-                <span class="px-2 py-0.5 rounded bg-carbon-800 border border-carbon-700">Python &amp; Bash</span>
+                <span class="px-2 py-0.5 rounded bg-carbon-800 border border-carbon-700">Python 3 &amp; Bash</span>
                 <span class="px-2 py-0.5 rounded bg-carbon-800 border border-carbon-700">MongoDB Atlas</span>
               </div>
             </div>
@@ -596,7 +626,7 @@
           </div>
         </div>
 
-        <!-- Experience Overview -->
+        <!-- Chronological Work Experience -->
         <div class="bento-card p-6 space-y-4">
           <div class="flex items-center justify-between">
             <h3 class="text-sm font-bold font-mono text-white uppercase tracking-wider flex items-center gap-2">
@@ -608,12 +638,14 @@
           <div class="space-y-4 font-mono text-xs">
             <div class="p-4 rounded-xl bg-carbon-900 border border-carbon-800 space-y-2">
               <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
-                <strong class="text-white text-sm">Ascendion — DevOps &amp; GenAI Engineer (L5 @ Client: HP Inc.)</strong>
+                <strong class="text-white text-sm">Ascendion — DevOps &amp; GenAI Engineer (Client: HP Inc.)</strong>
                 <span class="text-emerald-400 font-bold">Dec '25 – Aug '26</span>
               </div>
               <ul class="space-y-1.5 text-slate-300 text-[11px] list-disc list-inside font-sans">
-                <li>Integrated LLMs, vector knowledge bases, and guardrail architectures into agentic SDLC workflows.</li>
-                <li>Standardized multi-account IAM roles and Terraform governance across containerized platform workloads.</li>
+                <li>Integrated LLMs, custom Knowledge Bases, and guardrail architectures into agent-driven SDLC workflows.</li>
+                <li>Architected centralized Terraform workflows (SNS, SQS, IAM, Secrets Manager), eliminating configuration drift.</li>
+                <li>Triaged container dependency failures to ensure deployment stability across subscription services.</li>
+                <li>Consolidated redundant Java data identifiers into a canonical model, eliminating dead code paths.</li>
               </ul>
             </div>
 
@@ -624,18 +656,20 @@
               </div>
               <ul class="space-y-1.5 text-slate-300 text-[11px] list-disc list-inside font-sans">
                 <li>Architected zero-trust AWS infrastructure syncing in real-time with NYSE and Federal Reserve clearing feeds.</li>
-                <li>Built reusable Terraform modules into Jenkins CI/CD pipelines to secure KMS envelope encryption.</li>
+                <li>Integrated reusable Terraform modules into Jenkins CI/CD pipelines, optimizing cloud management across accounts.</li>
+                <li>Automated operational runbooks for RDS database maintenance and SSL certificate lifecycles.</li>
+                <li>Enforced fine-grained IAM policies and Principle of Least Privilege (PoLP) for FinTech regulatory compliance.</li>
               </ul>
             </div>
 
             <div class="p-4 rounded-xl bg-carbon-900 border border-carbon-800 space-y-2">
               <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
-                <strong class="text-white text-sm">LotusData LLP — Jr. Cloud Administrator (Princeton, NJ)</strong>
+                <strong class="text-white text-sm">LotusData LLP — Jr. System / Cloud Administrator (Princeton, NJ)</strong>
                 <span class="text-sky-400 font-bold">Mar '21 – Dec '21</span>
               </div>
               <ul class="space-y-1.5 text-slate-300 text-[11px] list-disc list-inside font-sans">
-                <li>Maintained high availability across 200+ AWS EC2 compute instances through automated snapshots.</li>
-                <li>Automated RedHat Linux bare-metal provisioning via Kickstart scripts and administered LVM storage.</li>
+                <li>Maintained 99% uptime across a fleet of 200+ AWS EC2 compute instances via proactive monitoring and snapshot AMIs.</li>
+                <li>Automated RedHat Linux deployments using Kickstart and managed online filesystem expansion via LVM.</li>
               </ul>
             </div>
           </div>
@@ -649,14 +683,14 @@
   <div id="view-manager-dev" class="relative z-10">
     <main id="home">
 
-      <!-- Hero Section (Deduplicated: High-Level Focus Only) -->
+      <!-- Hero Section (Deduplicated: Identity, Breadth & Domain Focus Only) -->
       <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-14 lg:pt-16 lg:pb-18">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           
           <div class="lg:col-span-7 space-y-6">
             <div class="inline-flex flex-wrap items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-mono">
               <i data-lucide="globe-2" class="w-4 h-4"></i>
-              4 Years Total Experience (3.5+ Yrs United States &amp; India) • 3x AWS Certified
+              4 Years Enterprise Experience (3.5+ Yrs US &amp; India) • 3x AWS Certified
             </div>
 
             <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12]">
@@ -665,12 +699,12 @@
             </h1>
 
             <p class="text-slate-300 text-lg leading-relaxed max-w-2xl">
-              Cloud, DevOps, and GenAI Engineer with enterprise depth architecting zero-trust AWS infrastructure for post-trade financial clearing systems in real-time sync with the <strong class="text-white">NYSE and Federal Reserve</strong>, and delivering enterprise agentic AI platforms.
+              Cloud, DevOps, and GenAI Engineer with enterprise depth architecting zero-trust AWS infrastructure for post-trade financial clearing systems in real-time sync with the <strong class="text-white">NYSE and Federal Reserve</strong>, coupled with enterprise agentic AI platform delivery.
             </p>
 
             <div class="flex flex-wrap items-center gap-4 pt-2">
               <a href="#case-studies" class="px-6 py-3.5 rounded-xl text-base font-bold bg-amber-500 hover:bg-amber-400 text-carbon-950 flex items-center gap-2 transition-all shadow-[0_0_25px_rgba(245,158,11,0.3)]">
-                See How I Solve Production Problems <i data-lucide="arrow-down-right" class="w-5 h-5"></i>
+                Explore Production Architecture <i data-lucide="arrow-down-right" class="w-5 h-5"></i>
               </a>
               <a href="assets/Sai-Vinay-Mullapudi.pdf" target="_blank" rel="noopener noreferrer" download="Sai-Vinay-Mullapudi-Resume.pdf" class="px-5 py-3.5 rounded-xl text-base font-mono bg-carbon-850 hover:bg-carbon-800 text-white border border-amber-500/40 flex items-center gap-2 transition-colors">
                 <i data-lucide="file-text" class="w-4 h-4 text-amber-400"></i> Download Resume
@@ -684,7 +718,7 @@
             </div>
           </div>
 
-          <!-- Profile Container -->
+          <!-- Profile Card -->
           <div class="lg:col-span-5">
             <div class="rounded-2xl bg-carbon-850 border border-carbon-700 shadow-2xl overflow-hidden">
               <div class="bg-carbon-800 px-5 py-3 border-b border-carbon-700 flex items-center justify-between">
@@ -710,7 +744,7 @@
                     <p class="text-sm text-amber-400 font-mono font-semibold">DevOps, Cloud &amp; GenAI Engineer</p>
                     <div class="flex flex-wrap justify-center sm:justify-start items-center gap-1.5 pt-1 text-[11px] font-mono text-slate-300">
                       <span class="px-2 py-0.5 rounded bg-carbon-800 border border-carbon-600">M.S. CS @NJIT</span>
-                      <span class="px-2 py-0.5 rounded bg-amber-500/15 border border-amber-500/30 text-amber-300">Executive Cert @IITB</span>
+                      <span class="px-2 py-0.5 rounded bg-amber-500/15 border border-amber-500/30 text-amber-300">Exec. Cert @IITB</span>
                       <span class="px-2 py-0.5 rounded bg-emerald-500/15 border border-emerald-500/30 text-emerald-300">3x AWS Certified</span>
                     </div>
                   </div>
@@ -722,12 +756,8 @@
                     <span class="text-white font-semibold">4 Years (3.5+ Yrs US)</span>
                   </div>
                   <div class="flex justify-between py-1 border-b border-carbon-800">
-                    <span class="text-slate-400">Recent Role Level:</span>
-                    <span class="text-amber-400 font-semibold">L5 Engineer (HP Inc. Cloud)</span>
-                  </div>
-                  <div class="flex justify-between py-1 border-b border-carbon-800">
                     <span class="text-slate-400">US Domain Focus:</span>
-                    <span class="text-white">NYSE / Fed Reserve Clearing Sync</span>
+                    <span class="text-white">NYSE / Fed Reserve Post-Trade</span>
                   </div>
                   <div class="flex justify-between py-1 border-b border-carbon-800">
                     <span class="text-slate-400">Primary Stack:</span>
@@ -765,7 +795,7 @@
         </div>
       </div>
 
-      <!-- Tech Stack Marquee (Tracks 1 & 2) -->
+      <!-- Tech Stack Marquee (Suppressed in HR Mode) -->
       <section id="stack" class="py-8 bg-carbon-950/80 border-y border-carbon-700/70 overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 mb-4 flex items-center justify-between">
           <span class="text-xs font-mono uppercase tracking-widest text-slate-400">
@@ -776,7 +806,6 @@
 
         <div class="marquee-container mask-marquee w-full overflow-hidden">
           <div class="marquee-track flex gap-4 whitespace-nowrap animate-marquee w-max">
-            <!-- Track 1 -->
             <div class="flex items-center gap-4">
               <div class="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-sm font-semibold text-slate-200">
                 <img src="assets/logos/aws.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg'" alt="AWS" class="w-6 h-6 object-contain"> Amazon Web Services
@@ -815,7 +844,6 @@
                 <img src="assets/logos/linux.svg" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/redhat/EE0000'" alt="RedHat Linux" class="w-5 h-5 object-contain"> RedHat Linux &amp; LVM
               </div>
             </div>
-            <!-- Track 2 -->
             <div class="flex items-center gap-4" aria-hidden="true">
               <div class="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-sm font-semibold text-slate-200">
                 <img src="assets/logos/aws.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg'" alt="AWS" class="w-6 h-6 object-contain"> Amazon Web Services
@@ -858,7 +886,7 @@
         </div>
       </section>
 
-      <!-- Section 01: Production Deep Dives (Canonical Source of Truth for Incidents) -->
+      <!-- Section 01: Production Deep Dives (5 Complete STAR Architectural Stories) -->
       <section id="case-studies" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 border-b border-carbon-800">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
           <div>
@@ -878,19 +906,18 @@
         </div>
 
         <div class="space-y-5">
-          <!-- Case 01 -->
+          
+          <!-- Story 01: Container Lifecycle & Exit Code 127 Triage -->
           <div class="rounded-2xl bg-carbon-850 border border-carbon-700 hover:border-amber-500/40 transition-all overflow-hidden shadow-lg">
             <button onclick="toggleCase('case-1-body', 'case-1-icon')" class="w-full p-6 text-left flex flex-col md:flex-row md:items-center justify-between gap-4 bg-carbon-850 hover:bg-carbon-800/60 transition-colors cursor-pointer">
               <div class="flex items-start md:items-center gap-4">
-                <div class="w-12 h-12 rounded-xl bg-red-500/10 border border-red-500/30 flex items-center justify-center text-red-400 shrink-0 font-mono font-bold text-sm">
-                  01
-                </div>
+                <div class="w-12 h-12 rounded-xl bg-red-500/10 border border-red-500/30 flex items-center justify-center text-red-400 shrink-0 font-mono font-bold text-sm">01</div>
                 <div>
                   <div class="flex flex-wrap items-center gap-2 mb-1">
                     <span class="px-2.5 py-0.5 rounded-full bg-red-500/15 text-red-400 font-mono text-xs border border-red-500/30 font-semibold">CONTAINER HEALTHCHECK OUTAGE</span>
                     <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 font-mono text-xs border border-emerald-500/30 font-semibold">RECOVERED IN 45M (60M SLA)</span>
                   </div>
-                  <h3 class="text-xl font-bold text-white">When Healthy Microservices Fail Their Readiness Probes</h3>
+                  <h3 class="text-xl font-bold text-white">When Healthy Microservices Fail Readiness Probes (Exit Code 127)</h3>
                 </div>
               </div>
               <div class="flex items-center gap-4 shrink-0">
@@ -905,7 +932,7 @@
               <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                 <div class="lg:col-span-6 space-y-4">
                   <p class="text-slate-300 text-base leading-relaxed">
-                    A pipeline stall halted deployments across multiple subscription and domain controller services. I led live triage and verified embedded Tomcat initialized cleanly in ~7.5s, pinpointing a missing <code class="text-white font-mono text-sm">curl</code> binary in an upstream hardened base image that broke container health probes with ExitCode 127.
+                    A pipeline stall blocked release deployments across multiple core subscription services. Volunteered to lead live triage on the incident bridge. Proved Tomcat initialized cleanly in ~7.5s, pinpointing a missing <code class="text-white font-mono text-sm">curl</code> binary in an upstream base image that broke container health probes with ExitCode 127.
                   </p>
                   <button onclick="openModal('modal-incident')" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-amber-500/15 hover:bg-amber-500 text-amber-300 hover:text-carbon-950 font-mono text-xs font-bold transition-all border border-amber-500/40 cursor-pointer">
                     <i data-lucide="terminal" class="w-4 h-4"></i> VIEW DETAILED RUNBOOK STEPS ↗
@@ -956,13 +983,11 @@
             </div>
           </div>
 
-          <!-- Case 02 -->
+          <!-- Story 02: Multi-Account Blast Radius & Terragrunt Staging Role Drift -->
           <div class="rounded-2xl bg-carbon-850 border border-carbon-700 hover:border-amber-500/40 transition-all overflow-hidden shadow-lg">
             <button onclick="toggleCase('case-2-body', 'case-2-icon')" class="w-full p-6 text-left flex flex-col md:flex-row md:items-center justify-between gap-4 bg-carbon-850 hover:bg-carbon-800/60 transition-colors cursor-pointer">
               <div class="flex items-start md:items-center gap-4">
-                <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 shrink-0 font-mono font-bold text-sm">
-                  02
-                </div>
+                <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 shrink-0 font-mono font-bold text-sm">02</div>
                 <div>
                   <div class="flex flex-wrap items-center gap-2 mb-1">
                     <span class="px-2.5 py-0.5 rounded-full bg-blue-500/15 text-blue-400 font-mono text-xs border border-blue-500/30 font-semibold">CLOUD IaC DRIFT AUDIT</span>
@@ -983,7 +1008,7 @@
               <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                 <div class="lg:col-span-6 space-y-4">
                   <p class="text-slate-300 text-base leading-relaxed">
-                    Audited a 15-file pull request across dev, staging, and production tiers. Caught a cross-account role assumption error in production Terragrunt before deployment, while proving semantic KMS upgrades preserved full decryption parity across active workloads.
+                    Audited a 15-file pull request across staging and production tiers. Caught a cross-account role assumption error in production Terragrunt before deployment, while proving semantic KMS upgrades preserved full decryption parity across active workloads.
                   </p>
                   <button onclick="openModal('modal-arn')" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-amber-500/15 hover:bg-amber-500 text-amber-300 hover:text-carbon-950 font-mono text-xs font-bold transition-all border border-amber-500/40 cursor-pointer">
                     <i data-lucide="shield-check" class="w-4 h-4"></i> VIEW AUDIT SPECIFICATIONS ↗
@@ -1024,13 +1049,11 @@
             </div>
           </div>
 
-          <!-- Case 03 -->
+          <!-- Story 03: Java Microservice Data Model Refactoring -->
           <div class="rounded-2xl bg-carbon-850 border border-carbon-700 hover:border-amber-500/40 transition-all overflow-hidden shadow-lg">
             <button onclick="toggleCase('case-3-body', 'case-3-icon')" class="w-full p-6 text-left flex flex-col md:flex-row md:items-center justify-between gap-4 bg-carbon-850 hover:bg-carbon-800/60 transition-colors cursor-pointer">
               <div class="flex items-start md:items-center gap-4">
-                <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 shrink-0 font-mono font-bold text-sm">
-                  03
-                </div>
+                <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 shrink-0 font-mono font-bold text-sm">03</div>
                 <div>
                   <div class="flex flex-wrap items-center gap-2 mb-1">
                     <span class="px-2.5 py-0.5 rounded-full bg-purple-500/15 text-purple-300 font-mono text-xs border border-purple-500/30 font-semibold">BACKEND REFACTORING</span>
@@ -1085,6 +1108,75 @@
               </div>
             </div>
           </div>
+
+          <!-- Story 04: Hybrid FinTech Networking & Core Banking Connectivity -->
+          <div class="rounded-2xl bg-carbon-850 border border-carbon-700 hover:border-amber-500/40 transition-all overflow-hidden shadow-lg">
+            <button onclick="toggleCase('case-4-body', 'case-4-icon')" class="w-full p-6 text-left flex flex-col md:flex-row md:items-center justify-between gap-4 bg-carbon-850 hover:bg-carbon-800/60 transition-colors cursor-pointer">
+              <div class="flex items-start md:items-center gap-4">
+                <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0 font-mono font-bold text-sm">04</div>
+                <div>
+                  <div class="flex flex-wrap items-center gap-2 mb-1">
+                    <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 font-mono text-xs border border-emerald-500/30 font-semibold">FINTECH HYBRID NETWORKING</span>
+                    <span class="px-2.5 py-0.5 rounded-full bg-sky-500/15 text-sky-400 font-mono text-xs border border-sky-500/30 font-semibold">DIRECT CONNECT • BGP FAILOVER</span>
+                  </div>
+                  <h3 class="text-xl font-bold text-white">Bank-Grade AWS to On-Premises Core Clearing Infrastructure</h3>
+                </div>
+              </div>
+              <div class="flex items-center gap-4 shrink-0">
+                <span class="text-xs font-mono text-slate-400 hidden sm:inline">Direct Connect • TGW • BFD • MACsec</span>
+                <div id="case-4-icon" class="w-9 h-9 rounded-lg bg-carbon-800 border border-carbon-700 flex items-center justify-center text-amber-400 transition-transform">
+                  <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                </div>
+              </div>
+            </button>
+
+            <div id="case-4-body" class="hidden border-t border-carbon-700 p-6 sm:p-8 bg-carbon-900/70 space-y-4">
+              <p class="text-slate-300 text-base leading-relaxed">
+                Engineered reusable Terraform blueprints provisioning private multi-tier VPC topologies, dynamic security group rules, and zero-trust segmentation isolating post-trade clearing engines in real-time sync with the NYSE and Federal Reserve feeds. Connected AWS Transit Gateway to on-premises core banking with Direct Connect, BFD sub-second failover, and IPSec VPN fallback.
+              </p>
+              <div class="p-4 rounded-xl bg-carbon-950 border border-carbon-800 font-mono text-xs text-slate-300 space-y-1.5">
+                <div class="text-emerald-400 font-bold"># Architecture Specifications:</div>
+                <div>• Primary Route: AWS Direct Connect via Direct Connect Gateway attached to Transit Gateway (TGW)</div>
+                <div>• Dynamic Routing: BGP with Bidirectional Forwarding Detection (BFD) reducing failover detection to &lt;1s</div>
+                <div>• Cryptographic Security: MACsec (802.1AE) point-to-point hardware link encryption with automated KMS envelope key rotation</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Story 05: POSIX Kernel Storage Recovery (df vs du) -->
+          <div class="rounded-2xl bg-carbon-850 border border-carbon-700 hover:border-amber-500/40 transition-all overflow-hidden shadow-lg">
+            <button onclick="toggleCase('case-5-body', 'case-5-icon')" class="w-full p-6 text-left flex flex-col md:flex-row md:items-center justify-between gap-4 bg-carbon-850 hover:bg-carbon-800/60 transition-colors cursor-pointer">
+              <div class="flex items-start md:items-center gap-4">
+                <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 shrink-0 font-mono font-bold text-sm">05</div>
+                <div>
+                  <div class="flex flex-wrap items-center gap-2 mb-1">
+                    <span class="px-2.5 py-0.5 rounded-full bg-amber-500/15 text-amber-400 font-mono text-xs border border-amber-500/30 font-semibold">POSIX KERNEL STORAGE</span>
+                    <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 font-mono text-xs border border-emerald-500/30 font-semibold">ONLINE LVM • OPEN FD TRUNCATION</span>
+                  </div>
+                  <h3 class="text-xl font-bold text-white">Clearing Ghost Disk Exhaustion (df vs du) Without Service Restarts</h3>
+                </div>
+              </div>
+              <div class="flex items-center gap-4 shrink-0">
+                <span class="text-xs font-mono text-slate-400 hidden sm:inline">Linux Kernel • lsof • LVM • RHEL</span>
+                <div id="case-5-icon" class="w-9 h-9 rounded-lg bg-carbon-800 border border-carbon-700 flex items-center justify-center text-amber-400 transition-transform">
+                  <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                </div>
+              </div>
+            </button>
+
+            <div id="case-5-body" class="hidden border-t border-carbon-700 p-6 sm:p-8 bg-carbon-900/70 space-y-4">
+              <p class="text-slate-300 text-base leading-relaxed">
+                Managed a 200+ AWS RedHat Linux instance fleet running high-throughput database workloads. Diagnosed discrepancies where <code class="text-amber-300 font-mono">df -h</code> showed 100% disk saturation while <code class="text-amber-300 font-mono">du</code> accounted for only a fraction of space, tracing root causes to unlinked open file descriptors holding disk blocks.
+              </p>
+              <div class="p-4 rounded-xl bg-carbon-950 border border-carbon-800 font-mono text-xs text-slate-300 space-y-1.5">
+                <div class="text-amber-400 font-bold"># Non-Disruptive Zero-Downtime Triage:</div>
+                <div>1. Identify unlinked descriptors: <code class="text-emerald-400">lsof +L1 | grep '(deleted)'</code></div>
+                <div>2. Zero inode data blocks without process termination: <code class="text-emerald-400">: &gt; /proc/&lt;PID&gt;/fd/&lt;FD&gt;</code></div>
+                <div>3. Hot-expand volume groups and filesystems online: <code class="text-emerald-400">lvextend -r -l +100%FREE /dev/vg_data/lv_app</code></div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </section>
 
@@ -1097,9 +1189,8 @@
               Progression backed by <span class="text-amber-400">verified credentials.</span>
             </h2>
           </div>
-          <!-- Editorial Accent Rail -->
           <p class="text-slate-300 text-sm sm:text-base max-w-md border-l-2 border-emerald-500/50 pl-4 py-0.5 leading-relaxed">
-            How <strong class="text-white font-semibold">foundational Linux administration</strong> evolved into <strong class="text-emerald-400 font-semibold">Wall Street financial DevOps</strong> and <strong class="text-white font-semibold">L5 enterprise cloud engineering</strong>.
+            How <strong class="text-white font-semibold">foundational Linux administration</strong> evolved into <strong class="text-emerald-400 font-semibold">Wall Street financial DevOps</strong> and <strong class="text-white font-semibold">enterprise GenAI cloud engineering</strong>.
           </p>
         </div>
 
@@ -1114,7 +1205,7 @@
                 <span class="text-sm font-mono text-slate-300 font-medium">BENGALURU, INDIA</span>
               </div>
               <span class="px-3.5 py-1 rounded-full bg-amber-500/20 border border-amber-500/50 text-amber-300 font-mono text-xs sm:text-sm font-bold tracking-wide">
-                L5 Engineer (Client: HP Inc. Print Cloud) &amp; Ascendion GenAI
+                L5 Engineer (Client: HP Inc.) &amp; Ascendion GenAI
               </span>
             </div>
 
@@ -1320,7 +1411,6 @@
               Education in <span class="text-amber-400">Computer Science &amp; AI.</span>
             </h2>
           </div>
-          <!-- Editorial Accent Rail -->
           <p class="text-slate-300 text-sm sm:text-base max-w-md border-l-2 border-amber-500/50 pl-4 py-0.5 leading-relaxed">
             Academic degrees spanning <strong class="text-white font-semibold">United States graduate research</strong> and <strong class="text-amber-400 font-semibold">executive engineering credentials</strong>.
           </p>
@@ -1571,6 +1661,7 @@
 
       <div class="px-6 py-3 bg-carbon-850 border-t border-carbon-800 flex justify-end">
         <button onclick="closeModal('modal-incident')" class="px-4 py-2 rounded-lg bg-amber-500 text-carbon-950 font-mono text-xs font-bold hover:bg-amber-400 cursor-pointer">Close Walkthrough</button>
+        button>
       </div>
     </div>
   </div>
@@ -2865,4 +2956,3 @@ JS Heap:     ${heapTotal.padEnd(10)}  ${heapUsed.padEnd(10)}  (Active Browser Ta
   </script>
 </body>
 </html>
-      
