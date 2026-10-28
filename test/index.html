@@ -1209,8 +1209,9 @@
               4 Years of enterprise progression—backed by <span class="text-amber-400">verified credentials.</span>
             </h2>
           </div>
-          <p class="text-slate-300 text-base max-w-md">
-            How foundational Linux administration evolved into Wall Street financial DevOps and L5 enterprise cloud engineering.
+          <p 
+            class="text-slate-300 text-sm sm:text-base max-w-md border-l-2 border-emerald-500/50 pl-4 py-0.5 leading-relaxed">
+            How <strong class="text-white font-semibold">foundational Linux administration</strong> evolved into <strong class="text-emerald-400 font-semibold">Wall Street financial DevOps</strong> and <strong class="text-white font-semibold">L5 enterprise cloud engineering</strong>.
           </p>
         </div>
 
@@ -1432,7 +1433,8 @@
             </h2>
           </div>
           <p class="text-slate-300 text-base max-w-md">
-            Academic degrees and executive engineering credentials.
+            class="text-slate-300 text-sm sm:text-base max-w-md border-l-2 border-amber-500/50 pl-4 py-0.5 leading-relaxed">
+    <strong class="text-white font-semibold">Academic degrees</strong> and <strong class="text-amber-400 font-semibold">executive engineering credentials</strong>.
           </p>
         </div>
 
@@ -1874,7 +1876,8 @@
   </footer>
 
   <!-- Developer Mode Diagnostic CLI Drawer -->
-  <div id="devCliDrawer" style="display: none;" class="fixed bottom-0 left-0 right-0 z-30 bg-carbon-950/95 border-t border-[#00ff66]/40 p-4 backdrop-blur-xl font-mono text-xs shadow-2xl">
+ <!-- Developer Mode Diagnostic CLI Drawer -->
+  <div id="devCliDrawer" style="display: none;" class="fixed bottom-0 left-0 right-0 z-30 bg-carbon-950/95 border-t border-[#00ff66]/40 p-3 sm:p-4 backdrop-blur-xl font-mono text-xs shadow-2xl transition-all duration-200">
     <div class="max-w-7xl mx-auto space-y-3">
       <div class="flex flex-wrap items-center justify-between gap-3 text-[#a7f3d0]">
         <div class="flex items-center gap-2">
@@ -1882,21 +1885,30 @@
           <span class="font-bold text-white tracking-wider">VinayOS Diagnostic Shell</span>
           <span class="text-[11px] text-slate-400">[v4.2.0 • Real Hardware &amp; Network Engine]</span>
         </div>
-        <div class="flex flex-wrap items-center gap-2">
-          <span class="text-[10px] text-slate-400">Quick Commands:</span>
-          <button onclick="runCliCommand('top')" class="px-2 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] border border-[#00ff66]/30 text-[10px] cursor-pointer">💡 top</button>
-          <button onclick="runCliCommand('dig github.com')" class="px-2 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] border border-[#00ff66]/30 text-[10px] cursor-pointer">💡 dig</button>
-          <button onclick="runCliCommand('ping')" class="px-2 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] border border-[#00ff66]/30 text-[10px] cursor-pointer">💡 ping</button>
-          <button onclick="runCliCommand('curl https://cloudflare.com/cdn-cgi/trace')" class="px-2 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] border border-[#00ff66]/30 text-[10px] cursor-pointer">💡 curl trace</button>
-          <button onclick="runCliCommand('whoami')" class="px-2 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] border border-[#00ff66]/30 text-[10px] cursor-pointer">💡 whoami</button>
+        <div class="flex items-center gap-3">
+          <div class="hidden sm:flex flex-wrap items-center gap-2">
+            <span class="text-[10px] text-slate-400">Quick:</span>
+            <button onclick="runCliCommand('top')" class="px-2 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] border border-[#00ff66]/30 text-[10px] cursor-pointer">top</button>
+            <button onclick="runCliCommand('dig github.com')" class="px-2 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] border border-[#00ff66]/30 text-[10px] cursor-pointer">dig</button>
+            <button onclick="runCliCommand('ping')" class="px-2 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] border border-[#00ff66]/30 text-[10px] cursor-pointer">ping</button>
+            <button onclick="runCliCommand('curl https://cloudflare.com/cdn-cgi/trace')" class="px-2 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] border border-[#00ff66]/30 text-[10px] cursor-pointer">curl trace</button>
+            <button onclick="runCliCommand('whoami')" class="px-2 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] border border-[#00ff66]/30 text-[10px] cursor-pointer">whoami</button>
+          </div>
+          <!-- Terminal Hide/Show Toggle -->
+          <button id="btnToggleCliDrawer" type="button" onclick="toggleCliDrawer()" class="px-2.5 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-[#00ff66] border border-[#00ff66]/40 text-[10.5px] font-bold cursor-pointer transition-colors">
+            — Hide Shell
+          </button>
         </div>
       </div>
-      <div id="cliOutput" class="h-28 overflow-y-auto p-2.5 rounded bg-black/80 border border-carbon-800 space-y-1 text-slate-300 text-[11px]">
-        <div class="text-slate-400">Type 'help' or click any prompt shortcut above to run real live diagnostic commands. (Press Ctrl+C or ESC to cancel).</div>
-      </div>
-      <div class="flex items-center gap-2">
-        <span class="text-[#00ff66] font-bold">sai@prod-bastion:~$</span>
-        <input type="text" id="cliInput" class="flex-1 bg-transparent border-none outline-none text-[#00ff66] font-mono text-xs" placeholder="Type a command (top, dig, ping, curl, free, uname, uptime)..." autocomplete="off">
+      
+      <div id="cliBodyWrapper" class="space-y-3">
+        <div id="cliOutput" class="h-28 overflow-y-auto p-2.5 rounded bg-black/80 border border-carbon-800 space-y-1 text-slate-300 text-[11px]">
+          <div class="text-slate-400">Type 'help' or click any prompt shortcut above to run real live diagnostic commands. (Press Ctrl+C or ESC to cancel).</div>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-[#00ff66] font-bold">sai@prod-bastion:~$</span>
+          <input type="text" id="cliInput" class="flex-1 bg-transparent border-none outline-none text-[#00ff66] font-mono text-xs" placeholder="Type a command (top, dig, ping, curl, free, uname, uptime)..." autocomplete="off">
+        </div>
       </div>
     </div>
   </div>
@@ -1919,6 +1931,19 @@
         <span class="text-[9.5px] text-slate-400">Click balloon for next 🎈</span>
       </div>
     </div>
+
+    <!-- Scaled Gus.html Shell with Minimize [X] on Left Side -->
+    <div id="gusBalloon" class="balloon-scale-shell gus-float-anim relative" title="AirHead.cs~1.6 — Drag me around or click for tech trivia!">
+      
+      <!-- Close / Minimize [X] Button on LEFT SIDE -->
+      <button id="btnMinimizeBalloon" type="button" onclick="toggleBalloonMinimize(event)" class="absolute -top-1.5 -left-1.5 z-30 w-5 h-5 rounded-full bg-carbon-800 border border-carbon-600 hover:border-amber-400 text-slate-300 hover:text-white text-[10px] font-mono flex items-center justify-center cursor-pointer shadow-md" title="Minimize Balloon">
+        ✕
+      </button>
+
+      <!-- Minimized Disc Indicator -->
+      <div class="minimized-disc hidden w-8 h-8 rounded-full bg-gradient-to-br from-[#d4fbff] to-[#477aa8] border-2 border-white/60 shadow-xl items-center justify-center font-mono font-bold text-xs text-carbon-950">
+        🎈
+      </div>
 
     <!-- Scaled Gus.html Shell with Minimize [X] on Left Side -->
     <div id="gusBalloon" class="balloon-scale-shell gus-float-anim relative" title="AirHead.cs~1.6 — Drag me around or click for tech trivia!">
@@ -1960,7 +1985,6 @@
         <div class="balloon-knot"></div>
       </div>
     </div>
-  </div>
 
   <!-- Vinay's Copilot Chat Widget -->
   <div id="portfolioChat" class="fixed bottom-5 right-5 z-40 w-[370px] max-w-[calc(100vw-24px)] rounded-2xl bg-carbon-850/95 backdrop-blur-xl border border-amber-500/30 shadow-2xl overflow-hidden transition-all duration-300">
@@ -2196,7 +2220,7 @@
       }
     }, 3500);
 
-    /* Robust Linux & Diagnostic Shell (Input Sanitized, Scheme-Aware & Non-Breaking) */
+    /* Robust Linux & Diagnostic Shell */
     const cliInput = document.getElementById('cliInput');
     const cliOutput = document.getElementById('cliOutput');
     let commandHistory = [];
@@ -2222,6 +2246,20 @@
           cliInput.value = '';
           cliInput.focus();
         }
+      }
+    }
+
+    // Terminal Drawer Collapse/Expand Toggle
+    let isCliDrawerCollapsed = false;
+    function toggleCliDrawer() {
+      const bodyWrapper = document.getElementById('cliBodyWrapper');
+      const toggleBtn = document.getElementById('btnToggleCliDrawer');
+      isCliDrawerCollapsed = !isCliDrawerCollapsed;
+      if (bodyWrapper) {
+        bodyWrapper.style.display = isCliDrawerCollapsed ? 'none' : 'block';
+      }
+      if (toggleBtn) {
+        toggleBtn.innerText = isCliDrawerCollapsed ? '>_ Open Shell' : '— Hide Shell';
       }
     }
 
@@ -2476,8 +2514,21 @@ JS Heap:     ${heapTotal.padEnd(10)}  ${heapUsed.padEnd(10)}  (Active Browser Ta
     let isBalloonMinimized = false;
     let balloonIntroduced = false;
 
+    // Prevent drag and popTrivia from firing when clicking the [X] button
+    if (btnMinimize) {
+      btnMinimize.addEventListener('pointerdown', (e) => {
+        e.stopPropagation();
+      });
+      btnMinimize.addEventListener('pointerup', (e) => {
+        e.stopPropagation();
+      });
+    }
+
     function toggleBalloonMinimize(e) {
-      if (e) e.stopPropagation();
+      if (e) {
+        e.stopPropagation();
+        e.preventDefault();
+      }
       isBalloonMinimized = !isBalloonMinimized;
       balloon.classList.toggle('minimized', isBalloonMinimized);
       if (isBalloonMinimized) {
@@ -2800,12 +2851,13 @@ JS Heap:     ${heapTotal.padEnd(10)}  ${heapUsed.padEnd(10)}  (Active Browser Ta
         return;
       }
 
+      // Explicit intent match only (avoids false-positive triggers on informational questions)
       let detected = null;
-      if (/\b(i am a recruiter|i'm a recruiter|hr mode|recruiter view)\b/i.test(lower)) {
+      if (/^(switch to hr( mode)?|view hr( mode)?|show hr( mode)?)$/i.test(lower)) {
         detected = { role: 'recruiter', label: 'HR / Recruiter View (Bento Grid + Credly Seals)' };
-      } else if (/\b(i am a hiring manager|i'm a manager|manager mode|manager view)\b/i.test(lower)) {
+      } else if (/^(switch to manager( mode)?|view manager( mode)?|show manager( mode)?)$/i.test(lower)) {
         detected = { role: 'manager', label: 'Hiring Manager View (KPI Scorecard + SLA Metrics)' };
-      } else if (/\b(i am a developer|i'm a dev|dev mode|matrix mode)\b/i.test(lower)) {
+      } else if (/^(switch to dev( mode)?|view dev( mode)?|show dev( mode)?|switch to matrix)$/i.test(lower)) {
         detected = { role: 'engineer', label: 'Developer Matrix View (Diagnostic Shell + Live Telemetry)' };
       }
 
