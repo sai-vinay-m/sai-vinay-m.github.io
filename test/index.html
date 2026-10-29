@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sai Vinay Mullapudi | Cloud, DevOps & GenAI Engineer</title>
-  <meta name="description" content="Portfolio of Sai Vinay Mullapudi — Cloud, DevOps & GenAI Engineer.">
+  <title>Sai Vinay Mullapudi | Cloud, DevOps &amp; GenAI Engineer</title>
+  <meta name="description" content="Portfolio of Sai Vinay Mullapudi — Cloud, DevOps &amp; GenAI Engineer.">
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -45,16 +45,11 @@
           animation: {
             'marquee': 'marquee 42s linear infinite',
             'pulse-subtle': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-            'neon-pulse': 'neonGlow 2s ease-in-out infinite alternate',
           },
           keyframes: {
             marquee: {
               '0%': { transform: 'translateX(0%)' },
               '100%': { transform: 'translateX(-50%)' },
-            },
-            neonGlow: {
-              '0%': { boxShadow: '0 0 5px #00ff66, 0 0 10px #00ff66, inset 0 0 5px #00ff66' },
-              '100%': { boxShadow: '0 0 15px #00ff66, 0 0 25px #00ff66, inset 0 0 8px #00ff66' },
             }
           }
         }
@@ -69,7 +64,6 @@
         `assets/${baseName}.webp`,
         `assets/${baseName}.svg`,
         `assets/logos/${baseName}.png`,
-        `assets/logos/${baseName}.jpg`,
         `assets/logos/${baseName}.svg`,
         `assets/badges/${baseName}.png`,
         `assets/badges/${baseName}.svg`
@@ -131,16 +125,6 @@
       color: #a7f3d0 !important;
       font-family: 'JetBrains Mono', monospace !important;
     }
-    body.mode-dev.matrix-off {
-      background-color: #050608 !important;
-      color: #e2e8f0 !important;
-    }
-    body.mode-dev.matrix-off .hero-glow {
-      display: none !important;
-    }
-    body.mode-dev.matrix-off::after {
-      display: none !important;
-    }
     body.mode-dev .bg-carbon-950,
     body.mode-dev .bg-carbon-900,
     body.mode-dev .bg-carbon-850,
@@ -171,6 +155,11 @@
       pointer-events: none;
     }
 
+    /* Classic High-Contrast Neon Green Theme (When Rain is Muted) */
+    body.mode-dev.dev-classic::after {
+      display: none !important;
+    }
+
     @keyframes svgPacketFlow {
       from { stroke-dashoffset: 36; }
       to   { stroke-dashoffset: 0; }
@@ -194,7 +183,7 @@
       40% { transform: translateY(-4px); opacity: 1; }
     }
 
-    /* Balloon Shell & Anti-Clipping Facial Geometry */
+    /* Calibrated Balloon Shell & Eyebrow Clearance */
     @keyframes gusFloat {
       0%, 100% { transform: translateY(0px) rotate(0deg); }
       50% { transform: translateY(-8px) rotate(2deg); }
@@ -253,7 +242,7 @@
     }
     .balloon-eyebrows span {
       position: absolute;
-      top: 52px;
+      top: 50px;
       width: 27px;
       height: 8px;
       border-radius: 6px;
@@ -353,7 +342,6 @@
     .gus-balloon.face-secret .balloon-mouth { width: 145px; height: 92px; border-radius: 20% 20% 60% 60%; }
     .gus-balloon.face-secret .balloon-cheek { background: linear-gradient(135deg, #f472b6, #ec4899); opacity: 0.85; transform: scale(1.15); }
 
-    /* Calibrated Brow Clearance */
     .gus-balloon.face-nudge .balloon-eyebrows span:first-child { top: 48px; transform: rotate(-12deg); }
     .gus-balloon.face-nudge .balloon-eyebrows span:last-child { top: 51px; transform: rotate(-20deg) scaleX(1.05); }
     .gus-balloon.face-nudge .balloon-mouth { transform: translateX(-46%) rotate(-4deg); }
@@ -372,31 +360,10 @@
 
     /* Print Styles for HR Mode */
     @media print {
-      body {
-        background: #fff !important;
-        color: #000 !important;
-      }
-      header, #stack, #portfolioChat, #balloonContainer, #devCliDrawer, #matrixCanvas {
-        display: none !important;
-      }
-      #view-hr {
-        display: block !important;
-        width: 100% !important;
-        margin: 0 !important;
-        padding: 0 !important;
-      }
-      .bento-card {
-        background: #fff !important;
-        border: 1px solid #ccc !important;
-        box-shadow: none !important;
-        color: #000 !important;
-      }
-      h1, h2, h3, h4, .text-white {
-        color: #000 !important;
-      }
-      .text-slate-300, .text-slate-400 {
-        color: #444 !important;
-      }
+      body { background: #ffffff !important; color: #000000 !important; }
+      header, #balloonContainer, #portfolioChat, #customToast, canvas, .hero-glow { display: none !important; }
+      #view-hr { display: block !important; padding: 0 !important; }
+      .bento-card { background: none !important; border: 1px solid #ccc !important; box-shadow: none !important; }
     }
   </style>
 </head>
@@ -411,7 +378,7 @@
     <span id="customToastText"></span>
   </div>
 
-  <!-- Sticky Navigation Bar (Resume removed from header; Console & Matrix toggle strictly in Dev Mode) -->
+  <!-- Sticky Navigation Bar -->
   <header class="sticky top-0 z-40 backdrop-blur-md bg-carbon-900/85 border-b border-carbon-700/70">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
       
@@ -429,50 +396,50 @@
         </div>
       </a>
 
-      <!-- Restored Standard Clean Navigation Links -->
       <nav class="hidden md:flex items-center gap-6 lg:gap-8 text-xs lg:text-sm font-semibold text-slate-300 whitespace-nowrap">
         <a href="#case-studies" class="hover:text-amber-400 transition-colors">Production Deep Dives</a>
-        <a href="#journey" class="hover:text-amber-400 transition-colors">Career &amp; AWS Credentials</a>
+        <a href="#journey" class="hover:text-amber-400 transition-colors">Career &amp; Credentials</a>
         <a href="#education" class="hover:text-amber-400 transition-colors">Education</a>
-        <a href="#contact" class="hover:text-amber-400 transition-colors">How I Work &amp; Contact</a>
+        <a href="#contact" class="hover:text-amber-400 transition-colors">How I Work</a>
       </nav>
 
-      <!-- Right Header Actions -->
-      <div class="flex items-center gap-3 shrink-0">
+      <!-- Top-Right Actions -->
+      <div class="flex items-center gap-2.5 shrink-0">
+        
+        <!-- Shining Console Button (Strictly Dev Mode Only) -->
+        <button id="navConsoleBtn" type="button" onclick="toggleConsoleModal()" style="display: none;" class="items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-mono font-bold bg-[#00ff66]/15 hover:bg-[#00ff66] text-[#00ff66] hover:text-black border border-[#00ff66]/60 shadow-[0_0_15px_rgba(0,255,102,0.35)] transition-all cursor-pointer">
+          <span class="w-2 h-2 rounded-full bg-[#00ff66] animate-ping"></span>
+          &gt;_ Console
+        </button>
+
+        <!-- Matrix Rain On/Off Toggle (Strictly Dev Mode Only) -->
+        <button id="matrixToggleBtn" type="button" onclick="toggleMatrixRainEffect()" style="display: none;" class="items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-mono bg-carbon-800 hover:bg-carbon-700 text-slate-300 border border-carbon-600 transition-all cursor-pointer" title="Toggle Digital Rain">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5 text-[#00ff66]"></i>
+          <span id="matrixToggleText" class="text-[11px] text-[#00ff66]">Rain</span>
+        </button>
+
         <a href="mailto:msaivinay306@gmail.com" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-mono bg-carbon-800 hover:bg-carbon-700 text-slate-200 border border-carbon-600 hover:border-amber-400 transition-all">
           <i data-lucide="mail" class="w-3.5 h-3.5 text-amber-400"></i>
           Contact
         </a>
-
-        <!-- Mini Matrix Phosphor Rain Toggle (Visible ONLY in Dev Mode) -->
-        <button id="navMatrixToggleBtn" type="button" onclick="toggleMatrixRainMode()" class="hidden items-center justify-center w-8 h-8 rounded-lg bg-carbon-800 hover:bg-carbon-700 text-[#00ff66] border border-[#00ff66]/40 text-xs font-mono transition-colors cursor-pointer" title="Toggle Matrix Rain / High-Contrast Theme">
-          <i data-lucide="activity" class="w-4 h-4"></i>
-        </button>
-
-        <!-- Shining Console Toggle Button (Visible ONLY in Dev Mode) -->
-        <button id="navConsoleBtn" type="button" onclick="toggleConsoleModal()" class="hidden items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-mono font-bold bg-[#050e07] text-[#00ff66] border border-[#00ff66] animate-neon-pulse transition-all cursor-pointer shadow-[0_0_15px_rgba(0,255,102,0.4)]">
-          <span class="w-2 h-2 rounded-full bg-[#00ff66] animate-ping"></span>
-          &gt;_ Console
-        </button>
       </div>
     </div>
   </header>
 
-  <!-- View 1: 3-Column Clean, Printable HR & Recruiter View -->
+  <!-- View 1: Clean, Printable 3-Column HR & Recruiter Mode -->
   <div id="view-hr" style="display: none;" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 relative z-10">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
       
-      <!-- Column 1 (Left, 3 Cols): Profile Rail with 35% Larger Portrait Image -->
-      <aside class="lg:col-span-3 bento-card p-6 space-y-5">
+      <!-- Column 1: Profile Rail (Left) with +35% Profile Portrait -->
+      <aside class="lg:col-span-4 bento-card p-6 space-y-5">
         <div class="flex flex-col items-center text-center">
-          <!-- 35% Larger Profile Image (w-44 h-44 / ~176px vs 128px) -->
-          <div class="w-44 h-44 rounded-full overflow-hidden border-4 border-amber-500/40 mb-3 bg-carbon-800 shadow-2xl flex items-center justify-center">
+          <div class="w-44 h-44 rounded-2xl overflow-hidden border-4 border-amber-500/40 mb-3 bg-carbon-800 shadow-xl flex items-center justify-center">
             <img src="assets/sai-vinay.png" alt="Sai Vinay" class="w-full h-full object-cover" onerror="resolveAsset(this, 'sai-vinay')">
             <span class="asset-fallback hidden font-mono font-bold text-4xl text-amber-400">SV</span>
           </div>
-          <h1 class="text-xl font-extrabold text-white">Sai Vinay Mullapudi</h1>
+          <h1 class="text-2xl font-extrabold text-white">Sai Vinay Mullapudi</h1>
           <p class="text-xs font-mono text-emerald-400 font-bold mt-1">4 Yrs Enterprise (3.5+ Yrs US &amp; India)</p>
-          <p class="text-xs text-slate-300 mt-2.5 leading-relaxed">
+          <p class="text-xs text-slate-300 mt-2.5 leading-relaxed font-sans">
             Cloud, DevOps &amp; GenAI Engineer specialized in zero-trust financial infrastructure, resilient Java microservices, and enterprise agentic AI.
           </p>
         </div>
@@ -480,10 +447,10 @@
         <div class="border-t border-carbon-700/80 pt-3.5 space-y-2 text-xs font-mono text-slate-300">
           <div class="flex items-center justify-between py-1 border-b border-carbon-800">
             <span class="text-slate-400">Target Roles:</span>
-            <span class="text-white font-semibold">DevOps / Cloud / MLOps</span>
+            <span class="text-white font-semibold">DevOps / Cloud / MLOps / SRE</span>
           </div>
           <div class="flex items-center justify-between py-1 border-b border-carbon-800">
-            <span class="text-slate-400">Location:</span>
+            <span class="text-slate-400">Mobility:</span>
             <span class="text-white">Bengaluru // Open Globally</span>
           </div>
           <div class="flex items-center justify-between py-1">
@@ -492,40 +459,40 @@
           </div>
         </div>
 
-        <!-- Academic Foundations in Left Rail -->
+        <!-- Academic Credentials -->
         <div class="border-t border-carbon-700/80 pt-3.5 space-y-2.5 font-mono">
-          <span class="text-[11px] font-bold text-amber-400 uppercase tracking-wider block">Academics</span>
+          <span class="text-[11px] font-bold text-amber-400 uppercase tracking-wider block">Academic Credentials</span>
           
-          <div class="p-2 rounded-xl bg-carbon-900 border border-carbon-800 flex items-center gap-2.5">
-            <div class="w-8 h-8 rounded-lg bg-carbon-800 border border-emerald-500/40 p-1 flex items-center justify-center shrink-0">
+          <div class="p-2.5 rounded-xl bg-carbon-900 border border-carbon-800 flex items-center gap-3">
+            <div class="w-9 h-9 rounded-lg bg-carbon-800 border border-emerald-500/40 p-1 flex items-center justify-center shrink-0">
               <img src="assets/iitb.png" alt="IIT Bombay" class="w-full h-full object-contain" onerror="resolveAsset(this, 'iitb')">
-              <span class="asset-fallback hidden text-[9px] font-bold text-emerald-400">IIT-B</span>
+              <span class="asset-fallback hidden text-[10px] font-bold text-emerald-400">IIT-B</span>
             </div>
             <div class="min-w-0">
-              <div class="text-[11px] font-bold text-white truncate">IIT Bombay</div>
-              <div class="text-[9.5px] text-amber-300 truncate">Exec. Cert AI &amp; MLOps (2026)</div>
+              <div class="text-xs font-bold text-white truncate">IIT Bombay</div>
+              <div class="text-[10px] text-amber-300 truncate">Exec. Cert AI &amp; MLOps (2026)</div>
             </div>
           </div>
 
-          <div class="p-2 rounded-xl bg-carbon-900 border border-carbon-800 flex items-center gap-2.5">
-            <div class="w-8 h-8 rounded-lg bg-carbon-800 border border-red-500/40 p-1 flex items-center justify-center shrink-0">
+          <div class="p-2.5 rounded-xl bg-carbon-900 border border-carbon-800 flex items-center gap-3">
+            <div class="w-9 h-9 rounded-lg bg-carbon-800 border border-red-500/40 p-1 flex items-center justify-center shrink-0">
               <img src="assets/njit.png" alt="NJIT" class="w-full h-full object-contain" onerror="resolveAsset(this, 'njit')">
-              <span class="asset-fallback hidden text-[9px] font-bold text-red-400">NJIT</span>
+              <span class="asset-fallback hidden text-[10px] font-bold text-red-400">NJIT</span>
             </div>
             <div class="min-w-0">
-              <div class="text-[11px] font-bold text-white truncate">NJIT (Newark, NJ, USA)</div>
-              <div class="text-[9.5px] text-amber-300 truncate">M.S. Computer Science (2020)</div>
+              <div class="text-xs font-bold text-white truncate">NJIT (Newark, NJ, USA)</div>
+              <div class="text-[10px] text-amber-300 truncate">M.S. in Computer Science (2020)</div>
             </div>
           </div>
 
-          <div class="p-2 rounded-xl bg-carbon-900 border border-carbon-800 flex items-center gap-2.5">
-            <div class="w-8 h-8 rounded-lg bg-carbon-800 border border-amber-500/40 p-1 flex items-center justify-center shrink-0">
+          <div class="p-2.5 rounded-xl bg-carbon-900 border border-carbon-800 flex items-center gap-3">
+            <div class="w-9 h-9 rounded-lg bg-carbon-800 border border-amber-500/40 p-1 flex items-center justify-center shrink-0">
               <img src="assets/ggsipu.png" alt="GGSIPU" class="w-full h-full object-contain" onerror="resolveAsset(this, 'ggsipu')">
-              <span class="asset-fallback hidden text-[9px] font-bold text-amber-400">IPU</span>
+              <span class="asset-fallback hidden text-[10px] font-bold text-amber-400">IPU</span>
             </div>
             <div class="min-w-0">
-              <div class="text-[11px] font-bold text-white truncate">GGSIPU (New Delhi)</div>
-              <div class="text-[9.5px] text-amber-300 truncate">B.Tech CS (2017)</div>
+              <div class="text-xs font-bold text-white truncate">GGSIP University (New Delhi)</div>
+              <div class="text-[10px] text-amber-300 truncate">B.Tech Computer Science (2017)</div>
             </div>
           </div>
         </div>
@@ -534,110 +501,88 @@
           <a href="mailto:msaivinay306@gmail.com" class="w-full py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-carbon-950 font-bold text-xs flex items-center justify-center gap-2 transition-all shadow-md">
             <i data-lucide="mail" class="w-4 h-4"></i> Direct Email Inquiry
           </a>
-          <button type="button" onclick="openCalendly()" class="w-full py-2.5 rounded-xl bg-carbon-800 hover:bg-carbon-700 text-slate-200 border border-carbon-600 text-xs font-mono flex items-center justify-center gap-2 transition-all cursor-pointer">
-            <i data-lucide="calendar" class="w-4 h-4 text-amber-400"></i> Schedule 30m Intro Call
+          <button type="button" onclick="openCalendly()" class="w-full py-2 rounded-xl bg-carbon-800 hover:bg-carbon-700 text-slate-200 border border-carbon-600 text-xs font-mono flex items-center justify-center gap-2 transition-all cursor-pointer">
+            <i data-lucide="calendar" class="w-4 h-4 text-amber-400"></i> Schedule a 30m Intro Call
           </button>
         </div>
       </aside>
 
-      <!-- Column 2 (Center, 6 Cols): Candidate Value Proposition & Enterprise Experience Stacked Directly Underneath -->
-      <div class="lg:col-span-6 space-y-6">
+      <!-- Column 2: Center Content (Candidate Value Prop + Enterprise Experience Overview) -->
+      <div class="lg:col-span-5 space-y-6">
         
-        <!-- Value Proposition (Duplicate 30m Call Button Removed) -->
+        <!-- Candidate Value Proposition (NO DUPLICATE 30M BUTTON) -->
         <div class="bento-card p-6 bg-gradient-to-br from-amber-500/15 via-carbon-850 to-carbon-900 border-amber-500/50 space-y-4">
           <div class="space-y-1">
             <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-amber-500/15 border border-amber-500/40 text-amber-400 text-[11px] font-mono font-bold">
               <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> CANDIDATE VALUE PROPOSITION
             </div>
-            <h2 class="text-xl font-extrabold text-white">Enterprise Cloud Reliability Meets Production GenAI</h2>
+            <h2 class="text-xl font-extrabold text-white leading-snug">Enterprise Cloud Reliability Meets Production GenAI</h2>
           </div>
 
-          <p class="text-xs text-slate-300 leading-relaxed">
+          <p class="text-xs text-slate-300 leading-relaxed font-sans">
             Architecting zero-trust AWS systems synchronized in real time with NYSE and Federal Reserve clearing feeds, coupled with modern applied AI platform delivery and resilient container governance.
           </p>
 
-          <!-- 3x AWS Verified Credly Badges -->
-          <div class="pt-2 border-t border-carbon-700/80">
-            <span class="text-[10px] font-mono text-slate-400 block mb-2 uppercase tracking-wider">3x AWS Verified Credentials (Click to Verify on Credly):</span>
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
-              
-              <a href="https://www.credly.com/badges/20f333e6-76e8-431a-9603-c22408681cd8" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-carbon-900/90 border border-emerald-500/40 hover:border-emerald-400 flex items-center gap-2.5 transition-transform hover:scale-105 group">
-                <div class="w-9 h-9 rounded-lg bg-carbon-850 p-1 flex items-center justify-center shrink-0 border border-emerald-500/30">
-                  <img src="assets/aws-mla.png" alt="AWS MLA" class="w-full h-full object-contain" onerror="resolveAsset(this, 'aws-mla')">
-                  <span class="asset-fallback hidden text-[9px] font-bold text-emerald-400">MLA</span>
-                </div>
-                <div class="min-w-0">
-                  <div class="text-[10.5px] font-bold text-white group-hover:text-emerald-400 transition-colors">ML Engineer</div>
-                  <div class="text-[9px] font-mono text-emerald-400 flex items-center gap-0.5">Verify Credly ↗</div>
-                </div>
+          <!-- 3x AWS Credly Badges -->
+          <div class="pt-3 border-t border-carbon-700/80">
+            <span class="text-[10px] font-mono text-slate-400 block mb-2 uppercase tracking-wider">3x AWS Verified Credentials:</span>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 font-mono">
+              <a href="https://www.credly.com/badges/20f333e6-76e8-431a-9603-c22408681cd8" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-carbon-900 border border-emerald-500/40 hover:border-emerald-400 flex items-center gap-2 transition-transform hover:scale-105">
+                <span class="text-[10px] font-bold text-emerald-400 shrink-0">MLA ↗</span>
+                <span class="text-[9.5px] text-white truncate">ML Engineer</span>
               </a>
-
-              <a href="https://www.credly.com/badges/af2f25bd-7fbe-4e21-92fc-4c39f8e92cf7" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-carbon-900/90 border border-amber-500/40 hover:border-amber-400 flex items-center gap-2.5 transition-transform hover:scale-105 group">
-                <div class="w-9 h-9 rounded-lg bg-carbon-850 p-1 flex items-center justify-center shrink-0 border border-amber-500/30">
-                  <img src="assets/aws-saa.png" alt="AWS SAA" class="w-full h-full object-contain" onerror="resolveAsset(this, 'aws-saa')">
-                  <span class="asset-fallback hidden text-[9px] font-bold text-amber-400">SAA</span>
-                </div>
-                <div class="min-w-0">
-                  <div class="text-[10.5px] font-bold text-white group-hover:text-amber-400 transition-colors">Solutions Arch.</div>
-                  <div class="text-[9px] font-mono text-amber-400 flex items-center gap-0.5">Verify Credly ↗</div>
-                </div>
+              <a href="https://www.credly.com/badges/af2f25bd-7fbe-4e21-92fc-4c39f8e92cf7" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-carbon-900 border border-amber-500/40 hover:border-amber-400 flex items-center gap-2 transition-transform hover:scale-105">
+                <span class="text-[10px] font-bold text-amber-400 shrink-0">SAA ↗</span>
+                <span class="text-[9.5px] text-white truncate">Solutions Arch.</span>
               </a>
-
-              <a href="https://www.credly.com/badges/582be29e-4701-41a4-b4bb-638b1d675fc2" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-carbon-900/90 border border-sky-500/40 hover:border-sky-400 flex items-center gap-2.5 transition-transform hover:scale-105 group">
-                <div class="w-9 h-9 rounded-lg bg-carbon-850 p-1 flex items-center justify-center shrink-0 border border-sky-500/30">
-                  <img src="assets/aws-cpp.png" alt="AWS CPP" class="w-full h-full object-contain" onerror="resolveAsset(this, 'aws-cpp')">
-                  <span class="asset-fallback hidden text-[9px] font-bold text-sky-400">CPP</span>
-                </div>
-                <div class="min-w-0">
-                  <div class="text-[10.5px] font-bold text-white group-hover:text-sky-400 transition-colors">Cloud Pract.</div>
-                  <div class="text-[9px] font-mono text-sky-400 flex items-center gap-0.5">Verify Credly ↗</div>
-                </div>
+              <a href="https://www.credly.com/badges/582be29e-4701-41a4-b4bb-638b1d675fc2" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-carbon-900 border border-sky-500/40 hover:border-sky-400 flex items-center gap-2 transition-transform hover:scale-105">
+                <span class="text-[10px] font-bold text-sky-400 shrink-0">CPP ↗</span>
+                <span class="text-[9.5px] text-white truncate">Cloud Pract.</span>
               </a>
-
             </div>
           </div>
         </div>
 
-        <!-- Enterprise Experience Overview (Directly Under Candidate Value Proposition) -->
+        <!-- Experience Overview Directly Underneath -->
         <div class="bento-card p-6 space-y-4">
-          <div class="flex items-center justify-between border-b border-carbon-700/80 pb-3">
-            <h3 class="text-sm font-bold font-mono text-white uppercase tracking-wider flex items-center gap-2">
+          <div class="flex items-center justify-between border-b border-carbon-700/80 pb-2">
+            <h3 class="text-xs font-bold font-mono text-white uppercase tracking-wider flex items-center gap-2">
               <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i> Enterprise Experience Overview
             </h3>
-            <span class="text-xs font-mono text-slate-400">Ascendion • Eficens • LotusData</span>
+            <span class="text-[11px] font-mono text-slate-400">4 Years Total</span>
           </div>
 
-          <div class="space-y-4 font-mono text-xs">
-            <div class="p-3.5 rounded-xl bg-carbon-900 border border-carbon-800 space-y-2">
-              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
-                <strong class="text-white text-xs font-bold">Ascendion — DevOps &amp; GenAI Engineer (Client: HP Inc.)</strong>
+          <div class="space-y-3.5 font-mono text-xs">
+            <div class="p-3.5 rounded-xl bg-carbon-900 border border-carbon-800 space-y-1.5">
+              <div class="flex justify-between items-center">
+                <strong class="text-white text-xs">Ascendion — DevOps &amp; GenAI (L5 @ HP Inc.)</strong>
                 <span class="text-emerald-400 font-bold text-[11px]">Dec '25 – Aug '26</span>
               </div>
-              <ul class="space-y-1.5 text-slate-300 text-[11px] list-disc list-inside font-sans">
+              <ul class="text-[11px] text-slate-300 list-disc list-inside space-y-1 font-sans">
                 <li>Integrated LLMs, vector knowledge bases, and guardrail architectures into agentic SDLC workflows.</li>
-                <li>Standardized multi-account IAM roles and Terraform governance across containerized platform workloads.</li>
+                <li>Standardized multi-account IAM and Terraform governance across containerized platform workloads.</li>
               </ul>
             </div>
 
-            <div class="p-3.5 rounded-xl bg-carbon-900 border border-carbon-800 space-y-2">
-              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
-                <strong class="text-white text-xs font-bold">Eficens Systems LLC — DevOps Engineer (US Financial Client)</strong>
+            <div class="p-3.5 rounded-xl bg-carbon-900 border border-carbon-800 space-y-1.5">
+              <div class="flex justify-between items-center">
+                <strong class="text-white text-xs">Eficens Systems LLC — DevOps (FinTech Client)</strong>
                 <span class="text-amber-400 font-bold text-[11px]">Dec '21 – Aug '24</span>
               </div>
-              <ul class="space-y-1.5 text-slate-300 text-[11px] list-disc list-inside font-sans">
-                <li>Architected zero-trust AWS infrastructure syncing in real-time with NYSE and Federal Reserve clearing feeds.</li>
+              <ul class="text-[11px] text-slate-300 list-disc list-inside space-y-1 font-sans">
+                <li>Architected zero-trust AWS infrastructure syncing in real-time with NYSE and Federal Reserve feeds.</li>
                 <li>Built reusable Terraform modules into Jenkins CI/CD pipelines to secure KMS envelope encryption.</li>
               </ul>
             </div>
 
-            <div class="p-3.5 rounded-xl bg-carbon-900 border border-carbon-800 space-y-2">
-              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
-                <strong class="text-white text-xs font-bold">LotusData LLP — Jr. Cloud Administrator (Princeton, NJ)</strong>
+            <div class="p-3.5 rounded-xl bg-carbon-900 border border-carbon-800 space-y-1.5">
+              <div class="flex justify-between items-center">
+                <strong class="text-white text-xs">LotusData LLP — Jr. Cloud Administrator (NJ)</strong>
                 <span class="text-sky-400 font-bold text-[11px]">Mar '21 – Dec '21</span>
               </div>
-              <ul class="space-y-1.5 text-slate-300 text-[11px] list-disc list-inside font-sans">
-                <li>Maintained high availability across 200+ AWS EC2 compute instances through automated snapshots.</li>
-                <li>Automated RedHat Linux bare-metal provisioning via Kickstart scripts and administered LVM storage.</li>
+              <ul class="text-[11px] text-slate-300 list-disc list-inside space-y-1 font-sans">
+                <li>Maintained 99% uptime across 200+ AWS compute instances through proactive snapshots and monitoring.</li>
+                <li>Automated RedHat Linux deployments via Kickstart and dynamically expanded LVM filesystems online.</li>
               </ul>
             </div>
           </div>
@@ -645,21 +590,20 @@
 
       </div>
 
-      <!-- Column 3 (Right, 3 Cols): Core Enterprise Tech Stack & Capabilities Vertical Banner -->
+      <!-- Column 3: Vertical Core Enterprise Tech Stack Banner (Right) -->
       <aside class="lg:col-span-3 bento-card p-6 space-y-4">
-        <div class="border-b border-carbon-700/80 pb-3">
+        <div class="border-b border-carbon-700/80 pb-2">
           <h3 class="text-xs font-bold font-mono text-white uppercase tracking-wider flex items-center gap-2">
-            <i data-lucide="cpu" class="w-4 h-4 text-amber-400"></i> Tech Stack &amp; Capabilities
+            <i data-lucide="cpu" class="w-4 h-4 text-amber-400"></i> Core Tech Stack
           </h3>
-          <span class="text-[10px] font-mono text-emerald-400 font-semibold block mt-0.5">Production Verified</span>
+          <span class="text-[10px] font-mono text-emerald-400">Production Verified</span>
         </div>
 
-        <div class="space-y-3.5 text-xs font-mono">
+        <div class="space-y-4 text-xs font-mono">
           <div class="p-3 rounded-xl bg-carbon-900 border border-carbon-800 space-y-2">
             <span class="text-amber-400 font-bold block text-[11px]">Cloud &amp; IaC:</span>
-            <div class="flex flex-wrap gap-1.5 font-sans text-[10.5px] text-slate-200">
-              <span class="px-2 py-0.5 rounded bg-carbon-800 border border-carbon-700">AWS (VPC, IAM, KMS)</span>
-              <span class="px-2 py-0.5 rounded bg-carbon-800 border border-carbon-700">RDS, SQS, SNS, S3</span>
+            <div class="flex flex-wrap gap-1 font-sans text-[10.5px] text-slate-300">
+              <span class="px-2 py-0.5 rounded bg-carbon-800 border border-carbon-700">AWS (VPC, IAM, KMS, RDS, SQS, SNS, S3)</span>
               <span class="px-2 py-0.5 rounded bg-carbon-800 border border-carbon-700">Terraform &amp; Terragrunt</span>
               <span class="px-2 py-0.5 rounded bg-carbon-800 border border-carbon-700">Zero-Trust Security</span>
             </div>
@@ -667,7 +611,7 @@
 
           <div class="p-3 rounded-xl bg-carbon-900 border border-carbon-800 space-y-2">
             <span class="text-sky-400 font-bold block text-[11px]">DevOps &amp; Containers:</span>
-            <div class="flex flex-wrap gap-1.5 font-sans text-[10.5px] text-slate-200">
+            <div class="flex flex-wrap gap-1 font-sans text-[10.5px] text-slate-300">
               <span class="px-2 py-0.5 rounded bg-carbon-800 border border-carbon-700">Docker &amp; Harbor</span>
               <span class="px-2 py-0.5 rounded bg-carbon-800 border border-carbon-700">Jenkins CI/CD</span>
               <span class="px-2 py-0.5 rounded bg-carbon-800 border border-carbon-700">Azure DevOps</span>
@@ -677,7 +621,7 @@
 
           <div class="p-3 rounded-xl bg-carbon-900 border border-carbon-800 space-y-2">
             <span class="text-purple-400 font-bold block text-[11px]">Backend &amp; Data:</span>
-            <div class="flex flex-wrap gap-1.5 font-sans text-[10.5px] text-slate-200">
+            <div class="flex flex-wrap gap-1 font-sans text-[10.5px] text-slate-300">
               <span class="px-2 py-0.5 rounded bg-carbon-800 border border-carbon-700">Java 17 (Spring Boot)</span>
               <span class="px-2 py-0.5 rounded bg-carbon-800 border border-carbon-700">Maven &amp; JUnit</span>
               <span class="px-2 py-0.5 rounded bg-carbon-800 border border-carbon-700">Python &amp; Bash</span>
@@ -686,8 +630,8 @@
           </div>
 
           <div class="p-3 rounded-xl bg-carbon-900 border border-carbon-800 space-y-2">
-            <span class="text-emerald-400 font-bold block text-[11px]">GenAI &amp; APM:</span>
-            <div class="flex flex-wrap gap-1.5 font-sans text-[10.5px] text-slate-200">
+            <span class="text-emerald-400 font-bold block text-[11px]">AI &amp; Observability:</span>
+            <div class="flex flex-wrap gap-1 font-sans text-[10.5px] text-slate-300">
               <span class="px-2 py-0.5 rounded bg-carbon-800 border border-carbon-700">Agentic RAG Workflows</span>
               <span class="px-2 py-0.5 rounded bg-carbon-800 border border-carbon-700">PyTorch &amp; MLOps</span>
               <span class="px-2 py-0.5 rounded bg-carbon-800 border border-carbon-700">Datadog APM</span>
@@ -699,11 +643,12 @@
 
     </div>
   </div>
+
   <!-- View 2 & 3: Manager & Developer Perspectives -->
   <div id="view-manager-dev" class="relative z-10">
     <main id="home">
 
-      <!-- Hero Section (Deduplicated; Resume CTA moved next to "See How I Solve Production Problems") -->
+      <!-- Hero Section -->
       <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-14 lg:pt-16 lg:pb-18">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           
@@ -718,46 +663,45 @@
               I untangle complex cloud systems &amp; <span class="text-amber-400">ship resilient code.</span>
             </h1>
 
-            <p class="text-slate-300 text-lg leading-relaxed max-w-2xl">
+            <p class="text-slate-300 text-lg leading-relaxed max-w-2xl font-sans">
               Cloud, DevOps, and GenAI Engineer with enterprise depth architecting zero-trust AWS infrastructure for post-trade financial clearing systems in real-time sync with the <strong class="text-white">NYSE and Federal Reserve</strong>, and building enterprise agentic AI platforms.
             </p>
 
-            <div class="flex flex-wrap items-center gap-4 pt-2">
-              <a href="#case-studies" class="px-6 py-3.5 rounded-xl text-base font-bold bg-amber-500 hover:bg-amber-400 text-carbon-950 flex items-center gap-2 transition-all shadow-[0_0_25px_rgba(245,158,11,0.3)]">
-                See How I Solve Production Problems <i data-lucide="arrow-down-right" class="w-5 h-5"></i>
+            <!-- Restored Hero 4-Button Cluster -->
+            <div class="flex flex-wrap items-center gap-3 pt-2">
+              <a href="#case-studies" class="px-5 py-3 rounded-xl text-sm font-bold bg-amber-500 hover:bg-amber-400 text-carbon-950 flex items-center gap-2 transition-all shadow-[0_0_20px_rgba(245,158,11,0.3)]">
+                See How I Solve Production Problems <i data-lucide="arrow-down-right" class="w-4 h-4"></i>
               </a>
-              <a href="assets/Sai-Vinay-Mullapudi.pdf" target="_blank" rel="noopener noreferrer" download="Sai-Vinay-Mullapudi-Resume.pdf" class="px-5 py-3.5 rounded-xl text-base font-mono bg-carbon-850 hover:bg-carbon-800 text-white border border-amber-500/40 flex items-center gap-2 transition-colors">
-                <i data-lucide="file-text" class="w-4 h-4 text-amber-400"></i> Download Resume.pdf
+              <a href="assets/Sai-Vinay-Mullapudi.pdf" target="_blank" rel="noopener noreferrer" download="Sai-Vinay-Mullapudi-Resume.pdf" class="px-4 py-3 rounded-xl text-sm font-mono bg-carbon-850 hover:bg-carbon-800 text-white border border-amber-500/40 flex items-center gap-2 transition-colors">
+                <i data-lucide="file-down" class="w-4 h-4 text-amber-400"></i> Download Resume.pdf
               </a>
-              <a href="https://linkedin.com/in/sai-vinay-mullapudi" target="_blank" rel="noopener noreferrer" class="px-4 py-3.5 rounded-xl text-base font-mono bg-carbon-850 hover:bg-carbon-800 text-slate-200 border border-carbon-700 flex items-center gap-2 transition-colors">
+              <a href="https://linkedin.com/in/sai-vinay-mullapudi" target="_blank" rel="noopener noreferrer" class="px-4 py-3 rounded-xl text-sm font-mono bg-carbon-850 hover:bg-carbon-800 text-slate-200 border border-carbon-700 flex items-center gap-2 transition-colors">
                 <i data-lucide="linkedin" class="w-4 h-4 text-amber-400"></i> LinkedIn — Let's Connect!
               </a>
-              <button type="button" onclick="openCalendly()" class="px-4 py-3.5 rounded-xl text-base font-mono bg-carbon-850 hover:bg-carbon-800 text-slate-200 border border-carbon-700 hover:border-amber-400/60 flex items-center gap-2 transition-colors cursor-pointer">
+              <button type="button" onclick="openCalendly()" class="px-4 py-3 rounded-xl text-sm font-mono bg-carbon-850 hover:bg-carbon-800 text-slate-200 border border-carbon-700 hover:border-amber-400/60 flex items-center gap-2 transition-colors cursor-pointer">
                 <i data-lucide="calendar" class="w-4 h-4 text-amber-400"></i> Schedule Call
               </button>
             </div>
           </div>
 
-          <!-- Original 300px x 300px Portrait Card Container Restored -->
+          <!-- Fixed 300x300 Portrait Card Container -->
           <div class="lg:col-span-5">
             <div class="rounded-2xl bg-carbon-850 border border-carbon-700 shadow-2xl overflow-hidden">
               <div class="bg-carbon-800 px-5 py-3 border-b border-carbon-700 flex items-center justify-between">
                 <div class="flex items-center gap-2">
-                  <span class="w-3.5 h-3.5 rounded-full bg-red-500/80"></span>
-                  <span class="w-3.5 h-3.5 rounded-full bg-amber-500/80"></span>
-                  <span class="w-3.5 h-3.5 rounded-full bg-emerald-500/80"></span>
+                  <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
+                  <span class="w-3 h-3 rounded-full bg-amber-500/80"></span>
+                  <span class="w-3 h-3 rounded-full bg-emerald-500/80"></span>
                 </div>
                 <span class="font-mono text-xs text-slate-400">engineer_profile.yaml</span>
                 <span class="font-mono text-xs text-emerald-400">ACTIVE</span>
               </div>
 
-              <div class="p-6 space-y-5">
-                <div class="flex flex-col sm:flex-row items-center gap-4 pb-5 border-b border-carbon-700/80 text-center sm:text-left">
+              <div class="p-6 space-y-4">
+                <div class="flex flex-col sm:flex-row items-center gap-4 pb-4 border-b border-carbon-700/80 text-center sm:text-left">
                   <div style="width: 300px; height: 300px;" class="w-[300px] h-[300px] rounded-2xl bg-carbon-800 border-2 border-amber-500/60 overflow-hidden shrink-0 flex items-center justify-center shadow-xl">
                     <img src="assets/sai-vinay.png" alt="Sai Vinay Mullapudi" class="w-full h-full object-cover" onerror="resolveAsset(this, 'sai-vinay')">
-                    <div class="asset-fallback hidden w-full h-full bg-gradient-to-br from-amber-500/20 to-blue-500/20 items-center justify-center font-mono font-bold text-2xl text-amber-400">
-                      SV
-                    </div>
+                    <div class="asset-fallback hidden w-full h-full bg-gradient-to-br from-amber-500/20 to-blue-500/20 items-center justify-center font-mono font-bold text-2xl text-amber-400">SV</div>
                   </div>
                   <div class="space-y-1.5">
                     <h2 class="text-2xl font-extrabold text-white">Sai Vinay Mullapudi</h2>
@@ -799,7 +743,7 @@
         </div>
       </section>
 
-      <!-- Developer Live Telemetry Strip (Solely Visible in Dev Mode) -->
+      <!-- Developer Live Telemetry Strip (Strictly Dev Mode) -->
       <div id="devTelemetryStrip" style="display: none;" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-6">
         <div class="p-4 rounded-xl bg-carbon-950 border border-[#00ff66]/40 font-mono text-xs flex flex-wrap items-center justify-between gap-4 text-[#a7f3d0] shadow-lg">
           <div class="flex items-center gap-3">
@@ -819,7 +763,7 @@
         </div>
       </div>
 
-      <!-- Restored Tools Marquee Ticker (Both Tracks with Separation Logos) -->
+      <!-- Restored Tools & Technologies Marquee Tracks -->
       <section id="stack" class="py-8 bg-carbon-950/80 border-y border-carbon-700/70 overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 mb-4 flex items-center justify-between">
           <span class="text-xs font-mono uppercase tracking-widest text-slate-400">
@@ -830,7 +774,6 @@
 
         <div class="marquee-container mask-marquee w-full overflow-hidden">
           <div class="marquee-track flex gap-4 whitespace-nowrap animate-marquee w-max">
-            <!-- Track 1 -->
             <div class="flex items-center gap-4">
               <div class="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-sm font-semibold text-slate-200">
                 <img src="assets/logos/aws.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg'" alt="AWS" class="w-6 h-6 object-contain"> Amazon Web Services
@@ -869,279 +812,692 @@
                 <img src="assets/logos/linux.svg" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/redhat/EE0000'" alt="RedHat Linux" class="w-5 h-5 object-contain"> RedHat Linux &amp; LVM
               </div>
             </div>
-            <!-- Track 2 -->
-            <div class="flex items-center gap-4" aria-hidden="true">
-              <div class="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-sm font-semibold text-slate-200">
-                <img src="assets/logos/aws.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg'" alt="AWS" class="w-6 h-6 object-contain"> Amazon Web Services
-              </div>
-              <div class="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-sm font-semibold text-slate-200">
-                <img src="assets/logos/terraform.svg" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/terraform/844FBA'" alt="Terraform" class="w-5 h-5 object-contain"> Terraform &amp; Terragrunt
-              </div>
-              <div class="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-sm font-semibold text-slate-200">
-                <img src="assets/logos/jenkins.svg" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/jenkins/D24939'" alt="Jenkins" class="w-5 h-5 object-contain"> Jenkins CI/CD
-              </div>
-              <div class="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-sm font-semibold text-slate-200">
-                <img src="assets/logos/java.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg'" alt="Java" class="w-5 h-5 object-contain"> Java (Spring Boot)
-              </div>
-              <div class="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-sm font-semibold text-slate-200">
-                <img src="assets/logos/docker.svg" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/docker/2496ED'" alt="Docker" class="w-5 h-5 object-contain"> Docker
-              </div>
-              <div class="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-sm font-semibold text-slate-200">
-                <img src="assets/logos/harbor.svg" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/harbor/60B932'" alt="Harbor" class="w-5 h-5 object-contain"> Harbor Registry
-              </div>
-              <div class="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-sm font-semibold text-slate-200">
-                <img src="assets/logos/azure-devops.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azuredevops/azuredevops-original.svg'" alt="Azure DevOps" class="w-5 h-5 object-contain"> Azure DevOps
-              </div>
-              <div class="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-sm font-semibold text-slate-200">
-                <img src="assets/logos/python.svg" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/python/3776AB'" alt="Python" class="w-5 h-5 object-contain"> Python &amp; Bash
-              </div>
-              <div class="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-sm font-semibold text-slate-200">
-                <img src="assets/logos/pytorch.svg" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/pytorch/EE4C2C'" alt="PyTorch" class="w-5 h-5 object-contain"> PyTorch &amp; Agentic RAG
-              </div>
-              <div class="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-sm font-semibold text-slate-200">
-                <img src="assets/logos/datadog.svg" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/datadog/632CA6'" alt="Datadog" class="w-5 h-5 object-contain"> Datadog APM
-              </div>
-              <div class="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-sm font-semibold text-slate-200">
-                <img src="assets/logos/splunk.svg" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/splunk/65A637'" alt="Splunk" class="w-5 h-5 object-contain"> Splunk
-              </div>
-              <div class="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-sm font-semibold text-slate-200">
-                <img src="assets/logos/linux.svg" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/redhat/EE0000'" alt="RedHat Linux" class="w-5 h-5 object-contain"> RedHat Linux &amp; LVM
-              </div>
-            </div>
           </div>
         </div>
       </section>
 
-      <!-- Section 01: Production Deep Dives (Canonical Source of Truth with Animated SVGs & Interactive Repair) -->
+      <!-- Section 01: Production Deep Dives -->
       <section id="case-studies" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 border-b border-carbon-800">
-        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
           <div>
             <span class="text-xs font-mono text-amber-400 uppercase tracking-wider">ARCHITECTURE &amp; INCIDENT DEEP DIVES</span>
             <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">
               Production problems <span class="text-amber-400">untangled with evidence.</span>
             </h2>
           </div>
-          <div class="flex flex-wrap items-center gap-3">
-            <button onclick="openModal('modal-pipeline')" class="px-4 py-2 rounded-xl bg-carbon-850 hover:bg-carbon-800 text-sky-300 border border-sky-500/40 text-xs font-mono font-bold flex items-center gap-1.5 transition-all cursor-pointer">
+          <div class="flex flex-wrap items-center gap-3 font-mono text-xs">
+            <button onclick="openModal('modal-pipeline')" class="px-3.5 py-1.5 rounded-xl bg-carbon-850 hover:bg-carbon-800 text-sky-300 border border-sky-500/40 flex items-center gap-1.5 transition-all cursor-pointer">
               <i data-lucide="package" class="w-3.5 h-3.5"></i> IaC Promotion Pipeline ↗
             </button>
-            <button onclick="openModal('modal-zero-trust')" class="px-4 py-2 rounded-xl bg-carbon-850 hover:bg-carbon-800 text-emerald-300 border border-emerald-500/40 text-xs font-mono font-bold flex items-center gap-1.5 transition-all cursor-pointer">
+            <button onclick="openModal('modal-zero-trust')" class="px-3.5 py-1.5 rounded-xl bg-carbon-850 hover:bg-carbon-800 text-emerald-300 border border-emerald-500/40 flex items-center gap-1.5 transition-all cursor-pointer">
               <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Zero-Trust Access Matrix ↗
             </button>
           </div>
         </div>
 
-        <div class="space-y-5">
-          <!-- Case 01: Docker Health Probe Triage -->
-          <div class="rounded-2xl bg-carbon-850 border border-carbon-700 hover:border-amber-500/40 transition-all overflow-hidden shadow-lg">
-            <button onclick="toggleCase('case-1-body', 'case-1-icon')" class="w-full p-6 text-left flex flex-col md:flex-row md:items-center justify-between gap-4 bg-carbon-850 hover:bg-carbon-800/60 transition-colors cursor-pointer">
-              <div class="flex items-start md:items-center gap-4">
-                <div class="w-12 h-12 rounded-xl bg-red-500/10 border border-red-500/30 flex items-center justify-center text-red-400 shrink-0 font-mono font-bold text-sm">
-                  01
-                </div>
-                <div>
-                  <div class="flex flex-wrap items-center gap-2 mb-1">
-                    <span class="px-2.5 py-0.5 rounded-full bg-red-500/15 text-red-400 font-mono text-xs border border-red-500/30 font-semibold">CONTAINER HEALTHCHECK OUTAGE</span>
-                    <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 font-mono text-xs border border-emerald-500/30 font-semibold">RECOVERED IN 45M (60M SLA)</span>
-                  </div>
-                  <h3 class="text-xl font-bold text-white">When Healthy Microservices Fail Their Readiness Probes</h3>
-                </div>
+        <!-- MANAGER MODE EXCLUSIVE: 5-Card STAR Business Ledger (Matches Reference Schema) -->
+        <div id="manager-ledger-cards" class="space-y-5">
+          
+          <!-- 01: Container Outage -->
+          <div class="rounded-2xl bg-carbon-850 border border-carbon-700 overflow-hidden shadow-lg p-6">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="w-8 h-8 rounded-lg bg-red-500/20 text-red-400 font-mono font-bold text-xs flex items-center justify-center border border-red-500/30">01</span>
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="px-2.5 py-0.5 rounded bg-red-500/15 text-red-400 font-mono text-xs font-semibold">INCIDENT COMMAND • HP INC. OBC</span>
+                <span class="px-2.5 py-0.5 rounded bg-emerald-500/15 text-emerald-400 font-mono text-xs font-semibold">RESOLVED IN 45M (60M SLA)</span>
               </div>
-              <div class="flex items-center gap-4 shrink-0">
-                <span class="text-xs font-mono text-slate-400 hidden sm:inline">Docker • Harbor • Spring Boot</span>
-                <div id="case-1-icon" class="w-9 h-9 rounded-lg bg-carbon-800 border border-carbon-700 flex items-center justify-center text-amber-400 transition-transform">
-                  <i data-lucide="chevron-down" class="w-5 h-5"></i>
-                </div>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-6">Unblocking Multi-Service Release Pipelines Under a Live 1–Hour SLA</h3>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+              <div class="lg:col-span-7 space-y-3.5 text-xs font-sans leading-relaxed">
+                <p><strong class="text-amber-400 font-mono uppercase tracking-wide">Business Stake (Situation):</strong> A blocking pipeline failure halted deployments across critical domain controller (<code class="text-white">hpone-onbooks-dc</code>) and subscription microservices (<code class="text-white">subscription-options-service</code>), stalling engineering releases across the OBC team.</p>
+                <p><strong class="text-sky-400 font-mono uppercase tracking-wide">Ownership (Action):</strong> Volunteered on the live incident bridge with a strict 60-minute resolution clock. Rather than assuming an application code regression, correlated startup timelines against container orchestration probes—proving the Java services booted cleanly while an upstream base image update had silently removed the health-probe dependency.</p>
+                <p><strong class="text-emerald-400 font-mono uppercase tracking-wide">Outcome (Result):</strong> Isolated the root cause and unblocked the release train in 45 minutes, then authored the permanent triage runbook on the engineering wiki to prevent repeat escalation.</p>
               </div>
-            </button>
 
-            <div id="case-1-body" class="hidden border-t border-carbon-700 p-6 sm:p-8 bg-carbon-900/70 space-y-6">
-              <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                <div class="lg:col-span-6 space-y-4">
-                  <p class="text-slate-300 text-base leading-relaxed">
-                    A pipeline stall halted deployments across multiple subscription and domain controller services. I led live triage and verified embedded Tomcat initialized cleanly in ~7.5s, pinpointing a missing <code class="text-white font-mono text-sm">curl</code> binary in an upstream hardened base image that broke container health probes with ExitCode 127.
-                  </p>
-                  <button onclick="openModal('modal-incident')" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-amber-500/15 hover:bg-amber-500 text-amber-300 hover:text-carbon-950 font-mono text-xs font-bold transition-all border border-amber-500/40 cursor-pointer">
-                    <i data-lucide="terminal" class="w-4 h-4"></i> VIEW DETAILED RUNBOOK STEPS ↗
-                  </button>
+              <div class="lg:col-span-5 p-4 rounded-xl bg-carbon-950 border border-carbon-800 font-mono text-xs space-y-2.5">
+                <div class="flex justify-between items-center text-[11px] pb-1 border-b border-carbon-800 text-slate-400">
+                  <span>SLA RECOVERY TIMELINE</span>
+                  <span class="text-emerald-400 font-bold">15M BUFFER SAVED</span>
                 </div>
-
-                <div class="lg:col-span-6 p-5 rounded-xl bg-carbon-950 border border-carbon-800 font-mono text-xs">
-                  <div class="flex items-center justify-between text-slate-400 mb-3 text-[11px]">
-                    <span>CONTAINER_HEALTHCHECK_TRIAGE.SVG</span>
-                    <span id="case1StatusBadge" class="text-red-400 font-semibold">EXIT CODE 127</span>
-                  </div>
-
-                  <!-- Animated Flow SVG -->
-                  <svg viewBox="0 0 520 115" class="w-full h-auto my-2" xmlns="http://www.w3.org/2000/svg">
-                    <line x1="150" y1="55" x2="195" y2="55" stroke="#34d399" stroke-width="2.5" class="svg-flow-line"/>
-                    <polygon points="198,55 190,50 190,60" fill="#34d399"/>
-                    <line id="case1SvgLine2" x1="325" y1="55" x2="370" y2="55" stroke="#ef4444" stroke-width="2.5" class="svg-flow-line"/>
-                    <polygon id="case1SvgArrow2" points="373,55 365,50 365,60" fill="#ef4444"/>
-
-                    <g transform="translate(10, 22)">
-                      <rect width="140" height="66" rx="8" fill="#062c22" stroke="#34d399" stroke-width="1.5"/>
-                      <text x="70" y="30" text-anchor="middle" fill="#6ee7b7" font-size="12" font-weight="bold">Spring App</text>
-                      <text x="70" y="48" text-anchor="middle" fill="#34d399" font-size="10">Port 8080 OK (7.5s)</text>
-                    </g>
-                    <g transform="translate(195, 22)">
-                      <rect id="case1SvgProbeRect" width="130" height="66" rx="8" fill="#3b0a0a" stroke="#ef4444" stroke-width="1.5"/>
-                      <text x="65" y="30" text-anchor="middle" fill="#fca5a5" font-size="12" font-weight="bold">Health Probe</text>
-                      <text id="case1SvgProbeText" x="65" y="48" text-anchor="middle" fill="#f87171" font-size="10">curl missing (127)</text>
-                    </g>
-                    <g transform="translate(370, 22)">
-                      <rect id="case1SvgRelRect" width="140" height="66" rx="8" fill="#161f33" stroke="#475569" stroke-width="1.5"/>
-                      <text x="70" y="30" text-anchor="middle" fill="#e2e8f0" font-size="12" font-weight="bold">Release</text>
-                      <text id="case1SvgRelText" x="70" y="48" text-anchor="middle" fill="#94a3b8" font-size="10">Pipeline Blocked</text>
-                    </g>
-                  </svg>
-
-                  <div id="case1LogLine" class="px-3 py-2 rounded bg-carbon-900 border border-red-500/25 text-red-300 truncate">
-                    /bin/sh: /usr/bin/curl: not found (ExitCode 127)
-                  </div>
-
-                  <!-- Restored Interactive Probe Repair Button (Visible in Dev Mode) -->
-                  <div id="devPatchRow" style="display: none;" class="pt-3 items-center justify-between">
-                    <span class="text-[11px] text-emerald-400">Interactive Probe Repair:</span>
-                    <button type="button" onclick="toggleCase1Patch()" id="btnCase1Patch" class="px-3 py-1 rounded bg-emerald-500/20 hover:bg-[#00ff66] text-[#00ff66] hover:text-black font-bold text-[11px] border border-emerald-500/40 transition-colors cursor-pointer">
-                      [ &gt;_ Run Patch: +curl ]
-                    </button>
-                  </div>
+                <div class="space-y-1.5 text-[11px] text-slate-300">
+                  <div><strong class="text-amber-400">T+00m:</strong> Multi-service build stall escalated in OBC Dev Chat</div>
+                  <div><strong class="text-sky-400">T+15m:</strong> Application runtime verified healthy (7.5s startup)</div>
+                  <div><strong class="text-purple-400">T+30m:</strong> Upstream Harbor base image regression isolated</div>
+                  <div><strong class="text-emerald-400">T+45m:</strong> Root cause verified &amp; wiki runbook published</div>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Case 02: Multi-Env Cloud IaC Drift Audit -->
-          <div class="rounded-2xl bg-carbon-850 border border-carbon-700 hover:border-amber-500/40 transition-all overflow-hidden shadow-lg">
-            <button onclick="toggleCase('case-2-body', 'case-2-icon')" class="w-full p-6 text-left flex flex-col md:flex-row md:items-center justify-between gap-4 bg-carbon-850 hover:bg-carbon-800/60 transition-colors cursor-pointer">
-              <div class="flex items-start md:items-center gap-4">
-                <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 shrink-0 font-mono font-bold text-sm">
-                  02
-                </div>
-                <div>
-                  <div class="flex flex-wrap items-center gap-2 mb-1">
-                    <span class="px-2.5 py-0.5 rounded-full bg-blue-500/15 text-blue-400 font-mono text-xs border border-blue-500/30 font-semibold">CLOUD IaC DRIFT AUDIT</span>
-                    <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 font-mono text-xs border border-emerald-500/30 font-semibold">15 FILES • ZERO PRODUCTION DRIFT</span>
-                  </div>
-                  <h3 class="text-xl font-bold text-white">Intercepting Cross-Account Staging Roles in Production PRs</h3>
-                </div>
+          <!-- 02: Terraform VPC Deadlocks -->
+          <div class="rounded-2xl bg-carbon-850 border border-carbon-700 overflow-hidden shadow-lg p-6">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="w-8 h-8 rounded-lg bg-blue-500/20 text-blue-400 font-mono font-bold text-xs flex items-center justify-center border border-blue-500/30">02</span>
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="px-2.5 py-0.5 rounded bg-blue-500/15 text-blue-400 font-mono text-xs font-semibold">STATE GRAPH ARCHITECTURE • PLUS1DO-646/647</span>
+                <span class="px-2.5 py-0.5 rounded bg-emerald-500/15 text-emerald-400 font-mono text-xs font-semibold">REUSABLE MODULE STANDARD</span>
               </div>
-              <div class="flex items-center gap-4 shrink-0">
-                <span class="text-xs font-mono text-slate-400 hidden sm:inline">Terraform • Terragrunt • KMS</span>
-                <div id="case-2-icon" class="w-9 h-9 rounded-lg bg-carbon-800 border border-carbon-700 flex items-center justify-center text-amber-400 transition-transform">
-                  <i data-lucide="chevron-down" class="w-5 h-5"></i>
-                </div>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-6">Eliminating Terraform VPC Dependency Deadlocks in CI/CD Runners</h3>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+              <div class="lg:col-span-7 space-y-3.5 text-xs font-sans leading-relaxed">
+                <p><strong class="text-amber-400 font-mono uppercase tracking-wide">Business Stake (Situation):</strong> An automated Azure DevOps infrastructure build failed during a foundational VPC module update, preventing downstream teams from rolling out network updates.</p>
+                <p><strong class="text-sky-400 font-mono uppercase tracking-wide">Ownership (Action):</strong> Investigated the build failure and traced the root cause to circular dependency locks caused by rigid, inline security group definitions. Redesigned the module architecture (PLUS1DO-647) to decouple security rules into configurable, standalone resources.</p>
+                <p><strong class="text-emerald-400 font-mono uppercase tracking-wide">Outcome (Result):</strong> Closed the triage and refactoring tickets within the active sprint, eliminating manual AWS console workarounds and establishing a reusable VPC module blueprint.</p>
               </div>
-            </button>
 
-            <div id="case-2-body" class="hidden border-t border-carbon-700 p-6 sm:p-8 bg-carbon-900/70 space-y-6">
-              <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                <div class="lg:col-span-6 space-y-4">
-                  <p class="text-slate-300 text-base leading-relaxed">
-                    Audited a 15-file pull request across dev, staging, and production tiers. Caught a cross-account role assumption error in production Terragrunt before deployment, while proving semantic KMS upgrades preserved full decryption parity across active workloads.
-                  </p>
-                  <button onclick="openModal('modal-arn')" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-amber-500/15 hover:bg-amber-500 text-amber-300 hover:text-carbon-950 font-mono text-xs font-bold transition-all border border-amber-500/40 cursor-pointer">
-                    <i data-lucide="shield-check" class="w-4 h-4"></i> VIEW AUDIT SPECIFICATIONS ↗
-                  </button>
+              <div class="lg:col-span-5 p-4 rounded-xl bg-carbon-950 border border-carbon-800 font-mono text-xs space-y-2.5">
+                <div class="text-[11px] pb-1 border-b border-carbon-800 text-slate-400 uppercase">ARCHITECTURAL SHIFT</div>
+                <div class="p-2.5 rounded bg-red-950/40 border border-red-500/30 text-red-300 text-[11px]">
+                  <strong>Before:</strong> Monolithic VPC + inline SG rules &rarr; Cyclic graph lock during teardown/update
                 </div>
-
-                <div class="lg:col-span-6 p-5 rounded-xl bg-carbon-950 border border-carbon-800 font-mono text-xs">
-                  <div class="flex items-center justify-between text-slate-400 mb-2 text-[11px]">
-                    <span>MULTI_ENV_INFRA_VALIDATION.SVG</span>
-                    <span class="text-emerald-400 font-semibold">DEV • STG • PRO</span>
-                  </div>
-
-                  <svg viewBox="0 0 520 140" class="w-full h-auto my-1" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="135" y="8" width="250" height="36" rx="8" fill="#172554" stroke="#60a5fa" stroke-width="1.5"/>
-                    <text x="260" y="30" text-anchor="middle" fill="#bfdbfe" font-size="11.5" font-weight="bold">Terraform &amp; Terragrunt (15 Files)</text>
-                    <line x1="200" y1="44" x2="65"  y2="82" stroke="#60a5fa" stroke-width="2" class="svg-flow-line"/>
-                    <line x1="240" y1="44" x2="195" y2="82" stroke="#60a5fa" stroke-width="2" class="svg-flow-line"/>
-                    <line x1="280" y1="44" x2="325" y2="82" stroke="#f59e0b" stroke-width="2.5" class="svg-flow-line"/>
-                    <line x1="320" y1="44" x2="455" y2="82" stroke="#34d399" stroke-width="2" class="svg-flow-line"/>
-
-                    <rect x="15" y="82" width="100" height="44" rx="6" fill="#101624" stroke="#314161" stroke-width="1.2"/>
-                    <text x="65" y="108" text-anchor="middle" fill="#e2e8f0" font-size="11" font-weight="bold">SNS</text>
-                    <rect x="145" y="82" width="100" height="44" rx="6" fill="#101624" stroke="#314161" stroke-width="1.2"/>
-                    <text x="195" y="108" text-anchor="middle" fill="#e2e8f0" font-size="11" font-weight="bold">SQS</text>
-                    <rect x="275" y="82" width="100" height="44" rx="6" fill="#451a03" stroke="#f59e0b" stroke-width="1.8"/>
-                    <text x="325" y="102" text-anchor="middle" fill="#fcd34d" font-size="11" font-weight="bold">IAM PoLP</text>
-                    <text x="325" y="117" text-anchor="middle" fill="#fbbf24" font-size="8.5">ARN Masked</text>
-                    <rect x="405" y="82" width="100" height="44" rx="6" fill="#062c22" stroke="#34d399" stroke-width="1.5"/>
-                    <text x="455" y="102" text-anchor="middle" fill="#6ee7b7" font-size="11" font-weight="bold">KMS HSM</text>
-                    <text x="455" y="117" text-anchor="middle" fill="#34d399" font-size="8.5">Parity OK</text>
-                  </svg>
-
-                  <div class="px-3 py-2 rounded bg-carbon-900 border border-amber-500/30 text-amber-300 truncate mt-2">
-                    arn:aws:iam::126350******:role/prod-billing-events-service
-                  </div>
+                <div class="p-2.5 rounded bg-emerald-950/40 border border-emerald-500/30 text-emerald-300 text-[11px]">
+                  <strong>After:</strong> Decoupled parameterized SG Lifecycle &rarr; Zero-deadlock automated CI/CD promotion
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Case 03: Java SKU Schema Refactoring (+315 / -992 LOC Restored) -->
-          <div class="rounded-2xl bg-carbon-850 border border-carbon-700 hover:border-amber-500/40 transition-all overflow-hidden shadow-lg">
-            <button onclick="toggleCase('case-3-body', 'case-3-icon')" class="w-full p-6 text-left flex flex-col md:flex-row md:items-center justify-between gap-4 bg-carbon-850 hover:bg-carbon-800/60 transition-colors cursor-pointer">
-              <div class="flex items-start md:items-center gap-4">
-                <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 shrink-0 font-mono font-bold text-sm">
-                  03
+          <!-- 03: Cross-Account Staging Leaks -->
+          <div class="rounded-2xl bg-carbon-850 border border-carbon-700 overflow-hidden shadow-lg p-6">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 font-mono font-bold text-xs flex items-center justify-center border border-amber-500/30">03</span>
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="px-2.5 py-0.5 rounded bg-amber-500/15 text-amber-400 font-mono text-xs font-semibold">SECOPS GOVERNANCE • PR #225 &amp; PLUS1DO-494</span>
+                <span class="px-2.5 py-0.5 rounded bg-emerald-500/15 text-emerald-400 font-mono text-xs font-semibold">ZERO PROD DRIFT</span>
+              </div>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-6">Preventing Cross-Account Staging Leaks in Production Infrastructure</h3>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+              <div class="lg:col-span-7 space-y-3.5 text-xs font-sans leading-relaxed">
+                <p><strong class="text-amber-400 font-mono uppercase tracking-wide">Business Stake (Situation):</strong> Multi-environment infrastructure promotions across 15 configuration files risked introducing cross-account permission leaks or breaking KMS secret decryption in production.</p>
+                <p><strong class="text-sky-400 font-mono uppercase tracking-wide">Ownership (Action):</strong> Conducted rigorous peer-review audits across Terragrunt and Runway upgrades ('sns', 'sqs', 'iam', 'secrets-manager'). Intercepted a staging IAM role ARN mistakenly targeted at production and performed an independent KMS key impact assessment for tag 'v3.3.1'.</p>
+                <p><strong class="text-emerald-400 font-mono uppercase tracking-wide">Outcome (Result):</strong> Prevented a production authentication outage prior to merge and delivered verified module upgrades across OBC and Printer Ledger workloads.</p>
+              </div>
+
+              <div class="lg:col-span-5 p-4 rounded-xl bg-carbon-950 border border-carbon-800 font-mono text-xs space-y-2">
+                <div class="text-[11px] pb-1 border-b border-carbon-800 text-slate-400 uppercase">GOVERNANCE SCORECARD</div>
+                <div class="flex justify-between py-1 border-b border-carbon-800 text-[11px]">
+                  <span class="text-slate-400">Config Files Audited:</span>
+                  <span class="text-white font-bold">15 Multi-Env Files</span>
                 </div>
-                <div>
-                  <div class="flex flex-wrap items-center gap-2 mb-1">
-                    <span class="px-2.5 py-0.5 rounded-full bg-purple-500/15 text-purple-300 font-mono text-xs border border-purple-500/30 font-semibold">BACKEND REFACTORING</span>
-                    <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 font-mono text-xs border border-emerald-500/30 font-semibold">+315 / -992 LINES CLEANED</span>
-                  </div>
-                  <h3 class="text-xl font-bold text-white">Unifying Divergent Microservice Data Identifiers</h3>
+                <div class="flex justify-between py-1 border-b border-carbon-800 text-[11px]">
+                  <span class="text-slate-400">Cross-Account Leaks Blocked:</span>
+                  <span class="text-emerald-400 font-bold">100% Pre-Merge</span>
+                </div>
+                <div class="flex justify-between py-1 text-[11px]">
+                  <span class="text-slate-400">KMS v3.3.1 Backward Parity:</span>
+                  <span class="text-emerald-400 font-bold">Verified Across Services</span>
                 </div>
               </div>
-              <div class="flex items-center gap-4 shrink-0">
-                <span class="text-xs font-mono text-slate-400 hidden sm:inline">Java Spring • Maven • JUnit</span>
-                <div id="case-3-icon" class="w-9 h-9 rounded-lg bg-carbon-800 border border-carbon-700 flex items-center justify-center text-amber-400 transition-transform">
-                  <i data-lucide="chevron-down" class="w-5 h-5"></i>
+            </div>
+          </div>
+
+          <!-- 04: FinTech Automation -->
+          <div class="rounded-2xl bg-carbon-850 border border-carbon-700 overflow-hidden shadow-lg p-6">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 font-mono font-bold text-xs flex items-center justify-center border border-emerald-500/30">04</span>
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="px-2.5 py-0.5 rounded bg-emerald-500/15 text-emerald-400 font-mono text-xs font-semibold">FINTECH CLOUD AUTOMATION • EFICENS SYSTEMS</span>
+                <span class="px-2.5 py-0.5 rounded bg-amber-500/15 text-amber-300 font-mono text-xs font-semibold">&gt;50% FASTER PROVISIONING</span>
+              </div>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-6">Scaling Regulated FinTech AWS Environments &amp; Zero-Downtime RDS Maintenance</h3>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+              <div class="lg:col-span-7 space-y-3.5 text-xs font-sans leading-relaxed">
+                <p><strong class="text-amber-400 font-mono uppercase tracking-wide">Business Stake (Situation):</strong> Manual cloud provisioning and maintenance windows for a US financial services client caused recurring deployment friction (~15 incidents/month) and risked downtime during database and SSL certificate renewals.</p>
+                <p><strong class="text-sky-400 font-mono uppercase tracking-wide">Ownership (Action):</strong> Engineered reusable Terraform modules for core AWS infrastructure (EC2, VPC, RDS, S3) embedded directly inside Jenkins CI/CD pipelines. Automated RDS version upgrades and SSL renewals, while partnering with SecOps to enforce Principle of Least Privilege (PoLP) IAM policies.</p>
+                <p><strong class="text-emerald-400 font-mono uppercase tracking-wide">Outcome (Result):</strong> Cut infrastructure provisioning lead time by over 50%, reduced monthly deployment errors by up to 15 incidents, and achieved near-zero downtime during critical maintenance cycles.</p>
+              </div>
+
+              <div class="lg:col-span-5 p-4 rounded-xl bg-carbon-950 border border-carbon-800 font-mono text-xs space-y-2">
+                <div class="text-[11px] pb-1 border-b border-carbon-800 text-slate-400 uppercase">DELIVERY IMPACT METRICS</div>
+                <div class="flex justify-between py-1 border-b border-carbon-800 text-[11px]">
+                  <span class="text-slate-400">Provisioning Lead Time:</span>
+                  <span class="text-emerald-400 font-bold">Reduced by &gt;50%</span>
+                </div>
+                <div class="flex justify-between py-1 border-b border-carbon-800 text-[11px]">
+                  <span class="text-slate-400">Deployment Error Rate:</span>
+                  <span class="text-emerald-400 font-bold">-15 Incidents / Month</span>
+                </div>
+                <div class="flex justify-between py-1 text-[11px]">
+                  <span class="text-slate-400">RDS &amp; SSL Maintenance:</span>
+                  <span class="text-emerald-400 font-bold">Near-Zero Downtime</span>
                 </div>
               </div>
-            </button>
+            </div>
+          </div>
 
-            <div id="case-3-body" class="hidden border-t border-carbon-700 p-6 sm:p-8 bg-carbon-900/70 space-y-6">
-              <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                <div class="lg:col-span-6 space-y-4">
-                  <p class="text-slate-300 text-base leading-relaxed">
-                    Refactored divergent SKU schemas across e-commerce renewal microservices. Unified variables into a single canonical source, stripped dead code paths, and achieved 100% green Maven suites under tight sprint freezes.
-                  </p>
-                  <button onclick="openModal('modal-java')" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-amber-500/15 hover:bg-amber-500 text-amber-300 hover:text-carbon-950 font-mono text-xs font-bold transition-all border border-amber-500/40 cursor-pointer">
-                    <i data-lucide="code-2" class="w-4 h-4"></i> VIEW REFACTOR DETAILS ↗
-                  </button>
+          <!-- 05: Fleet Reliability -->
+          <div class="rounded-2xl bg-carbon-850 border border-carbon-700 overflow-hidden shadow-lg p-6">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="w-8 h-8 rounded-lg bg-sky-500/20 text-sky-400 font-mono font-bold text-xs flex items-center justify-center border border-sky-500/30">05</span>
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="px-2.5 py-0.5 rounded bg-sky-500/15 text-sky-400 font-mono text-xs font-semibold">FLEET RELIABILITY • LOTUSDATA (200+ NODES)</span>
+                <span class="px-2.5 py-0.5 rounded bg-emerald-500/15 text-emerald-400 font-mono text-xs font-semibold">99% UPTIME SLA • ZERO REBOOTS</span>
+              </div>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-6">Sustaining 99% Uptime Across 200+ RedHat Linux &amp; Database Instances</h3>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+              <div class="lg:col-span-7 space-y-3.5 text-xs font-sans leading-relaxed">
+                <p><strong class="text-amber-400 font-mono uppercase tracking-wide">Business Stake (Situation):</strong> High-throughput database servers across a 200+ node AWS EC2 fleet experienced sudden storage exhaustion and capacity spikes that threatened production database consistency and uptime SLAs.</p>
+                <p><strong class="text-sky-400 font-mono uppercase tracking-wide">Ownership (Action):</strong> Investigated filesystem anomalies where deleted log files remained locked by active processes, reclaiming storage online without interrupting running database daemons. Standardized automated OS provisioning via RedHat Kickstart and executed dynamic Logical Volume Manager (LVM) expansions alongside DBA snapshot protocols.</p>
+                <p><strong class="text-emerald-400 font-mono uppercase tracking-wide">Outcome (Result):</strong> Guaranteed 99% system uptime across all 200+ instances with zero unplanned reboots during storage scaling or backup operations.</p>
+              </div>
+
+              <div class="lg:col-span-5 p-4 rounded-xl bg-carbon-950 border border-carbon-800 font-mono text-xs space-y-2">
+                <div class="text-[11px] pb-1 border-b border-carbon-800 text-slate-400 uppercase">FLEET OPERATIONS SUMMARY</div>
+                <div class="flex justify-between py-1 border-b border-carbon-800 text-[11px]">
+                  <span class="text-slate-400">Managed Compute Footprint:</span>
+                  <span class="text-white font-bold">200+ AWS EC2 Instances</span>
                 </div>
+                <div class="flex justify-between py-1 border-b border-carbon-800 text-[11px]">
+                  <span class="text-slate-400">Storage Scaling Strategy:</span>
+                  <span class="text-emerald-400 font-bold">Online LVM (Zero Reboot)</span>
+                </div>
+                <div class="flex justify-between py-1 text-[11px]">
+                  <span class="text-slate-400">Provisioning Baseline:</span>
+                  <span class="text-emerald-400 font-bold">Automated RHEL Kickstart</span>
+                </div>
+              </div>
+            </div>
+          </div>
 
-                <div class="lg:col-span-6 p-5 rounded-xl bg-carbon-950 border border-carbon-800 font-mono text-xs">
-                  <div class="flex items-center justify-between text-slate-400 mb-2 text-[11px]">
-                    <span>SCHEMA_CONSOLIDATION.SVG</span>
-                    <span class="text-purple-400 font-semibold">+315 / -992 LOC</span>
+        </div>
+
+        <!-- DEV MODE EXCLUSIVE: Interactive Deep Dives with Animated SVGs & Probe Patching Sandbox -->
+        <div id="dev-sandbox-deepdives" style="display: none;" class="space-y-5">
+          
+          <!-- Dev Case 01: Interactive Healthcheck Sandbox -->
+          <div class="rounded-2xl bg-black border border-[#00ff66]/40 p-6 space-y-5 shadow-2xl">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <div class="flex items-center gap-3">
+                <span class="px-2.5 py-1 rounded bg-[#00ff66]/20 text-[#00ff66] font-mono text-xs font-bold">[DEV-SANDBOX-01]</span>
+                <h3 class="text-lg font-bold text-white font-mono">Live Docker Readiness Probe Diagnostics</h3>
+              </div>
+              <div class="flex items-center gap-2">
+                <span id="case1StatusBadge" class="px-2.5 py-0.5 rounded bg-red-500/20 text-red-400 border border-red-500/40 font-mono font-bold text-[11px]">EXIT CODE 127</span>
+                <button type="button" onclick="toggleCase1Patch()" id="btnCase1Patch" class="px-3 py-1 rounded bg-[#00ff66]/20 hover:bg-[#00ff66] text-[#00ff66] hover:text-black font-mono font-bold text-xs border border-[#00ff66]/50 transition-colors cursor-pointer">
+                  [ &gt;_ Run Patch: +curl ]
+                </button>
+              </div>
+            </div>
+
+            <!-- Animated SVG Flow -->
+            <div class="p-4 rounded-xl bg-carbon-950 border border-carbon-800">
+              <svg viewBox="0 0 520 115" class="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
+                <line x1="150" y1="55" x2="195" y2="55" stroke="#34d399" stroke-width="2.5" class="svg-flow-line"/>
+                <polygon points="198,55 190,50 190,60" fill="#34d399"/>
+                <line id="case1SvgLine2" x1="325" y1="55" x2="370" y2="55" stroke="#ef4444" stroke-width="2.5" class="svg-flow-line"/>
+                <polygon id="case1SvgArrow2" points="373,55 365,50 365,60" fill="#ef4444"/>
+
+                <g transform="translate(10, 22)">
+                  <rect width="140" height="66" rx="8" fill="#062c22" stroke="#34d399" stroke-width="1.5"/>
+                  <text x="70" y="30" text-anchor="middle" fill="#6ee7b7" font-size="12" font-weight="bold">Spring App</text>
+                  <text x="70" y="48" text-anchor="middle" fill="#34d399" font-size="10">Port 8080 OK (7.5s)</text>
+                </g>
+                <g transform="translate(195, 22)">
+                  <rect id="case1SvgProbeRect" width="130" height="66" rx="8" fill="#3b0a0a" stroke="#ef4444" stroke-width="1.5"/>
+                  <text x="65" y="30" text-anchor="middle" fill="#fca5a5" font-size="12" font-weight="bold">Health Probe</text>
+                  <text id="case1SvgProbeText" x="65" y="48" text-anchor="middle" fill="#f87171" font-size="10">curl missing (127)</text>
+                </g>
+                <g transform="translate(370, 22)">
+                  <rect id="case1SvgRelRect" width="140" height="66" rx="8" fill="#161f33" stroke="#475569" stroke-width="1.5"/>
+                  <text x="70" y="30" text-anchor="middle" fill="#e2e8f0" font-size="12" font-weight="bold">Release</text>
+                  <text id="case1SvgRelText" x="70" y="48" text-anchor="middle" fill="#94a3b8" font-size="10">Pipeline Blocked</text>
+                </g>
+              </svg>
+            </div>
+
+            <div id="case1LogLine" class="p-3 rounded bg-carbon-900 border border-red-500/30 text-red-300 font-mono text-xs truncate">
+              /bin/sh: /usr/bin/curl: not found (ExitCode 127)
+            </div>
+          </div>
+
+          <!-- Dev Case 02: Java Microservice Refactor (+315 / -992 LOC) -->
+          <div class="rounded-2xl bg-black border border-[#00ff66]/40 p-6 space-y-4 shadow-2xl font-mono text-xs">
+            <div class="flex items-center justify-between border-b border-carbon-800 pb-2">
+              <span class="text-[#00ff66] font-bold">[REFACTOR-SKU-286] CANONICAL DTO UNIFICATION</span>
+              <span class="text-purple-400 font-bold">+315 / -992 LINES CLEANED</span>
+            </div>
+
+            <p class="text-slate-300 font-sans leading-relaxed">
+              Consolidated divergent product SKU identifiers (<code class="text-white">parentSKU</code> vs <code class="text-white">parentProductSku</code>) across Magento cancellation rules into a single canonical DTO field, stripping 992 lines of dead docstrings and legacy code paths under a release freeze.
+            </p>
+
+            <svg viewBox="0 0 520 120" class="w-full h-auto my-1 bg-carbon-950 rounded-xl p-2" xmlns="http://www.w3.org/2000/svg">
+              <path d="M 175 32 L 295 58" stroke="#c084fc" stroke-width="2.2" fill="none" class="svg-flow-line"/>
+              <path d="M 175 85 L 295 58" stroke="#c084fc" stroke-width="2.2" fill="none" class="svg-flow-line"/>
+              <polygon points="300,58 290,52 290,64" fill="#34d399"/>
+              <rect x="15" y="15" width="160" height="35" rx="6" fill="#2e1065" stroke="#a855f7" stroke-width="1.4"/>
+              <text x="95" y="37" text-anchor="middle" fill="#e9d5ff" font-size="11">parentSKU (Legacy)</text>
+              <rect x="15" y="68" width="160" height="35" rx="6" fill="#2e1065" stroke="#a855f7" stroke-width="1.4"/>
+              <text x="95" y="90" text-anchor="middle" fill="#e9d5ff" font-size="11">parentProductSku</text>
+              <rect x="305" y="24" width="195" height="68" rx="10" fill="#062c22" stroke="#34d399" stroke-width="1.8"/>
+              <text x="402" y="50" text-anchor="middle" fill="#6ee7b7" font-size="12" font-weight="bold">Canonical SKU</text>
+              <text x="402" y="70" text-anchor="middle" fill="#34d399" font-size="9.5">Single Source • Maven 100% OK</text>
+            </svg>
+
+            <div class="p-3 rounded bg-carbon-950 border border-purple-500/30 text-purple-200">
+              Diff: +315 additions / -992 deletions • 100% Passing Unit &amp; Integration Suites
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- Section 02: Career Progression & AWS Credentials -->
+      <section id="journey" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 border-b border-carbon-800">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+          <div>
+            <span class="text-xs font-mono text-amber-400 uppercase tracking-wider">CAREER &amp; VERIFIED AWS CREDENTIALS</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">
+              Progression backed by <span class="text-amber-400">verified credentials.</span>
+            </h2>
+          </div>
+          <!-- Editorial Accent Rail -->
+          <p class="text-slate-300 text-sm sm:text-base max-w-md border-l-2 border-emerald-500/50 pl-4 py-0.5 leading-relaxed font-sans">
+            How <strong class="text-white font-semibold">foundational Linux administration</strong> evolved into <strong class="text-emerald-400 font-semibold">Wall Street financial DevOps</strong> and <strong class="text-white font-semibold">L5 enterprise cloud engineering</strong>.
+          </p>
+        </div>
+
+        <!-- MANAGER MODE CAREER TIMELINE -->
+        <div id="manager-career-timeline" class="space-y-8">
+          
+          <!-- Ascendion -->
+          <div class="rounded-2xl bg-carbon-850 border-2 border-emerald-500/40 overflow-hidden shadow-2xl">
+            <div class="bg-carbon-800 px-6 sm:px-8 py-4 border-b border-carbon-700 flex flex-wrap items-center justify-between gap-3">
+              <div class="flex items-center gap-3">
+                <span class="px-4 py-1 rounded-md bg-emerald-500 text-carbon-950 font-mono text-sm font-extrabold tracking-wider">
+                  DEC 2025 – AUG 2026
+                </span>
+                <span class="text-sm font-mono text-slate-300 font-medium">BENGALURU, INDIA</span>
+              </div>
+              <span class="px-3.5 py-1 rounded-full bg-amber-500/20 border border-amber-500/50 text-amber-300 font-mono text-xs sm:text-sm font-bold tracking-wide">
+                L5 Engineer (Client: HP Inc. Print Cloud) &amp; Ascendion GenAI
+              </span>
+            </div>
+
+            <div class="p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              <div class="lg:col-span-8 space-y-5">
+                <div class="flex flex-wrap items-center gap-5">
+                  <div class="flex items-center gap-3">
+                    <div class="w-16 h-16 rounded-2xl bg-carbon-900 border border-emerald-500/40 flex items-center justify-center shrink-0 p-2 shadow-lg">
+                      <img src="assets/ascendion.png" alt="Ascendion" class="w-full h-full object-contain" onerror="resolveAsset(this, 'ascendion')">
+                      <div class="asset-fallback hidden w-full h-full items-center justify-center font-mono font-extrabold text-xl text-emerald-400">ASC</div>
+                    </div>
+                    <div class="flex flex-col items-center gap-1">
+                      <div class="w-10 h-10 rounded-xl bg-carbon-900 border border-blue-400/40 flex items-center justify-center shrink-0 p-1.5 shadow-md" title="Client: HP Inc.">
+                        <img src="assets/hp.png" alt="HP Inc." class="w-full h-full object-contain" onerror="resolveAsset(this, 'hp')">
+                        <span class="asset-fallback hidden font-mono text-xs font-bold text-blue-400">HP</span>
+                      </div>
+                      <span class="text-[9px] font-mono text-slate-400 uppercase">Client</span>
+                    </div>
                   </div>
 
-                  <svg viewBox="0 0 520 125" class="w-full h-auto my-1" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M 175 35 L 295 62" stroke="#c084fc" stroke-width="2.2" fill="none" class="svg-flow-line"/>
-                    <path d="M 175 90 L 295 62" stroke="#c084fc" stroke-width="2.2" fill="none" class="svg-flow-line"/>
-                    <polygon points="300,62 290,56 290,68" fill="#34d399"/>
-
-                    <rect x="15" y="15" width="160" height="38" rx="6" fill="#2e1065" stroke="#a855f7" stroke-width="1.4"/>
-                    <text x="95" y="38" text-anchor="middle" fill="#e9d5ff" font-size="11">parentSKU (Legacy)</text>
-                    <rect x="15" y="70" width="160" height="38" rx="6" fill="#2e1065" stroke="#a855f7" stroke-width="1.4"/>
-                    <text x="95" y="93" text-anchor="middle" fill="#e9d5ff" font-size="11">parentProductSku</text>
-                    <rect x="305" y="27" width="195" height="70" rx="10" fill="#062c22" stroke="#34d399" stroke-width="1.8"/>
-                    <text x="402" y="55" text-anchor="middle" fill="#6ee7b7" font-size="12.5" font-weight="bold">Canonical SKU</text>
-                    <text x="402" y="75" text-anchor="middle" fill="#34d399" font-size="10">Single Source • Maven OK</text>
-                  </svg>
-
-                  <div class="px-3 py-2 rounded bg-carbon-900 border border-purple-500/25 text-purple-200 truncate mt-2">
-                    Diff: +315 additions / -992 deletions • 100% Green Suite
+                  <div>
+                    <h3 class="text-2xl font-extrabold text-white tracking-tight">Ascendion</h3>
+                    <p class="text-sm font-mono text-amber-400 font-semibold">DevOps &amp; GenAI Engineer • L5 Engineer @ Client: HP Inc.</p>
                   </div>
                 </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
+                  <div class="p-4 rounded-xl bg-carbon-900 border border-carbon-700 space-y-1.5">
+                    <div class="text-xs font-mono text-emerald-400 font-bold uppercase tracking-wider">Systemic SDLC Automation</div>
+                    <p class="text-xs text-slate-300 leading-relaxed font-sans">
+                      Integrated LLMs, knowledge bases, and guardrail architectures into agentic workflows.
+                    </p>
+                  </div>
+                  <div class="p-4 rounded-xl bg-carbon-900 border border-carbon-700 space-y-1.5">
+                    <div class="text-xs font-mono text-amber-400 font-bold uppercase tracking-wider">Platform &amp; Release Triage</div>
+                    <p class="text-xs text-slate-300 leading-relaxed font-sans">
+                      Triaged container failures under live SLAs and standardized multi-account IAM and Terraform governance.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- aws-mla -->
+              <div class="lg:col-span-4 p-5 rounded-xl bg-carbon-900 border border-emerald-500/40 flex flex-col justify-between space-y-4">
+                <div class="flex items-center gap-4">
+                  <a href="https://www.credly.com/badges/20f333e6-76e8-431a-9603-c22408681cd8" target="_blank" rel="noopener noreferrer" class="w-16 h-16 rounded-xl bg-carbon-850 border border-emerald-500/40 p-1.5 flex items-center justify-center shrink-0 hover:scale-105 transition-transform">
+                    <img src="assets/aws-mla.png" alt="AWS MLA Badge" class="w-full h-full object-contain" onerror="resolveAsset(this, 'aws-mla')">
+                    <span class="asset-fallback hidden font-mono text-xs font-bold text-emerald-400">AWS MLA</span>
+                  </a>
+                  <div>
+                    <span class="text-[11px] font-mono text-emerald-400 font-bold uppercase">AWS Certified • Dec 2024</span>
+                    <h4 class="text-sm font-bold text-white leading-tight mt-0.5">Machine Learning Engineer – Associate</h4>
+                  </div>
+                </div>
+                <p class="text-xs text-slate-300 leading-relaxed font-sans">
+                  Validates model deployment, feature pipelines, and automated drift monitoring on AWS.
+                </p>
+                <a href="https://www.credly.com/badges/20f333e6-76e8-431a-9603-c22408681cd8" target="_blank" rel="noopener noreferrer" class="py-2 px-3 rounded-lg bg-carbon-800 hover:bg-emerald-500 hover:text-carbon-950 text-emerald-400 border border-emerald-500/40 font-mono text-xs font-bold flex items-center justify-center gap-1.5 transition-all">
+                  <span>Verify Credly</span> <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Eficens -->
+          <div class="rounded-2xl bg-gradient-to-br from-carbon-850 via-carbon-800 to-carbon-850 border-2 border-amber-500/50 overflow-hidden shadow-xl">
+            <div class="bg-carbon-800 px-6 sm:px-8 py-4 border-b border-carbon-700 flex flex-wrap items-center justify-between gap-3">
+              <div class="flex items-center gap-3">
+                <span class="px-4 py-1 rounded-md bg-amber-500 text-carbon-950 font-mono text-sm font-extrabold tracking-wider">
+                  DEC 2021 – AUG 2024
+                </span>
+                <span class="text-sm font-mono text-amber-300 font-medium">NEW YORK METROPOLITAN AREA (USA)</span>
+              </div>
+              <span class="px-3.5 py-1 rounded-full bg-blue-500/20 border border-blue-400/40 text-blue-300 font-mono text-xs sm:text-sm font-bold tracking-wide">
+                US Financial Market Client (NYSE &amp; Fed Sync)
+              </span>
+            </div>
+
+            <div class="p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              <div class="lg:col-span-8 space-y-5">
+                <div class="flex items-center gap-4">
+                  <div class="w-16 h-16 rounded-2xl bg-carbon-900 border border-amber-500/40 flex items-center justify-center shrink-0 p-2 shadow-lg">
+                    <img src="assets/eficens.png" alt="Eficens Systems" class="w-full h-full object-contain" onerror="resolveAsset(this, 'eficens')">
+                    <div class="asset-fallback hidden w-full h-full items-center justify-center font-mono font-extrabold text-xl text-amber-400">EFC</div>
+                  </div>
+                  <div>
+                    <h3 class="text-2xl font-extrabold text-white tracking-tight">Eficens Systems LLC</h3>
+                    <p class="text-sm font-mono text-amber-300 font-semibold">DevOps Engineer (US Financial Clearing &amp; Settlement)</p>
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
+                  <div class="p-4 rounded-xl bg-carbon-900 border border-carbon-700 space-y-1.5">
+                    <div class="text-xs font-mono text-amber-400 font-bold uppercase tracking-wider">Zero-Trust Infrastructure as Code</div>
+                    <p class="text-xs text-slate-300 leading-relaxed font-sans">
+                      Designed modular blueprints to eliminate drift across settlement pipelines syncing with NYSE and Federal Reserve feeds.
+                    </p>
+                  </div>
+                  <div class="p-4 rounded-xl bg-carbon-900 border border-carbon-700 space-y-1.5">
+                    <div class="text-xs font-mono text-blue-400 font-bold uppercase tracking-wider">Resilient Delivery Governance</div>
+                    <p class="text-xs text-slate-300 leading-relaxed font-sans">
+                      Integrated Terraform into Jenkins pipelines to cut provisioning lead times and secure KMS envelope encryption.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- aws-saa -->
+              <div class="lg:col-span-4 p-5 rounded-xl bg-carbon-900 border border-amber-500/40 flex flex-col justify-between space-y-4">
+                <div class="flex items-center gap-4">
+                  <a href="https://www.credly.com/badges/af2f25bd-7fbe-4e21-92fc-4c39f8e92cf7" target="_blank" rel="noopener noreferrer" class="w-16 h-16 rounded-xl bg-carbon-850 border border-amber-500/40 p-1.5 flex items-center justify-center shrink-0 hover:scale-105 transition-transform">
+                    <img src="assets/aws-saa.png" alt="AWS SAA Badge" class="w-full h-full object-contain" onerror="resolveAsset(this, 'aws-saa')">
+                    <span class="asset-fallback hidden font-mono text-xs font-bold text-amber-400">AWS SAA</span>
+                  </a>
+                  <div>
+                    <span class="text-[11px] font-mono text-amber-400 font-bold uppercase">AWS Certified • Aug 2022</span>
+                    <h4 class="text-sm font-bold text-white leading-tight mt-0.5">Solutions Architect – Associate</h4>
+                  </div>
+                </div>
+                <p class="text-xs text-slate-300 leading-relaxed font-sans">
+                  Validates multi-AZ topologies, VPC isolation, and cryptographic KMS key protection for critical workloads.
+                </p>
+                <a href="https://www.credly.com/badges/af2f25bd-7fbe-4e21-92fc-4c39f8e92cf7" target="_blank" rel="noopener noreferrer" class="py-2 px-3 rounded-lg bg-carbon-800 hover:bg-amber-500 hover:text-carbon-950 text-amber-400 border border-amber-500/40 font-mono text-xs font-bold flex items-center justify-center gap-1.5 transition-all">
+                  <span>Verify Credly</span> <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- LotusData -->
+          <div class="rounded-2xl bg-carbon-850 border border-carbon-700 overflow-hidden shadow-lg">
+            <div class="bg-carbon-800 px-6 sm:px-8 py-4 border-b border-carbon-700 flex flex-wrap items-center justify-between gap-3">
+              <div class="flex items-center gap-3">
+                <span class="px-4 py-1 rounded-md bg-sky-500/20 border border-sky-400/40 text-sky-300 font-mono text-sm font-extrabold tracking-wider">
+                  MAR 2021 – DEC 2021
+                </span>
+                <span class="text-sm font-mono text-slate-300 font-medium">PRINCETON, NEW JERSEY (USA)</span>
+              </div>
+              <span class="px-3.5 py-1 rounded-full bg-carbon-900 border border-carbon-600 text-slate-300 font-mono text-xs sm:text-sm font-bold">
+                200+ AWS Compute Fleet
+              </span>
+            </div>
+
+            <div class="p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              <div class="lg:col-span-8 space-y-5">
+                <div class="flex items-center gap-4">
+                  <div class="w-16 h-16 rounded-2xl bg-carbon-900 border border-sky-500/40 flex items-center justify-center shrink-0 p-2 shadow-lg">
+                    <img src="assets/lotusdata.png" alt="LotusData LLP" class="w-full h-full object-contain" onerror="resolveAsset(this, 'lotusdata')">
+                    <span class="asset-fallback hidden font-mono text-xs font-bold text-sky-400">LD</span>
+                  </div>
+                  <div>
+                    <h3 class="text-2xl font-extrabold text-white tracking-tight">LotusData LLP</h3>
+                    <p class="text-sm font-mono text-slate-300 font-semibold">Jr. System / Cloud Administrator</p>
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
+                  <div class="p-4 rounded-xl bg-carbon-900 border border-carbon-700 space-y-1.5">
+                    <div class="text-xs font-mono text-sky-400 font-bold uppercase tracking-wider">Fleet Reliability &amp; Backups</div>
+                    <p class="text-xs text-slate-300 leading-relaxed font-sans">
+                      Maintained high availability across 200+ AWS EC2 nodes through automated snapshots, alerting, and proactive backup drills.
+                    </p>
+                  </div>
+                  <div class="p-4 rounded-xl bg-carbon-900 border border-carbon-700 space-y-1.5">
+                    <div class="text-xs font-mono text-emerald-400 font-bold uppercase tracking-wider">Linux Bare-Metal Automation</div>
+                    <p class="text-xs text-slate-300 leading-relaxed font-sans">
+                      Automated RedHat OS installations with Kickstart and executed live, non-disruptive filesystem expansions with LVM.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- aws-cpp -->
+              <div class="lg:col-span-4 p-5 rounded-xl bg-carbon-900 border border-sky-500/40 flex flex-col justify-between space-y-4">
+                <div class="flex items-center gap-4">
+                  <a href="https://www.credly.com/badges/582be29e-4701-41a4-b4bb-638b1d675fc2" target="_blank" rel="noopener noreferrer" class="w-16 h-16 rounded-xl bg-carbon-850 border border-sky-500/40 p-1.5 flex items-center justify-center shrink-0 hover:scale-105 transition-transform">
+                    <img src="assets/aws-cpp.png" alt="AWS CPP Badge" class="w-full h-full object-contain" onerror="resolveAsset(this, 'aws-cpp')">
+                    <span class="asset-fallback hidden font-mono text-xs font-bold text-sky-400">AWS CPP</span>
+                  </a>
+                  <div>
+                    <span class="text-[11px] font-mono text-sky-400 font-bold uppercase">AWS Certified • Feb 2021</span>
+                    <h4 class="text-sm font-bold text-white leading-tight mt-0.5">Cloud Practitioner</h4>
+                  </div>
+                </div>
+                <p class="text-xs text-slate-300 leading-relaxed font-sans">
+                  Validates core cloud networking (VPC/Subnets), compute virtualization, and shared security architecture.
+                </p>
+                <a href="https://www.credly.com/badges/582be29e-4701-41a4-b4bb-638b1d675fc2" target="_blank" rel="noopener noreferrer" class="py-2 px-3 rounded-lg bg-carbon-800 hover:bg-sky-500 hover:text-carbon-950 text-sky-400 border border-sky-500/40 font-mono text-xs font-bold flex items-center justify-center gap-1.5 transition-all">
+                  <span>Verify Credly</span> <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+                </a>
               </div>
             </div>
           </div>
         </div>
+
+        <!-- DEV MODE EXCLUSIVE: Interactive Git Log & Systems Architecture Inspector -->
+        <div id="dev-career-gitlog" style="display: none;" class="space-y-6 font-mono text-xs">
+          <div class="p-3.5 rounded-xl bg-black border border-[#00ff66]/40 flex items-center justify-between text-[#a7f3d0]">
+            <span class="font-bold text-[#00ff66]">git log --graph --oneline --decorate --stat</span>
+            <span class="text-slate-400 text-[11px]">3 Verified Enterprise Commits</span>
+          </div>
+
+          <!-- Commit 1: Ascendion -->
+          <div class="p-6 rounded-2xl bg-black border border-[#00ff66]/40 space-y-3">
+            <div class="flex justify-between items-center text-[11px] pb-2 border-b border-carbon-800">
+              <span class="text-[#00ff66] font-bold">* commit c8f92a1 (HEAD -&gt; main, tag: L5-hp-cloud)</span>
+              <span class="text-slate-400">Dec 2025 – Aug 2026 // Bengaluru</span>
+            </div>
+            <h4 class="text-sm font-bold text-white">Ascendion — DevOps &amp; GenAI Engineer (L5 @ HP Inc.)</h4>
+            <ul class="space-y-1.5 text-slate-300 text-[11px] list-disc list-inside font-sans">
+              <li>Integrated LLMs, vector knowledge bases, and guardrail architectures into AAVA GenAI Core workflows.</li>
+              <li>Triaged embedded Tomcat initialization (7.5s) vs. readiness probe failures (ExitCode 127) under live SLAs.</li>
+              <li>Refactored Java SKU DTOs (+315 / -992 lines) consolidating redundant identifiers under tight release freeze.</li>
+            </ul>
+            <div class="pt-2 flex items-center justify-between text-[11px]">
+              <span class="text-slate-400">AWS Mapping: Machine Learning Engineer – Associate (Dec 2024)</span>
+              <a href="https://www.credly.com/badges/20f333e6-76e8-431a-9603-c22408681cd8" target="_blank" rel="noreferrer" class="text-[#00ff66] hover:underline">Verify Credly ↗</a>
+            </div>
+          </div>
+
+          <!-- Commit 2: Eficens -->
+          <div class="p-6 rounded-2xl bg-black border border-[#00ff66]/40 space-y-3">
+            <div class="flex justify-between items-center text-[11px] pb-2 border-b border-carbon-800">
+              <span class="text-[#00ff66] font-bold">* commit 7b3d104 (tag: nyse-fed-clearing-devops)</span>
+              <span class="text-slate-400">Dec 2021 – Aug 2024 // New York Area</span>
+            </div>
+            <h4 class="text-sm font-bold text-white">Eficens Systems LLC — DevOps Engineer (US Financial Client)</h4>
+            <ul class="space-y-1.5 text-slate-300 text-[11px] list-disc list-inside font-sans">
+              <li>Architected zero-trust Terraform blueprints for clearing pipelines syncing in real time with NYSE &amp; Fed feeds.</li>
+              <li>Decoupled inline security group rule blocks into standalone resources to eliminate DependencyViolation locks.</li>
+              <li>Automated Jenkins CI/CD provisioning lead times by &gt;50% and enforced KMS envelope cryptographic parity.</li>
+            </ul>
+            <div class="pt-2 flex items-center justify-between text-[11px]">
+              <span class="text-slate-400">AWS Mapping: Solutions Architect – Associate (Aug 2022)</span>
+              <a href="https://www.credly.com/badges/af2f25bd-7fbe-4e21-92fc-4c39f8e92cf7" target="_blank" rel="noreferrer" class="text-[#00ff66] hover:underline">Verify Credly ↗</a>
+            </div>
+          </div>
+
+          <!-- Commit 3: LotusData -->
+          <div class="p-6 rounded-2xl bg-black border border-[#00ff66]/40 space-y-3">
+            <div class="flex justify-between items-center text-[11px] pb-2 border-b border-carbon-800">
+              <span class="text-[#00ff66] font-bold">* commit 1a9e442 (tag: sysadmin-baremetal-rhel)</span>
+              <span class="text-slate-400">Mar 2021 – Dec 2021 // Princeton, NJ</span>
+            </div>
+            <h4 class="text-sm font-bold text-white">LotusData LLP — Jr. System / Cloud Administrator</h4>
+            <ul class="space-y-1.5 text-slate-300 text-[11px] list-disc list-inside font-sans">
+              <li>Reclaimed ghost disk space using lsof +L1 and non-disruptive /proc/&lt;PID&gt;/fd truncation on database servers.</li>
+              <li>Executed live, non-disruptive LVM logical volume expansions (lvextend -r) sustaining 99% system uptime.</li>
+              <li>Standardized automated bare-metal RedHat Linux installations via Kickstart pre/post configuration scripts.</li>
+            </ul>
+            <div class="pt-2 flex items-center justify-between text-[11px]">
+              <span class="text-slate-400">AWS Mapping: Cloud Practitioner (Feb 2021)</span>
+              <a href="https://www.credly.com/badges/582be29e-4701-41a4-b4bb-638b1d675fc2" target="_blank" rel="noreferrer" class="text-[#00ff66] hover:underline">Verify Credly ↗</a>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Section 03: Academic Foundations -->
+      <section id="education" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 border-b border-carbon-800">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+          <div>
+            <span class="text-xs font-mono text-amber-400 uppercase tracking-wider">ACADEMIC FOUNDATIONS</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">
+              Education in <span class="text-amber-400">Computer Science &amp; AI.</span>
+            </h2>
+          </div>
+          <!-- Editorial Accent Rail -->
+          <p class="text-slate-300 text-sm sm:text-base max-w-md border-l-2 border-amber-500/50 pl-4 py-0.5 leading-relaxed font-sans">
+            Academic degrees spanning <strong class="text-white font-semibold">United States graduate research</strong> and <strong class="text-amber-400 font-semibold">executive engineering credentials</strong>.
+          </p>
+        </div>
+
+        <!-- MANAGER MODE 3-CARD ACADEMICS -->
+        <div id="manager-education-cards" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="p-6 rounded-2xl bg-carbon-850 border border-carbon-700 hover:border-amber-500/40 transition-all flex flex-col justify-between">
+            <div class="space-y-4">
+              <div class="flex items-start justify-between gap-3">
+                <div class="w-14 h-14 rounded-2xl bg-carbon-900 border border-emerald-500/40 p-2 flex items-center justify-center shadow-lg">
+                  <img src="assets/iitb.png" alt="IIT Bombay" class="w-full h-full object-contain" onerror="resolveAsset(this, 'iitb')">
+                  <span class="asset-fallback hidden font-mono text-base font-extrabold text-emerald-400">IIT-B</span>
+                </div>
+                <span class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 font-mono text-xs border border-emerald-500/30 font-semibold">
+                  2026 // ADVANCED
+                </span>
+              </div>
+              <div>
+                <h3 class="text-base font-bold text-slate-200">Indian Institute of Technology Bombay</h3>
+                <p class="text-sm font-mono font-bold text-amber-400 mt-1">Executive Certificate in AI Engineering &amp; MLOps</p>
+              </div>
+              <p class="text-xs text-slate-300 leading-relaxed font-sans">
+                High-Performance Computing (HPC), distributed training with Message Passing Interface (MPI), and containerized ML pipelines.
+              </p>
+            </div>
+            <div class="mt-6 pt-3 border-t border-carbon-700/80 text-[11px] font-mono text-slate-400">
+              Distributed Systems &amp; Deep Learning
+            </div>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-carbon-850 border border-carbon-700 hover:border-amber-500/40 transition-all flex flex-col justify-between">
+            <div class="space-y-4">
+              <div class="flex items-start justify-between gap-3">
+                <div class="w-14 h-14 rounded-2xl bg-carbon-900 border border-red-500/40 p-2 flex items-center justify-center shadow-lg">
+                  <img src="assets/njit.png" alt="NJIT" class="w-full h-full object-contain" onerror="resolveAsset(this, 'njit')">
+                  <span class="asset-fallback hidden font-mono text-base font-extrabold text-red-400">NJIT</span>
+                </div>
+                <span class="px-3 py-1 rounded-full bg-carbon-800 text-slate-300 font-mono text-xs border border-carbon-600 font-semibold">
+                  DEC 2020 // GRADUATED
+                </span>
+              </div>
+              <div>
+                <h3 class="text-base font-bold text-slate-200">New Jersey Institute of Technology</h3>
+                <p class="text-sm font-mono font-bold text-amber-400 mt-1">Master of Science in Computer Science</p>
+              </div>
+              <p class="text-xs text-slate-300 leading-relaxed font-sans">
+                Newark, New Jersey. Advanced graduate studies in distributed cloud computing, kernel internals, and systems architecture.
+              </p>
+            </div>
+            <div class="mt-6 pt-3 border-t border-carbon-700/80 text-[11px] font-mono text-slate-400">
+              United States Graduate Degree
+            </div>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-carbon-850 border border-carbon-700 hover:border-amber-500/40 transition-all flex flex-col justify-between">
+            <div class="space-y-4">
+              <div class="flex items-start justify-between gap-3">
+                <div class="w-14 h-14 rounded-2xl bg-carbon-900 border border-amber-500/40 p-2 flex items-center justify-center shadow-lg">
+                  <img src="assets/ggsipu.png" alt="GGSIPU" class="w-full h-full object-contain" onerror="resolveAsset(this, 'ggsipu')">
+                  <span class="asset-fallback hidden font-mono text-base font-extrabold text-amber-400">GGSIPU</span>
+                </div>
+                <span class="px-3 py-1 rounded-full bg-carbon-800 text-slate-300 font-mono text-xs border border-carbon-600 font-semibold">
+                  MAY 2017 // GRADUATED
+                </span>
+              </div>
+              <div>
+                <h3 class="text-base font-bold text-slate-200">Guru Gobind Singh IP University</h3>
+                <p class="text-sm font-mono font-bold text-amber-400 mt-1">Bachelor of Technology in Computer Science</p>
+              </div>
+              <p class="text-xs text-slate-300 leading-relaxed font-sans">
+                New Delhi, India. Core curriculum covering data structures, object-oriented programming, and computer networking.
+              </p>
+            </div>
+            <div class="mt-6 pt-3 border-t border-carbon-700/80 text-[11px] font-mono text-slate-400">
+              Undergraduate Engineering Foundation
+            </div>
+          </div>
+        </div>
+
+        <!-- DEV MODE KERNEL & COMPUTE STACK INSPECTOR -->
+        <div id="dev-education-inspector" style="display: none;" class="grid grid-cols-1 md:grid-cols-3 gap-5 font-mono text-xs">
+          <div class="p-5 rounded-xl bg-black border border-[#00ff66]/30 space-y-2">
+            <span class="text-[10px] text-[#00ff66] font-bold">NODE 01: IIT BOMBAY (2026)</span>
+            <div class="text-white font-bold text-sm">HPC &amp; Distributed ML Systems</div>
+            <p class="text-slate-400 text-[11px] leading-relaxed font-sans">
+              OpenMPI ring all-reduce topologies, CUDA pinned memory allocations, data-parallel gradient synchronization, containerized MLOps pipelines.
+            </p>
+          </div>
+
+          <div class="p-5 rounded-xl bg-black border border-[#00ff66]/30 space-y-2">
+            <span class="text-[10px] text-[#00ff66] font-bold">NODE 02: NJIT (DEC 2020)</span>
+            <div class="text-white font-bold text-sm">Distributed Systems &amp; Kernel Internals</div>
+            <p class="text-slate-400 text-[11px] leading-relaxed font-sans">
+              POSIX syscall interfaces, virtual memory paging mechanisms, distributed consensus protocols, and hypervisor virtualization.
+            </p>
+          </div>
+
+          <div class="p-5 rounded-xl bg-black border border-[#00ff66]/30 space-y-2">
+            <span class="text-[10px] text-[#00ff66] font-bold">NODE 03: GGSIPU (MAY 2017)</span>
+            <div class="text-white font-bold text-sm">Core Systems &amp; Networking</div>
+            <p class="text-slate-400 text-[11px] leading-relaxed font-sans">
+              TCP/IP packet framing, socket programming, deterministic data structure complexity, and compiler AST design.
+            </p>
+          </div>
+        </div>
+
       </section>
 
       <!-- Section 04: Operating Mindset & Direct Contact -->
@@ -1154,10 +1510,10 @@
               <h2 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
                 Need an engineer who can bridge <span class="text-amber-400">Cloud, Code &amp; GenAI?</span>
               </h2>
-              <p class="text-slate-300 text-lg leading-relaxed">
+              <p class="text-slate-300 text-lg leading-relaxed font-sans">
                 Good engineering is more than getting a green build. Shaped by serving as <strong class="text-white font-semibold">VP of Education at Toastmasters International (District 83)</strong>, I turn deep root-cause analysis into clear team runbooks, calm outage command, and maintainable infrastructure.
               </p>
-              <p class="text-slate-300 text-base leading-relaxed">
+              <p class="text-slate-300 text-base leading-relaxed font-sans">
                 Whether you're hiring for <strong class="text-white">DevOps, MLOps, Cloud Architecture, SRE, Platform Engineering, or Technical Sales Engineering</strong>, I’d love to connect.
               </p>
 
@@ -1286,7 +1642,7 @@
         </svg>
       </div>
 
-      <div class="p-6 overflow-y-auto space-y-4 text-xs">
+      <div class="p-6 overflow-y-auto space-y-4 text-xs font-sans">
         <div class="modal-manager-brief space-y-3 leading-relaxed text-slate-300">
           <p><strong>Executive Business Impact:</strong> A blocking deployment halt disrupted release schedules across multiple subscription microservices under an active 60-minute SLA window.</p>
           <p><strong>Incident Command &amp; Resolution:</strong> Volunteered to lead live triage. Within 15 minutes, telemetry proved embedded Tomcat was healthy on port 8080. Traced the blocker to a stripped utility in the shared base container layer and published a permanent mitigation runbook in 45 minutes.</p>
@@ -1352,7 +1708,7 @@
         </svg>
       </div>
 
-      <div class="p-6 overflow-y-auto space-y-4 text-xs">
+      <div class="p-6 overflow-y-auto space-y-4 text-xs font-sans">
         <div class="modal-manager-brief space-y-3 leading-relaxed text-slate-300">
           <p><strong>Executive Business Impact:</strong> A 15-file infrastructure PR contained a cross-account role assumption that would have caused immediate authentication failures upon production merge.</p>
           <p><strong>Audit &amp; Cryptographic Parity:</strong> Intercepted the misconfiguration during review and verified that upgrading shared KMS modules maintained 100% decryption parity across active workloads.</p>
@@ -1375,69 +1731,6 @@
 
       <div class="px-6 py-3 bg-carbon-850 border-t border-carbon-800 flex justify-end">
         <button onclick="closeModal('modal-arn')" class="px-4 py-2 rounded-lg bg-amber-500 text-carbon-950 font-mono text-xs font-bold hover:bg-amber-400 cursor-pointer">Close Walkthrough</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal 3: SKU Refactor (+315 / -992 LOC) -->
-  <div id="modal-java" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
-    <div class="bg-carbon-900 border border-carbon-700 max-w-3xl w-full rounded-2xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
-      <div class="px-6 py-4 bg-carbon-850 border-b border-carbon-700 flex items-center justify-between">
-        <div class="flex items-center gap-3">
-          <span class="px-2.5 py-1 rounded bg-purple-500/20 text-purple-400 font-mono text-xs font-bold border border-purple-500/40">[REFACTOR-SKU-286]</span>
-          <h3 class="text-base font-bold text-white">Java Microservice Model Unification (+315 / -992 LOC)</h3>
-        </div>
-        <button onclick="closeModal('modal-java')" class="text-slate-400 hover:text-white font-mono text-sm cursor-pointer">✕ ESC</button>
-      </div>
-
-      <div class="modal-dev-workbench hidden p-6 bg-carbon-950 border-b border-carbon-800">
-        <div class="flex items-center justify-between text-xs font-mono text-slate-400 mb-2">
-          <span>TOPOLOGY: EVENT_INGESTION ➔ DTO_CONVERGENCE ➔ TEST_SUITE</span>
-          <span class="text-purple-400 font-bold">CANONICAL ENTITY MODEL</span>
-        </div>
-        <svg viewBox="0 0 600 110" class="w-full h-auto bg-[#080d16] rounded-xl border border-carbon-800 p-2" xmlns="http://www.w3.org/2000/svg">
-          <path d="M 180 32 L 280 55" stroke="#c084fc" stroke-width="2" fill="none" class="svg-flow-line"/>
-          <path d="M 180 80 L 280 55" stroke="#c084fc" stroke-width="2" fill="none" class="svg-flow-line"/>
-          <g transform="translate(15, 12)">
-            <rect width="160" height="38" rx="6" fill="#2e1065" stroke="#a855f7" stroke-width="1.2"/>
-            <text x="80" y="24" text-anchor="middle" fill="#e9d5ff" font-size="10">parentSKU (Dead Docstring)</text>
-          </g>
-          <g transform="translate(15, 60)">
-            <rect width="160" height="38" rx="6" fill="#2e1065" stroke="#a855f7" stroke-width="1.2"/>
-            <text x="80" y="24" text-anchor="middle" fill="#e9d5ff" font-size="10">parentProductSku (Active)</text>
-          </g>
-          <g transform="translate(290, 20)">
-            <rect width="290" height="70" rx="8" fill="#062c22" stroke="#34d399" stroke-width="1.5"/>
-            <text x="145" y="35" text-anchor="middle" fill="#6ee7b7" font-size="11.5" font-weight="bold">Unified Canonical SKU</text>
-            <text x="145" y="52" text-anchor="middle" fill="#34d399" font-size="9">100% Passing Maven / JUnit Test Suites</text>
-          </g>
-        </svg>
-      </div>
-
-      <div class="p-6 overflow-y-auto space-y-4 text-xs">
-        <div class="modal-manager-brief space-y-3 leading-relaxed text-slate-300">
-          <p><strong>Executive Business Impact:</strong> Divergent data representations of product SKUs created technical debt across e-commerce renewal pipelines.</p>
-          <p><strong>Engineering Ownership:</strong> Consolidated schemas into a single canonical definition across controllers and contracts, stripped 992 lines of dead code and unused docstrings, resolved merge conflicts under release deadlines, and merged with 100% passing tests.</p>
-        </div>
-
-        <div class="modal-dev-workbench hidden space-y-3 font-mono text-[11px] text-slate-300">
-          <div class="p-3 rounded bg-carbon-950 border border-carbon-800">
-            <span class="text-purple-400 block mb-1"># Sanitized Java Entity Diff:</span>
-            <div class="text-slate-400">core-subscription-service/.../SubscriptionEntity.java</div>
-            <div class="text-red-400">- // private String parentSku; (Unused dead field &amp; docstrings stripped)</div>
-            <div class="text-emerald-400">+ private String parentProductSku; // Single Canonical Identifier</div>
-          </div>
-          <div class="p-3 rounded bg-carbon-950 border border-carbon-800">
-            <span class="text-emerald-400 block mb-1"># Build &amp; Test Verification:</span>
-            <div class="text-slate-300">• Diff: +315 additions / -992 deletions across renewal services</div>
-            <div class="text-slate-300">• Resolved git merge conflict in 20 minutes under release freeze</div>
-            <div class="text-slate-300">• Verified: [INFO] BUILD SUCCESS across all Maven unit &amp; integration tests</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="px-6 py-3 bg-carbon-850 border-t border-carbon-800 flex justify-end">
-        <button onclick="closeModal('modal-java')" class="px-4 py-2 rounded-lg bg-amber-500 text-carbon-950 font-mono text-xs font-bold hover:bg-amber-400 cursor-pointer">Close Walkthrough</button>
       </div>
     </div>
   </div>
@@ -2725,5 +3018,3 @@ JS Heap:     ${heapTotal.padEnd(10)}  ${heapUsed.padEnd(10)}  (Active Browser Ta
   </script>
 </body>
 </html>
-
-      
