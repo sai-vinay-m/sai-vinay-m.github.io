@@ -1106,6 +1106,9 @@
       </div>
   </main>
 
+  </div>
+  </main>
+
   <!-- ==========================================
        SYSTEM MODALS (DIAGNOSTIC DETAILS)
        ========================================== -->
@@ -1188,6 +1191,46 @@
   </div>
 
   <!-- ==========================================
+       FLOATING ELEMENTS (CHATBOT & DEV MODE)
+       ========================================== -->
+       
+  <!-- Dev Mode Toggle (Bottom Left) -->
+  <div class="fixed bottom-6 left-6 z-40 hidden md:block">
+    <button onclick="toggleDevMode()" id="dev-mode-btn" class="bg-slate-900 border border-slate-700 hover:border-amber-400 text-slate-400 hover:text-amber-400 px-4 py-2 rounded-lg font-mono text-xs flex items-center gap-2 transition-colors shadow-lg backdrop-blur">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+      <span id="dev-mode-text">DEV_MODE: OFF</span>
+    </button>
+  </div>
+
+  <!-- Chatbot Balloon (Bottom Right) -->
+  <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+    <!-- Chat Window -->
+    <div id="chat-window" class="hidden mb-4 w-80 bg-slate-900 border border-slate-700 rounded-lg shadow-2xl overflow-hidden flex-col transition-all">
+      <div class="bg-slate-950 px-4 py-3 border-b border-slate-800 flex justify-between items-center">
+        <span class="text-amber-400 font-mono text-sm font-bold flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          Terminal_Agent.sh
+        </span>
+        <button onclick="toggleChat()" class="text-slate-400 hover:text-amber-400 cursor-pointer transition-colors">✕</button>
+      </div>
+      <div class="p-4 h-64 overflow-y-auto font-mono text-xs text-slate-300 space-y-3 bg-black/50">
+        <p class="text-emerald-400">> System initialized.</p>
+        <p class="text-emerald-400">> Hello, I am the automated assistant for Sai Vinay Mullapudi.</p>
+        <p class="text-slate-400">> Type 'help' to see available commands, or ask a question about his experience.</p>
+      </div>
+      <div class="p-2 bg-slate-950 border-t border-slate-800 flex">
+        <input type="text" placeholder="Enter command..." class="w-full bg-black border border-slate-700 text-amber-400 text-xs font-mono p-2 rounded focus:outline-none focus:border-amber-500 transition-colors">
+        <button class="ml-2 bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 rounded font-mono text-xs border border-slate-600 cursor-pointer">EXEC</button>
+      </div>
+    </div>
+    
+    <!-- Chat Toggle Button -->
+    <button onclick="toggleChat()" class="bg-slate-900 hover:bg-slate-800 border border-slate-700 hover:border-amber-500 text-amber-400 rounded-full w-14 h-14 flex items-center justify-center shadow-lg shadow-amber-900/20 backdrop-blur transition-all cursor-pointer group">
+      <svg class="w-6 h-6 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
+    </button>
+  </div>
+
+  <!-- ==========================================
        GLOBAL FOOTER
        ========================================== -->
   <footer class="mt-12 border-t border-slate-800 bg-slate-950/90 backdrop-blur pb-8 pt-6 relative z-10">
@@ -1242,6 +1285,12 @@
             closeModal(modal.id);
           }
         });
+        
+        // Also close chat if open
+        const chatWindow = document.getElementById('chat-window');
+        if (chatWindow && !chatWindow.classList.contains('hidden')) {
+            toggleChat();
+        }
       }
     });
 
@@ -1255,31 +1304,59 @@
       if (!btnRecruiter || !btnEng) return;
 
       if (mode === 'eng') {
-        // Style Buttons
         btnEng.classList.add('bg-amber-500/20', 'text-amber-400', 'border-amber-500/50');
         btnEng.classList.remove('text-slate-400', 'border-slate-700', 'hover:text-slate-200', 'hover:border-slate-500');
         
         btnRecruiter.classList.remove('bg-amber-500/20', 'text-amber-400', 'border-amber-500/50');
         btnRecruiter.classList.add('text-slate-400', 'border-slate-700', 'hover:text-slate-200', 'hover:border-slate-500');
 
-        // Toggle Content
         elementsRecruiter.forEach(el => el.classList.add('hidden'));
         elementsEng.forEach(el => el.classList.remove('hidden'));
-        
-        console.log("[SYS] Diagnostic Shell: Engineering Manager Mode Activated");
       } else {
-        // Style Buttons
         btnRecruiter.classList.add('bg-amber-500/20', 'text-amber-400', 'border-amber-500/50');
         btnRecruiter.classList.remove('text-slate-400', 'border-slate-700', 'hover:text-slate-200', 'hover:border-slate-500');
         
         btnEng.classList.remove('bg-amber-500/20', 'text-amber-400', 'border-amber-500/50');
         btnEng.classList.add('text-slate-400', 'border-slate-700', 'hover:text-slate-200', 'hover:border-slate-500');
 
-        // Toggle Content
         elementsEng.forEach(el => el.classList.add('hidden'));
         elementsRecruiter.forEach(el => el.classList.remove('hidden'));
-        
-        console.log("[SYS] Diagnostic Shell: Recruiter Mode Activated");
+      }
+    }
+
+    // --- Floating Elements Logic ---
+    function toggleChat() {
+      const chatWindow = document.getElementById('chat-window');
+      if (chatWindow) {
+        if (chatWindow.classList.contains('hidden')) {
+          chatWindow.classList.remove('hidden');
+          chatWindow.classList.add('flex');
+        } else {
+          chatWindow.classList.add('hidden');
+          chatWindow.classList.remove('flex');
+        }
+      }
+    }
+
+    let isDevMode = false;
+    function toggleDevMode() {
+      isDevMode = !isDevMode;
+      const btn = document.getElementById('dev-mode-btn');
+      const text = document.getElementById('dev-mode-text');
+      
+      if (isDevMode) {
+        btn.classList.add('border-amber-400', 'text-amber-400', 'bg-amber-500/10');
+        btn.classList.remove('border-slate-700', 'text-slate-400', 'bg-slate-900');
+        text.innerText = "DEV_MODE: ON";
+        console.log("[SYS] Developer Mode Engaged. Tracing enabled.");
+        // Add specific global dev mode CSS classes to body if needed
+        document.body.classList.add('dev-mode-active');
+      } else {
+        btn.classList.remove('border-amber-400', 'text-amber-400', 'bg-amber-500/10');
+        btn.classList.add('border-slate-700', 'text-slate-400', 'bg-slate-900');
+        text.innerText = "DEV_MODE: OFF";
+        console.log("[SYS] Developer Mode Disabled.");
+        document.body.classList.remove('dev-mode-active');
       }
     }
 
@@ -1291,5 +1368,3 @@
   </script>
 </body>
 </html>
-
-      
