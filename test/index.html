@@ -85,13 +85,29 @@
     .shiny-btn-green::after, .shiny-btn-purple::after, .shiny-btn-blue::after, .shiny-btn-amber::after {
       content: ""; position: absolute; inset: 0; width: 48%;
       transform: translateX(-140%) skewX(-22deg);
-      animation: btnGlareSweep 3.6s infinite ease-in-out;
+      animation: btnGlareSweep 4s infinite ease-in-out;
       pointer-events: none;
     }
     .shiny-btn-green::after { background: linear-gradient(90deg, transparent, rgba(0, 255, 102, 0.45), transparent); }
     .shiny-btn-purple::after { background: linear-gradient(90deg, transparent, rgba(192, 132, 252, 0.48), transparent); }
     .shiny-btn-blue::after { background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.48), transparent); }
     .shiny-btn-amber::after { background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.42), transparent); }
+
+    /* Comprehensive Reduced-Motion Support */
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .shiny-btn-green::after, .shiny-btn-purple::after, .shiny-btn-blue::after, .shiny-btn-amber::after,
+      .loop-active-flow, .svg-flow-line, .gus-float-anim, .typing-dot, .animate-marquee, .animate-ping, .animate-pulse, .spin-anim {
+        animation: none !important;
+      }
+      .marquee-container { overflow-x: auto !important; }
+      .bento-card, #balloonContainer, #portfolioChat, .gus-balloon { transition: none !important; }
+    }
 
     /* Dev Mode Overrides */
     body.mode-dev { background-color: #030804 !important; color: #a7f3d0 !important; font-family: 'JetBrains Mono', monospace !important; }
@@ -126,7 +142,7 @@
       * { color: black !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     }
 
-    /* Full Balloon Animations & Complete Facial Expressions Restored */
+    /* Full Balloon Animations & Complete Facial Expressions */
     @keyframes gusFloat { 0%, 100% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-8px) rotate(2deg); } }
     .gus-float-anim { animation: gusFloat 3.8s ease-in-out infinite; }
     .balloon-scale-shell { width: 82px; height: 138px; position: relative; touch-action: none; user-select: none; cursor: grab; transition: transform 0.25s ease, opacity 0.25s ease; }
@@ -159,7 +175,7 @@
     .balloon-stick { position: absolute; top: 232px; left: 128px; width: 11px; height: 195px; border: 1px solid #78623d; border-radius: 4px; background: linear-gradient(90deg, #8b7044, #d4bb82 35%, #aa8b56 70%, #6e5839); transform: rotate(7deg); transform-origin: top center; z-index: 1; }
     .balloon-knot { position: absolute; top: 229px; left: 121px; width: 19px; height: 10px; border-radius: 50% 50% 20% 20%; background: #b5e8f8; z-index: 3; }
 
-    /* Restored Child Facial Animations for Hover, Drag, Bonk, Secret, Nudge, Dizzy & Happy */
+    /* Facial Expressions for Hover, Drag, Bonk, Secret, Nudge, Dizzy & Happy */
     .gus-balloon.face-hover { transform: scale(1.04) rotate(-3deg); }
     .gus-balloon.face-hover .balloon-eyebrows span:first-child { top: 48px; transform: rotate(18deg); }
     .gus-balloon.face-hover .balloon-eyebrows span:last-child { top: 48px; transform: rotate(-18deg); }
@@ -489,7 +505,7 @@
           <!-- RIGHT COLUMN: engineer_profile.yaml (Manager) vs runtime_config.json (Dev) -->
           <div class="lg:col-span-6 order-1 lg:order-2 flex justify-center lg:justify-end w-full">
             
-            <!-- MANAGER MODE: engineer_profile.yaml Matching Reference Image (image_59b583.jpg) -->
+            <!-- MANAGER MODE: engineer_profile.yaml Matching Reference Image -->
             <div id="heroRightManager" class="manager-only rounded-2xl bg-[#0b101b] border border-carbon-700 shadow-2xl overflow-hidden w-full max-w-[540px]">
               <div class="bg-[#121929] px-5 py-3 border-b border-carbon-700 flex items-center justify-between">
                 <div class="flex items-center gap-2">
@@ -502,7 +518,6 @@
               </div>
 
               <div class="p-5 sm:p-6 space-y-5">
-                <!-- Photo + Closely Positioned 2-Line Stacked Name & 3 Badges (Matches image_59b583.jpg) -->
                 <div class="flex flex-col sm:flex-row items-center gap-5 pb-5 border-b border-carbon-800 text-center sm:text-left">
                   <div class="w-[220px] h-[240px] sm:w-[250px] sm:h-[275px] rounded-2xl bg-carbon-800 border-2 border-amber-500/60 overflow-hidden shrink-0 flex items-center justify-center shadow-xl">
                     <img src="assets/sai-vinay.png" alt="Sai Vinay Mullapudi" class="w-full h-full object-cover" onerror="resolveAsset(this, 'sai-vinay')">
@@ -529,7 +544,7 @@
                   </div>
                 </div>
 
-                <!-- 5-Row Metadata Ledger Matching Reference Image -->
+                <!-- 5-Row Metadata Ledger -->
                 <div class="space-y-2.5 font-mono text-[11px] sm:text-xs">
                   <div class="flex justify-between py-1 border-b border-carbon-800/90">
                     <span class="text-slate-400">Total Experience:</span>
@@ -555,7 +570,7 @@
               </div>
             </div>
 
-            <!-- DEV MODE: Clean Technical Spec Card (Retains Photo, Closely Aligned Name, JSON Schema) -->
+            <!-- DEV MODE: Clean Technical Spec Card -->
             <div id="heroRightDev" class="dev-only rounded-2xl bg-black/95 border border-[#00ff66]/45 shadow-[0_0_30px_rgba(0,255,102,0.12)] overflow-hidden w-full max-w-[540px] font-mono" style="display: none;">
               <div class="bg-[#050e07] px-5 py-3 border-b border-[#00ff66]/30 flex items-center justify-between text-xs">
                 <span class="text-[#00ff66] font-bold">runtime_config.json</span>
@@ -605,7 +620,7 @@
           </div>
           <div class="flex flex-wrap items-center gap-3 sm:gap-5 text-[9px] sm:text-[11px]">
             <span onclick="triggerTracerouteEasterEgg()" class="cursor-pointer hover:underline" title="Click to trace route to AWS edge">HEARTBEAT: <strong id="devPacketCounter" class="text-[#00ff66]">001420</strong> PKTS</span>
-            <span>RTT PING: <strong id="devPingVal" class="text-[#00ff66]">12 ms</strong></span>
+            <span>HTTP RTT: <strong id="devPingVal" class="text-[#00ff66]">12 ms</strong></span>
             <span>LOCAL CLOCK: <strong id="devClockVal" class="text-[#00ff66]">--:--:--</strong></span>
             <span id="devViewportToggle" onclick="toggleViewportHeapEasterEgg()" class="cursor-pointer hover:underline" title="Click to toggle JS Heap memory telemetry">VIEWPORT: <strong id="devResVal" class="text-[#00ff66]">1920x1080</strong></span>
             <button type="button" onclick="openTelemetryDashboard()" class="px-3 py-1.5 rounded-lg bg-[#00ff66]/15 hover:bg-[#00ff66] text-[#00ff66] hover:text-black font-mono font-bold border border-[#00ff66]/60 shadow-[0_0_15px_rgba(0,255,102,0.35)] transition-all cursor-pointer flex items-center gap-1.5">
@@ -862,7 +877,7 @@
                     </button>
                   </div>
                 </div>
-                <!-- Locked Equal-Size AWS Credential Box (h-fit self-start so zero extra vertical stretch) -->
+                <!-- Locked Equal-Size AWS Credential Box -->
                 <div class="lg:col-span-4 self-start h-fit p-3.5 rounded-xl bg-carbon-950 border border-[#00ff66]/35 space-y-1.5">
                   <span class="text-[9px] text-slate-400 uppercase tracking-wider block border-b border-carbon-800 pb-1">Credential Validation</span>
                   <a href="https://www.credly.com/badges/20f333e6-76e8-431a-9603-c22408681cd8" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 rounded bg-carbon-900 hover:bg-[#00ff66]/15 border border-[#00ff66]/40 text-[#00ff66] font-bold text-[10.5px] flex items-center justify-between transition-colors">
@@ -895,7 +910,7 @@
                     </button>
                   </div>
                 </div>
-                <!-- Locked Equal-Size AWS Credential Box (Identical to CCP & MLA) -->
+                <!-- Locked Equal-Size AWS Credential Box -->
                 <div class="lg:col-span-4 self-start h-fit p-3.5 rounded-xl bg-carbon-950 border border-sky-500/35 space-y-1.5">
                   <span class="text-[9px] text-slate-400 uppercase tracking-wider block border-b border-carbon-800 pb-1">Credential Validation</span>
                   <a href="https://www.credly.com/badges/af2f25bd-7fbe-4e21-92fc-4c39f8e92cf7" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 rounded bg-carbon-900 hover:bg-sky-500/15 border border-sky-500/40 text-sky-400 font-bold text-[10.5px] flex items-center justify-between transition-colors">
@@ -923,7 +938,7 @@
                     <li><strong class="text-amber-400">Automated OS Provisioning:</strong> Standardized RedHat Linux bare-metal installations using Kickstart pre/post scripts.</li>
                   </ul>
                 </div>
-                <!-- Locked Equal-Size AWS Credential Box (Identical to MLA & SAA) -->
+                <!-- Locked Equal-Size AWS Credential Box -->
                 <div class="lg:col-span-4 self-start h-fit p-3.5 rounded-xl bg-carbon-950 border border-amber-500/35 space-y-1.5">
                   <span class="text-[9px] text-slate-400 uppercase tracking-wider block border-b border-carbon-800 pb-1">Credential Validation</span>
                   <a href="https://www.credly.com/badges/582be29e-4701-41a4-b4bb-638b1d675fc2" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 rounded bg-carbon-900 hover:bg-amber-500/15 border border-amber-500/40 text-amber-400 font-bold text-[10.5px] flex items-center justify-between transition-colors">
@@ -1055,7 +1070,7 @@
               </div>
             </div>
 
-            <!-- True Circular 3-Arc Operating Loop SVG (Inspired by Reference Cycle Diagram) -->
+            <!-- True Circular 3-Arc Operating Loop SVG -->
             <div class="lg:col-span-6 w-full overflow-hidden">
               <div class="rounded-2xl bg-carbon-950 border border-carbon-700 p-4 sm:p-5 shadow-2xl overflow-x-auto">
                 <div class="flex items-center justify-between text-[10px] sm:text-xs font-mono text-slate-400 mb-3 px-1 min-w-[300px]">
@@ -1075,23 +1090,18 @@
                     </marker>
                   </defs>
 
-                  <!-- Outer Subtle Ring Track -->
                   <circle cx="300" cy="215" r="118" fill="none" stroke="#161f33" stroke-width="18"/>
 
-                  <!-- 3 Curved Interlocking Directional Cycle Arcs (Amber -> Blue -> Green -> Amber) -->
-                  <!-- Arc 1: Top (01) to Bottom-Right (02) -->
+                  <!-- 3 Curved Interlocking Directional Cycle Arcs -->
                   <path d="M 355 110 A 118 118 0 0 1 405 270" fill="none" stroke="#f59e0b" stroke-width="6" stroke-linecap="round" marker-end="url(#arrowAmber)" class="svg-flow-line loop-active-flow"/>
-                  <!-- Arc 2: Bottom-Right (02) to Bottom-Left (03) -->
                   <path d="M 365 314 A 118 118 0 0 1 235 314" fill="none" stroke="#38bdf8" stroke-width="6" stroke-linecap="round" marker-end="url(#arrowBlue)" class="svg-flow-line loop-active-flow"/>
-                  <!-- Arc 3: Bottom-Left (03) back to Top (01) -->
                   <path d="M 195 270 A 118 118 0 0 1 245 110" fill="none" stroke="#34d399" stroke-width="6" stroke-linecap="round" marker-end="url(#arrowGreen)" class="svg-flow-line loop-active-flow"/>
 
-                  <!-- Center Core Hub -->
                   <circle cx="300" cy="215" r="54" fill="#0d1320" stroke="#314161" stroke-width="1.5"/>
                   <text x="300" y="210" text-anchor="middle" fill="#ffffff" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700">OPERATING</text>
                   <text x="300" y="226" text-anchor="middle" fill="#34d399" font-family="JetBrains Mono, monospace" font-size="10" font-weight="700">LOOP ↻</text>
 
-                  <!-- Node 01 (Top Vertex): Start with Evidence -->
+                  <!-- Node 01 -->
                   <g transform="translate(175, 18)">
                     <rect width="250" height="68" rx="12" fill="#101624" stroke="#f59e0b" stroke-width="1.8"/>
                     <rect x="12" y="14" width="36" height="40" rx="8" fill="#451a03" stroke="#fbbf24" stroke-width="1"/>
@@ -1101,7 +1111,7 @@
                     <text x="58" y="60" fill="#fbbf24" font-family="JetBrains Mono, monospace" font-size="9.5">first—never guesswork.</text>
                   </g>
 
-                  <!-- Node 02 (Bottom-Right Vertex): Design for Zero Drift -->
+                  <!-- Node 02 -->
                   <g transform="translate(335, 315)">
                     <rect width="250" height="76" rx="12" fill="#101624" stroke="#38bdf8" stroke-width="1.8"/>
                     <rect x="12" y="18" width="36" height="40" rx="8" fill="#0c2a40" stroke="#38bdf8" stroke-width="1"/>
@@ -1111,7 +1121,7 @@
                     <text x="58" y="62" fill="#38bdf8" font-family="JetBrains Mono, monospace" font-size="9.5">canonical DTOs &amp; PoLP IAM.</text>
                   </g>
 
-                  <!-- Node 03 (Bottom-Left Vertex): Make Complexity Legible -->
+                  <!-- Node 03 -->
                   <g transform="translate(15, 315)">
                     <rect width="250" height="76" rx="12" fill="#101624" stroke="#34d399" stroke-width="1.8"/>
                     <rect x="12" y="18" width="36" height="40" rx="8" fill="#062c22" stroke="#34d399" stroke-width="1"/>
@@ -1212,7 +1222,7 @@
       </div>
       <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-6 bg-[#030804]">
         <div class="p-5 rounded-xl bg-black border border-[#00ff66]/30 flex flex-col items-center text-center space-y-3">
-          <div class="text-xs text-slate-400 uppercase tracking-wider">DOWNLINK SPEEDOMETER</div>
+          <div class="text-xs text-slate-400 uppercase tracking-wider">BROWSER DOWNLINK ESTIMATE</div>
           <svg viewBox="0 0 220 135" class="w-56 h-36 overflow-visible">
             <path d="M 20 110 A 90 90 0 0 1 200 110" fill="none" stroke="#161f33" stroke-width="14" stroke-linecap="round"/>
             <path id="speedGaugeArc" d="M 20 110 A 90 90 0 0 1 200 110" fill="none" stroke="#00ff66" stroke-width="14" stroke-linecap="round" stroke-dasharray="283" stroke-dashoffset="180" style="transition: stroke-dashoffset 0.6s ease;"/>
@@ -1226,7 +1236,7 @@
           <p id="speedGaugeSubtext" class="text-[11px] text-slate-400">Calibrating client stream...</p>
         </div>
         <div class="p-5 rounded-xl bg-black border border-[#00ff66]/30 flex flex-col items-center text-center space-y-3">
-          <div class="text-xs text-slate-400 uppercase tracking-wider">RTT LATENCY GAUGE</div>
+          <div class="text-xs text-slate-400 uppercase tracking-wider">HTTP ROUND-TRIP LATENCY</div>
           <svg viewBox="0 0 220 135" class="w-56 h-36 overflow-visible">
             <path d="M 20 110 A 90 90 0 0 1 200 110" fill="none" stroke="#161f33" stroke-width="14" stroke-linecap="round"/>
             <path id="rttGaugeArc" d="M 20 110 A 90 90 0 0 1 200 110" fill="none" stroke="#38bdf8" stroke-width="14" stroke-linecap="round" stroke-dasharray="283" stroke-dashoffset="240" style="transition: stroke-dashoffset 0.45s ease;"/>
@@ -1346,12 +1356,12 @@
     </div>
   </div>
 
-  <!-- Authentic gus.html Balloon with Settings Menu (30s start, 10s increments) -->
+  <!-- Authentic gus.html Balloon with Settings Menu (30s start, 10s increments) & Viewport Edge Protection -->
   <div id="balloonContainer" style="left: 16px; bottom: 16px; right: auto;" class="fixed z-30 select-none transition-transform duration-300">
-    <div id="balloonTriviaBubble" class="hidden absolute bottom-full left-0 mb-3 ml-2 w-[295px] sm:w-80 max-w-[calc(100vw-32px)] p-3.5 sm:p-4 rounded-2xl bg-carbon-900/95 border border-amber-500/60 text-xs font-mono shadow-2xl backdrop-blur-xl max-h-[min(390px,60vh)] overflow-y-auto">
+    <div id="balloonTriviaBubble" class="hidden absolute bottom-full left-0 mb-3 w-[min(295px,calc(100vw-32px))] sm:w-80 p-3.5 sm:p-4 rounded-2xl bg-carbon-900/95 border border-amber-500/60 text-xs font-mono shadow-2xl backdrop-blur-xl max-h-[min(390px,60vh)] overflow-y-auto">
       <div class="flex items-center justify-between text-[10px] text-amber-400 pb-1.5 border-b border-carbon-700">
         <span id="balloonFactLabel" class="font-bold flex items-center gap-1">🎈 AirHead.cs~1.6</span>
-        <button type="button" onclick="dismissBalloonBubble()" class="text-slate-400 hover:text-white cursor-pointer px-1">✕</button>
+        <button type="button" onclick="dismissBalloonBubble()" class="text-slate-400 hover:text-white cursor-pointer px-1" aria-label="Close balloon tip">✕</button>
       </div>
       <div id="balloonFactTitle" class="text-white font-bold text-[11px] sm:text-xs mt-2"></div>
       <div id="balloonFactText" class="text-slate-200 mt-1 leading-relaxed font-sans text-[11px] sm:text-xs"></div>
@@ -1371,33 +1381,33 @@
         </div>
       </div>
 
-      <!-- Settings Panel (Starts at 30s, 10s Increments up to 180s) -->
+      <!-- Settings Panel (Starts at 30s, 10s increments up to 180s) -->
       <div id="balloonSettingsPanel" class="hidden mt-2.5 pt-2.5 border-t border-carbon-700 space-y-2.5 text-[10px] font-mono">
         <div class="flex items-center justify-between text-amber-400 font-bold">
           <span>⚙️ SETTINGS</span>
           <button type="button" onclick="toggleBalloonSettings()" class="text-slate-400 hover:text-white cursor-pointer">Done</button>
         </div>
-        <!-- Prompt Interval (30s to 180s in 10s increments) -->
         <div class="space-y-1.5">
           <span class="text-slate-400 block">Prompt Interval (30s–180s, 10s step):</span>
-          <div class="flex flex-wrap items-center gap-1">
+          <div class="flex flex-wrap items-center gap-1.5">
             <button type="button" onclick="setBalloonCustomTimer(30)" class="px-2 py-0.5 rounded bg-carbon-800 hover:bg-amber-500 hover:text-black text-slate-200 border border-carbon-600 cursor-pointer">30s</button>
             <button type="button" onclick="setBalloonCustomTimer(40)" class="px-2 py-0.5 rounded bg-carbon-800 hover:bg-amber-500 hover:text-black text-slate-200 border border-carbon-600 cursor-pointer">40s</button>
             <button type="button" onclick="setBalloonCustomTimer(50)" class="px-2 py-0.5 rounded bg-carbon-800 hover:bg-amber-500 hover:text-black text-slate-200 border border-carbon-600 cursor-pointer">50s</button>
             <button type="button" onclick="setBalloonCustomTimer(60)" class="px-2 py-0.5 rounded bg-carbon-800 hover:bg-amber-500 hover:text-black text-slate-200 border border-carbon-600 cursor-pointer">60s</button>
-            <input id="customBalloonSecInput" type="number" min="30" max="180" step="10" value="40" onchange="setBalloonCustomTimer(this.value)" class="w-16 px-1.5 py-0.5 rounded bg-carbon-950 border border-carbon-700 text-amber-400 font-bold text-[10px]">
+            <label class="flex items-center gap-1 text-slate-400">
+              <input id="customBalloonSecInput" type="number" min="30" max="180" step="10" value="40" onchange="setBalloonCustomTimer(this.value)" class="w-16 px-1.5 py-0.5 rounded bg-carbon-950 border border-carbon-700 text-amber-400 font-bold text-[10px]" aria-label="Custom balloon delay in seconds">
+              <span>s</span>
+            </label>
           </div>
         </div>
-        <!-- Balloon Skin -->
-        <div class="flex items-center justify-between">
+        <div class="flex items-center justify-between gap-2">
           <span class="text-slate-400">Balloon Theme:</span>
-          <div class="flex gap-1">
+          <div class="flex gap-1.5">
             <button type="button" onclick="setBalloonSkin('light')" class="px-2 py-0.5 rounded bg-carbon-800 hover:bg-sky-400 hover:text-black text-sky-300 border border-carbon-600 cursor-pointer">☀️ Light</button>
             <button type="button" onclick="setBalloonSkin('dark')" class="px-2 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] border border-carbon-600 cursor-pointer">🌙 Dark</button>
           </div>
         </div>
-        <!-- Website Assistance Toggle -->
-        <div class="flex items-center justify-between pt-1 border-t border-carbon-800">
+        <div class="flex items-center justify-between gap-2 pt-1 border-t border-carbon-800">
           <span class="text-slate-400">Website Assistance Only:</span>
           <button id="btnSiteAssistToggle" type="button" onclick="toggleSiteAssistMode()" class="px-2.5 py-0.5 rounded bg-carbon-800 text-slate-300 border border-carbon-600 cursor-pointer">OFF (Tech Trivia)</button>
         </div>
@@ -1434,7 +1444,7 @@
     <div id="chatBodyContainer" class="flex flex-col">
       <div id="chatWindow" class="h-56 sm:h-64 overflow-y-auto p-3 sm:p-4 space-y-3 bg-carbon-950/80 text-[11px] sm:text-xs text-slate-200">
         <div class="p-3 rounded-2xl rounded-tl-sm bg-carbon-800 border border-carbon-700 text-slate-200 leading-relaxed">
-          Hey! Ask me anything about Sai Vinay's background, the <strong class="text-amber-400">AirHead.cs~1.6</strong> balloon trivia, or use the quick tabs below!
+          Hey! Ask me about Sai Vinay's background, <strong class="text-amber-400">AirHead.cs~1.6</strong> trivia, or use the quick tabs below.
         </div>
       </div>
       <div class="px-2.5 sm:px-3 pt-2 pb-1.5 bg-carbon-900 border-t border-carbon-800 flex items-center gap-1.5 overflow-x-auto whitespace-nowrap text-[9.5px] sm:text-[10.5px] font-mono scrollbar-hide">
@@ -1452,6 +1462,11 @@
   <!-- Core JavaScript Runtime -->
   <script>
     if (window.lucide) { lucide.createIcons(); }
+
+    const prefersReducedMotionMedia = window.matchMedia('(prefers-reduced-motion: reduce)');
+    function isReducedMotionPreferred() {
+      return !!(prefersReducedMotionMedia && prefersReducedMotionMedia.matches);
+    }
 
     function revealPhone(btn) {
       const b64 = "KzkxIDk4OTkxMDk1OTQ=";
@@ -1611,34 +1626,81 @@
       openModal('modal-exec-case');
     }
 
-    /* Easter Eggs: Telemetry Tinkering (Traceroute & JS Heap) + Konami Code */
+    /* Easter Eggs: Live Browser Heap Readout, Simulated Traceroute, and Konami God Mode */
     let showHeapInsteadOfViewport = false;
+    let heapRefreshTimer = null;
+    let godModeUnlocked = false;
+    let tracerouteTimers = [];
+
+    function readBrowserHeap() {
+      const memory = window.performance && window.performance.memory;
+      if (!memory || !Number.isFinite(memory.usedJSHeapSize) || !Number.isFinite(memory.jsHeapSizeLimit)) return null;
+      return {
+        used: (memory.usedJSHeapSize / 1048576).toFixed(1),
+        limit: Math.round(memory.jsHeapSizeLimit / 1048576)
+      };
+    }
+
+    function updateHeapReadout() {
+      if (!showHeapInsteadOfViewport) return;
+      const el = document.getElementById('devViewportToggle');
+      if (!el) return;
+      const strong = el.querySelector('strong');
+      if (!strong) return;
+      const heap = readBrowserHeap();
+      strong.textContent = heap ? `${heap.used} / ${heap.limit} MB` : '18.4 / 2048 MB';
+    }
+
     function toggleViewportHeapEasterEgg() {
       showHeapInsteadOfViewport = !showHeapInsteadOfViewport;
       const el = document.getElementById('devViewportToggle');
       if (!el) return;
       if (showHeapInsteadOfViewport) {
-        const used = performance.memory ? (performance.memory.usedJSHeapSize / 1048576).toFixed(1) + ' MB' : '18.4 MB';
-        const limit = performance.memory ? Math.round(performance.memory.jsHeapSizeLimit / 1048576) + ' MB' : '2048 MB';
-        el.innerHTML = `JS HEAP: <strong class="text-[#00ff66]">${used} / ${limit}</strong>`;
+        el.innerHTML = 'JS HEAP: <strong class="text-[#00ff66]">Reading…</strong>';
+        updateHeapReadout();
+        if (heapRefreshTimer) clearInterval(heapRefreshTimer);
+        heapRefreshTimer = setInterval(updateHeapReadout, 1200);
         showToast('🧠 <strong>Memory Telemetry Unlocked:</strong> Showing live V8 JS Heap allocation.');
       } else {
+        if (heapRefreshTimer) clearInterval(heapRefreshTimer);
+        heapRefreshTimer = null;
         el.innerHTML = `VIEWPORT: <strong id="devResVal" class="text-[#00ff66]">${window.innerWidth}x${window.innerHeight}</strong>`;
       }
     }
 
     function triggerTracerouteEasterEgg() {
-      showToast('🛰️ <strong>TRACEROUTE to aws-us-east-1.edge:</strong> 1) client-gw (1.2ms) ➔ 2) cloudflare-poP (6.4ms) ➔ 3) nyse-clearing-vpc (11.8ms) [OK]', 5500);
+      const drawer = document.getElementById('devCliDrawer');
+      if (!drawer || typeof printCliLine !== 'function') return;
+      if (drawer.style.display !== 'flex') openConsoleModal();
+      if (tracerouteTimers.length) tracerouteTimers.forEach(timer => clearTimeout(timer));
+      tracerouteTimers = [];
+      printCliLine('$ traceroute -m 5 aws-us-east-1.amazonaws.com', 'text-[#00ff66] font-bold');
+      const hops = [
+        ' 1  browser-session.local       1.2 ms',
+        ' 2  access-network.edge         6.4 ms',
+        ' 3  cloudflare-edge.pop        11.8 ms',
+        ' 4  aws-region-gateway         18.6 ms',
+        ' 5  us-east-1.nyse-sync.vpc    22.1 ms [OK]'
+      ];
+      hops.forEach((line, index) => {
+        tracerouteTimers.push(setTimeout(() => printCliLine(line, index === hops.length - 1 ? 'text-[#00ff66] font-bold' : 'text-sky-300'), 280 * (index + 1)));
+      });
     }
 
     let konamiSeq = [];
     const KONAMI_CODE = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
     window.addEventListener('keydown', (e) => {
-      konamiSeq.push(e.key);
+      const target = e.target;
+      if (target && (target.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(target.tagName))) return;
+      konamiSeq.push(e.key.toLowerCase());
       if (konamiSeq.length > KONAMI_CODE.length) konamiSeq.shift();
-      if (konamiSeq.join(',').toLowerCase() === KONAMI_CODE.join(',').toLowerCase()) {
+      const expected = KONAMI_CODE.map(key => key.toLowerCase());
+      if (konamiSeq.join(',') === expected.join(',')) {
+        if (godModeUnlocked) return;
+        godModeUnlocked = true;
         window.matrixColor = '#fbbf24';
-        showToast('👑 <strong>KONAMI GOD MODE UNLOCKED:</strong> Golden Matrix Rain &amp; Root Clearance Activated!', 6000);
+        if (document.body.classList.contains('mode-dev') && !isReducedMotionPreferred()) startMatrixRain();
+        showToast('👑 <strong>KONAMI GOD MODE UNLOCKED:</strong> Golden Matrix Rain &amp; Root Clearance (`sudo`) Activated!', 6500);
       }
     });
 
@@ -1673,31 +1735,35 @@
       if (textEl) textEl.textContent = `${value} ${unit}`;
     }
 
+    let previousHttpRtt = null;
     async function runLiveTelemetryProbe() {
       const subSpeed = document.getElementById('speedGaugeSubtext');
       const connTypeEl = document.getElementById('telemetryConnType');
       const jitterEl = document.getElementById('rttJitterVal');
+      const stripPing = document.getElementById('devPingVal');
       if (subSpeed) subSpeed.textContent = 'Sampling client downlink throughput...';
+
       const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-      if (conn && connTypeEl) connTypeEl.textContent = `${(conn.effectiveType || '4g').toUpperCase()} // Downlink API Active`;
+      if (conn && connTypeEl) connTypeEl.textContent = `${String(conn.effectiveType || '4g').toUpperCase()} // Downlink API Active`;
 
       const t0 = performance.now();
-      let measuredRtt = 14, measuredMbps = (conn && conn.downlink) ? conn.downlink * 8.5 : 85;
+      let measuredRtt = 14, measuredMbps = (conn && conn.downlink) ? Math.round(conn.downlink * 10) : 92;
       try {
-        const res = await fetch(window.location.href + '?telemetry_probe=' + Date.now(), { cache: 'no-store' });
-        const blob = await res.blob();
-        const elapsedSec = Math.max(0.005, (performance.now() - t0) / 1000);
-        measuredRtt = Math.max(4, Math.round((performance.now() - t0) * 0.65));
-        const sampleMbps = ((Math.max(blob.size * 8, 120000)) / elapsedSec) / 1e6;
-        measuredMbps = (conn && conn.downlink) ? Math.min(200, Math.round((conn.downlink * 10 + sampleMbps) / 2)) : Math.min(200, Math.max(24, Math.round(sampleMbps)));
-      } catch (e) {
-        measuredRtt = 16; measuredMbps = (conn && conn.downlink) ? Math.round(conn.downlink * 10) : 92;
+        const probeUrl = new URL(window.location.href);
+        probeUrl.searchParams.set('telemetry_probe', String(Date.now()));
+        const response = await fetch(probeUrl.toString(), { cache: 'no-store', credentials: 'same-origin' });
+        measuredRtt = Math.max(4, Math.round(performance.now() - t0));
+        if (response.body && typeof response.body.cancel === 'function') response.body.cancel().catch(() => {});
+      } catch (error) {
+        measuredRtt = 14;
       }
 
-      updateGaugeDial('speedGaugeArc', 'speedGaugeNeedle', 'speedGaugeValueText', measuredMbps, 200, 'Mbps');
+      updateGaugeDial('speedGaugeArc', 'speedGaugeNeedle', 'speedGaugeValueText', Math.min(200, measuredMbps), 200, 'Mbps');
       updateGaugeDial('rttGaugeArc', 'rttGaugeNeedle', 'rttGaugeValueText', measuredRtt, 300, 'ms');
+      if (stripPing) stripPing.textContent = `${measuredRtt} ms`;
       if (subSpeed) subSpeed.textContent = `Measured Stream: ${measuredMbps} Mbps (Peak Capacity OK)`;
-      if (jitterEl) jitterEl.textContent = `${(Math.random() * 2.4 + 0.8).toFixed(1)} ms`;
+      if (jitterEl) jitterEl.textContent = previousHttpRtt === null ? '1.8 ms' : `${Math.max(0.4, Math.abs(measuredRtt - previousHttpRtt)).toFixed(1)} ms`;
+      previousHttpRtt = measuredRtt;
     }
 
     function openTelemetryDashboard() {
@@ -1710,18 +1776,26 @@
       }, 3500);
     }
 
+    function openConsoleModal() {
+      const drawer = document.getElementById('devCliDrawer');
+      if (!drawer) return;
+      drawer.style.display = 'flex';
+      setTimeout(() => document.getElementById('cliInput')?.focus(), 50);
+    }
+
+    function closeConsoleModal() {
+      const drawer = document.getElementById('devCliDrawer');
+      if (drawer) drawer.style.display = 'none';
+    }
+
     function toggleConsoleModal() {
       const drawer = document.getElementById('devCliDrawer');
       if (!drawer) return;
-      if (drawer.style.display === 'none' || drawer.style.display === '') {
-        drawer.style.display = 'flex';
-        setTimeout(() => document.getElementById('cliInput')?.focus(), 50);
-      } else {
-        drawer.style.display = 'none';
-      }
+      if (drawer.style.display === 'none' || drawer.style.display === '') openConsoleModal();
+      else closeConsoleModal();
     }
 
-    let isMatrixRainMuted = false;
+    let isMatrixRainMuted = isReducedMotionPreferred();
     function toggleMatrixRainEffect() {
       isMatrixRainMuted = !isMatrixRainMuted;
       const btn = document.getElementById('matrixToggleBtn');
@@ -1730,7 +1804,7 @@
         if (btn) btn.innerHTML = `<i data-lucide="eye-off" class="w-3.5 h-3.5 text-slate-400"></i><span class="text-[11px] text-slate-400 hidden sm:inline">Classic</span>`;
         if (window.lucide) lucide.createIcons();
       } else {
-        startMatrixRain();
+        startMatrixRain(true);
         if (btn) btn.innerHTML = `<i data-lucide="sparkles" class="w-3.5 h-3.5 text-[#00ff66]"></i><span class="text-[11px] text-[#00ff66] hidden sm:inline">Rain</span>`;
         if (window.lucide) lucide.createIcons();
       }
@@ -1798,7 +1872,7 @@
         if (hrHeaderResumeBtn) hrHeaderResumeBtn.style.display = 'none';
         if (matrixToggleBtn) matrixToggleBtn.style.display = 'inline-flex';
         if (devTelemetry) devTelemetry.style.display = 'block';
-        if (!isMatrixRainMuted) startMatrixRain();
+        if (!isMatrixRainMuted && !isReducedMotionPreferred()) startMatrixRain();
         setBalloonFace('hover');
         if (showNotification) showToast('💻 <strong>Developer Mode:</strong> Runtime config, Git Flow &amp; Incident Sandbox ready!');
       }
@@ -1852,8 +1926,8 @@
       const base = args[0].toLowerCase();
 
       switch (base) {
-        case 'help':
-          printCliLine(`Interactive Diagnostic Shell:
+        case 'help': {
+          const helpText = `Interactive Diagnostic Shell:
   pwd / ls [-la]      : Directory utilities
   cat <file>          : Inspect file contents (Dockerfile, healthcheck.sh)
   ./patch.sh          : Execute automated container remediation (+curl)
@@ -1861,8 +1935,10 @@
   curl <url>          : Fetch endpoint (auto-HTTPS)
   coffee              : Inject caffeine into CI/CD pipeline
   clear               : Wipe terminal screen
-  [Break / Ctrl+C]    : Force-kill stuck process`, 'text-slate-300');
+  [Break / Ctrl+C]    : Force-kill stuck process`;
+          printCliLine(godModeUnlocked ? `${helpText}\n  sudo                : Hidden root clearance (unlocked)` : helpText, 'text-slate-300');
           break;
+        }
         case 'pwd': printCliLine(currentWorkingDir, 'text-emerald-400'); break;
         case 'ls':
           if (args[1] === '-la' || args[1] === '-l') printCliLine(`total 24\n-rw-r--r-- 1 sai devops  248 May 13 Dockerfile\n-rwxr-xr-x 1 sai devops  142 May 13 healthcheck.sh\n-rwxr-xr-x 1 sai devops  310 May 13 patch.sh`, 'text-sky-300');
@@ -1892,6 +1968,13 @@
         case 'coffee':
         case 'brew':
           printCliLine(`      (\n       )\n    _(__)_\n   |      |_\n   |      |_|\n   |______|\n[INFO] Injecting caffeine into the CI/CD pipeline...`, 'text-amber-400');
+          break;
+        case 'sudo':
+          if (godModeUnlocked) {
+            printCliLine('[ROOT] Access granted. You found the hidden switch.\n[SYS] Attention to detail: verified. Curiosity: operational.', 'text-amber-300 font-bold');
+          } else {
+            printCliLine('sai is not in the sudoers file. This incident will be reported.\nHint: the shell has a hidden Konami input sequence.', 'text-red-400 font-bold');
+          }
           break;
         case 'clear': cliOutput.innerHTML = ''; break;
         case 'curl':
@@ -1938,7 +2021,7 @@
       });
     }
 
-    /* Full Balloon Companion Engine (With Restored Facial Expressions & Settings Panel) */
+    /* Full Balloon Companion Engine (With Mobile Collision Guardrails & 30s-180s Settings) */
     const balloon = document.getElementById('gusBalloon');
     const gusSphere = document.getElementById('gusSphere');
     const balloonContainer = document.getElementById('balloonContainer');
@@ -1952,7 +2035,7 @@
     let balloonIntroduced = false;
     let siteAssistanceOnly = false;
     let dragStartX = 0, dragStartY = 0, containerStartX = 0, containerStartY = 0, isDragging = false, hasMoved = false;
-    let balloonDragDeltaLog = [];
+    let lastPointerX = 0, lastShakeDirection = 0, shakeReversalCount = 0, shakeWindowStart = 0, dizzyResetTimer = null;
 
     const CURATED_TRIVIA = [
       { category: "Tech History", title: "ChatGPT's Calendar Coincidence", fact: "ChatGPT was publicly introduced on November 30, 2022—which also happens to be Computer Security Day (established in 1988)." },
@@ -1970,17 +2053,41 @@
       { category: "Site Guide", title: "Interactive Outage Sandbox", fact: "In Dev Mode, click '>_ Launch Incident Sandbox' in the Hero section to run diagnostic commands like lsof +L1 or ./patch.sh." }
     ];
 
+    /* Prevent Balloon Bubble from Bleeding Off Right Viewport Edge or Colliding with Mobile Chat */
+    function positionBalloonBubble() {
+      if (!triviaBubble || !balloonContainer) return;
+      const rect = balloonContainer.getBoundingClientRect();
+      if (rect.left > window.innerWidth * 0.5) {
+        triviaBubble.style.left = 'auto';
+        triviaBubble.style.right = '0px';
+      } else {
+        triviaBubble.style.left = '0px';
+        triviaBubble.style.right = 'auto';
+      }
+    }
+
+    function openBalloonBubbleSafely() {
+      if (window.innerWidth < 680 && !isChatMinimized) {
+        setChatMinimizedState(true);
+      }
+      positionBalloonBubble();
+      triviaBubble.classList.remove('hidden');
+    }
+
     function toggleBalloonSettings() {
       if (!settingsPanel) return;
       settingsPanel.classList.toggle('hidden');
     }
 
     function setBalloonCustomTimer(sec) {
-      let parsed = parseInt(sec, 10) || 40;
+      let parsed = Number.parseInt(sec, 10);
+      if (!Number.isFinite(parsed)) parsed = 40;
       parsed = Math.max(30, Math.min(180, Math.round(parsed / 10) * 10));
       const inp = document.getElementById('customBalloonSecInput');
       if (inp) inp.value = String(parsed);
       balloonIntervalMs = parsed * 1000;
+      scheduleNextBalloonNudge();
+      try { localStorage.setItem('airhead-settings', JSON.stringify({ delay: parsed, skin: gusSphere.classList.contains('skin-dark') ? 'dark' : 'light', siteGuide: siteAssistanceOnly })); } catch (error) {}
       showToast(`⏱️ <strong>Balloon Timer Updated:</strong> Prompt interval set to ${parsed}s.`);
     }
 
@@ -1993,6 +2100,7 @@
         gusSphere.classList.remove('skin-dark');
         showToast('☀️ <strong>Balloon Light Mode:</strong> Classic sky skin restored.');
       }
+      try { localStorage.setItem('airhead-settings', JSON.stringify({ delay: Math.round(balloonIntervalMs / 1000), skin: mode, siteGuide: siteAssistanceOnly })); } catch (error) {}
     }
 
     function toggleSiteAssistMode() {
@@ -2004,6 +2112,7 @@
           ? 'px-2.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/50 cursor-pointer font-bold'
           : 'px-2.5 py-0.5 rounded bg-carbon-800 text-slate-300 border border-carbon-600 cursor-pointer';
       }
+      try { localStorage.setItem('airhead-settings', JSON.stringify({ delay: Math.round(balloonIntervalMs / 1000), skin: gusSphere.classList.contains('skin-dark') ? 'dark' : 'light', siteGuide: siteAssistanceOnly })); } catch (error) {}
       showToast(siteAssistanceOnly ? '🧭 <strong>Website Assistance Mode ON:</strong> Balloon will only share portfolio navigation tips.' : '🎈 <strong>Tech Trivia Mode ON:</strong> Balloon will share tech & gaming facts.');
     }
 
@@ -2030,31 +2139,42 @@
       isDragging = true; hasMoved = false;
       balloon.setPointerCapture(e.pointerId);
       dragStartX = e.clientX; dragStartY = e.clientY;
+      lastPointerX = e.clientX;
+      lastShakeDirection = 0;
+      shakeReversalCount = 0;
+      shakeWindowStart = performance.now();
+      if (dizzyResetTimer) clearTimeout(dizzyResetTimer);
       const rect = balloonContainer.getBoundingClientRect();
       containerStartX = rect.left; containerStartY = rect.top;
       balloon.classList.remove('gus-float-anim');
       setBalloonFace('drag');
-      balloonDragDeltaLog = [];
     });
 
     window.addEventListener('pointermove', (e) => {
       if (!isDragging) return;
       const dx = e.clientX - dragStartX, dy = e.clientY - dragStartY;
       if (Math.abs(dx) > 4 || Math.abs(dy) > 4) hasMoved = true;
-      balloonDragDeltaLog.push(dx);
-      if (balloonDragDeltaLog.length > 20) balloonDragDeltaLog.shift();
-
-      let swings = 0;
-      for (let i = 1; i < balloonDragDeltaLog.length; i++) {
-        if (Math.sign(balloonDragDeltaLog[i]) !== Math.sign(balloonDragDeltaLog[i-1]) && Math.abs(balloonDragDeltaLog[i]) > 15) swings++;
+      const movementX = e.clientX - lastPointerX;
+      lastPointerX = e.clientX;
+      const now = performance.now();
+      if (now - shakeWindowStart > 1100) {
+        shakeWindowStart = now;
+        shakeReversalCount = 0;
+        lastShakeDirection = 0;
       }
-      if (swings > 4) setBalloonFace('dizzy');
+      if (Math.abs(movementX) >= 12) {
+        const direction = Math.sign(movementX);
+        if (lastShakeDirection && direction !== lastShakeDirection) shakeReversalCount++;
+        lastShakeDirection = direction;
+        if (shakeReversalCount >= 5) setBalloonFace('dizzy');
+      }
 
       let newX = containerStartX + dx, newY = containerStartY + dy;
       const maxX = window.innerWidth - 90, maxY = window.innerHeight - 150;
       if (newX <= 8 || newX >= maxX || newY <= 8 || newY >= maxY) setBalloonFace('bonk');
       balloonContainer.style.left = `${Math.max(8, Math.min(maxX, newX))}px`;
       balloonContainer.style.top = `${Math.max(8, Math.min(maxY, newY))}px`;
+      positionBalloonBubble();
     });
 
     window.addEventListener('pointerup', (e) => {
@@ -2062,7 +2182,8 @@
       isDragging = false;
       balloon.classList.add('gus-float-anim');
       if (gusSphere.classList.contains('face-dizzy')) {
-        setTimeout(() => setBalloonFace('default'), 2500);
+        if (dizzyResetTimer) clearTimeout(dizzyResetTimer);
+        dizzyResetTimer = setTimeout(() => setBalloonFace('default'), 2500);
       } else {
         setBalloonFace('default');
       }
@@ -2081,7 +2202,7 @@
         factTitle.textContent = "Hello! I'm AirHead.cs~1.6 🎈";
         factText.textContent = "Click me anytime for tech trivia or use '⚙️ Settings' below to switch me to Website Assistance mode, change my skin, or adjust my timer!";
         actionRow.style.display = 'flex';
-        triviaBubble.classList.remove('hidden');
+        openBalloonBubbleSafely();
         setBalloonFace('secret');
         return;
       }
@@ -2091,7 +2212,7 @@
       factTitle.textContent = item.title;
       factText.textContent = item.fact;
       actionRow.style.display = 'flex';
-      triviaBubble.classList.remove('hidden');
+      openBalloonBubbleSafely();
       setBalloonFace('secret');
     }
 
@@ -2099,11 +2220,18 @@
     function askCopilotAboutCurrentTrivia() { sendQuickPrompt(`Tell me more about: "${factTitle.textContent}"`); }
 
     let balloonIntervalMs = 40000;
+    let balloonNudgeTimer = null;
+    function scheduleNextBalloonNudge() {
+      if (balloonNudgeTimer) clearTimeout(balloonNudgeTimer);
+      balloonNudgeTimer = setTimeout(runPeriodicNudge, balloonIntervalMs);
+    }
+
     window.handleBalloonFeedback = function(response) {
       if (response === 'yes') {
         toggleBalloonMinimize();
       } else if (response === 'somewhat') {
         balloonIntervalMs = 105000;
+        scheduleNextBalloonNudge();
         factTitle.textContent = "Got it! Slowing down ⏳";
         factText.textContent = "I've increased my delay to 1m 45s so you can browse in peace.";
         actionRow.style.display = 'none';
@@ -2119,38 +2247,59 @@
 
     let balloonNudgeCount = 0;
     function runPeriodicNudge() {
-      if (!isBalloonMinimized && triviaBubble.classList.contains('hidden')) {
+      if (!isBalloonMinimized) {
         balloonNudgeCount++;
         if (balloonNudgeCount === 3) {
           factLabel.textContent = "🎈 AirHead.cs~1.6 • Check-In";
           factTitle.textContent = "Am I being too talkative?";
           factText.innerHTML = "Let me know how often I should pop up:<br><div class='mt-2.5 flex gap-2'><button onclick='handleBalloonFeedback(\"yes\")' class='px-2.5 py-1 bg-carbon-800 text-slate-300 rounded border border-carbon-600 hover:text-white cursor-pointer'>Yes (Minimize)</button><button onclick='handleBalloonFeedback(\"somewhat\")' class='px-2.5 py-1 bg-carbon-800 text-amber-300 rounded border border-amber-500/40 hover:bg-amber-500/20 cursor-pointer'>Somewhat (1m 45s)</button><button onclick='handleBalloonFeedback(\"no\")' class='px-2.5 py-1 bg-carbon-800 text-emerald-400 rounded border border-emerald-500/50 hover:bg-emerald-500/20 cursor-pointer'>No 😊</button></div>";
           actionRow.style.display = 'none';
-          triviaBubble.classList.remove('hidden');
+          openBalloonBubbleSafely();
           setBalloonFace('nudge');
-        } else {
+        } else if (triviaBubble.classList.contains('hidden')) {
           const pool = siteAssistanceOnly ? WEBSITE_ASSIST_TIPS : CURATED_TRIVIA;
           const item = pool[Math.floor(Math.random() * pool.length)];
           factLabel.textContent = `🎈 AirHead.cs~1.6 • ${item.category}`;
           factTitle.textContent = item.title;
           factText.textContent = item.fact;
           actionRow.style.display = 'flex';
-          triviaBubble.classList.remove('hidden');
+          openBalloonBubbleSafely();
           setBalloonFace('nudge');
           setTimeout(() => { if (!triviaBubble.classList.contains('hidden') && balloonNudgeCount !== 3) dismissBalloonBubble(); }, 7000);
         }
       }
-      setTimeout(runPeriodicNudge, balloonIntervalMs);
+      scheduleNextBalloonNudge();
     }
-    setTimeout(runPeriodicNudge, balloonIntervalMs);
+    scheduleNextBalloonNudge();
 
-    /* Matrix Rain Animation */
+    try {
+      const savedBalloonPrefs = JSON.parse(localStorage.getItem('airhead-settings') || '{}');
+      if (Number.isFinite(savedBalloonPrefs.delay)) {
+        balloonIntervalMs = Math.max(30, Math.min(180, Number.parseInt(savedBalloonPrefs.delay, 10))) * 1000;
+        const delayInput = document.getElementById('customBalloonSecInput');
+        if (delayInput) delayInput.value = String(Math.round(balloonIntervalMs / 1000));
+        scheduleNextBalloonNudge();
+      }
+      if (savedBalloonPrefs.skin === 'dark') gusSphere.classList.add('skin-dark');
+      if (savedBalloonPrefs.siteGuide === true) {
+        siteAssistanceOnly = true;
+        const assistButton = document.getElementById('btnSiteAssistToggle');
+        if (assistButton) {
+          assistButton.textContent = 'ON (Site Guide Only)';
+          assistButton.className = 'px-2.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/50 cursor-pointer font-bold';
+        }
+      }
+    } catch (error) {}
+
+    /* Matrix Rain Animation (Respects prefers-reduced-motion) */
     const canvas = document.getElementById('matrixCanvas');
     const ctx = canvas.getContext('2d');
     let matrixTimer = null, rainDrops = [];
     const charSize = 14, matrixChars = '0123456789ABCDEFGHXYZ';
     function resizeMatrix() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; rainDrops = Array(Math.floor(canvas.width / charSize)).fill(1); }
-    window.addEventListener('resize', resizeMatrix); resizeMatrix();
+    window.addEventListener('resize', () => { resizeMatrix(); positionBalloonBubble(); });
+    resizeMatrix();
+
     function renderMatrix() {
       ctx.fillStyle = 'rgba(3, 8, 4, 0.08)'; ctx.fillRect(0, 0, canvas.width, canvas.height);
       ctx.fillStyle = window.matrixColor || '#00ff66'; ctx.font = charSize + 'px monospace';
@@ -2160,28 +2309,109 @@
         rainDrops[i]++;
       }
     }
-    function startMatrixRain() { canvas.style.opacity = '0.22'; if (!matrixTimer) matrixTimer = setInterval(renderMatrix, 42); }
-    function stopMatrixRain() { canvas.style.opacity = '0'; if (matrixTimer) { clearInterval(matrixTimer); matrixTimer = null; ctx.clearRect(0, 0, canvas.width, canvas.height); } }
+    function startMatrixRain(forceByUser = false) {
+      if (isReducedMotionPreferred() && !forceByUser) return;
+      canvas.style.opacity = '0.22';
+      if (!matrixTimer) matrixTimer = setInterval(renderMatrix, 42);
+    }
+    function stopMatrixRain() {
+      canvas.style.opacity = '0';
+      if (matrixTimer) { clearInterval(matrixTimer); matrixTimer = null; ctx.clearRect(0, 0, canvas.width, canvas.height); }
+    }
 
-    /* Copilot Chat */
+    /* Copilot Chat & XSS-Safe Sanitizer with Mobile Collision Mutual Exclusion */
     const userInput = document.getElementById('userInput'), chatWindow = document.getElementById('chatWindow');
     let isChatMinimized = false, chatHistory = [];
-    function toggleChatMinimize() {
-      isChatMinimized = !isChatMinimized;
+
+    function setChatMinimizedState(minimized) {
+      isChatMinimized = minimized;
       document.getElementById('chatBodyContainer').style.display = isChatMinimized ? 'none' : 'flex';
       document.getElementById('minimizeChatBtn').innerText = isChatMinimized ? '▢' : '—';
+      if (!isChatMinimized && window.innerWidth < 680) {
+        dismissBalloonBubble();
+      }
     }
-    document.getElementById('chatHeader').addEventListener('click', () => { if (isChatMinimized) toggleChatMinimize(); });
+
+    function toggleChatMinimize() {
+      setChatMinimizedState(!isChatMinimized);
+    }
+    document.getElementById('chatHeader').addEventListener('click', () => { if (isChatMinimized) setChatMinimizedState(false); });
     document.getElementById('minimizeChatBtn').addEventListener('click', (e) => { e.stopPropagation(); toggleChatMinimize(); });
 
-    function sendQuickPrompt(pt) { if (isChatMinimized) toggleChatMinimize(); userInput.value = pt; sendMessage(); }
+    // Minimize chat by default on narrow mobile screens so the Hero and Balloon are unobstructed
+    if (window.innerWidth < 640) {
+      setChatMinimizedState(true);
+    }
+
+    function sendQuickPrompt(pt) {
+      if (isChatMinimized) setChatMinimizedState(false);
+      userInput.value = pt;
+      sendMessage();
+    }
     
+    function sanitizeChatMarkup(markup) {
+      const parsed = new DOMParser().parseFromString(String(markup), 'text/html');
+      const allowed = new Set(['A', 'B', 'STRONG', 'EM', 'I', 'CODE', 'PRE', 'P', 'BR', 'UL', 'OL', 'LI', 'SPAN', 'DIV', 'BUTTON']);
+      const blocked = new Set(['SCRIPT', 'STYLE', 'IFRAME', 'OBJECT', 'EMBED', 'SVG', 'MATH', 'FORM', 'INPUT']);
+      const output = document.createDocumentFragment();
+
+      function copyNode(source, target) {
+        source.childNodes.forEach((node) => {
+          if (node.nodeType === Node.TEXT_NODE) {
+            target.appendChild(document.createTextNode(node.textContent || ''));
+            return;
+          }
+          if (node.nodeType !== Node.ELEMENT_NODE) return;
+          if (blocked.has(node.tagName)) return;
+          if (!allowed.has(node.tagName)) {
+            copyNode(node, target);
+            return;
+          }
+          const clean = document.createElement(node.tagName.toLowerCase());
+          const cls = node.getAttribute('class');
+          if (cls && /^[a-zA-Z0-9\s\-_:/[\]#%.]+$/.test(cls)) {
+            clean.setAttribute('class', cls);
+          }
+          if (node.tagName === 'A') {
+            const rawHref = node.getAttribute('href') || '';
+            try {
+              const url = new URL(rawHref, window.location.href);
+              if (['https:', 'http:', 'mailto:', 'tel:'].includes(url.protocol)) {
+                clean.setAttribute('href', url.href);
+                clean.setAttribute('target', '_blank');
+                clean.setAttribute('rel', 'noopener noreferrer');
+              }
+            } catch (error) {}
+          }
+          if (node.tagName === 'BUTTON') {
+            clean.setAttribute('type', 'button');
+            if (node.getAttribute('data-chat-action') === 'open-calendly') {
+              clean.addEventListener('click', openCalendly);
+            }
+          }
+          copyNode(node, clean);
+          target.appendChild(clean);
+        });
+      }
+
+      copyNode(parsed.body, output);
+      return output;
+    }
+
     function appendChatMessage(htmlOrText, type) {
       const div = document.createElement('div');
-      if (type === 'user') div.className = "p-3 rounded-2xl rounded-tr-sm bg-amber-500 text-carbon-950 font-semibold ml-auto max-w-[85%] break-words shadow-sm";
-      else if (type === 'bot') div.className = "p-3 rounded-2xl rounded-tl-sm bg-carbon-800 border border-carbon-700 text-slate-200 mr-auto max-w-[90%] break-words leading-relaxed";
-      else div.className = "p-3 rounded-2xl rounded-tl-sm bg-red-950/60 border border-red-500/40 text-red-300 mr-auto max-w-[90%] text-xs font-mono";
-      div.innerHTML = htmlOrText; chatWindow.appendChild(div); chatWindow.scrollTop = chatWindow.scrollHeight;
+      if (type === 'user') {
+        div.className = "p-3 rounded-2xl rounded-tr-sm bg-amber-500 text-carbon-950 font-semibold ml-auto max-w-[85%] break-words shadow-sm";
+        div.textContent = String(htmlOrText ?? '');
+      } else if (type === 'bot') {
+        div.className = "p-3 rounded-2xl rounded-tl-sm bg-carbon-800 border border-carbon-700 text-slate-200 mr-auto max-w-[90%] break-words leading-relaxed";
+        div.appendChild(sanitizeChatMarkup(htmlOrText));
+      } else {
+        div.className = "p-3 rounded-2xl rounded-tl-sm bg-red-950/60 border border-red-500/40 text-red-300 mr-auto max-w-[90%] text-xs font-mono";
+        div.textContent = String(htmlOrText ?? '');
+      }
+      chatWindow.appendChild(div);
+      chatWindow.scrollTop = chatWindow.scrollHeight;
     }
 
     async function sendMessage() {
@@ -2192,18 +2422,20 @@
       const lower = text.toLowerCase();
 
       if (lower.includes('do a barrel roll')) {
-        document.body.classList.add('spin-anim');
-        setTimeout(() => document.body.classList.remove('spin-anim'), 1200);
+        if (!isReducedMotionPreferred()) {
+          document.body.classList.add('spin-anim');
+          setTimeout(() => document.body.classList.remove('spin-anim'), 1200);
+        }
         appendChatMessage('Whoa! 🌀 Hold onto your containers!', 'bot'); return;
       }
       if (lower === 'whoami' || lower === '/whoami') {
-        appendChatMessage(`<div class="space-y-2.5"><div>☕ <strong>$ whoami</strong>: uid=1000(sai-vinay). A Cloud &amp; DevOps engineer fueled by espresso. I take my coffee seriously and my infrastructure idempotently!</div><button type="button" onclick="openCalendly()" class="w-full py-2 px-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-carbon-950 font-mono font-bold text-xs flex items-center justify-center gap-1.5 transition-all shadow-md cursor-pointer">☕ Book a Virtual Coffee ↗</button></div>`, 'bot'); return;
+        appendChatMessage(`<div class="space-y-2.5"><div>☕ <strong>$ whoami</strong>: uid=1000(sai-vinay). A Cloud &amp; DevOps engineer fueled by espresso. I take my coffee seriously and my infrastructure idempotently!</div><button data-chat-action="open-calendly" class="w-full py-2 px-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-carbon-950 font-mono font-bold text-xs flex items-center justify-center gap-1.5 transition-all shadow-md cursor-pointer">☕ Book a Virtual Coffee ↗</button></div>`, 'bot'); return;
       }
       if (lower.includes('sudo rm -rf /') || lower.includes('sudo rm -rf')) {
         appendChatMessage(`Nice try! 🛡️ My AWS IAM role enforces Principle of Least Privilege and explicitly denies <code>s3:DeleteBucket</code> and root volume destruction.`, 'bot'); return;
       }
-      if (lower.includes('sudo hire sai')) {
-        appendChatMessage('👑 <strong>[EXECUTIVE CLEARANCE GRANTED]:</strong> Sai Vinay is ready for technical architecture and leadership rounds. <button onclick="openCalendly()" class="underline text-amber-400 font-mono cursor-pointer">Schedule a 30m call ↗</button>', 'bot'); return;
+      if (/\bsudo\s+hire\s+sai\b/i.test(lower) || /\b(?:hire|recruit)\s+sai\b/i.test(lower)) {
+        appendChatMessage(`👑 <strong>[EXECUTIVE CLEARANCE GRANTED]:</strong> Sai Vinay is ready for technical architecture and leadership rounds. <button data-chat-action="open-calendly" class="underline text-amber-400 font-mono cursor-pointer">Schedule a 30m call ↗</button>`, 'bot'); return;
       }
       if (/\b(cs~1\.6|cs\.1\.6|cs 1\.6|counter-strike)\b/i.test(lower)) {
         setBalloonFace('secret');
