@@ -85,19 +85,27 @@
     details[open] .compartment-content { animation: fadeInDown 0.3s ease-out forwards; }
     @keyframes fadeInDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 
+    /* A11y Tooltips */
+    .a11y-tooltip-wrapper { position: relative; display: inline-flex; align-items: center; justify-content: center; }
+    .a11y-tooltip-trigger { background: none; border: none; padding: 2px; cursor: pointer; border-radius: 9999px; outline: none; }
+    .a11y-tooltip-trigger:focus-visible { box-shadow: 0 0 0 2px #00ff66; }
+    .a11y-tooltip-content {
+      position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); margin-bottom: 8px;
+      width: 220px; background-color: #101624; color: #cbd5e1; font-size: 10px; font-family: 'Plus Jakarta Sans', sans-serif;
+      padding: 8px 10px; border: 1px solid #314161; border-radius: 6px; box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      z-index: 50; text-transform: none; font-weight: normal; letter-spacing: normal; line-height: 1.4;
+      opacity: 0; visibility: hidden; transition: opacity 0.2s, visibility 0.2s; pointer-events: none;
+    }
+    .a11y-tooltip-wrapper.is-active .a11y-tooltip-content { opacity: 1; visibility: visible; pointer-events: auto; }
+
     @keyframes barrelRoll { 100% { transform: rotate(360deg); } }
     .spin-anim { animation: barrelRoll 1.2s cubic-bezier(0.68, -0.55, 0.27, 1.55); }
 
     /* Color-Matched Gliding Shimmer */
-    @keyframes btnGlareSweep {
-      0%, 70% { transform: translateX(-140%) skewX(-22deg); }
-      100% { transform: translateX(250%) skewX(-22deg); }
-    }
+    @keyframes btnGlareSweep { 0%, 70% { transform: translateX(-140%) skewX(-22deg); } 100% { transform: translateX(250%) skewX(-22deg); } }
     .shiny-btn-red::after, .shiny-btn-green::after, .shiny-btn-purple::after, .shiny-btn-blue::after, .shiny-btn-amber::after {
       content: ""; position: absolute; inset: 0; width: 48%;
-      transform: translateX(-140%) skewX(-22deg);
-      animation: btnGlareSweep 4s infinite ease-in-out;
-      pointer-events: none;
+      transform: translateX(-140%) skewX(-22deg); animation: btnGlareSweep 4s infinite ease-in-out; pointer-events: none;
     }
     .shiny-btn-red::after { background: linear-gradient(90deg, transparent, rgba(248, 113, 113, 0.45), transparent); }
     .shiny-btn-green::after { background: linear-gradient(90deg, transparent, rgba(52, 211, 153, 0.45), transparent); }
@@ -107,33 +115,19 @@
 
     /* Reduced Motion */
     @media (prefers-reduced-motion: reduce) {
-      *, ::before, ::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-      }
+      *, ::before, ::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
       .shiny-btn-red::after, .shiny-btn-green::after, .shiny-btn-purple::after, .shiny-btn-blue::after, .shiny-btn-amber::after,
-      .loop-active-flow, .svg-flow-line, .gus-float-anim, .typing-dot, .animate-marquee, .animate-ping, .animate-pulse, .spin-anim {
-        animation: none !important;
-      }
+      .loop-active-flow, .svg-flow-line, .gus-float-anim, .typing-dot, .animate-marquee, .animate-ping, .animate-pulse, .spin-anim { animation: none !important; }
       .marquee-container { overflow-x: auto !important; }
     }
 
     /* Dev Mode Styles */
     body.mode-dev { background-color: #030804 !important; color: #a7f3d0 !important; font-family: 'JetBrains Mono', monospace !important; }
-    body.mode-dev .bg-carbon-950, body.mode-dev .bg-carbon-900, body.mode-dev .bg-carbon-850, body.mode-dev .bg-carbon-800 {
-      background-color: #050e07 !important; border-color: rgba(0, 255, 102, 0.32) !important;
-    }
-    body.mode-dev h1, body.mode-dev h2, body.mode-dev h3, body.mode-dev h4, body.mode-dev .text-white {
-      color: #00ff66 !important; text-shadow: 0 0 10px rgba(0, 255, 102, 0.32);
-    }
+    body.mode-dev .bg-carbon-950, body.mode-dev .bg-carbon-900, body.mode-dev .bg-carbon-850, body.mode-dev .bg-carbon-800 { background-color: #050e07 !important; border-color: rgba(0, 255, 102, 0.32) !important; }
+    body.mode-dev h1, body.mode-dev h2, body.mode-dev h3, body.mode-dev h4, body.mode-dev .text-white { color: #00ff66 !important; text-shadow: 0 0 10px rgba(0, 255, 102, 0.32); }
     body.mode-dev .text-amber-400, body.mode-dev .text-amber-300, body.mode-dev .text-emerald-400 { color: #00ff66 !important; }
     body.mode-dev .bg-amber-500 { background-color: #00ff66 !important; color: #020603 !important; box-shadow: 0 0 20px rgba(0, 255, 102, 0.45) !important; }
-    body.mode-dev::after {
-      content: " "; display: block; position: fixed; inset: 0; z-index: 25; pointer-events: none;
-      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.22) 50%); background-size: 100% 4px;
-    }
+    body.mode-dev::after { content: " "; display: block; position: fixed; inset: 0; z-index: 25; pointer-events: none; background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.22) 50%); background-size: 100% 4px; }
 
     @keyframes svgPacketFlow { from { stroke-dashoffset: 36; } to { stroke-dashoffset: 0; } }
     .svg-flow-line { stroke-dasharray: 6 6; }
@@ -152,20 +146,7 @@
       * { color: black !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     }
 
-    /* Accessible Tooltip Structure */
-    .a11y-tooltip-wrapper { position: relative; display: inline-flex; align-items: center; justify-content: center; }
-    .a11y-tooltip-trigger { background: none; border: none; padding: 2px; cursor: pointer; border-radius: 9999px; outline: none; }
-    .a11y-tooltip-trigger:focus-visible { box-shadow: 0 0 0 2px #00ff66; }
-    .a11y-tooltip-content {
-      position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); margin-bottom: 8px;
-      width: 220px; background-color: #101624; color: #cbd5e1; font-size: 10px; font-family: 'Plus Jakarta Sans', sans-serif;
-      padding: 8px 10px; border: 1px solid #314161; border-radius: 6px; box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-      z-index: 50; text-transform: none; font-weight: normal; letter-spacing: normal; line-height: 1.4;
-      opacity: 0; visibility: hidden; transition: opacity 0.2s, visibility 0.2s; pointer-events: none;
-    }
-    .a11y-tooltip-wrapper.is-active .a11y-tooltip-content { opacity: 1; visibility: visible; pointer-events: auto; }
-
-    /* Full Balloon Animations & Complete Facial Expressions */
+    /* Full Balloon Animations */
     @keyframes gusFloat { 0%, 100% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-8px) rotate(2deg); } }
     .gus-float-anim { animation: gusFloat 3.8s ease-in-out infinite; }
     .balloon-scale-shell { width: 82px; height: 138px; position: relative; touch-action: none; user-select: none; cursor: grab; transition: transform 0.25s ease, opacity 0.25s ease; }
@@ -204,46 +185,36 @@
     .gus-balloon.face-hover .balloon-eyebrows span:last-child { top: 48px; transform: rotate(-18deg); }
     .gus-balloon.face-hover .balloon-mouth { height: 94px; border-radius: 36% 36% 52% 52%; }
     .gus-balloon.face-hover .balloon-cheek { background: linear-gradient(135deg, #fda4af, #f43f5e); opacity: 0.85; }
-
     .gus-balloon.face-drag { transform: scale(0.96, 1.06); }
     .gus-balloon.face-drag .balloon-eyebrows span:first-child { top: 45px; transform: rotate(-10deg); }
     .gus-balloon.face-drag .balloon-eyebrows span:last-child { top: 45px; transform: rotate(10deg); }
     .gus-balloon.face-drag .balloon-mouth { width: 68px; height: 68px; top: 86px; border-radius: 50%; }
-
     .gus-balloon.face-bonk { transform: scale(1.22, 0.78) rotate(6deg) !important; }
     .gus-balloon.face-bonk .balloon-eyebrows span:first-child { top: 52px; left: 78px; width: 34px; transform: rotate(48deg); }
     .gus-balloon.face-bonk .balloon-eyebrows span:last-child { top: 52px; right: 72px; width: 34px; transform: rotate(-48deg); }
     .gus-balloon.face-bonk .balloon-mouth { width: 148px; height: 52px; top: 96px; border-radius: 25% 25% 30% 30%; transform: translateX(-50%) rotate(-5deg); }
     .gus-balloon.face-bonk .balloon-cheek { background: linear-gradient(135deg, #fb7185, #e11d48); opacity: 0.9; }
-
     .gus-balloon.face-secret { transform: scale(1.06) rotate(3deg); }
     .gus-balloon.face-secret .balloon-eyebrows span:first-child { top: 46px; transform: rotate(-18deg); }
     .gus-balloon.face-secret .balloon-eyebrows span:last-child { top: 46px; transform: rotate(18deg); }
     .gus-balloon.face-secret .balloon-mouth { width: 145px; height: 92px; border-radius: 20% 20% 60% 60%; }
     .gus-balloon.face-secret .balloon-cheek { background: linear-gradient(135deg, #f472b6, #ec4899); opacity: 0.85; transform: scale(1.15); }
-
     .gus-balloon.face-nudge .balloon-eyebrows span:first-child { top: 48px; transform: rotate(-12deg); }
     .gus-balloon.face-nudge .balloon-eyebrows span:last-child { top: 51px; transform: rotate(-20deg) scaleX(1.05); }
     .gus-balloon.face-nudge .balloon-mouth { transform: translateX(-46%) rotate(-4deg); }
-
-    @keyframes dizzyWobble {
-      0%, 100% { transform: scale(1.04) rotate(12deg); }
-      25% { transform: scale(1.02) rotate(-14deg); }
-      50% { transform: scale(1.05) rotate(14deg); }
-      75% { transform: scale(1.02) rotate(-10deg); }
-    }
+    
+    @keyframes dizzyWobble { 0%, 100% { transform: scale(1.04) rotate(12deg); } 25% { transform: scale(1.02) rotate(-14deg); } 50% { transform: scale(1.05) rotate(14deg); } 75% { transform: scale(1.02) rotate(-10deg); } }
     .gus-balloon.face-dizzy { animation: dizzyWobble 0.45s ease-in-out infinite; }
     .gus-balloon.face-dizzy .balloon-mouth { width: 54px; height: 22px; border-radius: 14px; background: #17212b; transform: translateX(-50%) rotate(10deg); top: 106px; }
     .gus-balloon.face-dizzy .balloon-eyebrows span:first-child { transform: rotate(52deg); top: 54px; }
     .gus-balloon.face-dizzy .balloon-eyebrows span:last-child { transform: rotate(-52deg); top: 54px; }
     .gus-balloon.face-dizzy .balloon-cheek { background: linear-gradient(135deg, #34d399, #10b981); opacity: 0.9; }
-
     .gus-balloon.face-happy { transform: scale(1.06) rotate(-2deg); }
     .gus-balloon.face-happy .balloon-eyebrows span:first-child { top: 44px; transform: rotate(-14deg); }
     .gus-balloon.face-happy .balloon-eyebrows span:last-child { top: 44px; transform: rotate(14deg); }
     .gus-balloon.face-happy .balloon-mouth { width: 148px; height: 98px; border-radius: 14% 14% 70% 70%; }
     .gus-balloon.face-happy .balloon-cheek { background: linear-gradient(135deg, #fb7185, #f43f5e); opacity: 0.9; transform: scale(1.18); }
-
+    
     .balloon-scale-shell.minimized { width: 34px; height: 34px; cursor: pointer; }
     .balloon-scale-shell.minimized .balloon-container { display: none; }
     .balloon-scale-shell.minimized .minimized-disc { display: flex !important; }
@@ -281,13 +252,13 @@
 
         <!-- Segmented Mode Switcher -->
         <div class="hidden sm:inline-flex items-center p-1 rounded-xl bg-carbon-950/90 border border-carbon-700/90 font-mono text-[10px] sm:text-[11px] shadow-inner shrink-0">
-          <button type="button" id="headerBtnHr" onclick="window.PortfolioController.setMode('hr', true)" class="px-2 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 text-slate-400 hover:text-white whitespace-nowrap">
+          <button type="button" id="headerBtnHr" onclick="setPerspective('recruiter', true)" class="px-2 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 text-slate-400 hover:text-white whitespace-nowrap">
             <span>👔</span><span class="hidden xl:inline">HR Mode</span><span class="xl:hidden">HR</span>
           </button>
-          <button type="button" id="headerBtnManager" onclick="window.PortfolioController.setMode('manager', true)" class="px-2 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 bg-amber-500 text-carbon-950 font-bold shadow-sm whitespace-nowrap">
+          <button type="button" id="headerBtnManager" onclick="setPerspective('manager', true)" class="px-2 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 bg-amber-500 text-carbon-950 font-bold shadow-sm whitespace-nowrap">
             <span>📊</span><span class="hidden xl:inline">Manager Mode</span><span class="xl:hidden">Mgr</span>
           </button>
-          <button type="button" id="headerBtnDev" onclick="window.PortfolioController.setMode('dev', true)" class="px-2 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 text-slate-400 hover:text-white whitespace-nowrap">
+          <button type="button" id="headerBtnDev" onclick="setPerspective('engineer', true)" class="px-2 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 text-slate-400 hover:text-white whitespace-nowrap">
             <span>💻</span><span class="hidden xl:inline">Dev Mode</span><span class="xl:hidden">Dev</span>
           </button>
         </div>
@@ -302,17 +273,17 @@
 
       <!-- Top-Right Actions -->
       <div class="flex items-center justify-self-end gap-1.5 sm:gap-2 z-10">
-        <!-- Mobile Mode Switcher (Visible only on very small screens) -->
+        <!-- Mobile Mode Switcher -->
         <div class="sm:hidden inline-flex items-center p-1 rounded-xl bg-carbon-950/90 border border-carbon-700/90 font-mono text-[9px] shadow-inner shrink-0 mr-1">
-          <button type="button" onclick="window.PortfolioController.setMode('manager', true)" class="px-1.5 py-1 rounded bg-amber-500 text-carbon-950 font-bold">Mgr</button>
-          <button type="button" onclick="window.PortfolioController.setMode('dev', true)" class="px-1.5 py-1 rounded text-slate-400 hover:text-white">Dev</button>
+          <button type="button" onclick="setPerspective('manager', true)" class="px-1.5 py-1 rounded bg-amber-500 text-carbon-950 font-bold">Mgr</button>
+          <button type="button" onclick="setPerspective('engineer', true)" class="px-1.5 py-1 rounded text-slate-400 hover:text-white">Dev</button>
         </div>
 
         <a id="hrHeaderResumeBtn" href="assets/Sai-Vinay-Mullapudi.pdf" target="_blank" rel="noopener noreferrer" download="Sai-Vinay-Mullapudi-Resume.pdf" style="display: none;" class="items-center gap-1.5 px-2.5 sm:px-3.5 py-2 rounded-lg text-[10px] sm:text-xs font-mono font-bold bg-amber-500 hover:bg-amber-400 text-carbon-950 shadow-md transition-all">
           <i data-lucide="file-down" class="w-3.5 h-3.5"></i><span class="hidden sm:inline">Resume.pdf</span>
         </a>
 
-        <button id="matrixToggleBtn" type="button" onclick="window.PortfolioController.toggleMatrix()" style="display: none;" class="items-center gap-1.5 px-2.5 sm:px-3 py-2 rounded-lg text-xs font-mono bg-carbon-800 hover:bg-carbon-700 text-slate-300 border border-carbon-600 transition-all cursor-pointer" title="Toggle Digital Rain">
+        <button id="matrixToggleBtn" type="button" onclick="toggleMatrixRainEffect()" style="display: none;" class="items-center gap-1.5 px-2.5 sm:px-3 py-2 rounded-lg text-xs font-mono bg-carbon-800 hover:bg-carbon-700 text-slate-300 border border-carbon-600 transition-all cursor-pointer" title="Toggle Digital Rain">
           <i data-lucide="sparkles" class="w-3.5 h-3.5 text-[#00ff66]"></i><span id="matrixToggleText" class="text-[11px] text-[#00ff66] hidden sm:inline">Rain</span>
         </button>
 
@@ -470,7 +441,6 @@
 
     </div>
   </div>
-
   <!-- ============================================== -->
   <!-- VIEW 2 & 3: MANAGER & DEV PERSPECTIVES         -->
   <!-- ============================================== -->
@@ -481,14 +451,14 @@
       <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-8 lg:pt-14 lg:pb-12">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
           
-          <!-- LEFT COLUMN: Headline, Subtext & Equal-Size 2x2 CTA Grid -->
+          <!-- LEFT COLUMN: Headline, Subtext & CTA Grid -->
           <div class="lg:col-span-6 space-y-6 order-2 lg:order-1">
             <div class="inline-flex flex-wrap items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-mono">
               <i data-lucide="globe-2" class="w-4 h-4"></i>
               4 Years Total Experience (3.5+ Yrs United States &amp; India)
             </div>
 
-            <!-- Manager Headline (Original Plus Jakarta Sans Extrabold Font Restored) -->
+            <!-- Manager Headline -->
             <h1 id="heroHeadlineManager" class="manager-only font-sans text-3xl sm:text-5xl lg:text-[50px] font-extrabold text-white tracking-tight leading-[1.15]">
               Hi, I’m Sai Vinay.<br>
               I untangle complex cloud systems &amp; <span class="text-amber-400">ship resilient code.</span>
@@ -504,14 +474,14 @@
               Cloud, DevOps, and GenAI Engineer with enterprise depth architecting zero-trust AWS infrastructure for post-trade financial clearing systems in real-time sync with the <strong class="text-white">NYSE and Federal Reserve</strong>, and building enterprise agentic AI platforms.
             </p>
 
-            <!-- Equal-Sized 2x2 Grid for All 4 Hero CTA Buttons -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 max-w-xl">
-              <!-- Button 1 (Manager): See How I Solve Problems -->
+              <!-- Manager Button 1 -->
               <a href="#journey" class="manager-only h-12 px-4 rounded-xl text-xs sm:text-[13px] font-bold bg-amber-500 hover:bg-amber-400 text-carbon-950 flex items-center justify-center gap-2 transition-all shadow-[0_0_20px_rgba(245,158,11,0.3)] whitespace-nowrap">
                 See How I Solve Problems ↘
               </a>
-              <!-- Button 1 (Dev): Launch Incident Sandbox -->
-              <button type="button" onclick="toggleConsoleModal()" style="display: none;" class="dev-only h-12 px-4 rounded-xl text-xs sm:text-[13px] font-mono font-bold bg-[#00ff66]/15 hover:bg-[#00ff66] text-[#00ff66] hover:text-black border border-[#00ff66]/60 flex items-center justify-center gap-2 transition-all shadow-[0_0_24px_rgba(0,255,102,0.45)] cursor-pointer whitespace-nowrap">
+              
+              <!-- Dev Button 1 -->
+              <button type="button" onclick="window.PortfolioController.toggleConsoleModal()" style="display: none;" class="dev-only h-12 px-4 rounded-xl text-xs sm:text-[13px] font-mono font-bold bg-[#00ff66]/15 hover:bg-[#00ff66] text-[#00ff66] hover:text-black border border-[#00ff66]/60 flex items-center justify-center gap-2 transition-all shadow-[0_0_24px_rgba(0,255,102,0.45)] cursor-pointer whitespace-nowrap">
                 <span class="relative flex h-2.5 w-2.5 shrink-0">
                   <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00ff66] opacity-85"></span>
                   <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#00ff66]"></span>
@@ -519,7 +489,7 @@
                 &gt;_ Launch Incident Sandbox
               </button>
 
-              <!-- Button 2: LinkedIn — Let's Connect! (Official Filled LinkedIn Logo) -->
+              <!-- LinkedIn Button -->
               <a href="https://linkedin.com/in/sai-vinay-mullapudi" target="_blank" rel="noopener noreferrer" class="h-12 px-4 rounded-xl text-xs sm:text-[13px] font-mono bg-carbon-850 hover:bg-carbon-800 text-slate-200 border border-carbon-700 hover:border-amber-400/60 flex items-center justify-center gap-2.5 transition-colors whitespace-nowrap group">
                 <svg class="w-4 h-4 shrink-0 rounded-[3px] transition-transform group-hover:scale-105" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <rect width="24" height="24" rx="4" fill="#0A66C2"/>
@@ -528,19 +498,17 @@
                 <span>LinkedIn — Let's Connect!</span>
               </a>
 
-              <!-- Button 3: Resume.pdf -->
               <a href="assets/Sai-Vinay-Mullapudi.pdf" target="_blank" rel="noopener noreferrer" download="Sai-Vinay-Mullapudi-Resume.pdf" class="h-12 px-4 rounded-xl text-xs sm:text-[13px] font-mono bg-carbon-850 hover:bg-carbon-800 text-white border border-amber-500/40 flex items-center justify-center gap-2 transition-colors whitespace-nowrap">
                 <i data-lucide="file-down" class="w-4 h-4 text-amber-400 shrink-0"></i> Resume.pdf
               </a>
 
-              <!-- Button 4: Schedule Call -->
               <button type="button" onclick="openCalendly()" class="h-12 px-4 rounded-xl text-xs sm:text-[13px] font-mono bg-carbon-850 hover:bg-carbon-800 text-slate-200 border border-carbon-700 hover:border-amber-400/60 flex items-center justify-center gap-2 transition-colors cursor-pointer whitespace-nowrap">
                 <i data-lucide="calendar" class="w-4 h-4 text-amber-400 shrink-0"></i> Schedule Call
               </button>
             </div>
           </div>
 
-          <!-- RIGHT COLUMN: engineer_profile.yaml (Manager) vs runtime_config.json (Dev) -->
+          <!-- RIGHT COLUMN -->
           <div class="lg:col-span-6 order-1 lg:order-2 flex justify-center lg:justify-end w-full">
             
             <!-- MANAGER MODE: engineer_profile.yaml -->
@@ -554,7 +522,6 @@
                 <span class="font-mono text-xs text-slate-400">engineer_profile.yaml</span>
                 <span class="font-mono text-xs text-emerald-400 font-semibold">ACTIVE</span>
               </div>
-
               <div class="p-5 sm:p-6 space-y-5">
                 <div class="flex flex-col sm:flex-row items-center gap-5 pb-5 border-b border-carbon-800 text-center sm:text-left">
                   <div class="w-[220px] h-[240px] sm:w-[250px] sm:h-[275px] rounded-2xl bg-carbon-800 border-2 border-amber-500/60 overflow-hidden shrink-0 flex items-center justify-center shadow-xl">
@@ -562,53 +529,26 @@
                     <div class="asset-fallback hidden font-mono font-bold text-3xl text-amber-400">SV</div>
                   </div>
                   <div class="space-y-2.5 flex-1">
-                    <h2 class="text-2xl sm:text-[28px] font-extrabold text-white leading-[1.15]">
-                      Sai Vinay<br>Mullapudi
-                    </h2>
-                    <p class="text-xs sm:text-sm text-amber-400 font-mono font-semibold leading-snug">
-                      DevOps, Cloud &amp;<br>GenAI Engineer
-                    </p>
+                    <h2 class="text-2xl sm:text-[28px] font-extrabold text-white leading-[1.15]">Sai Vinay<br>Mullapudi</h2>
+                    <p class="text-xs sm:text-sm text-amber-400 font-mono font-semibold leading-snug">DevOps, Cloud &amp;<br>GenAI Engineer</p>
                     <div class="pt-1 flex flex-col items-center sm:items-start gap-2 font-mono text-[11px]">
-                      <span class="px-2.5 py-1 rounded bg-[#141d30] border border-slate-600/70 text-slate-200 font-medium">
-                        M.S. CS @NJIT
-                      </span>
-                      <span class="px-2.5 py-1.5 rounded bg-amber-500/10 border border-amber-500/40 text-amber-300 font-medium leading-tight text-left">
-                        Executive<br>Certificate @IITB
-                      </span>
-                      <span class="px-2.5 py-1 rounded bg-emerald-500/10 border border-emerald-500/40 text-emerald-400 font-semibold">
-                        3x AWS Certified
-                      </span>
+                      <span class="px-2.5 py-1 rounded bg-[#141d30] border border-slate-600/70 text-slate-200 font-medium">M.S. CS @NJIT</span>
+                      <span class="px-2.5 py-1.5 rounded bg-amber-500/10 border border-amber-500/40 text-amber-300 font-medium leading-tight text-left">Executive<br>Certificate @IITB</span>
+                      <span class="px-2.5 py-1 rounded bg-emerald-500/10 border border-emerald-500/40 text-emerald-400 font-semibold">3x AWS Certified</span>
                     </div>
                   </div>
                 </div>
-
-                <!-- 5-Row Metadata Ledger -->
                 <div class="space-y-2.5 font-mono text-[11px] sm:text-xs">
-                  <div class="flex justify-between py-1 border-b border-carbon-800/90">
-                    <span class="text-slate-400">Total Experience:</span>
-                    <span class="text-white font-bold">4 Years (3.5+ Yrs US)</span>
-                  </div>
-                  <div class="flex justify-between py-1 border-b border-carbon-800/90">
-                    <span class="text-slate-400">Recent Role Level:</span>
-                    <span class="text-amber-400 font-bold">L5 Engineer (Cloud)</span>
-                  </div>
-                  <div class="flex justify-between py-1 border-b border-carbon-800/90">
-                    <span class="text-slate-400">US Domain Focus:</span>
-                    <span class="text-white font-semibold">NYSE / Fed Reserve Clearing Sync</span>
-                  </div>
-                  <div class="flex justify-between py-1 border-b border-carbon-800/90">
-                    <span class="text-slate-400">Primary Stack:</span>
-                    <span class="text-emerald-400 font-semibold">AWS • Terraform • Java • Python • RAG</span>
-                  </div>
-                  <div class="flex justify-between py-1">
-                    <span class="text-slate-400">Base &amp; Mobility:</span>
-                    <span class="text-white font-bold">Bengaluru // Anywhere India / Global</span>
-                  </div>
+                  <div class="flex justify-between py-1 border-b border-carbon-800/90"><span class="text-slate-400">Total Experience:</span><span class="text-white font-bold">4 Years (3.5+ Yrs US)</span></div>
+                  <div class="flex justify-between py-1 border-b border-carbon-800/90"><span class="text-slate-400">Recent Role Level:</span><span class="text-amber-400 font-bold">L5 Engineer (Cloud)</span></div>
+                  <div class="flex justify-between py-1 border-b border-carbon-800/90"><span class="text-slate-400">US Domain Focus:</span><span class="text-white font-semibold">NYSE / Fed Reserve Clearing Sync</span></div>
+                  <div class="flex justify-between py-1 border-b border-carbon-800/90"><span class="text-slate-400">Primary Stack:</span><span class="text-emerald-400 font-semibold">AWS • Terraform • Java • Python • RAG</span></div>
+                  <div class="flex justify-between py-1"><span class="text-slate-400">Base &amp; Mobility:</span><span class="text-white font-bold">Bengaluru // Anywhere India / Global</span></div>
                 </div>
               </div>
             </div>
 
-            <!-- DEV MODE: Clean Technical Spec Card -->
+            <!-- DEV MODE: runtime_config.json -->
             <div id="heroRightDev" class="dev-only rounded-2xl bg-black/95 border border-[#00ff66]/45 shadow-[0_0_30px_rgba(0,255,102,0.12)] overflow-hidden w-full max-w-[540px] font-mono" style="display: none;">
               <div class="bg-[#050e07] px-5 py-3 border-b border-[#00ff66]/30 flex items-center justify-between text-xs">
                 <span class="text-[#00ff66] font-bold">runtime_config.json</span>
@@ -621,12 +561,8 @@
                     <div class="asset-fallback hidden font-mono font-bold text-2xl text-[#00ff66]">SV</div>
                   </div>
                   <div class="space-y-2.5 flex-1">
-                    <h2 class="text-2xl sm:text-[28px] font-extrabold text-white leading-[1.15]">
-                      Sai Vinay<br>Mullapudi
-                    </h2>
-                    <p class="text-xs sm:text-sm text-[#00ff66] font-semibold leading-snug">
-                      L5 Cloud, DevOps &amp;<br>GenAI Engineer
-                    </p>
+                    <h2 class="text-2xl sm:text-[28px] font-extrabold text-white leading-[1.15]">Sai Vinay<br>Mullapudi</h2>
+                    <p class="text-xs sm:text-sm text-[#00ff66] font-semibold leading-snug">L5 Cloud, DevOps &amp;<br>GenAI Engineer</p>
                     <div class="pt-1 flex flex-wrap justify-center sm:justify-start gap-1.5 text-[10px]">
                       <span class="px-2 py-0.5 rounded bg-[#00ff66]/10 border border-[#00ff66]/30 text-[#a7f3d0]">AWS</span>
                       <span class="px-2 py-0.5 rounded bg-[#00ff66]/10 border border-[#00ff66]/30 text-[#a7f3d0]">Terraform</span>
@@ -649,7 +585,7 @@
         </div>
       </section>
 
-      <!-- Developer Mode Telemetry Strip (Single Line with IP Location & World Clock) -->
+      <!-- Dev Telemetry Strip -->
       <div id="devTelemetryStrip" style="display: none;" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-6">
         <div class="px-4 py-3 rounded-xl bg-carbon-950 border border-[#00ff66]/40 font-mono text-[10px] sm:text-xs flex flex-wrap items-center justify-between gap-4 text-slate-300 shadow-lg">
           <div class="flex items-center gap-2.5">
@@ -660,9 +596,7 @@
           <div class="flex flex-wrap items-center gap-4 sm:gap-6 text-[10px] sm:text-[11px]">
             <span>FPS: <strong id="devFpsVal" class="text-[#00ff66]">60</strong></span>
             <span>RTT: <strong id="devPingVal" class="text-[#00ff66]">-- ms</strong></span>
-            <span class="hidden sm:inline">IP / LOC: <strong id="visitorIpLoc" class="text-[#00ff66]">Detecting...</strong></span>
             
-            <!-- Interactive World Clock Dropdown -->
             <div class="relative group cursor-pointer" onclick="this.querySelector('.clock-dropdown').classList.toggle('hidden')">
               <span>CLOCK: <strong id="devClockVal" class="text-[#00ff66] underline decoration-dashed underline-offset-2">--:--:--</strong></span>
               <div class="clock-dropdown hidden absolute top-full left-1/2 -translate-x-1/2 mt-2 bg-carbon-900 border border-[#00ff66]/30 rounded-lg p-3 shadow-xl z-50 w-48 text-[10px] space-y-2 cursor-default">
@@ -676,15 +610,14 @@
               </div>
             </div>
 
-            <!-- Live Dashboard Trigger -->
-            <button type="button" onclick="window.openTelemetryDashboard()" class="px-2.5 py-1 rounded bg-[#00ff66]/15 hover:bg-[#00ff66] text-[#00ff66] hover:text-black font-bold border border-[#00ff66]/60 transition-all cursor-pointer flex items-center gap-1.5 ml-2">
+            <button type="button" onclick="window.PortfolioController.openTelemetryDashboard()" class="px-2.5 py-1 rounded bg-[#00ff66]/15 hover:bg-[#00ff66] text-[#00ff66] hover:text-black font-bold border border-[#00ff66]/60 transition-all cursor-pointer flex items-center gap-1.5 ml-2">
               📊 Open Dashboard
             </button>
           </div>
         </div>
       </div>
 
-      <!-- Tools & Technologies Marquee (100% Zero-Dependency Inline Vector SVGs) -->
+      <!-- Marquee Section -->
       <section id="stack" class="py-6 sm:py-8 bg-carbon-950/80 border-y border-carbon-700/70 overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 mb-3 sm:mb-4 flex items-center justify-between">
           <span class="text-[10px] sm:text-xs font-mono uppercase tracking-widest text-slate-400">TOOLS &amp; TECHNOLOGIES</span>
@@ -692,81 +625,62 @@
         </div>
         <div class="marquee-container mask-marquee w-full overflow-hidden">
           <div class="marquee-track flex gap-3 sm:gap-4 whitespace-nowrap animate-marquee w-max">
-            <!-- Track 1 -->
             <div class="flex items-center gap-3 sm:gap-4">
               <div class="flex items-center gap-2.5 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-xs sm:text-sm font-semibold text-slate-200">
-                <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none"><path d="M6.5 15.5C4.5 14.2 3 12.2 3 9.8C3 6.2 6.1 3.5 10 3.5C13.2 3.5 15.9 5.3 16.7 7.9C19.2 8.3 21 10.2 21 12.6C21 15.3 18.7 17.5 15.8 17.5H7.5" stroke="#FF9900" stroke-width="2" stroke-linecap="round"/><path d="M7 19.2C10.2 21.1 14.3 21.1 17.8 19.1M16.2 18.8L18.3 18.9L17.6 20.9" stroke="#FF9900" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                Amazon Web Services
+                <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none"><path d="M6.5 15.5C4.5 14.2 3 12.2 3 9.8C3 6.2 6.1 3.5 10 3.5C13.2 3.5 15.9 5.3 16.7 7.9C19.2 8.3 21 10.2 21 12.6C21 15.3 18.7 17.5 15.8 17.5H7.5" stroke="#FF9900" stroke-width="2" stroke-linecap="round"/><path d="M7 19.2C10.2 21.1 14.3 21.1 17.8 19.1M16.2 18.8L18.3 18.9L17.6 20.9" stroke="#FF9900" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Amazon Web Services
               </div>
               <div class="flex items-center gap-2.5 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-xs sm:text-sm font-semibold text-slate-200">
-                <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="#844FBA"><path d="M3 2.5L9.5 6.2V13.6L3 9.9V2.5ZM10.5 6.8L17 10.5V17.9L10.5 14.2V6.8ZM18 10.5L21.5 8.5V15.9L18 17.9V10.5ZM10.5 15.3L17 19V22.5L10.5 18.8V15.3Z"/></svg>
-                Terraform &amp; Terragrunt
+                <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="#844FBA"><path d="M3 2.5L9.5 6.2V13.6L3 9.9V2.5ZM10.5 6.8L17 10.5V17.9L10.5 14.2V6.8ZM18 10.5L21.5 8.5V15.9L18 17.9V10.5ZM10.5 15.3L17 19V22.5L10.5 18.8V15.3Z"/></svg> Terraform &amp; Terragrunt
               </div>
               <div class="flex items-center gap-2.5 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-xs sm:text-sm font-semibold text-slate-200">
-                <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9.5" stroke="#D24939" stroke-width="2"/><circle cx="12" cy="9" r="3" fill="#F0D6B8"/><path d="M7.5 17.5C8.5 14.8 15.5 14.8 16.5 17.5" stroke="#D24939" stroke-width="2" stroke-linecap="round"/><path d="M10.5 13.5L12 15L13.5 13.5" stroke="#ffffff" stroke-width="1.5"/></svg>
-                Jenkins CI/CD
+                <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9.5" stroke="#D24939" stroke-width="2"/><circle cx="12" cy="9" r="3" fill="#F0D6B8"/><path d="M7.5 17.5C8.5 14.8 15.5 14.8 16.5 17.5" stroke="#D24939" stroke-width="2" stroke-linecap="round"/><path d="M10.5 13.5L12 15L13.5 13.5" stroke="#ffffff" stroke-width="1.5"/></svg> Jenkins CI/CD
               </div>
               <div class="flex items-center gap-2.5 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-xs sm:text-sm font-semibold text-slate-200">
-                <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none"><path d="M10.5 4C12.5 6 9 7.8 11 9.8C12.5 8 14.2 6.8 12.8 4.5" stroke="#F89820" stroke-width="1.8" stroke-linecap="round"/><path d="M6.5 12.5H16.5V15.5C16.5 18 14.5 19.5 11.5 19.5C8.5 19.5 6.5 18 6.5 15.5V12.5Z" stroke="#5382A1" stroke-width="1.9"/><path d="M16.5 13.2H18.2C19.2 13.2 19.8 14 19.8 14.8C19.8 15.6 19.2 16.4 18.2 16.4H16.5" stroke="#5382A1" stroke-width="1.8"/><path d="M5 21.2H18" stroke="#F89820" stroke-width="1.8" stroke-linecap="round"/></svg>
-                Java (Spring Boot)
+                <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none"><path d="M10.5 4C12.5 6 9 7.8 11 9.8C12.5 8 14.2 6.8 12.8 4.5" stroke="#F89820" stroke-width="1.8" stroke-linecap="round"/><path d="M6.5 12.5H16.5V15.5C16.5 18 14.5 19.5 11.5 19.5C8.5 19.5 6.5 18 6.5 15.5V12.5Z" stroke="#5382A1" stroke-width="1.9"/><path d="M16.5 13.2H18.2C19.2 13.2 19.8 14 19.8 14.8C19.8 15.6 19.2 16.4 18.2 16.4H16.5" stroke="#5382A1" stroke-width="1.8"/><path d="M5 21.2H18" stroke="#F89820" stroke-width="1.8" stroke-linecap="round"/></svg> Java (Spring Boot)
               </div>
               <div class="flex items-center gap-2.5 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-xs sm:text-sm font-semibold text-slate-200">
-                <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="#2496ED"><rect x="5" y="9" width="2.6" height="2.4" rx="0.4"/><rect x="8.2" y="9" width="2.6" height="2.4" rx="0.4"/><rect x="11.4" y="9" width="2.6" height="2.4" rx="0.4"/><rect x="8.2" y="6" width="2.6" height="2.4" rx="0.4"/><rect x="11.4" y="6" width="2.6" height="2.4" rx="0.4"/><path d="M21.5 12.2C20.4 11.6 18.9 11.7 18.1 12.1C17.8 10.9 16.9 10.2 16.9 10.2C16.9 10.2 15.9 11.4 16.4 12.7C15.8 13 14.7 13.1 13.8 13.1H3.2C2.9 16.4 5.2 19.5 9.8 19.5C15.1 19.5 18.8 16.9 20.1 13.6C21 13.6 21.8 13 22.2 12.3L21.5 12.2Z"/></svg>
-                Docker
+                <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="#2496ED"><rect x="5" y="9" width="2.6" height="2.4" rx="0.4"/><rect x="8.2" y="9" width="2.6" height="2.4" rx="0.4"/><rect x="11.4" y="9" width="2.6" height="2.4" rx="0.4"/><rect x="8.2" y="6" width="2.6" height="2.4" rx="0.4"/><rect x="11.4" y="6" width="2.6" height="2.4" rx="0.4"/><path d="M21.5 12.2C20.4 11.6 18.9 11.7 18.1 12.1C17.8 10.9 16.9 10.2 16.9 10.2C16.9 10.2 15.9 11.4 16.4 12.7C15.8 13 14.7 13.1 13.8 13.1H3.2C2.9 16.4 5.2 19.5 9.8 19.5C15.1 19.5 18.8 16.9 20.1 13.6C21 13.6 21.8 13 22.2 12.3L21.5 12.2Z"/></svg> Docker
               </div>
               <div class="flex items-center gap-2.5 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-xs sm:text-sm font-semibold text-slate-200">
-                <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none"><path d="M11.8 3C8.2 3 8.5 4.6 8.5 4.6V6.8H12V7.6H6.5C6.5 7.6 3.5 7.3 3.5 11.5C3.5 15.7 6.1 15.5 6.1 15.5H7.8V13.4C7.8 13.4 7.7 10.8 10.4 10.8H14.5C14.5 10.8 16.8 10.8 16.8 8.6V5.1C16.8 5.1 17.1 3 11.8 3Z" fill="#3776AB"/><path d="M12.2 21C15.8 21 15.5 19.4 15.5 19.4V17.2H12V16.4H17.5C17.5 16.4 20.5 16.7 20.5 12.5C20.5 8.3 17.9 8.5 17.9 8.5H16.2V10.6C16.2 10.6 16.3 13.2 13.6 13.2H9.5C9.5 13.2 7.2 13.2 7.2 15.4V18.9C7.2 18.9 6.9 21 12.2 21Z" fill="#FFD343"/></svg>
-                Python &amp; Bash
+                <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none"><path d="M11.8 3C8.2 3 8.5 4.6 8.5 4.6V6.8H12V7.6H6.5C6.5 7.6 3.5 7.3 3.5 11.5C3.5 15.7 6.1 15.5 6.1 15.5H7.8V13.4C7.8 13.4 7.7 10.8 10.4 10.8H14.5C14.5 10.8 16.8 10.8 16.8 8.6V5.1C16.8 5.1 17.1 3 11.8 3Z" fill="#3776AB"/><path d="M12.2 21C15.8 21 15.5 19.4 15.5 19.4V17.2H12V16.4H17.5C17.5 16.4 20.5 16.7 20.5 12.5C20.5 8.3 17.9 8.5 17.9 8.5H16.2V10.6C16.2 10.6 16.3 13.2 13.6 13.2H9.5C9.5 13.2 7.2 13.2 7.2 15.4V18.9C7.2 18.9 6.9 21 12.2 21Z" fill="#FFD343"/></svg> Python &amp; Bash
               </div>
               <div class="flex items-center gap-2.5 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-xs sm:text-sm font-semibold text-slate-200">
-                <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none"><path d="M15.8 4.8L12.5 8.1M16.5 8.8C18.3 10.6 18.3 13.6 16.5 15.4C14.7 17.2 11.7 17.2 9.9 15.4C8.1 13.6 8.1 10.6 9.9 8.8L13.5 5.2" stroke="#EE4C2C" stroke-width="2.1" stroke-linecap="round"/><circle cx="15.8" cy="7.2" r="1.4" fill="#EE4C2C"/></svg>
-                PyTorch &amp; Agentic RAG
+                <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none"><path d="M15.8 4.8L12.5 8.1M16.5 8.8C18.3 10.6 18.3 13.6 16.5 15.4C14.7 17.2 11.7 17.2 9.9 15.4C8.1 13.6 8.1 10.6 9.9 8.8L13.5 5.2" stroke="#EE4C2C" stroke-width="2.1" stroke-linecap="round"/><circle cx="15.8" cy="7.2" r="1.4" fill="#EE4C2C"/></svg> PyTorch &amp; Agentic RAG
               </div>
               <div class="flex items-center gap-2.5 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-xs sm:text-sm font-semibold text-slate-200">
-                <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none"><path d="M4 15.5C4 14 7.5 13 12 13C16.5 13 20 14 20 15.5C20 17 16.5 18 12 18C7.5 18 4 17 4 15.5Z" fill="#EE0000"/><path d="M7.5 13.5L9 7.8C9.3 6.8 10.5 6.5 12 6.8C13.5 6.5 14.7 6.8 15 7.8L16.5 13.5" fill="#EE0000"/><path d="M7.8 12.2C10.5 13 13.5 13 16.2 12.2" stroke="#000000" stroke-width="1.5"/></svg>
-                RedHat Linux &amp; LVM
+                <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none"><path d="M4 15.5C4 14 7.5 13 12 13C16.5 13 20 14 20 15.5C20 17 16.5 18 12 18C7.5 18 4 17 4 15.5Z" fill="#EE0000"/><path d="M7.5 13.5L9 7.8C9.3 6.8 10.5 6.5 12 6.8C13.5 6.5 14.7 6.8 15 7.8L16.5 13.5" fill="#EE0000"/><path d="M7.8 12.2C10.5 13 13.5 13 16.2 12.2" stroke="#000000" stroke-width="1.5"/></svg> RedHat Linux &amp; LVM
               </div>
             </div>
-
-            <!-- Track 2 (Duplicate for Seamless Infinite Loop) -->
+            <!-- Track 2 Duplicate -->
             <div class="flex items-center gap-3 sm:gap-4" aria-hidden="true">
               <div class="flex items-center gap-2.5 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-xs sm:text-sm font-semibold text-slate-200">
-                <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none"><path d="M6.5 15.5C4.5 14.2 3 12.2 3 9.8C3 6.2 6.1 3.5 10 3.5C13.2 3.5 15.9 5.3 16.7 7.9C19.2 8.3 21 10.2 21 12.6C21 15.3 18.7 17.5 15.8 17.5H7.5" stroke="#FF9900" stroke-width="2" stroke-linecap="round"/><path d="M7 19.2C10.2 21.1 14.3 21.1 17.8 19.1M16.2 18.8L18.3 18.9L17.6 20.9" stroke="#FF9900" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                Amazon Web Services
+                <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none"><path d="M6.5 15.5C4.5 14.2 3 12.2 3 9.8C3 6.2 6.1 3.5 10 3.5C13.2 3.5 15.9 5.3 16.7 7.9C19.2 8.3 21 10.2 21 12.6C21 15.3 18.7 17.5 15.8 17.5H7.5" stroke="#FF9900" stroke-width="2" stroke-linecap="round"/><path d="M7 19.2C10.2 21.1 14.3 21.1 17.8 19.1M16.2 18.8L18.3 18.9L17.6 20.9" stroke="#FF9900" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Amazon Web Services
               </div>
               <div class="flex items-center gap-2.5 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-xs sm:text-sm font-semibold text-slate-200">
-                <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="#844FBA"><path d="M3 2.5L9.5 6.2V13.6L3 9.9V2.5ZM10.5 6.8L17 10.5V17.9L10.5 14.2V6.8ZM18 10.5L21.5 8.5V15.9L18 17.9V10.5ZM10.5 15.3L17 19V22.5L10.5 18.8V15.3Z"/></svg>
-                Terraform &amp; Terragrunt
+                <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="#844FBA"><path d="M3 2.5L9.5 6.2V13.6L3 9.9V2.5ZM10.5 6.8L17 10.5V17.9L10.5 14.2V6.8ZM18 10.5L21.5 8.5V15.9L18 17.9V10.5ZM10.5 15.3L17 19V22.5L10.5 18.8V15.3Z"/></svg> Terraform &amp; Terragrunt
               </div>
               <div class="flex items-center gap-2.5 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-xs sm:text-sm font-semibold text-slate-200">
-                <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9.5" stroke="#D24939" stroke-width="2"/><circle cx="12" cy="9" r="3" fill="#F0D6B8"/><path d="M7.5 17.5C8.5 14.8 15.5 14.8 16.5 17.5" stroke="#D24939" stroke-width="2" stroke-linecap="round"/><path d="M10.5 13.5L12 15L13.5 13.5" stroke="#ffffff" stroke-width="1.5"/></svg>
-                Jenkins CI/CD
+                <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9.5" stroke="#D24939" stroke-width="2"/><circle cx="12" cy="9" r="3" fill="#F0D6B8"/><path d="M7.5 17.5C8.5 14.8 15.5 14.8 16.5 17.5" stroke="#D24939" stroke-width="2" stroke-linecap="round"/><path d="M10.5 13.5L12 15L13.5 13.5" stroke="#ffffff" stroke-width="1.5"/></svg> Jenkins CI/CD
               </div>
               <div class="flex items-center gap-2.5 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-xs sm:text-sm font-semibold text-slate-200">
-                <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none"><path d="M10.5 4C12.5 6 9 7.8 11 9.8C12.5 8 14.2 6.8 12.8 4.5" stroke="#F89820" stroke-width="1.8" stroke-linecap="round"/><path d="M6.5 12.5H16.5V15.5C16.5 18 14.5 19.5 11.5 19.5C8.5 19.5 6.5 18 6.5 15.5V12.5Z" stroke="#5382A1" stroke-width="1.9"/><path d="M16.5 13.2H18.2C19.2 13.2 19.8 14 19.8 14.8C19.8 15.6 19.2 16.4 18.2 16.4H16.5" stroke="#5382A1" stroke-width="1.8"/><path d="M5 21.2H18" stroke="#F89820" stroke-width="1.8" stroke-linecap="round"/></svg>
-                Java (Spring Boot)
+                <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none"><path d="M10.5 4C12.5 6 9 7.8 11 9.8C12.5 8 14.2 6.8 12.8 4.5" stroke="#F89820" stroke-width="1.8" stroke-linecap="round"/><path d="M6.5 12.5H16.5V15.5C16.5 18 14.5 19.5 11.5 19.5C8.5 19.5 6.5 18 6.5 15.5V12.5Z" stroke="#5382A1" stroke-width="1.9"/><path d="M16.5 13.2H18.2C19.2 13.2 19.8 14 19.8 14.8C19.8 15.6 19.2 16.4 18.2 16.4H16.5" stroke="#5382A1" stroke-width="1.8"/><path d="M5 21.2H18" stroke="#F89820" stroke-width="1.8" stroke-linecap="round"/></svg> Java (Spring Boot)
               </div>
               <div class="flex items-center gap-2.5 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-xs sm:text-sm font-semibold text-slate-200">
-                <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="#2496ED"><rect x="5" y="9" width="2.6" height="2.4" rx="0.4"/><rect x="8.2" y="9" width="2.6" height="2.4" rx="0.4"/><rect x="11.4" y="9" width="2.6" height="2.4" rx="0.4"/><rect x="8.2" y="6" width="2.6" height="2.4" rx="0.4"/><rect x="11.4" y="6" width="2.6" height="2.4" rx="0.4"/><path d="M21.5 12.2C20.4 11.6 18.9 11.7 18.1 12.1C17.8 10.9 16.9 10.2 16.9 10.2C16.9 10.2 15.9 11.4 16.4 12.7C15.8 13 14.7 13.1 13.8 13.1H3.2C2.9 16.4 5.2 19.5 9.8 19.5C15.1 19.5 18.8 16.9 20.1 13.6C21 13.6 21.8 13 22.2 12.3L21.5 12.2Z"/></svg>
-                Docker
+                <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="#2496ED"><rect x="5" y="9" width="2.6" height="2.4" rx="0.4"/><rect x="8.2" y="9" width="2.6" height="2.4" rx="0.4"/><rect x="11.4" y="9" width="2.6" height="2.4" rx="0.4"/><rect x="8.2" y="6" width="2.6" height="2.4" rx="0.4"/><rect x="11.4" y="6" width="2.6" height="2.4" rx="0.4"/><path d="M21.5 12.2C20.4 11.6 18.9 11.7 18.1 12.1C17.8 10.9 16.9 10.2 16.9 10.2C16.9 10.2 15.9 11.4 16.4 12.7C15.8 13 14.7 13.1 13.8 13.1H3.2C2.9 16.4 5.2 19.5 9.8 19.5C15.1 19.5 18.8 16.9 20.1 13.6C21 13.6 21.8 13 22.2 12.3L21.5 12.2Z"/></svg> Docker
               </div>
               <div class="flex items-center gap-2.5 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-xs sm:text-sm font-semibold text-slate-200">
-                <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none"><path d="M11.8 3C8.2 3 8.5 4.6 8.5 4.6V6.8H12V7.6H6.5C6.5 7.6 3.5 7.3 3.5 11.5C3.5 15.7 6.1 15.5 6.1 15.5H7.8V13.4C7.8 13.4 7.7 10.8 10.4 10.8H14.5C14.5 10.8 16.8 10.8 16.8 8.6V5.1C16.8 5.1 17.1 3 11.8 3Z" fill="#3776AB"/><path d="M12.2 21C15.8 21 15.5 19.4 15.5 19.4V17.2H12V16.4H17.5C17.5 16.4 20.5 16.7 20.5 12.5C20.5 8.3 17.9 8.5 17.9 8.5H16.2V10.6C16.2 10.6 16.3 13.2 13.6 13.2H9.5C9.5 13.2 7.2 13.2 7.2 15.4V18.9C7.2 18.9 6.9 21 12.2 21Z" fill="#FFD343"/></svg>
-                Python &amp; Bash
+                <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none"><path d="M11.8 3C8.2 3 8.5 4.6 8.5 4.6V6.8H12V7.6H6.5C6.5 7.6 3.5 7.3 3.5 11.5C3.5 15.7 6.1 15.5 6.1 15.5H7.8V13.4C7.8 13.4 7.7 10.8 10.4 10.8H14.5C14.5 10.8 16.8 10.8 16.8 8.6V5.1C16.8 5.1 17.1 3 11.8 3Z" fill="#3776AB"/><path d="M12.2 21C15.8 21 15.5 19.4 15.5 19.4V17.2H12V16.4H17.5C17.5 16.4 20.5 16.7 20.5 12.5C20.5 8.3 17.9 8.5 17.9 8.5H16.2V10.6C16.2 10.6 16.3 13.2 13.6 13.2H9.5C9.5 13.2 7.2 13.2 7.2 15.4V18.9C7.2 18.9 6.9 21 12.2 21Z" fill="#FFD343"/></svg> Python &amp; Bash
               </div>
               <div class="flex items-center gap-2.5 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-xs sm:text-sm font-semibold text-slate-200">
-                <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none"><path d="M15.8 4.8L12.5 8.1M16.5 8.8C18.3 10.6 18.3 13.6 16.5 15.4C14.7 17.2 11.7 17.2 9.9 15.4C8.1 13.6 8.1 10.6 9.9 8.8L13.5 5.2" stroke="#EE4C2C" stroke-width="2.1" stroke-linecap="round"/><circle cx="15.8" cy="7.2" r="1.4" fill="#EE4C2C"/></svg>
-                PyTorch &amp; Agentic RAG
+                <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none"><path d="M15.8 4.8L12.5 8.1M16.5 8.8C18.3 10.6 18.3 13.6 16.5 15.4C14.7 17.2 11.7 17.2 9.9 15.4C8.1 13.6 8.1 10.6 9.9 8.8L13.5 5.2" stroke="#EE4C2C" stroke-width="2.1" stroke-linecap="round"/><circle cx="15.8" cy="7.2" r="1.4" fill="#EE4C2C"/></svg> PyTorch &amp; Agentic RAG
               </div>
               <div class="flex items-center gap-2.5 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-xs sm:text-sm font-semibold text-slate-200">
-                <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none"><path d="M4 15.5C4 14 7.5 13 12 13C16.5 13 20 14 20 15.5C20 17 16.5 18 12 18C7.5 18 4 17 4 15.5Z" fill="#EE0000"/><path d="M7.5 13.5L9 7.8C9.3 6.8 10.5 6.5 12 6.8C13.5 6.5 14.7 6.8 15 7.8L16.5 13.5" fill="#EE0000"/><path d="M7.8 12.2C10.5 13 13.5 13 16.2 12.2" stroke="#000000" stroke-width="1.5"/></svg>
-                RedHat Linux &amp; LVM
+                <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none"><path d="M4 15.5C4 14 7.5 13 12 13C16.5 13 20 14 20 15.5C20 17 16.5 18 12 18C7.5 18 4 17 4 15.5Z" fill="#EE0000"/><path d="M7.5 13.5L9 7.8C9.3 6.8 10.5 6.5 12 6.8C13.5 6.5 14.7 6.8 15 7.8L16.5 13.5" fill="#EE0000"/><path d="M7.8 12.2C10.5 13 13.5 13 16.2 12.2" stroke="#000000" stroke-width="1.5"/></svg> RedHat Linux &amp; LVM
               </div>
             </div>
           </div>
         </div>
       </section>
-
       <!-- Section: Career & Technical Deep Dives -->
       <section id="journey" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-14 border-b border-carbon-800 scroll-mt-20">
         <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-8 sm:mb-10 gap-6">
@@ -778,25 +692,20 @@
               Progression backed by <span class="text-amber-400">verified credentials.</span>
             </h2>
 
-            <!-- Large Image-Only AWS Certification Badges (Placeholders ready for real images, no text below) -->
+            <!-- Large Image-Only AWS Certification Badges (Placeholders ready for real images) -->
             <div class="manager-only flex flex-wrap items-center gap-4 pt-2">
-              <!-- AWS MLA Badge Placeholder -->
               <a href="https://www.credly.com/badges/20f333e6-76e8-431a-9603-c22408681cd8" target="_blank" rel="noopener noreferrer" title="Verify AWS MLA" class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-carbon-850 hover:bg-emerald-500/15 border-2 border-emerald-500/50 hover:border-emerald-400 flex items-center justify-center shadow-xl transition-all hover:-translate-y-1">
                 <img src="assets/badges/aws-mla.png" alt="AWS MLA" class="w-full h-full object-contain p-2 drop-shadow-md" onerror="resolveAsset(this, 'aws-mla')">
                 <div class="asset-fallback hidden w-full h-full flex-col items-center justify-center text-center p-2">
                   <svg class="w-12 h-12" viewBox="0 0 64 64" fill="none"><polygon points="32,4 58,18 58,46 32,60 6,46 6,18" fill="#064e3b" stroke="#34d399" stroke-width="3"/><text x="32" y="36" text-anchor="middle" fill="#a7f3d0" font-family="JetBrains Mono, monospace" font-size="14" font-weight="700">MLA</text></svg>
                 </div>
               </a>
-
-              <!-- AWS SAA Badge Placeholder -->
               <a href="https://www.credly.com/badges/af2f25bd-7fbe-4e21-92fc-4c39f8e92cf7" target="_blank" rel="noopener noreferrer" title="Verify AWS SAA" class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-carbon-850 hover:bg-amber-500/15 border-2 border-amber-500/50 hover:border-amber-400 flex items-center justify-center shadow-xl transition-all hover:-translate-y-1">
                 <img src="assets/badges/aws-saa.png" alt="AWS SAA" class="w-full h-full object-contain p-2 drop-shadow-md" onerror="resolveAsset(this, 'aws-saa')">
                 <div class="asset-fallback hidden w-full h-full flex-col items-center justify-center text-center p-2">
                   <svg class="w-12 h-12" viewBox="0 0 64 64" fill="none"><polygon points="32,4 58,18 58,46 32,60 6,46 6,18" fill="#451a03" stroke="#fbbf24" stroke-width="3"/><text x="32" y="36" text-anchor="middle" fill="#fde68a" font-family="JetBrains Mono, monospace" font-size="14" font-weight="700">SAA</text></svg>
                 </div>
               </a>
-
-              <!-- AWS CCP Badge Placeholder -->
               <a href="https://www.credly.com/badges/582be29e-4701-41a4-b4bb-638b1d675fc2" target="_blank" rel="noopener noreferrer" title="Verify AWS CCP" class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-carbon-850 hover:bg-sky-500/15 border-2 border-sky-500/50 hover:border-sky-400 flex items-center justify-center shadow-xl transition-all hover:-translate-y-1">
                 <img src="assets/badges/aws-ccp.png" alt="AWS CCP" class="w-full h-full object-contain p-2 drop-shadow-md" onerror="resolveAsset(this, 'aws-ccp')">
                 <div class="asset-fallback hidden w-full h-full flex-col items-center justify-center text-center p-2">
@@ -819,20 +728,20 @@
         </div>
 
         <!-- ========================================================================================= -->
-        <!-- MANAGER MODE: Smooth Collapsible Compartments (Scaled Logos, Corrected PDF Data)          -->
+        <!-- MANAGER MODE: Smooth Collapsible Compartments -->
         <!-- ========================================================================================= -->
         <div id="manager-ledger-cards" class="manager-only space-y-6">
           
           <!-- COMPARTMENT 1: ASCENDION -->
-          <details class="bg-carbon-900/95 border border-emerald-500/35 rounded-3xl shadow-2xl group" id="manager-compartment-1">
+          <details class="bg-carbon-900/95 border border-emerald-500/35 rounded-3xl shadow-2xl group" id="manager-compartment-1" open>
             <summary class="p-5 sm:p-7 pb-0 group-open:pb-5 border-b border-transparent group-open:border-carbon-800 transition-all flex items-center justify-between gap-4 relative select-none cursor-pointer outline-none">
               <div class="flex items-center gap-4 sm:gap-5">
-                <!-- Ascendion Logo Box (Scaled to w-14) -->
+                <!-- Ascendion Logo Box -->
                 <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-carbon-950 border border-emerald-500/50 flex items-center justify-center shadow-lg shrink-0 overflow-hidden p-2">
                   <img src="assets/ascendion.png" alt="Ascendion" class="w-full h-full object-contain" onerror="resolveAsset(this, 'ascendion')">
                   <span class="asset-fallback hidden font-sans font-black text-2xl text-white">A</span>
                 </div>
-                <!-- Client Logo Placeholder (Scaled to w-12) -->
+                <!-- Client Logo Placeholder -->
                 <div class="flex flex-col items-center shrink-0">
                   <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-carbon-800 border border-emerald-500/30 flex items-center justify-center shadow-md overflow-hidden p-1.5" title="Enterprise Client Placeholder">
                     <span class="font-sans font-bold text-[9px] sm:text-[10px] text-slate-500 text-center leading-tight">Client<br>Logo</span>
@@ -854,7 +763,6 @@
             </summary>
             
             <div class="compartment-content p-5 sm:p-7 pt-5 space-y-6">
-              <!-- Top Date & Scope Strip -->
               <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-carbon-800 font-mono text-xs">
                 <div class="flex flex-wrap items-center gap-2.5">
                   <span class="px-3 py-1 rounded-md bg-emerald-500 text-carbon-950 font-bold">DEC 2025 – AUG 2026</span>
@@ -865,7 +773,6 @@
                 </span>
               </div>
 
-              <!-- 2-Column Responsibility Sub-Cards -->
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div class="p-4 sm:p-5 rounded-2xl bg-carbon-950/90 border border-carbon-800 space-y-2">
                   <span class="text-[11px] font-mono font-bold text-emerald-400 uppercase tracking-wider block">SYSTEMIC SDLC AUTOMATION (AAVA GENAI)</span>
@@ -917,7 +824,7 @@
                       <h4 class="text-base sm:text-lg font-bold text-white">Unifying Divergent Microservice Data Identifiers</h4>
                     </div>
                     <p class="text-xs sm:text-sm text-slate-300 pl-9 leading-relaxed">
-                      Consolidated product SKU schemas into a canonical DTO definition across renewal services and stripped 992 lines of legacy tech debt with 100% green JUnit suites.
+                      Consolidated product SKU schemas into a canonical DTO definition across renewal services and stripped 992 lines of legacy tech debt with 100% test pass rate.
                     </p>
                   </div>
                   <div class="pl-9 lg:pl-0 flex flex-col items-start lg:items-end gap-2 shrink-0">
@@ -935,12 +842,12 @@
           <details class="bg-carbon-900/95 border border-amber-500/35 rounded-3xl shadow-2xl group">
             <summary class="p-5 sm:p-7 pb-0 group-open:pb-5 border-b border-transparent group-open:border-carbon-800 transition-all flex items-center justify-between gap-4 relative select-none cursor-pointer outline-none">
               <div class="flex items-center gap-4 sm:gap-5">
-                <!-- Eficens Logo Box (Scaled) -->
+                <!-- Eficens Logo Box -->
                 <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-carbon-950 border border-amber-500/50 flex items-center justify-center shadow-lg shrink-0 overflow-hidden p-2">
                   <img src="assets/eficens.png" alt="Eficens" class="w-full h-full object-contain" onerror="resolveAsset(this, 'eficens')">
                   <span class="asset-fallback hidden font-sans font-black text-2xl text-amber-400">E</span>
                 </div>
-                <!-- Client Logo Placeholder (Scaled) -->
+                <!-- Client Logo Placeholder -->
                 <div class="flex flex-col items-center shrink-0">
                   <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-carbon-800 border border-emerald-500/30 flex items-center justify-center shadow-md overflow-hidden p-1.5" title="FinTech Client Placeholder">
                     <span class="font-sans font-bold text-[9px] sm:text-[10px] text-slate-500 text-center leading-tight">Client<br>Logo</span>
@@ -969,7 +876,7 @@
                 </span>
               </div>
 
-              <!-- 2-Column Responsibility Sub-Cards (Content matched to PDF) -->
+              <!-- 2-Column Responsibility Sub-Cards -->
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div class="p-4 sm:p-5 rounded-2xl bg-carbon-950/90 border border-carbon-800 space-y-2">
                   <span class="text-[11px] font-mono font-bold text-amber-400 uppercase tracking-wider block">ZERO-TRUST CLEARING INFRASTRUCTURE &amp; IaC</span>
@@ -1017,11 +924,11 @@
             </div>
           </details>
 
-          <!-- COMPARTMENT 3: LOTUSDATA LLP (No Client Placeholder) -->
+          <!-- COMPARTMENT 3: LOTUSDATA LLP -->
           <details class="bg-carbon-900/95 border border-sky-500/35 rounded-3xl shadow-2xl group">
             <summary class="p-5 sm:p-7 pb-0 group-open:pb-5 border-b border-transparent group-open:border-carbon-800 transition-all flex items-center justify-between gap-4 relative select-none cursor-pointer outline-none">
               <div class="flex items-center gap-4 sm:gap-5">
-                <!-- LotusData Logo Box (Scaled, no client box next to it) -->
+                <!-- LotusData Logo Box (No client box next to it) -->
                 <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-carbon-950 border border-sky-500/50 flex items-center justify-center shadow-lg shrink-0 overflow-hidden p-2">
                   <img src="assets/lotusdata.png" alt="LotusData" class="w-full h-full object-contain" onerror="resolveAsset(this, 'lotusdata')">
                   <span class="asset-fallback hidden font-sans font-black text-2xl text-sky-400">LD</span>
@@ -1048,6 +955,7 @@
                 </span>
               </div>
 
+              <!-- 2-Column Responsibility Sub-Cards -->
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div class="p-4 sm:p-5 rounded-2xl bg-carbon-950/90 border border-carbon-800 space-y-2">
                   <span class="text-[11px] font-mono font-bold text-sky-400 uppercase tracking-wider block">HIGH-AVAILABILITY AWS FLEET GOVERNANCE</span>
@@ -1098,7 +1006,7 @@
         </div>
 
         <!-- =================================================================================== -->
-        <!-- DEV MODE EXCLUSIVE: Git Flow Architecture (Color-Matched Glare & Small Logo Pairs)  -->
+        <!-- DEV MODE EXCLUSIVE: Git Flow Architecture (Small Logo Pairs)                        -->
         <!-- =================================================================================== -->
         <div id="dev-sandbox-experience" class="dev-only space-y-6 sm:space-y-8" style="display: none;">
           <div class="space-y-6 font-mono text-xs border-l border-[#00ff66]/40 ml-2 sm:ml-4 pl-4 sm:pl-6 relative">
@@ -1227,7 +1135,6 @@
           </div>
         </div>
       </section>
-
       <!-- Section 03: Academic Foundations -->
       <section id="education" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-14 border-b border-carbon-800">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 gap-4">
@@ -1311,7 +1218,7 @@
         </div>
       </section>
 
-      <!-- Section 04: Operating Mindset & Direct Contact (Circular Illustration Inside 3 Revolving Loop Arrows) -->
+      <!-- Section 04: Operating Mindset & Direct Contact -->
       <section id="contact" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-14">
         <div class="rounded-3xl bg-gradient-to-br from-carbon-850 via-carbon-800 to-carbon-900 border border-carbon-700 p-6 sm:p-8 md:p-12 shadow-2xl">
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
@@ -1372,23 +1279,19 @@
                     </clipPath>
                   </defs>
 
-                  <!-- Subtle Ambient Halo Behind the Orbit -->
                   <circle cx="300" cy="215" r="130" fill="url(#hubGlowGrad)"/>
                   <circle cx="300" cy="215" r="118" fill="none" stroke="#161f33" stroke-width="18"/>
 
-                  <!-- 3 Curved Interlocking Directional Cycle Arcs Revolving Around the Central Avatar -->
                   <path d="M 355 110 A 118 118 0 0 1 405 270" fill="none" stroke="#f59e0b" stroke-width="6" stroke-linecap="round" marker-end="url(#arrowAmber)" class="svg-flow-line loop-active-flow"/>
                   <path d="M 365 314 A 118 118 0 0 1 235 314" fill="none" stroke="#38bdf8" stroke-width="6" stroke-linecap="round" marker-end="url(#arrowBlue)" class="svg-flow-line loop-active-flow"/>
                   <path d="M 195 270 A 118 118 0 0 1 245 110" fill="none" stroke="#34d399" stroke-width="6" stroke-linecap="round" marker-end="url(#arrowGreen)" class="svg-flow-line loop-active-flow"/>
 
-                  <!-- Central Hub Background (Fills gap if image fails to load) -->
+                  <!-- Central Hub Background -->
                   <circle cx="300" cy="215" r="91" fill="#0d1320" stroke="#fbbf24" stroke-width="2" stroke-opacity="0.55"/>
                   
-                  <!-- Native SVG Image Embed (100% Cross-Browser Safe, No foreignObject) -->
-                  <!-- Coordinates: (cx=300, cy=215, r=91). Image Box: x=300-91=209, y=215-91=124. Width/Height=182 -->
+                  <!-- Native SVG Image Embed (100% Cross-Browser Safe) -->
                   <image href="assets/image_e9e55e.jpg" x="209" y="124" width="182" height="182" clip-path="url(#avatarClipPath)" preserveAspectRatio="xMidYMid slice" opacity="0.95"/>
                   
-                  <!-- Glowing Decorative Ring Overlay -->
                   <circle cx="300" cy="215" r="88" fill="none" stroke="#38bdf8" stroke-width="1.2" stroke-dasharray="4 4" opacity="0.6"/>
 
                   <!-- Node 01 -->
@@ -1444,7 +1347,7 @@
   </footer>
 
   <!-- ========================================================================= -->
-  <!-- MANAGER MODE EXECUTIVE CASE STUDY MODAL (Dynamic Showcase)                -->
+  <!-- MANAGER MODE EXECUTIVE CASE STUDY MODAL                                   -->
   <!-- ========================================================================= -->
   <div id="modal-exec-case" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
     <div class="bg-carbon-900 border border-amber-500/50 max-w-3xl w-full rounded-2xl overflow-hidden shadow-[0_0_40px_rgba(245,158,11,0.2)] flex flex-col max-h-[90vh]">
@@ -1462,7 +1365,6 @@
       </div>
     </div>
   </div>
-
   <!-- ============================================== -->
   <!-- FLOATING DEV CONSOLE MODAL (On-Demand)         -->
   <!-- ============================================== -->
@@ -1620,11 +1522,185 @@
       </div>
     </div>
   </div>
-  <!-- Floating Chat Window -->
+
+  <!-- ========================================================================= -->
+  <!-- MODALS: INCIDENT, IAC AUDIT, AND JAVA REFACTOR                            -->
+  <!-- ========================================================================= -->
+  <div id="modal-incident" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="bg-carbon-900 border border-carbon-700 max-w-3xl w-full rounded-2xl overflow-hidden shadow-[0_0_30px_rgba(0,255,102,0.15)] flex flex-col max-h-[90vh]">
+      <div class="px-6 py-4 bg-carbon-850 border-b border-carbon-700 flex items-center justify-between">
+        <div class="flex items-center gap-3"><span class="px-2.5 py-1 rounded bg-red-500/20 text-red-400 font-mono text-xs font-bold border border-red-500/40">[INC-CONTAINER-127]</span><h3 class="text-base font-bold text-white">Docker Readiness Probe Triage</h3></div>
+        <button onclick="window.PortfolioController.closeModal('modal-incident')" class="text-slate-400 hover:text-white font-mono text-sm cursor-pointer">✕ ESC</button>
+      </div>
+      <div class="p-6 bg-carbon-950 border-b border-carbon-800">
+        <div class="flex items-center justify-between text-xs font-mono text-slate-400 mb-3"><span>TOPOLOGY: HARBOR_BASE_IMAGE ➔ JVM_APP ➔ PROBE_AGENT</span><span id="case1StatusBadge" class="text-red-400 font-bold">EXIT CODE 127</span></div>
+        <svg viewBox="0 0 520 115" class="w-full h-auto my-2" xmlns="http://www.w3.org/2000/svg">
+          <line x1="150" y1="55" x2="195" y2="55" stroke="#34d399" stroke-width="2.5" class="svg-flow-line"/><polygon points="198,55 190,50 190,60" fill="#34d399"/>
+          <line id="case1SvgLine2" x1="325" y1="55" x2="370" y2="55" stroke="#ef4444" stroke-width="2.5" class="svg-flow-line"/><polygon id="case1SvgArrow2" points="373,55 365,50 365,60" fill="#ef4444"/>
+          <g transform="translate(10, 22)"><rect width="140" height="66" rx="8" fill="#062c22" stroke="#34d399" stroke-width="1.5"/><text x="70" y="30" text-anchor="middle" fill="#6ee7b7" font-size="12" font-weight="bold">Spring App</text><text x="70" y="48" text-anchor="middle" fill="#34d399" font-size="10">Port 8080 OK (7.5s)</text></g>
+          <g transform="translate(195, 22)"><rect id="case1SvgProbeRect" width="130" height="66" rx="8" fill="#3b0a0a" stroke="#ef4444" stroke-width="1.5"/><text x="65" y="30" text-anchor="middle" fill="#fca5a5" font-size="12" font-weight="bold">Health Probe</text><text id="case1SvgProbeText" x="65" y="48" text-anchor="middle" fill="#f87171" font-size="10">curl missing (127)</text></g>
+          <g transform="translate(370, 22)"><rect id="case1SvgRelRect" width="140" height="66" rx="8" fill="#161f33" stroke="#475569" stroke-width="1.5"/><text x="70" y="30" text-anchor="middle" fill="#e2e8f0" font-size="12" font-weight="bold">Release</text><text id="case1SvgRelText" x="70" y="48" text-anchor="middle" fill="#94a3b8" font-size="10">Pipeline Blocked</text></g>
+        </svg>
+        <div class="pt-4 flex items-center justify-between font-mono text-[11px] sm:text-xs">
+          <span class="text-slate-400">Interactive Probe Repair:</span>
+          <button type="button" onclick="window.PortfolioController.toggleCase1Patch()" id="btnCase1Patch" class="px-3 py-1.5 rounded bg-[#00ff66]/20 hover:bg-[#00ff66] hover:text-black text-[#00ff66] font-bold border border-[#00ff66]/40 transition-colors cursor-pointer">[ &gt;_ Run Patch: +curl ]</button>
+        </div>
+      </div>
+      <div class="p-6 overflow-y-auto space-y-4 text-xs font-mono">
+        <div class="p-3 rounded bg-carbon-950 border border-carbon-800 overflow-x-auto text-slate-300 text-[11px] sm:text-xs">
+          <span class="text-amber-400 block mb-1"># Sanitized Runtime Telemetry Log:</span>
+          <div class="text-emerald-400">[INFO] Tomcat started on port 8080 (http)</div>
+          <div id="case1LogLine" class="text-red-400 mt-1">/bin/sh: /usr/bin/curl: not found (ExitCode 127)</div>
+        </div>
+        <div class="p-3 rounded bg-carbon-950 border border-carbon-800 overflow-x-auto text-slate-300 text-[11px] sm:text-xs">
+          <span class="text-sky-400 block mb-1"># Dockerfile Layer Remediation:</span>
+          <div class="text-emerald-400">+ RUN apk add --no-cache curl || apt-get install -y curl</div>
+        </div>
+      </div>
+      <div class="px-6 py-3 bg-carbon-850 border-t border-carbon-800 flex justify-end">
+        <button onclick="window.PortfolioController.closeModal('modal-incident')" class="px-4 py-2 rounded-lg bg-carbon-800 text-white border border-carbon-600 font-mono text-xs font-bold hover:text-[#00ff66] hover:border-[#00ff66] cursor-pointer">✕ Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-arn" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="bg-carbon-900 border border-carbon-700 max-w-3xl w-full rounded-2xl overflow-hidden shadow-[0_0_30px_rgba(56,189,248,0.2)] flex flex-col max-h-[90vh]">
+      <div class="px-6 py-4 bg-carbon-850 border-b border-carbon-700 flex items-center justify-between">
+        <div class="flex items-center gap-3"><span class="px-2.5 py-1 rounded bg-sky-500/20 text-sky-400 font-mono text-xs font-bold border border-sky-500/40">[IAC-AUDIT-225]</span><h3 class="text-base font-bold text-white">Multi-Environment IaC Audit</h3></div>
+        <button onclick="window.PortfolioController.closeModal('modal-arn')" class="text-slate-400 hover:text-white font-mono text-sm cursor-pointer">✕ ESC</button>
+      </div>
+      <div class="p-6 bg-carbon-950 border-b border-carbon-800 overflow-x-auto">
+        <div class="flex items-center justify-between text-[10px] sm:text-xs font-mono text-slate-400 mb-2 min-w-[500px]"><span>TOPOLOGY: TERRAGRUNT ➔ STG_ROLE vs PROD_ROLE</span><span class="text-sky-400 font-bold">CROSS-ACCOUNT INTERCEPT</span></div>
+        <svg viewBox="0 0 600 115" class="w-full min-w-[500px] h-auto bg-[#080d16] rounded-xl border border-carbon-800 p-2" xmlns="http://www.w3.org/2000/svg">
+          <line x1="160" y1="58" x2="230" y2="38" stroke="#f59e0b" stroke-width="2" class="svg-flow-line"/><line x1="160" y1="58" x2="230" y2="80" stroke="#34d399" stroke-width="2" class="svg-flow-line"/>
+          <g transform="translate(10, 24)"><rect width="150" height="68" rx="8" fill="#172554" stroke="#60a5fa" stroke-width="1.5"/><text x="75" y="34" text-anchor="middle" fill="#bfdbfe" font-size="11" font-weight="bold">PR [IAC-AUDIT-225]</text></g>
+          <g transform="translate(230, 10)"><rect width="350" height="44" rx="6" fill="#451a03" stroke="#f59e0b" stroke-width="1.5"/><text x="175" y="20" text-anchor="middle" fill="#fcd34d" font-size="9" font-weight="bold">INTERCEPTED: Staging Role in Prod HCL</text><text x="175" y="34" text-anchor="middle" fill="#fef08a" font-size="8">arn:aws:iam::126350******:role/stg-billing-events-service</text></g>
+          <g transform="translate(230, 60)"><rect width="350" height="44" rx="6" fill="#062c22" stroke="#34d399" stroke-width="1.5"/><text x="175" y="20" text-anchor="middle" fill="#6ee7b7" font-size="9" font-weight="bold">CORRECTED: Account-Scoped Prod Principal</text><text x="175" y="34" text-anchor="middle" fill="#a7f3d0" font-size="8">arn:aws:iam::984120******:role/prod-billing-events-service</text></g>
+        </svg>
+      </div>
+      <div class="p-6 overflow-y-auto space-y-4 text-[11px] sm:text-xs font-mono text-slate-300">
+        <div class="p-3 rounded bg-carbon-950 border border-carbon-800 overflow-x-auto">
+          <span class="text-amber-400 block mb-1"># Sanitized Terragrunt service.hcl Intercept:</span>
+          <div class="text-red-400 whitespace-nowrap">- service_role = "arn:aws:iam::126350******:role/stg-billing-events-service"</div>
+          <div class="text-emerald-400 whitespace-nowrap">+ service_role = "arn:aws:iam::984120******:role/prod-billing-events-service"</div>
+        </div>
+      </div>
+      <div class="px-6 py-3 bg-carbon-850 border-t border-carbon-800 flex justify-end">
+        <button onclick="window.PortfolioController.closeModal('modal-arn')" class="px-4 py-2 rounded-lg bg-carbon-800 text-white border border-carbon-600 font-mono text-xs font-bold hover:text-sky-400 hover:border-sky-400 cursor-pointer">✕ Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-java" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="bg-carbon-900 border border-carbon-700 max-w-3xl w-full rounded-2xl overflow-hidden shadow-[0_0_30px_rgba(168,85,247,0.2)] flex flex-col max-h-[90vh]">
+      <div class="px-6 py-4 bg-carbon-850 border-b border-carbon-700 flex items-center justify-between">
+        <div class="flex items-center gap-3"><span class="px-2.5 py-1 rounded bg-purple-500/20 text-purple-400 font-mono text-xs font-bold border border-purple-500/40">[REFACTOR-SKU-286]</span><h3 class="text-base font-bold text-white">Java Microservice Model</h3></div>
+        <button onclick="window.PortfolioController.closeModal('modal-java')" class="text-slate-400 hover:text-white font-mono text-sm cursor-pointer">✕ ESC</button>
+      </div>
+      <div class="p-6 bg-carbon-950 border-b border-carbon-800 overflow-x-auto">
+        <div class="flex items-center justify-between text-[10px] sm:text-xs font-mono text-slate-400 mb-2 min-w-[500px]"><span>TOPOLOGY: EVENT_INGESTION ➔ DTO_CONVERGENCE</span><span class="text-purple-400 font-bold">CANONICAL ENTITY</span></div>
+        <svg viewBox="0 0 520 125" class="w-full min-w-[500px] h-auto my-1" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 175 35 L 295 62" stroke="#c084fc" stroke-width="2.2" fill="none" class="svg-flow-line"/><path d="M 175 90 L 295 62" stroke="#c084fc" stroke-width="2.2" fill="none" class="svg-flow-line"/><polygon points="300,62 290,56 290,68" fill="#34d399"/>
+          <rect x="15" y="15" width="160" height="38" rx="6" fill="#2e1065" stroke="#a855f7" stroke-width="1.4"/><text x="95" y="38" text-anchor="middle" fill="#e9d5ff" font-size="11">parentSKU (Legacy)</text>
+          <rect x="15" y="70" width="160" height="38" rx="6" fill="#2e1065" stroke="#a855f7" stroke-width="1.4"/><text x="95" y="93" text-anchor="middle" fill="#e9d5ff" font-size="11">parentProductSku</text>
+          <rect x="305" y="27" width="195" height="70" rx="10" fill="#062c22" stroke="#34d399" stroke-width="1.8"/><text x="402" y="55" text-anchor="middle" fill="#6ee7b7" font-size="12.5" font-weight="bold">Canonical SKU</text>
+        </svg>
+      </div>
+      <div class="p-6 overflow-y-auto space-y-3 text-[11px] sm:text-xs font-mono text-slate-300">
+        <div class="p-3 rounded bg-carbon-950 border border-carbon-800 overflow-x-auto">
+          <span class="text-purple-400 block mb-1"># Sanitized Java Entity Diff:</span>
+          <div class="text-red-400 whitespace-nowrap">- // private String parentSku; (Unused dead field &amp; docstrings stripped)</div>
+          <div class="text-emerald-400 whitespace-nowrap">+ private String parentProductSku; // Single Canonical Identifier</div>
+        </div>
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-purple-950/40 border border-purple-500/40 text-emerald-400 font-bold text-[10.5px]">
+          <i data-lucide="check-circle" class="w-3.5 h-3.5 text-emerald-400"></i> 100% JUnit Integration Suites Passed (+315 / -992 LOC Cleaned)
+        </div>
+      </div>
+      <div class="px-6 py-3 bg-carbon-850 border-t border-carbon-800 flex justify-end">
+        <button onclick="window.PortfolioController.closeModal('modal-java')" class="px-4 py-2 rounded-lg bg-carbon-800 text-white border border-carbon-600 font-mono text-xs font-bold hover:text-purple-400 hover:border-purple-400 cursor-pointer">✕ Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- AIRHEAD BALLOON COMPANION                                                 -->
+  <!-- ========================================================================= -->
+  <div id="balloonContainer" style="left: 16px; bottom: 16px; right: auto;" class="fixed z-30 select-none transition-transform duration-300">
+    <div id="balloonTriviaBubble" class="hidden absolute bottom-full left-0 mb-3 w-[min(295px,calc(100vw-32px))] sm:w-80 p-3.5 sm:p-4 rounded-2xl bg-carbon-900/95 border border-amber-500/60 text-xs font-mono shadow-2xl backdrop-blur-xl max-h-[min(390px,60vh)] overflow-y-auto">
+      <div class="flex items-center justify-between text-[10px] text-amber-400 pb-1.5 border-b border-carbon-700">
+        <span id="balloonFactLabel" class="font-bold flex items-center gap-1">🎈 AirHead.cs~1.6</span>
+        <button type="button" onclick="window.PortfolioController.dismissBalloonBubble()" class="text-slate-400 hover:text-white cursor-pointer px-1" aria-label="Close balloon tip">✕</button>
+      </div>
+      <div id="balloonFactTitle" class="text-white font-bold text-[11px] sm:text-xs mt-2"></div>
+      <div id="balloonFactText" class="text-slate-200 mt-1 leading-relaxed font-sans text-[11px] sm:text-xs"></div>
+      
+      <div id="balloonActionRow" class="mt-2.5 pt-2 border-t border-carbon-800 flex flex-col gap-1.5">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <button id="askCopilotTriviaBtn" type="button" onclick="window.PortfolioController.askCopilotAboutCurrentTrivia()" class="px-2.5 py-1 rounded-lg bg-amber-500/15 hover:bg-amber-500 text-amber-300 hover:text-carbon-950 font-mono text-[9px] sm:text-[10px] font-bold border border-amber-500/40 transition-colors cursor-pointer">
+            💬 Ask Copilot more
+          </button>
+          <span class="text-[9px] sm:text-[9.5px] text-slate-400">Click 🎈 for next</span>
+        </div>
+        <div class="flex justify-end">
+          <button type="button" onclick="window.PortfolioController.toggleBalloonSettings()" class="text-[9.5px] text-slate-400 hover:text-amber-400 font-mono flex items-center gap-1 cursor-pointer">
+            ⚙️ Settings
+          </button>
+        </div>
+      </div>
+
+      <div id="balloonSettingsPanel" class="hidden mt-2.5 pt-2.5 border-t border-carbon-700 space-y-2.5 text-[10px] font-mono">
+        <div class="flex items-center justify-between text-amber-400 font-bold">
+          <span>⚙️ SETTINGS</span>
+          <button type="button" onclick="window.PortfolioController.toggleBalloonSettings()" class="text-slate-400 hover:text-white cursor-pointer">Done</button>
+        </div>
+        <div class="space-y-1.5">
+          <span class="text-slate-400 block">Prompt Interval:</span>
+          <div class="flex flex-wrap items-center gap-1.5">
+            <button type="button" onclick="window.PortfolioController.setBalloonCustomTimer(30)" class="px-2 py-0.5 rounded bg-carbon-800 hover:bg-amber-500 hover:text-black text-slate-200 border border-carbon-600 cursor-pointer">30s</button>
+            <button type="button" onclick="window.PortfolioController.setBalloonCustomTimer(40)" class="px-2 py-0.5 rounded bg-carbon-800 hover:bg-amber-500 hover:text-black text-slate-200 border border-carbon-600 cursor-pointer">40s</button>
+            <button type="button" onclick="window.PortfolioController.setBalloonCustomTimer(50)" class="px-2 py-0.5 rounded bg-carbon-800 hover:bg-amber-500 hover:text-black text-slate-200 border border-carbon-600 cursor-pointer">50s</button>
+            <button type="button" onclick="window.PortfolioController.setBalloonCustomTimer(60)" class="px-2 py-0.5 rounded bg-carbon-800 hover:bg-amber-500 hover:text-black text-slate-200 border border-carbon-600 cursor-pointer">60s</button>
+            <label class="flex items-center gap-1 text-slate-400 hidden">
+              <input id="customBalloonSecInput" type="number" min="30" max="180" step="10" value="40">
+            </label>
+          </div>
+        </div>
+        <div class="flex items-center justify-between gap-2">
+          <span class="text-slate-400">Balloon Theme:</span>
+          <div class="flex gap-1.5">
+            <button type="button" onclick="window.PortfolioController.setBalloonSkin('light')" class="px-2 py-0.5 rounded bg-carbon-800 hover:bg-sky-400 hover:text-black text-sky-300 border border-carbon-600 cursor-pointer">☀️ Light</button>
+            <button type="button" onclick="window.PortfolioController.setBalloonSkin('dark')" class="px-2 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] border border-carbon-600 cursor-pointer">🌙 Dark</button>
+          </div>
+        </div>
+        <div class="flex items-center justify-between gap-2 pt-1 border-t border-carbon-800">
+          <span class="text-slate-400">Website Assistance Only:</span>
+          <button id="btnSiteAssistToggle" type="button" onclick="window.PortfolioController.toggleSiteAssistMode()" class="px-2.5 py-0.5 rounded bg-carbon-800 text-slate-300 border border-carbon-600 cursor-pointer">OFF (Tech Trivia)</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="gusBalloon" class="balloon-scale-shell gus-float-anim relative" title="AirHead.cs~1.6 — Drag me around, shake me fast, or click for trivia & settings!">
+      <button id="btnMinimizeBalloon" type="button" class="absolute -top-1.5 -left-1.5 z-30 w-5 h-5 rounded-full bg-carbon-800 border border-carbon-600 hover:border-amber-400 text-slate-300 hover:text-white text-[10px] font-mono flex items-center justify-center cursor-pointer shadow-md" title="Minimize Balloon">✕</button>
+      <div class="minimized-disc hidden w-8 h-8 rounded-full bg-gradient-to-br from-[#d4fbff] to-[#477aa8] border-2 border-white/60 shadow-xl items-center justify-center font-mono font-bold text-xs text-carbon-950">🎈</div>
+      <div class="balloon-container">
+        <div id="gusStick" class="balloon-stick"></div>
+        <div id="gusSphere" class="gus-balloon">
+          <div class="balloon-highlight"></div>
+          <div class="balloon-eyebrows"><span></span><span></span></div>
+          <div class="balloon-mouth"><div class="teeth"><span></span><span></span><span></span></div></div>
+          <div class="balloon-cheek cheek-left"></div>
+          <div class="balloon-cheek cheek-right"></div>
+        </div>
+        <div class="balloon-knot"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- FLOATING COPILOT CHAT WINDOW                                              -->
+  <!-- ========================================================================= -->
   <div id="portfolioChat" class="fixed bottom-4 right-4 sm:bottom-5 sm:right-5 z-40 w-[340px] sm:w-[370px] max-w-[calc(100vw-32px)] rounded-2xl bg-carbon-850/95 backdrop-blur-xl border border-amber-500/30 shadow-2xl overflow-hidden transition-all duration-300">
-    <!-- Unread Notification Dot (Managed by JS State) -->
     <div id="chatUnreadDot" class="absolute -top-1 -right-1 w-3.5 h-3.5 bg-emerald-400 rounded-full animate-pulse border-2 border-carbon-950 hidden z-50 pointer-events-none"></div>
-    
     <div id="chatHeader" class="bg-carbon-800 px-3 sm:px-4 py-2.5 sm:py-3 border-b border-carbon-700/80 flex items-center justify-between cursor-pointer select-none">
       <div class="flex items-center gap-2 sm:gap-2.5">
         <span class="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399] animate-pulse"></span>
@@ -1651,13 +1727,12 @@
     </div>
   </div>
 
-  <!-- Core JavaScript Runtime (Modular, Stateful, and Highly Optimized) -->
+  <!-- ========================================================================= -->
+  <!-- CORE JAVASCRIPT RUNTIME (100% MODULAR & STATEFUL IIFE)                    -->
+  <!-- ========================================================================= -->
   <script>
     if (window.lucide) { lucide.createIcons(); }
 
-    /* ========================================================================= */
-    /* THE PORTFOLIO RUNTIME ENGINE (IIFE MODULE ARCHITECTURE)                   */
-    /* ========================================================================= */
     window.PortfolioController = (function() {
       
       // --- 1. STATE & ONBOARDING MANAGER ---
@@ -1671,7 +1746,6 @@
 
       const Onboarding = {
         init: function() {
-          // Manager Accordion Hint
           if (!sessionStorage.getItem('pf_seen_accordion')) {
             const hint = document.getElementById('hint-accordion-1');
             const acc = document.getElementById('manager-compartment-1');
@@ -1684,16 +1758,11 @@
               });
             }
           }
-
-          // Copilot Unread Dot
           if (!sessionStorage.getItem('pf_seen_chat')) {
             const dot = document.getElementById('chatUnreadDot');
             const header = document.getElementById('chatHeader');
             if (dot && header) {
-              // Ensure chat is minimized first on desktop so the dot makes sense
-              if (window.innerWidth >= 640 && !Chat.isChatMinimized) {
-                Chat.setMinimizedState(true);
-              }
+              if (window.innerWidth >= 640 && !Chat.isChatMinimized) Chat.setMinimizedState(true);
               dot.classList.remove('hidden');
               header.addEventListener('click', function handleChatClick() {
                 dot.classList.add('hidden');
@@ -1829,9 +1898,7 @@
         close: function(id) {
           const m = document.getElementById(id);
           if (m) { m.classList.remove('flex'); m.classList.add('hidden'); document.body.style.overflow = 'auto'; }
-          if (id === 'modal-telemetry-dashboard') {
-            Telemetry.stopHttpPolling();
-          }
+          if (id === 'modal-telemetry-dashboard') Telemetry.stopHttpPolling();
         }
       };
 
@@ -1841,7 +1908,6 @@
           document.querySelectorAll('.a11y-tooltip-trigger').forEach(trigger => {
             const wrapper = trigger.closest('.a11y-tooltip-wrapper');
             if (!wrapper) return;
-            
             const show = () => { wrapper.classList.add('is-active'); trigger.setAttribute('aria-expanded', 'true'); };
             const hide = () => { wrapper.classList.remove('is-active'); trigger.setAttribute('aria-expanded', 'false'); };
             
@@ -1849,15 +1915,12 @@
             trigger.addEventListener('focus', show);
             wrapper.addEventListener('mouseleave', hide);
             trigger.addEventListener('blur', hide);
-            trigger.addEventListener('click', (e) => {
-              e.preventDefault();
-              wrapper.classList.contains('is-active') ? hide() : show();
-            });
+            trigger.addEventListener('click', (e) => { e.preventDefault(); wrapper.classList.contains('is-active') ? hide() : show(); });
           });
         }
       };
 
-      // --- 5. LIVE TELEMETRY ENGINE ---
+      // --- 5. LIVE TELEMETRY ENGINE (Decoupled RAF & HTTP) ---
       const Telemetry = {
         rafId: null,
         httpIntervalId: null,
@@ -1865,7 +1928,6 @@
         rAFLastSecond: performance.now(),
         rAFLastFrame: performance.now(),
         liveFps: 60,
-        liveFrameDelta: 16.6,
         rttSampleWindow: [],
 
         init: function() {
@@ -1886,20 +1948,15 @@
 
         startRaf: function() {
           const loop = (now) => {
-            this.liveFrameDelta = Math.max(1, now - this.rAFLastFrame);
             this.rAFLastFrame = now;
             this.rAFCounter++;
-
             if (now - this.rAFLastSecond >= 500) {
               this.liveFps = Math.min(240, Math.round((this.rAFCounter * 1000) / (now - this.rAFLastSecond)));
               this.rAFCounter = 0;
               this.rAFLastSecond = now;
-
               const fpsEl = document.getElementById('devFpsVal');
               if (fpsEl) fpsEl.textContent = `${this.liveFps}`;
-              if (State.isDashboardOpen) {
-                this.updateGaugeDial('speedGaugeArc', 'speedGaugeNeedle', 'speedGaugeValueText', Math.min(120, this.liveFps), 120, 'FPS');
-              }
+              if (State.isDashboardOpen) this.updateGaugeDial('speedGaugeArc', 'speedGaugeNeedle', 'speedGaugeValueText', Math.min(120, this.liveFps), 120, 'FPS');
             }
             if (State.isTabVisible) this.rafId = requestAnimationFrame(loop);
           };
@@ -1934,14 +1991,12 @@
           const heapEl = document.getElementById('telemetryHeapVal');
           const driftEl = document.getElementById('loopDriftVal');
 
-          // Timer Scheduling Delay
           const tLoopStart = performance.now();
           setTimeout(() => {
             const drift = Math.max(0.1, performance.now() - tLoopStart - 10);
             if (driftEl) driftEl.textContent = `${drift.toFixed(1)} ms`;
           }, 10);
 
-          // Network API Estimate
           const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
           if (conn && connTypeEl) {
             const dl = Number.isFinite(conn.downlink) ? `${conn.downlink} Mbps` : 'N/A';
@@ -1952,10 +2007,8 @@
 
           if (heapEl) heapEl.textContent = this.readHonestHeapStatus();
 
-          // HTTP Measurement
           const t0 = performance.now();
-          let measuredRtt = null;
-          let detectedPop = 'Origin / Local Edge';
+          let measuredRtt = null, detectedPop = 'Origin / Local Edge';
           try {
             const traceRes = await fetch(`https://1.1.1.1/cdn-cgi/trace?ts=${Date.now()}`, { cache: 'no-store' });
             measuredRtt = Math.max(2, Math.round(performance.now() - t0));
@@ -1971,8 +2024,7 @@
               measuredRtt = Math.max(2, Math.round(performance.now() - t1));
               detectedPop = 'Same-Origin HTTP HEAD';
             } catch (err2) {
-              measuredRtt = null;
-              detectedPop = 'Offline / Blocked by CORS';
+              measuredRtt = null; detectedPop = 'Offline / Blocked by CORS';
             }
           }
 
@@ -1999,19 +2051,14 @@
         startHttpPolling: function() {
           this.runHttpProbe();
           if (this.httpIntervalId) clearInterval(this.httpIntervalId);
-          this.httpIntervalId = setInterval(() => { if(State.isTabVisible && State.isDashboardOpen) this.runHttpProbe(); }, 3500);
+          this.httpIntervalId = setInterval(() => { if (State.isTabVisible && State.isDashboardOpen) this.runHttpProbe(); }, 3500);
         },
-
         stopHttpPolling: function() {
           if (this.httpIntervalId) { clearInterval(this.httpIntervalId); this.httpIntervalId = null; }
         },
-
         updateWorldClocks: function() {
           const now = new Date();
-          const fmt = (tz) => {
-            try { return now.toLocaleTimeString('en-US', { timeZone: tz, hour: '2-digit', minute:'2-digit', hour12: false }); }
-            catch(e) { return '--:--'; }
-          };
+          const fmt = (tz) => { try { return now.toLocaleTimeString('en-US', { timeZone: tz, hour: '2-digit', minute:'2-digit', hour12: false }); } catch(e) { return '--:--'; } };
           const localClock = document.getElementById('devClockVal');
           if (localClock) localClock.textContent = fmt(Intl.DateTimeFormat().resolvedOptions().timeZone) + ' LOC';
           const ids = { 'tz-est': 'America/New_York', 'tz-pst': 'America/Los_Angeles', 'tz-cst': 'America/Chicago', 'tz-cet': 'Europe/Paris', 'tz-jst': 'Asia/Tokyo', 'tz-aest': 'Australia/Sydney' };
@@ -2030,14 +2077,12 @@
         dizzyResetTimer: null,
         intervalMs: 40000,
         nudgeTimer: null,
-        nudgeCount: 0,
         clickTimes: [],
         siteAssistOnly: false,
 
         TRIVIA: [
           { category: "Tech History", title: "ChatGPT's Calendar Coincidence", fact: "ChatGPT was publicly introduced on November 30, 2022—which also happens to be Computer Security Day (established in 1988)." },
-          { category: "Cloud & DevOps", title: "Containers vs. VMs", fact: "Containers share the host OS kernel for lightweight isolation, whereas VMs virtualize an entire guest OS." },
-          { category: "Gaming & Future Tech", title: "GPUs: From Gaming to AI", fact: "Built for parallel 3D pixel shading in games like CS 1.6, GPUs turned out to be ideal for neural-network matrix math." }
+          { category: "Cloud & DevOps", title: "Containers vs. VMs", fact: "Containers share the host OS kernel for lightweight isolation, whereas VMs virtualize an entire guest OS." }
         ],
         TIPS: [
           { category: "Site Guide", title: "Switching Portfolio Modes", fact: "Use the top-left header bar (👔 HR | 📊 Manager | 💻 Dev) anytime to tailor the layout to your role." },
@@ -2061,6 +2106,7 @@
           let dragStartX = 0, dragStartY = 0, contStartX = 0, contStartY = 0, isDragging = false, hasMoved = false;
           let swingAnchorX = 0, currentSwingDir = 0, reversalTimestamps = [];
 
+          document.getElementById('btnMinimizeBalloon')?.addEventListener('click', (e) => { e.stopPropagation(); e.preventDefault(); this.toggleMinimize(); });
           b.addEventListener('pointerdown', (e) => {
             if (e.target.closest('#btnMinimizeBalloon') || this.isMinimized) return;
             isDragging = true; hasMoved = false;
@@ -2112,7 +2158,7 @@
                 this.clickTimes = [];
                 const sphere = document.getElementById('gusSphere');
                 if (sphere && !sphere.classList.contains('skin-dark')) {
-                  sphere.classList.add('skin-dark');
+                  this.setSkin('dark');
                   showToast('🎈 <strong>Easter Egg Unlocked:</strong> Dark Mode Skin activated via 5 rapid clicks!');
                 }
               } else {
@@ -2186,11 +2232,33 @@
           this.setFace('default');
         },
 
+        toggleMinimize: function() {
+          this.isMinimized = !this.isMinimized;
+          const b = document.getElementById('gusBalloon');
+          if (!b) return;
+          b.classList.toggle('minimized', this.isMinimized);
+          if (this.isMinimized) {
+            b.classList.remove('gus-float-anim');
+            this.dismissBubble();
+          } else {
+            b.classList.add('gus-float-anim');
+          }
+        },
+
+        setSkin: function(mode) {
+          const s = document.getElementById('gusSphere');
+          if (!s) return;
+          if (mode === 'dark') { s.classList.add('skin-dark'); }
+          else { s.classList.remove('skin-dark'); }
+          try { localStorage.setItem('airhead-settings', JSON.stringify({ delay: Math.round(this.intervalMs / 1000), skin: mode, siteGuide: this.siteAssistOnly })); } catch (error) {}
+        },
+
         scheduleNudge: function() {
           if (this.nudgeTimer) clearTimeout(this.nudgeTimer);
           this.nudgeTimer = setTimeout(() => {
             if (!this.isMinimized && document.getElementById('balloonTriviaBubble')?.classList.contains('hidden')) {
               this.popTrivia();
+              setTimeout(() => { if (!document.getElementById('balloonTriviaBubble')?.classList.contains('hidden')) this.dismissBubble(); }, 7000);
             }
             this.scheduleNudge();
           }, this.intervalMs);
@@ -2346,7 +2414,6 @@
         setMode: function(role, showNotification = true) {
           document.body.classList.remove('mode-hr', 'mode-manager', 'mode-dev');
           
-          // Header Toggles
           const inact = "px-2 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 text-slate-400 hover:text-white whitespace-nowrap";
           const actAmb = "px-2 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 bg-amber-500 text-carbon-950 font-bold shadow-sm whitespace-nowrap";
           const actGrn = "px-2 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 bg-[#00ff66] text-black font-bold shadow-[0_0_12px_rgba(0,255,102,0.4)] whitespace-nowrap";
@@ -2402,8 +2469,6 @@
         openCaseStudy: function(id) { CaseStudies.open(id); },
         openModal: function(id) { Modals.open(id); },
         closeModal: function(id) { Modals.close(id); },
-        
-        // Sandbox Exports
         toggleConsoleModal: function() {
           const drawer = document.getElementById('devCliDrawer');
           if (!drawer) return;
@@ -2416,27 +2481,50 @@
         },
         forceBreakCli: function() { forceBreakCli(); },
         runCliCommand: function(cmd) { runCliCommand(cmd); },
-        
-        // Telemetry Exports
         openTelemetryDashboard: function() {
           State.isDashboardOpen = true;
           Modals.open('modal-telemetry-dashboard');
           Telemetry.startHttpPolling();
         },
         triggerManualHttpProbe: function() { Telemetry.runHttpProbe(); },
-
-        // Chat Exports
         sendQuickPrompt: function(text) { Chat.sendQuickPrompt(text); },
-
-        // Matrix Export
-        toggleMatrix: function() { toggleMatrixRainEffect(); }
+        toggleMatrix: function() { toggleMatrixRainEffect(); },
+        dismissBalloonBubble: function() { Balloon.dismissBubble(); },
+        toggleBalloonSettings: function() {
+          const p = document.getElementById('balloonSettingsPanel');
+          if (p) p.classList.toggle('hidden');
+        },
+        setBalloonCustomTimer: function(sec) {
+          let parsed = Number.parseInt(sec, 10);
+          if (!Number.isFinite(parsed)) parsed = 40;
+          parsed = Math.max(30, Math.min(180, Math.round(parsed / 10) * 10));
+          Balloon.intervalMs = parsed * 1000;
+          Balloon.scheduleNudge();
+          try { localStorage.setItem('airhead-settings', JSON.stringify({ delay: parsed, skin: document.getElementById('gusSphere')?.classList.contains('skin-dark') ? 'dark' : 'light', siteGuide: Balloon.siteAssistOnly })); } catch (error) {}
+          showToast(`⏱️ <strong>Balloon Timer Updated:</strong> Prompt interval set to ${parsed}s.`);
+        },
+        setBalloonSkin: function(mode) { Balloon.setSkin(mode); },
+        toggleSiteAssistMode: function() {
+          Balloon.siteAssistOnly = !Balloon.siteAssistOnly;
+          const btn = document.getElementById('btnSiteAssistToggle');
+          if (btn) {
+            btn.textContent = Balloon.siteAssistOnly ? 'ON (Site Guide Only)' : 'OFF (Tech Trivia)';
+            btn.className = Balloon.siteAssistOnly ? 'px-2.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/50 cursor-pointer font-bold' : 'px-2.5 py-0.5 rounded bg-carbon-800 text-slate-300 border border-carbon-600 cursor-pointer';
+          }
+          try { localStorage.setItem('airhead-settings', JSON.stringify({ delay: Math.round(Balloon.intervalMs / 1000), skin: document.getElementById('gusSphere')?.classList.contains('skin-dark') ? 'dark' : 'light', siteGuide: Balloon.siteAssistOnly })); } catch (error) {}
+          showToast(Balloon.siteAssistOnly ? '🧭 <strong>Website Assistance Mode ON:</strong> Balloon will share portfolio navigation tips.' : '🎈 <strong>Tech Trivia Mode ON:</strong> Balloon will share tech & gaming facts.');
+        },
+        askCopilotAboutCurrentTrivia: function() {
+          const t = document.getElementById('balloonFactTitle');
+          if (t) this.sendQuickPrompt(`Tell me more about: "${t.textContent}"`);
+        }
       };
     })();
 
-    // Initialize the Portfolio Application
+    // Initialize Application
     window.PortfolioController.init();
 
-    // Matrix Rain Global Utilities
+    // Matrix Rain Engine
     let matrixTimer = null, rainDrops = [];
     const canvas = document.getElementById('matrixCanvas');
     const ctx = canvas?.getContext('2d');
@@ -2484,9 +2572,10 @@
       }
     }
 
-    // CLI Engine globals for sandbox commands
+    // CLI Engine Globals
     let activeCliAbortController = null, activeCliTimers = [];
     let isCase1Patched = false;
+    let commandHistory = [], historyIndex = -1;
     function printCliLine(text, className = '') {
       const out = document.getElementById('cliOutput');
       if (!out) return;
@@ -2505,6 +2594,7 @@
       const cmd = rawCmd.trim();
       const inp = document.getElementById('cliInput');
       if (!cmd) return;
+      commandHistory.push(cmd); historyIndex = commandHistory.length;
       if (cmd !== 'clear') printCliLine(`sai@prod-bastion:/opt/incident-127$ ${cmd}`, 'text-[#00ff66] font-bold');
       if (inp) inp.value = '';
 
@@ -2543,11 +2633,11 @@
           if (cmd.includes('/proc/4182/fd/4')) printCliLine(`[KERNEL VFS]: Truncated /proc/4182/fd/4 to 0 bytes. 18.1 GB reclaimed immediately without service restart.`, 'text-[#00ff66] font-bold');
           else printCliLine(`bash: syntax executed.`, 'text-slate-400');
           break;
+        case '/proc/4182/fd/4':
+          printCliLine(`bash: permission denied.\n(Hint: truncate the file descriptor to 0 bytes with ': > /proc/4182/fd/4')`, 'text-yellow-400 font-bold');
+          break;
         case 'coffee':
           printCliLine(`      (\n       )\n    _(__)_\n   |      |_\n   |      |_|\n   |______|\n[INFO] Injecting caffeine into the CI/CD pipeline...`, 'text-amber-400');
-          break;
-        case 'sudo':
-          printCliLine('Tip: Try "sudo hire sai" for executive fast-track, or enter the Konami code for root mode.', 'text-amber-300 font-bold');
           break;
         case 'clear':
           const out = document.getElementById('cliOutput');
@@ -2578,15 +2668,11 @@
         default: printCliLine(`bash: ${base}: command not found. Type 'help' for commands.`, 'text-red-400'); break;
       }
     }
-
     function toggleCase1Patch() {
       isCase1Patched = !isCase1Patched;
-      const badge = document.getElementById('case1StatusBadge');
-      const pr = document.getElementById('case1SvgProbeRect'), pt = document.getElementById('case1SvgProbeText');
-      const rr = document.getElementById('case1SvgRelRect'), rt = document.getElementById('case1SvgRelText');
-      const line2 = document.getElementById('case1SvgLine2'), arr2 = document.getElementById('case1SvgArrow2');
-      const logLine = document.getElementById('case1LogLine'), btn = document.getElementById('btnCase1Patch');
-
+      const badge = document.getElementById('case1StatusBadge'), pr = document.getElementById('case1SvgProbeRect'), pt = document.getElementById('case1SvgProbeText');
+      const rr = document.getElementById('case1SvgRelRect'), rt = document.getElementById('case1SvgRelText'), line2 = document.getElementById('case1SvgLine2');
+      const arr2 = document.getElementById('case1SvgArrow2'), logLine = document.getElementById('case1LogLine'), btn = document.getElementById('btnCase1Patch');
       if (isCase1Patched) {
         if (badge) { badge.textContent = "HTTP 200 OK"; badge.className = "px-2.5 py-0.5 rounded bg-emerald-500/20 text-[#00ff66] border border-[#00ff66]/40 font-bold text-[11px]"; }
         if (pr) { pr.setAttribute('fill', '#062c22'); pr.setAttribute('stroke', '#00ff66'); }
@@ -2608,6 +2694,15 @@
         if (btn) btn.textContent = "[ >_ Run Patch: +curl ]";
       }
     }
+    const cliInp = document.getElementById('cliInput');
+    if (cliInp) {
+      cliInp.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey && e.key.toLowerCase() === 'c') || e.key === 'Escape') { e.preventDefault(); forceBreakCli(); return; }
+        if (e.key === 'Enter') runCliCommand(cliInp.value);
+        else if (e.key === 'ArrowUp') { e.preventDefault(); if (historyIndex > 0) { historyIndex--; cliInp.value = commandHistory[historyIndex] || ''; } }
+        else if (e.key === 'ArrowDown') { e.preventDefault(); if (historyIndex < commandHistory.length - 1) { historyIndex++; cliInp.value = commandHistory[historyIndex] || ''; } else { historyIndex = commandHistory.length; cliInp.value = ''; } }
+      });
+    }
 
     (function initPerspectiveFromUrl() {
       const p = new URLSearchParams(window.location.search);
@@ -2619,3 +2714,5 @@
   </script>
 </body>
 </html>
+
+  
