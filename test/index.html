@@ -151,6 +151,20 @@
       #view-hr { display: block !important; }
       * { color: black !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     }
+
+    /* Accessible Tooltip Structure */
+    .a11y-tooltip-wrapper { position: relative; display: inline-flex; align-items: center; justify-content: center; }
+    .a11y-tooltip-trigger { background: none; border: none; padding: 2px; cursor: pointer; border-radius: 9999px; outline: none; }
+    .a11y-tooltip-trigger:focus-visible { box-shadow: 0 0 0 2px #00ff66; }
+    .a11y-tooltip-content {
+      position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); margin-bottom: 8px;
+      width: 220px; background-color: #101624; color: #cbd5e1; font-size: 10px; font-family: 'Plus Jakarta Sans', sans-serif;
+      padding: 8px 10px; border: 1px solid #314161; border-radius: 6px; box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      z-index: 50; text-transform: none; font-weight: normal; letter-spacing: normal; line-height: 1.4;
+      opacity: 0; visibility: hidden; transition: opacity 0.2s, visibility 0.2s; pointer-events: none;
+    }
+    .a11y-tooltip-wrapper.is-active .a11y-tooltip-content { opacity: 1; visibility: visible; pointer-events: auto; }
+
     /* Full Balloon Animations & Complete Facial Expressions */
     @keyframes gusFloat { 0%, 100% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-8px) rotate(2deg); } }
     .gus-float-anim { animation: gusFloat 3.8s ease-in-out infinite; }
@@ -246,12 +260,12 @@
     <span id="customToastText"></span>
   </div>
 
-  <!-- Sticky Navigation Bar: True Absolute Centering -->
+  <!-- Sticky Navigation Bar: CSS Grid ensures mathematically locked center without overlap -->
   <header class="sticky top-0 z-40 backdrop-blur-md bg-carbon-900/85 border-b border-carbon-700/70">
-    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-20 relative flex items-center justify-between">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-20 grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-2">
       
       <!-- Left Cluster: Profile Identity + Compact Mode Switcher -->
-      <div class="flex items-center gap-2 sm:gap-3 shrink-0 z-10">
+      <div class="flex items-center justify-self-start gap-2 sm:gap-3 z-10">
         <a href="#home" class="flex items-center gap-2 group shrink-0">
           <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-carbon-800 border border-amber-500/50 flex items-center justify-center text-amber-400 font-mono font-bold text-sm sm:text-base group-hover:border-amber-400 transition-colors shrink-0">
             <img src="assets/sai-vinay.png" alt="Sai Vinay" class="w-full h-full object-cover rounded-lg" onerror="resolveAsset(this, 'sai-vinay')">
@@ -266,35 +280,39 @@
         </a>
 
         <!-- Segmented Mode Switcher -->
-        <div class="inline-flex items-center p-1 rounded-xl bg-carbon-950/90 border border-carbon-700/90 font-mono text-[10px] sm:text-[11px] shadow-inner shrink-0">
-          <button type="button" id="headerBtnHr" onclick="setPerspective('recruiter', true)" class="px-2 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 text-slate-400 hover:text-white whitespace-nowrap">
+        <div class="hidden sm:inline-flex items-center p-1 rounded-xl bg-carbon-950/90 border border-carbon-700/90 font-mono text-[10px] sm:text-[11px] shadow-inner shrink-0">
+          <button type="button" id="headerBtnHr" onclick="window.PortfolioController.setMode('hr', true)" class="px-2 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 text-slate-400 hover:text-white whitespace-nowrap">
             <span>👔</span><span class="hidden xl:inline">HR Mode</span><span class="xl:hidden">HR</span>
           </button>
-          <button type="button" id="headerBtnManager" onclick="setPerspective('manager', true)" class="px-2 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 bg-amber-500 text-carbon-950 font-bold shadow-sm whitespace-nowrap">
+          <button type="button" id="headerBtnManager" onclick="window.PortfolioController.setMode('manager', true)" class="px-2 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 bg-amber-500 text-carbon-950 font-bold shadow-sm whitespace-nowrap">
             <span>📊</span><span class="hidden xl:inline">Manager Mode</span><span class="xl:hidden">Mgr</span>
           </button>
-          <button type="button" id="headerBtnDev" onclick="setPerspective('engineer', true)" class="px-2 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 text-slate-400 hover:text-white whitespace-nowrap">
+          <button type="button" id="headerBtnDev" onclick="window.PortfolioController.setMode('dev', true)" class="px-2 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 text-slate-400 hover:text-white whitespace-nowrap">
             <span>💻</span><span class="hidden xl:inline">Dev Mode</span><span class="xl:hidden">Dev</span>
           </button>
         </div>
       </div>
 
-      <!-- Center Scroll Links: Absolute Positioning to Force Exact Mathematical Centering -->
-      <nav id="mainHeaderScrollLinks" class="hidden lg:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 items-center justify-center gap-6 text-xs sm:text-[13px] font-semibold text-slate-300 whitespace-nowrap z-0 pointer-events-auto">
+      <!-- Center Scroll Links: Locked to True Horizontal Center -->
+      <nav id="mainHeaderScrollLinks" class="hidden lg:flex justify-self-center items-center gap-5 xl:gap-7 text-xs sm:text-[13px] font-semibold text-slate-300 whitespace-nowrap z-0">
         <a href="#journey" class="hover:text-amber-400 transition-colors">Career &amp; Credentials</a>
         <a href="#education" class="hover:text-amber-400 transition-colors">Education</a>
         <a href="#contact" class="hover:text-amber-400 transition-colors">How I Work</a>
       </nav>
 
       <!-- Top-Right Actions -->
-      <div class="flex items-center gap-1.5 sm:gap-2 shrink-0 z-10">
-        <!-- HR Mode Exclusive: Download Resume Button -->
+      <div class="flex items-center justify-self-end gap-1.5 sm:gap-2 z-10">
+        <!-- Mobile Mode Switcher (Visible only on very small screens) -->
+        <div class="sm:hidden inline-flex items-center p-1 rounded-xl bg-carbon-950/90 border border-carbon-700/90 font-mono text-[9px] shadow-inner shrink-0 mr-1">
+          <button type="button" onclick="window.PortfolioController.setMode('manager', true)" class="px-1.5 py-1 rounded bg-amber-500 text-carbon-950 font-bold">Mgr</button>
+          <button type="button" onclick="window.PortfolioController.setMode('dev', true)" class="px-1.5 py-1 rounded text-slate-400 hover:text-white">Dev</button>
+        </div>
+
         <a id="hrHeaderResumeBtn" href="assets/Sai-Vinay-Mullapudi.pdf" target="_blank" rel="noopener noreferrer" download="Sai-Vinay-Mullapudi-Resume.pdf" style="display: none;" class="items-center gap-1.5 px-2.5 sm:px-3.5 py-2 rounded-lg text-[10px] sm:text-xs font-mono font-bold bg-amber-500 hover:bg-amber-400 text-carbon-950 shadow-md transition-all">
-          <i data-lucide="file-down" class="w-3.5 h-3.5"></i><span>Resume.pdf</span>
+          <i data-lucide="file-down" class="w-3.5 h-3.5"></i><span class="hidden sm:inline">Resume.pdf</span>
         </a>
 
-        <!-- Matrix Rain Toggle (Dev Mode Only) -->
-        <button id="matrixToggleBtn" type="button" onclick="toggleMatrixRainEffect()" style="display: none;" class="items-center gap-1.5 px-2.5 sm:px-3 py-2 rounded-lg text-xs font-mono bg-carbon-800 hover:bg-carbon-700 text-slate-300 border border-carbon-600 transition-all cursor-pointer" title="Toggle Digital Rain">
+        <button id="matrixToggleBtn" type="button" onclick="window.PortfolioController.toggleMatrix()" style="display: none;" class="items-center gap-1.5 px-2.5 sm:px-3 py-2 rounded-lg text-xs font-mono bg-carbon-800 hover:bg-carbon-700 text-slate-300 border border-carbon-600 transition-all cursor-pointer" title="Toggle Digital Rain">
           <i data-lucide="sparkles" class="w-3.5 h-3.5 text-[#00ff66]"></i><span id="matrixToggleText" class="text-[11px] text-[#00ff66] hidden sm:inline">Rain</span>
         </button>
 
@@ -309,8 +327,9 @@
   <!-- HR MODE: 1-Page Printable Resume (3-Column)    -->
   <!-- ============================================== -->
   <div id="view-hr" style="display: none;" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
-    <!-- Rest of HR Mode is unchanged -->
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+      
+      <!-- Left Column: Profile & Education -->
       <aside class="lg:col-span-3 bento-card p-5 sm:p-6 space-y-5">
         <div class="flex flex-col items-center text-center">
           <div class="w-36 h-36 sm:w-40 sm:h-40 rounded-full overflow-hidden border-4 border-amber-500/40 mb-3 bg-carbon-800 shadow-xl flex items-center justify-center">
@@ -349,6 +368,7 @@
         </div>
       </aside>
 
+      <!-- Center Column: Value Prop & Enterprise Work Experience -->
       <div class="lg:col-span-6 space-y-4">
         <div class="bento-card p-4 sm:p-5 bg-gradient-to-br from-amber-500/10 via-carbon-850 to-carbon-900 border-amber-500/40 space-y-2.5">
           <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-amber-500/15 border border-amber-500/40 text-amber-400 text-[11px] font-mono font-bold uppercase"><i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Candidate Value Proposition</div>
@@ -393,8 +413,8 @@
                 <span class="text-amber-400 font-bold shrink-0 text-xs">Dec '21 – Aug '24</span>
               </div>
               <ul class="space-y-1 text-slate-300 list-disc list-inside font-sans text-xs sm:text-sm leading-relaxed">
-                <li>Architected zero-trust AWS infrastructure &amp; 200+ instance clusters syncing with NYSE and Fed clearing feeds.</li>
-                <li>Built reusable Terraform modules into Jenkins CI/CD pipelines to secure KMS envelope encryption.</li>
+                <li>Architected zero-trust AWS infrastructure &amp; reusable Terraform for NYSE/Fed clearing feeds.</li>
+                <li>Built Jenkins CI/CD pipelines enforcing KMS envelope encryption and zero-downtime RDS updates.</li>
               </ul>
             </div>
             <div class="p-3.5 sm:p-4 rounded-xl bg-carbon-900 border border-carbon-800 space-y-1.5">
@@ -403,14 +423,15 @@
                 <span class="text-sky-400 font-bold shrink-0 text-xs">Mar '21 – Dec '21</span>
               </div>
               <ul class="space-y-1 text-slate-300 list-disc list-inside font-sans text-xs sm:text-sm leading-relaxed">
-                <li>Maintained 99% availability across 200+ AWS EC2 compute instances through automated snapshots.</li>
-                <li>Automated RedHat Linux bare-metal provisioning via Kickstart scripts and administered LVM storage.</li>
+                <li>Maintained 99% availability across a 200+ AWS EC2 instance cluster through automated lifecycle governance.</li>
+                <li>Automated RedHat Linux bare-metal provisioning and administered non-disruptive online LVM storage.</li>
               </ul>
             </div>
           </div>
         </div>
       </div>
 
+      <!-- Right Column: Core Tech Stack -->
       <div class="lg:col-span-3 bento-card p-5 sm:p-6 space-y-5">
         <h3 class="text-sm font-bold font-mono text-white uppercase tracking-wider flex items-center gap-2 border-b border-carbon-700/80 pb-3">
           <i data-lucide="cpu" class="w-4 h-4 text-amber-400"></i> Core Technical Stack
@@ -449,6 +470,7 @@
 
     </div>
   </div>
+
   <!-- ============================================== -->
   <!-- VIEW 2 & 3: MANAGER & DEV PERSPECTIVES         -->
   <!-- ============================================== -->
@@ -497,7 +519,7 @@
                 &gt;_ Launch Incident Sandbox
               </button>
 
-              <!-- Button 2: LinkedIn — Let's Connect! -->
+              <!-- Button 2: LinkedIn — Let's Connect! (Official Filled LinkedIn Logo) -->
               <a href="https://linkedin.com/in/sai-vinay-mullapudi" target="_blank" rel="noopener noreferrer" class="h-12 px-4 rounded-xl text-xs sm:text-[13px] font-mono bg-carbon-850 hover:bg-carbon-800 text-slate-200 border border-carbon-700 hover:border-amber-400/60 flex items-center justify-center gap-2.5 transition-colors whitespace-nowrap group">
                 <svg class="w-4 h-4 shrink-0 rounded-[3px] transition-transform group-hover:scale-105" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <rect width="24" height="24" rx="4" fill="#0A66C2"/>
@@ -655,7 +677,7 @@
             </div>
 
             <!-- Live Dashboard Trigger -->
-            <button type="button" onclick="openTelemetryDashboard()" class="px-2.5 py-1 rounded bg-[#00ff66]/15 hover:bg-[#00ff66] text-[#00ff66] hover:text-black font-bold border border-[#00ff66]/60 transition-all cursor-pointer flex items-center gap-1.5 ml-2">
+            <button type="button" onclick="window.openTelemetryDashboard()" class="px-2.5 py-1 rounded bg-[#00ff66]/15 hover:bg-[#00ff66] text-[#00ff66] hover:text-black font-bold border border-[#00ff66]/60 transition-all cursor-pointer flex items-center gap-1.5 ml-2">
               📊 Open Dashboard
             </button>
           </div>
@@ -744,6 +766,7 @@
           </div>
         </div>
       </section>
+
       <!-- Section: Career & Technical Deep Dives -->
       <section id="journey" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-14 border-b border-carbon-800 scroll-mt-20">
         <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-8 sm:mb-10 gap-6">
@@ -796,34 +819,37 @@
         </div>
 
         <!-- ========================================================================================= -->
-        <!-- MANAGER MODE: Smooth Collapsible Compartments with Enlarged Logos & Placeholders          -->
+        <!-- MANAGER MODE: Smooth Collapsible Compartments (Scaled Logos, Corrected PDF Data)          -->
         <!-- ========================================================================================= -->
         <div id="manager-ledger-cards" class="manager-only space-y-6">
           
           <!-- COMPARTMENT 1: ASCENDION -->
-          <details class="bg-carbon-900/95 border border-emerald-500/35 rounded-3xl shadow-2xl group" open>
+          <details class="bg-carbon-900/95 border border-emerald-500/35 rounded-3xl shadow-2xl group" id="manager-compartment-1">
             <summary class="p-5 sm:p-7 pb-0 group-open:pb-5 border-b border-transparent group-open:border-carbon-800 transition-all flex items-center justify-between gap-4 relative select-none cursor-pointer outline-none">
               <div class="flex items-center gap-4 sm:gap-5">
-                <!-- Ascendion Logo Box (Enlarged) -->
-                <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-carbon-950 border border-emerald-500/50 flex items-center justify-center shadow-lg shrink-0 overflow-hidden p-2">
+                <!-- Ascendion Logo Box (Scaled to w-14) -->
+                <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-carbon-950 border border-emerald-500/50 flex items-center justify-center shadow-lg shrink-0 overflow-hidden p-2">
                   <img src="assets/ascendion.png" alt="Ascendion" class="w-full h-full object-contain" onerror="resolveAsset(this, 'ascendion')">
-                  <span class="asset-fallback hidden font-sans font-black text-3xl text-white">A</span>
+                  <span class="asset-fallback hidden font-sans font-black text-2xl text-white">A</span>
                 </div>
-                <!-- Client Logo Placeholder (Enlarged by ~15%) -->
+                <!-- Client Logo Placeholder (Scaled to w-12) -->
                 <div class="flex flex-col items-center shrink-0">
-                  <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-carbon-800 border border-emerald-500/30 flex items-center justify-center shadow-md overflow-hidden p-2" title="Enterprise Client Placeholder">
-                    <span class="font-sans font-bold text-[10px] sm:text-xs text-slate-500 text-center leading-tight">Client<br>Logo</span>
+                  <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-carbon-800 border border-emerald-500/30 flex items-center justify-center shadow-md overflow-hidden p-1.5" title="Enterprise Client Placeholder">
+                    <span class="font-sans font-bold text-[9px] sm:text-[10px] text-slate-500 text-center leading-tight">Client<br>Logo</span>
                   </div>
-                  <span class="text-[8.5px] font-mono text-slate-400 uppercase tracking-widest mt-1">CLIENT</span>
+                  <span class="text-[8px] font-mono text-slate-400 uppercase tracking-widest mt-1">CLIENT</span>
                 </div>
                 <!-- Title Text -->
                 <div class="pl-1">
-                  <h3 class="text-xl sm:text-2xl lg:text-3xl font-extrabold text-white tracking-tight">Ascendion</h3>
-                  <p class="text-[11px] sm:text-sm font-mono text-amber-400 font-semibold mt-0.5">DevOps &amp; GenAI Engineer • L5 Engineer @ Client</p>
+                  <h3 class="text-xl sm:text-2xl font-extrabold text-white tracking-tight">Ascendion</h3>
+                  <p class="text-[11px] sm:text-xs font-mono text-amber-400 font-semibold mt-0.5">DevOps &amp; GenAI Engineer • L5 Engineer @ Client</p>
                 </div>
               </div>
-              <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-carbon-800 flex items-center justify-center shrink-0">
-                <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 collapse-icon"></i>
+              <div class="flex items-center gap-3">
+                <span id="hint-accordion-1" class="hidden sm:block text-emerald-400 font-mono text-[10px] font-bold animate-pulse-subtle">Click to expand case studies ↘</span>
+                <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-carbon-800 flex items-center justify-center shrink-0">
+                  <i data-lucide="chevron-down" class="w-4 h-4 sm:w-5 sm:h-5 text-slate-400 collapse-icon"></i>
+                </div>
               </div>
             </summary>
             
@@ -835,7 +861,7 @@
                   <span class="text-slate-300 font-semibold">BENGALURU, INDIA</span>
                 </div>
                 <span class="px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/40 text-amber-300 text-[11px]">
-                  L5 Engineer (Client: Print Cloud) &amp; Ascendion GenAI
+                  L5 Engineer (Client: HP Inc.) &amp; Ascendion GenAI
                 </span>
               </div>
 
@@ -852,7 +878,7 @@
                   </ul>
                 </div>
                 <div class="p-4 sm:p-5 rounded-2xl bg-carbon-950/90 border border-carbon-800 space-y-2">
-                  <span class="text-[11px] font-mono font-bold text-amber-400 uppercase tracking-wider block">CROSS-STACK PLATFORM OWNERSHIP (CLIENT CLOUD)</span>
+                  <span class="text-[11px] font-mono font-bold text-amber-400 uppercase tracking-wider block">CROSS-STACK PLATFORM OWNERSHIP (HP INC.)</span>
                   <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
                     Balanced multi-account cloud governance with Java Spring Boot microservice refactoring under tight production SLAs across distributed teams.
                   </p>
@@ -877,7 +903,7 @@
                     </p>
                   </div>
                   <div class="pl-9 lg:pl-0 flex flex-col items-start lg:items-end gap-2 shrink-0">
-                    <button type="button" onclick="openExecCaseModal(1)" class="shiny-btn-red relative overflow-hidden px-4 py-2 rounded-xl bg-red-500/15 hover:bg-red-500 text-red-300 hover:text-white font-mono text-xs font-bold border border-red-500/50 shadow-[0_0_18px_rgba(239,68,68,0.25)] transition-all cursor-pointer flex items-center gap-2">
+                    <button type="button" onclick="window.PortfolioController.openCaseStudy('ascendion-pipeline')" class="shiny-btn-red relative overflow-hidden px-4 py-2 rounded-xl bg-red-500/15 hover:bg-red-500 text-red-300 hover:text-white font-mono text-xs font-bold border border-red-500/50 shadow-[0_0_18px_rgba(239,68,68,0.25)] transition-all cursor-pointer flex items-center gap-2">
                       📊 View Executive Case Study ↗
                     </button>
                     <span class="px-2.5 py-0.5 rounded bg-red-500/15 border border-red-500/35 text-red-300 font-mono text-[10px] font-semibold">RESOLVED IN 45M (60M SLA)</span>
@@ -895,7 +921,7 @@
                     </p>
                   </div>
                   <div class="pl-9 lg:pl-0 flex flex-col items-start lg:items-end gap-2 shrink-0">
-                    <button type="button" onclick="openExecCaseModal(3)" class="shiny-btn-purple relative overflow-hidden px-4 py-2 rounded-xl bg-purple-500/15 hover:bg-purple-500 text-purple-300 hover:text-white font-mono text-xs font-bold border border-purple-500/50 shadow-[0_0_18px_rgba(168,85,247,0.25)] transition-all cursor-pointer flex items-center gap-2">
+                    <button type="button" onclick="window.PortfolioController.openCaseStudy('ascendion-java')" class="shiny-btn-purple relative overflow-hidden px-4 py-2 rounded-xl bg-purple-500/15 hover:bg-purple-500 text-purple-300 hover:text-white font-mono text-xs font-bold border border-purple-500/50 shadow-[0_0_18px_rgba(168,85,247,0.25)] transition-all cursor-pointer flex items-center gap-2">
                       📊 View Executive Case Study ↗
                     </button>
                     <span class="px-2.5 py-0.5 rounded bg-purple-500/15 border border-purple-500/35 text-purple-300 font-mono text-[10px] font-semibold">+315 / -992 LINES CLEANED</span>
@@ -906,29 +932,29 @@
           </details>
 
           <!-- COMPARTMENT 2: EFICENS SYSTEMS -->
-          <details class="bg-carbon-900/95 border border-amber-500/35 rounded-3xl shadow-2xl group" open>
+          <details class="bg-carbon-900/95 border border-amber-500/35 rounded-3xl shadow-2xl group">
             <summary class="p-5 sm:p-7 pb-0 group-open:pb-5 border-b border-transparent group-open:border-carbon-800 transition-all flex items-center justify-between gap-4 relative select-none cursor-pointer outline-none">
               <div class="flex items-center gap-4 sm:gap-5">
-                <!-- Eficens Logo Box (Enlarged) -->
-                <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-carbon-950 border border-amber-500/50 flex items-center justify-center shadow-lg shrink-0 overflow-hidden p-2">
+                <!-- Eficens Logo Box (Scaled) -->
+                <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-carbon-950 border border-amber-500/50 flex items-center justify-center shadow-lg shrink-0 overflow-hidden p-2">
                   <img src="assets/eficens.png" alt="Eficens" class="w-full h-full object-contain" onerror="resolveAsset(this, 'eficens')">
-                  <span class="asset-fallback hidden font-sans font-black text-3xl text-amber-400">E</span>
+                  <span class="asset-fallback hidden font-sans font-black text-2xl text-amber-400">E</span>
                 </div>
-                <!-- Client Logo Placeholder (Enlarged by ~15%) -->
+                <!-- Client Logo Placeholder (Scaled) -->
                 <div class="flex flex-col items-center shrink-0">
-                  <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-carbon-800 border border-emerald-500/30 flex items-center justify-center shadow-md overflow-hidden p-2" title="FinTech Client Placeholder">
-                    <span class="font-sans font-bold text-[10px] sm:text-xs text-slate-500 text-center leading-tight">Client<br>Logo</span>
+                  <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-carbon-800 border border-emerald-500/30 flex items-center justify-center shadow-md overflow-hidden p-1.5" title="FinTech Client Placeholder">
+                    <span class="font-sans font-bold text-[9px] sm:text-[10px] text-slate-500 text-center leading-tight">Client<br>Logo</span>
                   </div>
-                  <span class="text-[8.5px] font-mono text-slate-400 uppercase tracking-widest mt-1">FINTECH</span>
+                  <span class="text-[8px] font-mono text-slate-400 uppercase tracking-widest mt-1">FINTECH</span>
                 </div>
                 <!-- Title Text -->
                 <div class="pl-1">
-                  <h3 class="text-xl sm:text-2xl lg:text-3xl font-extrabold text-white tracking-tight">Eficens Systems LLC</h3>
-                  <p class="text-[11px] sm:text-sm font-mono text-amber-400 font-semibold mt-0.5">DevOps Engineer • Zero-Trust AWS &amp; Clearing Infrastructure</p>
+                  <h3 class="text-xl sm:text-2xl font-extrabold text-white tracking-tight">Eficens Systems LLC</h3>
+                  <p class="text-[11px] sm:text-xs font-mono text-amber-400 font-semibold mt-0.5">DevOps Engineer • Zero-Trust AWS &amp; Clearing Infrastructure</p>
                 </div>
               </div>
               <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-carbon-800 flex items-center justify-center shrink-0">
-                <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 collapse-icon"></i>
+                <i data-lucide="chevron-down" class="w-4 h-4 sm:w-5 sm:h-5 text-slate-400 collapse-icon"></i>
               </div>
             </summary>
 
@@ -943,7 +969,7 @@
                 </span>
               </div>
 
-              <!-- 2-Column Responsibility Sub-Cards (Fixed to match PDF) -->
+              <!-- 2-Column Responsibility Sub-Cards (Content matched to PDF) -->
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div class="p-4 sm:p-5 rounded-2xl bg-carbon-950/90 border border-carbon-800 space-y-2">
                   <span class="text-[11px] font-mono font-bold text-amber-400 uppercase tracking-wider block">ZERO-TRUST CLEARING INFRASTRUCTURE &amp; IaC</span>
@@ -981,7 +1007,7 @@
                     </p>
                   </div>
                   <div class="pl-9 lg:pl-0 flex flex-col items-start lg:items-end gap-2 shrink-0">
-                    <button type="button" onclick="openExecCaseModal(4)" class="shiny-btn-green relative overflow-hidden px-4 py-2 rounded-xl bg-emerald-500/15 hover:bg-emerald-500 text-emerald-300 hover:text-carbon-950 font-mono text-xs font-bold border border-emerald-500/50 shadow-[0_0_18px_rgba(16,185,129,0.25)] transition-all cursor-pointer flex items-center gap-2">
+                    <button type="button" onclick="window.PortfolioController.openCaseStudy('eficens-terraform')" class="shiny-btn-green relative overflow-hidden px-4 py-2 rounded-xl bg-emerald-500/15 hover:bg-emerald-500 text-emerald-300 hover:text-carbon-950 font-mono text-xs font-bold border border-emerald-500/50 shadow-[0_0_18px_rgba(16,185,129,0.25)] transition-all cursor-pointer flex items-center gap-2">
                       📊 View Executive Case Study ↗
                     </button>
                     <span class="px-2.5 py-0.5 rounded bg-emerald-500/15 border border-emerald-500/35 text-emerald-300 font-mono text-[10px] font-semibold">&gt;50% FASTER • -15 INCIDENTS/MO</span>
@@ -992,22 +1018,22 @@
           </details>
 
           <!-- COMPARTMENT 3: LOTUSDATA LLP (No Client Placeholder) -->
-          <details class="bg-carbon-900/95 border border-sky-500/35 rounded-3xl shadow-2xl group" open>
+          <details class="bg-carbon-900/95 border border-sky-500/35 rounded-3xl shadow-2xl group">
             <summary class="p-5 sm:p-7 pb-0 group-open:pb-5 border-b border-transparent group-open:border-carbon-800 transition-all flex items-center justify-between gap-4 relative select-none cursor-pointer outline-none">
               <div class="flex items-center gap-4 sm:gap-5">
-                <!-- LotusData Logo Box (Enlarged, no client box next to it) -->
-                <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-carbon-950 border border-sky-500/50 flex items-center justify-center shadow-lg shrink-0 overflow-hidden p-2">
+                <!-- LotusData Logo Box (Scaled, no client box next to it) -->
+                <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-carbon-950 border border-sky-500/50 flex items-center justify-center shadow-lg shrink-0 overflow-hidden p-2">
                   <img src="assets/lotusdata.png" alt="LotusData" class="w-full h-full object-contain" onerror="resolveAsset(this, 'lotusdata')">
-                  <span class="asset-fallback hidden font-sans font-black text-3xl text-sky-400">LD</span>
+                  <span class="asset-fallback hidden font-sans font-black text-2xl text-sky-400">LD</span>
                 </div>
                 <!-- Title Text -->
                 <div class="pl-1">
-                  <h3 class="text-xl sm:text-2xl lg:text-3xl font-extrabold text-white tracking-tight">LotusData LLP</h3>
-                  <p class="text-[11px] sm:text-sm font-mono text-sky-400 font-semibold mt-0.5">Jr. System &amp; Cloud Administrator • Linux &amp; AWS Fleet Operations</p>
+                  <h3 class="text-xl sm:text-2xl font-extrabold text-white tracking-tight">LotusData LLP</h3>
+                  <p class="text-[11px] sm:text-xs font-mono text-sky-400 font-semibold mt-0.5">Jr. System &amp; Cloud Administrator • Linux &amp; AWS Fleet Operations</p>
                 </div>
               </div>
               <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-carbon-800 flex items-center justify-center shrink-0">
-                <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 collapse-icon"></i>
+                <i data-lucide="chevron-down" class="w-4 h-4 sm:w-5 sm:h-5 text-slate-400 collapse-icon"></i>
               </div>
             </summary>
 
@@ -1022,7 +1048,6 @@
                 </span>
               </div>
 
-              <!-- 2-Column Responsibility Sub-Cards -->
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div class="p-4 sm:p-5 rounded-2xl bg-carbon-950/90 border border-carbon-800 space-y-2">
                   <span class="text-[11px] font-mono font-bold text-sky-400 uppercase tracking-wider block">HIGH-AVAILABILITY AWS FLEET GOVERNANCE</span>
@@ -1060,7 +1085,7 @@
                     </p>
                   </div>
                   <div class="pl-9 lg:pl-0 flex flex-col items-start lg:items-end gap-2 shrink-0">
-                    <button type="button" onclick="openExecCaseModal(5)" class="shiny-btn-blue relative overflow-hidden px-4 py-2 rounded-xl bg-sky-500/15 hover:bg-sky-400 text-sky-300 hover:text-carbon-950 font-mono text-xs font-bold border border-sky-500/50 shadow-[0_0_18px_rgba(56,189,248,0.25)] transition-all cursor-pointer flex items-center gap-2">
+                    <button type="button" onclick="window.PortfolioController.openCaseStudy('lotusdata-fleet')" class="shiny-btn-blue relative overflow-hidden px-4 py-2 rounded-xl bg-sky-500/15 hover:bg-sky-400 text-sky-300 hover:text-carbon-950 font-mono text-xs font-bold border border-sky-500/50 shadow-[0_0_18px_rgba(56,189,248,0.25)] transition-all cursor-pointer flex items-center gap-2">
                       📊 View Executive Case Study ↗
                     </button>
                     <span class="px-2.5 py-0.5 rounded bg-sky-500/15 border border-sky-500/35 text-sky-300 font-mono text-[10px] font-semibold">99% UPTIME SLA • ZERO REBOOTS</span>
@@ -1073,7 +1098,7 @@
         </div>
 
         <!-- =================================================================================== -->
-        <!-- DEV MODE EXCLUSIVE: Git Flow Architecture (Color-Matched Glare & Equal Cert Cards)  -->
+        <!-- DEV MODE EXCLUSIVE: Git Flow Architecture (Color-Matched Glare & Small Logo Pairs)  -->
         <!-- =================================================================================== -->
         <div id="dev-sandbox-experience" class="dev-only space-y-6 sm:space-y-8" style="display: none;">
           <div class="space-y-6 font-mono text-xs border-l border-[#00ff66]/40 ml-2 sm:ml-4 pl-4 sm:pl-6 relative">
@@ -1086,17 +1111,27 @@
               </div>
               <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-start">
                 <div class="lg:col-span-8 space-y-3">
-                  <h4 class="text-sm sm:text-base font-bold text-white leading-snug">Ascendion — DevOps &amp; GenAI Engineer (L5 @ HP Inc.)</h4>
+                  <!-- Small Logo Pair Header -->
+                  <div class="flex items-center gap-2 mb-2 border-b border-carbon-800 pb-2 inline-flex pr-4">
+                    <div class="w-6 h-6 rounded bg-carbon-950 border border-emerald-500/50 flex items-center justify-center p-0.5 overflow-hidden">
+                      <img src="assets/ascendion.png" alt="Ascendion" class="w-full h-full object-contain" onerror="resolveAsset(this, 'ascendion')">
+                    </div>
+                    <div class="w-6 h-6 rounded bg-carbon-800 border border-emerald-500/30 flex items-center justify-center overflow-hidden">
+                      <span class="font-sans font-bold text-[6px] text-slate-500 text-center leading-tight">Client</span>
+                    </div>
+                    <h4 class="text-sm font-bold text-white leading-snug ml-1">Ascendion (L5 @ HP Inc.)</h4>
+                  </div>
+                  
                   <ul class="space-y-2 text-slate-300 text-xs sm:text-sm list-disc list-inside leading-relaxed">
                     <li><strong class="text-[#00ff66]">AAVA GenAI Core Workflows:</strong> Integrated LLMs, vector knowledge bases, and guardrail token architectures into agentic SDLC pipelines.</li>
                     <li><strong class="text-amber-400">Container Layer Debugging:</strong> Triaged embedded Tomcat vs. readiness probe failures on port 8080 (ExitCode 127) under live SLAs.</li>
                     <li><strong class="text-purple-400">Java SKU Refactoring (+315 / -992 LOC):</strong> Consolidated divergent product SKU identifiers into a canonical DTO model across renewal microservices.</li>
                   </ul>
                   <div class="pt-2 sm:pt-3 flex flex-wrap items-center gap-3">
-                    <button onclick="openModal('modal-incident')" class="shiny-btn-green group relative overflow-hidden px-3.5 py-2 rounded-lg bg-[#00ff66]/20 hover:bg-[#00ff66] text-[#00ff66] hover:text-black font-mono text-[10px] sm:text-xs font-bold border border-[#00ff66]/80 shadow-[0_0_24px_rgba(0,255,102,0.48)] transition-all cursor-pointer flex items-center gap-2">
+                    <button onclick="window.PortfolioController.openModal('modal-incident')" class="shiny-btn-green group relative overflow-hidden px-3.5 py-2 rounded-lg bg-[#00ff66]/20 hover:bg-[#00ff66] text-[#00ff66] hover:text-black font-mono text-[10px] sm:text-xs font-bold border border-[#00ff66]/80 shadow-[0_0_24px_rgba(0,255,102,0.48)] transition-all cursor-pointer flex items-center gap-2">
                       <span class="w-2 h-2 rounded-full bg-[#00ff66] group-hover:bg-black animate-ping"></span>[Inspect Incident: ExitCode 127]
                     </button>
-                    <button onclick="openModal('modal-java')" class="shiny-btn-purple group relative overflow-hidden px-3.5 py-2 rounded-lg bg-purple-500/20 hover:bg-purple-500 text-purple-300 hover:text-white font-mono text-[10px] sm:text-xs font-bold border border-purple-400/80 shadow-[0_0_24px_rgba(168,85,247,0.52)] transition-all cursor-pointer flex items-center gap-2">
+                    <button onclick="window.PortfolioController.openModal('modal-java')" class="shiny-btn-purple group relative overflow-hidden px-3.5 py-2 rounded-lg bg-purple-500/20 hover:bg-purple-500 text-purple-300 hover:text-white font-mono text-[10px] sm:text-xs font-bold border border-purple-400/80 shadow-[0_0_24px_rgba(168,85,247,0.52)] transition-all cursor-pointer flex items-center gap-2">
                       <span class="w-2 h-2 rounded-full bg-purple-300 group-hover:bg-white animate-ping"></span>[Inspect Diff: +315 / -992]
                     </button>
                   </div>
@@ -1121,14 +1156,24 @@
               </div>
               <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-start">
                 <div class="lg:col-span-8 space-y-3">
-                  <h4 class="text-sm sm:text-base font-bold text-white leading-snug">Eficens Systems LLC — DevOps Engineer (US FinTech)</h4>
+                  <!-- Small Logo Pair Header -->
+                  <div class="flex items-center gap-2 mb-2 border-b border-carbon-800 pb-2 inline-flex pr-4">
+                    <div class="w-6 h-6 rounded bg-carbon-950 border border-amber-500/50 flex items-center justify-center p-0.5 overflow-hidden">
+                      <img src="assets/eficens.png" alt="Eficens" class="w-full h-full object-contain" onerror="resolveAsset(this, 'eficens')">
+                    </div>
+                    <div class="w-6 h-6 rounded bg-carbon-800 border border-emerald-500/30 flex items-center justify-center overflow-hidden">
+                      <span class="font-sans font-bold text-[6px] text-slate-500 text-center leading-tight">Client</span>
+                    </div>
+                    <h4 class="text-sm font-bold text-white leading-snug ml-1">Eficens Systems LLC (US FinTech)</h4>
+                  </div>
+
                   <ul class="space-y-2 text-slate-300 text-xs sm:text-sm list-disc list-inside leading-relaxed">
                     <li><strong class="text-sky-400">Zero-Trust Terraform Blueprints:</strong> Engineered reusable IaC modules provisioning private multi-tier VPC topologies across environments syncing with NYSE &amp; Fed feeds.</li>
                     <li><strong class="text-amber-400">DependencyViolation Resolution:</strong> Decoupled inline security group blocks into standalone <code class="text-white">aws_security_group_rule</code> resources.</li>
                     <li><strong class="text-emerald-400">KMS Cryptographic Parity:</strong> Automated Jenkins pipelines enforcing KMS envelope encryption and zero-downtime RDS upgrades.</li>
                   </ul>
                   <div class="pt-2 sm:pt-3">
-                    <button onclick="openModal('modal-arn')" class="shiny-btn-blue group relative overflow-hidden px-3.5 py-2 rounded-lg bg-sky-500/20 hover:bg-sky-400 text-sky-300 hover:text-black font-mono text-[10px] sm:text-xs font-bold border border-sky-400/80 shadow-[0_0_24px_rgba(56,189,248,0.52)] transition-all cursor-pointer inline-flex items-center gap-2">
+                    <button onclick="window.PortfolioController.openModal('modal-arn')" class="shiny-btn-blue group relative overflow-hidden px-3.5 py-2 rounded-lg bg-sky-500/20 hover:bg-sky-400 text-sky-300 hover:text-black font-mono text-[10px] sm:text-xs font-bold border border-sky-400/80 shadow-[0_0_24px_rgba(56,189,248,0.52)] transition-all cursor-pointer inline-flex items-center gap-2">
                       <span class="w-2 h-2 rounded-full bg-sky-300 group-hover:bg-black animate-ping"></span>[Inspect Audit: IAC-AUDIT-225]
                     </button>
                   </div>
@@ -1153,7 +1198,14 @@
               </div>
               <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-start">
                 <div class="lg:col-span-8 space-y-3">
-                  <h4 class="text-sm sm:text-base font-bold text-white leading-snug">LotusData LLP — Jr. System / Cloud Administrator</h4>
+                  <!-- Small Logo Pair Header -->
+                  <div class="flex items-center gap-2 mb-2 border-b border-carbon-800 pb-2 inline-flex pr-4">
+                    <div class="w-6 h-6 rounded bg-carbon-950 border border-sky-500/50 flex items-center justify-center p-0.5 overflow-hidden">
+                      <img src="assets/lotusdata.png" alt="LotusData" class="w-full h-full object-contain" onerror="resolveAsset(this, 'lotusdata')">
+                    </div>
+                    <h4 class="text-sm font-bold text-white leading-snug ml-1">LotusData LLP (Fleet Ops)</h4>
+                  </div>
+
                   <ul class="space-y-2 text-slate-300 text-xs sm:text-sm list-disc list-inside leading-relaxed">
                     <li><strong class="text-sky-400">High-Availability AWS Fleet:</strong> Administered and scaled a fleet of <strong class="text-white">200+ AWS instances</strong>, sustaining 99% uptime via CloudWatch monitoring.</li>
                     <li><strong class="text-emerald-400">Online VFS &amp; LVM Expansion:</strong> Dynamically managed filesystem scaling and non-disruptive inode recovery using <code class="text-white">lvextend -r</code> and <code class="text-white">lsof +L1</code> with 0 reboot overhead.</li>
@@ -1175,6 +1227,7 @@
           </div>
         </div>
       </section>
+
       <!-- Section 03: Academic Foundations -->
       <section id="education" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-14 border-b border-carbon-800">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 gap-4">
@@ -1258,7 +1311,7 @@
         </div>
       </section>
 
-      <!-- Section 04: Operating Mindset & Direct Contact -->
+      <!-- Section 04: Operating Mindset & Direct Contact (Circular Illustration Inside 3 Revolving Loop Arrows) -->
       <section id="contact" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-14">
         <div class="rounded-3xl bg-gradient-to-br from-carbon-850 via-carbon-800 to-carbon-900 border border-carbon-700 p-6 sm:p-8 md:p-12 shadow-2xl">
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
@@ -1290,7 +1343,7 @@
               </div>
             </div>
 
-            <!-- True Circular 3-Arc Operating Loop SVG with Circular Illustration Embedded in the Center -->
+            <!-- True Circular 3-Arc Operating Loop SVG with Native Image Clipping (No foreignObject bugs) -->
             <div class="lg:col-span-6 w-full overflow-hidden">
               <div class="rounded-2xl bg-carbon-950 border border-carbon-700 p-4 sm:p-5 shadow-2xl overflow-x-auto">
                 <div class="flex items-center justify-between text-[10px] sm:text-xs font-mono text-slate-400 mb-3 px-1 min-w-[300px]">
@@ -1313,30 +1366,29 @@
                       <stop offset="70%" stop-color="#38bdf8" stop-opacity="0.08"/>
                       <stop offset="100%" stop-color="#070b12" stop-opacity="0"/>
                     </radialGradient>
+                    <!-- Perfect Native SVG Circular Mask for the Avatar Image -->
+                    <clipPath id="avatarClipPath">
+                      <circle cx="300" cy="215" r="91"/>
+                    </clipPath>
                   </defs>
 
+                  <!-- Subtle Ambient Halo Behind the Orbit -->
                   <circle cx="300" cy="215" r="130" fill="url(#hubGlowGrad)"/>
                   <circle cx="300" cy="215" r="118" fill="none" stroke="#161f33" stroke-width="18"/>
 
+                  <!-- 3 Curved Interlocking Directional Cycle Arcs Revolving Around the Central Avatar -->
                   <path d="M 355 110 A 118 118 0 0 1 405 270" fill="none" stroke="#f59e0b" stroke-width="6" stroke-linecap="round" marker-end="url(#arrowAmber)" class="svg-flow-line loop-active-flow"/>
                   <path d="M 365 314 A 118 118 0 0 1 235 314" fill="none" stroke="#38bdf8" stroke-width="6" stroke-linecap="round" marker-end="url(#arrowBlue)" class="svg-flow-line loop-active-flow"/>
                   <path d="M 195 270 A 118 118 0 0 1 245 110" fill="none" stroke="#34d399" stroke-width="6" stroke-linecap="round" marker-end="url(#arrowGreen)" class="svg-flow-line loop-active-flow"/>
 
-                  <!-- Central Circular Illustration Hub -->
+                  <!-- Central Hub Background (Fills gap if image fails to load) -->
                   <circle cx="300" cy="215" r="91" fill="#0d1320" stroke="#fbbf24" stroke-width="2" stroke-opacity="0.55"/>
-                  <foreignObject x="212" y="127" width="176" height="176">
-                    <div xmlns="http://www.w3.org/1999/xhtml" class="w-full h-full rounded-full overflow-hidden border-2 border-sky-400/50 bg-[#0a0e17] relative flex items-center justify-center shadow-inner">
-                      <!-- Referenced image explicitly loaded here -->
-                      <img src="assets/image_e9e55e.jpg" alt="US to India Cloud &amp; DevOps Journey" class="w-full h-full object-cover rounded-full" onerror="resolveAsset(this, 'image_e9e55e')">
-                      <div class="asset-fallback hidden w-full h-full flex-col items-center justify-center bg-[#0d1320] text-center p-2">
-                        <img src="assets/sai-vinay.png" alt="Sai Vinay" class="w-full h-full object-cover rounded-full opacity-90" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-                        <div style="display:none;" class="flex-col items-center justify-center">
-                          <span class="font-mono text-[11px] font-bold text-white">OPERATING</span>
-                          <span class="font-mono text-[10px] font-bold text-emerald-400">LOOP ↻</span>
-                        </div>
-                      </div>
-                    </div>
-                  </foreignObject>
+                  
+                  <!-- Native SVG Image Embed (100% Cross-Browser Safe, No foreignObject) -->
+                  <!-- Coordinates: (cx=300, cy=215, r=91). Image Box: x=300-91=209, y=215-91=124. Width/Height=182 -->
+                  <image href="assets/image_e9e55e.jpg" x="209" y="124" width="182" height="182" clip-path="url(#avatarClipPath)" preserveAspectRatio="xMidYMid slice" opacity="0.95"/>
+                  
+                  <!-- Glowing Decorative Ring Overlay -->
                   <circle cx="300" cy="215" r="88" fill="none" stroke="#38bdf8" stroke-width="1.2" stroke-dasharray="4 4" opacity="0.6"/>
 
                   <!-- Node 01 -->
@@ -1398,15 +1450,15 @@
     <div class="bg-carbon-900 border border-amber-500/50 max-w-3xl w-full rounded-2xl overflow-hidden shadow-[0_0_40px_rgba(245,158,11,0.2)] flex flex-col max-h-[90vh]">
       <div class="px-6 py-4 bg-carbon-850 border-b border-carbon-700 flex items-center justify-between">
         <div class="flex items-center gap-3">
-          <span id="execModalBadge" class="px-2.5 py-1 rounded bg-amber-500/20 text-amber-400 font-mono text-xs font-bold border border-amber-500/40">CASE 01</span>
+          <span id="execModalBadge" class="px-2.5 py-1 rounded bg-amber-500/20 text-amber-400 font-mono text-xs font-bold border border-amber-500/40">CASE STUDY</span>
           <h3 id="execModalTitle" class="text-sm sm:text-base font-bold text-white">Executive Case Study</h3>
         </div>
-        <button onclick="closeModal('modal-exec-case')" class="text-slate-400 hover:text-white font-mono text-sm cursor-pointer">✕ ESC</button>
+        <button onclick="window.PortfolioController.closeModal('modal-exec-case')" class="text-slate-400 hover:text-white font-mono text-sm cursor-pointer" aria-label="Close Case Study Modal">✕ ESC</button>
       </div>
-      <div id="execModalBody" class="p-6 overflow-y-auto space-y-5 text-sm leading-relaxed"></div>
+      <div id="execModalBody" class="p-6 overflow-y-auto space-y-5 text-sm leading-relaxed text-slate-200"></div>
       <div class="px-6 py-3 bg-carbon-850 border-t border-carbon-800 flex items-center justify-between">
         <span id="execModalFooterMetric" class="font-mono text-xs text-emerald-400 font-bold"></span>
-        <button onclick="closeModal('modal-exec-case')" class="px-4 py-2 rounded-lg bg-carbon-800 text-white border border-carbon-600 font-mono text-xs font-bold hover:text-amber-400 hover:border-amber-400 cursor-pointer">✕ Close</button>
+        <button onclick="window.PortfolioController.closeModal('modal-exec-case')" class="px-4 py-2 rounded-lg bg-carbon-800 text-white border border-carbon-600 font-mono text-xs font-bold hover:text-amber-400 hover:border-amber-400 cursor-pointer">✕ Close</button>
       </div>
     </div>
   </div>
@@ -1421,8 +1473,8 @@
           <span class="w-2.5 h-2.5 rounded-full bg-[#00ff66] animate-pulse"></span>
           <span class="font-bold text-[#00ff66] text-[10px] sm:text-xs tracking-wider">Incident Sandbox Shell</span>
         </div>
-        <button type="button" onclick="forceBreakCli()" class="absolute left-1/2 -translate-x-1/2 px-2.5 sm:px-3.5 py-1 rounded bg-red-950/90 hover:bg-red-600 text-red-200 hover:text-white border border-red-500/50 text-[9px] sm:text-[10px] font-bold cursor-pointer transition-colors z-10">■ Break</button>
-        <button type="button" onclick="toggleConsoleModal()" class="px-3 sm:px-4 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-slate-300 hover:text-white border border-carbon-600 text-[9px] sm:text-[10px] font-bold cursor-pointer transition-colors z-10">✕ Close</button>
+        <button type="button" onclick="window.PortfolioController.forceBreakCli()" class="absolute left-1/2 -translate-x-1/2 px-2.5 sm:px-3.5 py-1 rounded bg-red-950/90 hover:bg-red-600 text-red-200 hover:text-white border border-red-500/50 text-[9px] sm:text-[10px] font-bold cursor-pointer transition-colors z-10">■ Break</button>
+        <button type="button" onclick="window.PortfolioController.toggleConsoleModal()" class="px-3 sm:px-4 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-slate-300 hover:text-white border border-carbon-600 text-[9px] sm:text-[10px] font-bold cursor-pointer transition-colors z-10">✕ Close</button>
       </div>
       <div id="cliOutput" class="flex-1 overflow-y-auto p-3 sm:p-4 space-y-1 text-slate-300 text-[10px] sm:text-[11.5px] leading-relaxed font-mono">
         <div class="text-[#00ff66] font-bold">=== Interactive Outage &amp; Diagnostic Sandbox ===</div>
@@ -1431,11 +1483,11 @@
       <div class="flex flex-col bg-black border-t border-[#00ff66]/30">
         <div class="flex flex-wrap items-center gap-1.5 px-3 sm:px-4 py-2 border-b border-carbon-800">
           <span class="text-[8px] sm:text-[9px] text-slate-500 uppercase tracking-wide">Quick:</span>
-          <button type="button" onclick="runCliCommand('help')" class="px-1.5 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] border border-[#00ff66]/30 text-[9px] sm:text-[9.5px] cursor-pointer">help</button>
-          <button type="button" onclick="runCliCommand('ls -la')" class="px-1.5 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] border border-[#00ff66]/30 text-[9px] sm:text-[9.5px] cursor-pointer">ls -la</button>
-          <button type="button" onclick="runCliCommand('./patch.sh')" class="px-1.5 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] border border-[#00ff66]/30 text-[9px] sm:text-[9.5px] cursor-pointer">./patch.sh</button>
-          <button type="button" onclick="runCliCommand('lsof +L1')" class="px-1.5 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] border border-[#00ff66]/30 text-[9px] sm:text-[9.5px] cursor-pointer">lsof +L1</button>
-          <button type="button" onclick="runCliCommand('sudo hire sai')" class="px-1.5 py-0.5 rounded bg-amber-500/15 hover:bg-amber-400 hover:text-black text-amber-300 border border-amber-500/40 text-[9px] sm:text-[9.5px] cursor-pointer">👑 sudo hire sai</button>
+          <button type="button" onclick="window.PortfolioController.runCliCommand('help')" class="px-1.5 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] border border-[#00ff66]/30 text-[9px] sm:text-[9.5px] cursor-pointer">help</button>
+          <button type="button" onclick="window.PortfolioController.runCliCommand('ls -la')" class="px-1.5 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] border border-[#00ff66]/30 text-[9px] sm:text-[9.5px] cursor-pointer">ls -la</button>
+          <button type="button" onclick="window.PortfolioController.runCliCommand('./patch.sh')" class="px-1.5 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] border border-[#00ff66]/30 text-[9px] sm:text-[9.5px] cursor-pointer">./patch.sh</button>
+          <button type="button" onclick="window.PortfolioController.runCliCommand('lsof +L1')" class="px-1.5 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] border border-[#00ff66]/30 text-[9px] sm:text-[9.5px] cursor-pointer">lsof +L1</button>
+          <button type="button" onclick="window.PortfolioController.runCliCommand('sudo hire sai')" class="px-1.5 py-0.5 rounded bg-amber-500/15 hover:bg-amber-400 hover:text-black text-amber-300 border border-amber-500/40 text-[9px] sm:text-[9.5px] cursor-pointer">👑 sudo hire sai</button>
         </div>
         <div class="flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-3">
           <span id="cliPromptLabel" class="text-[#00ff66] font-bold shrink-0 text-[10px] sm:text-xs">sai@prod-bastion:~$</span>
@@ -1446,7 +1498,7 @@
   </div>
 
   <!-- ========================================================================= -->
-  <!-- MODAL: LIVE CLIENT TELEMETRY DASHBOARD (Honest Measurements + Tooltip)    -->
+  <!-- MODAL: LIVE CLIENT TELEMETRY DASHBOARD (Honest Measurements & A11y Tooltips) -->
   <!-- ========================================================================= -->
   <div id="modal-telemetry-dashboard" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4">
     <div class="bg-carbon-950 border border-[#00ff66]/60 max-w-3xl w-full rounded-2xl overflow-hidden shadow-[0_0_45px_rgba(0,255,102,0.2)] font-mono flex flex-col max-h-[90vh]">
@@ -1455,7 +1507,7 @@
           <span class="w-2.5 h-2.5 rounded-full bg-[#00ff66] animate-ping"></span>
           <h3 class="text-xs sm:text-sm font-bold text-[#00ff66] tracking-wider uppercase">VERIFIED CLIENT &amp; EDGE TELEMETRY</h3>
         </div>
-        <button type="button" onclick="closeModal('modal-telemetry-dashboard')" class="px-3 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-slate-300 hover:text-white border border-carbon-600 text-xs font-bold cursor-pointer">✕ Close</button>
+        <button type="button" onclick="window.PortfolioController.closeModal('modal-telemetry-dashboard')" class="px-3 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-slate-300 hover:text-white border border-carbon-600 text-xs font-bold cursor-pointer">✕ Close</button>
       </div>
       <div class="p-5 sm:p-6 overflow-y-auto space-y-5 bg-[#030804]">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -1464,6 +1516,15 @@
             <div class="flex items-center gap-1.5">
               <span class="px-1.5 py-0.5 rounded bg-[#00ff66]/15 text-[#00ff66] text-[9px] font-bold border border-[#00ff66]/40">MEASURED</span>
               <span class="text-xs text-slate-300 uppercase tracking-wider">HTTP HEAD RTT &amp; JITTER</span>
+              <!-- A11y Tooltip -->
+              <div class="a11y-tooltip-wrapper">
+                <button type="button" class="a11y-tooltip-trigger" aria-expanded="false" aria-label="Explanation of HTTP RTT">
+                  <span class="inline-flex items-center justify-center w-3 h-3 rounded-full border border-slate-500 text-slate-500 text-[8px] font-bold leading-none select-none hover:text-[#00ff66] hover:border-[#00ff66]">i</span>
+                </button>
+                <div class="a11y-tooltip-content">
+                  Time taken for an HTTP request to receive a response, sampled periodically. Jitter indicates the average variation between consecutive samples in the rolling window.
+                </div>
+              </div>
             </div>
             <svg viewBox="0 0 220 135" class="w-52 h-32 overflow-visible">
               <path d="M 20 110 A 90 90 0 0 1 200 110" fill="none" stroke="#161f33" stroke-width="14" stroke-linecap="round"/>
@@ -1482,7 +1543,16 @@
           <div class="p-4 sm:p-5 rounded-xl bg-black border border-[#00ff66]/30 flex flex-col items-center text-center space-y-2.5">
             <div class="flex items-center gap-1.5">
               <span class="px-1.5 py-0.5 rounded bg-[#00ff66]/15 text-[#00ff66] text-[9px] font-bold border border-[#00ff66]/40">MEASURED</span>
-              <span class="text-xs text-slate-300 uppercase tracking-wider">COMPOSITOR FPS &amp; LOOP DRIFT</span>
+              <span class="text-xs text-slate-300 uppercase tracking-wider">BROWSER rAF CADENCE</span>
+              <!-- A11y Tooltip -->
+              <div class="a11y-tooltip-wrapper">
+                <button type="button" class="a11y-tooltip-trigger" aria-expanded="false" aria-label="Explanation of Browser rAF">
+                  <span class="inline-flex items-center justify-center w-3 h-3 rounded-full border border-slate-500 text-slate-500 text-[8px] font-bold leading-none select-none hover:text-[#00ff66] hover:border-[#00ff66]">i</span>
+                </button>
+                <div class="a11y-tooltip-content">
+                  Browser animation-frame callback frequency (FPS) calculated via requestAnimationFrame. The timer delay measures drift between setTimeout scheduling and actual execution.
+                </div>
+              </div>
             </div>
             <svg viewBox="0 0 220 135" class="w-52 h-32 overflow-visible">
               <path d="M 20 110 A 90 90 0 0 1 200 110" fill="none" stroke="#161f33" stroke-width="14" stroke-linecap="round"/>
@@ -1494,229 +1564,85 @@
               </g>
               <text id="speedGaugeValueText" x="110" y="96" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="bold">60 FPS</text>
             </svg>
-            <p id="speedGaugeSubtext" class="text-[11px] text-slate-400">Event-Loop Drift: <strong id="loopDriftVal" class="text-[#00ff66]">0.4 ms</strong></p>
+            <p class="text-[11px] text-slate-400">Timer Scheduling Delay: <strong id="loopDriftVal" class="text-[#00ff66]">0.4 ms</strong></p>
           </div>
         </div>
 
-        <!-- Explicit Separation of Browser Estimates vs Real Edge Trace -->
+        <!-- Explicit Separation of Browser Estimates vs Real Edge Trace with Accessible Tooltips -->
         <div class="p-3.5 rounded-xl bg-black border border-carbon-800 grid grid-cols-1 sm:grid-cols-3 gap-3 text-[11px]">
           <div>
-            <span class="text-slate-500 block text-[9.5px]">EDGE POP / TRACE [MEASURED]</span>
-            <strong id="telemetryEdgePop" class="text-[#00ff66]"> Detecting POP…</strong>
+            <div class="flex items-center gap-1.5 mb-0.5">
+              <span class="text-slate-500 text-[9.5px] uppercase">EDGE POP [MEASURED]</span>
+              <div class="a11y-tooltip-wrapper">
+                <button type="button" class="a11y-tooltip-trigger" aria-expanded="false" aria-label="Explanation of Edge POP">
+                  <span class="inline-flex items-center justify-center w-3 h-3 rounded-full border border-slate-500 text-slate-500 text-[8px] font-bold leading-none select-none hover:text-white hover:border-white">i</span>
+                </button>
+                <div class="a11y-tooltip-content">
+                  Cloudflare data-centre code returned by the trace endpoint, when available. Otherwise falls back to a same-origin HTTP HEAD ping.
+                </div>
+              </div>
+            </div>
+            <strong id="telemetryEdgePop" class="text-[#00ff66] block"> Detecting POP…</strong>
           </div>
           <div>
-            <span class="group relative inline-flex items-center gap-1 cursor-help text-slate-500 text-[9.5px] uppercase">
-              NET INFO API [ESTIMATE]
-              <div class="w-3 h-3 rounded-full bg-slate-700 text-white text-[8px] flex items-center justify-center font-bold">i</div>
-              <div class="absolute bottom-full mb-2 hidden group-hover:block w-48 bg-carbon-800 text-slate-300 text-[9px] p-2 rounded border border-carbon-600 shadow-xl z-50 normal-case tracking-normal">Modern browsers (Chrome/Safari) cap this API at ~10 Mbps to prevent cross-site fingerprinting. It is heavily throttled and not a true speed test.</div>
-            </span>
-            <strong id="telemetryConnType" class="text-amber-300 block mt-0.5">Checking API…</strong>
+            <div class="flex items-center gap-1.5 mb-0.5">
+              <span class="text-slate-500 text-[9.5px] uppercase">NET INFO API [ESTIMATE]</span>
+              <div class="a11y-tooltip-wrapper">
+                <button type="button" class="a11y-tooltip-trigger" aria-expanded="false" aria-label="Explanation of Network Information API">
+                  <span class="inline-flex items-center justify-center w-3 h-3 rounded-full border border-slate-500 text-slate-500 text-[8px] font-bold leading-none select-none hover:text-white hover:border-white">i</span>
+                </button>
+                <div class="a11y-tooltip-content">
+                  Browser-provided connection estimate, not an actual speed test. Modern browsers heavily throttle this metric (often capping at ~10 Mbps) to prevent cross-site fingerprinting.
+                </div>
+              </div>
+            </div>
+            <strong id="telemetryConnType" class="text-amber-300 block">Checking API…</strong>
           </div>
           <div>
-            <span class="text-slate-500 block text-[9.5px]">JS HEAP [ENGINE CAPABILITY]</span>
-            <strong id="telemetryHeapVal" class="text-sky-300">Checking performance.memory…</strong>
+            <div class="flex items-center gap-1.5 mb-0.5">
+              <span class="text-slate-500 text-[9.5px] uppercase">JS HEAP [CAPABILITY]</span>
+              <div class="a11y-tooltip-wrapper">
+                <button type="button" class="a11y-tooltip-trigger" aria-expanded="false" aria-label="Explanation of JS Heap">
+                  <span class="inline-flex items-center justify-center w-3 h-3 rounded-full border border-slate-500 text-slate-500 text-[8px] font-bold leading-none select-none hover:text-white hover:border-white">i</span>
+                </button>
+                <div class="a11y-tooltip-content">
+                  JavaScript heap allocation exposed by supported browser engines (like Chromium's non-standard performance.memory API). Browsers that prioritize privacy intentionally restrict this data.
+                </div>
+              </div>
+            </div>
+            <strong id="telemetryHeapVal" class="text-sky-300 block">Checking performance…</strong>
           </div>
         </div>
       </div>
       <div class="px-6 py-3.5 bg-black border-t border-[#00ff66]/30 flex flex-wrap items-center justify-between gap-3 text-xs">
-        <span class="text-[10.5px] text-slate-400">Zero fabricated values • Directly queries W3C Performance &amp; Edge Trace</span>
-        <button id="btnResampleDashboard" type="button" class="px-4 py-1.5 rounded-lg bg-[#00ff66]/20 hover:bg-[#00ff66] text-[#00ff66] hover:text-black font-bold border border-[#00ff66]/60 transition-all cursor-pointer">↻ Re-Sample Now</button>
+        <span class="text-[10.5px] text-slate-400">Zero fabricated values • Directly queries W3C Performance APIs</span>
+        <button type="button" onclick="window.PortfolioController.triggerManualHttpProbe()" class="px-4 py-1.5 rounded-lg bg-[#00ff66]/20 hover:bg-[#00ff66] text-[#00ff66] hover:text-black font-bold border border-[#00ff66]/60 transition-all cursor-pointer">↻ Re-Sample Network</button>
       </div>
     </div>
   </div>
-  <!-- Modal 1: Incident 127 -->
-  <div id="modal-incident" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
-    <div class="bg-carbon-900 border border-carbon-700 max-w-3xl w-full rounded-2xl overflow-hidden shadow-[0_0_30px_rgba(0,255,102,0.15)] flex flex-col max-h-[90vh]">
-      <div class="px-6 py-4 bg-carbon-850 border-b border-carbon-700 flex items-center justify-between">
-        <div class="flex items-center gap-3"><span class="px-2.5 py-1 rounded bg-red-500/20 text-red-400 font-mono text-xs font-bold border border-red-500/40">[INC-CONTAINER-127]</span><h3 class="text-base font-bold text-white">Docker Readiness Probe Triage</h3></div>
-        <button onclick="closeModal('modal-incident')" class="text-slate-400 hover:text-white font-mono text-sm cursor-pointer">✕ ESC</button>
-      </div>
-      <div class="p-6 bg-carbon-950 border-b border-carbon-800">
-        <div class="flex items-center justify-between text-xs font-mono text-slate-400 mb-3"><span>TOPOLOGY: HARBOR_BASE_IMAGE ➔ JVM_APP ➔ PROBE_AGENT</span><span id="case1StatusBadge" class="text-red-400 font-bold">EXIT CODE 127</span></div>
-        <svg viewBox="0 0 520 115" class="w-full h-auto my-2" xmlns="http://www.w3.org/2000/svg">
-          <line x1="150" y1="55" x2="195" y2="55" stroke="#34d399" stroke-width="2.5" class="svg-flow-line"/><polygon points="198,55 190,50 190,60" fill="#34d399"/>
-          <line id="case1SvgLine2" x1="325" y1="55" x2="370" y2="55" stroke="#ef4444" stroke-width="2.5" class="svg-flow-line"/><polygon id="case1SvgArrow2" points="373,55 365,50 365,60" fill="#ef4444"/>
-          <g transform="translate(10, 22)"><rect width="140" height="66" rx="8" fill="#062c22" stroke="#34d399" stroke-width="1.5"/><text x="70" y="30" text-anchor="middle" fill="#6ee7b7" font-size="12" font-weight="bold">Spring App</text><text x="70" y="48" text-anchor="middle" fill="#34d399" font-size="10">Port 8080 OK (7.5s)</text></g>
-          <g transform="translate(195, 22)"><rect id="case1SvgProbeRect" width="130" height="66" rx="8" fill="#3b0a0a" stroke="#ef4444" stroke-width="1.5"/><text x="65" y="30" text-anchor="middle" fill="#fca5a5" font-size="12" font-weight="bold">Health Probe</text><text id="case1SvgProbeText" x="65" y="48" text-anchor="middle" fill="#f87171" font-size="10">curl missing (127)</text></g>
-          <g transform="translate(370, 22)"><rect id="case1SvgRelRect" width="140" height="66" rx="8" fill="#161f33" stroke="#475569" stroke-width="1.5"/><text x="70" y="30" text-anchor="middle" fill="#e2e8f0" font-size="12" font-weight="bold">Release</text><text id="case1SvgRelText" x="70" y="48" text-anchor="middle" fill="#94a3b8" font-size="10">Pipeline Blocked</text></g>
-        </svg>
-        <div class="pt-4 flex items-center justify-between font-mono text-[11px] sm:text-xs">
-          <span class="text-slate-400">Interactive Probe Repair:</span>
-          <button type="button" onclick="toggleCase1Patch()" id="btnCase1Patch" class="px-3 py-1.5 rounded bg-[#00ff66]/20 hover:bg-[#00ff66] hover:text-black text-[#00ff66] font-bold border border-[#00ff66]/40 transition-colors cursor-pointer">[ &gt;_ Run Patch: +curl ]</button>
-        </div>
-      </div>
-      <div class="p-6 overflow-y-auto space-y-4 text-xs font-mono">
-        <div class="p-3 rounded bg-carbon-950 border border-carbon-800 overflow-x-auto text-slate-300 text-[11px] sm:text-xs">
-          <span class="text-amber-400 block mb-1"># Sanitized Runtime Telemetry Log:</span>
-          <div class="text-emerald-400">[INFO] Tomcat started on port 8080 (http)</div>
-          <div id="case1LogLine" class="text-red-400 mt-1">/bin/sh: /usr/bin/curl: not found (ExitCode 127)</div>
-        </div>
-        <div class="p-3 rounded bg-carbon-950 border border-carbon-800 overflow-x-auto text-slate-300 text-[11px] sm:text-xs">
-          <span class="text-sky-400 block mb-1"># Dockerfile Layer Remediation:</span>
-          <div class="text-emerald-400">+ RUN apk add --no-cache curl || apt-get install -y curl</div>
-        </div>
-      </div>
-      <div class="px-6 py-3 bg-carbon-850 border-t border-carbon-800 flex justify-end">
-        <button onclick="closeModal('modal-incident')" class="px-4 py-2 rounded-lg bg-carbon-800 text-white border border-carbon-600 font-mono text-xs font-bold hover:text-[#00ff66] hover:border-[#00ff66] cursor-pointer">✕ Close</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal 2: IaC Audit 225 -->
-  <div id="modal-arn" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
-    <div class="bg-carbon-900 border border-carbon-700 max-w-3xl w-full rounded-2xl overflow-hidden shadow-[0_0_30px_rgba(56,189,248,0.2)] flex flex-col max-h-[90vh]">
-      <div class="px-6 py-4 bg-carbon-850 border-b border-carbon-700 flex items-center justify-between">
-        <div class="flex items-center gap-3"><span class="px-2.5 py-1 rounded bg-sky-500/20 text-sky-400 font-mono text-xs font-bold border border-sky-500/40">[IAC-AUDIT-225]</span><h3 class="text-base font-bold text-white">Multi-Environment IaC Audit</h3></div>
-        <button onclick="closeModal('modal-arn')" class="text-slate-400 hover:text-white font-mono text-sm cursor-pointer">✕ ESC</button>
-      </div>
-      <div class="p-6 bg-carbon-950 border-b border-carbon-800 overflow-x-auto">
-        <div class="flex items-center justify-between text-[10px] sm:text-xs font-mono text-slate-400 mb-2 min-w-[500px]"><span>TOPOLOGY: TERRAGRUNT ➔ STG_ROLE vs PROD_ROLE</span><span class="text-sky-400 font-bold">CROSS-ACCOUNT INTERCEPT</span></div>
-        <svg viewBox="0 0 600 115" class="w-full min-w-[500px] h-auto bg-[#080d16] rounded-xl border border-carbon-800 p-2" xmlns="http://www.w3.org/2000/svg">
-          <line x1="160" y1="58" x2="230" y2="38" stroke="#f59e0b" stroke-width="2" class="svg-flow-line"/><line x1="160" y1="58" x2="230" y2="80" stroke="#34d399" stroke-width="2" class="svg-flow-line"/>
-          <g transform="translate(10, 24)"><rect width="150" height="68" rx="8" fill="#172554" stroke="#60a5fa" stroke-width="1.5"/><text x="75" y="34" text-anchor="middle" fill="#bfdbfe" font-size="11" font-weight="bold">PR [IAC-AUDIT-225]</text></g>
-          <g transform="translate(230, 10)"><rect width="350" height="44" rx="6" fill="#451a03" stroke="#f59e0b" stroke-width="1.5"/><text x="175" y="20" text-anchor="middle" fill="#fcd34d" font-size="9" font-weight="bold">INTERCEPTED: Staging Role in Prod HCL</text><text x="175" y="34" text-anchor="middle" fill="#fef08a" font-size="8">arn:aws:iam::126350******:role/stg-billing-events-service</text></g>
-          <g transform="translate(230, 60)"><rect width="350" height="44" rx="6" fill="#062c22" stroke="#34d399" stroke-width="1.5"/><text x="175" y="20" text-anchor="middle" fill="#6ee7b7" font-size="9" font-weight="bold">CORRECTED: Account-Scoped Prod Principal</text><text x="175" y="34" text-anchor="middle" fill="#a7f3d0" font-size="8">arn:aws:iam::984120******:role/prod-billing-events-service</text></g>
-        </svg>
-      </div>
-      <div class="p-6 overflow-y-auto space-y-4 text-[11px] sm:text-xs font-mono text-slate-300">
-        <div class="p-3 rounded bg-carbon-950 border border-carbon-800 overflow-x-auto">
-          <span class="text-amber-400 block mb-1"># Sanitized Terragrunt service.hcl Intercept:</span>
-          <div class="text-red-400 whitespace-nowrap">- service_role = "arn:aws:iam::126350******:role/stg-billing-events-service"</div>
-          <div class="text-emerald-400 whitespace-nowrap">+ service_role = "arn:aws:iam::984120******:role/prod-billing-events-service"</div>
-        </div>
-      </div>
-      <div class="px-6 py-3 bg-carbon-850 border-t border-carbon-800 flex justify-end">
-        <button onclick="closeModal('modal-arn')" class="px-4 py-2 rounded-lg bg-carbon-800 text-white border border-carbon-600 font-mono text-xs font-bold hover:text-sky-400 hover:border-sky-400 cursor-pointer">✕ Close</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal 3: Java Refactor (+315 / -992) -->
-  <div id="modal-java" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
-    <div class="bg-carbon-900 border border-carbon-700 max-w-3xl w-full rounded-2xl overflow-hidden shadow-[0_0_30px_rgba(168,85,247,0.2)] flex flex-col max-h-[90vh]">
-      <div class="px-6 py-4 bg-carbon-850 border-b border-carbon-700 flex items-center justify-between">
-        <div class="flex items-center gap-3"><span class="px-2.5 py-1 rounded bg-purple-500/20 text-purple-400 font-mono text-xs font-bold border border-purple-500/40">[REFACTOR-SKU-286]</span><h3 class="text-base font-bold text-white">Java Microservice Model</h3></div>
-        <button onclick="closeModal('modal-java')" class="text-slate-400 hover:text-white font-mono text-sm cursor-pointer">✕ ESC</button>
-      </div>
-      <div class="p-6 bg-carbon-950 border-b border-carbon-800 overflow-x-auto">
-        <div class="flex items-center justify-between text-[10px] sm:text-xs font-mono text-slate-400 mb-2 min-w-[500px]"><span>TOPOLOGY: EVENT_INGESTION ➔ DTO_CONVERGENCE</span><span class="text-purple-400 font-bold">CANONICAL ENTITY</span></div>
-        <svg viewBox="0 0 520 125" class="w-full min-w-[500px] h-auto my-1" xmlns="http://www.w3.org/2000/svg">
-          <path d="M 175 35 L 295 62" stroke="#c084fc" stroke-width="2.2" fill="none" class="svg-flow-line"/><path d="M 175 90 L 295 62" stroke="#c084fc" stroke-width="2.2" fill="none" class="svg-flow-line"/><polygon points="300,62 290,56 290,68" fill="#34d399"/>
-          <rect x="15" y="15" width="160" height="38" rx="6" fill="#2e1065" stroke="#a855f7" stroke-width="1.4"/><text x="95" y="38" text-anchor="middle" fill="#e9d5ff" font-size="11">parentSKU (Legacy)</text>
-          <rect x="15" y="70" width="160" height="38" rx="6" fill="#2e1065" stroke="#a855f7" stroke-width="1.4"/><text x="95" y="93" text-anchor="middle" fill="#e9d5ff" font-size="11">parentProductSku</text>
-          <rect x="305" y="27" width="195" height="70" rx="10" fill="#062c22" stroke="#34d399" stroke-width="1.8"/><text x="402" y="55" text-anchor="middle" fill="#6ee7b7" font-size="12.5" font-weight="bold">Canonical SKU</text>
-        </svg>
-      </div>
-      <div class="p-6 overflow-y-auto space-y-3 text-[11px] sm:text-xs font-mono text-slate-300">
-        <div class="p-3 rounded bg-carbon-950 border border-carbon-800 overflow-x-auto">
-          <span class="text-purple-400 block mb-1"># Sanitized Java Entity Diff:</span>
-          <div class="text-red-400 whitespace-nowrap">- // private String parentSku; (Unused dead field &amp; docstrings stripped)</div>
-          <div class="text-emerald-400 whitespace-nowrap">+ private String parentProductSku; // Single Canonical Identifier</div>
-        </div>
-        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-purple-950/40 border border-purple-500/40 text-emerald-400 font-bold text-[10.5px]">
-          <i data-lucide="check-circle" class="w-3.5 h-3.5 text-emerald-400"></i> 100% JUnit Integration Suites Passed (+315 / -992 LOC Cleaned)
-        </div>
-      </div>
-      <div class="px-6 py-3 bg-carbon-850 border-t border-carbon-800 flex justify-end">
-        <button onclick="closeModal('modal-java')" class="px-4 py-2 rounded-lg bg-carbon-800 text-white border border-carbon-600 font-mono text-xs font-bold hover:text-purple-400 hover:border-purple-400 cursor-pointer">✕ Close</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Authentic gus.html Balloon with Settings Menu & Viewport Edge Protection -->
-  <div id="balloonContainer" style="left: 16px; bottom: 16px; right: auto;" class="fixed z-30 select-none transition-transform duration-300">
-    <div id="balloonTriviaBubble" class="hidden absolute bottom-full left-0 mb-3 w-[min(295px,calc(100vw-32px))] sm:w-80 p-3.5 sm:p-4 rounded-2xl bg-carbon-900/95 border border-amber-500/60 text-xs font-mono shadow-2xl backdrop-blur-xl max-h-[min(390px,60vh)] overflow-y-auto">
-      <div class="flex items-center justify-between text-[10px] text-amber-400 pb-1.5 border-b border-carbon-700">
-        <span id="balloonFactLabel" class="font-bold flex items-center gap-1">🎈 AirHead.cs~1.6</span>
-        <button type="button" onclick="dismissBalloonBubble()" class="text-slate-400 hover:text-white cursor-pointer px-1" aria-label="Close balloon tip">✕</button>
-      </div>
-      <div id="balloonFactTitle" class="text-white font-bold text-[11px] sm:text-xs mt-2"></div>
-      <div id="balloonFactText" class="text-slate-200 mt-1 leading-relaxed font-sans text-[11px] sm:text-xs"></div>
-      
-      <div id="balloonActionRow" class="mt-2.5 pt-2 border-t border-carbon-800 flex flex-col gap-1.5">
-        <div class="flex flex-wrap items-center justify-between gap-2">
-          <button id="askCopilotTriviaBtn" type="button" onclick="askCopilotAboutCurrentTrivia()" class="px-2.5 py-1 rounded-lg bg-amber-500/15 hover:bg-amber-500 text-amber-300 hover:text-carbon-950 font-mono text-[9px] sm:text-[10px] font-bold border border-amber-500/40 transition-colors cursor-pointer">
-            💬 Ask Copilot more
-          </button>
-          <span class="text-[9px] sm:text-[9.5px] text-slate-400">Click 🎈 for next</span>
-        </div>
-        <div class="flex justify-end">
-          <button type="button" onclick="toggleBalloonSettings()" class="text-[9.5px] text-slate-400 hover:text-amber-400 font-mono flex items-center gap-1 cursor-pointer">
-            ⚙️ Settings
-          </button>
-        </div>
-      </div>
-
-      <div id="balloonSettingsPanel" class="hidden mt-2.5 pt-2.5 border-t border-carbon-700 space-y-2.5 text-[10px] font-mono">
-        <div class="flex items-center justify-between text-amber-400 font-bold">
-          <span>⚙️ SETTINGS</span>
-          <button type="button" onclick="toggleBalloonSettings()" class="text-slate-400 hover:text-white cursor-pointer">Done</button>
-        </div>
-        <div class="space-y-1.5">
-          <span class="text-slate-400 block">Prompt Interval (30s–180s, 10s step):</span>
-          <div class="flex flex-wrap items-center gap-1.5">
-            <button type="button" onclick="setBalloonCustomTimer(30)" class="px-2 py-0.5 rounded bg-carbon-800 hover:bg-amber-500 hover:text-black text-slate-200 border border-carbon-600 cursor-pointer">30s</button>
-            <button type="button" onclick="setBalloonCustomTimer(40)" class="px-2 py-0.5 rounded bg-carbon-800 hover:bg-amber-500 hover:text-black text-slate-200 border border-carbon-600 cursor-pointer">40s</button>
-            <button type="button" onclick="setBalloonCustomTimer(50)" class="px-2 py-0.5 rounded bg-carbon-800 hover:bg-amber-500 hover:text-black text-slate-200 border border-carbon-600 cursor-pointer">50s</button>
-            <button type="button" onclick="setBalloonCustomTimer(60)" class="px-2 py-0.5 rounded bg-carbon-800 hover:bg-amber-500 hover:text-black text-slate-200 border border-carbon-600 cursor-pointer">60s</button>
-            <label class="flex items-center gap-1 text-slate-400">
-              <input id="customBalloonSecInput" type="number" min="30" max="180" step="10" value="40" onchange="setBalloonCustomTimer(this.value)" class="w-16 px-1.5 py-0.5 rounded bg-carbon-950 border border-carbon-700 text-amber-400 font-bold text-[10px]" aria-label="Custom balloon delay in seconds">
-              <span>s</span>
-            </label>
-          </div>
-        </div>
-        <div class="flex items-center justify-between gap-2">
-          <span class="text-slate-400">Balloon Theme:</span>
-          <div class="flex gap-1.5">
-            <button type="button" onclick="setBalloonSkin('light')" class="px-2 py-0.5 rounded bg-carbon-800 hover:bg-sky-400 hover:text-black text-sky-300 border border-carbon-600 cursor-pointer">☀️ Light</button>
-            <button type="button" onclick="setBalloonSkin('dark')" class="px-2 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] border border-carbon-600 cursor-pointer">🌙 Dark</button>
-          </div>
-        </div>
-        <div class="flex items-center justify-between gap-2 pt-1 border-t border-carbon-800">
-          <span class="text-slate-400">Website Assistance Only:</span>
-          <button id="btnSiteAssistToggle" type="button" onclick="toggleSiteAssistMode()" class="px-2.5 py-0.5 rounded bg-carbon-800 text-slate-300 border border-carbon-600 cursor-pointer">OFF (Tech Trivia)</button>
-        </div>
-      </div>
-    </div>
-
-    <div id="gusBalloon" class="balloon-scale-shell gus-float-anim relative" title="AirHead.cs~1.6 — Drag me around, shake me fast, or click for trivia & settings!">
-      <button id="btnMinimizeBalloon" type="button" onclick="toggleBalloonMinimize(event)" class="absolute -top-1.5 -left-1.5 z-30 w-5 h-5 rounded-full bg-carbon-800 border border-carbon-600 hover:border-amber-400 text-slate-300 hover:text-white text-[10px] font-mono flex items-center justify-center cursor-pointer shadow-md" title="Minimize Balloon">✕</button>
-      <div class="minimized-disc hidden w-8 h-8 rounded-full bg-gradient-to-br from-[#d4fbff] to-[#477aa8] border-2 border-white/60 shadow-xl items-center justify-center font-mono font-bold text-xs text-carbon-950">🎈</div>
-      <div class="balloon-container">
-        <div id="gusStick" class="balloon-stick"></div>
-        <div id="gusSphere" class="gus-balloon">
-          <div class="balloon-highlight"></div>
-          <div class="balloon-eyebrows"><span></span><span></span></div>
-          <div class="balloon-mouth"><div class="teeth"><span></span><span></span><span></span></div></div>
-          <div class="balloon-cheek cheek-left"></div>
-          <div class="balloon-cheek cheek-right"></div>
-        </div>
-        <div class="balloon-knot"></div>
-      </div>
-    </div>
-  </div>
-
   <!-- Floating Chat Window -->
   <div id="portfolioChat" class="fixed bottom-4 right-4 sm:bottom-5 sm:right-5 z-40 w-[340px] sm:w-[370px] max-w-[calc(100vw-32px)] rounded-2xl bg-carbon-850/95 backdrop-blur-xl border border-amber-500/30 shadow-2xl overflow-hidden transition-all duration-300">
+    <!-- Unread Notification Dot (Managed by JS State) -->
+    <div id="chatUnreadDot" class="absolute -top-1 -right-1 w-3.5 h-3.5 bg-emerald-400 rounded-full animate-pulse border-2 border-carbon-950 hidden z-50 pointer-events-none"></div>
+    
     <div id="chatHeader" class="bg-carbon-800 px-3 sm:px-4 py-2.5 sm:py-3 border-b border-carbon-700/80 flex items-center justify-between cursor-pointer select-none">
       <div class="flex items-center gap-2 sm:gap-2.5">
         <span class="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399] animate-pulse"></span>
         <span class="font-bold text-xs sm:text-sm text-white tracking-tight">Vinay's Copilot</span>
         <span class="px-2 py-0.5 rounded-full text-[9px] sm:text-[10px] font-mono bg-amber-500/10 border border-amber-500/30 text-amber-300">AirHead.cs~1.6</span>
       </div>
-      <button id="minimizeChatBtn" type="button" class="text-slate-400 hover:text-white text-base px-1.5 py-0.5 rounded transition-colors cursor-pointer">—</button>
+      <button id="minimizeChatBtn" type="button" class="text-slate-400 hover:text-white text-base px-1.5 py-0.5 rounded transition-colors cursor-pointer" aria-label="Minimize Chat">—</button>
     </div>
     <div id="chatBodyContainer" class="flex flex-col">
       <div id="chatWindow" class="h-56 sm:h-64 overflow-y-auto p-3 sm:p-4 space-y-3 bg-carbon-950/80 text-[11px] sm:text-xs text-slate-200">
         <div class="p-3 rounded-2xl rounded-tl-sm bg-carbon-800 border border-carbon-700 text-slate-200 leading-relaxed">
-          Hey! Ask me about Sai Vinay's background, <strong class="text-amber-400">AirHead.cs~1.6</strong> trivia, or try <code class="text-emerald-400">sudo hire sai</code>!
+          Hey! I'm Vinay's Copilot. Try exploring the <strong class="text-amber-400">Incident Sandbox</strong> above, click the floating Balloon 5 times for a secret, or ask me to <code class="text-emerald-400">sudo hire sai</code>!
         </div>
       </div>
       <div class="px-2.5 sm:px-3 pt-2 pb-1.5 bg-carbon-900 border-t border-carbon-800 flex items-center gap-1.5 overflow-x-auto whitespace-nowrap text-[9.5px] sm:text-[10.5px] font-mono scrollbar-hide">
-        <button type="button" onclick="window.sendQuickPrompt('What does cs~1.6 mean?')" class="px-2 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-purple-300 border border-carbon-700 shrink-0 cursor-pointer">🎮 cs~1.6?</button>
-        <button type="button" onclick="window.sendQuickPrompt('whoami')" class="px-2 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-amber-400 border border-carbon-700 shrink-0 cursor-pointer">☕ whoami</button>
-        <button type="button" onclick="window.sendQuickPrompt('sudo hire sai')" class="px-2 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-emerald-300 border border-carbon-700 shrink-0 cursor-pointer">👑 sudo hire sai</button>
-        <button type="button" onclick="window.sendQuickPrompt('Do a barrel roll!')" class="px-2 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-sky-300 border border-carbon-700 shrink-0 cursor-pointer">🌀 Barrel Roll</button>
+        <button type="button" onclick="window.PortfolioController.sendQuickPrompt('What does cs~1.6 mean?')" class="px-2 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-purple-300 border border-carbon-700 shrink-0 cursor-pointer">🎮 cs~1.6?</button>
+        <button type="button" onclick="window.PortfolioController.sendQuickPrompt('whoami')" class="px-2 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-amber-400 border border-carbon-700 shrink-0 cursor-pointer">☕ whoami</button>
+        <button type="button" onclick="window.PortfolioController.sendQuickPrompt('sudo hire sai')" class="px-2 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-emerald-300 border border-carbon-700 shrink-0 cursor-pointer">👑 sudo hire sai</button>
       </div>
       <div class="p-2 sm:p-3 bg-carbon-900 border-t border-carbon-700 flex items-center gap-2">
         <input type="text" id="userInput" class="flex-1 bg-carbon-950 border border-carbon-700 focus:border-amber-500 rounded-xl px-2.5 sm:px-3 py-1.5 sm:py-2 text-[11px] sm:text-xs text-white outline-none font-sans placeholder-slate-500" placeholder="Ask about Vinay or type sudo hire sai..." autocomplete="off">
@@ -1725,274 +1651,826 @@
     </div>
   </div>
 
-  <!-- Core JavaScript Runtime (100% Syntax Verified) -->
+  <!-- Core JavaScript Runtime (Modular, Stateful, and Highly Optimized) -->
   <script>
     if (window.lucide) { lucide.createIcons(); }
 
-    const prefersReducedMotionMedia = window.matchMedia('(prefers-reduced-motion: reduce)');
-    function isReducedMotionPreferred() {
-      return !!(prefersReducedMotionMedia && prefersReducedMotionMedia.matches);
-    }
-
-    function revealPhone(btn) {
-      const b64 = "KzkxIDk4OTkxMDk1OTQ=";
-      const decoded = atob(b64);
-      const container = document.getElementById('phoneContainer');
-      if (container) {
-        container.innerHTML = `<a href="tel:${decoded.replace(/\s+/g, '')}" class="text-amber-400 font-bold hover:underline">${decoded}</a>`;
-      }
-    }
-
-    const openRolesBadge = document.getElementById('openRolesBadge');
-    if (openRolesBadge) {
-      openRolesBadge.addEventListener('dblclick', () => {
-        showToast('⚡ <strong>Recruiter Fast-Track:</strong> Sai Vinay responds to interview outreach within 24 hours!');
-      });
-    }
-
-    const CALENDLY_URL = 'https://calendly.com/msaivinay306/30min?hide_gdpr_banner=1&background_color=0a0e17&text_color=e2e8f0&primary_color=f59e0b';
-    function openCalendly() {
-      if (typeof Calendly !== 'undefined') {
-        Calendly.initPopupWidget({ url: CALENDLY_URL });
-      } else {
-        window.open(CALENDLY_URL, '_blank', 'noopener,noreferrer');
-      }
-    }
-
-    function showToast(message, duration = 4000) {
-      const toast = document.getElementById('customToast');
-      const text = document.getElementById('customToastText');
-      if (!toast || !text) return;
-      text.innerHTML = message;
-      toast.classList.remove('hidden');
-      toast.classList.add('flex');
-      clearTimeout(window.toastTimer);
-      window.toastTimer = setTimeout(() => {
-        toast.classList.remove('flex');
-        toast.classList.add('hidden');
-      }, duration);
-    }
-
     /* ========================================================================= */
-    /* REAL-TIME CLOCK, IP LOCATION & BROWSER TELEMETRY                          */
+    /* THE PORTFOLIO RUNTIME ENGINE (IIFE MODULE ARCHITECTURE)                   */
     /* ========================================================================= */
-    let godModeUnlocked = false;
-    let liveFps = 60;
-    let liveFrameDelta = 16.6;
-    let rAFCounter = 0;
-    let rAFLastSecond = performance.now();
-    let rAFLastFrame = performance.now();
-
-    function updateWorldClocks() {
-      const now = new Date();
-      const fmt = (tz) => now.toLocaleTimeString('en-US', { timeZone: tz, hour: '2-digit', minute:'2-digit', hour12: false });
+    window.PortfolioController = (function() {
       
-      const localClock = document.getElementById('devClockVal');
-      if (localClock) localClock.textContent = fmt(Intl.DateTimeFormat().resolvedOptions().timeZone) + ' LOC';
-      
-      const ids = { 'tz-est': 'America/New_York', 'tz-pst': 'America/Los_Angeles', 'tz-cst': 'America/Chicago', 'tz-cet': 'Europe/Paris', 'tz-jst': 'Asia/Tokyo', 'tz-aest': 'Australia/Sydney' };
-      for (const [id, tz] of Object.entries(ids)) {
-        const el = document.getElementById(id);
-        if (el) el.textContent = fmt(tz);
-      }
-    }
-    setInterval(updateWorldClocks, 1000);
-    updateWorldClocks();
+      // --- 1. STATE & ONBOARDING MANAGER ---
+      const State = {
+        mode: 'manager',
+        isDashboardOpen: false,
+        isTabVisible: !document.hidden,
+        godModeUnlocked: false,
+        isReducedMotion: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      };
 
-    async function fetchVisitorIp() {
-      try {
-        const res = await fetch('https://ipapi.co/json/');
-        const data = await res.json();
-        const el = document.getElementById('visitorIpLoc');
-        if (el && data.ip && data.city) {
-          el.textContent = `${data.ip} (${data.city}, ${data.country_code})`;
+      const Onboarding = {
+        init: function() {
+          // Manager Accordion Hint
+          if (!sessionStorage.getItem('pf_seen_accordion')) {
+            const hint = document.getElementById('hint-accordion-1');
+            const acc = document.getElementById('manager-compartment-1');
+            if (hint && acc) {
+              hint.classList.remove('hidden');
+              acc.addEventListener('click', function handleAccClick() {
+                hint.classList.add('hidden');
+                sessionStorage.setItem('pf_seen_accordion', 'true');
+                acc.removeEventListener('click', handleAccClick);
+              });
+            }
+          }
+
+          // Copilot Unread Dot
+          if (!sessionStorage.getItem('pf_seen_chat')) {
+            const dot = document.getElementById('chatUnreadDot');
+            const header = document.getElementById('chatHeader');
+            if (dot && header) {
+              // Ensure chat is minimized first on desktop so the dot makes sense
+              if (window.innerWidth >= 640 && !Chat.isChatMinimized) {
+                Chat.setMinimizedState(true);
+              }
+              dot.classList.remove('hidden');
+              header.addEventListener('click', function handleChatClick() {
+                dot.classList.add('hidden');
+                sessionStorage.setItem('pf_seen_chat', 'true');
+                header.removeEventListener('click', handleChatClick);
+              });
+            }
+          }
         }
-      } catch (e) {
-        const el = document.getElementById('visitorIpLoc');
-        if (el) el.textContent = 'IP Hidden / Blocked';
-      }
-    }
-    fetchVisitorIp();
+      };
 
-    function compositorLoop(now) {
-      liveFrameDelta = Math.max(1, now - rAFLastFrame);
-      rAFLastFrame = now;
-      rAFCounter++;
-
-      if (now - rAFLastSecond >= 500) {
-        liveFps = Math.min(240, Math.round((rAFCounter * 1000) / (now - rAFLastSecond)));
-        rAFCounter = 0;
-        rAFLastSecond = now;
-
-        const fpsEl = document.getElementById('devFpsVal');
-        if (fpsEl) fpsEl.textContent = `${liveFps}`;
-      }
-      requestAnimationFrame(compositorLoop);
-    }
-    requestAnimationFrame(compositorLoop);
-
-    function readHonestHeapStatus() {
-      const mem = window.performance && window.performance.memory;
-      if (mem && Number.isFinite(mem.usedJSHeapSize) && Number.isFinite(mem.jsHeapSizeLimit)) {
-        return `${(mem.usedJSHeapSize / 1048576).toFixed(1)} / ${Math.round(mem.jsHeapSizeLimit / 1048576)} MB [V8]`;
-      }
-      return 'Restricted by Browser Engine';
-    }
-
-    /* Konami Code */
-    let konamiSeq = [];
-    const KONAMI_CODE = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
-    window.addEventListener('keydown', (e) => {
-      const target = e.target;
-      if (target && (target.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(target.tagName))) return;
-      konamiSeq.push(e.key.toLowerCase());
-      if (konamiSeq.length > KONAMI_CODE.length) konamiSeq.shift();
-      const expected = KONAMI_CODE.map(key => key.toLowerCase());
-      if (konamiSeq.join(',') === expected.join(',')) {
-        if (godModeUnlocked) return;
-        godModeUnlocked = true;
-        window.matrixColor = '#fbbf24';
-        if (document.body.classList.contains('mode-dev') && !isReducedMotionPreferred()) startMatrixRain();
-        showToast('👑 <strong>KONAMI GOD MODE UNLOCKED:</strong> Golden Matrix Rain &amp; Root Clearance (`sudo`) Activated!', 6500);
-      }
-    });
-
-    /* Modals & Honest Live Telemetry Probe */
-    const ALL_MODALS = ['modal-incident', 'modal-arn', 'modal-java', 'modal-telemetry-dashboard', 'modal-exec-case'];
-    function openModal(id) {
-      const modal = document.getElementById(id);
-      if (modal) { modal.classList.remove('hidden'); modal.classList.add('flex'); document.body.style.overflow = 'hidden'; }
-    }
-    window.closeModal = function(id) {
-      const modal = document.getElementById(id);
-      if (modal) { modal.classList.remove('flex'); modal.classList.add('hidden'); document.body.style.overflow = 'auto'; }
-      if (id === 'modal-telemetry-dashboard' && window.telemetryGaugeInterval) {
-        clearInterval(window.telemetryGaugeInterval); window.telemetryGaugeInterval = null;
-      }
-    };
-    window.addEventListener('keydown', (e) => { if (e.key === 'Escape') ALL_MODALS.forEach(window.closeModal); });
-    ALL_MODALS.forEach(id => {
-      const m = document.getElementById(id);
-      if (m) m.addEventListener('click', (e) => { if (e.target === m) window.closeModal(id); });
-    });
-
-    function updateGaugeDial(arcId, needleId, textId, value, maxVal, unit) {
-      const ratio = Math.max(0, Math.min(1, value / maxVal));
-      const offset = 283 - (ratio * 283);
-      const angle = -90 + (ratio * 180);
-      const arcEl = document.getElementById(arcId);
-      const needleEl = document.getElementById(needleId);
-      const textEl = document.getElementById(textId);
-      if (arcEl) arcEl.setAttribute('stroke-dashoffset', String(Math.round(offset)));
-      if (needleEl) needleEl.setAttribute('transform', `rotate(${angle.toFixed(1)} 110 110)`);
-      if (textEl) textEl.textContent = `${value} ${unit}`;
-    }
-
-    let rttSampleWindow = [];
-    async function runLiveTelemetryProbe() {
-      const connTypeEl = document.getElementById('telemetryConnType');
-      const jitterEl = document.getElementById('rttJitterVal');
-      const stripPing = document.getElementById('devPingVal');
-      const edgePopEl = document.getElementById('telemetryEdgePop');
-      const heapEl = document.getElementById('telemetryHeapVal');
-      const driftEl = document.getElementById('loopDriftVal');
-
-      const tLoopStart = performance.now();
-      setTimeout(() => {
-        const drift = Math.max(0.1, performance.now() - tLoopStart - 10);
-        if (driftEl) driftEl.textContent = `${drift.toFixed(1)} ms`;
-      }, 10);
-
-      const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-      if (conn && connTypeEl) {
-        const dl = Number.isFinite(conn.downlink) ? `${conn.downlink} Mbps` : 'N/A';
-        connTypeEl.textContent = `${String(conn.effectiveType || '4g').toUpperCase()} (${dl})`;
-      } else if (connTypeEl) {
-        connTypeEl.textContent = 'API Unsupported in Browser';
-      }
-
-      if (heapEl) heapEl.textContent = readHonestHeapStatus();
-
-      const t0 = performance.now();
-      let measuredRtt = null;
-      let detectedPop = 'Origin / Local Edge';
-      try {
-        const traceRes = await fetch(`https://1.1.1.1/cdn-cgi/trace?ts=${Date.now()}`, { cache: 'no-store' });
-        measuredRtt = Math.max(2, Math.round(performance.now() - t0));
-        const traceText = await traceRes.text();
-        const coloMatch = traceText.match(/colo=([A-Z0-9]+)/);
-        if (coloMatch) detectedPop = `Cloudflare POP: ${coloMatch[1]}`;
-      } catch (e) {
-        try {
-          const t1 = performance.now();
-          const probeUrl = new URL(window.location.href);
-          probeUrl.searchParams.set('telemetry_probe', String(Date.now()));
-          await fetch(probeUrl.toString(), { method: 'HEAD', cache: 'no-store', credentials: 'same-origin' });
-          measuredRtt = Math.max(2, Math.round(performance.now() - t1));
-          detectedPop = 'Same-Origin HTTP HEAD';
-        } catch (err2) {
-          measuredRtt = null;
-          detectedPop = 'Offline / Blocked by CORS';
+      // --- 2. EXECUTIVE CASE STUDY DATA ---
+      const CaseStudies = {
+        data: {
+          'ascendion-pipeline': {
+            badge: "CASE 01 • HP INC. OBC CLOUD",
+            title: "Unblocking Multi-Service Release Pipelines Under a Live 1–Hour SLA",
+            metric: "✓ SLA Outcome: Resolved in 45m (15m Buffer Saved)",
+            body: `
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 font-mono text-xs">
+                <div class="p-3.5 rounded-xl bg-red-950/35 border border-red-500/30 text-red-200">
+                  <strong class="block text-red-400 mb-1 uppercase">01 The Problem (Blocking Outage)</strong>
+                  Multi-service deployments stalled across domain controller &amp; subscription services due to a silent upstream Harbor base image regression.
+                </div>
+                <div class="p-3.5 rounded-xl bg-emerald-950/35 border border-emerald-500/30 text-emerald-200">
+                  <strong class="block text-emerald-400 mb-1 uppercase">02 The Engineering Fix</strong>
+                  Correlated JVM 7.5s startup against probe exit code 127, patched base layer, unblocked release train &amp; published a team wiki runbook.
+                </div>
+              </div>
+              <div class="pt-2.5">
+                <strong class="block text-amber-400 font-mono text-xs mb-1">03 The Business Result:</strong>
+                <ul class="space-y-2 text-slate-300 list-disc list-inside">
+                  <li><strong class="text-white">SLA Ownership:</strong> Took live bridge control under a 60m SLA clock; proved application code was healthy while isolating the stripped probe binary.</li>
+                  <li><strong class="text-white">Lasting Value:</strong> Authored permanent triage runbook preventing repeat cross-team escalations.</li>
+                </ul>
+              </div>`
+          },
+          'ascendion-java': {
+            badge: "CASE 02 • HP INC. BACKEND",
+            title: "Unifying Divergent Microservice Data Identifiers",
+            metric: "✓ Outcome: +315 / -992 LOC Cleaned",
+            body: `
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 font-mono text-xs">
+                <div class="p-3.5 rounded-xl bg-red-950/35 border border-red-500/30 text-red-200">
+                  <strong class="block text-red-400 mb-1 uppercase">01 The Problem (Schema Drift)</strong>
+                  Divergent SKU representations (<code class="text-white">parentSKU</code> vs <code class="text-white">parentProductSku</code>) caused ambiguity and technical debt across e-commerce subscription renewals.
+                </div>
+                <div class="p-3.5 rounded-xl bg-emerald-950/35 border border-emerald-500/30 text-emerald-200">
+                  <strong class="block text-emerald-400 mb-1 uppercase">02 The Architecture Change</strong>
+                  Established a single canonical entity model across controllers &amp; contracts to enforce determinism.
+                </div>
+              </div>
+              <div class="pt-2.5">
+                <strong class="block text-amber-400 font-mono text-xs mb-1">03 The Engineering Result:</strong>
+                <ul class="space-y-2 text-slate-300 list-disc list-inside">
+                  <li><strong class="text-white">Net Code Reduction:</strong> 315 lines added, 992 lines of legacy dead code removed (net -677 LOC).</li>
+                  <li><strong class="text-white">Release Velocity:</strong> Resolved release-freeze merge conflicts in 20 minutes with 100% successful Integration Suite validation.</li>
+                </ul>
+              </div>`
+          },
+          'eficens-terraform': {
+            badge: "CASE 03 • US FINTECH (NYSE/FED SYNC)",
+            title: "Scaling Regulated FinTech AWS Environments & Zero-Downtime RDS",
+            metric: "✓ Outcome: >50% Faster Provisioning • -15 Incidents/Mo",
+            body: `
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 font-mono text-xs">
+                <div class="p-3.5 rounded-xl bg-red-950/35 border border-red-500/30 text-red-200">
+                  <strong class="block text-red-400 mb-1 uppercase">01 The Problem (Manual Drift)</strong>
+                  Manual cloud provisioning caused ~15 deployment incidents/month and risked downtime during RDS &amp; SSL maintenance windows.
+                </div>
+                <div class="p-3.5 rounded-xl bg-emerald-950/35 border border-emerald-500/30 text-emerald-200">
+                  <strong class="block text-emerald-400 mb-1 uppercase">02 The Infrastructure Fix</strong>
+                  Embedded reusable Terraform modules (EC2, VPC, RDS, S3) into Jenkins CI/CD and enforced least-privilege IAM with SecOps.
+                </div>
+              </div>
+              <div class="pt-2.5">
+                <strong class="block text-amber-400 font-mono text-xs mb-1">03 The Business Result:</strong>
+                <ul class="space-y-2 text-slate-300 list-disc list-inside">
+                  <li><strong class="text-white">Speed &amp; Safety:</strong> Cut infrastructure provisioning lead time by over 50% across high-compliance financial clearing feeds.</li>
+                  <li><strong class="text-white">Reliability:</strong> Delivered near-zero downtime RDS/SSL upgrades, preventing 15 monthly deployment errors.</li>
+                </ul>
+              </div>`
+          },
+          'lotusdata-fleet': {
+            badge: "CASE 04 • LOTUSDATA (FLEET OPS)",
+            title: "Sustaining 99% Uptime Across 200+ RedHat Linux & Database Instances",
+            metric: "✓ Outcome: 99% Uptime SLA • Zero Unplanned Reboots",
+            body: `
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 font-mono text-xs">
+                <div class="p-3.5 rounded-xl bg-red-950/35 border border-red-500/30 text-red-200">
+                  <strong class="block text-red-400 mb-1 uppercase">01 The Problem (Storage Locks)</strong>
+                  Unlinked ghost log files held open by active processes threatened database consistency and storage capacity across a 200+ node EC2 fleet.
+                </div>
+                <div class="p-3.5 rounded-xl bg-emerald-950/35 border border-emerald-500/30 text-emerald-200">
+                  <strong class="block text-emerald-400 mb-1 uppercase">02 The Engineering Fix</strong>
+                  Reclaimed locked storage non-disruptively via <code class="text-white">/proc/&lt;PID&gt;/fd</code> truncation and scaled LVM partitions dynamically.
+                </div>
+              </div>
+              <div class="pt-2.5">
+                <strong class="block text-amber-400 font-mono text-xs mb-1">03 The Operations Result:</strong>
+                <ul class="space-y-2 text-slate-300 list-disc list-inside">
+                  <li><strong class="text-white">Zero Reboot Maintenance:</strong> Maintained active DB daemons with zero unplanned restarts during VFS inode recovery.</li>
+                  <li><strong class="text-white">Fleet Automation:</strong> Standardized RHEL Kickstart builds to sustain 99% fleet availability.</li>
+                </ul>
+              </div>`
+          }
+        },
+        open: function(id) {
+          const data = this.data[id];
+          if (!data) return;
+          document.getElementById('execModalBadge').textContent = data.badge;
+          document.getElementById('execModalTitle').textContent = data.title;
+          document.getElementById('execModalBody').innerHTML = data.body;
+          document.getElementById('execModalFooterMetric').textContent = data.metric;
+          Modals.open('modal-exec-case');
         }
-      }
+      };
 
-      if (edgePopEl) edgePopEl.textContent = detectedPop;
-
-      if (measuredRtt !== null) {
-        rttSampleWindow.push(measuredRtt);
-        if (rttSampleWindow.length > 5) rttSampleWindow.shift();
-        let rollingJitter = 0;
-        if (rttSampleWindow.length > 1) {
-          let diffs = 0;
-          for (let i = 1; i < rttSampleWindow.length; i++) diffs += Math.abs(rttSampleWindow[i] - rttSampleWindow[i - 1]);
-          rollingJitter = diffs / (rttSampleWindow.length - 1);
+      // --- 3. MODAL CONTROLLER ---
+      const ALL_MODALS = ['modal-incident', 'modal-arn', 'modal-java', 'modal-telemetry-dashboard', 'modal-exec-case'];
+      const Modals = {
+        init: function() {
+          window.addEventListener('keydown', (e) => { if (e.key === 'Escape') ALL_MODALS.forEach(id => this.close(id)); });
+          ALL_MODALS.forEach(id => {
+            const m = document.getElementById(id);
+            if (m) m.addEventListener('click', (e) => { if (e.target === m) this.close(id); });
+          });
+        },
+        open: function(id) {
+          const m = document.getElementById(id);
+          if (m) { m.classList.remove('hidden'); m.classList.add('flex'); document.body.style.overflow = 'hidden'; }
+        },
+        close: function(id) {
+          const m = document.getElementById(id);
+          if (m) { m.classList.remove('flex'); m.classList.add('hidden'); document.body.style.overflow = 'auto'; }
+          if (id === 'modal-telemetry-dashboard') {
+            Telemetry.stopHttpPolling();
+          }
         }
-        updateGaugeDial('rttGaugeArc', 'rttGaugeNeedle', 'rttGaugeValueText', measuredRtt, 300, 'ms');
-        if (stripPing) stripPing.textContent = `${measuredRtt} ms`;
-        if (jitterEl) jitterEl.textContent = rttSampleWindow.length > 1 ? `${rollingJitter.toFixed(1)} ms` : 'Sampling (1/2)…';
-      } else {
-        if (stripPing) stripPing.textContent = 'Restricted';
-        if (jitterEl) jitterEl.textContent = 'N/A';
-      }
+      };
 
-      updateGaugeDial('speedGaugeArc', 'speedGaugeNeedle', 'speedGaugeValueText', Math.min(120, liveFps), 120, 'FPS');
+      // --- 4. ACCESSIBLE TOOLTIPS ---
+      const Tooltips = {
+        init: function() {
+          document.querySelectorAll('.a11y-tooltip-trigger').forEach(trigger => {
+            const wrapper = trigger.closest('.a11y-tooltip-wrapper');
+            if (!wrapper) return;
+            
+            const show = () => { wrapper.classList.add('is-active'); trigger.setAttribute('aria-expanded', 'true'); };
+            const hide = () => { wrapper.classList.remove('is-active'); trigger.setAttribute('aria-expanded', 'false'); };
+            
+            trigger.addEventListener('mouseenter', show);
+            trigger.addEventListener('focus', show);
+            wrapper.addEventListener('mouseleave', hide);
+            trigger.addEventListener('blur', hide);
+            trigger.addEventListener('click', (e) => {
+              e.preventDefault();
+              wrapper.classList.contains('is-active') ? hide() : show();
+            });
+          });
+        }
+      };
+
+      // --- 5. LIVE TELEMETRY ENGINE ---
+      const Telemetry = {
+        rafId: null,
+        httpIntervalId: null,
+        rAFCounter: 0,
+        rAFLastSecond: performance.now(),
+        rAFLastFrame: performance.now(),
+        liveFps: 60,
+        liveFrameDelta: 16.6,
+        rttSampleWindow: [],
+
+        init: function() {
+          document.addEventListener('visibilitychange', () => {
+            State.isTabVisible = !document.hidden;
+            if (State.isTabVisible) {
+              this.startRaf();
+              if (State.isDashboardOpen) this.startHttpPolling();
+            } else {
+              cancelAnimationFrame(this.rafId);
+              this.stopHttpPolling();
+            }
+          });
+          if (State.isTabVisible) this.startRaf();
+          setInterval(() => this.updateWorldClocks(), 1000);
+          this.updateWorldClocks();
+        },
+
+        startRaf: function() {
+          const loop = (now) => {
+            this.liveFrameDelta = Math.max(1, now - this.rAFLastFrame);
+            this.rAFLastFrame = now;
+            this.rAFCounter++;
+
+            if (now - this.rAFLastSecond >= 500) {
+              this.liveFps = Math.min(240, Math.round((this.rAFCounter * 1000) / (now - this.rAFLastSecond)));
+              this.rAFCounter = 0;
+              this.rAFLastSecond = now;
+
+              const fpsEl = document.getElementById('devFpsVal');
+              if (fpsEl) fpsEl.textContent = `${this.liveFps}`;
+              if (State.isDashboardOpen) {
+                this.updateGaugeDial('speedGaugeArc', 'speedGaugeNeedle', 'speedGaugeValueText', Math.min(120, this.liveFps), 120, 'FPS');
+              }
+            }
+            if (State.isTabVisible) this.rafId = requestAnimationFrame(loop);
+          };
+          this.rafId = requestAnimationFrame(loop);
+        },
+
+        updateGaugeDial: function(arcId, needleId, textId, value, maxVal, unit) {
+          const ratio = Math.max(0, Math.min(1, value / maxVal));
+          const offset = 283 - (ratio * 283);
+          const angle = -90 + (ratio * 180);
+          const arcEl = document.getElementById(arcId);
+          const needleEl = document.getElementById(needleId);
+          const textEl = document.getElementById(textId);
+          if (arcEl) arcEl.setAttribute('stroke-dashoffset', String(Math.round(offset)));
+          if (needleEl) needleEl.setAttribute('transform', `rotate(${angle.toFixed(1)} 110 110)`);
+          if (textEl) textEl.textContent = `${value} ${unit}`;
+        },
+
+        readHonestHeapStatus: function() {
+          const mem = window.performance && window.performance.memory;
+          if (mem && Number.isFinite(mem.usedJSHeapSize) && Number.isFinite(mem.jsHeapSizeLimit)) {
+            return `${(mem.usedJSHeapSize / 1048576).toFixed(1)} / ${Math.round(mem.jsHeapSizeLimit / 1048576)} MB [V8]`;
+          }
+          return 'Restricted by Browser Engine';
+        },
+
+        runHttpProbe: async function() {
+          const connTypeEl = document.getElementById('telemetryConnType');
+          const jitterEl = document.getElementById('rttJitterVal');
+          const stripPing = document.getElementById('devPingVal');
+          const edgePopEl = document.getElementById('telemetryEdgePop');
+          const heapEl = document.getElementById('telemetryHeapVal');
+          const driftEl = document.getElementById('loopDriftVal');
+
+          // Timer Scheduling Delay
+          const tLoopStart = performance.now();
+          setTimeout(() => {
+            const drift = Math.max(0.1, performance.now() - tLoopStart - 10);
+            if (driftEl) driftEl.textContent = `${drift.toFixed(1)} ms`;
+          }, 10);
+
+          // Network API Estimate
+          const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+          if (conn && connTypeEl) {
+            const dl = Number.isFinite(conn.downlink) ? `${conn.downlink} Mbps` : 'N/A';
+            connTypeEl.textContent = `${String(conn.effectiveType || '4g').toUpperCase()} (${dl})`;
+          } else if (connTypeEl) {
+            connTypeEl.textContent = 'API Unsupported in Browser';
+          }
+
+          if (heapEl) heapEl.textContent = this.readHonestHeapStatus();
+
+          // HTTP Measurement
+          const t0 = performance.now();
+          let measuredRtt = null;
+          let detectedPop = 'Origin / Local Edge';
+          try {
+            const traceRes = await fetch(`https://1.1.1.1/cdn-cgi/trace?ts=${Date.now()}`, { cache: 'no-store' });
+            measuredRtt = Math.max(2, Math.round(performance.now() - t0));
+            const traceText = await traceRes.text();
+            const coloMatch = traceText.match(/colo=([A-Z0-9]+)/);
+            if (coloMatch) detectedPop = `Cloudflare POP: ${coloMatch[1]}`;
+          } catch (e) {
+            try {
+              const t1 = performance.now();
+              const probeUrl = new URL(window.location.href);
+              probeUrl.searchParams.set('telemetry_probe', String(Date.now()));
+              await fetch(probeUrl.toString(), { method: 'HEAD', cache: 'no-store', credentials: 'same-origin' });
+              measuredRtt = Math.max(2, Math.round(performance.now() - t1));
+              detectedPop = 'Same-Origin HTTP HEAD';
+            } catch (err2) {
+              measuredRtt = null;
+              detectedPop = 'Offline / Blocked by CORS';
+            }
+          }
+
+          if (edgePopEl) edgePopEl.textContent = detectedPop;
+
+          if (measuredRtt !== null) {
+            this.rttSampleWindow.push(measuredRtt);
+            if (this.rttSampleWindow.length > 5) this.rttSampleWindow.shift();
+            let rollingJitter = 0;
+            if (this.rttSampleWindow.length > 1) {
+              let diffs = 0;
+              for (let i = 1; i < this.rttSampleWindow.length; i++) diffs += Math.abs(this.rttSampleWindow[i] - this.rttSampleWindow[i - 1]);
+              rollingJitter = diffs / (this.rttSampleWindow.length - 1);
+            }
+            this.updateGaugeDial('rttGaugeArc', 'rttGaugeNeedle', 'rttGaugeValueText', measuredRtt, 300, 'ms');
+            if (stripPing) stripPing.textContent = `${measuredRtt} ms`;
+            if (jitterEl) jitterEl.textContent = this.rttSampleWindow.length > 1 ? `${rollingJitter.toFixed(1)} ms` : 'Sampling (1/2)…';
+          } else {
+            if (stripPing) stripPing.textContent = 'Restricted';
+            if (jitterEl) jitterEl.textContent = 'N/A';
+          }
+        },
+
+        startHttpPolling: function() {
+          this.runHttpProbe();
+          if (this.httpIntervalId) clearInterval(this.httpIntervalId);
+          this.httpIntervalId = setInterval(() => { if(State.isTabVisible && State.isDashboardOpen) this.runHttpProbe(); }, 3500);
+        },
+
+        stopHttpPolling: function() {
+          if (this.httpIntervalId) { clearInterval(this.httpIntervalId); this.httpIntervalId = null; }
+        },
+
+        updateWorldClocks: function() {
+          const now = new Date();
+          const fmt = (tz) => {
+            try { return now.toLocaleTimeString('en-US', { timeZone: tz, hour: '2-digit', minute:'2-digit', hour12: false }); }
+            catch(e) { return '--:--'; }
+          };
+          const localClock = document.getElementById('devClockVal');
+          if (localClock) localClock.textContent = fmt(Intl.DateTimeFormat().resolvedOptions().timeZone) + ' LOC';
+          const ids = { 'tz-est': 'America/New_York', 'tz-pst': 'America/Los_Angeles', 'tz-cst': 'America/Chicago', 'tz-cet': 'Europe/Paris', 'tz-jst': 'Asia/Tokyo', 'tz-aest': 'Australia/Sydney' };
+          for (const [id, tz] of Object.entries(ids)) {
+            const el = document.getElementById(id);
+            if (el) el.textContent = fmt(tz);
+          }
+        }
+      };
+
+      // --- 6. AIRHEAD BALLOON COMPANION ---
+      const Balloon = {
+        isMinimized: false,
+        isIntroduced: false,
+        isDizzyLocked: false,
+        dizzyResetTimer: null,
+        intervalMs: 40000,
+        nudgeTimer: null,
+        nudgeCount: 0,
+        clickTimes: [],
+        siteAssistOnly: false,
+
+        TRIVIA: [
+          { category: "Tech History", title: "ChatGPT's Calendar Coincidence", fact: "ChatGPT was publicly introduced on November 30, 2022—which also happens to be Computer Security Day (established in 1988)." },
+          { category: "Cloud & DevOps", title: "Containers vs. VMs", fact: "Containers share the host OS kernel for lightweight isolation, whereas VMs virtualize an entire guest OS." },
+          { category: "Gaming & Future Tech", title: "GPUs: From Gaming to AI", fact: "Built for parallel 3D pixel shading in games like CS 1.6, GPUs turned out to be ideal for neural-network matrix math." }
+        ],
+        TIPS: [
+          { category: "Site Guide", title: "Switching Portfolio Modes", fact: "Use the top-left header bar (👔 HR | 📊 Manager | 💻 Dev) anytime to tailor the layout to your role." },
+          { category: "Site Guide", title: "Interactive Outage Sandbox", fact: "In Dev Mode, click '>_ Launch Incident Sandbox' to run commands like lsof +L1, ./patch.sh, or sudo hire sai." }
+        ],
+
+        init: function() {
+          const b = document.getElementById('gusBalloon');
+          const container = document.getElementById('balloonContainer');
+          if (!b || !container) return;
+
+          try {
+            const prefs = JSON.parse(localStorage.getItem('airhead-settings') || '{}');
+            if (Number.isFinite(prefs.delay)) { this.intervalMs = Math.max(30, Math.min(180, Number.parseInt(prefs.delay, 10))) * 1000; }
+            if (prefs.skin === 'dark') document.getElementById('gusSphere')?.classList.add('skin-dark');
+            if (prefs.siteGuide === true) { this.siteAssistOnly = true; const btn = document.getElementById('btnSiteAssistToggle'); if (btn) { btn.textContent = 'ON (Site Guide Only)'; btn.classList.add('text-emerald-300'); } }
+          } catch(e) {}
+
+          this.scheduleNudge();
+          
+          let dragStartX = 0, dragStartY = 0, contStartX = 0, contStartY = 0, isDragging = false, hasMoved = false;
+          let swingAnchorX = 0, currentSwingDir = 0, reversalTimestamps = [];
+
+          b.addEventListener('pointerdown', (e) => {
+            if (e.target.closest('#btnMinimizeBalloon') || this.isMinimized) return;
+            isDragging = true; hasMoved = false;
+            b.setPointerCapture(e.pointerId);
+            dragStartX = e.clientX; dragStartY = e.clientY;
+            swingAnchorX = e.clientX; currentSwingDir = 0; reversalTimestamps = [];
+            const rect = container.getBoundingClientRect();
+            contStartX = rect.left; contStartY = rect.top;
+            b.classList.remove('gus-float-anim');
+            if (!this.isDizzyLocked) this.setFace('drag');
+          });
+
+          window.addEventListener('pointermove', (e) => {
+            if (!isDragging) return;
+            const dx = e.clientX - dragStartX, dy = e.clientY - dragStartY;
+            if (Math.abs(dx) > 4 || Math.abs(dy) > 4) hasMoved = true;
+
+            const swingDelta = e.clientX - swingAnchorX;
+            if (Math.abs(swingDelta) >= 18) {
+              const newDir = Math.sign(swingDelta);
+              const now = performance.now();
+              if (currentSwingDir !== 0 && newDir !== currentSwingDir) {
+                reversalTimestamps.push(now);
+                reversalTimestamps = reversalTimestamps.filter(t => now - t < 950);
+                if (reversalTimestamps.length >= 4) this.triggerDizzy();
+              }
+              currentSwingDir = newDir; swingAnchorX = e.clientX;
+            }
+
+            let newX = contStartX + dx, newY = contStartY + dy;
+            const maxX = window.innerWidth - 90, maxY = window.innerHeight - 150;
+            if (!this.isDizzyLocked && (newX <= 8 || newX >= maxX || newY <= 8 || newY >= maxY)) this.setFace('bonk');
+            container.style.left = `${Math.max(8, Math.min(maxX, newX))}px`;
+            container.style.top = `${Math.max(8, Math.min(maxY, newY))}px`;
+            this.positionBubble();
+          });
+
+          window.addEventListener('pointerup', (e) => {
+            if (!isDragging) return;
+            isDragging = false;
+            b.classList.add('gus-float-anim');
+            if (!this.isDizzyLocked) this.setFace('default');
+            
+            if (!hasMoved && !e.target.closest('#btnMinimizeBalloon')) {
+              const now = performance.now();
+              this.clickTimes.push(now);
+              this.clickTimes = this.clickTimes.filter(t => now - t <= 3000);
+              if (this.clickTimes.length >= 5) {
+                this.clickTimes = [];
+                const sphere = document.getElementById('gusSphere');
+                if (sphere && !sphere.classList.contains('skin-dark')) {
+                  sphere.classList.add('skin-dark');
+                  showToast('🎈 <strong>Easter Egg Unlocked:</strong> Dark Mode Skin activated via 5 rapid clicks!');
+                }
+              } else {
+                this.popTrivia();
+              }
+            }
+          });
+
+          b.addEventListener('mouseenter', () => { if (!isDragging && !this.isMinimized && !this.isDizzyLocked) this.setFace('hover'); });
+          b.addEventListener('mouseleave', () => { if (!isDragging && !this.isMinimized && !this.isDizzyLocked) this.setFace('default'); });
+        },
+
+        triggerDizzy: function() {
+          if (this.isDizzyLocked) return;
+          this.isDizzyLocked = true;
+          this.setFace('dizzy', true);
+          showToast('😵‍💫 <strong>Whoa!</strong> AirHead.cs~1.6 is dizzy from the high-G mouse shake!', 3000);
+          if (this.dizzyResetTimer) clearTimeout(this.dizzyResetTimer);
+          this.dizzyResetTimer = setTimeout(() => { this.isDizzyLocked = false; this.setFace('default', true); }, 2800);
+        },
+
+        setFace: function(faceName, force = false) {
+          const s = document.getElementById('gusSphere');
+          if (!s || (this.isDizzyLocked && !force && faceName !== 'dizzy')) return;
+          s.classList.remove('face-hover', 'face-drag', 'face-bonk', 'face-secret', 'face-nudge', 'face-dizzy', 'face-happy');
+          if (faceName && faceName !== 'default') s.classList.add('face-' + faceName);
+        },
+
+        positionBubble: function() {
+          const bubble = document.getElementById('balloonTriviaBubble');
+          const container = document.getElementById('balloonContainer');
+          if (!bubble || !container) return;
+          const rect = container.getBoundingClientRect();
+          if (rect.left > window.innerWidth * 0.5) { bubble.style.left = 'auto'; bubble.style.right = '0px'; }
+          else { bubble.style.left = '0px'; bubble.style.right = 'auto'; }
+        },
+
+        popTrivia: function() {
+          if (this.isMinimized) return;
+          const bubble = document.getElementById('balloonTriviaBubble');
+          const factLabel = document.getElementById('balloonFactLabel');
+          const factTitle = document.getElementById('balloonFactTitle');
+          const factText = document.getElementById('balloonFactText');
+          const actionRow = document.getElementById('balloonActionRow');
+          if (!bubble || !factLabel) return;
+
+          if (!this.isIntroduced && !sessionStorage.getItem('pf_seen_balloon')) {
+            this.isIntroduced = true;
+            sessionStorage.setItem('pf_seen_balloon', 'true');
+            factLabel.textContent = "🎈 AirHead.cs~1.6 • Welcome!";
+            factTitle.textContent = "Hello! I'm AirHead.cs~1.6 🎈";
+            factText.textContent = "Click me anytime for tech trivia, shake me fast while dragging, or click me 5 times quickly for a secret!";
+            actionRow.style.display = 'flex';
+          } else {
+            const pool = this.siteAssistOnly ? this.TIPS : this.TRIVIA;
+            const item = pool[Math.floor(Math.random() * pool.length)];
+            factLabel.textContent = `🎈 AirHead.cs~1.6 • ${item.category}`;
+            factTitle.textContent = item.title;
+            factText.textContent = item.fact;
+            actionRow.style.display = 'flex';
+          }
+          
+          if (window.innerWidth < 680 && !Chat.isChatMinimized) Chat.setMinimizedState(true);
+          this.positionBubble();
+          bubble.classList.remove('hidden');
+          this.setFace('secret');
+        },
+
+        dismissBubble: function() {
+          document.getElementById('balloonTriviaBubble')?.classList.add('hidden');
+          this.setFace('default');
+        },
+
+        scheduleNudge: function() {
+          if (this.nudgeTimer) clearTimeout(this.nudgeTimer);
+          this.nudgeTimer = setTimeout(() => {
+            if (!this.isMinimized && document.getElementById('balloonTriviaBubble')?.classList.contains('hidden')) {
+              this.popTrivia();
+            }
+            this.scheduleNudge();
+          }, this.intervalMs);
+        }
+      };
+
+      // --- 7. COPILOT CHAT & SANDBOX ---
+      const Chat = {
+        isChatMinimized: window.innerWidth < 640,
+        history: [],
+        
+        init: function() {
+          this.setMinimizedState(this.isChatMinimized);
+          document.getElementById('minimizeChatBtn')?.addEventListener('click', (e) => { e.stopPropagation(); this.setMinimizedState(!this.isChatMinimized); });
+          document.getElementById('sendChatBtn')?.addEventListener('click', () => this.sendMessage());
+          document.getElementById('userInput')?.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); this.sendMessage(); } });
+        },
+
+        setMinimizedState: function(minimized) {
+          this.isChatMinimized = minimized;
+          const body = document.getElementById('chatBodyContainer');
+          const btn = document.getElementById('minimizeChatBtn');
+          if (body) body.style.display = this.isChatMinimized ? 'none' : 'flex';
+          if (btn) btn.innerText = this.isChatMinimized ? '▢' : '—';
+          if (!this.isChatMinimized && window.innerWidth < 680) Balloon.dismissBubble();
+        },
+
+        sendQuickPrompt: function(pt) {
+          if (this.isChatMinimized) this.setMinimizedState(false);
+          const inp = document.getElementById('userInput');
+          if (inp) { inp.value = pt; this.sendMessage(); }
+        },
+
+        sanitizeMarkup: function(markup) {
+          const parsed = new DOMParser().parseFromString(String(markup), 'text/html');
+          const allowed = new Set(['A', 'B', 'STRONG', 'EM', 'I', 'CODE', 'PRE', 'P', 'BR', 'UL', 'OL', 'LI', 'SPAN', 'DIV', 'BUTTON']);
+          const blocked = new Set(['SCRIPT', 'STYLE', 'IFRAME', 'OBJECT', 'EMBED', 'SVG', 'MATH', 'FORM', 'INPUT']);
+          const output = document.createDocumentFragment();
+
+          function copyNode(source, target) {
+            source.childNodes.forEach((node) => {
+              if (node.nodeType === Node.TEXT_NODE) { target.appendChild(document.createTextNode(node.textContent || '')); return; }
+              if (node.nodeType !== Node.ELEMENT_NODE) return;
+              if (blocked.has(node.tagName)) return;
+              if (!allowed.has(node.tagName)) { copyNode(node, target); return; }
+              
+              const clean = document.createElement(node.tagName.toLowerCase());
+              const cls = node.getAttribute('class');
+              if (cls && /^[a-zA-Z0-9\s\-_:/[\]#%.]+$/.test(cls)) clean.setAttribute('class', cls);
+              
+              if (node.tagName === 'A') {
+                try {
+                  const url = new URL(node.getAttribute('href') || '', window.location.href);
+                  if (['https:', 'http:', 'mailto:', 'tel:'].includes(url.protocol)) {
+                    clean.setAttribute('href', url.href); clean.setAttribute('target', '_blank'); clean.setAttribute('rel', 'noopener noreferrer');
+                  }
+                } catch (e) {}
+              }
+              if (node.tagName === 'BUTTON') {
+                clean.setAttribute('type', 'button');
+                if (node.getAttribute('data-chat-action') === 'open-calendly') clean.addEventListener('click', openCalendly);
+              }
+              copyNode(node, clean);
+              target.appendChild(clean);
+            });
+          }
+          copyNode(parsed.body, output);
+          return output;
+        },
+
+        appendMessage: function(htmlOrText, type) {
+          const win = document.getElementById('chatWindow');
+          if (!win) return;
+          const div = document.createElement('div');
+          if (type === 'user') {
+            div.className = "p-3 rounded-2xl rounded-tr-sm bg-amber-500 text-carbon-950 font-semibold ml-auto max-w-[85%] break-words shadow-sm";
+            div.textContent = String(htmlOrText ?? '');
+          } else if (type === 'bot') {
+            div.className = "p-3 rounded-2xl rounded-tl-sm bg-carbon-800 border border-carbon-700 text-slate-200 mr-auto max-w-[90%] break-words leading-relaxed";
+            div.appendChild(this.sanitizeMarkup(htmlOrText));
+          } else {
+            div.className = "p-3 rounded-2xl rounded-tl-sm bg-red-950/60 border border-red-500/40 text-red-300 mr-auto max-w-[90%] text-xs font-mono";
+            div.textContent = String(htmlOrText ?? '');
+          }
+          win.appendChild(div);
+          win.scrollTop = win.scrollHeight;
+        },
+
+        sendMessage: async function() {
+          const inp = document.getElementById('userInput');
+          const btn = document.getElementById('sendChatBtn');
+          if (!inp || !btn) return;
+          const text = inp.value.trim();
+          if (!text) return;
+
+          this.appendMessage(text, 'user');
+          inp.value = '';
+          const lower = text.toLowerCase();
+
+          if (lower.includes('do a barrel roll') && !State.isReducedMotion) {
+            document.body.classList.add('spin-anim');
+            setTimeout(() => document.body.classList.remove('spin-anim'), 1200);
+            this.appendMessage('Whoa! 🌀 Hold onto your containers!', 'bot'); return;
+          }
+          if (lower === 'whoami' || lower === '/whoami') {
+            this.appendMessage(`<div class="space-y-2.5"><div>☕ <strong>$ whoami</strong>: uid=1000(sai-vinay). A Cloud &amp; DevOps engineer fueled by espresso. I take my coffee seriously and my infrastructure idempotently!</div><button data-chat-action="open-calendly" class="w-full py-2 px-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-carbon-950 font-mono font-bold text-xs flex items-center justify-center gap-1.5 transition-all shadow-md cursor-pointer">☕ Book a Virtual Coffee ↗</button></div>`, 'bot'); return;
+          }
+          if (lower.includes('sudo rm -rf')) {
+            this.appendMessage(`Nice try! 🛡️ My AWS IAM role enforces Principle of Least Privilege and explicitly denies root volume destruction.`, 'bot'); return;
+          }
+          if (/\bsudo\s+hire\s+sai\b/i.test(lower) || /\b(hire|recruit|interview|book a call)\b/i.test(lower)) {
+            this.appendMessage(`👑 <strong>[EXECUTIVE CLEARANCE GRANTED]:</strong> Sai Vinay is available immediately for DevOps, Cloud, SRE, and GenAI engineering roles (Bengaluru / India / Global). <br><br><button data-chat-action="open-calendly" class="w-full py-2 px-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-carbon-950 font-mono font-bold text-xs flex items-center justify-center gap-1.5 transition-all shadow-md cursor-pointer">📅 Schedule a 30m Interview Call ↗</button>`, 'bot'); return;
+          }
+          
+          inp.disabled = true; btn.disabled = true;
+          const loaderId = 'loader-' + Date.now();
+          const win = document.getElementById('chatWindow');
+          win.insertAdjacentHTML('beforeend', `<div id="${loaderId}" class="p-3 rounded-2xl rounded-tl-sm bg-carbon-800 border border-carbon-700 w-fit flex items-center gap-1.5"><span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span></div>`);
+          win.scrollTop = win.scrollHeight;
+
+          try {
+            const res = await fetch("https://portfolio-copilot.msaivinay306.workers.dev", {
+              method: 'POST', headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ message: text, history: this.history })
+            });
+            const data = await res.json();
+            document.getElementById(loaderId)?.remove();
+            if (data.mood === 'secret') Balloon.setFace('secret');
+            if (!res.ok || data.error) this.appendMessage(data.error || 'Unable to reach assistant worker.', 'bot-error');
+            else {
+              this.appendMessage(data.reply || 'No response received.', 'bot');
+              this.history.push({ role: 'user', parts: [{ text: text }] }, { role: 'model', parts: [{ text: data.reply || '' }] });
+            }
+          } catch (err) {
+            document.getElementById(loaderId)?.remove();
+            this.appendMessage('Network error: Could not reach Cloudflare Worker endpoint.', 'bot-error');
+          } finally {
+            inp.disabled = false; btn.disabled = false; inp.focus();
+          }
+        }
+      };
+
+      // --- EXPOSED PUBLIC API ---
+      return {
+        init: function() {
+          Onboarding.init();
+          Modals.init();
+          Tooltips.init();
+          Telemetry.init();
+          Balloon.init();
+          Chat.init();
+        },
+        setMode: function(role, showNotification = true) {
+          document.body.classList.remove('mode-hr', 'mode-manager', 'mode-dev');
+          
+          // Header Toggles
+          const inact = "px-2 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 text-slate-400 hover:text-white whitespace-nowrap";
+          const actAmb = "px-2 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 bg-amber-500 text-carbon-950 font-bold shadow-sm whitespace-nowrap";
+          const actGrn = "px-2 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 bg-[#00ff66] text-black font-bold shadow-[0_0_12px_rgba(0,255,102,0.4)] whitespace-nowrap";
+          
+          const bHr = document.getElementById('headerBtnHr'), bMgr = document.getElementById('headerBtnManager'), bDev = document.getElementById('headerBtnDev');
+          if (bHr) bHr.className = (role === 'recruiter') ? actAmb : inact;
+          if (bMgr) bMgr.className = (role === 'manager') ? actAmb : inact;
+          if (bDev) bDev.className = (role === 'engineer') ? actGrn : inact;
+
+          document.querySelectorAll('.manager-only').forEach(el => el.style.display = (role === 'manager') ? '' : 'none');
+          document.querySelectorAll('.dev-only').forEach(el => el.style.display = (role === 'engineer') ? '' : 'none');
+
+          const vHr = document.getElementById('view-hr'), vMgrDev = document.getElementById('view-manager-dev');
+          const links = document.getElementById('mainHeaderScrollLinks'), dlBtn = document.getElementById('hrHeaderResumeBtn');
+          const mxBtn = document.getElementById('matrixToggleBtn'), tel = document.getElementById('devTelemetryStrip');
+          const cli = document.getElementById('devCliDrawer');
+
+          if (role === 'recruiter') {
+            document.body.classList.add('mode-hr');
+            if (vHr) vHr.style.display = 'block';
+            if (vMgrDev) vMgrDev.style.display = 'none';
+            if (links) links.classList.replace('lg:flex', 'lg:hidden');
+            if (dlBtn) dlBtn.style.display = 'inline-flex';
+            if (mxBtn) mxBtn.style.display = 'none';
+            if (tel) tel.style.display = 'none';
+            if (cli) cli.style.display = 'none';
+            stopMatrixRain(); Balloon.setFace('secret');
+            if (showNotification) showToast('👔 <strong>HR / Recruiter Mode:</strong> Executive 3-column layout &amp; clickable Credly seals.');
+          } else if (role === 'manager') {
+            document.body.classList.add('mode-manager');
+            if (vHr) vHr.style.display = 'none';
+            if (vMgrDev) vMgrDev.style.display = 'block';
+            if (links) links.classList.replace('lg:hidden', 'lg:flex');
+            if (dlBtn) dlBtn.style.display = 'none';
+            if (mxBtn) mxBtn.style.display = 'none';
+            if (tel) tel.style.display = 'none';
+            if (cli) cli.style.display = 'none';
+            stopMatrixRain(); Balloon.setFace('default');
+            if (showNotification) showToast('📊 <strong>Hiring Manager Mode:</strong> Enterprise Compartments &amp; Executive Case Studies.');
+          } else if (role === 'engineer') {
+            document.body.classList.add('mode-dev');
+            if (vHr) vHr.style.display = 'none';
+            if (vMgrDev) vMgrDev.style.display = 'block';
+            if (links) links.classList.replace('lg:hidden', 'lg:flex');
+            if (dlBtn) dlBtn.style.display = 'none';
+            if (mxBtn) mxBtn.style.display = 'inline-flex';
+            if (tel) tel.style.display = 'block';
+            if (!isMatrixRainMuted && !State.isReducedMotion) startMatrixRain();
+            Balloon.setFace('hover');
+            if (showNotification) showToast('💻 <strong>Developer Mode:</strong> Live Telemetry &amp; Incident Sandbox ready!');
+          }
+        },
+        openCaseStudy: function(id) { CaseStudies.open(id); },
+        openModal: function(id) { Modals.open(id); },
+        closeModal: function(id) { Modals.close(id); },
+        
+        // Sandbox Exports
+        toggleConsoleModal: function() {
+          const drawer = document.getElementById('devCliDrawer');
+          if (!drawer) return;
+          if (drawer.style.display === 'none' || drawer.style.display === '') {
+            this.openModal('devCliDrawer');
+            setTimeout(() => document.getElementById('cliInput')?.focus(), 50);
+          } else {
+            this.closeModal('devCliDrawer');
+          }
+        },
+        forceBreakCli: function() { forceBreakCli(); },
+        runCliCommand: function(cmd) { runCliCommand(cmd); },
+        
+        // Telemetry Exports
+        openTelemetryDashboard: function() {
+          State.isDashboardOpen = true;
+          Modals.open('modal-telemetry-dashboard');
+          Telemetry.startHttpPolling();
+        },
+        triggerManualHttpProbe: function() { Telemetry.runHttpProbe(); },
+
+        // Chat Exports
+        sendQuickPrompt: function(text) { Chat.sendQuickPrompt(text); },
+
+        // Matrix Export
+        toggleMatrix: function() { toggleMatrixRainEffect(); }
+      };
+    })();
+
+    // Initialize the Portfolio Application
+    window.PortfolioController.init();
+
+    // Matrix Rain Global Utilities
+    let matrixTimer = null, rainDrops = [];
+    const canvas = document.getElementById('matrixCanvas');
+    const ctx = canvas?.getContext('2d');
+    const charSize = 14, matrixChars = '0123456789ABCDEFGHXYZ';
+    let isMatrixRainMuted = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    function resizeMatrix() {
+      if (!canvas || !ctx) return;
+      canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+      rainDrops = Array(Math.floor(canvas.width / charSize)).fill(1);
     }
-    setTimeout(runLiveTelemetryProbe, 600);
+    window.addEventListener('resize', resizeMatrix);
+    resizeMatrix();
 
-    window.openTelemetryDashboard = function() {
-      openModal('modal-telemetry-dashboard');
-      runLiveTelemetryProbe();
-      if (window.telemetryGaugeInterval) clearInterval(window.telemetryGaugeInterval);
-      window.telemetryGaugeInterval = setInterval(() => {
-        const m = document.getElementById('modal-telemetry-dashboard');
-        if (m && !m.classList.contains('hidden')) runLiveTelemetryProbe();
-      }, 3500);
-    };
-
-    const btnResample = document.getElementById('btnResampleDashboard');
-    if (btnResample) btnResample.addEventListener('click', runLiveTelemetryProbe);
-
-    window.openConsoleModal = function() {
-      const drawer = document.getElementById('devCliDrawer');
-      if (!drawer) return;
-      drawer.style.display = 'flex';
-      setTimeout(() => document.getElementById('cliInput')?.focus(), 50);
-    };
-
-    window.closeConsoleModal = function() {
-      const drawer = document.getElementById('devCliDrawer');
-      if (drawer) drawer.style.display = 'none';
-    };
-
-    window.toggleConsoleModal = function() {
-      const drawer = document.getElementById('devCliDrawer');
-      if (!drawer) return;
-      if (drawer.style.display === 'none' || drawer.style.display === '') window.openConsoleModal();
-      else window.closeConsoleModal();
-    };
-
-    let isMatrixRainMuted = isReducedMotionPreferred();
-    window.toggleMatrixRainEffect = function() {
+    function renderMatrix() {
+      if (!canvas || !ctx) return;
+      ctx.fillStyle = 'rgba(3, 8, 4, 0.08)'; ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = window.matrixColor || '#00ff66'; ctx.font = charSize + 'px monospace';
+      for (let i = 0; i < rainDrops.length; i++) {
+        ctx.fillText(matrixChars.charAt(Math.floor(Math.random() * matrixChars.length)), i * charSize, rainDrops[i] * charSize);
+        if (rainDrops[i] * charSize > canvas.height && Math.random() > 0.975) rainDrops[i] = 0;
+        rainDrops[i]++;
+      }
+    }
+    function startMatrixRain(forceByUser = false) {
+      if (isMatrixRainMuted && !forceByUser) return;
+      if (canvas) canvas.style.opacity = '0.22';
+      if (!matrixTimer) matrixTimer = setInterval(renderMatrix, 42);
+    }
+    function stopMatrixRain() {
+      if (canvas) canvas.style.opacity = '0';
+      if (matrixTimer) { clearInterval(matrixTimer); matrixTimer = null; ctx.clearRect(0, 0, canvas.width, canvas.height); }
+    }
+    function toggleMatrixRainEffect() {
       isMatrixRainMuted = !isMatrixRainMuted;
       const btn = document.getElementById('matrixToggleBtn');
       if (isMatrixRainMuted) {
@@ -2004,109 +2482,31 @@
         if (btn) btn.innerHTML = `<i data-lucide="sparkles" class="w-3.5 h-3.5 text-[#00ff66]"></i><span class="text-[11px] text-[#00ff66] hidden sm:inline">Rain</span>`;
         if (window.lucide) lucide.createIcons();
       }
-    };
-
-    function updateHeaderToggleUI(role) {
-      const btnHr = document.getElementById('headerBtnHr');
-      const btnMgr = document.getElementById('headerBtnManager');
-      const btnDev = document.getElementById('headerBtnDev');
-      const inactive = "px-2 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 text-slate-400 hover:text-white whitespace-nowrap";
-      const activeAmber = "px-2 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 bg-amber-500 text-carbon-950 font-bold shadow-sm whitespace-nowrap";
-      const activeGreen = "px-2 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 bg-[#00ff66] text-black font-bold shadow-[0_0_12px_rgba(0,255,102,0.4)] whitespace-nowrap";
-
-      if (btnHr) btnHr.className = (role === 'recruiter') ? activeAmber : inactive;
-      if (btnMgr) btnMgr.className = (role === 'manager') ? activeAmber : inactive;
-      if (btnDev) btnDev.className = (role === 'engineer') ? activeGreen : inactive;
     }
 
-    window.setPerspective = function(role, showNotification = true) {
-      document.body.classList.remove('mode-hr', 'mode-manager', 'mode-dev');
-      updateHeaderToggleUI(role);
-      
-      const viewHr = document.getElementById('view-hr');
-      const viewManagerDev = document.getElementById('view-manager-dev');
-      const mainHeaderScrollLinks = document.getElementById('mainHeaderScrollLinks');
-      const hrHeaderResumeBtn = document.getElementById('hrHeaderResumeBtn');
-      const matrixToggleBtn = document.getElementById('matrixToggleBtn');
-      const devTelemetry = document.getElementById('devTelemetryStrip');
-      const devCliDrawer = document.getElementById('devCliDrawer');
-
-      document.querySelectorAll('.manager-only').forEach(el => el.style.display = (role === 'manager') ? '' : 'none');
-      document.querySelectorAll('.dev-only').forEach(el => el.style.display = (role === 'engineer') ? '' : 'none');
-
-      if (role === 'recruiter') {
-        document.body.classList.add('mode-hr');
-        if (viewHr) viewHr.style.display = 'block';
-        if (viewManagerDev) viewManagerDev.style.display = 'none';
-        if (mainHeaderScrollLinks) mainHeaderScrollLinks.classList.replace('lg:flex', 'lg:hidden');
-        if (hrHeaderResumeBtn) hrHeaderResumeBtn.style.display = 'inline-flex';
-        if (matrixToggleBtn) matrixToggleBtn.style.display = 'none';
-        if (devTelemetry) devTelemetry.style.display = 'none';
-        if (devCliDrawer) devCliDrawer.style.display = 'none';
-        stopMatrixRain();
-        setBalloonFace('secret');
-        if (showNotification) showToast('👔 <strong>HR / Recruiter Mode:</strong> Executive 3-column layout &amp; clickable Credly seals.');
-      
-      } else if (role === 'manager') {
-        document.body.classList.add('mode-manager');
-        if (viewHr) viewHr.style.display = 'none';
-        if (viewManagerDev) viewManagerDev.style.display = 'block';
-        if (mainHeaderScrollLinks) mainHeaderScrollLinks.classList.replace('lg:hidden', 'lg:flex');
-        if (hrHeaderResumeBtn) hrHeaderResumeBtn.style.display = 'none';
-        if (matrixToggleBtn) matrixToggleBtn.style.display = 'none';
-        if (devTelemetry) devTelemetry.style.display = 'none';
-        if (devCliDrawer) devCliDrawer.style.display = 'none';
-        stopMatrixRain();
-        setBalloonFace('default');
-        if (showNotification) showToast('📊 <strong>Hiring Manager Mode:</strong> Enterprise Compartments &amp; Executive Case Studies.');
-      
-      } else if (role === 'engineer') {
-        document.body.classList.add('mode-dev');
-        if (viewHr) viewHr.style.display = 'none';
-        if (viewManagerDev) viewManagerDev.style.display = 'block';
-        if (mainHeaderScrollLinks) mainHeaderScrollLinks.classList.replace('lg:hidden', 'lg:flex');
-        if (hrHeaderResumeBtn) hrHeaderResumeBtn.style.display = 'none';
-        if (matrixToggleBtn) matrixToggleBtn.style.display = 'inline-flex';
-        if (devTelemetry) devTelemetry.style.display = 'block';
-        if (!isMatrixRainMuted && !isReducedMotionPreferred()) startMatrixRain();
-        runLiveTelemetryProbe();
-        setBalloonFace('hover');
-        if (showNotification) showToast('💻 <strong>Developer Mode:</strong> Live Telemetry &amp; Incident Sandbox ready!');
-      }
-    };
-
-    /* Diagnostic Shell & Virtual FS */
-    const cliInput = document.getElementById('cliInput');
-    const cliOutput = document.getElementById('cliOutput');
-    let commandHistory = [], historyIndex = -1, activeCliAbortController = null, activeCliTimers = [];
-    let currentWorkingDir = '/opt/incident-127';
-
-    const VIRTUAL_FS = {
-      'Dockerfile': `FROM registry.internal-cloud.net/core/enterprise-java-base:latest\nWORKDIR /app\nCOPY target/subscription-service.jar /app/app.jar\nHEALTHCHECK --interval=10s --timeout=3s CMD /opt/incident-127/healthcheck.sh`,
-      'healthcheck.sh': `#!/bin/sh\n/usr/bin/curl --fail --noproxy "*" http://localhost:8080/api/v1/health/ping || exit 1`,
-      'patch.sh': `#!/bin/sh\necho "Applying Dockerfile layer patch (+curl) and verifying health probe..."`
-    };
-
+    // CLI Engine globals for sandbox commands
+    let activeCliAbortController = null, activeCliTimers = [];
+    let isCase1Patched = false;
     function printCliLine(text, className = '') {
-      if (!cliOutput) return;
+      const out = document.getElementById('cliOutput');
+      if (!out) return;
       const div = document.createElement('div');
       div.className = className; div.innerText = text;
-      cliOutput.appendChild(div); cliOutput.scrollTop = cliOutput.scrollHeight;
+      out.appendChild(div); out.scrollTop = out.scrollHeight;
     }
-
-    window.forceBreakCli = function() {
+    function forceBreakCli() {
       if (activeCliAbortController) { try { activeCliAbortController.abort(); } catch (e) {} activeCliAbortController = null; }
       if (activeCliTimers.length > 0) { activeCliTimers.forEach(t => clearTimeout(t)); activeCliTimers = []; }
       printCliLine('^C [SIGINT: Process interrupted and shell restored]', 'text-red-400 font-bold');
-      if (cliInput) { cliInput.disabled = false; cliInput.value = ''; cliInput.focus(); }
-    };
-
-    window.runCliCommand = async function(rawCmd) {
+      const inp = document.getElementById('cliInput');
+      if (inp) { inp.disabled = false; inp.value = ''; inp.focus(); }
+    }
+    async function runCliCommand(rawCmd) {
       const cmd = rawCmd.trim();
+      const inp = document.getElementById('cliInput');
       if (!cmd) return;
-      commandHistory.push(cmd); historyIndex = commandHistory.length;
-      if (cmd !== 'clear') printCliLine(`sai@prod-bastion:${currentWorkingDir}$ ${cmd}`, 'text-[#00ff66] font-bold');
-      if (cliInput) cliInput.value = '';
+      if (cmd !== 'clear') printCliLine(`sai@prod-bastion:/opt/incident-127$ ${cmd}`, 'text-[#00ff66] font-bold');
+      if (inp) inp.value = '';
 
       const args = cmd.split(/\s+/);
       const base = args[0].toLowerCase();
@@ -2118,30 +2518,16 @@
       }
 
       switch (base) {
-        case 'help': {
-          const helpText = `Interactive Diagnostic Shell:
-  pwd / ls [-la]      : Directory utilities
-  cat <file>          : Inspect file contents (Dockerfile, healthcheck.sh)
-  ./patch.sh          : Execute automated container remediation (+curl)
-  lsof +L1            : Inspect unlinked ghost file descriptors
-  curl <url>          : Fetch endpoint (auto-HTTPS)
-  coffee              : Inject caffeine into CI/CD pipeline
-  clear               : Wipe terminal screen
-  [Break / Ctrl+C]    : Force-kill stuck process
-
-Hiring / Executive:
-  sudo hire sai       : Fast-track interview scheduling & executive clearance`;
-          printCliLine(godModeUnlocked ? `${helpText}\n  sudo                : Root clearance unlocked` : helpText, 'text-slate-300');
+        case 'help':
+          printCliLine(`Interactive Diagnostic Shell:\n  ls -la          : Directory utilities\n  cat <file>      : Inspect file contents\n  ./patch.sh      : Execute container remediation\n  lsof +L1        : Inspect unlinked ghost files\n  curl <url>      : Fetch endpoint\n  coffee          : Inject caffeine into pipeline\n  clear           : Wipe terminal screen\n\nHiring / Executive:\n  sudo hire sai   : Fast-track interview scheduling`, 'text-slate-300');
           break;
-        }
-        case 'pwd': printCliLine(currentWorkingDir, 'text-emerald-400'); break;
         case 'ls':
           if (args[1] === '-la' || args[1] === '-l') printCliLine(`total 24\n-rw-r--r-- 1 sai devops  248 May 13 Dockerfile\n-rwxr-xr-x 1 sai devops  142 May 13 healthcheck.sh\n-rwxr-xr-x 1 sai devops  310 May 13 patch.sh`, 'text-sky-300');
           else printCliLine(`Dockerfile   healthcheck.sh   patch.sh*`, 'text-sky-300 font-bold');
           break;
         case 'cat':
           if (!args[1]) printCliLine('cat: missing file operand.', 'text-yellow-400');
-          else if (VIRTUAL_FS[args[1]]) printCliLine(VIRTUAL_FS[args[1]], 'text-slate-200');
+          else if (args[1] === 'Dockerfile') printCliLine(`FROM registry.internal-cloud.net/core/enterprise-java-base:latest\nWORKDIR /app\nCOPY target/subscription-service.jar /app/app.jar\nHEALTHCHECK --interval=10s --timeout=3s CMD /opt/incident-127/healthcheck.sh`, 'text-slate-200');
           else printCliLine(`cat: ${args[1]}: No such file`, 'text-red-400');
           break;
         case './patch.sh':
@@ -2151,27 +2537,22 @@ Hiring / Executive:
           activeCliTimers.push(setTimeout(() => { if (!isCase1Patched) toggleCase1Patch(); printCliLine(`[3/3] PROBE VERIFIED: GET http://localhost:8080/api/v1/health/ping -> HTTP 200 OK`, 'text-[#00ff66] font-bold'); }, 900));
           break;
         case 'lsof':
-          printCliLine(`COMMAND   PID   USER   FD   TYPE DEVICE   SIZE/OFF NLINK   NODE NAME\njava     4182  jboss   4w   REG  253,1 19482910720     0 131074 /var/log/app/gc.log (deleted)\n# Tip: Run ': > /proc/4182/fd/4' to truncate blocks non-disruptively without restarting PID 4182.`, 'text-amber-300');
+          printCliLine(`COMMAND   PID   USER   FD   TYPE DEVICE   SIZE/OFF NLINK   NODE NAME\njava     4182  jboss   4w   REG  253,1 19482910720     0 131074 /var/log/app/gc.log (deleted)\n# Tip: Run ': > /proc/4182/fd/4' to truncate blocks non-disruptively.`, 'text-amber-300');
           break;
         case ':':
           if (cmd.includes('/proc/4182/fd/4')) printCliLine(`[KERNEL VFS]: Truncated /proc/4182/fd/4 to 0 bytes. 18.1 GB reclaimed immediately without service restart.`, 'text-[#00ff66] font-bold');
           else printCliLine(`bash: syntax executed.`, 'text-slate-400');
           break;
-        case '/proc/4182/fd/4':
-          printCliLine(`bash: permission denied.\n(Hint: truncate the file descriptor to 0 bytes with ': > /proc/4182/fd/4')`, 'text-yellow-400 font-bold');
-          break;
         case 'coffee':
-        case 'brew':
           printCliLine(`      (\n       )\n    _(__)_\n   |      |_\n   |      |_|\n   |______|\n[INFO] Injecting caffeine into the CI/CD pipeline...`, 'text-amber-400');
           break;
         case 'sudo':
-          if (godModeUnlocked) {
-            printCliLine('[ROOT] Access granted. You found the hidden switch.\n[SYS] Try running: sudo hire sai', 'text-amber-300 font-bold');
-          } else {
-            printCliLine('Tip: Try "sudo hire sai" for executive fast-track, or enter the Konami code for root mode.', 'text-amber-300 font-bold');
-          }
+          printCliLine('Tip: Try "sudo hire sai" for executive fast-track, or enter the Konami code for root mode.', 'text-amber-300 font-bold');
           break;
-        case 'clear': cliOutput.innerHTML = ''; break;
+        case 'clear':
+          const out = document.getElementById('cliOutput');
+          if (out) out.innerHTML = '';
+          break;
         case 'curl':
           const nonFlagArgs = args.slice(1).filter(a => !a.startsWith('-'));
           let urlArg = nonFlagArgs[0];
@@ -2196,501 +2577,9 @@ Hiring / Executive:
           break;
         default: printCliLine(`bash: ${base}: command not found. Type 'help' for commands.`, 'text-red-400'); break;
       }
-      cliOutput.scrollTop = cliOutput.scrollHeight;
-    };
-
-    if (cliInput) {
-      cliInput.addEventListener('keydown', (e) => {
-        if ((e.ctrlKey && e.key.toLowerCase() === 'c') || e.key === 'Escape') { e.preventDefault(); forceBreakCli(); return; }
-        if (e.key === 'Enter') runCliCommand(cliInput.value);
-        else if (e.key === 'ArrowUp') { e.preventDefault(); if (historyIndex > 0) { historyIndex--; cliInput.value = commandHistory[historyIndex] || ''; } }
-        else if (e.key === 'ArrowDown') { e.preventDefault(); if (historyIndex < commandHistory.length - 1) { historyIndex++; cliInput.value = commandHistory[historyIndex] || ''; } else { historyIndex = commandHistory.length; cliInput.value = ''; } }
-      });
     }
 
-    /* ========================================================================= */
-    /* BALLOON COMPANION ENGINE (5-Click Easter Egg & Dizzy Detection)           */
-    /* ========================================================================= */
-    const balloon = document.getElementById('gusBalloon');
-    const gusSphere = document.getElementById('gusSphere');
-    const balloonContainer = document.getElementById('balloonContainer');
-    const triviaBubble = document.getElementById('balloonTriviaBubble');
-    const factLabel = document.getElementById('balloonFactLabel');
-    const factTitle = document.getElementById('balloonFactTitle');
-    const factText = document.getElementById('balloonFactText');
-    const actionRow = document.getElementById('balloonActionRow');
-    const settingsPanel = document.getElementById('balloonSettingsPanel');
-    let isBalloonMinimized = false;
-    let balloonIntroduced = false;
-    let siteAssistanceOnly = false;
-    let dragStartX = 0, dragStartY = 0, containerStartX = 0, containerStartY = 0, isDragging = false, hasMoved = false;
-
-    let swingAnchorX = 0;
-    let currentSwingDir = 0;
-    let reversalTimestamps = [];
-    let isDizzyLocked = false;
-    let dizzyResetTimer = null;
-    let balloonClickTimes = [];
-
-    const CURATED_TRIVIA = [
-      { category: "Tech History", title: "ChatGPT's Calendar Coincidence", fact: "ChatGPT was publicly introduced on November 30, 2022—which also happens to be Computer Security Day (established in 1988)." },
-      { category: "Tech History", title: "The Internet's First Message", fact: "On October 29, 1969, UCLA tried sending 'LOGIN' over ARPANET to Stanford. The system crashed after two letters, making the first message 'LO'." },
-      { category: "Artificial Intelligence", title: "The Transformer Revolution", fact: "The 2017 paper 'Attention Is All You Need' introduced the Transformer architecture behind modern LLMs." },
-      { category: "Cloud & DevOps", title: "Containers vs. VMs", fact: "Containers share the host OS kernel for lightweight isolation, whereas VMs virtualize an entire guest OS." },
-      { category: "Cloud & DevOps", title: "Supply-Chain Dependencies", fact: "A single stripped binary (like curl in a base image!) can halt an entire microservice release pipeline." },
-      { category: "Gaming & Future Tech", title: "GPUs: From Gaming to AI", fact: "Built for parallel 3D pixel shading in games like CS 1.6, GPUs turned out to be ideal for neural-network matrix math." }
-    ];
-
-    const WEBSITE_ASSIST_TIPS = [
-      { category: "Site Guide", title: "Switching Portfolio Modes", fact: "Use the top-left header bar (👔 HR | 📊 Manager | 💻 Dev) anytime to tailor the layout to your role." },
-      { category: "Site Guide", title: "Verifying AWS Certifications", fact: "Click any of the large AWS badge logos in HR, Manager, or Dev mode to verify Sai Vinay's official credentials on Credly." },
-      { category: "Site Guide", title: "Executive Case Studies", fact: "In Manager Mode, click '📊 View Executive Case Study' inside each company compartment for a Before/After breakdown." },
-      { category: "Site Guide", title: "Interactive Outage Sandbox", fact: "In Dev Mode, click '>_ Launch Incident Sandbox' to run commands like lsof +L1, ./patch.sh, or sudo hire sai." }
-    ];
-
-    function positionBalloonBubble() {
-      if (!triviaBubble || !balloonContainer) return;
-      const rect = balloonContainer.getBoundingClientRect();
-      if (rect.left > window.innerWidth * 0.5) {
-        triviaBubble.style.left = 'auto';
-        triviaBubble.style.right = '0px';
-      } else {
-        triviaBubble.style.left = '0px';
-        triviaBubble.style.right = 'auto';
-      }
-    }
-
-    function openBalloonBubbleSafely() {
-      if (window.innerWidth < 680 && !isChatMinimized) {
-        setChatMinimizedState(true);
-      }
-      positionBalloonBubble();
-      triviaBubble.classList.remove('hidden');
-    }
-
-    window.toggleBalloonSettings = function() {
-      if (!settingsPanel) return;
-      settingsPanel.classList.toggle('hidden');
-    };
-
-    window.setBalloonCustomTimer = function(sec) {
-      let parsed = Number.parseInt(sec, 10);
-      if (!Number.isFinite(parsed)) parsed = 40;
-      parsed = Math.max(30, Math.min(180, Math.round(parsed / 10) * 10));
-      const inp = document.getElementById('customBalloonSecInput');
-      if (inp) inp.value = String(parsed);
-      balloonIntervalMs = parsed * 1000;
-      scheduleNextBalloonNudge();
-      try { localStorage.setItem('airhead-settings', JSON.stringify({ delay: parsed, skin: gusSphere.classList.contains('skin-dark') ? 'dark' : 'light', siteGuide: siteAssistanceOnly })); } catch (error) {}
-      showToast(`⏱️ <strong>Balloon Timer Updated:</strong> Prompt interval set to ${parsed}s.`);
-    };
-
-    window.setBalloonSkin = function(mode) {
-      if (!gusSphere) return;
-      if (mode === 'dark') {
-        gusSphere.classList.add('skin-dark');
-        showToast('🌙 <strong>Balloon Dark Mode:</strong> Carbon neon skin activated.');
-      } else {
-        gusSphere.classList.remove('skin-dark');
-        showToast('☀️ <strong>Balloon Light Mode:</strong> Classic sky skin restored.');
-      }
-      try { localStorage.setItem('airhead-settings', JSON.stringify({ delay: Math.round(balloonIntervalMs / 1000), skin: mode, siteGuide: siteAssistanceOnly })); } catch (error) {}
-    };
-
-    window.toggleSiteAssistMode = function() {
-      siteAssistanceOnly = !siteAssistanceOnly;
-      const btn = document.getElementById('btnSiteAssistToggle');
-      if (btn) {
-        btn.textContent = siteAssistanceOnly ? 'ON (Site Guide Only)' : 'OFF (Tech Trivia)';
-        btn.className = siteAssistanceOnly
-          ? 'px-2.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/50 cursor-pointer font-bold'
-          : 'px-2.5 py-0.5 rounded bg-carbon-800 text-slate-300 border border-carbon-600 cursor-pointer';
-      }
-      try { localStorage.setItem('airhead-settings', JSON.stringify({ delay: Math.round(balloonIntervalMs / 1000), skin: gusSphere.classList.contains('skin-dark') ? 'dark' : 'light', siteGuide: siteAssistanceOnly })); } catch (error) {}
-      showToast(siteAssistanceOnly ? '🧭 <strong>Website Assistance Mode ON:</strong> Balloon will share portfolio navigation tips.' : '🎈 <strong>Tech Trivia Mode ON:</strong> Balloon will share tech & gaming facts.');
-    };
-
-    window.toggleBalloonMinimize = function(e) {
-      if (e) { e.stopPropagation(); e.preventDefault(); }
-      isBalloonMinimized = !isBalloonMinimized;
-      balloon.classList.toggle('minimized', isBalloonMinimized);
-      if (isBalloonMinimized) {
-        balloon.classList.remove('gus-float-anim');
-        window.dismissBalloonBubble();
-      } else {
-        balloon.classList.add('gus-float-anim');
-      }
-    };
-
-    function setBalloonFace(faceName, forceOverride = false) {
-      if (!gusSphere) return;
-      if (isDizzyLocked && !forceOverride && faceName !== 'dizzy') return;
-      gusSphere.classList.remove('face-hover', 'face-drag', 'face-bonk', 'face-secret', 'face-nudge', 'face-dizzy', 'face-happy');
-      if (faceName && faceName !== 'default') gusSphere.classList.add('face-' + faceName);
-    }
-
-    function triggerDizzyState() {
-      if (isDizzyLocked) return;
-      isDizzyLocked = true;
-      setBalloonFace('dizzy', true);
-      showToast('😵‍💫 <strong>Whoa!</strong> AirHead.cs~1.6 is dizzy from the high-G mouse shake!', 3000);
-      if (dizzyResetTimer) clearTimeout(dizzyResetTimer);
-      dizzyResetTimer = setTimeout(() => {
-        isDizzyLocked = false;
-        setBalloonFace('default', true);
-      }, 2800);
-    }
-
-    balloon.addEventListener('pointerdown', (e) => {
-      if (e.target.closest('#btnMinimizeBalloon') || isBalloonMinimized) return;
-      isDragging = true; hasMoved = false;
-      balloon.setPointerCapture(e.pointerId);
-      dragStartX = e.clientX; dragStartY = e.clientY;
-      swingAnchorX = e.clientX;
-      currentSwingDir = 0;
-      reversalTimestamps = [];
-      const rect = balloonContainer.getBoundingClientRect();
-      containerStartX = rect.left; containerStartY = rect.top;
-      balloon.classList.remove('gus-float-anim');
-      if (!isDizzyLocked) setBalloonFace('drag');
-    });
-
-    window.addEventListener('pointermove', (e) => {
-      if (!isDragging) return;
-      const dx = e.clientX - dragStartX, dy = e.clientY - dragStartY;
-      if (Math.abs(dx) > 4 || Math.abs(dy) > 4) hasMoved = true;
-
-      const swingDelta = e.clientX - swingAnchorX;
-      if (Math.abs(swingDelta) >= 18) {
-        const newDir = Math.sign(swingDelta);
-        const now = performance.now();
-        if (currentSwingDir !== 0 && newDir !== currentSwingDir) {
-          reversalTimestamps.push(now);
-          reversalTimestamps = reversalTimestamps.filter(t => now - t < 950);
-          if (reversalTimestamps.length >= 4) {
-            triggerDizzyState();
-          }
-        }
-        currentSwingDir = newDir;
-        swingAnchorX = e.clientX;
-      }
-
-      let newX = containerStartX + dx, newY = containerStartY + dy;
-      const maxX = window.innerWidth - 90, maxY = window.innerHeight - 150;
-      if (!isDizzyLocked && (newX <= 8 || newX >= maxX || newY <= 8 || newY >= maxY)) {
-        setBalloonFace('bonk');
-      }
-      balloonContainer.style.left = `${Math.max(8, Math.min(maxX, newX))}px`;
-      balloonContainer.style.top = `${Math.max(8, Math.min(maxY, newY))}px`;
-      positionBalloonBubble();
-    });
-
-    window.addEventListener('pointerup', (e) => {
-      if (!isDragging) return;
-      isDragging = false;
-      balloon.classList.add('gus-float-anim');
-      if (!isDizzyLocked) {
-        setBalloonFace('default');
-      }
-      
-      // Easter Egg: 5 Clicks in 3 Seconds unlocks Dark Mode
-      if (!hasMoved && !e.target.closest('#btnMinimizeBalloon')) {
-        const now = performance.now();
-        balloonClickTimes.push(now);
-        balloonClickTimes = balloonClickTimes.filter(t => now - t <= 3000);
-        if (balloonClickTimes.length >= 5) {
-          balloonClickTimes = [];
-          if (!gusSphere.classList.contains('skin-dark')) {
-            window.setBalloonSkin('dark');
-            showToast('🎈 <strong>Easter Egg Unlocked:</strong> Dark Mode Skin activated via 5 rapid clicks!');
-          }
-        } else {
-          popTrivia();
-        }
-      }
-    });
-
-    balloon.addEventListener('mouseenter', () => { if (!isDragging && !isBalloonMinimized && !isDizzyLocked && !gusSphere.classList.contains('face-happy')) setBalloonFace('hover'); });
-    balloon.addEventListener('mouseleave', () => { if (!isDragging && !isBalloonMinimized && !isDizzyLocked && !gusSphere.classList.contains('face-happy')) setBalloonFace('default'); });
-
-    function popTrivia() {
-      if (isBalloonMinimized) return;
-      if (!balloonIntroduced) {
-        balloonIntroduced = true;
-        factLabel.textContent = "🎈 AirHead.cs~1.6 • Welcome!";
-        factTitle.textContent = "Hello! I'm AirHead.cs~1.6 🎈";
-        factText.textContent = "Click me anytime for tech trivia, shake me fast while dragging, click me 5 times quickly for a secret, or use '⚙️ Settings' below!";
-        actionRow.style.display = 'flex';
-        openBalloonBubbleSafely();
-        setBalloonFace('secret');
-        return;
-      }
-      const pool = siteAssistanceOnly ? WEBSITE_ASSIST_TIPS : CURATED_TRIVIA;
-      const item = pool[Math.floor(Math.random() * pool.length)];
-      factLabel.textContent = `🎈 AirHead.cs~1.6 • ${item.category}`;
-      factTitle.textContent = item.title;
-      factText.textContent = item.fact;
-      actionRow.style.display = 'flex';
-      openBalloonBubbleSafely();
-      setBalloonFace('secret');
-    }
-
-    window.dismissBalloonBubble = function() { triviaBubble.classList.add('hidden'); setBalloonFace('default'); };
-    window.askCopilotAboutCurrentTrivia = function() { window.sendQuickPrompt(`Tell me more about: "${factTitle.textContent}"`); };
-
-    let balloonIntervalMs = 40000;
-    let balloonNudgeTimer = null;
-    function scheduleNextBalloonNudge() {
-      if (balloonNudgeTimer) clearTimeout(balloonNudgeTimer);
-      balloonNudgeTimer = setTimeout(runPeriodicNudge, balloonIntervalMs);
-    }
-
-    window.handleBalloonFeedback = function(response) {
-      if (response === 'yes') {
-        window.toggleBalloonMinimize();
-      } else if (response === 'somewhat') {
-        balloonIntervalMs = 105000;
-        scheduleNextBalloonNudge();
-        factTitle.textContent = "Got it! Slowing down ⏳";
-        factText.textContent = "I've increased my delay to 1m 45s so you can browse in peace.";
-        actionRow.style.display = 'none';
-        setTimeout(window.dismissBalloonBubble, 3200);
-      } else if (response === 'no') {
-        setBalloonFace('happy', true);
-        factTitle.textContent = "Thank you! 😊";
-        factText.textContent = "Awesome! I'll keep floating around with helpful tips and trivia.";
-        actionRow.style.display = 'none';
-        setTimeout(window.dismissBalloonBubble, 3200);
-      }
-    };
-
-    let balloonNudgeCount = 0;
-    function runPeriodicNudge() {
-      if (!isBalloonMinimized) {
-        balloonNudgeCount++;
-        if (balloonNudgeCount === 3) {
-          factLabel.textContent = "🎈 AirHead.cs~1.6 • Check-In";
-          factTitle.textContent = "Am I being too talkative?";
-          factText.innerHTML = "Let me know how often I should pop up:<br><div class='mt-2.5 flex gap-2'><button onclick='handleBalloonFeedback(\"yes\")' class='px-2.5 py-1 bg-carbon-800 text-slate-300 rounded border border-carbon-600 hover:text-white cursor-pointer'>Yes (Minimize)</button><button onclick='handleBalloonFeedback(\"somewhat\")' class='px-2.5 py-1 bg-carbon-800 text-amber-300 rounded border border-amber-500/40 hover:bg-amber-500/20 cursor-pointer'>Somewhat (1m 45s)</button><button onclick='handleBalloonFeedback(\"no\")' class='px-2.5 py-1 bg-carbon-800 text-emerald-400 rounded border border-emerald-500/50 hover:bg-emerald-500/20 cursor-pointer'>No 😊</button></div>";
-          actionRow.style.display = 'none';
-          openBalloonBubbleSafely();
-          setBalloonFace('nudge');
-        } else if (triviaBubble.classList.contains('hidden')) {
-          const pool = siteAssistanceOnly ? WEBSITE_ASSIST_TIPS : CURATED_TRIVIA;
-          const item = pool[Math.floor(Math.random() * pool.length)];
-          factLabel.textContent = `🎈 AirHead.cs~1.6 • ${item.category}`;
-          factTitle.textContent = item.title;
-          factText.textContent = item.fact;
-          actionRow.style.display = 'flex';
-          openBalloonBubbleSafely();
-          setBalloonFace('nudge');
-          setTimeout(() => { if (!triviaBubble.classList.contains('hidden') && balloonNudgeCount !== 3) window.dismissBalloonBubble(); }, 7000);
-        }
-      }
-      scheduleNextBalloonNudge();
-    }
-    scheduleNextBalloonNudge();
-
-    try {
-      const savedBalloonPrefs = JSON.parse(localStorage.getItem('airhead-settings') || '{}');
-      if (Number.isFinite(savedBalloonPrefs.delay)) {
-        balloonIntervalMs = Math.max(30, Math.min(180, Number.parseInt(savedBalloonPrefs.delay, 10))) * 1000;
-        const delayInput = document.getElementById('customBalloonSecInput');
-        if (delayInput) delayInput.value = String(Math.round(balloonIntervalMs / 1000));
-        scheduleNextBalloonNudge();
-      }
-      if (savedBalloonPrefs.skin === 'dark') gusSphere.classList.add('skin-dark');
-      if (savedBalloonPrefs.siteGuide === true) {
-        siteAssistanceOnly = true;
-        const assistButton = document.getElementById('btnSiteAssistToggle');
-        if (assistButton) {
-          assistButton.textContent = 'ON (Site Guide Only)';
-          assistButton.className = 'px-2.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/50 cursor-pointer font-bold';
-        }
-      }
-    } catch (error) {}
-
-    /* Matrix Rain Animation */
-    const canvas = document.getElementById('matrixCanvas');
-    const ctx = canvas.getContext('2d');
-    let matrixTimer = null, rainDrops = [];
-    const charSize = 14, matrixChars = '0123456789ABCDEFGHXYZ';
-    function resizeMatrix() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; rainDrops = Array(Math.floor(canvas.width / charSize)).fill(1); }
-    window.addEventListener('resize', () => { resizeMatrix(); positionBalloonBubble(); });
-    resizeMatrix();
-
-    function renderMatrix() {
-      ctx.fillStyle = 'rgba(3, 8, 4, 0.08)'; ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = window.matrixColor || '#00ff66'; ctx.font = charSize + 'px monospace';
-      for (let i = 0; i < rainDrops.length; i++) {
-        ctx.fillText(matrixChars.charAt(Math.floor(Math.random() * matrixChars.length)), i * charSize, rainDrops[i] * charSize);
-        if (rainDrops[i] * charSize > canvas.height && Math.random() > 0.975) rainDrops[i] = 0;
-        rainDrops[i]++;
-      }
-    }
-    function startMatrixRain(forceByUser = false) {
-      if (isReducedMotionPreferred() && !forceByUser) return;
-      canvas.style.opacity = '0.22';
-      if (!matrixTimer) matrixTimer = setInterval(renderMatrix, 42);
-    }
-    function stopMatrixRain() {
-      canvas.style.opacity = '0';
-      if (matrixTimer) { clearInterval(matrixTimer); matrixTimer = null; ctx.clearRect(0, 0, canvas.width, canvas.height); }
-    }
-
-    /* Copilot Chat & XSS-Safe Sanitizer */
-    const userInput = document.getElementById('userInput'), chatWindow = document.getElementById('chatWindow');
-    let isChatMinimized = false, chatHistory = [];
-
-    function setChatMinimizedState(minimized) {
-      isChatMinimized = minimized;
-      document.getElementById('chatBodyContainer').style.display = isChatMinimized ? 'none' : 'flex';
-      document.getElementById('minimizeChatBtn').innerText = isChatMinimized ? '▢' : '—';
-      if (!isChatMinimized && window.innerWidth < 680) {
-        window.dismissBalloonBubble();
-      }
-    }
-
-    function toggleChatMinimize() {
-      setChatMinimizedState(!isChatMinimized);
-    }
-    document.getElementById('chatHeader').addEventListener('click', () => { if (isChatMinimized) setChatMinimizedState(false); });
-    document.getElementById('minimizeChatBtn').addEventListener('click', (e) => { e.stopPropagation(); toggleChatMinimize(); });
-
-    if (window.innerWidth < 640) {
-      setChatMinimizedState(true);
-    }
-
-    window.sendQuickPrompt = function(pt) {
-      if (isChatMinimized) setChatMinimizedState(false);
-      userInput.value = pt;
-      sendMessage();
-    };
-    
-    function sanitizeChatMarkup(markup) {
-      const parsed = new DOMParser().parseFromString(String(markup), 'text/html');
-      const allowed = new Set(['A', 'B', 'STRONG', 'EM', 'I', 'CODE', 'PRE', 'P', 'BR', 'UL', 'OL', 'LI', 'SPAN', 'DIV', 'BUTTON']);
-      const blocked = new Set(['SCRIPT', 'STYLE', 'IFRAME', 'OBJECT', 'EMBED', 'SVG', 'MATH', 'FORM', 'INPUT']);
-      const output = document.createDocumentFragment();
-
-      function copyNode(source, target) {
-        source.childNodes.forEach((node) => {
-          if (node.nodeType === Node.TEXT_NODE) {
-            target.appendChild(document.createTextNode(node.textContent || ''));
-            return;
-          }
-          if (node.nodeType !== Node.ELEMENT_NODE) return;
-          if (blocked.has(node.tagName)) return;
-          if (!allowed.has(node.tagName)) {
-            copyNode(node, target);
-            return;
-          }
-          const clean = document.createElement(node.tagName.toLowerCase());
-          const cls = node.getAttribute('class');
-          if (cls && /^[a-zA-Z0-9\s\-_:/[\]#%.]+$/.test(cls)) {
-            clean.setAttribute('class', cls);
-          }
-          if (node.tagName === 'A') {
-            const rawHref = node.getAttribute('href') || '';
-            try {
-              const url = new URL(rawHref, window.location.href);
-              if (['https:', 'http:', 'mailto:', 'tel:'].includes(url.protocol)) {
-                clean.setAttribute('href', url.href);
-                clean.setAttribute('target', '_blank');
-                clean.setAttribute('rel', 'noopener noreferrer');
-              }
-            } catch (error) {}
-          }
-          if (node.tagName === 'BUTTON') {
-            clean.setAttribute('type', 'button');
-            if (node.getAttribute('data-chat-action') === 'open-calendly') {
-              clean.addEventListener('click', openCalendly);
-            }
-          }
-          copyNode(node, clean);
-          target.appendChild(clean);
-        });
-      }
-
-      copyNode(parsed.body, output);
-      return output;
-    }
-
-    function appendChatMessage(htmlOrText, type) {
-      const div = document.createElement('div');
-      if (type === 'user') {
-        div.className = "p-3 rounded-2xl rounded-tr-sm bg-amber-500 text-carbon-950 font-semibold ml-auto max-w-[85%] break-words shadow-sm";
-        div.textContent = String(htmlOrText ?? '');
-      } else if (type === 'bot') {
-        div.className = "p-3 rounded-2xl rounded-tl-sm bg-carbon-800 border border-carbon-700 text-slate-200 mr-auto max-w-[90%] break-words leading-relaxed";
-        div.appendChild(sanitizeChatMarkup(htmlOrText));
-      } else {
-        div.className = "p-3 rounded-2xl rounded-tl-sm bg-red-950/60 border border-red-500/40 text-red-300 mr-auto max-w-[90%] text-xs font-mono";
-        div.textContent = String(htmlOrText ?? '');
-      }
-      chatWindow.appendChild(div);
-      chatWindow.scrollTop = chatWindow.scrollHeight;
-    }
-
-    async function sendMessage() {
-      const text = userInput.value.trim();
-      if (!text) return;
-      appendChatMessage(text, 'user');
-      userInput.value = '';
-      const lower = text.toLowerCase();
-
-      if (lower.includes('do a barrel roll')) {
-        if (!isReducedMotionPreferred()) {
-          document.body.classList.add('spin-anim');
-          setTimeout(() => document.body.classList.remove('spin-anim'), 1200);
-        }
-        appendChatMessage('Whoa! 🌀 Hold onto your containers!', 'bot'); return;
-      }
-      if (lower === 'whoami' || lower === '/whoami') {
-        appendChatMessage(`<div class="space-y-2.5"><div>☕ <strong>$ whoami</strong>: uid=1000(sai-vinay). A Cloud &amp; DevOps engineer fueled by espresso. I take my coffee seriously and my infrastructure idempotently!</div><button data-chat-action="open-calendly" class="w-full py-2 px-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-carbon-950 font-mono font-bold text-xs flex items-center justify-center gap-1.5 transition-all shadow-md cursor-pointer">☕ Book a Virtual Coffee ↗</button></div>`, 'bot'); return;
-      }
-      if (lower.includes('sudo rm -rf /') || lower.includes('sudo rm -rf')) {
-        appendChatMessage(`Nice try! 🛡️ My AWS IAM role enforces Principle of Least Privilege and explicitly denies <code>s3:DeleteBucket</code> and root volume destruction.`, 'bot'); return;
-      }
-      if (/\bsudo\s+hire\s+sai\b/i.test(lower) || /\b(hire|recruit|interview|book a call|schedule a call|calendly|openings|job offer)\b/i.test(lower)) {
-        appendChatMessage(`👑 <strong>[EXECUTIVE CLEARANCE GRANTED]:</strong> Sai Vinay is available immediately for DevOps, Cloud, SRE, and GenAI engineering roles (Bengaluru / India / Global). <br><br><button data-chat-action="open-calendly" class="w-full py-2 px-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-carbon-950 font-mono font-bold text-xs flex items-center justify-center gap-1.5 transition-all shadow-md cursor-pointer">📅 Schedule a 30m Interview Call ↗</button>`, 'bot'); return;
-      }
-      if (/\b(cs~1\.6|cs\.1\.6|cs 1\.6|counter-strike)\b/i.test(lower)) {
-        setBalloonFace('secret');
-        appendChatMessage(`🎮 <strong>AirHead.cs~1.6</strong> is a nod to Sai Vinay's love for <em>Counter-Strike 1.6</em>—and a personal homage to what sparked his passion for networking, low-latency systems, and technology!`, 'bot'); return;
-      }
-
-      userInput.disabled = true; document.getElementById('sendChatBtn').disabled = true;
-      const loaderId = 'loader-' + Date.now();
-      chatWindow.insertAdjacentHTML('beforeend', `<div id="${loaderId}" class="p-3 rounded-2xl rounded-tl-sm bg-carbon-800 border border-carbon-700 w-fit flex items-center gap-1.5"><span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span></div>`);
-      chatWindow.scrollTop = chatWindow.scrollHeight;
-
-      try {
-        const response = await fetch("https://portfolio-copilot.msaivinay306.workers.dev", {
-          method: 'POST', headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ message: text, history: chatHistory })
-        });
-        const data = await response.json();
-        document.getElementById(loaderId)?.remove();
-        if (data.mood === 'secret') { setBalloonFace('secret'); showToast('🤫🎈 AirHead.cs~1.6 is smiling—its trivia secrets remain locked!'); }
-        if (!response.ok || data.error) appendChatMessage(data.error || 'Unable to reach assistant worker.', 'bot-error');
-        else {
-          appendChatMessage(data.reply || 'No response received.', 'bot');
-          chatHistory.push({ role: 'user', parts: [{ text: text }] }, { role: 'model', parts: [{ text: data.reply || '' }] });
-        }
-      } catch (err) {
-        document.getElementById(loaderId)?.remove();
-        appendChatMessage('Network error: Could not reach Cloudflare Worker endpoint.', 'bot-error');
-      } finally {
-        userInput.disabled = false; document.getElementById('sendChatBtn').disabled = false; userInput.focus();
-      }
-    }
-    document.getElementById('sendChatBtn').addEventListener('click', sendMessage);
-    userInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); sendMessage(); } });
-
-    /* Case 1 Interactive Probe Patch */
-    let isCase1Patched = false;
-    window.toggleCase1Patch = function() {
+    function toggleCase1Patch() {
       isCase1Patched = !isCase1Patched;
       const badge = document.getElementById('case1StatusBadge');
       const pr = document.getElementById('case1SvgProbeRect'), pt = document.getElementById('case1SvgProbeText');
@@ -2718,14 +2607,14 @@ Hiring / Executive:
         if (logLine) { logLine.textContent = "/bin/sh: /usr/bin/curl: not found (ExitCode 127)"; logLine.className = "text-red-400 mt-1"; }
         if (btn) btn.textContent = "[ >_ Run Patch: +curl ]";
       }
-    };
+    }
 
     (function initPerspectiveFromUrl() {
       const p = new URLSearchParams(window.location.search);
       const m = (p.get('mode') || '').toLowerCase();
-      if (m === 'hr' || m === 'recruiter') setPerspective('recruiter', false);
-      else if (m === 'dev' || m === 'engineer') setPerspective('engineer', false);
-      else setPerspective('manager', false);
+      if (m === 'hr' || m === 'recruiter') window.PortfolioController.setMode('recruiter', false);
+      else if (m === 'dev' || m === 'engineer') window.PortfolioController.setMode('engineer', false);
+      else window.PortfolioController.setMode('manager', false);
     })();
   </script>
 </body>
