@@ -42,7 +42,6 @@
       }
     }
 
-    /* Multi-Extension Image Resolver */
     function resolveAsset(imgEl, baseName) {
       const candidates = [
         `assets/${baseName}.png`, `assets/${baseName}.jpg`, `assets/${baseName}.jpeg`, `assets/${baseName}.webp`,
@@ -77,7 +76,7 @@
       transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
     }
 
-    /* Native HTML Details/Summary Styling for Manager Mode Collapsibles */
+    /* Native HTML Details/Summary Styling */
     details > summary { list-style: none; cursor: pointer; outline: none; }
     details > summary::-webkit-details-marker { display: none; }
     .collapse-icon { transition: transform 0.3s ease; }
@@ -85,7 +84,7 @@
     details[open] .compartment-content { animation: fadeInDown 0.3s ease-out forwards; }
     @keyframes fadeInDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 
-    /* A11y Tooltips */
+    /* Accessible Fixed Tooltips */
     .a11y-tooltip-wrapper { position: relative; display: inline-flex; align-items: center; justify-content: center; }
     .a11y-tooltip-trigger { background: none; border: none; padding: 2px; cursor: pointer; border-radius: 9999px; outline: none; }
     .a11y-tooltip-trigger:focus-visible { box-shadow: 0 0 0 2px #00ff66; }
@@ -93,7 +92,7 @@
       position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); margin-bottom: 8px;
       width: 220px; background-color: #101624; color: #cbd5e1; font-size: 10px; font-family: 'Plus Jakarta Sans', sans-serif;
       padding: 8px 10px; border: 1px solid #314161; border-radius: 6px; box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-      z-index: 50; text-transform: none; font-weight: normal; letter-spacing: normal; line-height: 1.4;
+      z-index: 9999; text-transform: none; font-weight: normal; letter-spacing: normal; line-height: 1.4;
       opacity: 0; visibility: hidden; transition: opacity 0.2s, visibility 0.2s; pointer-events: none;
     }
     .a11y-tooltip-wrapper.is-active .a11y-tooltip-content { opacity: 1; visibility: visible; pointer-events: auto; }
@@ -101,11 +100,10 @@
     @keyframes barrelRoll { 100% { transform: rotate(360deg); } }
     .spin-anim { animation: barrelRoll 1.2s cubic-bezier(0.68, -0.55, 0.27, 1.55); }
 
-    /* Color-Matched Gliding Shimmer */
+    /* Gliding Shimmer */
     @keyframes btnGlareSweep { 0%, 70% { transform: translateX(-140%) skewX(-22deg); } 100% { transform: translateX(250%) skewX(-22deg); } }
     .shiny-btn-red::after, .shiny-btn-green::after, .shiny-btn-purple::after, .shiny-btn-blue::after, .shiny-btn-amber::after {
-      content: ""; position: absolute; inset: 0; width: 48%;
-      transform: translateX(-140%) skewX(-22deg); animation: btnGlareSweep 4s infinite ease-in-out; pointer-events: none;
+      content: ""; position: absolute; inset: 0; width: 48%; transform: translateX(-140%) skewX(-22deg); animation: btnGlareSweep 4s infinite ease-in-out; pointer-events: none;
     }
     .shiny-btn-red::after { background: linear-gradient(90deg, transparent, rgba(248, 113, 113, 0.45), transparent); }
     .shiny-btn-green::after { background: linear-gradient(90deg, transparent, rgba(52, 211, 153, 0.45), transparent); }
@@ -138,14 +136,7 @@
     .typing-dot:nth-child(3) { animation-delay: 0.4s; }
     @keyframes bounceDot { 0%, 80%, 100% { transform: translateY(0); opacity: 0.35; } 40% { transform: translateY(-4px); opacity: 1; } }
 
-    @media print {
-      body { background: white !important; color: black !important; }
-      .bento-card { background: white !important; border: 1px solid #ccc !important; box-shadow: none !important; break-inside: avoid; }
-      .bg-grid-pattern, .hero-glow, #matrixCanvas, #portfolioChat, #balloonContainer, header, #view-manager-dev { display: none !important; }
-      #view-hr { display: block !important; }
-      * { color: black !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    }
-    /* Full Balloon Animations & Complete Facial Expressions */
+    /* Full Balloon Animations */
     @keyframes gusFloat { 0%, 100% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-8px) rotate(2deg); } }
     .gus-float-anim { animation: gusFloat 3.8s ease-in-out infinite; }
     .balloon-scale-shell { width: 82px; height: 138px; position: relative; touch-action: none; user-select: none; cursor: grab; transition: transform 0.25s ease, opacity 0.25s ease; }
@@ -157,11 +148,7 @@
       border: 2px solid rgba(255, 255, 255, 0.45); box-sizing: border-box;
       box-shadow: inset -12px -15px 22px rgba(26, 64, 105, 0.25), inset 8px 8px 18px rgba(255, 255, 255, 0.3), 0 14px 30px rgba(0, 0, 0, 0.45);
     }
-    .gus-balloon.skin-dark {
-      background: linear-gradient(145deg, #1e293b 0%, #0f172a 55%, #020617 100%) !important;
-      border: 3px solid #00ff66 !important;
-      box-shadow: inset -10px -12px 20px rgba(0, 255, 102, 0.2), 0 0 25px rgba(0, 255, 102, 0.35) !important;
-    }
+    .gus-balloon.skin-dark { background: linear-gradient(145deg, #1e293b 0%, #0f172a 55%, #020617 100%) !important; border: 3px solid #00ff66 !important; box-shadow: inset -10px -12px 20px rgba(0, 255, 102, 0.2), 0 0 25px rgba(0, 255, 102, 0.35) !important; }
     .gus-balloon.skin-dark .balloon-eyebrows span { background: #00ff66 !important; }
     .balloon-highlight { position: absolute; width: 62px; height: 28px; top: 17px; right: 23px; border-radius: 50%; background: rgba(255, 255, 255, 0.95); transform: rotate(38deg); }
     .balloon-eyebrows span { position: absolute; top: 52px; width: 27px; height: 8px; border-radius: 6px; background: #17212b; transition: all 0.22s ease; will-change: transform, top; backface-visibility: hidden; }
@@ -208,11 +195,6 @@
     .gus-balloon.face-dizzy .balloon-eyebrows span:first-child { transform: rotate(52deg); top: 54px; }
     .gus-balloon.face-dizzy .balloon-eyebrows span:last-child { transform: rotate(-52deg); top: 54px; }
     .gus-balloon.face-dizzy .balloon-cheek { background: linear-gradient(135deg, #34d399, #10b981); opacity: 0.9; }
-    .gus-balloon.face-happy { transform: scale(1.06) rotate(-2deg); }
-    .gus-balloon.face-happy .balloon-eyebrows span:first-child { top: 44px; transform: rotate(-14deg); }
-    .gus-balloon.face-happy .balloon-eyebrows span:last-child { top: 44px; transform: rotate(14deg); }
-    .gus-balloon.face-happy .balloon-mouth { width: 148px; height: 98px; border-radius: 14% 14% 70% 70%; }
-    .gus-balloon.face-happy .balloon-cheek { background: linear-gradient(135deg, #fb7185, #f43f5e); opacity: 0.9; transform: scale(1.18); }
     
     .balloon-scale-shell.minimized { width: 34px; height: 34px; cursor: pointer; }
     .balloon-scale-shell.minimized .balloon-container { display: none; }
@@ -230,12 +212,12 @@
     <span id="customToastText"></span>
   </div>
 
-  <!-- Sticky Navigation Bar: CSS Grid ensures mathematically locked center without overlap -->
+  <!-- Sticky Navigation Bar (Flex Layout mimicking Source 8) -->
   <header class="sticky top-0 z-40 backdrop-blur-md bg-carbon-900/85 border-b border-carbon-700/70">
-    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-20 grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-2">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
       
-      <!-- Left Cluster: Profile Identity + Compact Mode Switcher -->
-      <div class="flex items-center justify-self-start gap-2 sm:gap-3 z-10">
+      <!-- Left: Identity -->
+      <div class="flex items-center gap-2 sm:gap-3 shrink-0 z-10">
         <a href="#home" class="flex items-center gap-2 group shrink-0">
           <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-carbon-800 border border-amber-500/50 flex items-center justify-center text-amber-400 font-mono font-bold text-sm sm:text-base group-hover:border-amber-400 transition-colors shrink-0">
             <img src="assets/sai-vinay.png" alt="Sai Vinay" class="w-full h-full object-cover rounded-lg" onerror="resolveAsset(this, 'sai-vinay')">
@@ -248,34 +230,34 @@
             </span>
           </div>
         </a>
-
-        <!-- Segmented Mode Switcher -->
-        <div class="hidden sm:inline-flex items-center p-1 rounded-xl bg-carbon-950/90 border border-carbon-700/90 font-mono text-[10px] sm:text-[11px] shadow-inner shrink-0">
-          <button type="button" id="headerBtnHr" onclick="setMode('recruiter', true)" class="px-2 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 text-slate-400 hover:text-white whitespace-nowrap">
-            <span>👔</span><span class="hidden xl:inline">HR Mode</span><span class="xl:hidden">HR</span>
-          </button>
-          <button type="button" id="headerBtnManager" onclick="setMode('manager', true)" class="px-2 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 bg-amber-500 text-carbon-950 font-bold shadow-sm whitespace-nowrap">
-            <span>📊</span><span class="hidden xl:inline">Manager Mode</span><span class="xl:hidden">Mgr</span>
-          </button>
-          <button type="button" id="headerBtnDev" onclick="setMode('engineer', true)" class="px-2 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 text-slate-400 hover:text-white whitespace-nowrap">
-            <span>💻</span><span class="hidden xl:inline">Dev Mode</span><span class="xl:hidden">Dev</span>
-          </button>
-        </div>
       </div>
 
-      <!-- Center Scroll Links: Locked to True Horizontal Center -->
-      <nav id="mainHeaderScrollLinks" class="hidden lg:flex justify-self-center items-center gap-5 xl:gap-7 text-xs sm:text-[13px] font-semibold text-slate-300 whitespace-nowrap z-0">
-        <a href="#journey" class="hover:text-amber-400 transition-colors">Career &amp; Credentials</a>
+      <!-- Center-Left: Mode Switcher -->
+      <div class="hidden sm:inline-flex items-center p-1 rounded-xl bg-carbon-950/90 border border-carbon-700/90 font-mono text-[10px] sm:text-[11px] shadow-inner shrink-0 z-10">
+        <button type="button" id="headerBtnHr" onclick="setPerspective('recruiter', true)" class="px-2 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 text-slate-400 hover:text-white whitespace-nowrap">
+          <span>👔</span><span class="hidden xl:inline">HR Mode</span><span class="xl:hidden">HR</span>
+        </button>
+        <button type="button" id="headerBtnManager" onclick="setPerspective('manager', true)" class="px-2 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 bg-amber-500 text-carbon-950 font-bold shadow-sm whitespace-nowrap">
+          <span>📊</span><span class="hidden xl:inline">Manager Mode</span><span class="xl:hidden">Mgr</span>
+        </button>
+        <button type="button" id="headerBtnDev" onclick="setPerspective('engineer', true)" class="px-2 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 text-slate-400 hover:text-white whitespace-nowrap">
+          <span>💻</span><span class="hidden xl:inline">Dev Mode</span><span class="xl:hidden">Dev</span>
+        </button>
+      </div>
+
+      <!-- Center-Right: Navigation Links -->
+      <nav id="mainHeaderScrollLinks" class="hidden lg:flex flex-1 items-center justify-start xl:justify-center gap-5 xl:gap-7 text-xs sm:text-[13px] font-semibold text-slate-300 whitespace-nowrap pl-4 z-0">
+        <a href="#journey" class="hover:text-amber-400 transition-colors">Professional Experience</a>
         <a href="#education" class="hover:text-amber-400 transition-colors">Education</a>
         <a href="#contact" class="hover:text-amber-400 transition-colors">How I Work</a>
       </nav>
 
-      <!-- Top-Right Actions -->
-      <div class="flex items-center justify-self-end gap-1.5 sm:gap-2 z-10">
+      <!-- Right: Actions -->
+      <div class="flex items-center justify-end gap-1.5 sm:gap-2 shrink-0 z-10">
         <!-- Mobile Mode Switcher -->
         <div class="sm:hidden inline-flex items-center p-1 rounded-xl bg-carbon-950/90 border border-carbon-700/90 font-mono text-[9px] shadow-inner shrink-0 mr-1">
-          <button type="button" onclick="setMode('manager', true)" class="px-1.5 py-1 rounded bg-amber-500 text-carbon-950 font-bold">Mgr</button>
-          <button type="button" onclick="setMode('engineer', true)" class="px-1.5 py-1 rounded text-slate-400 hover:text-white">Dev</button>
+          <button type="button" onclick="setPerspective('manager', true)" class="px-1.5 py-1 rounded bg-amber-500 text-carbon-950 font-bold">Mgr</button>
+          <button type="button" onclick="setPerspective('engineer', true)" class="px-1.5 py-1 rounded text-slate-400 hover:text-white">Dev</button>
         </div>
 
         <a id="hrHeaderResumeBtn" href="assets/Sai-Vinay-Mullapudi.pdf" target="_blank" rel="noopener noreferrer" download="Sai-Vinay-Mullapudi-Resume.pdf" style="display: none;" class="items-center gap-1.5 px-2.5 sm:px-3.5 py-2 rounded-lg text-[10px] sm:text-xs font-mono font-bold bg-amber-500 hover:bg-amber-400 text-carbon-950 shadow-md transition-all">
@@ -292,95 +274,6 @@
       </div>
     </div>
   </header>
-
-  <!-- ============================================== -->
-  <!-- HR MODE: 1-Page Printable Resume (3-Column)    -->
-  <!-- ============================================== -->
-  <div id="view-hr" style="display: none;" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
-    <!-- Unchanged HR section omitted for brevity, matches previous output -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-      <aside class="lg:col-span-3 bento-card p-5 sm:p-6 space-y-5">
-        <div class="flex flex-col items-center text-center">
-          <div class="w-36 h-36 sm:w-40 sm:h-40 rounded-full overflow-hidden border-4 border-amber-500/40 mb-3 bg-carbon-800 shadow-xl flex items-center justify-center">
-            <img src="assets/sai-vinay.png" alt="Sai Vinay" class="w-full h-full object-cover" onerror="resolveAsset(this, 'sai-vinay')">
-            <span class="asset-fallback hidden font-mono font-bold text-4xl text-amber-400">SV</span>
-          </div>
-          <h1 class="text-xl sm:text-2xl font-extrabold text-white leading-tight">Sai Vinay Mullapudi</h1>
-          <p class="text-xs font-mono text-emerald-400 font-bold mt-1">4 Yrs Enterprise (US &amp; India)</p>
-        </div>
-
-        <div class="border-t border-carbon-700/80 pt-3.5 space-y-1.5 text-xs font-mono text-slate-300">
-          <div class="flex items-center justify-between py-1 border-b border-carbon-800"><span class="text-slate-400">Target:</span><span class="text-white font-semibold">DevOps/Cloud/SRE</span></div>
-          <div class="flex items-center justify-between py-1 border-b border-carbon-800"><span class="text-slate-400">Mobility:</span><span class="text-white">Bengaluru / Anywhere India / Global</span></div>
-          <div class="flex items-center justify-between py-1"><span class="text-slate-400">Availability:</span><span class="text-emerald-400 font-semibold">Immediate</span></div>
-        </div>
-
-        <div class="border-t border-carbon-700/80 pt-3.5 space-y-2.5 font-mono">
-          <span class="text-xs font-bold text-amber-400 uppercase tracking-wider block">Education</span>
-          <div class="p-2.5 rounded-xl bg-carbon-900 border border-carbon-800 flex items-center gap-3">
-            <div class="w-10 h-10 rounded-lg bg-carbon-800 border border-emerald-500/40 p-1 flex items-center justify-center shrink-0"><span class="text-[10px] font-bold text-emerald-400">IIT-B</span></div>
-            <div class="min-w-0"><div class="text-xs font-bold text-white truncate">IIT Bombay</div><div class="text-[10px] text-amber-300 truncate">Exec. AI &amp; MLOps (2026)</div></div>
-          </div>
-          <div class="p-2.5 rounded-xl bg-carbon-900 border border-carbon-800 flex items-center gap-3">
-            <div class="w-10 h-10 rounded-lg bg-carbon-800 border border-red-500/40 p-1 flex items-center justify-center shrink-0"><span class="text-[10px] font-bold text-red-400">NJIT</span></div>
-            <div class="min-w-0"><div class="text-xs font-bold text-white truncate">NJIT (USA)</div><div class="text-[10px] text-amber-300 truncate">M.S. Comp Sci (2020)</div></div>
-          </div>
-          <div class="p-2.5 rounded-xl bg-carbon-900 border border-carbon-800 flex items-center gap-3">
-            <div class="w-10 h-10 rounded-lg bg-carbon-800 border border-amber-500/40 p-1 flex items-center justify-center shrink-0"><span class="text-[10px] font-bold text-amber-400">GGSIPU</span></div>
-            <div class="min-w-0"><div class="text-xs font-bold text-white truncate">GGSIPU (India)</div><div class="text-[10px] text-amber-300 truncate">B.Tech Comp Sci (2017)</div></div>
-          </div>
-        </div>
-      </aside>
-
-      <div class="lg:col-span-6 space-y-4">
-        <div class="bento-card p-4 sm:p-5 bg-gradient-to-br from-amber-500/10 via-carbon-850 to-carbon-900 border-amber-500/40 space-y-2.5">
-          <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-amber-500/15 border border-amber-500/40 text-amber-400 text-[11px] font-mono font-bold uppercase"><i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Candidate Value Proposition</div>
-          <h2 class="text-lg sm:text-xl font-extrabold text-white leading-snug">Enterprise Cloud Reliability Meets Production GenAI</h2>
-          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-            Architecting zero-trust AWS systems synchronized in real time with NYSE and Federal Reserve clearing feeds, coupled with modern applied AI platform delivery and resilient container governance.
-          </p>
-        </div>
-
-        <div class="bento-card p-5 sm:p-6 space-y-4">
-          <h3 class="text-base font-bold font-mono text-white uppercase tracking-wider flex items-center gap-2 border-b border-carbon-700/80 pb-2.5">
-            <i data-lucide="briefcase" class="w-5 h-5 text-emerald-400"></i> Enterprise Work Experience
-          </h3>
-          <div class="space-y-4 font-mono text-sm">
-            <div class="p-3.5 sm:p-4 rounded-xl bg-carbon-900 border border-carbon-800 space-y-1.5">
-              <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1">
-                <strong class="text-white text-xs sm:text-sm">Ascendion — DevOps &amp; GenAI Engineer (L5 @ HP Inc.)</strong>
-                <span class="text-emerald-400 font-bold shrink-0 text-xs">Dec '25 – Aug '26</span>
-              </div>
-              <ul class="space-y-1 text-slate-300 list-disc list-inside font-sans text-xs sm:text-sm leading-relaxed">
-                <li>Integrated LLMs, vector knowledge bases, and guardrail architectures into agentic SDLC workflows.</li>
-                <li>Standardized multi-account IAM roles and Terraform governance across containerized platform workloads.</li>
-              </ul>
-            </div>
-            <div class="p-3.5 sm:p-4 rounded-xl bg-carbon-900 border border-carbon-800 space-y-1.5">
-              <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1">
-                <strong class="text-white text-xs sm:text-sm">Eficens Systems LLC — DevOps Engineer (US FinTech)</strong>
-                <span class="text-amber-400 font-bold shrink-0 text-xs">Dec '21 – Aug '24</span>
-              </div>
-              <ul class="space-y-1 text-slate-300 list-disc list-inside font-sans text-xs sm:text-sm leading-relaxed">
-                <li>Architected zero-trust AWS infrastructure &amp; reusable Terraform for NYSE/Fed clearing feeds.</li>
-                <li>Built Jenkins CI/CD pipelines enforcing KMS envelope encryption and zero-downtime RDS updates.</li>
-              </ul>
-            </div>
-            <div class="p-3.5 sm:p-4 rounded-xl bg-carbon-900 border border-carbon-800 space-y-1.5">
-              <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1">
-                <strong class="text-white text-xs sm:text-sm">LotusData LLP — Jr. Cloud Administrator (NJ, USA)</strong>
-                <span class="text-sky-400 font-bold shrink-0 text-xs">Mar '21 – Dec '21</span>
-              </div>
-              <ul class="space-y-1 text-slate-300 list-disc list-inside font-sans text-xs sm:text-sm leading-relaxed">
-                <li>Maintained 99% availability across a 200+ AWS EC2 instance cluster through automated lifecycle governance.</li>
-                <li>Automated RedHat Linux bare-metal provisioning and administered non-disruptive online LVM storage.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
   <!-- ============================================== -->
   <!-- VIEW 2 & 3: MANAGER & DEV PERSPECTIVES         -->
   <!-- ============================================== -->
@@ -414,14 +307,14 @@
               Cloud, DevOps, and GenAI Engineer with enterprise depth architecting zero-trust AWS infrastructure for post-trade financial clearing systems in real-time sync with the <strong class="text-white">NYSE and Federal Reserve</strong>, and building enterprise agentic AI platforms.
             </p>
 
+            <!-- Equal-Sized 2x2 Grid for All 4 Hero CTA Buttons -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 max-w-xl">
-              <!-- Manager Button 1 -->
+              <!-- Button 1 (Manager): See How I Solve Problems -->
               <a href="#journey" class="manager-only h-12 px-4 rounded-xl text-xs sm:text-[13px] font-bold bg-amber-500 hover:bg-amber-400 text-carbon-950 flex items-center justify-center gap-2 transition-all shadow-[0_0_20px_rgba(245,158,11,0.3)] whitespace-nowrap">
                 See How I Solve Problems ↘
               </a>
-              
-              <!-- Dev Button 1 -->
-              <button type="button" onclick="toggleConsoleModal()" style="display: none;" class="dev-only h-12 px-4 rounded-xl text-xs sm:text-[13px] font-mono font-bold bg-[#00ff66]/15 hover:bg-[#00ff66] text-[#00ff66] hover:text-black border border-[#00ff66]/60 flex items-center justify-center gap-2 transition-all shadow-[0_0_24px_rgba(0,255,102,0.45)] cursor-pointer whitespace-nowrap">
+              <!-- Button 1 (Dev): Launch Incident Sandbox -->
+              <button type="button" onclick="window.PortfolioController.toggleConsoleModal()" style="display: none;" class="dev-only h-12 px-4 rounded-xl text-xs sm:text-[13px] font-mono font-bold bg-[#00ff66]/15 hover:bg-[#00ff66] text-[#00ff66] hover:text-black border border-[#00ff66]/60 flex items-center justify-center gap-2 transition-all shadow-[0_0_24px_rgba(0,255,102,0.45)] cursor-pointer whitespace-nowrap">
                 <span class="relative flex h-2.5 w-2.5 shrink-0">
                   <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00ff66] opacity-85"></span>
                   <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#00ff66]"></span>
@@ -450,7 +343,7 @@
             </div>
           </div>
 
-          <!-- RIGHT COLUMN: Profile Configs -->
+          <!-- RIGHT COLUMN: engineer_profile.yaml (Manager) vs runtime_config.json (Dev) -->
           <div class="lg:col-span-6 order-1 lg:order-2 flex justify-center lg:justify-end w-full">
             
             <!-- MANAGER MODE: engineer_profile.yaml -->
@@ -527,7 +420,7 @@
         </div>
       </section>
 
-      <!-- Developer Mode Telemetry Strip (Browser-only metrics & world clock; no IP/location field) -->
+      <!-- Developer Mode Telemetry Strip (Single Line with IP Location & World Clock) -->
       <div id="devTelemetryStrip" style="display: none;" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-6">
         <div class="px-4 py-3 rounded-xl bg-carbon-950 border border-[#00ff66]/40 font-mono text-[10px] sm:text-xs flex flex-wrap items-center justify-between gap-4 text-slate-300 shadow-lg">
           <div class="flex items-center gap-2.5">
@@ -536,20 +429,9 @@
           </div>
           
           <div class="flex flex-wrap items-center gap-4 sm:gap-6 text-[10px] sm:text-[11px]">
-            <span class="inline-flex items-center gap-1.5">
-              rAF callbacks/s: <strong id="devFpsVal" class="text-[#00ff66]">--</strong>
-              <span class="a11y-tooltip-wrapper">
-                <button type="button" class="a11y-tooltip-trigger text-[#00ff66]/80" aria-label="About browser animation callbacks" aria-expanded="false" aria-describedby="tip-strip-raf">ⓘ</button>
-                <span id="tip-strip-raf" class="a11y-tooltip-content" role="tooltip">Browser requestAnimationFrame callbacks per second. This is not GPU FPS and may vary with display refresh rate or background-tab throttling.</span>
-              </span>
-            </span>
-            <span class="inline-flex items-center gap-1.5">
-              HTTP: <strong id="devPingVal" class="text-[#00ff66]">-- ms</strong>
-              <span class="a11y-tooltip-wrapper">
-                <button type="button" class="a11y-tooltip-trigger text-[#00ff66]/80" aria-label="About HTTP request duration" aria-expanded="false" aria-describedby="tip-strip-http">ⓘ</button>
-                <span id="tip-strip-http" class="a11y-tooltip-content" role="tooltip">Browser-observed duration of a same-origin HTTP HEAD request. It is not an ICMP ping or a pure network-latency measurement.</span>
-              </span>
-            </span>
+            <span>FPS: <strong id="devFpsVal" class="text-[#00ff66]">60</strong></span>
+            <span>RTT: <strong id="devPingVal" class="text-[#00ff66]">-- ms</strong></span>
+            <span class="hidden sm:inline">IP / LOC: <strong id="visitorIpLoc" class="text-[#00ff66]">Detecting...</strong></span>
             
             <!-- Interactive World Clock Dropdown -->
             <div class="relative group cursor-pointer" onclick="this.querySelector('.clock-dropdown').classList.toggle('hidden')">
@@ -565,7 +447,8 @@
               </div>
             </div>
 
-            <button type="button" onclick="openTelemetryDashboard()" class="px-2.5 py-1 rounded bg-[#00ff66]/15 hover:bg-[#00ff66] text-[#00ff66] hover:text-black font-bold border border-[#00ff66]/60 transition-all cursor-pointer flex items-center gap-1.5 ml-2">
+            <!-- Live Dashboard Trigger -->
+            <button type="button" onclick="window.PortfolioController.openTelemetryDashboard()" class="px-2.5 py-1 rounded bg-[#00ff66]/15 hover:bg-[#00ff66] text-[#00ff66] hover:text-black font-bold border border-[#00ff66]/60 transition-all cursor-pointer flex items-center gap-1.5 ml-2">
               📊 Open Dashboard
             </button>
           </div>
@@ -636,11 +519,11 @@
           </div>
         </div>
       </section>
-      <!-- Section: Career & Technical Deep Dives -->
+      <!-- Section: Professional Experience & Architecture Deep Dives -->
       <section id="journey" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-14 border-b border-carbon-800 scroll-mt-20">
         <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-8 sm:mb-10 gap-6">
           <div class="space-y-4">
-            <span class="text-[11px] sm:text-xs font-mono text-amber-400 uppercase tracking-wider manager-only">CAREER &amp; ARCHITECTURE DEEP DIVES</span>
+            <span class="text-[11px] sm:text-xs font-mono text-amber-400 uppercase tracking-wider manager-only">PROFESSIONAL EXPERIENCE &amp; ARCHITECTURE DEEP DIVES</span>
             <span class="text-[11px] sm:text-xs font-mono text-[#00ff66] uppercase tracking-wider dev-only" style="display:none;">GIT FLOW &amp; ROOT-CAUSE ANALYSIS</span>
             
             <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white manager-only font-sans">
@@ -683,20 +566,20 @@
         </div>
 
         <!-- ========================================================================================= -->
-        <!-- MANAGER MODE: Smooth Collapsible Compartments -->
+        <!-- MANAGER MODE: Smooth Collapsible Compartments (Scaled Logos, Corrected PDF Data)          -->
         <!-- ========================================================================================= -->
         <div id="manager-ledger-cards" class="manager-only space-y-6">
           
           <!-- COMPARTMENT 1: ASCENDION -->
-          <details class="bg-carbon-900/95 border border-emerald-500/35 rounded-3xl shadow-2xl group" id="manager-compartment-1">
+          <details class="bg-carbon-900/95 border border-emerald-500/35 rounded-3xl shadow-2xl group" id="manager-compartment-1" open>
             <summary class="p-5 sm:p-7 pb-0 group-open:pb-5 border-b border-transparent group-open:border-carbon-800 transition-all flex items-center justify-between gap-4 relative select-none cursor-pointer outline-none">
               <div class="flex items-center gap-4 sm:gap-5">
-                <!-- Ascendion Logo Box -->
+                <!-- Ascendion Logo Box (Scaled to w-14) -->
                 <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-carbon-950 border border-emerald-500/50 flex items-center justify-center shadow-lg shrink-0 overflow-hidden p-2">
                   <img src="assets/ascendion.png" alt="Ascendion" class="w-full h-full object-contain" onerror="resolveAsset(this, 'ascendion')">
                   <span class="asset-fallback hidden font-sans font-black text-2xl text-white">A</span>
                 </div>
-                <!-- Client Logo Placeholder -->
+                <!-- Client Logo Placeholder (Scaled to w-12) -->
                 <div class="flex flex-col items-center shrink-0">
                   <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-carbon-800 border border-emerald-500/30 flex items-center justify-center shadow-md overflow-hidden p-1.5" title="Enterprise Client Placeholder">
                     <span class="font-sans font-bold text-[9px] sm:text-[10px] text-slate-500 text-center leading-tight">Client<br>Logo</span>
@@ -706,7 +589,7 @@
                 <!-- Title Text -->
                 <div class="pl-1">
                   <h3 class="text-xl sm:text-2xl font-extrabold text-white tracking-tight">Ascendion</h3>
-                  <p class="text-[11px] sm:text-xs font-mono text-amber-400 font-semibold mt-0.5">DevOps &amp; GenAI Engineer • L5 Engineer @ Client: HP Inc.</p>
+                  <p class="text-[11px] sm:text-xs font-mono text-amber-400 font-semibold mt-0.5">DevOps &amp; GenAI Engineer • L5 Engineer @ Client</p>
                 </div>
               </div>
               <div class="flex items-center gap-3">
@@ -718,6 +601,7 @@
             </summary>
             
             <div class="compartment-content p-5 sm:p-7 pt-5 space-y-6">
+              <!-- Top Date & Scope Strip -->
               <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-carbon-800 font-mono text-xs">
                 <div class="flex flex-wrap items-center gap-2.5">
                   <span class="px-3 py-1 rounded-md bg-emerald-500 text-carbon-950 font-bold">DEC 2025 – AUG 2026</span>
@@ -728,6 +612,7 @@
                 </span>
               </div>
 
+              <!-- 2-Column Responsibility Sub-Cards -->
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div class="p-4 sm:p-5 rounded-2xl bg-carbon-950/90 border border-carbon-800 space-y-2">
                   <span class="text-[11px] font-mono font-bold text-emerald-400 uppercase tracking-wider block">SYSTEMIC SDLC AUTOMATION (AAVA GENAI)</span>
@@ -765,7 +650,7 @@
                     </p>
                   </div>
                   <div class="pl-9 lg:pl-0 flex flex-col items-start lg:items-end gap-2 shrink-0">
-                    <button type="button" onclick="openExecCaseModal('ascendion-pipeline')" class="shiny-btn-red relative overflow-hidden px-4 py-2 rounded-xl bg-red-500/15 hover:bg-red-500 text-red-300 hover:text-white font-mono text-xs font-bold border border-red-500/50 shadow-[0_0_18px_rgba(239,68,68,0.25)] transition-all cursor-pointer flex items-center gap-2">
+                    <button type="button" onclick="window.openExecCaseModal('ascendion-pipeline')" class="shiny-btn-red relative overflow-hidden px-4 py-2 rounded-xl bg-red-500/15 hover:bg-red-500 text-red-300 hover:text-white font-mono text-xs font-bold border border-red-500/50 shadow-[0_0_18px_rgba(239,68,68,0.25)] transition-all cursor-pointer flex items-center gap-2">
                       📊 View Executive Case Study ↗
                     </button>
                     <span class="px-2.5 py-0.5 rounded bg-red-500/15 border border-red-500/35 text-red-300 font-mono text-[10px] font-semibold">RESOLVED IN 45M (60M SLA)</span>
@@ -779,11 +664,11 @@
                       <h4 class="text-base sm:text-lg font-bold text-white">Unifying Divergent Microservice Data Identifiers</h4>
                     </div>
                     <p class="text-xs sm:text-sm text-slate-300 pl-9 leading-relaxed">
-                      Consolidated product SKU schemas into a canonical DTO definition across renewal services, removing 992 lines of legacy code.
+                      Consolidated product SKU schemas into a canonical DTO definition across renewal services and stripped 992 lines of legacy tech debt with 100% test pass rate.
                     </p>
                   </div>
                   <div class="pl-9 lg:pl-0 flex flex-col items-start lg:items-end gap-2 shrink-0">
-                    <button type="button" onclick="openExecCaseModal('ascendion-java')" class="shiny-btn-purple relative overflow-hidden px-4 py-2 rounded-xl bg-purple-500/15 hover:bg-purple-500 text-purple-300 hover:text-white font-mono text-xs font-bold border border-purple-500/50 shadow-[0_0_18px_rgba(168,85,247,0.25)] transition-all cursor-pointer flex items-center gap-2">
+                    <button type="button" onclick="window.openExecCaseModal('ascendion-java')" class="shiny-btn-purple relative overflow-hidden px-4 py-2 rounded-xl bg-purple-500/15 hover:bg-purple-500 text-purple-300 hover:text-white font-mono text-xs font-bold border border-purple-500/50 shadow-[0_0_18px_rgba(168,85,247,0.25)] transition-all cursor-pointer flex items-center gap-2">
                       📊 View Executive Case Study ↗
                     </button>
                     <span class="px-2.5 py-0.5 rounded bg-purple-500/15 border border-purple-500/35 text-purple-300 font-mono text-[10px] font-semibold">+315 / -992 LINES CLEANED</span>
@@ -869,7 +754,7 @@
                     </p>
                   </div>
                   <div class="pl-9 lg:pl-0 flex flex-col items-start lg:items-end gap-2 shrink-0">
-                    <button type="button" onclick="openExecCaseModal('eficens-terraform')" class="shiny-btn-green relative overflow-hidden px-4 py-2 rounded-xl bg-emerald-500/15 hover:bg-emerald-500 text-emerald-300 hover:text-carbon-950 font-mono text-xs font-bold border border-emerald-500/50 shadow-[0_0_18px_rgba(16,185,129,0.25)] transition-all cursor-pointer flex items-center gap-2">
+                    <button type="button" onclick="window.openExecCaseModal('eficens-terraform')" class="shiny-btn-green relative overflow-hidden px-4 py-2 rounded-xl bg-emerald-500/15 hover:bg-emerald-500 text-emerald-300 hover:text-carbon-950 font-mono text-xs font-bold border border-emerald-500/50 shadow-[0_0_18px_rgba(16,185,129,0.25)] transition-all cursor-pointer flex items-center gap-2">
                       📊 View Executive Case Study ↗
                     </button>
                     <span class="px-2.5 py-0.5 rounded bg-emerald-500/15 border border-emerald-500/35 text-emerald-300 font-mono text-[10px] font-semibold">&gt;50% FASTER • -15 INCIDENTS/MO</span>
@@ -948,7 +833,7 @@
                     </p>
                   </div>
                   <div class="pl-9 lg:pl-0 flex flex-col items-start lg:items-end gap-2 shrink-0">
-                    <button type="button" onclick="openExecCaseModal('lotusdata-fleet')" class="shiny-btn-blue relative overflow-hidden px-4 py-2 rounded-xl bg-sky-500/15 hover:bg-sky-400 text-sky-300 hover:text-carbon-950 font-mono text-xs font-bold border border-sky-500/50 shadow-[0_0_18px_rgba(56,189,248,0.25)] transition-all cursor-pointer flex items-center gap-2">
+                    <button type="button" onclick="window.openExecCaseModal('lotusdata-fleet')" class="shiny-btn-blue relative overflow-hidden px-4 py-2 rounded-xl bg-sky-500/15 hover:bg-sky-400 text-sky-300 hover:text-carbon-950 font-mono text-xs font-bold border border-sky-500/50 shadow-[0_0_18px_rgba(56,189,248,0.25)] transition-all cursor-pointer flex items-center gap-2">
                       📊 View Executive Case Study ↗
                     </button>
                     <span class="px-2.5 py-0.5 rounded bg-sky-500/15 border border-sky-500/35 text-sky-300 font-mono text-[10px] font-semibold">99% UPTIME SLA • ZERO REBOOTS</span>
@@ -975,13 +860,12 @@
               <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-start">
                 <div class="lg:col-span-8 space-y-3">
                   <!-- Small Logo Pair Header -->
-                  <div class="flex items-center gap-3 mb-2 border-b border-carbon-800 pb-3 inline-flex pr-4">
-                    <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-carbon-950 border border-emerald-500/50 flex items-center justify-center p-1.5 overflow-hidden shrink-0">
+                  <div class="flex items-center gap-2 mb-2 border-b border-carbon-800 pb-2 inline-flex pr-4">
+                    <div class="w-6 h-6 rounded bg-carbon-950 border border-emerald-500/50 flex items-center justify-center p-0.5 overflow-hidden">
                       <img src="assets/ascendion.png" alt="Ascendion" class="w-full h-full object-contain" onerror="resolveAsset(this, 'ascendion')">
                     </div>
-                    <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-carbon-800 border border-emerald-500/30 flex flex-col items-center justify-center overflow-hidden shrink-0" title="Enterprise client: HP Inc.">
-                      <span class="font-sans font-bold text-lg sm:text-xl leading-none text-slate-200">hp</span>
-                      <span class="font-mono text-[8px] text-slate-400 mt-0.5">INC.</span>
+                    <div class="w-6 h-6 rounded bg-carbon-800 border border-emerald-500/30 flex items-center justify-center overflow-hidden">
+                      <span class="font-sans font-bold text-[6px] text-slate-500 text-center leading-tight">Client</span>
                     </div>
                     <h4 class="text-sm font-bold text-white leading-snug ml-1">Ascendion (L5 @ HP Inc.)</h4>
                   </div>
@@ -992,10 +876,10 @@
                     <li><strong class="text-purple-400">Java SKU Refactoring (+315 / -992 LOC):</strong> Consolidated divergent product SKU identifiers into a canonical DTO model across renewal microservices.</li>
                   </ul>
                   <div class="pt-2 sm:pt-3 flex flex-wrap items-center gap-3">
-                    <button type="button" onclick="openModal('modal-incident')" class="shiny-btn-green group relative overflow-hidden px-3.5 py-2 rounded-lg bg-[#00ff66]/20 hover:bg-[#00ff66] text-[#00ff66] hover:text-black font-mono text-[10px] sm:text-xs font-bold border border-[#00ff66]/80 shadow-[0_0_24px_rgba(0,255,102,0.48)] transition-all cursor-pointer flex items-center gap-2">
+                    <button onclick="window.openModal('modal-incident')" class="shiny-btn-green group relative overflow-hidden px-3.5 py-2 rounded-lg bg-[#00ff66]/20 hover:bg-[#00ff66] text-[#00ff66] hover:text-black font-mono text-[10px] sm:text-xs font-bold border border-[#00ff66]/80 shadow-[0_0_24px_rgba(0,255,102,0.48)] transition-all cursor-pointer flex items-center gap-2">
                       <span class="w-2 h-2 rounded-full bg-[#00ff66] group-hover:bg-black animate-ping"></span>[Inspect Incident: ExitCode 127]
                     </button>
-                    <button type="button" onclick="openModal('modal-java')" class="shiny-btn-purple group relative overflow-hidden px-3.5 py-2 rounded-lg bg-purple-500/20 hover:bg-purple-500 text-purple-300 hover:text-white font-mono text-[10px] sm:text-xs font-bold border border-purple-400/80 shadow-[0_0_24px_rgba(168,85,247,0.52)] transition-all cursor-pointer flex items-center gap-2">
+                    <button onclick="window.openModal('modal-java')" class="shiny-btn-purple group relative overflow-hidden px-3.5 py-2 rounded-lg bg-purple-500/20 hover:bg-purple-500 text-purple-300 hover:text-white font-mono text-[10px] sm:text-xs font-bold border border-purple-400/80 shadow-[0_0_24px_rgba(168,85,247,0.52)] transition-all cursor-pointer flex items-center gap-2">
                       <span class="w-2 h-2 rounded-full bg-purple-300 group-hover:bg-white animate-ping"></span>[Inspect Diff: +315 / -992]
                     </button>
                   </div>
@@ -1021,13 +905,12 @@
               <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-start">
                 <div class="lg:col-span-8 space-y-3">
                   <!-- Small Logo Pair Header -->
-                  <div class="flex items-center gap-3 mb-2 border-b border-carbon-800 pb-3 inline-flex pr-4">
-                    <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-carbon-950 border border-amber-500/50 flex items-center justify-center p-1.5 overflow-hidden shrink-0">
+                  <div class="flex items-center gap-2 mb-2 border-b border-carbon-800 pb-2 inline-flex pr-4">
+                    <div class="w-6 h-6 rounded bg-carbon-950 border border-amber-500/50 flex items-center justify-center p-0.5 overflow-hidden">
                       <img src="assets/eficens.png" alt="Eficens" class="w-full h-full object-contain" onerror="resolveAsset(this, 'eficens')">
                     </div>
-                    <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-carbon-800 border border-sky-500/30 flex flex-col items-center justify-center overflow-hidden shrink-0" title="Anonymized financial infrastructure client">
-                      <span class="font-mono font-bold text-sm sm:text-base text-sky-300">FIN</span>
-                      <span class="font-mono text-[7px] text-slate-400">INFRA</span>
+                    <div class="w-6 h-6 rounded bg-carbon-800 border border-emerald-500/30 flex items-center justify-center overflow-hidden">
+                      <span class="font-sans font-bold text-[6px] text-slate-500 text-center leading-tight">Client</span>
                     </div>
                     <h4 class="text-sm font-bold text-white leading-snug ml-1">Eficens Systems LLC (US FinTech)</h4>
                   </div>
@@ -1038,7 +921,7 @@
                     <li><strong class="text-emerald-400">KMS Cryptographic Parity:</strong> Automated Jenkins pipelines enforcing KMS envelope encryption and zero-downtime RDS upgrades.</li>
                   </ul>
                   <div class="pt-2 sm:pt-3">
-                    <button type="button" onclick="openModal('modal-arn')" class="shiny-btn-blue group relative overflow-hidden px-3.5 py-2 rounded-lg bg-sky-500/20 hover:bg-sky-400 text-sky-300 hover:text-black font-mono text-[10px] sm:text-xs font-bold border border-sky-400/80 shadow-[0_0_24px_rgba(56,189,248,0.52)] transition-all cursor-pointer inline-flex items-center gap-2">
+                    <button onclick="window.openModal('modal-arn')" class="shiny-btn-blue group relative overflow-hidden px-3.5 py-2 rounded-lg bg-sky-500/20 hover:bg-sky-400 text-sky-300 hover:text-black font-mono text-[10px] sm:text-xs font-bold border border-sky-400/80 shadow-[0_0_24px_rgba(56,189,248,0.52)] transition-all cursor-pointer inline-flex items-center gap-2">
                       <span class="w-2 h-2 rounded-full bg-sky-300 group-hover:bg-black animate-ping"></span>[Inspect Audit: IAC-AUDIT-225]
                     </button>
                   </div>
@@ -1064,8 +947,8 @@
               <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-start">
                 <div class="lg:col-span-8 space-y-3">
                   <!-- Small Logo Pair Header -->
-                  <div class="flex items-center gap-3 mb-2 border-b border-carbon-800 pb-3 inline-flex pr-4">
-                    <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-carbon-950 border border-sky-500/50 flex items-center justify-center p-1.5 overflow-hidden shrink-0">
+                  <div class="flex items-center gap-2 mb-2 border-b border-carbon-800 pb-2 inline-flex pr-4">
+                    <div class="w-6 h-6 rounded bg-carbon-950 border border-sky-500/50 flex items-center justify-center p-0.5 overflow-hidden">
                       <img src="assets/lotusdata.png" alt="LotusData" class="w-full h-full object-contain" onerror="resolveAsset(this, 'lotusdata')">
                     </div>
                     <h4 class="text-sm font-bold text-white leading-snug ml-1">LotusData LLP (Fleet Ops)</h4>
@@ -1207,7 +1090,7 @@
               </div>
             </div>
 
-            <!-- True Circular 3-Arc Operating Loop SVG with Native Image Clipping (No foreignObject bugs) -->
+            <!-- True Circular 3-Arc Operating Loop SVG with Native Image Clipping -->
             <div class="lg:col-span-6 w-full overflow-hidden">
               <div class="rounded-2xl bg-carbon-950 border border-carbon-700 p-4 sm:p-5 shadow-2xl overflow-x-auto">
                 <div class="flex items-center justify-between text-[10px] sm:text-xs font-mono text-slate-400 mb-3 px-1 min-w-[300px]">
@@ -1230,7 +1113,7 @@
                       <stop offset="70%" stop-color="#38bdf8" stop-opacity="0.08"/>
                       <stop offset="100%" stop-color="#070b12" stop-opacity="0"/>
                     </radialGradient>
-                    <!-- Perfect Native SVG Circular Mask for the Avatar Image -->
+                    <!-- Perfect Native SVG Circular Mask for the Avatar Image[cite: 4] -->
                     <clipPath id="avatarClipPath">
                       <circle cx="300" cy="215" r="91"/>
                     </clipPath>
@@ -1246,7 +1129,8 @@
                   <!-- Central Hub Background -->
                   <circle cx="300" cy="215" r="91" fill="#0d1320" stroke="#fbbf24" stroke-width="2" stroke-opacity="0.55"/>
                   
-                  <!-- Native SVG Image Embed (100% Cross-Browser Safe)[cite: 4] -->
+                  <!-- Native SVG Image Embed (100% Cross-Browser Safe) -->
+                  <!-- x = cx(300) - r(91) = 209 | y = cy(215) - r(91) = 124 | w/h = r*2 = 182 -->
                   <image href="assets/image_e9e55e.jpg" x="209" y="124" width="182" height="182" clip-path="url(#avatarClipPath)" preserveAspectRatio="xMidYMid slice" opacity="0.95"/>
                   
                   <circle cx="300" cy="215" r="88" fill="none" stroke="#38bdf8" stroke-width="1.2" stroke-dasharray="4 4" opacity="0.6"/>
@@ -1302,8 +1186,150 @@
       </div>
     </div>
   </footer>
+
   <!-- ========================================================================= -->
-  <!-- MODALS: INCIDENT, IAC AUDIT, AND JAVA REFACTOR                            -->
+  <!-- MODAL: LIVE CLIENT TELEMETRY DASHBOARD (Honest Measurements & A11y Tooltips) -->
+  <!-- ========================================================================= -->
+  <div id="modal-telemetry-dashboard" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="bg-carbon-950 border border-[#00ff66]/60 max-w-4xl w-full rounded-2xl shadow-[0_0_45px_rgba(0,255,102,0.2)] font-mono flex flex-col max-h-[90vh]">
+      <div class="px-5 py-3.5 bg-black border-b border-[#00ff66]/30 flex items-center justify-between rounded-t-2xl">
+        <div class="flex items-center gap-2.5">
+          <span class="w-2.5 h-2.5 rounded-full bg-[#00ff66] animate-ping"></span>
+          <h3 class="text-xs sm:text-sm font-bold text-[#00ff66] tracking-wider uppercase">VERIFIED CLIENT &amp; EDGE TELEMETRY</h3>
+        </div>
+        <button type="button" onclick="closeModal('modal-telemetry-dashboard')" class="px-3 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-slate-300 hover:text-white border border-carbon-600 text-xs font-bold cursor-pointer">✕ Close</button>
+      </div>
+      <div class="p-5 sm:p-6 overflow-y-auto space-y-5 bg-[#030804]">
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <!-- Dial 1: Real Measured HTTP Round-Trip Latency & True Rolling Jitter -->
+          <div class="p-4 sm:p-5 rounded-xl bg-black border border-[#00ff66]/30 flex flex-col items-center text-center space-y-2.5">
+            <div class="flex flex-col items-center gap-1.5">
+              <span class="px-1.5 py-0.5 rounded bg-[#00ff66]/15 text-[#00ff66] text-[9px] font-bold border border-[#00ff66]/40">MEASURED</span>
+              <div class="flex items-center justify-center gap-1 text-xs text-slate-300 uppercase tracking-wider">
+                HTTP HEAD RTT
+                <div class="a11y-tooltip-wrapper z-[60]">
+                  <button type="button" class="a11y-tooltip-trigger" aria-expanded="false" aria-label="Explanation of HTTP RTT">
+                    <span class="inline-flex items-center justify-center w-3 h-3 rounded-full border border-slate-500 text-slate-500 text-[8px] font-bold leading-none select-none hover:text-[#00ff66] hover:border-[#00ff66]">i</span>
+                  </button>
+                  <div class="a11y-tooltip-content text-left w-[240px]">
+                    Time taken for an HTTP request to receive a response, sampled periodically. Jitter indicates the average variation between consecutive samples in the rolling window.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <svg viewBox="0 0 220 135" class="w-48 h-32 overflow-visible">
+              <path d="M 20 110 A 90 90 0 0 1 200 110" fill="none" stroke="#161f33" stroke-width="14" stroke-linecap="round"/>
+              <path id="rttGaugeArc" d="M 20 110 A 90 90 0 0 1 200 110" fill="none" stroke="#38bdf8" stroke-width="14" stroke-linecap="round" stroke-dasharray="283" stroke-dashoffset="240" style="transition: stroke-dashoffset 0.45s ease;"/>
+              <text x="15" y="128" fill="#64748b" font-size="9">0ms</text><text x="185" y="128" fill="#64748b" font-size="9">300ms</text>
+              <g id="rttGaugeNeedle" transform="rotate(-70 110 110)" style="transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);">
+                <line x1="110" y1="110" x2="110" y2="32" stroke="#38bdf8" stroke-width="3" stroke-linecap="round"/>
+                <circle cx="110" cy="110" r="6" fill="#38bdf8"/>
+              </g>
+              <text id="rttGaugeValueText" x="110" y="96" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="bold">-- ms</text>
+            </svg>
+            <p class="text-[11px] text-slate-400">Rolling Jitter: <strong id="rttJitterVal" class="text-[#00ff66]">-- ms</strong></p>
+          </div>
+
+          <!-- Dial 2: Real Measured Event Loop Drift & Compositor FPS -->
+          <div class="p-4 sm:p-5 rounded-xl bg-black border border-[#00ff66]/30 flex flex-col items-center text-center space-y-2.5">
+            <div class="flex flex-col items-center gap-1.5">
+              <span class="px-1.5 py-0.5 rounded bg-[#00ff66]/15 text-[#00ff66] text-[9px] font-bold border border-[#00ff66]/40">MEASURED</span>
+              <div class="flex items-center justify-center gap-1 text-xs text-slate-300 uppercase tracking-wider">
+                BROWSER rAF
+                <div class="a11y-tooltip-wrapper z-[60]">
+                  <button type="button" class="a11y-tooltip-trigger" aria-expanded="false" aria-label="Explanation of Browser rAF">
+                    <span class="inline-flex items-center justify-center w-3 h-3 rounded-full border border-slate-500 text-slate-500 text-[8px] font-bold leading-none select-none hover:text-[#00ff66] hover:border-[#00ff66]">i</span>
+                  </button>
+                  <div class="a11y-tooltip-content text-left w-[240px]">
+                    Browser animation-frame callback frequency (FPS) calculated via requestAnimationFrame. The timer delay measures drift between setTimeout scheduling and actual execution.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <svg viewBox="0 0 220 135" class="w-48 h-32 overflow-visible">
+              <path d="M 20 110 A 90 90 0 0 1 200 110" fill="none" stroke="#161f33" stroke-width="14" stroke-linecap="round"/>
+              <path id="speedGaugeArc" d="M 20 110 A 90 90 0 0 1 200 110" fill="none" stroke="#00ff66" stroke-width="14" stroke-linecap="round" stroke-dasharray="283" stroke-dashoffset="100" style="transition: stroke-dashoffset 0.45s ease;"/>
+              <text x="15" y="128" fill="#64748b" font-size="9">0</text><text x="188" y="128" fill="#64748b" font-size="9">120fps</text>
+              <g id="speedGaugeNeedle" transform="rotate(0 110 110)" style="transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);">
+                <line x1="110" y1="110" x2="110" y2="32" stroke="#00ff66" stroke-width="3" stroke-linecap="round"/>
+                <circle cx="110" cy="110" r="6" fill="#00ff66"/>
+              </g>
+              <text id="speedGaugeValueText" x="110" y="96" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="bold">60 FPS</text>
+            </svg>
+            <p class="text-[11px] text-slate-400">Scheduling Delay: <strong id="loopDriftVal" class="text-[#00ff66]">0.4 ms</strong></p>
+          </div>
+
+          <!-- Dial 3: Browser Downlink Speed Estimate -->
+          <div class="p-4 sm:p-5 rounded-xl bg-black border border-[#00ff66]/30 flex flex-col items-center text-center space-y-2.5">
+            <div class="flex flex-col items-center gap-1.5">
+              <span class="px-1.5 py-0.5 rounded bg-amber-500/15 text-amber-300 text-[9px] font-bold border border-amber-500/40">ESTIMATE</span>
+              <div class="flex items-center justify-center gap-1 text-xs text-slate-300 uppercase tracking-wider">
+                NET DOWNLINK
+                <div class="a11y-tooltip-wrapper z-[60]">
+                  <button type="button" class="a11y-tooltip-trigger" aria-expanded="false" aria-label="Explanation of Downlink Estimate">
+                    <span class="inline-flex items-center justify-center w-3 h-3 rounded-full border border-slate-500 text-slate-500 text-[8px] font-bold leading-none select-none hover:text-[#00ff66] hover:border-[#00ff66]">i</span>
+                  </button>
+                  <div class="a11y-tooltip-content text-left w-[240px]">
+                    Browser-provided connection estimate via the Network Information API. Modern browsers heavily throttle this API (often capping at ~10 Mbps) to prevent cross-site fingerprinting.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <svg viewBox="0 0 220 135" class="w-48 h-32 overflow-visible">
+              <path d="M 20 110 A 90 90 0 0 1 200 110" fill="none" stroke="#161f33" stroke-width="14" stroke-linecap="round"/>
+              <path id="dlGaugeArc" d="M 20 110 A 90 90 0 0 1 200 110" fill="none" stroke="#f59e0b" stroke-width="14" stroke-linecap="round" stroke-dasharray="283" stroke-dashoffset="240" style="transition: stroke-dashoffset 0.45s ease;"/>
+              <text x="15" y="128" fill="#64748b" font-size="9">0</text><text x="188" y="128" fill="#64748b" font-size="9">20Mbps+</text>
+              <g id="dlGaugeNeedle" transform="rotate(-70 110 110)" style="transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);">
+                <line x1="110" y1="110" x2="110" y2="32" stroke="#f59e0b" stroke-width="3" stroke-linecap="round"/>
+                <circle cx="110" cy="110" r="6" fill="#f59e0b"/>
+              </g>
+              <text id="dlGaugeValueText" x="110" y="96" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="bold">--</text>
+            </svg>
+            <p class="text-[11px] text-slate-400">Connection: <strong id="telemetryConnType" class="text-amber-300">Checking API…</strong></p>
+          </div>
+        </div>
+
+        <!-- Lower Status Bar for Edge POP & JS Heap -->
+        <div class="p-3.5 rounded-xl bg-black border border-carbon-800 grid grid-cols-1 sm:grid-cols-2 gap-3 text-[11px]">
+          <div>
+            <div class="flex items-center gap-1.5 mb-0.5">
+              <span class="text-slate-500 text-[9.5px] uppercase">EDGE POP [MEASURED]</span>
+              <div class="a11y-tooltip-wrapper">
+                <button type="button" class="a11y-tooltip-trigger" aria-expanded="false" aria-label="Explanation of Edge POP">
+                  <span class="inline-flex items-center justify-center w-3 h-3 rounded-full border border-slate-500 text-slate-500 text-[8px] font-bold leading-none select-none hover:text-white hover:border-white">i</span>
+                </button>
+                <div class="a11y-tooltip-content text-left w-[240px]">
+                  Cloudflare data-centre code returned by the trace endpoint, when available. Otherwise falls back to a same-origin HTTP HEAD ping.
+                </div>
+              </div>
+            </div>
+            <strong id="telemetryEdgePop" class="text-[#00ff66] block"> Detecting POP…</strong>
+          </div>
+          <div>
+            <div class="flex items-center gap-1.5 mb-0.5">
+              <span class="text-slate-500 text-[9.5px] uppercase">JS HEAP [CAPABILITY]</span>
+              <div class="a11y-tooltip-wrapper">
+                <button type="button" class="a11y-tooltip-trigger" aria-expanded="false" aria-label="Explanation of JS Heap">
+                  <span class="inline-flex items-center justify-center w-3 h-3 rounded-full border border-slate-500 text-slate-500 text-[8px] font-bold leading-none select-none hover:text-white hover:border-white">i</span>
+                </button>
+                <div class="a11y-tooltip-content text-left w-[240px]">
+                  JavaScript heap allocation exposed by supported browser engines (like Chromium's non-standard performance.memory API). Non-Chromium browsers intentionally restrict this data.
+                </div>
+              </div>
+            </div>
+            <strong id="telemetryHeapVal" class="text-sky-300 block">Checking performance…</strong>
+          </div>
+        </div>
+      </div>
+      <div class="px-6 py-3.5 bg-black border-t border-[#00ff66]/30 flex flex-wrap items-center justify-between gap-3 text-xs rounded-b-2xl">
+        <span class="text-[10.5px] text-slate-400 hidden sm:inline">Zero fabricated values • Directly queries W3C Performance APIs</span>
+        <button type="button" onclick="runHttpProbe()" class="px-4 py-1.5 rounded-lg bg-[#00ff66]/20 hover:bg-[#00ff66] text-[#00ff66] hover:text-black font-bold border border-[#00ff66]/60 transition-all cursor-pointer">↻ Re-Sample Network</button>
+      </div>
+    </div>
+  </div>
+  <!-- ========================================================================= -->
+  <!-- MODALS: EXECUTIVE CASE STUDIES & INCIDENT SANDBOX                         -->
   <!-- ========================================================================= -->
   <div id="modal-exec-case" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
     <div class="bg-carbon-900 border border-amber-500/50 max-w-3xl w-full rounded-2xl overflow-hidden shadow-[0_0_40px_rgba(245,158,11,0.2)] flex flex-col max-h-[90vh]">
@@ -1402,29 +1428,11 @@
           <rect x="305" y="27" width="195" height="70" rx="10" fill="#062c22" stroke="#34d399" stroke-width="1.8"/><text x="402" y="55" text-anchor="middle" fill="#6ee7b7" font-size="12.5" font-weight="bold">Canonical SKU</text>
         </svg>
       </div>
-      <div class="p-6 overflow-y-auto space-y-4 text-[11px] sm:text-xs font-mono text-slate-300">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-          <div class="p-3.5 rounded-xl bg-red-950/30 border border-red-500/30">
-            <strong class="block text-red-400 mb-2 uppercase">01 · Problem</strong>
-            <p class="leading-relaxed">Renewal services carried divergent SKU field names and overlapping mapping logic, making the product identifier inconsistent across service boundaries.</p>
-          </div>
-          <div class="p-3.5 rounded-xl bg-purple-950/30 border border-purple-500/30">
-            <strong class="block text-purple-300 mb-2 uppercase">02 · Change</strong>
-            <p class="leading-relaxed">Consolidated the model around one canonical SKU field and aligned the affected DTO / contract mapping paths.</p>
-          </div>
-          <div class="p-3.5 rounded-xl bg-emerald-950/30 border border-emerald-500/30">
-            <strong class="block text-emerald-400 mb-2 uppercase">03 · Result</strong>
-            <p class="leading-relaxed">Removed duplicated and obsolete code while retaining the required canonical mapping. The recorded change was +315 lines and -992 lines: a net reduction of 677 LOC.</p>
-          </div>
-        </div>
+      <div class="p-6 overflow-y-auto space-y-3 text-[11px] sm:text-xs font-mono text-slate-300">
         <div class="p-3 rounded bg-carbon-950 border border-carbon-800 overflow-x-auto">
-          <span class="text-purple-400 block mb-1"># Representative Entity Change:</span>
-          <div class="text-red-400 whitespace-nowrap">- private String parentSku;</div>
-          <div class="text-emerald-400 whitespace-nowrap">+ private String parentProductSku;</div>
-          <p class="text-slate-400 mt-2">Illustrative excerpt only; no Maven or JUnit console output is represented here.</p>
-        </div>
-        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-purple-950/40 border border-purple-500/40 text-purple-200 font-bold text-[10.5px]">
-          <i data-lucide="git-commit-horizontal" class="w-3.5 h-3.5 text-purple-300"></i> +315 / -992 LOC · Net reduction: 677 LOC
+          <span class="text-purple-400 block mb-1"># Sanitized Java Entity Diff:</span>
+          <div class="text-red-400 whitespace-nowrap">- // private String parentSku; (Unused dead field &amp; docstrings stripped)</div>
+          <div class="text-emerald-400 whitespace-nowrap">+ private String parentProductSku; // Single Canonical Identifier</div>
         </div>
       </div>
       <div class="px-6 py-3 bg-carbon-850 border-t border-carbon-800 flex justify-end">
@@ -1433,113 +1441,42 @@
     </div>
   </div>
 
-  <div id="modal-telemetry-dashboard" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
-    <div class="bg-carbon-900 border border-[#00ff66]/45 max-w-4xl w-full rounded-2xl overflow-hidden shadow-[0_0_35px_rgba(0,255,102,0.14)] flex flex-col max-h-[92vh]">
-      <div class="px-5 sm:px-6 py-4 bg-carbon-850 border-b border-carbon-700 flex items-center justify-between gap-4">
-        <div>
-          <div class="text-[#00ff66] font-mono text-[10px] sm:text-xs font-bold tracking-wider">DEV RUNTIME / LOCAL BROWSER TELEMETRY</div>
-          <h3 class="text-base sm:text-lg font-bold text-white mt-1">Runtime Dashboard</h3>
+  <!-- ============================================== -->
+  <!-- FLOATING DEV CONSOLE MODAL (On-Demand)         -->
+  <!-- ============================================== -->
+  <div id="devCliDrawer" style="display: none;" class="fixed inset-0 z-50 items-center justify-center bg-black/70 backdrop-blur-sm p-4">
+    <div class="relative flex flex-col bg-carbon-950 border border-[#00ff66]/60 rounded-xl shadow-[0_0_40px_rgba(0,255,102,0.18)] w-full max-w-3xl h-[450px]" style="resize: both; overflow: hidden; min-width: 280px; min-height: 250px; max-width: 100vw; max-height: 90vh;">
+      <div class="flex items-center justify-between bg-black px-3 sm:px-4 py-2 border-b border-[#00ff66]/30 relative">
+        <div class="flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-[#00ff66] animate-pulse"></span>
+          <span class="font-bold text-[#00ff66] text-[10px] sm:text-xs tracking-wider">Incident Sandbox Shell</span>
         </div>
-        <button type="button" onclick="closeModal('modal-telemetry-dashboard')" class="text-slate-400 hover:text-white font-mono text-sm cursor-pointer" aria-label="Close telemetry dashboard">✕ ESC</button>
+        <button type="button" onclick="forceBreakCli()" class="absolute left-1/2 -translate-x-1/2 px-2.5 sm:px-3.5 py-1 rounded bg-red-950/90 hover:bg-red-600 text-red-200 hover:text-white border border-red-500/50 text-[9px] sm:text-[10px] font-bold cursor-pointer transition-colors z-10">■ Break</button>
+        <button type="button" onclick="toggleConsoleModal()" class="px-3 sm:px-4 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-slate-300 hover:text-white border border-carbon-600 text-[9px] sm:text-[10px] font-bold cursor-pointer transition-colors z-10">✕ Close</button>
       </div>
-
-      <div class="p-4 sm:p-6 overflow-y-auto space-y-5">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <section class="rounded-xl bg-carbon-950 border border-[#00ff66]/30 p-4">
-            <div class="flex items-center justify-between gap-2">
-              <h4 class="font-mono text-xs font-bold text-[#00ff66]">Browser rAF Cadence</h4>
-              <span class="a11y-tooltip-wrapper">
-                <button type="button" class="a11y-tooltip-trigger text-[#00ff66]" aria-label="About browser rAF cadence" aria-expanded="false" aria-describedby="tip-dashboard-raf">ⓘ</button>
-                <span id="tip-dashboard-raf" class="a11y-tooltip-content" role="tooltip">Measured requestAnimationFrame callbacks per second over a rolling half-second window. It reflects browser scheduling, not GPU frame presentation or rendering throughput.</span>
-              </span>
-            </div>
-            <div class="flex items-center gap-4 mt-2">
-              <svg viewBox="0 0 220 220" class="w-36 h-36 shrink-0" role="img" aria-label="Browser animation callback cadence gauge">
-                <circle cx="110" cy="110" r="45" fill="none" stroke="#1f2937" stroke-width="10"/>
-                <circle id="speedGaugeArc" cx="110" cy="110" r="45" fill="none" stroke="#00ff66" stroke-width="10" stroke-linecap="round" stroke-dasharray="283" stroke-dashoffset="283" transform="rotate(-90 110 110)"/>
-                <line id="speedGaugeNeedle" x1="110" y1="110" x2="110" y2="62" stroke="#a7f3d0" stroke-width="2.5" stroke-linecap="round" transform="rotate(-90 110 110)"/>
-                <circle cx="110" cy="110" r="5" fill="#00ff66"/>
-                <text x="110" y="145" fill="#a7f3d0" font-size="10" text-anchor="middle" font-family="JetBrains Mono, monospace">CALLBACKS / SEC</text>
-              </svg>
-              <div class="min-w-0">
-                <div id="speedGaugeValueText" class="text-2xl sm:text-3xl font-mono font-bold text-[#00ff66]">--</div>
-                <p class="text-[10px] text-slate-400 font-mono mt-1">Sampling begins when the page is visible.</p>
-              </div>
-            </div>
-          </section>
-
-          <section class="rounded-xl bg-carbon-950 border border-sky-500/30 p-4">
-            <div class="flex items-center justify-between gap-2">
-              <h4 class="font-mono text-xs font-bold text-sky-300">Same-Origin HTTP Duration</h4>
-              <span class="a11y-tooltip-wrapper">
-                <button type="button" class="a11y-tooltip-trigger text-sky-300" aria-label="About same-origin HTTP duration" aria-expanded="false" aria-describedby="tip-dashboard-http">ⓘ</button>
-                <span id="tip-dashboard-http" class="a11y-tooltip-content" role="tooltip">Elapsed browser time for a HEAD request to this site's own origin. It includes browser, connection, host and response overhead; it is not an ICMP ping or pure network RTT. No third-party IP trace is used.</span>
-              </span>
-            </div>
-            <div class="flex items-center gap-4 mt-2">
-              <svg viewBox="0 0 220 220" class="w-36 h-36 shrink-0" role="img" aria-label="Same-origin HTTP request duration gauge">
-                <circle cx="110" cy="110" r="45" fill="none" stroke="#1f2937" stroke-width="10"/>
-                <circle id="httpGaugeArc" cx="110" cy="110" r="45" fill="none" stroke="#38bdf8" stroke-width="10" stroke-linecap="round" stroke-dasharray="283" stroke-dashoffset="283" transform="rotate(-90 110 110)"/>
-                <line id="httpGaugeNeedle" x1="110" y1="110" x2="110" y2="62" stroke="#bae6fd" stroke-width="2.5" stroke-linecap="round" transform="rotate(-90 110 110)"/>
-                <circle cx="110" cy="110" r="5" fill="#38bdf8"/>
-                <text x="110" y="145" fill="#bae6fd" font-size="10" text-anchor="middle" font-family="JetBrains Mono, monospace">HTTP MS</text>
-              </svg>
-              <div class="min-w-0">
-                <div id="httpGaugeValueText" class="text-2xl sm:text-3xl font-mono font-bold text-sky-300">--</div>
-                <p class="text-[10px] text-slate-400 font-mono mt-1">Updated while this dashboard is open.</p>
-              </div>
-            </div>
-          </section>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 font-mono">
-          <div class="rounded-xl bg-carbon-950 border border-carbon-800 p-3">
-            <div class="flex items-center justify-between gap-2 text-[10px] text-slate-400">
-              <span>HTTP Duration Variation</span>
-              <span class="a11y-tooltip-wrapper"><button type="button" class="a11y-tooltip-trigger text-slate-300" aria-label="About HTTP duration variation" aria-expanded="false" aria-describedby="tip-http-jitter">ⓘ</button><span id="tip-http-jitter" class="a11y-tooltip-content" role="tooltip">Rolling mean of the absolute difference between consecutive same-origin HTTP request-duration samples. It is not network packet jitter.</span></span>
-            </div>
-            <strong id="rttJitterVal" class="block text-lg text-[#00ff66] mt-1">--</strong>
-          </div>
-          <div class="rounded-xl bg-carbon-950 border border-carbon-800 p-3">
-            <div class="flex items-center justify-between gap-2 text-[10px] text-slate-400">
-              <span>Timer Scheduling Delay</span>
-              <span class="a11y-tooltip-wrapper"><button type="button" class="a11y-tooltip-trigger text-slate-300" aria-label="About timer scheduling delay" aria-expanded="false" aria-describedby="tip-timer-delay">ⓘ</button><span id="tip-timer-delay" class="a11y-tooltip-content" role="tooltip">Observed lateness of a single 10 ms JavaScript setTimeout sample. This is a small spot check, not a complete event-loop-lag benchmark.</span></span>
-            </div>
-            <strong id="loopDriftVal" class="block text-lg text-[#00ff66] mt-1">--</strong>
-          </div>
-          <div class="rounded-xl bg-carbon-950 border border-carbon-800 p-3">
-            <div class="flex items-center justify-between gap-2 text-[10px] text-slate-400">
-              <span>Network Information API</span>
-              <span class="a11y-tooltip-wrapper"><button type="button" class="a11y-tooltip-trigger text-slate-300" aria-label="About Network Information API" aria-expanded="false" aria-describedby="tip-network-api">ⓘ</button><span id="tip-network-api" class="a11y-tooltip-content" role="tooltip">Browser-provided effective connection type and estimated downlink. Availability and accuracy vary by browser; this is not an active speed test.</span></span>
-            </div>
-            <strong id="telemetryConnType" class="block text-sm text-[#00ff66] mt-1 break-words">--</strong>
-          </div>
-          <div class="rounded-xl bg-carbon-950 border border-carbon-800 p-3">
-            <div class="flex items-center justify-between gap-2 text-[10px] text-slate-400">
-              <span>Request Target</span>
-              <span class="a11y-tooltip-wrapper"><button type="button" class="a11y-tooltip-trigger text-slate-300" aria-label="About request target" aria-expanded="false" aria-describedby="tip-request-target">ⓘ</button><span id="tip-request-target" class="a11y-tooltip-content" role="tooltip">The HTTP probe stays on this site's origin. The page does not request public IP, geolocation or Cloudflare trace data for this dashboard.</span></span>
-            </div>
-            <strong id="telemetryRequestTarget" class="block text-sm text-[#00ff66] mt-1 break-words">Same-origin host</strong>
-          </div>
-          <div class="rounded-xl bg-carbon-950 border border-carbon-800 p-3 sm:col-span-2">
-            <div class="flex items-center justify-between gap-2 text-[10px] text-slate-400">
-              <span>JavaScript Heap (Chromium-specific)</span>
-              <span class="a11y-tooltip-wrapper"><button type="button" class="a11y-tooltip-trigger text-slate-300" aria-label="About JavaScript heap measurement" aria-expanded="false" aria-describedby="tip-js-heap">ⓘ</button><span id="tip-js-heap" class="a11y-tooltip-content" role="tooltip">Uses the non-standard performance.memory API when the browser exposes it. Other browsers show unavailable rather than an estimated or fabricated value.</span></span>
-            </div>
-            <strong id="telemetryHeapVal" class="block text-sm text-[#00ff66] mt-1 break-words">Unavailable in this browser</strong>
-          </div>
-        </div>
-
-        <p class="text-[10px] sm:text-[11px] text-slate-400 font-mono leading-relaxed border-t border-carbon-800 pt-3">These are local browser diagnostics. This dashboard does not read or display your public IP address, infer your location, or call a third-party IP/trace service.</p>
+      <div id="cliOutput" class="flex-1 overflow-y-auto p-3 sm:p-4 space-y-1 text-slate-300 text-[10px] sm:text-[11.5px] leading-relaxed font-mono">
+        <div class="text-[#00ff66] font-bold">=== Interactive Outage &amp; Diagnostic Sandbox ===</div>
+        <div class="text-slate-400">Type 'help' to see available commands (including 'lsof +L1', './patch.sh', 'sudo hire sai').</div>
       </div>
-      <div class="px-5 sm:px-6 py-3 bg-carbon-850 border-t border-carbon-800 flex justify-end">
-        <button type="button" onclick="closeModal('modal-telemetry-dashboard')" class="px-4 py-2 rounded-lg bg-carbon-800 text-white border border-carbon-600 font-mono text-xs font-bold hover:text-[#00ff66] hover:border-[#00ff66] cursor-pointer">✕ Close</button>
+      <div class="flex flex-col bg-black border-t border-[#00ff66]/30">
+        <div class="flex flex-wrap items-center gap-1.5 px-3 sm:px-4 py-2 border-b border-carbon-800">
+          <span class="text-[8px] sm:text-[9px] text-slate-500 uppercase tracking-wide">Quick:</span>
+          <button type="button" onclick="runCliCommand('help')" class="px-1.5 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] border border-[#00ff66]/30 text-[9px] sm:text-[9.5px] cursor-pointer">help</button>
+          <button type="button" onclick="runCliCommand('ls -la')" class="px-1.5 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] border border-[#00ff66]/30 text-[9px] sm:text-[9.5px] cursor-pointer">ls -la</button>
+          <button type="button" onclick="runCliCommand('./patch.sh')" class="px-1.5 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] border border-[#00ff66]/30 text-[9px] sm:text-[9.5px] cursor-pointer">./patch.sh</button>
+          <button type="button" onclick="runCliCommand('lsof +L1')" class="px-1.5 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] border border-[#00ff66]/30 text-[9px] sm:text-[9.5px] cursor-pointer">lsof +L1</button>
+          <button type="button" onclick="runCliCommand('sudo hire sai')" class="px-1.5 py-0.5 rounded bg-amber-500/15 hover:bg-amber-400 hover:text-black text-amber-300 border border-amber-500/40 text-[9px] sm:text-[9.5px] cursor-pointer">👑 sudo hire sai</button>
+        </div>
+        <div class="flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-3">
+          <span id="cliPromptLabel" class="text-[#00ff66] font-bold shrink-0 text-[10px] sm:text-xs">sai@prod-bastion:~$</span>
+          <input type="text" id="cliInput" class="flex-1 bg-transparent border-none outline-none text-[#00ff66] font-mono text-[10px] sm:text-xs" autocomplete="off">
+        </div>
       </div>
     </div>
   </div>
 
   <!-- ========================================================================= -->
-  <!-- AIRHEAD BALLOON COMPANION & COPILOT CHAT                                  -->
+  <!-- AIRHEAD BALLOON COMPANION                                                 -->
   <!-- ========================================================================= -->
   <div id="balloonContainer" style="left: 16px; bottom: 16px; right: auto;" class="fixed z-30 select-none transition-transform duration-300">
     <div id="balloonTriviaBubble" class="hidden absolute bottom-full left-0 mb-3 w-[min(295px,calc(100vw-32px))] sm:w-80 p-3.5 sm:p-4 rounded-2xl bg-carbon-900/95 border border-amber-500/60 text-xs font-mono shadow-2xl backdrop-blur-xl max-h-[min(390px,60vh)] overflow-y-auto">
@@ -1552,7 +1489,7 @@
       
       <div id="balloonActionRow" class="mt-2.5 pt-2 border-t border-carbon-800 flex flex-col gap-1.5">
         <div class="flex flex-wrap items-center justify-between gap-2">
-          <button type="button" onclick="askCopilotAboutCurrentTrivia()" class="px-2.5 py-1 rounded-lg bg-amber-500/15 hover:bg-amber-500 text-amber-300 hover:text-carbon-950 font-mono text-[9px] sm:text-[10px] font-bold border border-amber-500/40 transition-colors cursor-pointer">
+          <button id="askCopilotTriviaBtn" type="button" onclick="askCopilotAboutCurrentTrivia()" class="px-2.5 py-1 rounded-lg bg-amber-500/15 hover:bg-amber-500 text-amber-300 hover:text-carbon-950 font-mono text-[9px] sm:text-[10px] font-bold border border-amber-500/40 transition-colors cursor-pointer">
             💬 Ask Copilot more
           </button>
           <span class="text-[9px] sm:text-[9.5px] text-slate-400">Click 🎈 for next</span>
@@ -1576,9 +1513,6 @@
             <button type="button" onclick="setBalloonCustomTimer(40)" class="px-2 py-0.5 rounded bg-carbon-800 hover:bg-amber-500 hover:text-black text-slate-200 border border-carbon-600 cursor-pointer">40s</button>
             <button type="button" onclick="setBalloonCustomTimer(50)" class="px-2 py-0.5 rounded bg-carbon-800 hover:bg-amber-500 hover:text-black text-slate-200 border border-carbon-600 cursor-pointer">50s</button>
             <button type="button" onclick="setBalloonCustomTimer(60)" class="px-2 py-0.5 rounded bg-carbon-800 hover:bg-amber-500 hover:text-black text-slate-200 border border-carbon-600 cursor-pointer">60s</button>
-            <label class="flex items-center gap-1 text-slate-400 hidden">
-              <input id="customBalloonSecInput" type="number" min="30" max="60" step="10" value="40">
-            </label>
           </div>
         </div>
         <div class="flex items-center justify-between gap-2">
@@ -1596,8 +1530,8 @@
     </div>
 
     <div id="gusBalloon" class="balloon-scale-shell gus-float-anim relative" title="AirHead.cs~1.6 — Drag me around, shake me fast, or click for trivia & settings!">
-      <button id="btnMinimizeBalloon" type="button" class="absolute -top-1.5 -left-1.5 z-30 w-5 h-5 rounded-full bg-carbon-800 border border-carbon-600 hover:border-amber-400 text-slate-300 hover:text-white text-[10px] font-mono flex items-center justify-center cursor-pointer shadow-md" title="Minimize Balloon">✕</button>
-      <div class="minimized-disc hidden w-8 h-8 rounded-full bg-gradient-to-br from-[#d4fbff] to-[#477aa8] border-2 border-white/60 shadow-xl items-center justify-center font-mono font-bold text-xs text-carbon-950">🎈</div>
+      <button id="btnMinimizeBalloon" type="button" onclick="toggleMinimize()" class="absolute -top-1.5 -left-1.5 z-30 w-5 h-5 rounded-full bg-carbon-800 border border-carbon-600 hover:border-amber-400 text-slate-300 hover:text-white text-[10px] font-mono flex items-center justify-center cursor-pointer shadow-md" title="Minimize Balloon">✕</button>
+      <div class="minimized-disc hidden w-8 h-8 rounded-full bg-gradient-to-br from-[#d4fbff] to-[#477aa8] border-2 border-white/60 shadow-xl items-center justify-center font-mono font-bold text-xs text-carbon-950" onclick="toggleMinimize()">🎈</div>
       <div class="balloon-container">
         <div id="gusStick" class="balloon-stick"></div>
         <div id="gusSphere" class="gus-balloon">
@@ -1612,6 +1546,9 @@
     </div>
   </div>
 
+  <!-- ========================================================================= -->
+  <!-- FLOATING COPILOT CHAT WINDOW                                              -->
+  <!-- ========================================================================= -->
   <div id="portfolioChat" class="fixed bottom-4 right-4 sm:bottom-5 sm:right-5 z-40 w-[340px] sm:w-[370px] max-w-[calc(100vw-32px)] rounded-2xl bg-carbon-850/95 backdrop-blur-xl border border-amber-500/30 shadow-2xl overflow-hidden transition-all duration-300">
     <div id="chatUnreadDot" class="absolute -top-1 -right-1 w-3.5 h-3.5 bg-emerald-400 rounded-full animate-pulse border-2 border-carbon-950 hidden z-50 pointer-events-none"></div>
     <div id="chatHeader" class="bg-carbon-800 px-3 sm:px-4 py-2.5 sm:py-3 border-b border-carbon-700/80 flex items-center justify-between cursor-pointer select-none">
@@ -1632,10 +1569,11 @@
         <button type="button" onclick="sendQuickPrompt('What does cs~1.6 mean?')" class="px-2 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-purple-300 border border-carbon-700 shrink-0 cursor-pointer">🎮 cs~1.6?</button>
         <button type="button" onclick="sendQuickPrompt('whoami')" class="px-2 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-amber-400 border border-carbon-700 shrink-0 cursor-pointer">☕ whoami</button>
         <button type="button" onclick="sendQuickPrompt('sudo hire sai')" class="px-2 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-emerald-300 border border-carbon-700 shrink-0 cursor-pointer">👑 sudo hire sai</button>
+        <button type="button" onclick="sendQuickPrompt('Do a barrel roll!')" class="px-2 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-sky-300 border border-carbon-700 shrink-0 cursor-pointer">🌀 Barrel Roll</button>
       </div>
       <div class="p-2 sm:p-3 bg-carbon-900 border-t border-carbon-700 flex items-center gap-2">
         <input type="text" id="userInput" class="flex-1 bg-carbon-950 border border-carbon-700 focus:border-amber-500 rounded-xl px-2.5 sm:px-3 py-1.5 sm:py-2 text-[11px] sm:text-xs text-white outline-none font-sans placeholder-slate-500" placeholder="Ask about Vinay or type sudo hire sai..." autocomplete="off">
-        <button id="sendChatBtn" type="button" class="px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-carbon-950 font-bold text-[11px] sm:text-xs font-mono shrink-0 cursor-pointer">Send</button>
+        <button id="sendChatBtn" type="button" onclick="sendMessage()" class="px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-carbon-950 font-bold text-[11px] sm:text-xs font-mono shrink-0 cursor-pointer">Send</button>
       </div>
     </div>
   </div>
@@ -1655,24 +1593,6 @@
     let pf_godModeUnlocked = false;
     let pf_isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    function updateCopilotUnreadDot() {
-      const dot = document.getElementById('chatUnreadDot');
-      if (!dot) return;
-      const shouldShow = pf_mode === 'engineer' && !sessionStorage.getItem('pf_seen_dev_chat');
-      dot.classList.toggle('hidden', !shouldShow);
-    }
-
-    function markCopilotOpened() {
-      const dot = document.getElementById('chatUnreadDot');
-      if (dot) dot.classList.add('hidden');
-      if (pf_mode !== 'engineer') return;
-      sessionStorage.setItem('pf_seen_dev_chat', 'true');
-      if (!sessionStorage.getItem('pf_dev_chat_intro')) {
-        sessionStorage.setItem('pf_dev_chat_intro', 'true');
-        appendMessage('Welcome to Dev Mode. You can inspect the Incident Sandbox, ask about the technical case studies, or try <code class="text-emerald-400">sudo hire sai</code>. AirHead can share cloud and DevOps trivia; open its Settings to switch to Website Assistance.', 'bot');
-      }
-    }
-
     function initOnboarding() {
       if (!sessionStorage.getItem('pf_seen_accordion')) {
         const hint = document.getElementById('hint-accordion-1');
@@ -1686,7 +1606,19 @@
           });
         }
       }
-      updateCopilotUnreadDot();
+      if (!sessionStorage.getItem('pf_seen_chat')) {
+        const dot = document.getElementById('chatUnreadDot');
+        const header = document.getElementById('chatHeader');
+        if (dot && header) {
+          if (window.innerWidth >= 640 && !pf_isChatMinimized) setChatMinimizedState(true);
+          dot.classList.remove('hidden');
+          header.addEventListener('click', function handleChatClick() {
+            dot.classList.add('hidden');
+            sessionStorage.setItem('pf_seen_chat', 'true');
+            header.removeEventListener('click', handleChatClick);
+          });
+        }
+      }
     }
 
     /* ========================================================================= */
@@ -1735,7 +1667,7 @@
             <strong class="block text-amber-400 font-mono text-xs mb-1">03 The Engineering Result:</strong>
             <ul class="space-y-2 text-slate-300 list-disc list-inside">
               <li><strong class="text-white">Net Code Reduction:</strong> 315 lines added, 992 lines of legacy dead code removed (net -677 LOC).</li>
-              <li><strong class="text-white">Release Velocity:</strong> Resolved release-freeze merge conflicts in 20 minutes while converging the renewal-service data model.</li>
+              <li><strong class="text-white">Release Velocity:</strong> Resolved release-freeze merge conflicts in 20 minutes with 100% successful Integration Suite validation.</li>
             </ul>
           </div>`
       },
@@ -1804,28 +1736,13 @@
     
     function openModal(id) {
       const m = document.getElementById(id);
-      if (!m) {
-        console.warn(`Modal not found: ${id}`);
-        return false;
-      }
-      m.classList.remove('hidden');
-      m.classList.add('flex');
-      document.body.style.overflow = 'hidden';
-      return true;
+      if (m) { m.classList.remove('hidden'); m.classList.add('flex'); document.body.style.overflow = 'hidden'; }
     }
-
+    
     function closeModal(id) {
       const m = document.getElementById(id);
-      if (m) { m.classList.remove('flex'); m.classList.add('hidden'); }
-      if (id === 'modal-telemetry-dashboard') {
-        pf_isDashboardOpen = false;
-        stopHttpPolling();
-      }
-      const anyModalOpen = ALL_MODALS.some(modalId => {
-        const modal = document.getElementById(modalId);
-        return modal && !modal.classList.contains('hidden');
-      });
-      if (!anyModalOpen) document.body.style.overflow = '';
+      if (m) { m.classList.remove('flex'); m.classList.add('hidden'); document.body.style.overflow = 'auto'; }
+      if (id === 'modal-telemetry-dashboard') stopHttpPolling();
     }
 
     window.addEventListener('keydown', (e) => { if (e.key === 'Escape') ALL_MODALS.forEach(id => closeModal(id)); });
@@ -1837,35 +1754,24 @@
     function initTooltips() {
       document.querySelectorAll('.a11y-tooltip-trigger').forEach(trigger => {
         const wrapper = trigger.closest('.a11y-tooltip-wrapper');
-        if (!wrapper || wrapper.dataset.tooltipReady === 'true') return;
-        wrapper.dataset.tooltipReady = 'true';
+        if (!wrapper) return;
         const show = () => { wrapper.classList.add('is-active'); trigger.setAttribute('aria-expanded', 'true'); };
         const hide = () => { wrapper.classList.remove('is-active'); trigger.setAttribute('aria-expanded', 'false'); };
+        
         trigger.addEventListener('mouseenter', show);
         trigger.addEventListener('focus', show);
-        wrapper.addEventListener('mouseleave', () => { if (!trigger.matches(':focus')) hide(); });
+        wrapper.addEventListener('mouseleave', hide);
         trigger.addEventListener('blur', hide);
-        trigger.addEventListener('click', (e) => { e.preventDefault(); show(); });
+        trigger.addEventListener('click', (e) => { e.preventDefault(); wrapper.classList.contains('is-active') ? hide() : show(); });
       });
-      if (!document.documentElement.dataset.tooltipOutsideReady) {
-        document.documentElement.dataset.tooltipOutsideReady = 'true';
-        document.addEventListener('click', (e) => {
-          if (e.target.closest('.a11y-tooltip-wrapper')) return;
-          document.querySelectorAll('.a11y-tooltip-wrapper.is-active').forEach(wrapper => {
-            wrapper.classList.remove('is-active');
-            wrapper.querySelector('.a11y-tooltip-trigger')?.setAttribute('aria-expanded', 'false');
-          });
-        });
-      }
     }
 
     /* ========================================================================= */
     /* 4. PERSPECTIVE / MODE CONTROLLER                                          */
     /* ========================================================================= */
-    function setMode(role, showNotification = true) {
+    function setPerspective(role, showNotification = true) {
       document.body.classList.remove('mode-hr', 'mode-manager', 'mode-dev');
       pf_mode = role;
-      updateCopilotUnreadDot();
       
       const inact = "px-2 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 text-slate-400 hover:text-white whitespace-nowrap";
       const actAmb = "px-2 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 bg-amber-500 text-carbon-950 font-bold shadow-sm whitespace-nowrap";
@@ -1887,7 +1793,7 @@
         document.body.classList.add('mode-hr');
         if (vHr) vHr.style.display = 'block';
         if (vMgrDev) vMgrDev.style.display = 'none';
-        if (links) links.style.display = 'none';
+        if (links) links.classList.replace('lg:flex', 'lg:hidden');
         if (dlBtn) dlBtn.style.display = 'inline-flex';
         if (mxBtn) mxBtn.style.display = 'none';
         if (tel) tel.style.display = 'none';
@@ -1897,7 +1803,7 @@
         document.body.classList.add('mode-manager');
         if (vHr) vHr.style.display = 'none';
         if (vMgrDev) vMgrDev.style.display = 'block';
-        if (links) links.style.display = '';
+        if (links) links.classList.replace('lg:hidden', 'lg:flex');
         if (dlBtn) dlBtn.style.display = 'none';
         if (mxBtn) mxBtn.style.display = 'none';
         if (tel) tel.style.display = 'none';
@@ -1907,7 +1813,7 @@
         document.body.classList.add('mode-dev');
         if (vHr) vHr.style.display = 'none';
         if (vMgrDev) vMgrDev.style.display = 'block';
-        if (links) links.style.display = '';
+        if (links) links.classList.replace('lg:hidden', 'lg:flex');
         if (dlBtn) dlBtn.style.display = 'none';
         if (mxBtn) mxBtn.style.display = 'inline-flex';
         if (tel) tel.style.display = 'block';
@@ -1918,14 +1824,14 @@
     }
 
     /* ========================================================================= */
-    /* 5. LIVE TELEMETRY ENGINE (Browser rAF + Same-Origin HTTP only)            */
+    /* 5. LIVE TELEMETRY ENGINE (Decoupled RAF & HTTP)                           */
     /* ========================================================================= */
     let pf_rafId = null;
     let pf_httpIntervalId = null;
-    let pf_httpProbeInFlight = false;
     let pf_rAFCounter = 0;
     let pf_rAFLastSecond = performance.now();
-    let pf_liveFps = null;
+    let pf_rAFLastFrame = performance.now();
+    let pf_liveFps = 60;
     let pf_rttSampleWindow = [];
 
     document.addEventListener('visibilitychange', () => {
@@ -1934,30 +1840,22 @@
         startRaf();
         if (pf_isDashboardOpen) startHttpPolling();
       } else {
-        if (pf_rafId !== null) cancelAnimationFrame(pf_rafId);
-        pf_rafId = null;
+        cancelAnimationFrame(pf_rafId);
         stopHttpPolling();
       }
     });
 
     function startRaf() {
-      if (!pf_isTabVisible || pf_rafId !== null) return;
-      pf_rAFCounter = 0;
-      pf_rAFLastSecond = performance.now();
-
       const loop = (now) => {
-        pf_rafId = null;
+        pf_rAFLastFrame = now;
         pf_rAFCounter++;
-        const elapsed = now - pf_rAFLastSecond;
-        if (elapsed >= 500) {
-          pf_liveFps = (pf_rAFCounter * 1000) / elapsed;
+        if (now - pf_rAFLastSecond >= 500) {
+          pf_liveFps = Math.min(240, Math.round((pf_rAFCounter * 1000) / (now - pf_rAFLastSecond)));
           pf_rAFCounter = 0;
           pf_rAFLastSecond = now;
           const fpsEl = document.getElementById('devFpsVal');
-          if (fpsEl) fpsEl.textContent = String(Math.round(pf_liveFps));
-          if (pf_isDashboardOpen) {
-            updateGaugeDial('speedGaugeArc', 'speedGaugeNeedle', 'speedGaugeValueText', pf_liveFps, 240, 'cb/s');
-          }
+          if (fpsEl) fpsEl.textContent = `${pf_liveFps}`;
+          if (pf_isDashboardOpen) updateGaugeDial('speedGaugeArc', 'speedGaugeNeedle', 'speedGaugeValueText', Math.min(120, pf_liveFps), 120, 'FPS');
         }
         if (pf_isTabVisible) pf_rafId = requestAnimationFrame(loop);
       };
@@ -1967,13 +1865,13 @@
     function updateGaugeDial(arcId, needleId, textId, value, maxVal, unit) {
       const ratio = Math.max(0, Math.min(1, value / maxVal));
       const offset = 283 - (ratio * 283);
-      const angle = -90 + (ratio * 360);
+      const angle = -90 + (ratio * 180);
       const arcEl = document.getElementById(arcId);
       const needleEl = document.getElementById(needleId);
       const textEl = document.getElementById(textId);
       if (arcEl) arcEl.setAttribute('stroke-dashoffset', String(Math.round(offset)));
       if (needleEl) needleEl.setAttribute('transform', `rotate(${angle.toFixed(1)} 110 110)`);
-      if (textEl) textEl.textContent = `${Math.round(value)} ${unit}`;
+      if (textEl) textEl.textContent = `${value}${unit}`;
     }
 
     function readHonestHeapStatus() {
@@ -1981,95 +1879,97 @@
       if (mem && Number.isFinite(mem.usedJSHeapSize) && Number.isFinite(mem.jsHeapSizeLimit)) {
         return `${(mem.usedJSHeapSize / 1048576).toFixed(1)} / ${Math.round(mem.jsHeapSizeLimit / 1048576)} MB [V8]`;
       }
-      return 'Unavailable in this browser';
+      return 'Restricted by Browser Engine';
     }
 
     async function runHttpProbe() {
-      if (!pf_isDashboardOpen || !pf_isTabVisible || pf_httpProbeInFlight) return;
-      pf_httpProbeInFlight = true;
-
       const connTypeEl = document.getElementById('telemetryConnType');
       const jitterEl = document.getElementById('rttJitterVal');
       const stripPing = document.getElementById('devPingVal');
-      const requestTargetEl = document.getElementById('telemetryRequestTarget');
+      const edgePopEl = document.getElementById('telemetryEdgePop');
       const heapEl = document.getElementById('telemetryHeapVal');
       const driftEl = document.getElementById('loopDriftVal');
 
-      const timerStart = performance.now();
+      const tLoopStart = performance.now();
       setTimeout(() => {
-        const timerDelay = Math.max(0, performance.now() - timerStart - 10);
-        if (driftEl && pf_isDashboardOpen) driftEl.textContent = `${timerDelay.toFixed(1)} ms`;
+        const drift = Math.max(0.1, performance.now() - tLoopStart - 10);
+        if (driftEl) driftEl.textContent = `${drift.toFixed(1)} ms`;
       }, 10);
 
       const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+      let dlSpeed = 0;
       if (conn && connTypeEl) {
-        const downlink = Number.isFinite(conn.downlink) ? `${conn.downlink} Mbps est.` : 'downlink n/a';
-        connTypeEl.textContent = `${String(conn.effectiveType || 'unknown').toUpperCase()} · ${downlink}`;
+        dlSpeed = Number.isFinite(conn.downlink) ? conn.downlink : 0;
+        connTypeEl.textContent = `${String(conn.effectiveType || '4g').toUpperCase()} (Throttled Estimate)`;
       } else if (connTypeEl) {
-        connTypeEl.textContent = 'Unavailable in this browser';
+        connTypeEl.textContent = 'API Unsupported in Browser';
       }
+      if (pf_isDashboardOpen) updateGaugeDial('dlGaugeArc', 'dlGaugeNeedle', 'dlGaugeValueText', Math.min(20, dlSpeed), 20, '');
+
       if (heapEl) heapEl.textContent = readHonestHeapStatus();
 
-      let measuredDuration = null;
+      const t0 = performance.now();
+      let measuredRtt = null;
+      let detectedPop = 'Origin / Local Edge';
       try {
-        const sameOriginUrl = new URL(window.location.href);
-        sameOriginUrl.hash = '';
-        const t0 = performance.now();
-        const response = await fetch(sameOriginUrl.toString(), {
-          method: 'HEAD',
-          cache: 'no-store',
-          credentials: 'omit',
-          mode: 'same-origin'
-        });
-        measuredDuration = performance.now() - t0;
-        if (requestTargetEl) requestTargetEl.textContent = `Same-origin host · HTTP ${response.status}`;
-      } catch (error) {
-        if (requestTargetEl) requestTargetEl.textContent = 'Same-origin probe unavailable';
-      } finally {
-        pf_httpProbeInFlight = false;
+        const traceRes = await fetch(`https://1.1.1.1/cdn-cgi/trace?ts=${Date.now()}`, { cache: 'no-store' });
+        measuredRtt = Math.max(2, Math.round(performance.now() - t0));
+        const traceText = await traceRes.text();
+        const coloMatch = traceText.match(/colo=([A-Z0-9]+)/);
+        if (coloMatch) detectedPop = `Cloudflare POP: ${coloMatch[1]}`;
+      } catch (e) {
+        try {
+          const t1 = performance.now();
+          const probeUrl = new URL(window.location.href);
+          probeUrl.searchParams.set('telemetry_probe', String(Date.now()));
+          await fetch(probeUrl.toString(), { method: 'HEAD', cache: 'no-store', credentials: 'same-origin' });
+          measuredRtt = Math.max(2, Math.round(performance.now() - t1));
+          detectedPop = 'Same-Origin HTTP HEAD';
+        } catch (err2) {
+          measuredRtt = null; detectedPop = 'Offline / Blocked by CORS';
+        }
       }
 
-      if (measuredDuration !== null) {
-        pf_rttSampleWindow.push(measuredDuration);
+      if (edgePopEl) edgePopEl.textContent = detectedPop;
+
+      if (measuredRtt !== null) {
+        pf_rttSampleWindow.push(measuredRtt);
         if (pf_rttSampleWindow.length > 5) pf_rttSampleWindow.shift();
-        let rollingVariation = 0;
+        let rollingJitter = 0;
         if (pf_rttSampleWindow.length > 1) {
-          let differences = 0;
-          for (let i = 1; i < pf_rttSampleWindow.length; i++) {
-            differences += Math.abs(pf_rttSampleWindow[i] - pf_rttSampleWindow[i - 1]);
-          }
-          rollingVariation = differences / (pf_rttSampleWindow.length - 1);
+          let diffs = 0;
+          for (let i = 1; i < pf_rttSampleWindow.length; i++) diffs += Math.abs(pf_rttSampleWindow[i] - pf_rttSampleWindow[i - 1]);
+          rollingJitter = diffs / (pf_rttSampleWindow.length - 1);
         }
-        updateGaugeDial('httpGaugeArc', 'httpGaugeNeedle', 'httpGaugeValueText', measuredDuration, 1000, 'ms');
-        if (stripPing) stripPing.textContent = `${measuredDuration.toFixed(0)} ms`;
-        if (jitterEl) jitterEl.textContent = pf_rttSampleWindow.length > 1 ? `${rollingVariation.toFixed(1)} ms` : 'Sampling…';
+        if (pf_isDashboardOpen) updateGaugeDial('rttGaugeArc', 'rttGaugeNeedle', 'rttGaugeValueText', measuredRtt, 300, 'ms');
+        if (stripPing) stripPing.textContent = `${measuredRtt} ms`;
+        if (jitterEl) jitterEl.textContent = pf_rttSampleWindow.length > 1 ? `${rollingJitter.toFixed(1)} ms` : 'Sampling (1/2)…';
       } else {
-        if (stripPing) stripPing.textContent = 'Unavailable';
+        if (stripPing) stripPing.textContent = 'Restricted';
         if (jitterEl) jitterEl.textContent = 'N/A';
       }
     }
 
     function startHttpPolling() {
-      if (!pf_isDashboardOpen || !pf_isTabVisible) return;
-      stopHttpPolling();
       runHttpProbe();
-      pf_httpIntervalId = setInterval(() => {
-        if (pf_isTabVisible && pf_isDashboardOpen) runHttpProbe();
-      }, 3500);
+      if (pf_httpIntervalId) clearInterval(pf_httpIntervalId);
+      pf_httpIntervalId = setInterval(() => { if (pf_isTabVisible && pf_isDashboardOpen) runHttpProbe(); }, 3500);
     }
-
+    
     function stopHttpPolling() {
-      if (pf_httpIntervalId) {
-        clearInterval(pf_httpIntervalId);
-        pf_httpIntervalId = null;
-      }
+      if (pf_httpIntervalId) { clearInterval(pf_httpIntervalId); pf_httpIntervalId = null; }
     }
 
     function updateWorldClocks() {
       const now = new Date();
       const fmt = (tz) => { try { return now.toLocaleTimeString('en-US', { timeZone: tz, hour: '2-digit', minute:'2-digit', hour12: false }); } catch(e) { return '--:--'; } };
+      
+      const parts = Intl.DateTimeFormat().resolvedOptions().timeZone.split('/');
+      const abbrev = parts.length > 1 ? parts[parts.length - 1].toUpperCase() : 'LOC';
+      
       const localClock = document.getElementById('devClockVal');
-      if (localClock) localClock.textContent = fmt(Intl.DateTimeFormat().resolvedOptions().timeZone) + ' LOC';
+      if (localClock) localClock.textContent = fmt(Intl.DateTimeFormat().resolvedOptions().timeZone) + ' ' + abbrev;
+      
       const ids = { 'tz-est': 'America/New_York', 'tz-pst': 'America/Los_Angeles', 'tz-cst': 'America/Chicago', 'tz-cet': 'Europe/Paris', 'tz-jst': 'Asia/Tokyo', 'tz-aest': 'Australia/Sydney' };
       for (const [id, tz] of Object.entries(ids)) {
         const el = document.getElementById(id);
@@ -2077,16 +1977,24 @@
       }
     }
 
+    async function fetchVisitorIp() {
+      try {
+        const res = await fetch('https://ipapi.co/json/');
+        const data = await res.json();
+        const el = document.getElementById('visitorIpLoc');
+        if (el && data.ip && data.city) {
+          el.textContent = `${data.ip} (${data.city}, ${data.country_code})`;
+        }
+      } catch (e) {
+        const el = document.getElementById('visitorIpLoc');
+        if (el) el.textContent = 'IP Hidden / Blocked';
+      }
+    }
+
     function openTelemetryDashboard() {
-      if (!openModal('modal-telemetry-dashboard')) {
-        showToast('Telemetry dashboard is unavailable.');
-        return;
-      }
       pf_isDashboardOpen = true;
-      if (pf_liveFps !== null) {
-        updateGaugeDial('speedGaugeArc', 'speedGaugeNeedle', 'speedGaugeValueText', pf_liveFps, 240, 'cb/s');
-      }
-      if (pf_isTabVisible) startHttpPolling();
+      openModal('modal-telemetry-dashboard');
+      startHttpPolling();
     }
 
     /* ========================================================================= */
@@ -2095,7 +2003,6 @@
     let bln_isMinimized = false, bln_isIntroduced = false, bln_isDizzyLocked = false;
     let bln_dizzyResetTimer = null, bln_intervalMs = 40000, bln_nudgeTimer = null;
     let bln_clickTimes = [], bln_siteAssistOnly = false;
-    let bln_nudgeCount = 0;
 
     const TRIVIA = [
       { category: "Tech History", title: "ChatGPT's Calendar Coincidence", fact: "ChatGPT was publicly introduced on November 30, 2022—which also happens to be Computer Security Day (established in 1988)." },
@@ -2113,7 +2020,7 @@
 
       try {
         const prefs = JSON.parse(localStorage.getItem('airhead-settings') || '{}');
-        if (Number.isFinite(prefs.delay)) { bln_intervalMs = Math.max(30, Math.min(60, Number.parseInt(prefs.delay, 10))) * 1000; }
+        if (Number.isFinite(prefs.delay)) { bln_intervalMs = Math.max(30, Math.min(180, Number.parseInt(prefs.delay, 10))) * 1000; }
         if (prefs.skin === 'dark') document.getElementById('gusSphere')?.classList.add('skin-dark');
         if (prefs.siteGuide === true) { bln_siteAssistOnly = true; const btn = document.getElementById('btnSiteAssistToggle'); if (btn) { btn.textContent = 'ON (Site Guide Only)'; btn.classList.add('text-emerald-300'); } }
       } catch(e) {}
@@ -2123,7 +2030,6 @@
       let dragStartX = 0, dragStartY = 0, contStartX = 0, contStartY = 0, isDragging = false, hasMoved = false;
       let swingAnchorX = 0, currentSwingDir = 0, reversalTimestamps = [];
 
-      document.getElementById('btnMinimizeBalloon')?.addEventListener('click', (e) => { e.stopPropagation(); e.preventDefault(); toggleMinimize(); });
       b.addEventListener('pointerdown', (e) => {
         if (e.target.closest('#btnMinimizeBalloon') || bln_isMinimized) return;
         isDragging = true; hasMoved = false;
@@ -2278,7 +2184,7 @@
     function setBalloonCustomTimer(sec) {
       let parsed = Number.parseInt(sec, 10);
       if (!Number.isFinite(parsed)) parsed = 40;
-      parsed = Math.max(30, Math.min(60, Math.round(parsed / 10) * 10));
+      parsed = Math.max(30, Math.min(180, Math.round(parsed / 10) * 10));
       bln_intervalMs = parsed * 1000;
       scheduleNudge();
       try { localStorage.setItem('airhead-settings', JSON.stringify({ delay: parsed, skin: document.getElementById('gusSphere')?.classList.contains('skin-dark') ? 'dark' : 'light', siteGuide: bln_siteAssistOnly })); } catch (error) {}
@@ -2304,24 +2210,9 @@
     function scheduleNudge() {
       if (bln_nudgeTimer) clearTimeout(bln_nudgeTimer);
       bln_nudgeTimer = setTimeout(() => {
-        bln_nudgeCount++;
-        const bubble = document.getElementById('balloonTriviaBubble');
-        if (!bln_isMinimized && bubble?.classList.contains('hidden')) {
-          if (bln_nudgeCount === 2 && !sessionStorage.getItem('pf_balloon_assist_prompted')) {
-            sessionStorage.setItem('pf_balloon_assist_prompted', 'true');
-            document.getElementById('balloonFactLabel').textContent = '🎈 AirHead.cs~1.6 • Quick Tip';
-            document.getElementById('balloonFactTitle').textContent = 'Want a guided tour?';
-            document.getElementById('balloonFactText').textContent = 'Open Settings and switch on Website Assistance Only. I can point out the portfolio sections and interactive features.';
-            document.getElementById('balloonActionRow').style.display = 'flex';
-            positionBubble();
-            bubble.classList.remove('hidden');
-            setBalloonFace('nudge');
-          } else {
-            popTrivia();
-          }
-          setTimeout(() => {
-            if (bubble && !bubble.classList.contains('hidden')) dismissBalloonBubble();
-          }, 7000);
+        if (!bln_isMinimized && document.getElementById('balloonTriviaBubble')?.classList.contains('hidden')) {
+          popTrivia();
+          setTimeout(() => { if (!document.getElementById('balloonTriviaBubble')?.classList.contains('hidden')) dismissBalloonBubble(); }, 7000);
         }
         scheduleNudge();
       }, bln_intervalMs);
@@ -2335,21 +2226,7 @@
 
     function initChat() {
       setChatMinimizedState(pf_isChatMinimized);
-      document.getElementById('minimizeChatBtn')?.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const wasMinimized = pf_isChatMinimized;
-        setChatMinimizedState(!pf_isChatMinimized);
-        if (wasMinimized) markCopilotOpened();
-      });
-      document.getElementById('chatHeader')?.addEventListener('click', (e) => {
-        if (e.target.closest('#minimizeChatBtn')) return;
-        const wasMinimized = pf_isChatMinimized;
-        setChatMinimizedState(!pf_isChatMinimized);
-        if (wasMinimized) markCopilotOpened();
-      });
-      document.getElementById('sendChatBtn')?.addEventListener('click', () => sendMessage());
       document.getElementById('userInput')?.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); sendMessage(); } });
-      updateCopilotUnreadDot();
     }
 
     function setChatMinimizedState(minimized) {
@@ -2458,7 +2335,11 @@
       if (/\bsudo\s+hire\s+sai\b/i.test(lower) || /\b(hire|recruit|interview|book a call)\b/i.test(lower)) {
         appendMessage(`👑 <strong>[EXECUTIVE CLEARANCE GRANTED]:</strong> Sai Vinay is available immediately for DevOps, Cloud, SRE, and GenAI engineering roles (Bengaluru / India / Global). <br><br><button data-chat-action="open-calendly" class="w-full py-2 px-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-carbon-950 font-mono font-bold text-xs flex items-center justify-center gap-1.5 transition-all shadow-md cursor-pointer">📅 Schedule a 30m Interview Call ↗</button>`, 'bot'); return;
       }
-      
+      if (/\b(cs~1\.6|cs\.1\.6|cs 1\.6|counter-strike)\b/i.test(lower)) {
+        setBalloonFace('secret');
+        appendMessage(`🎮 <strong>AirHead.cs~1.6</strong> is a nod to Sai Vinay's love for <em>Counter-Strike 1.6</em>—and a personal homage to what sparked his passion for networking, low-latency systems, and technology!`, 'bot'); return;
+      }
+
       inp.disabled = true; btn.disabled = true;
       const loaderId = 'loader-' + Date.now();
       const win = document.getElementById('chatWindow');
@@ -2486,36 +2367,211 @@
       }
     }
 
-    // --- INITIALIZATION ---
+    /* Matrix Rain Global Utilities */
+    let matrixTimer = null, rainDrops = [];
+    const canvas = document.getElementById('matrixCanvas');
+    const ctx = canvas?.getContext('2d');
+    const charSize = 14, matrixChars = '0123456789ABCDEFGHXYZ';
+    
+    function resizeMatrix() {
+      if (!canvas || !ctx) return;
+      canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+      rainDrops = Array(Math.floor(canvas.width / charSize)).fill(1);
+    }
+    window.addEventListener('resize', resizeMatrix);
+    resizeMatrix();
+
+    function renderMatrix() {
+      if (!canvas || !ctx) return;
+      ctx.fillStyle = 'rgba(3, 8, 4, 0.08)'; ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = window.matrixColor || '#00ff66'; ctx.font = charSize + 'px monospace';
+      for (let i = 0; i < rainDrops.length; i++) {
+        ctx.fillText(matrixChars.charAt(Math.floor(Math.random() * matrixChars.length)), i * charSize, rainDrops[i] * charSize);
+        if (rainDrops[i] * charSize > canvas.height && Math.random() > 0.975) rainDrops[i] = 0;
+        rainDrops[i]++;
+      }
+    }
+    function startMatrixRain(forceByUser = false) {
+      if (pf_isReducedMotion && !forceByUser) return;
+      if (canvas) canvas.style.opacity = '0.22';
+      if (!matrixTimer) matrixTimer = setInterval(renderMatrix, 42);
+    }
+    function stopMatrixRain() {
+      if (canvas) canvas.style.opacity = '0';
+      if (matrixTimer) { clearInterval(matrixTimer); matrixTimer = null; ctx.clearRect(0, 0, canvas.width, canvas.height); }
+    }
+    function toggleMatrixRainEffect() {
+      pf_isReducedMotion = !pf_isReducedMotion;
+      const btn = document.getElementById('matrixToggleBtn');
+      if (pf_isReducedMotion) {
+        stopMatrixRain();
+        if (btn) btn.innerHTML = `<i data-lucide="eye-off" class="w-3.5 h-3.5 text-slate-400"></i><span class="text-[11px] text-slate-400 hidden sm:inline">Classic</span>`;
+        if (window.lucide) lucide.createIcons();
+      } else {
+        startMatrixRain(true);
+        if (btn) btn.innerHTML = `<i data-lucide="sparkles" class="w-3.5 h-3.5 text-[#00ff66]"></i><span class="text-[11px] text-[#00ff66] hidden sm:inline">Rain</span>`;
+        if (window.lucide) lucide.createIcons();
+      }
+    }
+
+    // CLI Sandbox Engine
+    let activeCliAbortController = null, activeCliTimers = [];
+    let isCase1Patched = false;
+    let commandHistory = [], historyIndex = -1;
+
+    function printCliLine(text, className = '') {
+      const out = document.getElementById('cliOutput');
+      if (!out) return;
+      const div = document.createElement('div');
+      div.className = className; div.innerText = text;
+      out.appendChild(div); out.scrollTop = out.scrollHeight;
+    }
+
+    function forceBreakCli() {
+      if (activeCliAbortController) { try { activeCliAbortController.abort(); } catch (e) {} activeCliAbortController = null; }
+      if (activeCliTimers.length > 0) { activeCliTimers.forEach(t => clearTimeout(t)); activeCliTimers = []; }
+      printCliLine('^C [SIGINT: Process interrupted and shell restored]', 'text-red-400 font-bold');
+      const inp = document.getElementById('cliInput');
+      if (inp) { inp.disabled = false; inp.value = ''; inp.focus(); }
+    }
+
+    async function runCliCommand(rawCmd) {
+      const cmd = rawCmd.trim();
+      const inp = document.getElementById('cliInput');
+      if (!cmd) return;
+      commandHistory.push(cmd); historyIndex = commandHistory.length;
+      if (cmd !== 'clear') printCliLine(`sai@prod-bastion:/opt/incident-127$ ${cmd}`, 'text-[#00ff66] font-bold');
+      if (inp) inp.value = '';
+
+      const args = cmd.split(/\s+/);
+      const base = args[0].toLowerCase();
+
+      if (/^sudo\s+hire\s+sai$/i.test(cmd) || /^hire\s+sai$/i.test(cmd)) {
+        printCliLine(`👑 [EXECUTIVE CLEARANCE GRANTED]: Sai Vinay is ready for architecture & engineering interviews!\n-> Launching Calendly scheduler (or email msaivinay306@gmail.com)...`, 'text-amber-300 font-bold');
+        setTimeout(() => openCalendly(), 700);
+        return;
+      }
+
+      switch (base) {
+        case 'help':
+          printCliLine(`Interactive Diagnostic Shell:\n  ls -la          : Directory utilities\n  cat <file>      : Inspect file contents\n  ./patch.sh      : Execute container remediation\n  lsof +L1        : Inspect unlinked ghost files\n  curl <url>      : Fetch endpoint\n  coffee          : Inject caffeine into pipeline\n  clear           : Wipe terminal screen\n\nHiring / Executive:\n  sudo hire sai   : Fast-track interview scheduling`, 'text-slate-300');
+          break;
+        case 'ls':
+          if (args[1] === '-la' || args[1] === '-l') printCliLine(`total 24\n-rw-r--r-- 1 sai devops  248 May 13 Dockerfile\n-rwxr-xr-x 1 sai devops  142 May 13 healthcheck.sh\n-rwxr-xr-x 1 sai devops  310 May 13 patch.sh`, 'text-sky-300');
+          else printCliLine(`Dockerfile   healthcheck.sh   patch.sh*`, 'text-sky-300 font-bold');
+          break;
+        case 'cat':
+          if (!args[1]) printCliLine('cat: missing file operand.', 'text-yellow-400');
+          else if (args[1] === 'Dockerfile') printCliLine(`FROM registry.internal-cloud.net/core/enterprise-java-base:latest\nWORKDIR /app\nCOPY target/subscription-service.jar /app/app.jar\nHEALTHCHECK --interval=10s --timeout=3s CMD /opt/incident-127/healthcheck.sh`, 'text-slate-200');
+          else printCliLine(`cat: ${args[1]}: No such file`, 'text-red-400');
+          break;
+        case './patch.sh':
+        case 'sh':
+          printCliLine(`[1/3] Injecting 'RUN apk add --no-cache curl' into Dockerfile...`, 'text-amber-300');
+          activeCliTimers.push(setTimeout(() => printCliLine(`[2/3] Rebuilding container image & restarting readiness probe...`, 'text-sky-300'), 400));
+          activeCliTimers.push(setTimeout(() => { if (!isCase1Patched) toggleCase1Patch(); printCliLine(`[3/3] PROBE VERIFIED: GET http://localhost:8080/api/v1/health/ping -> HTTP 200 OK`, 'text-[#00ff66] font-bold'); }, 900));
+          break;
+        case 'lsof':
+          printCliLine(`COMMAND   PID   USER   FD   TYPE DEVICE   SIZE/OFF NLINK   NODE NAME\njava     4182  jboss   4w   REG  253,1 19482910720     0 131074 /var/log/app/gc.log (deleted)\n# Tip: Run ': > /proc/4182/fd/4' to truncate blocks non-disruptively.`, 'text-amber-300');
+          break;
+        case ':':
+          if (cmd.includes('/proc/4182/fd/4')) printCliLine(`[KERNEL VFS]: Truncated /proc/4182/fd/4 to 0 bytes. 18.1 GB reclaimed immediately without service restart.`, 'text-[#00ff66] font-bold');
+          else printCliLine(`bash: syntax executed.`, 'text-slate-400');
+          break;
+        case '/proc/4182/fd/4':
+          printCliLine(`bash: permission denied.\n(Hint: truncate the file descriptor to 0 bytes with ': > /proc/4182/fd/4')`, 'text-yellow-400 font-bold');
+          break;
+        case 'coffee':
+          printCliLine(`      (\n       )\n    _(__)_\n   |      |_\n   |      |_|\n   |______|\n[INFO] Injecting caffeine into the CI/CD pipeline...`, 'text-amber-400');
+          break;
+        case 'clear':
+          const out = document.getElementById('cliOutput');
+          if (out) out.innerHTML = '';
+          break;
+        case 'curl':
+          const nonFlagArgs = args.slice(1).filter(a => !a.startsWith('-'));
+          let urlArg = nonFlagArgs[0];
+          if (!urlArg) { printCliLine('curl: missing URL argument.', 'text-yellow-400'); return; }
+          if (urlArg === 'trace' || urlArg === '/trace') urlArg = 'https://1.1.1.1/cdn-cgi/trace';
+          else if (!/^https?:\/\//i.test(urlArg)) urlArg = 'https://' + urlArg.replace(/^\/+/, '');
+          
+          printCliLine(`* Connecting to ${urlArg} (Auto-HTTPS enabled — Click Break to abort)...`, 'text-slate-400');
+          activeCliAbortController = new AbortController();
+          const timeoutId = setTimeout(() => activeCliAbortController?.abort(), 4500);
+          try {
+            const res = await fetch(urlArg, { signal: activeCliAbortController.signal });
+            clearTimeout(timeoutId);
+            const contentType = res.headers.get('content-type') || '';
+            const text = await res.text();
+            if (contentType.includes('text/html') || text.trim().startsWith('<')) printCliLine(`HTTP/2 ${res.status} OK\ncontent-type: ${contentType}\n[HTML Body Received — ${text.length} bytes]`, 'text-emerald-400');
+            else printCliLine(text.slice(0, 800), 'text-slate-200');
+          } catch (err) {
+            clearTimeout(timeoutId);
+            printCliLine(`curl: CORS policy restricted raw body readout from browser context (try 'curl trace').`, 'text-amber-300');
+          } finally { activeCliAbortController = null; }
+          break;
+        default: printCliLine(`bash: ${base}: command not found. Type 'help' for commands.`, 'text-red-400'); break;
+      }
+    }
+
+    function toggleCase1Patch() {
+      isCase1Patched = !isCase1Patched;
+      const badge = document.getElementById('case1StatusBadge');
+      const pr = document.getElementById('case1SvgProbeRect'), pt = document.getElementById('case1SvgProbeText');
+      const rr = document.getElementById('case1SvgRelRect'), rt = document.getElementById('case1SvgRelText');
+      const line2 = document.getElementById('case1SvgLine2'), arr2 = document.getElementById('case1SvgArrow2');
+      const logLine = document.getElementById('case1LogLine'), btn = document.getElementById('btnCase1Patch');
+
+      if (isCase1Patched) {
+        if (badge) { badge.textContent = "HTTP 200 OK"; badge.className = "px-2.5 py-0.5 rounded bg-emerald-500/20 text-[#00ff66] border border-[#00ff66]/40 font-bold text-[11px]"; }
+        if (pr) { pr.setAttribute('fill', '#062c22'); pr.setAttribute('stroke', '#00ff66'); }
+        if (pt) { pt.textContent = "curl OK (200)"; pt.setAttribute('fill', '#00ff66'); }
+        if (rr) { rr.setAttribute('fill', '#062c22'); rr.setAttribute('stroke', '#00ff66'); }
+        if (rt) { rt.textContent = "UNBLOCKED"; rt.setAttribute('fill', '#00ff66'); }
+        if (line2) line2.setAttribute('stroke', '#00ff66'); if (arr2) arr2.setAttribute('fill', '#00ff66');
+        if (logLine) { logLine.innerHTML = `<span class="text-[#00ff66]">GET /api/v1/health/ping HTTP/1.1 200 OK</span>`; logLine.className = "text-[#00ff66] mt-1"; }
+        if (btn) btn.textContent = "[ ↺ Rollback Patch ]";
+        showToast('✓ Patch applied: curl binary restored in base image layer');
+      } else {
+        if (badge) { badge.textContent = "EXIT CODE 127"; badge.className = "px-2.5 py-0.5 rounded bg-red-500/20 text-red-400 border border-red-500/40 font-bold text-[11px]"; }
+        if (pr) { pr.setAttribute('fill', '#3b0a0a'); pr.setAttribute('stroke', '#ef4444'); }
+        if (pt) { pt.textContent = "curl missing (127)"; pt.setAttribute('fill', '#f87171'); }
+        if (rr) { rr.setAttribute('fill', '#161f33'); rr.setAttribute('stroke', '#475569'); }
+        if (rt) { rt.textContent = "Pipeline Blocked"; rt.setAttribute('fill', '#94a3b8'); }
+        if (line2) line2.setAttribute('stroke', '#ef4444'); if (arr2) arr2.setAttribute('fill', '#ef4444');
+        if (logLine) { logLine.textContent = "/bin/sh: /usr/bin/curl: not found (ExitCode 127)"; logLine.className = "text-red-400 mt-1"; }
+        if (btn) btn.textContent = "[ >_ Run Patch: +curl ]";
+      }
+    }
+    const cliInp = document.getElementById('cliInput');
+    if (cliInp) {
+      cliInp.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey && e.key.toLowerCase() === 'c') || e.key === 'Escape') { e.preventDefault(); forceBreakCli(); return; }
+        if (e.key === 'Enter') runCliCommand(cliInp.value);
+        else if (e.key === 'ArrowUp') { e.preventDefault(); if (historyIndex > 0) { historyIndex--; cliInp.value = commandHistory[historyIndex] || ''; } }
+        else if (e.key === 'ArrowDown') { e.preventDefault(); if (historyIndex < commandHistory.length - 1) { historyIndex++; cliInp.value = commandHistory[historyIndex] || ''; } else { historyIndex = commandHistory.length; cliInp.value = ''; } }
+      });
+    }
+
+    // --- INITIALIZE PORTFOLIO ---
     document.addEventListener("DOMContentLoaded", () => {
       initOnboarding();
       initTooltips();
       if (pf_isTabVisible) startRaf();
       setInterval(() => updateWorldClocks(), 1000);
       updateWorldClocks();
+      fetchVisitorIp();
       initBalloon();
       initChat();
     });
 
-    // --- GLOBAL EXPORTS (For HTML Onclick Handlers) ---
-    window.setMode = setMode;
-    window.openModal = openModal;
-    window.openExecCaseModal = openExecCaseModal;
-    window.closeModal = closeModal;
-    window.openTelemetryDashboard = openTelemetryDashboard;
-    window.toggleConsoleModal = toggleConsoleModal;
-    window.forceBreakCli = forceBreakCli;
-    window.runCliCommand = runCliCommand;
-    window.toggleCase1Patch = toggleCase1Patch;
-    window.sendQuickPrompt = sendQuickPrompt;
-    window.toggleMatrixRainEffect = toggleMatrixRainEffect;
-    window.dismissBalloonBubble = dismissBalloonBubble;
-    window.toggleBalloonSettings = toggleBalloonSettings;
-    window.setBalloonCustomTimer = setBalloonCustomTimer;
-    window.setBalloonSkin = setBalloonSkin;
-    window.toggleSiteAssistMode = toggleSiteAssistMode;
-    window.askCopilotAboutCurrentTrivia = askCopilotAboutCurrentTrivia;
-
+    (function initPerspectiveFromUrl() {
+      const p = new URLSearchParams(window.location.search);
+      const m = (p.get('mode') || '').toLowerCase();
+      if (m === 'hr' || m === 'recruiter') setPerspective('recruiter', false);
+      else if (m === 'dev' || m === 'engineer') setPerspective('engineer', false);
+      else setPerspective('manager', false);
+    })();
   </script>
 </body>
 </html>
