@@ -151,7 +151,6 @@
       #view-hr { display: block !important; }
       * { color: black !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     }
-
     /* Full Balloon Animations & Complete Facial Expressions */
     @keyframes gusFloat { 0%, 100% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-8px) rotate(2deg); } }
     .gus-float-anim { animation: gusFloat 3.8s ease-in-out infinite; }
@@ -247,9 +246,9 @@
     <span id="customToastText"></span>
   </div>
 
-  <!-- Sticky Navigation Bar: True Centered Links + Non-Overlapping Mode Bar -->
+  <!-- Sticky Navigation Bar: True Absolute Centering -->
   <header class="sticky top-0 z-40 backdrop-blur-md bg-carbon-900/85 border-b border-carbon-700/70">
-    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-20 relative flex items-center justify-between gap-2">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-20 relative flex items-center justify-between">
       
       <!-- Left Cluster: Profile Identity + Compact Mode Switcher -->
       <div class="flex items-center gap-2 sm:gap-3 shrink-0 z-10">
@@ -280,8 +279,8 @@
         </div>
       </div>
 
-      <!-- Center Scroll Links: Locked to True Horizontal Center in Manager & Dev Modes -->
-      <nav id="mainHeaderScrollLinks" class="hidden lg:flex items-center justify-center gap-5 xl:gap-7 text-xs sm:text-[13px] font-semibold text-slate-300 whitespace-nowrap lg:absolute lg:left-1/2 lg:-translate-x-1/2 xl:translate-x-2 z-0">
+      <!-- Center Scroll Links: Absolute Positioning to Force Exact Mathematical Centering -->
+      <nav id="mainHeaderScrollLinks" class="hidden lg:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 items-center justify-center gap-6 text-xs sm:text-[13px] font-semibold text-slate-300 whitespace-nowrap z-0 pointer-events-auto">
         <a href="#journey" class="hover:text-amber-400 transition-colors">Career &amp; Credentials</a>
         <a href="#education" class="hover:text-amber-400 transition-colors">Education</a>
         <a href="#contact" class="hover:text-amber-400 transition-colors">How I Work</a>
@@ -310,9 +309,8 @@
   <!-- HR MODE: 1-Page Printable Resume (3-Column)    -->
   <!-- ============================================== -->
   <div id="view-hr" style="display: none;" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
+    <!-- Rest of HR Mode is unchanged -->
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-      
-      <!-- Left Column: Profile & Education -->
       <aside class="lg:col-span-3 bento-card p-5 sm:p-6 space-y-5">
         <div class="flex flex-col items-center text-center">
           <div class="w-36 h-36 sm:w-40 sm:h-40 rounded-full overflow-hidden border-4 border-amber-500/40 mb-3 bg-carbon-800 shadow-xl flex items-center justify-center">
@@ -351,7 +349,6 @@
         </div>
       </aside>
 
-      <!-- Center Column: Value Prop & Enterprise Work Experience -->
       <div class="lg:col-span-6 space-y-4">
         <div class="bento-card p-4 sm:p-5 bg-gradient-to-br from-amber-500/10 via-carbon-850 to-carbon-900 border-amber-500/40 space-y-2.5">
           <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-amber-500/15 border border-amber-500/40 text-amber-400 text-[11px] font-mono font-bold uppercase"><i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Candidate Value Proposition</div>
@@ -414,7 +411,6 @@
         </div>
       </div>
 
-      <!-- Right Column: Core Tech Stack -->
       <div class="lg:col-span-3 bento-card p-5 sm:p-6 space-y-5">
         <h3 class="text-sm font-bold font-mono text-white uppercase tracking-wider flex items-center gap-2 border-b border-carbon-700/80 pb-3">
           <i data-lucide="cpu" class="w-4 h-4 text-amber-400"></i> Core Technical Stack
@@ -453,7 +449,6 @@
 
     </div>
   </div>
-
   <!-- ============================================== -->
   <!-- VIEW 2 & 3: MANAGER & DEV PERSPECTIVES         -->
   <!-- ============================================== -->
@@ -493,7 +488,7 @@
               <a href="#journey" class="manager-only h-12 px-4 rounded-xl text-xs sm:text-[13px] font-bold bg-amber-500 hover:bg-amber-400 text-carbon-950 flex items-center justify-center gap-2 transition-all shadow-[0_0_20px_rgba(245,158,11,0.3)] whitespace-nowrap">
                 See How I Solve Problems ↘
               </a>
-              <!-- Button 1 (Dev): Launch Incident Sandbox with Heartbeat -->
+              <!-- Button 1 (Dev): Launch Incident Sandbox -->
               <button type="button" onclick="toggleConsoleModal()" style="display: none;" class="dev-only h-12 px-4 rounded-xl text-xs sm:text-[13px] font-mono font-bold bg-[#00ff66]/15 hover:bg-[#00ff66] text-[#00ff66] hover:text-black border border-[#00ff66]/60 flex items-center justify-center gap-2 transition-all shadow-[0_0_24px_rgba(0,255,102,0.45)] cursor-pointer whitespace-nowrap">
                 <span class="relative flex h-2.5 w-2.5 shrink-0">
                   <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00ff66] opacity-85"></span>
@@ -502,7 +497,7 @@
                 &gt;_ Launch Incident Sandbox
               </button>
 
-              <!-- Button 2: LinkedIn — Let's Connect! (Official Filled LinkedIn Logo Preserving Exact h-12 Pill Size) -->
+              <!-- Button 2: LinkedIn — Let's Connect! -->
               <a href="https://linkedin.com/in/sai-vinay-mullapudi" target="_blank" rel="noopener noreferrer" class="h-12 px-4 rounded-xl text-xs sm:text-[13px] font-mono bg-carbon-850 hover:bg-carbon-800 text-slate-200 border border-carbon-700 hover:border-amber-400/60 flex items-center justify-center gap-2.5 transition-colors whitespace-nowrap group">
                 <svg class="w-4 h-4 shrink-0 rounded-[3px] transition-transform group-hover:scale-105" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <rect width="24" height="24" rx="4" fill="#0A66C2"/>
@@ -632,36 +627,42 @@
         </div>
       </section>
 
-      <!-- Developer Mode Telemetry Strip (100% Real W3C Browser Runtime Metrics + Interactive Engineering Easter Eggs) -->
+      <!-- Developer Mode Telemetry Strip (Single Line with IP Location & World Clock) -->
       <div id="devTelemetryStrip" style="display: none;" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-6">
-        <div class="p-3 sm:p-4 rounded-xl bg-carbon-950 border border-[#00ff66]/40 font-mono text-[10px] sm:text-xs flex flex-wrap items-center justify-between gap-3 text-[#a7f3d0] shadow-lg">
-          <div class="flex items-center gap-2 sm:gap-3">
-            <span class="relative flex h-2.5 w-2.5 sm:h-3 sm:w-3 shrink-0"><span class="animate-ping absolute h-full w-full rounded-full bg-[#00ff66] opacity-75"></span><span class="relative rounded-full h-2.5 w-2.5 sm:h-3 sm:w-3 bg-[#00ff66]"></span></span>
-            <span class="font-bold text-white tracking-wider">REAL-TIME CLIENT TELEMETRY:</span>
+        <div class="px-4 py-3 rounded-xl bg-carbon-950 border border-[#00ff66]/40 font-mono text-[10px] sm:text-xs flex flex-wrap items-center justify-between gap-4 text-slate-300 shadow-lg">
+          <div class="flex items-center gap-2.5">
+            <span class="relative flex h-2.5 w-2.5 shrink-0"><span class="animate-ping absolute h-full w-full rounded-full bg-[#00ff66] opacity-75"></span><span class="relative rounded-full h-2.5 w-2.5 bg-[#00ff66]"></span></span>
+            <span class="font-bold text-white tracking-wider text-[11px] sm:text-xs">LIVE TELEMETRY:</span>
           </div>
-          <div class="flex flex-wrap items-center gap-3 sm:gap-5 text-[9.5px] sm:text-[11px]">
-            <button type="button" onclick="openChaosSimulatorModal()" class="cursor-pointer hover:underline text-left flex items-center gap-1 px-2 py-1 rounded bg-[#00ff66]/10 border border-[#00ff66]/30" title="Click to launch interactive Chaos Engineering & Event-Loop Load Simulator">
-              <span>COMPOSITOR:</span>
-              <strong id="devFpsVal" class="text-[#00ff66]">60 FPS (16.6ms)</strong>
-              <span class="text-[9px] text-amber-300 ml-0.5">[⚡ Chaos Sim]</span>
-            </button>
-            <button type="button" onclick="openTelemetryDashboard()" class="cursor-pointer hover:underline text-left" title="Measured via live HTTP HEAD probe">
-              EDGE RTT: <strong id="devPingVal" class="text-[#00ff66]">Probing…</strong>
-            </button>
-            <button type="button" onclick="openWaterfallInspectorModal()" class="cursor-pointer hover:underline text-left flex items-center gap-1 px-2 py-1 rounded bg-sky-500/10 border border-sky-500/30" title="Click to inspect live W3C Navigation Waterfall, DOM Nodes & V8 Heap">
-              <span>RUNTIME:</span>
-              <strong id="devRuntimeVal" class="text-sky-300">DOM &amp; Heap</strong>
-              <span class="text-[9px] text-sky-300 ml-0.5">[🔍 Inspect]</span>
-            </button>
-            <span>CLOCK: <strong id="devClockVal" class="text-[#00ff66]">--:--:--</strong></span>
-            <button type="button" onclick="openTelemetryDashboard()" class="px-3 py-1.5 rounded-lg bg-[#00ff66]/15 hover:bg-[#00ff66] text-[#00ff66] hover:text-black font-mono font-bold border border-[#00ff66]/60 shadow-[0_0_15px_rgba(0,255,102,0.35)] transition-all cursor-pointer flex items-center gap-1.5">
-              <span class="w-1.5 h-1.5 rounded-full bg-[#00ff66] animate-ping"></span>📊 Live Dashboard
+          
+          <div class="flex flex-wrap items-center gap-4 sm:gap-6 text-[10px] sm:text-[11px]">
+            <span>FPS: <strong id="devFpsVal" class="text-[#00ff66]">60</strong></span>
+            <span>RTT: <strong id="devPingVal" class="text-[#00ff66]">-- ms</strong></span>
+            <span class="hidden sm:inline">IP / LOC: <strong id="visitorIpLoc" class="text-[#00ff66]">Detecting...</strong></span>
+            
+            <!-- Interactive World Clock Dropdown -->
+            <div class="relative group cursor-pointer" onclick="this.querySelector('.clock-dropdown').classList.toggle('hidden')">
+              <span>CLOCK: <strong id="devClockVal" class="text-[#00ff66] underline decoration-dashed underline-offset-2">--:--:--</strong></span>
+              <div class="clock-dropdown hidden absolute top-full left-1/2 -translate-x-1/2 mt-2 bg-carbon-900 border border-[#00ff66]/30 rounded-lg p-3 shadow-xl z-50 w-48 text-[10px] space-y-2 cursor-default">
+                 <div class="text-[#00ff66] font-bold border-b border-carbon-700 pb-1 mb-1 text-center">WORLD TIMEZONES</div>
+                 <div class="flex justify-between"><span>EST (New York):</span><strong id="tz-est" class="text-white">--:--</strong></div>
+                 <div class="flex justify-between"><span>PST (California):</span><strong id="tz-pst" class="text-white">--:--</strong></div>
+                 <div class="flex justify-between"><span>CST (Texas):</span><strong id="tz-cst" class="text-white">--:--</strong></div>
+                 <div class="flex justify-between"><span>CET (Central Europe):</span><strong id="tz-cet" class="text-white">--:--</strong></div>
+                 <div class="flex justify-between"><span>JST (Tokyo):</span><strong id="tz-jst" class="text-white">--:--</strong></div>
+                 <div class="flex justify-between"><span>AEST (Sydney):</span><strong id="tz-aest" class="text-white">--:--</strong></div>
+              </div>
+            </div>
+
+            <!-- Live Dashboard Trigger -->
+            <button type="button" onclick="openTelemetryDashboard()" class="px-2.5 py-1 rounded bg-[#00ff66]/15 hover:bg-[#00ff66] text-[#00ff66] hover:text-black font-bold border border-[#00ff66]/60 transition-all cursor-pointer flex items-center gap-1.5 ml-2">
+              📊 Open Dashboard
             </button>
           </div>
         </div>
       </div>
 
-      <!-- Tools & Technologies Marquee (100% Zero-Dependency Inline Vector SVGs — Never Breaks) -->
+      <!-- Tools & Technologies Marquee (100% Zero-Dependency Inline Vector SVGs) -->
       <section id="stack" class="py-6 sm:py-8 bg-carbon-950/80 border-y border-carbon-700/70 overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 mb-3 sm:mb-4 flex items-center justify-between">
           <span class="text-[10px] sm:text-xs font-mono uppercase tracking-widest text-slate-400">TOOLS &amp; TECHNOLOGIES</span>
@@ -743,7 +744,6 @@
           </div>
         </div>
       </section>
-
       <!-- Section: Career & Technical Deep Dives -->
       <section id="journey" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-14 border-b border-carbon-800 scroll-mt-20">
         <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-8 sm:mb-10 gap-6">
@@ -755,7 +755,7 @@
               Progression backed by <span class="text-amber-400">verified credentials.</span>
             </h2>
 
-            <!-- Large Image-Only AWS Certification Badges (Placeholders ready for real images) -->
+            <!-- Large Image-Only AWS Certification Badges (Placeholders ready for real images, no text below) -->
             <div class="manager-only flex flex-wrap items-center gap-4 pt-2">
               <!-- AWS MLA Badge Placeholder -->
               <a href="https://www.credly.com/badges/20f333e6-76e8-431a-9603-c22408681cd8" target="_blank" rel="noopener noreferrer" title="Verify AWS MLA" class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-carbon-850 hover:bg-emerald-500/15 border-2 border-emerald-500/50 hover:border-emerald-400 flex items-center justify-center shadow-xl transition-all hover:-translate-y-1">
@@ -943,26 +943,26 @@
                 </span>
               </div>
 
-              <!-- 2-Column Responsibility Sub-Cards -->
+              <!-- 2-Column Responsibility Sub-Cards (Fixed to match PDF) -->
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div class="p-4 sm:p-5 rounded-2xl bg-carbon-950/90 border border-carbon-800 space-y-2">
-                  <span class="text-[11px] font-mono font-bold text-amber-400 uppercase tracking-wider block">ZERO-TRUST CLEARING INFRASTRUCTURE</span>
+                  <span class="text-[11px] font-mono font-bold text-amber-400 uppercase tracking-wider block">ZERO-TRUST CLEARING INFRASTRUCTURE &amp; IaC</span>
                   <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                    Architected private multi-tier AWS VPC topologies and reusable Terraform modules supporting post-trade clearing pipelines synchronized in real time with financial feeds.
+                    Engineered reusable Terraform modules to provision core AWS infrastructure (EC2, VPC, RDS, S3), slashing deployment time by over 50% for post-trade clearing pipelines.
                   </p>
                   <ul class="text-xs font-mono text-slate-400 space-y-1 pt-1 list-disc list-inside">
-                    <li>Enforced KMS HSM envelope encryption &amp; least-privilege IAM</li>
-                    <li>Eliminated cyclic security group deadlocks in Jenkins CI/CD</li>
+                    <li>Partnered with SecOps to enforce IAM PoLP for regulatory compliance</li>
+                    <li>Established baseline consistency across multi-environment deployments</li>
                   </ul>
                 </div>
                 <div class="p-4 sm:p-5 rounded-2xl bg-carbon-950/90 border border-carbon-800 space-y-2">
-                  <span class="text-[11px] font-mono font-bold text-emerald-400 uppercase tracking-wider block">200+ INSTANCE CLUSTER &amp; ZERO-DOWNTIME RDS OPS</span>
+                  <span class="text-[11px] font-mono font-bold text-emerald-400 uppercase tracking-wider block">JENKINS CI/CD &amp; ZERO-DOWNTIME OPERATIONS</span>
                   <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                    Managed high-availability operations across a <strong class="text-white">200+ AWS instance cluster</strong>, automating zero-downtime RDS database maintenance and SSL certificate rotations.
+                    Integrated Terraform IaC changes into Jenkins CI/CD pipelines, optimizing cloud management and reducing deployment errors by up to 15 incidents per month.
                   </p>
                   <ul class="text-xs font-mono text-slate-400 space-y-1 pt-1 list-disc list-inside">
-                    <li>Cut AWS infrastructure provisioning lead time by &gt;50%</li>
-                    <li>Reduced monthly deployment incidents by 15 across environments</li>
+                    <li>Automated RDS database upgrades and SSL certificate renewals</li>
+                    <li>Eliminated manual overhead to achieve near-zero downtime</li>
                   </ul>
                 </div>
               </div>
@@ -977,14 +977,14 @@
                       <h4 class="text-base sm:text-lg font-bold text-white">Scaling Regulated FinTech AWS Environments &amp; Zero-Downtime RDS</h4>
                     </div>
                     <p class="text-xs sm:text-sm text-slate-300 pl-9 leading-relaxed">
-                      Governed a 200+ instance AWS cluster, cut provisioning lead time by over 50%, reduced monthly deployment errors by 15 incidents, and automated zero-downtime RDS upgrades.
+                      Implemented reusable Terraform CI/CD pipelines, cutting provisioning lead time by over 50%, reducing monthly deployment errors by 15 incidents, and automating zero-downtime RDS upgrades.
                     </p>
                   </div>
                   <div class="pl-9 lg:pl-0 flex flex-col items-start lg:items-end gap-2 shrink-0">
                     <button type="button" onclick="openExecCaseModal(4)" class="shiny-btn-green relative overflow-hidden px-4 py-2 rounded-xl bg-emerald-500/15 hover:bg-emerald-500 text-emerald-300 hover:text-carbon-950 font-mono text-xs font-bold border border-emerald-500/50 shadow-[0_0_18px_rgba(16,185,129,0.25)] transition-all cursor-pointer flex items-center gap-2">
                       📊 View Executive Case Study ↗
                     </button>
-                    <span class="px-2.5 py-0.5 rounded bg-emerald-500/15 border border-emerald-500/35 text-emerald-300 font-mono text-[10px] font-semibold">&gt;50% FASTER • 200+ NODE CLUSTER</span>
+                    <span class="px-2.5 py-0.5 rounded bg-emerald-500/15 border border-emerald-500/35 text-emerald-300 font-mono text-[10px] font-semibold">&gt;50% FASTER • -15 INCIDENTS/MO</span>
                   </div>
                 </div>
               </div>
@@ -1022,18 +1022,27 @@
                 </span>
               </div>
 
+              <!-- 2-Column Responsibility Sub-Cards -->
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div class="p-4 sm:p-5 rounded-2xl bg-carbon-950/90 border border-carbon-800 space-y-2">
                   <span class="text-[11px] font-mono font-bold text-sky-400 uppercase tracking-wider block">HIGH-AVAILABILITY AWS FLEET GOVERNANCE</span>
                   <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                    Maintained 99% uptime across 200+ AWS EC2 compute instances via automated EBS snapshot lifecycles, CloudWatch telemetry alarms, and proactive patch windows.
+                    Administered and scaled a fleet of <strong class="text-white">200+ AWS instances</strong>, ensuring high availability and fault tolerance while sustaining 99% system uptime through proactive CloudWatch monitoring.
                   </p>
+                  <ul class="text-xs font-mono text-slate-400 space-y-1 pt-1 list-disc list-inside">
+                    <li>Orchestrated robust data integrity using AWS Snapshots &amp; AMIs</li>
+                    <li>Collaborated directly with DBAs to guarantee database performance</li>
+                  </ul>
                 </div>
                 <div class="p-4 sm:p-5 rounded-2xl bg-carbon-950/90 border border-carbon-800 space-y-2">
-                  <span class="text-[11px] font-mono font-bold text-amber-400 uppercase tracking-wider block">BARE-METAL RHEL KICKSTART &amp; ONLINE LVM STORAGE</span>
+                  <span class="text-[11px] font-mono font-bold text-amber-400 uppercase tracking-wider block">RHEL KICKSTART &amp; ONLINE VFS / LVM OPS</span>
                   <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                    Automated RedHat Enterprise Linux provisioning via custom Kickstart scripts and performed non-disruptive online LVM volume expansions and VFS inode recovery.
+                    Automated RedHat Linux deployments via Kickstart, dynamically managed filesystem expansion using LVM, and performed non-disruptive VFS inode recovery.
                   </p>
+                  <ul class="text-xs font-mono text-slate-400 space-y-1 pt-1 list-disc list-inside">
+                    <li>Investigated df vs du ghost storage via <code class="text-sky-300">lsof +L1</code></li>
+                    <li>Scaled disk volumes online using <code class="text-sky-300">lvextend -r</code> (0 reboot overhead)</li>
+                  </ul>
                 </div>
               </div>
 
@@ -1114,7 +1123,7 @@
                 <div class="lg:col-span-8 space-y-3">
                   <h4 class="text-sm sm:text-base font-bold text-white leading-snug">Eficens Systems LLC — DevOps Engineer (US FinTech)</h4>
                   <ul class="space-y-2 text-slate-300 text-xs sm:text-sm list-disc list-inside leading-relaxed">
-                    <li><strong class="text-sky-400">Zero-Trust Terraform Blueprints:</strong> Engineered reusable IaC modules provisioning private multi-tier VPC topologies across a <strong class="text-white">200+ AWS instance cluster</strong> syncing with NYSE &amp; Fed feeds.</li>
+                    <li><strong class="text-sky-400">Zero-Trust Terraform Blueprints:</strong> Engineered reusable IaC modules provisioning private multi-tier VPC topologies across environments syncing with NYSE &amp; Fed feeds.</li>
                     <li><strong class="text-amber-400">DependencyViolation Resolution:</strong> Decoupled inline security group blocks into standalone <code class="text-white">aws_security_group_rule</code> resources.</li>
                     <li><strong class="text-emerald-400">KMS Cryptographic Parity:</strong> Automated Jenkins pipelines enforcing KMS envelope encryption and zero-downtime RDS upgrades.</li>
                   </ul>
@@ -1146,8 +1155,8 @@
                 <div class="lg:col-span-8 space-y-3">
                   <h4 class="text-sm sm:text-base font-bold text-white leading-snug">LotusData LLP — Jr. System / Cloud Administrator</h4>
                   <ul class="space-y-2 text-slate-300 text-xs sm:text-sm list-disc list-inside leading-relaxed">
-                    <li><strong class="text-sky-400">VFS &amp; Inode Recovery:</strong> Investigated <code class="text-white">df</code> vs <code class="text-white">du</code> ghost storage via <code class="text-white">lsof +L1</code> and non-disruptive <code class="text-white">/proc/&lt;PID&gt;/fd</code> truncation.</li>
-                    <li><strong class="text-emerald-400">Online LVM Partition Expansion:</strong> Scaled high-throughput database disk volumes online using <code class="text-white">lvextend -r</code> with 0 reboot overhead.</li>
+                    <li><strong class="text-sky-400">High-Availability AWS Fleet:</strong> Administered and scaled a fleet of <strong class="text-white">200+ AWS instances</strong>, sustaining 99% uptime via CloudWatch monitoring.</li>
+                    <li><strong class="text-emerald-400">Online VFS &amp; LVM Expansion:</strong> Dynamically managed filesystem scaling and non-disruptive inode recovery using <code class="text-white">lvextend -r</code> and <code class="text-white">lsof +L1</code> with 0 reboot overhead.</li>
                     <li><strong class="text-amber-400">Automated OS Provisioning:</strong> Standardized RedHat Linux bare-metal installations using Kickstart pre/post scripts.</li>
                   </ul>
                 </div>
@@ -1166,7 +1175,6 @@
           </div>
         </div>
       </section>
-
       <!-- Section 03: Academic Foundations -->
       <section id="education" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-14 border-b border-carbon-800">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 gap-4">
@@ -1250,7 +1258,7 @@
         </div>
       </section>
 
-      <!-- Section 04: Operating Mindset & Direct Contact (Circular Illustration Inside 3 Revolving Loop Arrows) -->
+      <!-- Section 04: Operating Mindset & Direct Contact -->
       <section id="contact" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-14">
         <div class="rounded-3xl bg-gradient-to-br from-carbon-850 via-carbon-800 to-carbon-900 border border-carbon-700 p-6 sm:p-8 md:p-12 shadow-2xl">
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
@@ -1307,20 +1315,19 @@
                     </radialGradient>
                   </defs>
 
-                  <!-- Subtle Ambient Halo Behind the Orbit -->
                   <circle cx="300" cy="215" r="130" fill="url(#hubGlowGrad)"/>
                   <circle cx="300" cy="215" r="118" fill="none" stroke="#161f33" stroke-width="18"/>
 
-                  <!-- 3 Curved Interlocking Directional Cycle Arcs Revolving Around the Central Avatar -->
                   <path d="M 355 110 A 118 118 0 0 1 405 270" fill="none" stroke="#f59e0b" stroke-width="6" stroke-linecap="round" marker-end="url(#arrowAmber)" class="svg-flow-line loop-active-flow"/>
                   <path d="M 365 314 A 118 118 0 0 1 235 314" fill="none" stroke="#38bdf8" stroke-width="6" stroke-linecap="round" marker-end="url(#arrowBlue)" class="svg-flow-line loop-active-flow"/>
                   <path d="M 195 270 A 118 118 0 0 1 245 110" fill="none" stroke="#34d399" stroke-width="6" stroke-linecap="round" marker-end="url(#arrowGreen)" class="svg-flow-line loop-active-flow"/>
 
-                  <!-- Central Circular Illustration Hub (Clips Square Image into a 176px Circle Inside the 3 Arrows) -->
+                  <!-- Central Circular Illustration Hub -->
                   <circle cx="300" cy="215" r="91" fill="#0d1320" stroke="#fbbf24" stroke-width="2" stroke-opacity="0.55"/>
                   <foreignObject x="212" y="127" width="176" height="176">
                     <div xmlns="http://www.w3.org/1999/xhtml" class="w-full h-full rounded-full overflow-hidden border-2 border-sky-400/50 bg-[#0a0e17] relative flex items-center justify-center shadow-inner">
-                      <img src="assets/operating-loop.jpg" alt="US to India Cloud &amp; DevOps Journey" class="w-full h-full object-cover rounded-full" onerror="resolveAsset(this, 'operating-loop')">
+                      <!-- Referenced image explicitly loaded here -->
+                      <img src="assets/image_e9e55e.jpg" alt="US to India Cloud &amp; DevOps Journey" class="w-full h-full object-cover rounded-full" onerror="resolveAsset(this, 'image_e9e55e')">
                       <div class="asset-fallback hidden w-full h-full flex-col items-center justify-center bg-[#0d1320] text-center p-2">
                         <img src="assets/sai-vinay.png" alt="Sai Vinay" class="w-full h-full object-cover rounded-full opacity-90" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
                         <div style="display:none;" class="flex-col items-center justify-center">
@@ -1439,7 +1446,7 @@
   </div>
 
   <!-- ========================================================================= -->
-  <!-- MODAL: LIVE CLIENT TELEMETRY DASHBOARD (Honest W3C & HTTP Measurements)   -->
+  <!-- MODAL: LIVE CLIENT TELEMETRY DASHBOARD (Honest Measurements + Tooltip)    -->
   <!-- ========================================================================= -->
   <div id="modal-telemetry-dashboard" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4">
     <div class="bg-carbon-950 border border-[#00ff66]/60 max-w-3xl w-full rounded-2xl overflow-hidden shadow-[0_0_45px_rgba(0,255,102,0.2)] font-mono flex flex-col max-h-[90vh]">
@@ -1498,8 +1505,12 @@
             <strong id="telemetryEdgePop" class="text-[#00ff66]"> Detecting POP…</strong>
           </div>
           <div>
-            <span class="text-slate-500 block text-[9.5px]">NET INFO API [BROWSER ESTIMATE]</span>
-            <strong id="telemetryConnType" class="text-amber-300">Checking navigator.connection…</strong>
+            <span class="group relative inline-flex items-center gap-1 cursor-help text-slate-500 text-[9.5px] uppercase">
+              NET INFO API [ESTIMATE]
+              <div class="w-3 h-3 rounded-full bg-slate-700 text-white text-[8px] flex items-center justify-center font-bold">i</div>
+              <div class="absolute bottom-full mb-2 hidden group-hover:block w-48 bg-carbon-800 text-slate-300 text-[9px] p-2 rounded border border-carbon-600 shadow-xl z-50 normal-case tracking-normal">Modern browsers (Chrome/Safari) cap this API at ~10 Mbps to prevent cross-site fingerprinting. It is heavily throttled and not a true speed test.</div>
+            </span>
+            <strong id="telemetryConnType" class="text-amber-300 block mt-0.5">Checking API…</strong>
           </div>
           <div>
             <span class="text-slate-500 block text-[9.5px]">JS HEAP [ENGINE CAPABILITY]</span>
@@ -1509,88 +1520,10 @@
       </div>
       <div class="px-6 py-3.5 bg-black border-t border-[#00ff66]/30 flex flex-wrap items-center justify-between gap-3 text-xs">
         <span class="text-[10.5px] text-slate-400">Zero fabricated values • Directly queries W3C Performance &amp; Edge Trace</span>
-        <button type="button" onclick="runLiveTelemetryProbe()" class="px-4 py-1.5 rounded-lg bg-[#00ff66]/20 hover:bg-[#00ff66] text-[#00ff66] hover:text-black font-bold border border-[#00ff66]/60 transition-all cursor-pointer">↻ Re-Sample Now</button>
+        <button id="btnResampleDashboard" type="button" class="px-4 py-1.5 rounded-lg bg-[#00ff66]/20 hover:bg-[#00ff66] text-[#00ff66] hover:text-black font-bold border border-[#00ff66]/60 transition-all cursor-pointer">↻ Re-Sample Now</button>
       </div>
     </div>
   </div>
-
-  <!-- ========================================================================= -->
-  <!-- EASTER EGG MODAL 1: CHAOS ENGINEERING & LOAD SIMULATOR                    -->
-  <!-- ========================================================================= -->
-  <div id="modal-chaos-sim" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
-    <div class="bg-carbon-950 border border-amber-500/60 max-w-2xl w-full rounded-2xl overflow-hidden shadow-[0_0_45px_rgba(245,158,11,0.22)] font-mono flex flex-col">
-      <div class="px-5 py-3.5 bg-black border-b border-amber-500/30 flex items-center justify-between">
-        <div class="flex items-center gap-2">
-          <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 text-[10px] font-bold border border-amber-500/40">SIMULATED STRESS LAB</span>
-          <h3 class="text-xs sm:text-sm font-bold text-white">Chaos Engineering &amp; Circuit-Breaker Sandbox</h3>
-        </div>
-        <button type="button" onclick="closeModal('modal-chaos-sim')" class="text-slate-400 hover:text-white text-xs font-bold cursor-pointer">✕ ESC</button>
-      </div>
-      <div class="p-5 sm:p-6 space-y-4 bg-[#050a0f] text-xs">
-        <p class="text-slate-300 font-sans text-xs sm:text-sm leading-relaxed">
-          Inject synthetic main-thread compute load into the browser runtime and watch the <strong class="text-[#00ff66]">real compositor FPS</strong> and <strong class="text-amber-300">frame time (ms)</strong> react before the automated SRE circuit breaker trips and sheds load.
-        </p>
-        <div class="grid grid-cols-3 gap-3 text-center">
-          <div class="p-3 rounded-xl bg-black border border-carbon-800">
-            <span class="text-[9.5px] text-slate-400 block">LIVE COMPOSITOR FPS</span>
-            <strong id="chaosLiveFps" class="text-lg text-[#00ff66]">60 FPS</strong>
-          </div>
-          <div class="p-3 rounded-xl bg-black border border-carbon-800">
-            <span class="text-[9.5px] text-slate-400 block">FRAME DELTA</span>
-            <strong id="chaosLiveDelta" class="text-lg text-sky-400">16.6 ms</strong>
-          </div>
-          <div class="p-3 rounded-xl bg-black border border-carbon-800">
-            <span class="text-[9.5px] text-slate-400 block">CIRCUIT BREAKER</span>
-            <strong id="chaosCircuitState" class="text-lg text-emerald-400">CLOSED (OK)</strong>
-          </div>
-        </div>
-        <div id="chaosLogBox" class="p-3.5 rounded-xl bg-black border border-carbon-800 h-28 overflow-y-auto text-[11px] text-slate-300 space-y-1">
-          <div class="text-emerald-400">[SRE-WATCHDOG] Main-thread event loop nominal. Ready for chaos injection.</div>
-        </div>
-        <div class="flex flex-wrap items-center justify-between gap-3 pt-1">
-          <button type="button" onclick="triggerChaosSpike()" class="px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-carbon-950 font-bold cursor-pointer transition-all shadow-md">
-            ⚡ Inject 35ms Main-Thread Spike (3s)
-          </button>
-          <button type="button" onclick="tripCircuitBreakerNow()" class="px-4 py-2 rounded-xl bg-carbon-800 hover:bg-emerald-500 hover:text-black text-emerald-400 border border-emerald-500/40 font-bold cursor-pointer transition-all">
-            🛡️ Trip Circuit Breaker (Shed Load)
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ========================================================================= -->
-  <!-- EASTER EGG MODAL 2: W3C NAVIGATION WATERFALL & RUNTIME INSPECTOR          -->
-  <!-- ========================================================================= -->
-  <div id="modal-waterfall-inspector" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
-    <div class="bg-carbon-950 border border-sky-500/60 max-w-2xl w-full rounded-2xl overflow-hidden shadow-[0_0_45px_rgba(56,189,248,0.2)] font-mono flex flex-col">
-      <div class="px-5 py-3.5 bg-black border-b border-sky-500/30 flex items-center justify-between">
-        <div class="flex items-center gap-2">
-          <span class="px-2 py-0.5 rounded bg-sky-500/20 text-sky-300 text-[10px] font-bold border border-sky-500/40">W3C PERFORMANCE API</span>
-          <h3 class="text-xs sm:text-sm font-bold text-white">Live Page Boot Waterfall &amp; DOM Telemetry</h3>
-        </div>
-        <button type="button" onclick="closeModal('modal-waterfall-inspector')" class="text-slate-400 hover:text-white text-xs font-bold cursor-pointer">✕ ESC</button>
-      </div>
-      <div class="p-5 sm:p-6 space-y-4 bg-[#040911] text-xs">
-        <div id="waterfallMetricsContainer" class="space-y-2.5"></div>
-        <div class="p-3.5 rounded-xl bg-black border border-carbon-800 grid grid-cols-2 sm:grid-cols-3 gap-3 text-[11px]">
-          <div>
-            <span class="text-slate-500 block text-[9.5px]">LIVE DOM NODES</span>
-            <strong id="wfDomNodes" class="text-white">--</strong>
-          </div>
-          <div>
-            <span class="text-slate-500 block text-[9.5px]">LOADED RESOURCES</span>
-            <strong id="wfResourceCount" class="text-sky-400">--</strong>
-          </div>
-          <div>
-            <span class="text-slate-500 block text-[9.5px]">V8 JS HEAP</span>
-            <strong id="wfHeapStatus" class="text-emerald-400">--</strong>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- Modal 1: Incident 127 -->
   <div id="modal-incident" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
     <div class="bg-carbon-900 border border-carbon-700 max-w-3xl w-full rounded-2xl overflow-hidden shadow-[0_0_30px_rgba(0,255,102,0.15)] flex flex-col max-h-[90vh]">
@@ -1780,10 +1713,10 @@
         </div>
       </div>
       <div class="px-2.5 sm:px-3 pt-2 pb-1.5 bg-carbon-900 border-t border-carbon-800 flex items-center gap-1.5 overflow-x-auto whitespace-nowrap text-[9.5px] sm:text-[10.5px] font-mono scrollbar-hide">
-        <button type="button" onclick="sendQuickPrompt('What does cs~1.6 mean?')" class="px-2 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-purple-300 border border-carbon-700 shrink-0 cursor-pointer">🎮 cs~1.6?</button>
-        <button type="button" onclick="sendQuickPrompt('whoami')" class="px-2 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-amber-400 border border-carbon-700 shrink-0 cursor-pointer">☕ whoami</button>
-        <button type="button" onclick="sendQuickPrompt('sudo hire sai')" class="px-2 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-emerald-300 border border-carbon-700 shrink-0 cursor-pointer">👑 sudo hire sai</button>
-        <button type="button" onclick="sendQuickPrompt('Do a barrel roll!')" class="px-2 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-sky-300 border border-carbon-700 shrink-0 cursor-pointer">🌀 Barrel Roll</button>
+        <button type="button" onclick="window.sendQuickPrompt('What does cs~1.6 mean?')" class="px-2 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-purple-300 border border-carbon-700 shrink-0 cursor-pointer">🎮 cs~1.6?</button>
+        <button type="button" onclick="window.sendQuickPrompt('whoami')" class="px-2 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-amber-400 border border-carbon-700 shrink-0 cursor-pointer">☕ whoami</button>
+        <button type="button" onclick="window.sendQuickPrompt('sudo hire sai')" class="px-2 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-emerald-300 border border-carbon-700 shrink-0 cursor-pointer">👑 sudo hire sai</button>
+        <button type="button" onclick="window.sendQuickPrompt('Do a barrel roll!')" class="px-2 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-sky-300 border border-carbon-700 shrink-0 cursor-pointer">🌀 Barrel Roll</button>
       </div>
       <div class="p-2 sm:p-3 bg-carbon-900 border-t border-carbon-700 flex items-center gap-2">
         <input type="text" id="userInput" class="flex-1 bg-carbon-950 border border-carbon-700 focus:border-amber-500 rounded-xl px-2.5 sm:px-3 py-1.5 sm:py-2 text-[11px] sm:text-xs text-white outline-none font-sans placeholder-slate-500" placeholder="Ask about Vinay or type sudo hire sai..." autocomplete="off">
@@ -1841,22 +1774,47 @@
     }
 
     /* ========================================================================= */
-    /* REAL-TIME BROWSER COMPOSITOR FPS, HTTP RTT, WATERFALL & CHAOS SIMULATOR   */
+    /* REAL-TIME CLOCK, IP LOCATION & BROWSER TELEMETRY                          */
     /* ========================================================================= */
     let godModeUnlocked = false;
     let liveFps = 60;
     let liveFrameDelta = 16.6;
-    let rAFCounter = 0; // Fixed typo
+    let rAFCounter = 0;
     let rAFLastSecond = performance.now();
     let rAFLastFrame = performance.now();
-    let chaosSpikeActiveUntil = 0;
+
+    function updateWorldClocks() {
+      const now = new Date();
+      const fmt = (tz) => now.toLocaleTimeString('en-US', { timeZone: tz, hour: '2-digit', minute:'2-digit', hour12: false });
+      
+      const localClock = document.getElementById('devClockVal');
+      if (localClock) localClock.textContent = fmt(Intl.DateTimeFormat().resolvedOptions().timeZone) + ' LOC';
+      
+      const ids = { 'tz-est': 'America/New_York', 'tz-pst': 'America/Los_Angeles', 'tz-cst': 'America/Chicago', 'tz-cet': 'Europe/Paris', 'tz-jst': 'Asia/Tokyo', 'tz-aest': 'Australia/Sydney' };
+      for (const [id, tz] of Object.entries(ids)) {
+        const el = document.getElementById(id);
+        if (el) el.textContent = fmt(tz);
+      }
+    }
+    setInterval(updateWorldClocks, 1000);
+    updateWorldClocks();
+
+    async function fetchVisitorIp() {
+      try {
+        const res = await fetch('https://ipapi.co/json/');
+        const data = await res.json();
+        const el = document.getElementById('visitorIpLoc');
+        if (el && data.ip && data.city) {
+          el.textContent = `${data.ip} (${data.city}, ${data.country_code})`;
+        }
+      } catch (e) {
+        const el = document.getElementById('visitorIpLoc');
+        if (el) el.textContent = 'IP Hidden / Blocked';
+      }
+    }
+    fetchVisitorIp();
 
     function compositorLoop(now) {
-      if (now < chaosSpikeActiveUntil) {
-        const blockUntil = performance.now() + 32;
-        while (performance.now() < blockUntil) { Math.sqrt(Math.random() * 9999); }
-      }
-
       liveFrameDelta = Math.max(1, now - rAFLastFrame);
       rAFLastFrame = now;
       rAFCounter++;
@@ -1867,17 +1825,7 @@
         rAFLastSecond = now;
 
         const fpsEl = document.getElementById('devFpsVal');
-        if (fpsEl) fpsEl.textContent = `${liveFps} FPS (${liveFrameDelta.toFixed(1)}ms)`;
-
-        const chaosFps = document.getElementById('chaosLiveFps');
-        const chaosDelta = document.getElementById('chaosLiveDelta');
-        if (chaosFps) {
-          chaosFps.textContent = `${liveFps} FPS`;
-          chaosFps.className = liveFps < 35 ? 'text-lg text-red-400 font-bold' : 'text-lg text-[#00ff66] font-bold';
-        }
-        if (chaosDelta) {
-          chaosDelta.textContent = `${liveFrameDelta.toFixed(1)} ms`;
-        }
+        if (fpsEl) fpsEl.textContent = `${liveFps}`;
       }
       requestAnimationFrame(compositorLoop);
     }
@@ -1889,86 +1837,6 @@
         return `${(mem.usedJSHeapSize / 1048576).toFixed(1)} / ${Math.round(mem.jsHeapSizeLimit / 1048576)} MB [V8]`;
       }
       return 'Restricted by Browser Engine';
-    }
-
-    function refreshStripRuntimeSummary() {
-      const domCount = document.querySelectorAll('*').length;
-      const heapStr = readHonestHeapStatus();
-      const rtEl = document.getElementById('devRuntimeVal');
-      if (rtEl) {
-        rtEl.textContent = heapStr.includes('MB') ? `${domCount} DOM • ${heapStr.split(' ')[0]} MB` : `${domCount} DOM Nodes`;
-      }
-      const clock = document.getElementById('devClockVal');
-      if (clock) clock.textContent = new Date().toLocaleTimeString(undefined, { timeZoneName: 'short' });
-    }
-    setInterval(refreshStripRuntimeSummary, 1000);
-    refreshStripRuntimeSummary();
-
-    function openChaosSimulatorModal() {
-      openModal('modal-chaos-sim');
-    }
-
-    function appendChaosLog(msg, cls = 'text-slate-300') {
-      const box = document.getElementById('chaosLogBox');
-      if (!box) return;
-      const d = document.createElement('div');
-      d.className = cls;
-      d.textContent = `[${new Date().toLocaleTimeString()}] ${msg}`;
-      box.appendChild(d);
-      box.scrollTop = box.scrollHeight;
-    }
-
-    function triggerChaosSpike() {
-      chaosSpikeActiveUntil = performance.now() + 3200;
-      const stateEl = document.getElementById('chaosCircuitState');
-      if (stateEl) { stateEl.textContent = 'DEGRADED (LOAD)'; stateEl.className = 'text-lg text-amber-400 font-bold'; }
-      appendChaosLog('Injected 32ms/frame synthetic main-thread contention...', 'text-amber-300');
-      setTimeout(() => {
-        if (chaosSpikeActiveUntil !== 0 && performance.now() >= chaosSpikeActiveUntil) {
-          if (stateEl) { stateEl.textContent = 'AUTO-RECOVERED'; stateEl.className = 'text-lg text-emerald-400 font-bold'; }
-          appendChaosLog('Spike window elapsed. Compositor frame rate restored to nominal.', 'text-emerald-400');
-        }
-      }, 3300);
-    }
-
-    function tripCircuitBreakerNow() {
-      chaosSpikeActiveUntil = 0;
-      const stateEl = document.getElementById('chaosCircuitState');
-      if (stateEl) { stateEl.textContent = 'OPEN (SHED LOAD)'; stateEl.className = 'text-lg text-[#00ff66] font-bold'; }
-      appendChaosLog('Circuit breaker tripped manually! Synthetic load shed immediately; 60 FPS restored.', 'text-[#00ff66] font-bold');
-    }
-
-    function openWaterfallInspectorModal() {
-      const nav = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
-      const resources = (performance.getEntriesByType && performance.getEntriesByType('resource')) || [];
-      const container = document.getElementById('waterfallMetricsContainer');
-      if (container) {
-        const dns = nav ? Math.max(0, Math.round(nav.domainLookupEnd - nav.domainLookupStart)) : 0;
-        const tcp = nav ? Math.max(0, Math.round(nav.connectEnd - nav.connectStart)) : 0;
-        const ttfb = nav ? Math.max(1, Math.round(nav.responseStart - nav.requestStart)) : 8;
-        const domInteractive = nav ? Math.max(5, Math.round(nav.domInteractive)) : 45;
-        const stages = [
-          { label: 'DNS Lookup (domainLookup)', ms: dns, color: 'bg-emerald-400' },
-          { label: 'TCP + TLS Handshake (connect)', ms: tcp, color: 'bg-sky-400' },
-          { label: 'Time to First Byte (TTFB)', ms: ttfb, color: 'bg-amber-400' },
-          { label: 'DOM Interactive Parse', ms: domInteractive, color: 'bg-purple-400' }
-        ];
-        const maxMs = Math.max(100, domInteractive);
-        container.innerHTML = stages.map(s => {
-          const pct = Math.min(100, Math.max(6, Math.round((s.ms / maxMs) * 100)));
-          return `<div>
-            <div class="flex justify-between text-[11px] mb-1"><span class="text-slate-300">${s.label}</span><strong class="text-white">${s.ms} ms</strong></div>
-            <div class="w-full h-2 rounded-full bg-carbon-800 overflow-hidden"><div class="h-full ${s.color}" style="width:${pct}%"></div></div>
-          </div>`;
-        }).join('');
-      }
-      const domEl = document.getElementById('wfDomNodes');
-      const resEl = document.getElementById('wfResourceCount');
-      const heapEl = document.getElementById('wfHeapStatus');
-      if (domEl) domEl.textContent = `${document.querySelectorAll('*').length} Elements`;
-      if (resEl) resEl.textContent = `${resources.length} Assets Tracked`;
-      if (heapEl) heapEl.textContent = readHonestHeapStatus();
-      openModal('modal-waterfall-inspector');
     }
 
     /* Konami Code */
@@ -1990,22 +1858,22 @@
     });
 
     /* Modals & Honest Live Telemetry Probe */
-    const ALL_MODALS = ['modal-incident', 'modal-arn', 'modal-java', 'modal-telemetry-dashboard', 'modal-exec-case', 'modal-chaos-sim', 'modal-waterfall-inspector'];
+    const ALL_MODALS = ['modal-incident', 'modal-arn', 'modal-java', 'modal-telemetry-dashboard', 'modal-exec-case'];
     function openModal(id) {
       const modal = document.getElementById(id);
       if (modal) { modal.classList.remove('hidden'); modal.classList.add('flex'); document.body.style.overflow = 'hidden'; }
     }
-    function closeModal(id) {
+    window.closeModal = function(id) {
       const modal = document.getElementById(id);
       if (modal) { modal.classList.remove('flex'); modal.classList.add('hidden'); document.body.style.overflow = 'auto'; }
       if (id === 'modal-telemetry-dashboard' && window.telemetryGaugeInterval) {
         clearInterval(window.telemetryGaugeInterval); window.telemetryGaugeInterval = null;
       }
-    }
-    window.addEventListener('keydown', (e) => { if (e.key === 'Escape') ALL_MODALS.forEach(closeModal); });
+    };
+    window.addEventListener('keydown', (e) => { if (e.key === 'Escape') ALL_MODALS.forEach(window.closeModal); });
     ALL_MODALS.forEach(id => {
       const m = document.getElementById(id);
-      if (m) m.addEventListener('click', (e) => { if (e.target === m) closeModal(id); });
+      if (m) m.addEventListener('click', (e) => { if (e.target === m) window.closeModal(id); });
     });
 
     function updateGaugeDial(arcId, needleId, textId, value, maxVal, unit) {
@@ -2037,7 +1905,7 @@
 
       const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
       if (conn && connTypeEl) {
-        const dl = Number.isFinite(conn.downlink) ? `${conn.downlink} Mbps cap` : 'N/A';
+        const dl = Number.isFinite(conn.downlink) ? `${conn.downlink} Mbps` : 'N/A';
         connTypeEl.textContent = `${String(conn.effectiveType || '4g').toUpperCase()} (${dl})`;
       } else if (connTypeEl) {
         connTypeEl.textContent = 'API Unsupported in Browser';
@@ -2091,7 +1959,7 @@
     }
     setTimeout(runLiveTelemetryProbe, 600);
 
-    function openTelemetryDashboard() {
+    window.openTelemetryDashboard = function() {
       openModal('modal-telemetry-dashboard');
       runLiveTelemetryProbe();
       if (window.telemetryGaugeInterval) clearInterval(window.telemetryGaugeInterval);
@@ -2099,29 +1967,32 @@
         const m = document.getElementById('modal-telemetry-dashboard');
         if (m && !m.classList.contains('hidden')) runLiveTelemetryProbe();
       }, 3500);
-    }
+    };
 
-    function openConsoleModal() {
+    const btnResample = document.getElementById('btnResampleDashboard');
+    if (btnResample) btnResample.addEventListener('click', runLiveTelemetryProbe);
+
+    window.openConsoleModal = function() {
       const drawer = document.getElementById('devCliDrawer');
       if (!drawer) return;
       drawer.style.display = 'flex';
       setTimeout(() => document.getElementById('cliInput')?.focus(), 50);
-    }
+    };
 
-    function closeConsoleModal() {
+    window.closeConsoleModal = function() {
       const drawer = document.getElementById('devCliDrawer');
       if (drawer) drawer.style.display = 'none';
-    }
+    };
 
-    function toggleConsoleModal() {
+    window.toggleConsoleModal = function() {
       const drawer = document.getElementById('devCliDrawer');
       if (!drawer) return;
-      if (drawer.style.display === 'none' || drawer.style.display === '') openConsoleModal();
-      else closeConsoleModal();
-    }
+      if (drawer.style.display === 'none' || drawer.style.display === '') window.openConsoleModal();
+      else window.closeConsoleModal();
+    };
 
     let isMatrixRainMuted = isReducedMotionPreferred();
-    function toggleMatrixRainEffect() {
+    window.toggleMatrixRainEffect = function() {
       isMatrixRainMuted = !isMatrixRainMuted;
       const btn = document.getElementById('matrixToggleBtn');
       if (isMatrixRainMuted) {
@@ -2133,7 +2004,7 @@
         if (btn) btn.innerHTML = `<i data-lucide="sparkles" class="w-3.5 h-3.5 text-[#00ff66]"></i><span class="text-[11px] text-[#00ff66] hidden sm:inline">Rain</span>`;
         if (window.lucide) lucide.createIcons();
       }
-    }
+    };
 
     function updateHeaderToggleUI(role) {
       const btnHr = document.getElementById('headerBtnHr');
@@ -2148,7 +2019,7 @@
       if (btnDev) btnDev.className = (role === 'engineer') ? activeGreen : inactive;
     }
 
-    function setPerspective(role, showNotification = true) {
+    window.setPerspective = function(role, showNotification = true) {
       document.body.classList.remove('mode-hr', 'mode-manager', 'mode-dev');
       updateHeaderToggleUI(role);
       
@@ -2200,11 +2071,11 @@
         if (!isMatrixRainMuted && !isReducedMotionPreferred()) startMatrixRain();
         runLiveTelemetryProbe();
         setBalloonFace('hover');
-        if (showNotification) showToast('💻 <strong>Developer Mode:</strong> Live Telemetry, Chaos Sim &amp; Incident Sandbox ready!');
+        if (showNotification) showToast('💻 <strong>Developer Mode:</strong> Live Telemetry &amp; Incident Sandbox ready!');
       }
-    }
+    };
 
-    /* Diagnostic Shell & Virtual FS (With Discoverable 'sudo hire sai') */
+    /* Diagnostic Shell & Virtual FS */
     const cliInput = document.getElementById('cliInput');
     const cliOutput = document.getElementById('cliOutput');
     let commandHistory = [], historyIndex = -1, activeCliAbortController = null, activeCliTimers = [];
@@ -2223,14 +2094,14 @@
       cliOutput.appendChild(div); cliOutput.scrollTop = cliOutput.scrollHeight;
     }
 
-    function forceBreakCli() {
+    window.forceBreakCli = function() {
       if (activeCliAbortController) { try { activeCliAbortController.abort(); } catch (e) {} activeCliAbortController = null; }
       if (activeCliTimers.length > 0) { activeCliTimers.forEach(t => clearTimeout(t)); activeCliTimers = []; }
       printCliLine('^C [SIGINT: Process interrupted and shell restored]', 'text-red-400 font-bold');
       if (cliInput) { cliInput.disabled = false; cliInput.value = ''; cliInput.focus(); }
-    }
+    };
 
-    async function runCliCommand(rawCmd) {
+    window.runCliCommand = async function(rawCmd) {
       const cmd = rawCmd.trim();
       if (!cmd) return;
       commandHistory.push(cmd); historyIndex = commandHistory.length;
@@ -2326,7 +2197,7 @@ Hiring / Executive:
         default: printCliLine(`bash: ${base}: command not found. Type 'help' for commands.`, 'text-red-400'); break;
       }
       cliOutput.scrollTop = cliOutput.scrollHeight;
-    }
+    };
 
     if (cliInput) {
       cliInput.addEventListener('keydown', (e) => {
@@ -2338,7 +2209,7 @@ Hiring / Executive:
     }
 
     /* ========================================================================= */
-    /* BALLOON COMPANION ENGINE (Fixed Cumulative-Swing Dizzy Detection)         */
+    /* BALLOON COMPANION ENGINE (5-Click Easter Egg & Dizzy Detection)           */
     /* ========================================================================= */
     const balloon = document.getElementById('gusBalloon');
     const gusSphere = document.getElementById('gusSphere');
@@ -2359,6 +2230,7 @@ Hiring / Executive:
     let reversalTimestamps = [];
     let isDizzyLocked = false;
     let dizzyResetTimer = null;
+    let balloonClickTimes = [];
 
     const CURATED_TRIVIA = [
       { category: "Tech History", title: "ChatGPT's Calendar Coincidence", fact: "ChatGPT was publicly introduced on November 30, 2022—which also happens to be Computer Security Day (established in 1988)." },
@@ -2396,12 +2268,12 @@ Hiring / Executive:
       triviaBubble.classList.remove('hidden');
     }
 
-    function toggleBalloonSettings() {
+    window.toggleBalloonSettings = function() {
       if (!settingsPanel) return;
       settingsPanel.classList.toggle('hidden');
-    }
+    };
 
-    function setBalloonCustomTimer(sec) {
+    window.setBalloonCustomTimer = function(sec) {
       let parsed = Number.parseInt(sec, 10);
       if (!Number.isFinite(parsed)) parsed = 40;
       parsed = Math.max(30, Math.min(180, Math.round(parsed / 10) * 10));
@@ -2411,9 +2283,9 @@ Hiring / Executive:
       scheduleNextBalloonNudge();
       try { localStorage.setItem('airhead-settings', JSON.stringify({ delay: parsed, skin: gusSphere.classList.contains('skin-dark') ? 'dark' : 'light', siteGuide: siteAssistanceOnly })); } catch (error) {}
       showToast(`⏱️ <strong>Balloon Timer Updated:</strong> Prompt interval set to ${parsed}s.`);
-    }
+    };
 
-    function setBalloonSkin(mode) {
+    window.setBalloonSkin = function(mode) {
       if (!gusSphere) return;
       if (mode === 'dark') {
         gusSphere.classList.add('skin-dark');
@@ -2423,9 +2295,9 @@ Hiring / Executive:
         showToast('☀️ <strong>Balloon Light Mode:</strong> Classic sky skin restored.');
       }
       try { localStorage.setItem('airhead-settings', JSON.stringify({ delay: Math.round(balloonIntervalMs / 1000), skin: mode, siteGuide: siteAssistanceOnly })); } catch (error) {}
-    }
+    };
 
-    function toggleSiteAssistMode() {
+    window.toggleSiteAssistMode = function() {
       siteAssistanceOnly = !siteAssistanceOnly;
       const btn = document.getElementById('btnSiteAssistToggle');
       if (btn) {
@@ -2436,19 +2308,19 @@ Hiring / Executive:
       }
       try { localStorage.setItem('airhead-settings', JSON.stringify({ delay: Math.round(balloonIntervalMs / 1000), skin: gusSphere.classList.contains('skin-dark') ? 'dark' : 'light', siteGuide: siteAssistanceOnly })); } catch (error) {}
       showToast(siteAssistanceOnly ? '🧭 <strong>Website Assistance Mode ON:</strong> Balloon will share portfolio navigation tips.' : '🎈 <strong>Tech Trivia Mode ON:</strong> Balloon will share tech & gaming facts.');
-    }
+    };
 
-    function toggleBalloonMinimize(e) {
+    window.toggleBalloonMinimize = function(e) {
       if (e) { e.stopPropagation(); e.preventDefault(); }
       isBalloonMinimized = !isBalloonMinimized;
       balloon.classList.toggle('minimized', isBalloonMinimized);
       if (isBalloonMinimized) {
         balloon.classList.remove('gus-float-anim');
-        dismissBalloonBubble();
+        window.dismissBalloonBubble();
       } else {
         balloon.classList.add('gus-float-anim');
       }
-    }
+    };
 
     function setBalloonFace(faceName, forceOverride = false) {
       if (!gusSphere) return;
@@ -2520,10 +2392,24 @@ Hiring / Executive:
       if (!isDizzyLocked) {
         setBalloonFace('default');
       }
-      if (!hasMoved && !e.target.closest('#btnMinimizeBalloon')) popTrivia();
+      
+      // Easter Egg: 5 Clicks in 3 Seconds unlocks Dark Mode
+      if (!hasMoved && !e.target.closest('#btnMinimizeBalloon')) {
+        const now = performance.now();
+        balloonClickTimes.push(now);
+        balloonClickTimes = balloonClickTimes.filter(t => now - t <= 3000);
+        if (balloonClickTimes.length >= 5) {
+          balloonClickTimes = [];
+          if (!gusSphere.classList.contains('skin-dark')) {
+            window.setBalloonSkin('dark');
+            showToast('🎈 <strong>Easter Egg Unlocked:</strong> Dark Mode Skin activated via 5 rapid clicks!');
+          }
+        } else {
+          popTrivia();
+        }
+      }
     });
 
-    balloon.addEventListener('click', (e) => { if (isBalloonMinimized) toggleBalloonMinimize(e); });
     balloon.addEventListener('mouseenter', () => { if (!isDragging && !isBalloonMinimized && !isDizzyLocked && !gusSphere.classList.contains('face-happy')) setBalloonFace('hover'); });
     balloon.addEventListener('mouseleave', () => { if (!isDragging && !isBalloonMinimized && !isDizzyLocked && !gusSphere.classList.contains('face-happy')) setBalloonFace('default'); });
 
@@ -2533,7 +2419,7 @@ Hiring / Executive:
         balloonIntroduced = true;
         factLabel.textContent = "🎈 AirHead.cs~1.6 • Welcome!";
         factTitle.textContent = "Hello! I'm AirHead.cs~1.6 🎈";
-        factText.textContent = "Click me anytime for tech trivia, shake me fast while dragging, or use '⚙️ Settings' below to switch me to Website Assistance mode!";
+        factText.textContent = "Click me anytime for tech trivia, shake me fast while dragging, click me 5 times quickly for a secret, or use '⚙️ Settings' below!";
         actionRow.style.display = 'flex';
         openBalloonBubbleSafely();
         setBalloonFace('secret');
@@ -2549,8 +2435,8 @@ Hiring / Executive:
       setBalloonFace('secret');
     }
 
-    function dismissBalloonBubble() { triviaBubble.classList.add('hidden'); setBalloonFace('default'); }
-    function askCopilotAboutCurrentTrivia() { sendQuickPrompt(`Tell me more about: "${factTitle.textContent}"`); }
+    window.dismissBalloonBubble = function() { triviaBubble.classList.add('hidden'); setBalloonFace('default'); };
+    window.askCopilotAboutCurrentTrivia = function() { window.sendQuickPrompt(`Tell me more about: "${factTitle.textContent}"`); };
 
     let balloonIntervalMs = 40000;
     let balloonNudgeTimer = null;
@@ -2561,20 +2447,20 @@ Hiring / Executive:
 
     window.handleBalloonFeedback = function(response) {
       if (response === 'yes') {
-        toggleBalloonMinimize();
+        window.toggleBalloonMinimize();
       } else if (response === 'somewhat') {
         balloonIntervalMs = 105000;
         scheduleNextBalloonNudge();
         factTitle.textContent = "Got it! Slowing down ⏳";
         factText.textContent = "I've increased my delay to 1m 45s so you can browse in peace.";
         actionRow.style.display = 'none';
-        setTimeout(dismissBalloonBubble, 3200);
+        setTimeout(window.dismissBalloonBubble, 3200);
       } else if (response === 'no') {
         setBalloonFace('happy', true);
         factTitle.textContent = "Thank you! 😊";
         factText.textContent = "Awesome! I'll keep floating around with helpful tips and trivia.";
         actionRow.style.display = 'none';
-        setTimeout(dismissBalloonBubble, 3200);
+        setTimeout(window.dismissBalloonBubble, 3200);
       }
     };
 
@@ -2598,7 +2484,7 @@ Hiring / Executive:
           actionRow.style.display = 'flex';
           openBalloonBubbleSafely();
           setBalloonFace('nudge');
-          setTimeout(() => { if (!triviaBubble.classList.contains('hidden') && balloonNudgeCount !== 3) dismissBalloonBubble(); }, 7000);
+          setTimeout(() => { if (!triviaBubble.classList.contains('hidden') && balloonNudgeCount !== 3) window.dismissBalloonBubble(); }, 7000);
         }
       }
       scheduleNextBalloonNudge();
@@ -2661,7 +2547,7 @@ Hiring / Executive:
       document.getElementById('chatBodyContainer').style.display = isChatMinimized ? 'none' : 'flex';
       document.getElementById('minimizeChatBtn').innerText = isChatMinimized ? '▢' : '—';
       if (!isChatMinimized && window.innerWidth < 680) {
-        dismissBalloonBubble();
+        window.dismissBalloonBubble();
       }
     }
 
@@ -2801,6 +2687,38 @@ Hiring / Executive:
     }
     document.getElementById('sendChatBtn').addEventListener('click', sendMessage);
     userInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); sendMessage(); } });
+
+    /* Case 1 Interactive Probe Patch */
+    let isCase1Patched = false;
+    window.toggleCase1Patch = function() {
+      isCase1Patched = !isCase1Patched;
+      const badge = document.getElementById('case1StatusBadge');
+      const pr = document.getElementById('case1SvgProbeRect'), pt = document.getElementById('case1SvgProbeText');
+      const rr = document.getElementById('case1SvgRelRect'), rt = document.getElementById('case1SvgRelText');
+      const line2 = document.getElementById('case1SvgLine2'), arr2 = document.getElementById('case1SvgArrow2');
+      const logLine = document.getElementById('case1LogLine'), btn = document.getElementById('btnCase1Patch');
+
+      if (isCase1Patched) {
+        if (badge) { badge.textContent = "HTTP 200 OK"; badge.className = "px-2.5 py-0.5 rounded bg-emerald-500/20 text-[#00ff66] border border-[#00ff66]/40 font-bold text-[11px]"; }
+        if (pr) { pr.setAttribute('fill', '#062c22'); pr.setAttribute('stroke', '#00ff66'); }
+        if (pt) { pt.textContent = "curl OK (200)"; pt.setAttribute('fill', '#00ff66'); }
+        if (rr) { rr.setAttribute('fill', '#062c22'); rr.setAttribute('stroke', '#00ff66'); }
+        if (rt) { rt.textContent = "UNBLOCKED"; rt.setAttribute('fill', '#00ff66'); }
+        if (line2) line2.setAttribute('stroke', '#00ff66'); if (arr2) arr2.setAttribute('fill', '#00ff66');
+        if (logLine) { logLine.innerHTML = `<span class="text-[#00ff66]">GET /api/v1/health/ping HTTP/1.1 200 OK</span>`; logLine.className = "text-[#00ff66] mt-1"; }
+        if (btn) btn.textContent = "[ ↺ Rollback Patch ]";
+        showToast('✓ Patch applied: curl binary restored in base image layer');
+      } else {
+        if (badge) { badge.textContent = "EXIT CODE 127"; badge.className = "px-2.5 py-0.5 rounded bg-red-500/20 text-red-400 border border-red-500/40 font-bold text-[11px]"; }
+        if (pr) { pr.setAttribute('fill', '#3b0a0a'); pr.setAttribute('stroke', '#ef4444'); }
+        if (pt) { pt.textContent = "curl missing (127)"; pt.setAttribute('fill', '#f87171'); }
+        if (rr) { rr.setAttribute('fill', '#161f33'); rr.setAttribute('stroke', '#475569'); }
+        if (rt) { rt.textContent = "Pipeline Blocked"; rt.setAttribute('fill', '#94a3b8'); }
+        if (line2) line2.setAttribute('stroke', '#ef4444'); if (arr2) arr2.setAttribute('fill', '#ef4444');
+        if (logLine) { logLine.textContent = "/bin/sh: /usr/bin/curl: not found (ExitCode 127)"; logLine.className = "text-red-400 mt-1"; }
+        if (btn) btn.textContent = "[ >_ Run Patch: +curl ]";
+      }
+    };
 
     (function initPerspectiveFromUrl() {
       const p = new URLSearchParams(window.location.search);
