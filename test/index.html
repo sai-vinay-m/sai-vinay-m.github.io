@@ -527,7 +527,7 @@
         </div>
       </section>
 
-      <!-- Developer Mode Telemetry Strip (Single Line with IP Location & World Clock) -->
+      <!-- Developer Mode Telemetry Strip (Browser-only metrics & world clock; no IP/location field) -->
       <div id="devTelemetryStrip" style="display: none;" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-6">
         <div class="px-4 py-3 rounded-xl bg-carbon-950 border border-[#00ff66]/40 font-mono text-[10px] sm:text-xs flex flex-wrap items-center justify-between gap-4 text-slate-300 shadow-lg">
           <div class="flex items-center gap-2.5">
@@ -536,9 +536,20 @@
           </div>
           
           <div class="flex flex-wrap items-center gap-4 sm:gap-6 text-[10px] sm:text-[11px]">
-            <span>FPS: <strong id="devFpsVal" class="text-[#00ff66]">60</strong></span>
-            <span>RTT: <strong id="devPingVal" class="text-[#00ff66]">-- ms</strong></span>
-            <span class="hidden sm:inline">IP / LOC: <strong id="visitorIpLoc" class="text-[#00ff66]">Detecting...</strong></span>
+            <span class="inline-flex items-center gap-1.5">
+              rAF callbacks/s: <strong id="devFpsVal" class="text-[#00ff66]">--</strong>
+              <span class="a11y-tooltip-wrapper">
+                <button type="button" class="a11y-tooltip-trigger text-[#00ff66]/80" aria-label="About browser animation callbacks" aria-expanded="false" aria-describedby="tip-strip-raf">ⓘ</button>
+                <span id="tip-strip-raf" class="a11y-tooltip-content" role="tooltip">Browser requestAnimationFrame callbacks per second. This is not GPU FPS and may vary with display refresh rate or background-tab throttling.</span>
+              </span>
+            </span>
+            <span class="inline-flex items-center gap-1.5">
+              HTTP: <strong id="devPingVal" class="text-[#00ff66]">-- ms</strong>
+              <span class="a11y-tooltip-wrapper">
+                <button type="button" class="a11y-tooltip-trigger text-[#00ff66]/80" aria-label="About HTTP request duration" aria-expanded="false" aria-describedby="tip-strip-http">ⓘ</button>
+                <span id="tip-strip-http" class="a11y-tooltip-content" role="tooltip">Browser-observed duration of a same-origin HTTP HEAD request. It is not an ICMP ping or a pure network-latency measurement.</span>
+              </span>
+            </span>
             
             <!-- Interactive World Clock Dropdown -->
             <div class="relative group cursor-pointer" onclick="this.querySelector('.clock-dropdown').classList.toggle('hidden')">
@@ -677,7 +688,7 @@
         <div id="manager-ledger-cards" class="manager-only space-y-6">
           
           <!-- COMPARTMENT 1: ASCENDION -->
-          <details class="bg-carbon-900/95 border border-emerald-500/35 rounded-3xl shadow-2xl group" id="manager-compartment-1" open>
+          <details class="bg-carbon-900/95 border border-emerald-500/35 rounded-3xl shadow-2xl group" id="manager-compartment-1">
             <summary class="p-5 sm:p-7 pb-0 group-open:pb-5 border-b border-transparent group-open:border-carbon-800 transition-all flex items-center justify-between gap-4 relative select-none cursor-pointer outline-none">
               <div class="flex items-center gap-4 sm:gap-5">
                 <!-- Ascendion Logo Box -->
@@ -768,7 +779,7 @@
                       <h4 class="text-base sm:text-lg font-bold text-white">Unifying Divergent Microservice Data Identifiers</h4>
                     </div>
                     <p class="text-xs sm:text-sm text-slate-300 pl-9 leading-relaxed">
-                      Consolidated product SKU schemas into a canonical DTO definition across renewal services and stripped 992 lines of legacy tech debt with 100% test pass rate.
+                      Consolidated product SKU schemas into a canonical DTO definition across renewal services, removing 992 lines of legacy code.
                     </p>
                   </div>
                   <div class="pl-9 lg:pl-0 flex flex-col items-start lg:items-end gap-2 shrink-0">
@@ -964,12 +975,13 @@
               <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-start">
                 <div class="lg:col-span-8 space-y-3">
                   <!-- Small Logo Pair Header -->
-                  <div class="flex items-center gap-2 mb-2 border-b border-carbon-800 pb-2 inline-flex pr-4">
-                    <div class="w-6 h-6 rounded bg-carbon-950 border border-emerald-500/50 flex items-center justify-center p-0.5 overflow-hidden">
+                  <div class="flex items-center gap-3 mb-2 border-b border-carbon-800 pb-3 inline-flex pr-4">
+                    <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-carbon-950 border border-emerald-500/50 flex items-center justify-center p-1.5 overflow-hidden shrink-0">
                       <img src="assets/ascendion.png" alt="Ascendion" class="w-full h-full object-contain" onerror="resolveAsset(this, 'ascendion')">
                     </div>
-                    <div class="w-6 h-6 rounded bg-carbon-800 border border-emerald-500/30 flex items-center justify-center overflow-hidden">
-                      <span class="font-sans font-bold text-[6px] text-slate-500 text-center leading-tight">Client</span>
+                    <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-carbon-800 border border-emerald-500/30 flex flex-col items-center justify-center overflow-hidden shrink-0" title="Enterprise client: HP Inc.">
+                      <span class="font-sans font-bold text-lg sm:text-xl leading-none text-slate-200">hp</span>
+                      <span class="font-mono text-[8px] text-slate-400 mt-0.5">INC.</span>
                     </div>
                     <h4 class="text-sm font-bold text-white leading-snug ml-1">Ascendion (L5 @ HP Inc.)</h4>
                   </div>
@@ -1009,12 +1021,13 @@
               <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-start">
                 <div class="lg:col-span-8 space-y-3">
                   <!-- Small Logo Pair Header -->
-                  <div class="flex items-center gap-2 mb-2 border-b border-carbon-800 pb-2 inline-flex pr-4">
-                    <div class="w-6 h-6 rounded bg-carbon-950 border border-amber-500/50 flex items-center justify-center p-0.5 overflow-hidden">
+                  <div class="flex items-center gap-3 mb-2 border-b border-carbon-800 pb-3 inline-flex pr-4">
+                    <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-carbon-950 border border-amber-500/50 flex items-center justify-center p-1.5 overflow-hidden shrink-0">
                       <img src="assets/eficens.png" alt="Eficens" class="w-full h-full object-contain" onerror="resolveAsset(this, 'eficens')">
                     </div>
-                    <div class="w-6 h-6 rounded bg-carbon-800 border border-emerald-500/30 flex items-center justify-center overflow-hidden">
-                      <span class="font-sans font-bold text-[6px] text-slate-500 text-center leading-tight">Client</span>
+                    <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-carbon-800 border border-sky-500/30 flex flex-col items-center justify-center overflow-hidden shrink-0" title="Anonymized financial infrastructure client">
+                      <span class="font-mono font-bold text-sm sm:text-base text-sky-300">FIN</span>
+                      <span class="font-mono text-[7px] text-slate-400">INFRA</span>
                     </div>
                     <h4 class="text-sm font-bold text-white leading-snug ml-1">Eficens Systems LLC (US FinTech)</h4>
                   </div>
@@ -1051,8 +1064,8 @@
               <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-start">
                 <div class="lg:col-span-8 space-y-3">
                   <!-- Small Logo Pair Header -->
-                  <div class="flex items-center gap-2 mb-2 border-b border-carbon-800 pb-2 inline-flex pr-4">
-                    <div class="w-6 h-6 rounded bg-carbon-950 border border-sky-500/50 flex items-center justify-center p-0.5 overflow-hidden">
+                  <div class="flex items-center gap-3 mb-2 border-b border-carbon-800 pb-3 inline-flex pr-4">
+                    <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-carbon-950 border border-sky-500/50 flex items-center justify-center p-1.5 overflow-hidden shrink-0">
                       <img src="assets/lotusdata.png" alt="LotusData" class="w-full h-full object-contain" onerror="resolveAsset(this, 'lotusdata')">
                     </div>
                     <h4 class="text-sm font-bold text-white leading-snug ml-1">LotusData LLP (Fleet Ops)</h4>
@@ -1389,18 +1402,138 @@
           <rect x="305" y="27" width="195" height="70" rx="10" fill="#062c22" stroke="#34d399" stroke-width="1.8"/><text x="402" y="55" text-anchor="middle" fill="#6ee7b7" font-size="12.5" font-weight="bold">Canonical SKU</text>
         </svg>
       </div>
-      <div class="p-6 overflow-y-auto space-y-3 text-[11px] sm:text-xs font-mono text-slate-300">
-        <div class="p-3 rounded bg-carbon-950 border border-carbon-800 overflow-x-auto">
-          <span class="text-purple-400 block mb-1"># Sanitized Java Entity Diff:</span>
-          <div class="text-red-400 whitespace-nowrap">- // private String parentSku; (Unused dead field &amp; docstrings stripped)</div>
-          <div class="text-emerald-400 whitespace-nowrap">+ private String parentProductSku; // Single Canonical Identifier</div>
+      <div class="p-6 overflow-y-auto space-y-4 text-[11px] sm:text-xs font-mono text-slate-300">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+          <div class="p-3.5 rounded-xl bg-red-950/30 border border-red-500/30">
+            <strong class="block text-red-400 mb-2 uppercase">01 · Problem</strong>
+            <p class="leading-relaxed">Renewal services carried divergent SKU field names and overlapping mapping logic, making the product identifier inconsistent across service boundaries.</p>
+          </div>
+          <div class="p-3.5 rounded-xl bg-purple-950/30 border border-purple-500/30">
+            <strong class="block text-purple-300 mb-2 uppercase">02 · Change</strong>
+            <p class="leading-relaxed">Consolidated the model around one canonical SKU field and aligned the affected DTO / contract mapping paths.</p>
+          </div>
+          <div class="p-3.5 rounded-xl bg-emerald-950/30 border border-emerald-500/30">
+            <strong class="block text-emerald-400 mb-2 uppercase">03 · Result</strong>
+            <p class="leading-relaxed">Removed duplicated and obsolete code while retaining the required canonical mapping. The recorded change was +315 lines and -992 lines: a net reduction of 677 LOC.</p>
+          </div>
         </div>
-        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-purple-950/40 border border-purple-500/40 text-emerald-400 font-bold text-[10.5px]">
-          <i data-lucide="check-circle" class="w-3.5 h-3.5 text-emerald-400"></i> 100% JUnit Integration Suites Passed (+315 / -992 LOC Cleaned)
+        <div class="p-3 rounded bg-carbon-950 border border-carbon-800 overflow-x-auto">
+          <span class="text-purple-400 block mb-1"># Representative Entity Change:</span>
+          <div class="text-red-400 whitespace-nowrap">- private String parentSku;</div>
+          <div class="text-emerald-400 whitespace-nowrap">+ private String parentProductSku;</div>
+          <p class="text-slate-400 mt-2">Illustrative excerpt only; no Maven or JUnit console output is represented here.</p>
+        </div>
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-purple-950/40 border border-purple-500/40 text-purple-200 font-bold text-[10.5px]">
+          <i data-lucide="git-commit-horizontal" class="w-3.5 h-3.5 text-purple-300"></i> +315 / -992 LOC · Net reduction: 677 LOC
         </div>
       </div>
       <div class="px-6 py-3 bg-carbon-850 border-t border-carbon-800 flex justify-end">
         <button type="button" onclick="closeModal('modal-java')" class="px-4 py-2 rounded-lg bg-carbon-800 text-white border border-carbon-600 font-mono text-xs font-bold hover:text-purple-400 hover:border-purple-400 cursor-pointer">✕ Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-telemetry-dashboard" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="bg-carbon-900 border border-[#00ff66]/45 max-w-4xl w-full rounded-2xl overflow-hidden shadow-[0_0_35px_rgba(0,255,102,0.14)] flex flex-col max-h-[92vh]">
+      <div class="px-5 sm:px-6 py-4 bg-carbon-850 border-b border-carbon-700 flex items-center justify-between gap-4">
+        <div>
+          <div class="text-[#00ff66] font-mono text-[10px] sm:text-xs font-bold tracking-wider">DEV RUNTIME / LOCAL BROWSER TELEMETRY</div>
+          <h3 class="text-base sm:text-lg font-bold text-white mt-1">Runtime Dashboard</h3>
+        </div>
+        <button type="button" onclick="closeModal('modal-telemetry-dashboard')" class="text-slate-400 hover:text-white font-mono text-sm cursor-pointer" aria-label="Close telemetry dashboard">✕ ESC</button>
+      </div>
+
+      <div class="p-4 sm:p-6 overflow-y-auto space-y-5">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <section class="rounded-xl bg-carbon-950 border border-[#00ff66]/30 p-4">
+            <div class="flex items-center justify-between gap-2">
+              <h4 class="font-mono text-xs font-bold text-[#00ff66]">Browser rAF Cadence</h4>
+              <span class="a11y-tooltip-wrapper">
+                <button type="button" class="a11y-tooltip-trigger text-[#00ff66]" aria-label="About browser rAF cadence" aria-expanded="false" aria-describedby="tip-dashboard-raf">ⓘ</button>
+                <span id="tip-dashboard-raf" class="a11y-tooltip-content" role="tooltip">Measured requestAnimationFrame callbacks per second over a rolling half-second window. It reflects browser scheduling, not GPU frame presentation or rendering throughput.</span>
+              </span>
+            </div>
+            <div class="flex items-center gap-4 mt-2">
+              <svg viewBox="0 0 220 220" class="w-36 h-36 shrink-0" role="img" aria-label="Browser animation callback cadence gauge">
+                <circle cx="110" cy="110" r="45" fill="none" stroke="#1f2937" stroke-width="10"/>
+                <circle id="speedGaugeArc" cx="110" cy="110" r="45" fill="none" stroke="#00ff66" stroke-width="10" stroke-linecap="round" stroke-dasharray="283" stroke-dashoffset="283" transform="rotate(-90 110 110)"/>
+                <line id="speedGaugeNeedle" x1="110" y1="110" x2="110" y2="62" stroke="#a7f3d0" stroke-width="2.5" stroke-linecap="round" transform="rotate(-90 110 110)"/>
+                <circle cx="110" cy="110" r="5" fill="#00ff66"/>
+                <text x="110" y="145" fill="#a7f3d0" font-size="10" text-anchor="middle" font-family="JetBrains Mono, monospace">CALLBACKS / SEC</text>
+              </svg>
+              <div class="min-w-0">
+                <div id="speedGaugeValueText" class="text-2xl sm:text-3xl font-mono font-bold text-[#00ff66]">--</div>
+                <p class="text-[10px] text-slate-400 font-mono mt-1">Sampling begins when the page is visible.</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="rounded-xl bg-carbon-950 border border-sky-500/30 p-4">
+            <div class="flex items-center justify-between gap-2">
+              <h4 class="font-mono text-xs font-bold text-sky-300">Same-Origin HTTP Duration</h4>
+              <span class="a11y-tooltip-wrapper">
+                <button type="button" class="a11y-tooltip-trigger text-sky-300" aria-label="About same-origin HTTP duration" aria-expanded="false" aria-describedby="tip-dashboard-http">ⓘ</button>
+                <span id="tip-dashboard-http" class="a11y-tooltip-content" role="tooltip">Elapsed browser time for a HEAD request to this site's own origin. It includes browser, connection, host and response overhead; it is not an ICMP ping or pure network RTT. No third-party IP trace is used.</span>
+              </span>
+            </div>
+            <div class="flex items-center gap-4 mt-2">
+              <svg viewBox="0 0 220 220" class="w-36 h-36 shrink-0" role="img" aria-label="Same-origin HTTP request duration gauge">
+                <circle cx="110" cy="110" r="45" fill="none" stroke="#1f2937" stroke-width="10"/>
+                <circle id="httpGaugeArc" cx="110" cy="110" r="45" fill="none" stroke="#38bdf8" stroke-width="10" stroke-linecap="round" stroke-dasharray="283" stroke-dashoffset="283" transform="rotate(-90 110 110)"/>
+                <line id="httpGaugeNeedle" x1="110" y1="110" x2="110" y2="62" stroke="#bae6fd" stroke-width="2.5" stroke-linecap="round" transform="rotate(-90 110 110)"/>
+                <circle cx="110" cy="110" r="5" fill="#38bdf8"/>
+                <text x="110" y="145" fill="#bae6fd" font-size="10" text-anchor="middle" font-family="JetBrains Mono, monospace">HTTP MS</text>
+              </svg>
+              <div class="min-w-0">
+                <div id="httpGaugeValueText" class="text-2xl sm:text-3xl font-mono font-bold text-sky-300">--</div>
+                <p class="text-[10px] text-slate-400 font-mono mt-1">Updated while this dashboard is open.</p>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 font-mono">
+          <div class="rounded-xl bg-carbon-950 border border-carbon-800 p-3">
+            <div class="flex items-center justify-between gap-2 text-[10px] text-slate-400">
+              <span>HTTP Duration Variation</span>
+              <span class="a11y-tooltip-wrapper"><button type="button" class="a11y-tooltip-trigger text-slate-300" aria-label="About HTTP duration variation" aria-expanded="false" aria-describedby="tip-http-jitter">ⓘ</button><span id="tip-http-jitter" class="a11y-tooltip-content" role="tooltip">Rolling mean of the absolute difference between consecutive same-origin HTTP request-duration samples. It is not network packet jitter.</span></span>
+            </div>
+            <strong id="rttJitterVal" class="block text-lg text-[#00ff66] mt-1">--</strong>
+          </div>
+          <div class="rounded-xl bg-carbon-950 border border-carbon-800 p-3">
+            <div class="flex items-center justify-between gap-2 text-[10px] text-slate-400">
+              <span>Timer Scheduling Delay</span>
+              <span class="a11y-tooltip-wrapper"><button type="button" class="a11y-tooltip-trigger text-slate-300" aria-label="About timer scheduling delay" aria-expanded="false" aria-describedby="tip-timer-delay">ⓘ</button><span id="tip-timer-delay" class="a11y-tooltip-content" role="tooltip">Observed lateness of a single 10 ms JavaScript setTimeout sample. This is a small spot check, not a complete event-loop-lag benchmark.</span></span>
+            </div>
+            <strong id="loopDriftVal" class="block text-lg text-[#00ff66] mt-1">--</strong>
+          </div>
+          <div class="rounded-xl bg-carbon-950 border border-carbon-800 p-3">
+            <div class="flex items-center justify-between gap-2 text-[10px] text-slate-400">
+              <span>Network Information API</span>
+              <span class="a11y-tooltip-wrapper"><button type="button" class="a11y-tooltip-trigger text-slate-300" aria-label="About Network Information API" aria-expanded="false" aria-describedby="tip-network-api">ⓘ</button><span id="tip-network-api" class="a11y-tooltip-content" role="tooltip">Browser-provided effective connection type and estimated downlink. Availability and accuracy vary by browser; this is not an active speed test.</span></span>
+            </div>
+            <strong id="telemetryConnType" class="block text-sm text-[#00ff66] mt-1 break-words">--</strong>
+          </div>
+          <div class="rounded-xl bg-carbon-950 border border-carbon-800 p-3">
+            <div class="flex items-center justify-between gap-2 text-[10px] text-slate-400">
+              <span>Request Target</span>
+              <span class="a11y-tooltip-wrapper"><button type="button" class="a11y-tooltip-trigger text-slate-300" aria-label="About request target" aria-expanded="false" aria-describedby="tip-request-target">ⓘ</button><span id="tip-request-target" class="a11y-tooltip-content" role="tooltip">The HTTP probe stays on this site's origin. The page does not request public IP, geolocation or Cloudflare trace data for this dashboard.</span></span>
+            </div>
+            <strong id="telemetryRequestTarget" class="block text-sm text-[#00ff66] mt-1 break-words">Same-origin host</strong>
+          </div>
+          <div class="rounded-xl bg-carbon-950 border border-carbon-800 p-3 sm:col-span-2">
+            <div class="flex items-center justify-between gap-2 text-[10px] text-slate-400">
+              <span>JavaScript Heap (Chromium-specific)</span>
+              <span class="a11y-tooltip-wrapper"><button type="button" class="a11y-tooltip-trigger text-slate-300" aria-label="About JavaScript heap measurement" aria-expanded="false" aria-describedby="tip-js-heap">ⓘ</button><span id="tip-js-heap" class="a11y-tooltip-content" role="tooltip">Uses the non-standard performance.memory API when the browser exposes it. Other browsers show unavailable rather than an estimated or fabricated value.</span></span>
+            </div>
+            <strong id="telemetryHeapVal" class="block text-sm text-[#00ff66] mt-1 break-words">Unavailable in this browser</strong>
+          </div>
+        </div>
+
+        <p class="text-[10px] sm:text-[11px] text-slate-400 font-mono leading-relaxed border-t border-carbon-800 pt-3">These are local browser diagnostics. This dashboard does not read or display your public IP address, infer your location, or call a third-party IP/trace service.</p>
+      </div>
+      <div class="px-5 sm:px-6 py-3 bg-carbon-850 border-t border-carbon-800 flex justify-end">
+        <button type="button" onclick="closeModal('modal-telemetry-dashboard')" class="px-4 py-2 rounded-lg bg-carbon-800 text-white border border-carbon-600 font-mono text-xs font-bold hover:text-[#00ff66] hover:border-[#00ff66] cursor-pointer">✕ Close</button>
       </div>
     </div>
   </div>
@@ -1444,7 +1577,7 @@
             <button type="button" onclick="setBalloonCustomTimer(50)" class="px-2 py-0.5 rounded bg-carbon-800 hover:bg-amber-500 hover:text-black text-slate-200 border border-carbon-600 cursor-pointer">50s</button>
             <button type="button" onclick="setBalloonCustomTimer(60)" class="px-2 py-0.5 rounded bg-carbon-800 hover:bg-amber-500 hover:text-black text-slate-200 border border-carbon-600 cursor-pointer">60s</button>
             <label class="flex items-center gap-1 text-slate-400 hidden">
-              <input id="customBalloonSecInput" type="number" min="30" max="180" step="10" value="40">
+              <input id="customBalloonSecInput" type="number" min="30" max="60" step="10" value="40">
             </label>
           </div>
         </div>
@@ -1522,6 +1655,24 @@
     let pf_godModeUnlocked = false;
     let pf_isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+    function updateCopilotUnreadDot() {
+      const dot = document.getElementById('chatUnreadDot');
+      if (!dot) return;
+      const shouldShow = pf_mode === 'engineer' && !sessionStorage.getItem('pf_seen_dev_chat');
+      dot.classList.toggle('hidden', !shouldShow);
+    }
+
+    function markCopilotOpened() {
+      const dot = document.getElementById('chatUnreadDot');
+      if (dot) dot.classList.add('hidden');
+      if (pf_mode !== 'engineer') return;
+      sessionStorage.setItem('pf_seen_dev_chat', 'true');
+      if (!sessionStorage.getItem('pf_dev_chat_intro')) {
+        sessionStorage.setItem('pf_dev_chat_intro', 'true');
+        appendMessage('Welcome to Dev Mode. You can inspect the Incident Sandbox, ask about the technical case studies, or try <code class="text-emerald-400">sudo hire sai</code>. AirHead can share cloud and DevOps trivia; open its Settings to switch to Website Assistance.', 'bot');
+      }
+    }
+
     function initOnboarding() {
       if (!sessionStorage.getItem('pf_seen_accordion')) {
         const hint = document.getElementById('hint-accordion-1');
@@ -1535,19 +1686,7 @@
           });
         }
       }
-      if (!sessionStorage.getItem('pf_seen_chat')) {
-        const dot = document.getElementById('chatUnreadDot');
-        const header = document.getElementById('chatHeader');
-        if (dot && header) {
-          if (window.innerWidth >= 640 && !pf_isChatMinimized) setChatMinimizedState(true);
-          dot.classList.remove('hidden');
-          header.addEventListener('click', function handleChatClick() {
-            dot.classList.add('hidden');
-            sessionStorage.setItem('pf_seen_chat', 'true');
-            header.removeEventListener('click', handleChatClick);
-          });
-        }
-      }
+      updateCopilotUnreadDot();
     }
 
     /* ========================================================================= */
@@ -1596,7 +1735,7 @@
             <strong class="block text-amber-400 font-mono text-xs mb-1">03 The Engineering Result:</strong>
             <ul class="space-y-2 text-slate-300 list-disc list-inside">
               <li><strong class="text-white">Net Code Reduction:</strong> 315 lines added, 992 lines of legacy dead code removed (net -677 LOC).</li>
-              <li><strong class="text-white">Release Velocity:</strong> Resolved release-freeze merge conflicts in 20 minutes with 100% successful Integration Suite validation.</li>
+              <li><strong class="text-white">Release Velocity:</strong> Resolved release-freeze merge conflicts in 20 minutes while converging the renewal-service data model.</li>
             </ul>
           </div>`
       },
@@ -1665,13 +1804,28 @@
     
     function openModal(id) {
       const m = document.getElementById(id);
-      if (m) { m.classList.remove('hidden'); m.classList.add('flex'); document.body.style.overflow = 'hidden'; }
+      if (!m) {
+        console.warn(`Modal not found: ${id}`);
+        return false;
+      }
+      m.classList.remove('hidden');
+      m.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+      return true;
     }
-    
+
     function closeModal(id) {
       const m = document.getElementById(id);
-      if (m) { m.classList.remove('flex'); m.classList.add('hidden'); document.body.style.overflow = 'auto'; }
-      if (id === 'modal-telemetry-dashboard') stopHttpPolling();
+      if (m) { m.classList.remove('flex'); m.classList.add('hidden'); }
+      if (id === 'modal-telemetry-dashboard') {
+        pf_isDashboardOpen = false;
+        stopHttpPolling();
+      }
+      const anyModalOpen = ALL_MODALS.some(modalId => {
+        const modal = document.getElementById(modalId);
+        return modal && !modal.classList.contains('hidden');
+      });
+      if (!anyModalOpen) document.body.style.overflow = '';
     }
 
     window.addEventListener('keydown', (e) => { if (e.key === 'Escape') ALL_MODALS.forEach(id => closeModal(id)); });
@@ -1683,15 +1837,26 @@
     function initTooltips() {
       document.querySelectorAll('.a11y-tooltip-trigger').forEach(trigger => {
         const wrapper = trigger.closest('.a11y-tooltip-wrapper');
-        if (!wrapper) return;
+        if (!wrapper || wrapper.dataset.tooltipReady === 'true') return;
+        wrapper.dataset.tooltipReady = 'true';
         const show = () => { wrapper.classList.add('is-active'); trigger.setAttribute('aria-expanded', 'true'); };
         const hide = () => { wrapper.classList.remove('is-active'); trigger.setAttribute('aria-expanded', 'false'); };
         trigger.addEventListener('mouseenter', show);
         trigger.addEventListener('focus', show);
-        wrapper.addEventListener('mouseleave', hide);
+        wrapper.addEventListener('mouseleave', () => { if (!trigger.matches(':focus')) hide(); });
         trigger.addEventListener('blur', hide);
-        trigger.addEventListener('click', (e) => { e.preventDefault(); wrapper.classList.contains('is-active') ? hide() : show(); });
+        trigger.addEventListener('click', (e) => { e.preventDefault(); show(); });
       });
+      if (!document.documentElement.dataset.tooltipOutsideReady) {
+        document.documentElement.dataset.tooltipOutsideReady = 'true';
+        document.addEventListener('click', (e) => {
+          if (e.target.closest('.a11y-tooltip-wrapper')) return;
+          document.querySelectorAll('.a11y-tooltip-wrapper.is-active').forEach(wrapper => {
+            wrapper.classList.remove('is-active');
+            wrapper.querySelector('.a11y-tooltip-trigger')?.setAttribute('aria-expanded', 'false');
+          });
+        });
+      }
     }
 
     /* ========================================================================= */
@@ -1700,6 +1865,7 @@
     function setMode(role, showNotification = true) {
       document.body.classList.remove('mode-hr', 'mode-manager', 'mode-dev');
       pf_mode = role;
+      updateCopilotUnreadDot();
       
       const inact = "px-2 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 text-slate-400 hover:text-white whitespace-nowrap";
       const actAmb = "px-2 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 bg-amber-500 text-carbon-950 font-bold shadow-sm whitespace-nowrap";
@@ -1721,7 +1887,7 @@
         document.body.classList.add('mode-hr');
         if (vHr) vHr.style.display = 'block';
         if (vMgrDev) vMgrDev.style.display = 'none';
-        if (links) links.classList.replace('lg:flex', 'lg:hidden');
+        if (links) links.style.display = 'none';
         if (dlBtn) dlBtn.style.display = 'inline-flex';
         if (mxBtn) mxBtn.style.display = 'none';
         if (tel) tel.style.display = 'none';
@@ -1731,7 +1897,7 @@
         document.body.classList.add('mode-manager');
         if (vHr) vHr.style.display = 'none';
         if (vMgrDev) vMgrDev.style.display = 'block';
-        if (links) links.classList.replace('lg:hidden', 'lg:flex');
+        if (links) links.style.display = '';
         if (dlBtn) dlBtn.style.display = 'none';
         if (mxBtn) mxBtn.style.display = 'none';
         if (tel) tel.style.display = 'none';
@@ -1741,7 +1907,7 @@
         document.body.classList.add('mode-dev');
         if (vHr) vHr.style.display = 'none';
         if (vMgrDev) vMgrDev.style.display = 'block';
-        if (links) links.classList.replace('lg:hidden', 'lg:flex');
+        if (links) links.style.display = '';
         if (dlBtn) dlBtn.style.display = 'none';
         if (mxBtn) mxBtn.style.display = 'inline-flex';
         if (tel) tel.style.display = 'block';
@@ -1752,14 +1918,14 @@
     }
 
     /* ========================================================================= */
-    /* 5. LIVE TELEMETRY ENGINE (Decoupled RAF & HTTP)                           */
+    /* 5. LIVE TELEMETRY ENGINE (Browser rAF + Same-Origin HTTP only)            */
     /* ========================================================================= */
     let pf_rafId = null;
     let pf_httpIntervalId = null;
+    let pf_httpProbeInFlight = false;
     let pf_rAFCounter = 0;
     let pf_rAFLastSecond = performance.now();
-    let pf_rAFLastFrame = performance.now();
-    let pf_liveFps = 60;
+    let pf_liveFps = null;
     let pf_rttSampleWindow = [];
 
     document.addEventListener('visibilitychange', () => {
@@ -1768,22 +1934,30 @@
         startRaf();
         if (pf_isDashboardOpen) startHttpPolling();
       } else {
-        cancelAnimationFrame(pf_rafId);
+        if (pf_rafId !== null) cancelAnimationFrame(pf_rafId);
+        pf_rafId = null;
         stopHttpPolling();
       }
     });
 
     function startRaf() {
+      if (!pf_isTabVisible || pf_rafId !== null) return;
+      pf_rAFCounter = 0;
+      pf_rAFLastSecond = performance.now();
+
       const loop = (now) => {
-        pf_rAFLastFrame = now;
+        pf_rafId = null;
         pf_rAFCounter++;
-        if (now - pf_rAFLastSecond >= 500) {
-          pf_liveFps = Math.min(240, Math.round((pf_rAFCounter * 1000) / (now - pf_rAFLastSecond)));
+        const elapsed = now - pf_rAFLastSecond;
+        if (elapsed >= 500) {
+          pf_liveFps = (pf_rAFCounter * 1000) / elapsed;
           pf_rAFCounter = 0;
           pf_rAFLastSecond = now;
           const fpsEl = document.getElementById('devFpsVal');
-          if (fpsEl) fpsEl.textContent = `${pf_liveFps}`;
-          if (pf_isDashboardOpen) updateGaugeDial('speedGaugeArc', 'speedGaugeNeedle', 'speedGaugeValueText', Math.min(120, pf_liveFps), 120, 'FPS');
+          if (fpsEl) fpsEl.textContent = String(Math.round(pf_liveFps));
+          if (pf_isDashboardOpen) {
+            updateGaugeDial('speedGaugeArc', 'speedGaugeNeedle', 'speedGaugeValueText', pf_liveFps, 240, 'cb/s');
+          }
         }
         if (pf_isTabVisible) pf_rafId = requestAnimationFrame(loop);
       };
@@ -1793,13 +1967,13 @@
     function updateGaugeDial(arcId, needleId, textId, value, maxVal, unit) {
       const ratio = Math.max(0, Math.min(1, value / maxVal));
       const offset = 283 - (ratio * 283);
-      const angle = -90 + (ratio * 180);
+      const angle = -90 + (ratio * 360);
       const arcEl = document.getElementById(arcId);
       const needleEl = document.getElementById(needleId);
       const textEl = document.getElementById(textId);
       if (arcEl) arcEl.setAttribute('stroke-dashoffset', String(Math.round(offset)));
       if (needleEl) needleEl.setAttribute('transform', `rotate(${angle.toFixed(1)} 110 110)`);
-      if (textEl) textEl.textContent = `${value} ${unit}`;
+      if (textEl) textEl.textContent = `${Math.round(value)} ${unit}`;
     }
 
     function readHonestHeapStatus() {
@@ -1807,82 +1981,88 @@
       if (mem && Number.isFinite(mem.usedJSHeapSize) && Number.isFinite(mem.jsHeapSizeLimit)) {
         return `${(mem.usedJSHeapSize / 1048576).toFixed(1)} / ${Math.round(mem.jsHeapSizeLimit / 1048576)} MB [V8]`;
       }
-      return 'Restricted by Browser Engine';
+      return 'Unavailable in this browser';
     }
 
     async function runHttpProbe() {
+      if (!pf_isDashboardOpen || !pf_isTabVisible || pf_httpProbeInFlight) return;
+      pf_httpProbeInFlight = true;
+
       const connTypeEl = document.getElementById('telemetryConnType');
       const jitterEl = document.getElementById('rttJitterVal');
       const stripPing = document.getElementById('devPingVal');
-      const edgePopEl = document.getElementById('telemetryEdgePop');
+      const requestTargetEl = document.getElementById('telemetryRequestTarget');
       const heapEl = document.getElementById('telemetryHeapVal');
       const driftEl = document.getElementById('loopDriftVal');
 
-      const tLoopStart = performance.now();
+      const timerStart = performance.now();
       setTimeout(() => {
-        const drift = Math.max(0.1, performance.now() - tLoopStart - 10);
-        if (driftEl) driftEl.textContent = `${drift.toFixed(1)} ms`;
+        const timerDelay = Math.max(0, performance.now() - timerStart - 10);
+        if (driftEl && pf_isDashboardOpen) driftEl.textContent = `${timerDelay.toFixed(1)} ms`;
       }, 10);
 
       const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
       if (conn && connTypeEl) {
-        const dl = Number.isFinite(conn.downlink) ? `${conn.downlink} Mbps cap` : 'N/A';
-        connTypeEl.textContent = `${String(conn.effectiveType || '4g').toUpperCase()} (${dl})`;
+        const downlink = Number.isFinite(conn.downlink) ? `${conn.downlink} Mbps est.` : 'downlink n/a';
+        connTypeEl.textContent = `${String(conn.effectiveType || 'unknown').toUpperCase()} · ${downlink}`;
       } else if (connTypeEl) {
-        connTypeEl.textContent = 'API Unsupported in Browser';
+        connTypeEl.textContent = 'Unavailable in this browser';
       }
-
       if (heapEl) heapEl.textContent = readHonestHeapStatus();
 
-      const t0 = performance.now();
-      let measuredRtt = null, detectedPop = 'Origin / Local Edge';
+      let measuredDuration = null;
       try {
-        const traceRes = await fetch(`https://1.1.1.1/cdn-cgi/trace?ts=${Date.now()}`, { cache: 'no-store' });
-        measuredRtt = Math.max(2, Math.round(performance.now() - t0));
-        const traceText = await traceRes.text();
-        const coloMatch = traceText.match(/colo=([A-Z0-9]+)/);
-        if (coloMatch) detectedPop = `Cloudflare POP: ${coloMatch[1]}`;
-      } catch (e) {
-        try {
-          const t1 = performance.now();
-          const probeUrl = new URL(window.location.href);
-          probeUrl.searchParams.set('telemetry_probe', String(Date.now()));
-          await fetch(probeUrl.toString(), { method: 'HEAD', cache: 'no-store', credentials: 'same-origin' });
-          measuredRtt = Math.max(2, Math.round(performance.now() - t1));
-          detectedPop = 'Same-Origin HTTP HEAD';
-        } catch (err2) {
-          measuredRtt = null; detectedPop = 'Offline / Blocked by CORS';
-        }
+        const sameOriginUrl = new URL(window.location.href);
+        sameOriginUrl.hash = '';
+        const t0 = performance.now();
+        const response = await fetch(sameOriginUrl.toString(), {
+          method: 'HEAD',
+          cache: 'no-store',
+          credentials: 'omit',
+          mode: 'same-origin'
+        });
+        measuredDuration = performance.now() - t0;
+        if (requestTargetEl) requestTargetEl.textContent = `Same-origin host · HTTP ${response.status}`;
+      } catch (error) {
+        if (requestTargetEl) requestTargetEl.textContent = 'Same-origin probe unavailable';
+      } finally {
+        pf_httpProbeInFlight = false;
       }
 
-      if (edgePopEl) edgePopEl.textContent = detectedPop;
-
-      if (measuredRtt !== null) {
-        pf_rttSampleWindow.push(measuredRtt);
+      if (measuredDuration !== null) {
+        pf_rttSampleWindow.push(measuredDuration);
         if (pf_rttSampleWindow.length > 5) pf_rttSampleWindow.shift();
-        let rollingJitter = 0;
+        let rollingVariation = 0;
         if (pf_rttSampleWindow.length > 1) {
-          let diffs = 0;
-          for (let i = 1; i < pf_rttSampleWindow.length; i++) diffs += Math.abs(pf_rttSampleWindow[i] - pf_rttSampleWindow[i - 1]);
-          rollingJitter = diffs / (pf_rttSampleWindow.length - 1);
+          let differences = 0;
+          for (let i = 1; i < pf_rttSampleWindow.length; i++) {
+            differences += Math.abs(pf_rttSampleWindow[i] - pf_rttSampleWindow[i - 1]);
+          }
+          rollingVariation = differences / (pf_rttSampleWindow.length - 1);
         }
-        updateGaugeDial('rttGaugeArc', 'rttGaugeNeedle', 'rttGaugeValueText', measuredRtt, 300, 'ms');
-        if (stripPing) stripPing.textContent = `${measuredRtt} ms`;
-        if (jitterEl) jitterEl.textContent = pf_rttSampleWindow.length > 1 ? `${rollingJitter.toFixed(1)} ms` : 'Sampling (1/2)…';
+        updateGaugeDial('httpGaugeArc', 'httpGaugeNeedle', 'httpGaugeValueText', measuredDuration, 1000, 'ms');
+        if (stripPing) stripPing.textContent = `${measuredDuration.toFixed(0)} ms`;
+        if (jitterEl) jitterEl.textContent = pf_rttSampleWindow.length > 1 ? `${rollingVariation.toFixed(1)} ms` : 'Sampling…';
       } else {
-        if (stripPing) stripPing.textContent = 'Restricted';
+        if (stripPing) stripPing.textContent = 'Unavailable';
         if (jitterEl) jitterEl.textContent = 'N/A';
       }
     }
 
     function startHttpPolling() {
+      if (!pf_isDashboardOpen || !pf_isTabVisible) return;
+      stopHttpPolling();
       runHttpProbe();
-      if (pf_httpIntervalId) clearInterval(pf_httpIntervalId);
-      pf_httpIntervalId = setInterval(() => { if (pf_isTabVisible && pf_isDashboardOpen) runHttpProbe(); }, 3500);
+      pf_httpIntervalId = setInterval(() => {
+        if (pf_isTabVisible && pf_isDashboardOpen) runHttpProbe();
+      }, 3500);
     }
-    
+
     function stopHttpPolling() {
-      if (pf_httpIntervalId) { clearInterval(pf_httpIntervalId); pf_httpIntervalId = null; }
+      if (pf_httpIntervalId) {
+        clearInterval(pf_httpIntervalId);
+        pf_httpIntervalId = null;
+      }
     }
 
     function updateWorldClocks() {
@@ -1898,9 +2078,15 @@
     }
 
     function openTelemetryDashboard() {
+      if (!openModal('modal-telemetry-dashboard')) {
+        showToast('Telemetry dashboard is unavailable.');
+        return;
+      }
       pf_isDashboardOpen = true;
-      openModal('modal-telemetry-dashboard');
-      startHttpPolling();
+      if (pf_liveFps !== null) {
+        updateGaugeDial('speedGaugeArc', 'speedGaugeNeedle', 'speedGaugeValueText', pf_liveFps, 240, 'cb/s');
+      }
+      if (pf_isTabVisible) startHttpPolling();
     }
 
     /* ========================================================================= */
@@ -1909,6 +2095,7 @@
     let bln_isMinimized = false, bln_isIntroduced = false, bln_isDizzyLocked = false;
     let bln_dizzyResetTimer = null, bln_intervalMs = 40000, bln_nudgeTimer = null;
     let bln_clickTimes = [], bln_siteAssistOnly = false;
+    let bln_nudgeCount = 0;
 
     const TRIVIA = [
       { category: "Tech History", title: "ChatGPT's Calendar Coincidence", fact: "ChatGPT was publicly introduced on November 30, 2022—which also happens to be Computer Security Day (established in 1988)." },
@@ -1926,7 +2113,7 @@
 
       try {
         const prefs = JSON.parse(localStorage.getItem('airhead-settings') || '{}');
-        if (Number.isFinite(prefs.delay)) { bln_intervalMs = Math.max(30, Math.min(180, Number.parseInt(prefs.delay, 10))) * 1000; }
+        if (Number.isFinite(prefs.delay)) { bln_intervalMs = Math.max(30, Math.min(60, Number.parseInt(prefs.delay, 10))) * 1000; }
         if (prefs.skin === 'dark') document.getElementById('gusSphere')?.classList.add('skin-dark');
         if (prefs.siteGuide === true) { bln_siteAssistOnly = true; const btn = document.getElementById('btnSiteAssistToggle'); if (btn) { btn.textContent = 'ON (Site Guide Only)'; btn.classList.add('text-emerald-300'); } }
       } catch(e) {}
@@ -2091,7 +2278,7 @@
     function setBalloonCustomTimer(sec) {
       let parsed = Number.parseInt(sec, 10);
       if (!Number.isFinite(parsed)) parsed = 40;
-      parsed = Math.max(30, Math.min(180, Math.round(parsed / 10) * 10));
+      parsed = Math.max(30, Math.min(60, Math.round(parsed / 10) * 10));
       bln_intervalMs = parsed * 1000;
       scheduleNudge();
       try { localStorage.setItem('airhead-settings', JSON.stringify({ delay: parsed, skin: document.getElementById('gusSphere')?.classList.contains('skin-dark') ? 'dark' : 'light', siteGuide: bln_siteAssistOnly })); } catch (error) {}
@@ -2117,9 +2304,24 @@
     function scheduleNudge() {
       if (bln_nudgeTimer) clearTimeout(bln_nudgeTimer);
       bln_nudgeTimer = setTimeout(() => {
-        if (!bln_isMinimized && document.getElementById('balloonTriviaBubble')?.classList.contains('hidden')) {
-          popTrivia();
-          setTimeout(() => { if (!document.getElementById('balloonTriviaBubble')?.classList.contains('hidden')) dismissBalloonBubble(); }, 7000);
+        bln_nudgeCount++;
+        const bubble = document.getElementById('balloonTriviaBubble');
+        if (!bln_isMinimized && bubble?.classList.contains('hidden')) {
+          if (bln_nudgeCount === 2 && !sessionStorage.getItem('pf_balloon_assist_prompted')) {
+            sessionStorage.setItem('pf_balloon_assist_prompted', 'true');
+            document.getElementById('balloonFactLabel').textContent = '🎈 AirHead.cs~1.6 • Quick Tip';
+            document.getElementById('balloonFactTitle').textContent = 'Want a guided tour?';
+            document.getElementById('balloonFactText').textContent = 'Open Settings and switch on Website Assistance Only. I can point out the portfolio sections and interactive features.';
+            document.getElementById('balloonActionRow').style.display = 'flex';
+            positionBubble();
+            bubble.classList.remove('hidden');
+            setBalloonFace('nudge');
+          } else {
+            popTrivia();
+          }
+          setTimeout(() => {
+            if (bubble && !bubble.classList.contains('hidden')) dismissBalloonBubble();
+          }, 7000);
         }
         scheduleNudge();
       }, bln_intervalMs);
@@ -2133,9 +2335,21 @@
 
     function initChat() {
       setChatMinimizedState(pf_isChatMinimized);
-      document.getElementById('minimizeChatBtn')?.addEventListener('click', (e) => { e.stopPropagation(); setChatMinimizedState(!pf_isChatMinimized); });
+      document.getElementById('minimizeChatBtn')?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const wasMinimized = pf_isChatMinimized;
+        setChatMinimizedState(!pf_isChatMinimized);
+        if (wasMinimized) markCopilotOpened();
+      });
+      document.getElementById('chatHeader')?.addEventListener('click', (e) => {
+        if (e.target.closest('#minimizeChatBtn')) return;
+        const wasMinimized = pf_isChatMinimized;
+        setChatMinimizedState(!pf_isChatMinimized);
+        if (wasMinimized) markCopilotOpened();
+      });
       document.getElementById('sendChatBtn')?.addEventListener('click', () => sendMessage());
       document.getElementById('userInput')?.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); sendMessage(); } });
+      updateCopilotUnreadDot();
     }
 
     function setChatMinimizedState(minimized) {
@@ -2284,7 +2498,8 @@
     });
 
     // --- GLOBAL EXPORTS (For HTML Onclick Handlers) ---
-    window.setMode = setPerspective;
+    window.setMode = setMode;
+    window.openModal = openModal;
     window.openExecCaseModal = openExecCaseModal;
     window.closeModal = closeModal;
     window.openTelemetryDashboard = openTelemetryDashboard;
