@@ -156,8 +156,14 @@
 
     /* 3D White Onboarding Arrow */
     @keyframes superBounce3D {
-      0%, 100% { transform: translate(-50%, 0) scale(1.1); text-shadow: 0 4px 0 #94a3b8, 0 8px 15px rgba(255, 255, 255, 0.5); }
-      50% { transform: translate(-50%, -12px) scale(1); text-shadow: 0 12px 0 #64748b, 0 16px 20px rgba(255, 255, 255, 0.3); }
+      0%, 100% { 
+        transform: translate(-50%, 0) scale(1.1); 
+        text-shadow: 0 4px 0 #94a3b8, 0 8px 15px rgba(255, 255, 255, 0.5); 
+      }
+      50% { 
+        transform: translate(-50%, -12px) scale(1); 
+        text-shadow: 0 12px 0 #64748b, 0 16px 20px rgba(255, 255, 255, 0.3); 
+      }
     }
     .onboarding-arrow-3d {
       animation: superBounce3D 1.2s infinite cubic-bezier(0.4, 0, 0.2, 1);
@@ -174,7 +180,10 @@
     .dev-exp-node.is-active .dev-diag-bullets { opacity: 1; max-height: 400px; transform: translateY(0); margin-top: 0.75rem; }
 
     /* CI/CD Engineering Workflow Animation CSS (Scoped) */
-    .wf-stage { transition: all 0.4s ease; border-color: #1e293b !important; }
+    .wf-stage { 
+      transition: all 0.4s ease; 
+      border-color: #1e293b !important; /* Subdued, fully readable baseline */
+    }
     
     @keyframes wfPulse {
       0% { box-shadow: 0 0 0 0 rgba(0, 255, 102, 0.4); }
@@ -192,6 +201,7 @@
     
     .wf-running-amber { border-color: #f59e0b !important; animation: wfPulseAmber 1.2s infinite; transform: translateY(-2px); }
     .wf-passed-amber { border-color: #f59e0b !important; box-shadow: 0 0 15px rgba(245, 158, 11, 0.15) !important; transform: translateY(0); }
+    
     .wf-passed-blue { border-color: #38bdf8 !important; box-shadow: 0 0 18px rgba(56, 189, 248, 0.25) !important; transform: translateY(-2px); }
 
     .wf-connector { border-color: #1e293b !important; transition: border-color 0.4s ease; }
@@ -430,7 +440,7 @@
   </style>
 </head>
 
-  <body class="bg-carbon-900 text-slate-200 font-sans selection:bg-amber-500/20 selection:text-amber-400 min-h-[100dvh] relative overflow-x-hidden leading-relaxed mode-manager">
+<body class="bg-carbon-900 text-slate-200 font-sans selection:bg-amber-500/20 selection:text-amber-400 min-h-[100dvh] relative overflow-x-hidden leading-relaxed mode-manager">
 
   <canvas id="matrixCanvas" class="fixed inset-0 pointer-events-none z-20 opacity-0 transition-opacity duration-500"></canvas>
   <div class="fixed inset-0 bg-grid-pattern pointer-events-none z-0"></div>
@@ -654,8 +664,7 @@
 
     </div>
   </div>
-
-    <!-- ============================================== -->
+  <!-- ============================================== -->
   <!-- VIEW 2 & 3: MANAGER & DEV PERSPECTIVES         -->
   <!-- ============================================== -->
   <div id="view-manager-dev" class="relative z-10">
@@ -1962,7 +1971,6 @@
       </div>
     </div>
   </div>
-
   <!-- Modal 2: Audit 225 Fleshed Out -->
   <div id="modal-arn" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
     <div class="bg-carbon-900 border border-carbon-700 max-w-3xl w-full rounded-2xl overflow-hidden shadow-[0_0_30px_rgba(56,189,248,0.2)] flex flex-col max-h-[90vh]">
@@ -2058,6 +2066,7 @@
       </div>
     </div>
   </div>
+
   <!-- ============================================== -->
   <!-- FLOATING DEV CONSOLE MODAL (On-Demand)         -->
   <!-- ============================================== -->
@@ -3237,7 +3246,10 @@
 
       // Finish Stage 1, Animate Connector 1 & Packet 1
       wf_animTimeouts.push(setTimeout(() => {
-        if(stages[0]) { stages[0].classList.replace('wf-running', 'wf-passed'); }
+        if(stages[0]) { 
+          stages[0].classList.remove('wf-running'); 
+          stages[0].classList.add('wf-passed'); 
+        }
         if(conns[0]) conns[0].classList.add('wf-connector-animating');
         if(packets[0]) {
           packets[0].style.display = 'block';
@@ -3258,7 +3270,10 @@
 
       // Finish Stage 2, Animate Connector 2 & Packet 2
       wf_animTimeouts.push(setTimeout(() => {
-        if(stages[1]) { stages[1].classList.replace('wf-running', 'wf-passed'); }
+        if(stages[1]) { 
+          stages[1].classList.remove('wf-running'); 
+          stages[1].classList.add('wf-passed'); 
+        }
         if(conns[1]) conns[1].classList.add('wf-connector-animating');
         if(packets[1]) {
           packets[1].style.display = 'block';
@@ -3279,7 +3294,10 @@
 
       // Finish Stage 3, Animate Connector 3 (Amber) & Packet 3
       wf_animTimeouts.push(setTimeout(() => {
-        if(stages[2]) { stages[2].classList.replace('wf-running-amber', 'wf-passed-amber'); }
+        if(stages[2]) { 
+          stages[2].classList.remove('wf-running-amber'); 
+          stages[2].classList.add('wf-passed-amber'); 
+        }
         if(conns[2]) conns[2].classList.add('wf-connector-animating-amber');
         if(packets[2]) {
           packets[2].style.display = 'block';
