@@ -111,6 +111,61 @@
       border: 1px solid rgba(49, 65, 97, 0.65); backdrop-filter: blur(14px); border-radius: 22px;
       transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
     }
+    /* CI/CD Workflow Animation Enhancements */
+.wf-stage { 
+  transition: all 0.3s ease; 
+  opacity: 0.4 !important; /* Dimmed by default */
+  border-color: #334155 !important; 
+}
+
+/* Pulsing "In-Progress" State (Yellow) */
+@keyframes buildPulse {
+  0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.4); }
+  70% { box-shadow: 0 0 0 8px rgba(245, 158, 11, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+}
+.wf-running { 
+  border-color: #f59e0b !important; 
+  opacity: 1 !important; 
+  animation: buildPulse 1.2s infinite; 
+  transform: translateY(-2px); 
+}
+
+/* "Passed" State (Green) */
+.wf-passed { 
+  border-color: #00ff66 !important; 
+  opacity: 1 !important; 
+  box-shadow: 0 0 15px rgba(0, 255, 102, 0.15) !important; 
+  transform: translateY(0); 
+}
+
+/* Review / Final Action States */
+.wf-manual { border-color: #f59e0b !important; opacity: 1 !important; box-shadow: 0 0 15px rgba(245, 158, 11, 0.2) !important; }
+.wf-final { border-color: #38bdf8 !important; opacity: 1 !important; box-shadow: 0 0 18px rgba(56, 189, 248, 0.3) !important; transform: translateY(-2px); }
+
+/* Animated Flowing Connectors */
+@keyframes pipelineFlowDash {
+  from { stroke-dashoffset: 20; background-position: 0 0; }
+  to { stroke-dashoffset: 0; background-position: -20px 0; }
+}
+.wf-connector { opacity: 0.15 !important; border-color: #334155 !important; transition: opacity 0.3s ease; }
+.wf-connector-active {
+  opacity: 1 !important;
+  border-color: transparent !important;
+  background-image: linear-gradient(to right, #00ff66 50%, transparent 50%);
+  background-size: 12px 2px;
+  background-repeat: repeat-x;
+  height: 2px;
+  animation: pipelineFlowDash 0.6s linear infinite;
+}
+@media (max-width: 768px) {
+  .wf-connector-active {
+    background-image: linear-gradient(to bottom, #00ff66 50%, transparent 50%);
+    background-size: 2px 12px;
+    background-repeat: repeat-y;
+    height: 1.5rem; width: 2px;
+  }
+}
 
     /* Native HTML Details/Summary Styling */
     details > summary { list-style: none; cursor: pointer; outline: none; }
@@ -3062,27 +3117,63 @@
     };
 
     /* Replay Workflow Animation Controller */
-    let wf_animTimeouts = [];
-    window.replayWorkflowAnim = function() {
-      wf_animTimeouts.forEach(t => clearTimeout(t));
-      wf_animTimeouts = [];
+   /* Replay CI/CD Workflow Animation Controller */
+let wf_animTimeouts = [];
+window.replayWorkflowAnim = function() {
+  // 1. Clear existing timeouts
+  wf_animTimeouts.forEach(t => clearTimeout(t));
+  wf_animTimeouts = [];
 
-      const stages = [document.getElementById('wf-stage-1'), document.getElementById('wf-stage-2'), document.getElementById('wf-stage-3'), document.getElementById('wf-stage-4')];
-      const conns = [document.getElementById('wf-conn-1'), document.getElementById('wf-conn-2'), document.getElementById('wf-conn-3')];
-      
-      stages.forEach(s => { if(s) { s.classList.remove('wf-active', 'wf-active-amber', 'wf-active-final'); } });
-      conns.forEach(c => { if(c) c.classList.remove('wf-connector-active'); });
+  const stages = [
+    document.getElementById('wf-stage-1'), 
+    document.getElementById('wf-stage-2'), 
+    document.getElementById('wf-stage-3'), 
+    document.getElementById('wf-stage-4')
+  ];
+  const conns = [
+    document.getElementById('wf-conn-1'), 
+    document.getElementById('wf-conn-2'), 
+    document.getElementById('wf-conn-3')
+  ];
+  
+  // 2. Reset Pipeline to "Pending"
+  stages.forEach(s => { if(s) s.classList.remove('wf-running', 'wf-passed', 'wf-manual', 'wf-final'); });
+  conns.forEach(c => { if(c) c.classList.remove('wf-connector-active'); });
 
-      if (pf_isReducedMotion) {
-        stages.forEach(s => { if(s) s.classList.add('wf-active'); });
-        return;
-      }
+  if (pf_isReducedMotion) {
+    stages.forEach(s => { if(s) s.classList.add('wf-passed'); });
+    return;
+  }
 
-      wf_animTimeouts.push(setTimeout(() => { stages[0]?.classList.add('wf-active'); }, 100));
-      wf_animTimeouts.push(setTimeout(() => { conns[0]?.classList.add('wf-connector-active'); stages[1]?.classList.add('wf-active'); }, 700));
-      wf_animTimeouts.push(setTimeout(() => { conns[1]?.classList.add('wf-connector-active'); stages[2]?.classList.add('wf-active-amber'); }, 1300));
-      wf_animTimeouts.push(setTimeout(() => { conns[2]?.classList.add('wf-connector-active'); stages[3]?.classList.add('wf-active-final'); }, 1900));
-    };
+  let delay = 100;
+
+  // Stage 1: Build (Running -> Passed)
+  wf_animTimeouts.push(setTimeout(() => { stages[0]?.classList.add('wf-running'); }, delay));
+  delay += 1200; // Simulate processing time
+  wf_animTimeouts.push(setTimeout(() => { 
+    stages[0]?.classList.replace('wf-running', 'wf-passed'); 
+    conns[0]?.classList.add('wf-connector-active'); 
+  }, delay));
+
+  // Stage 2: Diagnostics (Running -> Passed)
+  delay += 400; // Wait for connector to "travel"
+  wf_animTimeouts.push(setTimeout(() => { stages[1]?.classList.add('wf-running'); }, delay));
+  delay += 1500; // Simulate test time
+  wf_animTimeouts.push(setTimeout(() => { 
+    stages[1]?.classList.replace('wf-running', 'wf-passed'); 
+    conns[1]?.classList.add('wf-connector-active'); 
+  }, delay));
+
+  // Stage 3: Manual Review Gate (Amber)
+  delay += 400;
+  wf_animTimeouts.push(setTimeout(() => { stages[2]?.classList.add('wf-manual'); }, delay));
+  delay += 1200; // Simulated wait for human approval
+  wf_animTimeouts.push(setTimeout(() => { conns[2]?.classList.add('wf-connector-active'); }, delay));
+
+  // Stage 4: Handoff / Deploy (Blue)
+  delay += 400;
+  wf_animTimeouts.push(setTimeout(() => { stages[3]?.classList.add('wf-final'); }, delay));
+};
 
     let activeCliAbortController = null, activeCliTimers = [];
     let isCase1Patched = false;
