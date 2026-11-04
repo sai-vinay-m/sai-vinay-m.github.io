@@ -120,7 +120,7 @@
     details[open] .compartment-content { animation: fadeInDown 0.3s ease-out forwards; }
     @keyframes fadeInDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 
-    /* Accessible Non-Clipped Tooltips (Opens downward by default to avoid top banner clipping) */
+    /* Accessible Non-Clipped Tooltips */
     .a11y-tooltip-wrapper { position: relative; display: inline-flex; align-items: center; justify-content: center; }
     .a11y-tooltip-trigger { background: none; border: none; padding: 2px; cursor: pointer; border-radius: 9999px; outline: none; display: inline-flex; align-items: center; justify-content: center; }
     .a11y-tooltip-trigger:focus-visible { box-shadow: 0 0 0 2px #00ff66; }
@@ -154,36 +154,22 @@
     .shiny-btn-blue::after { background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.48), transparent); }
     .shiny-btn-amber::after { background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.42), transparent); }
 
-    /* Dev Mode CI/CD Pipeline Connector Flow */
-    @keyframes pipelineFlowDash {
-      from { stroke-dashoffset: 20; background-position: 0 0; }
-      to { stroke-dashoffset: 0; background-position: -20px 0; }
-    }
-    body.mode-dev .pipeline-flow-anim {
-      background-image: linear-gradient(to right, #00ff66 50%, transparent 50%);
-      background-size: 12px 2px;
-      background-repeat: repeat-x;
-      border: none !important;
-      height: 2px;
-      animation: pipelineFlowDash 1s linear infinite;
-    }
-    @media (max-width: 768px) {
-      body.mode-dev .pipeline-flow-anim {
-        background-image: linear-gradient(to bottom, #00ff66 50%, transparent 50%);
-        background-size: 2px 12px;
-        background-repeat: repeat-y;
-        height: 1.5rem;
-        width: 2px;
-        animation: pipelineFlowDash 1s linear infinite;
-      }
-    }
+    /* Engineering Workflow Animation CSS (Scoped to #contact) */
+    .wf-stage { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+    .wf-active { border-color: #00ff66 !important; box-shadow: 0 0 18px rgba(0, 255, 102, 0.2) !important; transform: translateY(-2px); }
+    .wf-active-amber { border-color: #f59e0b !important; box-shadow: 0 0 18px rgba(245, 158, 11, 0.2) !important; transform: translateY(-2px); }
+    .wf-active-final { border-color: #38bdf8 !important; box-shadow: 0 0 18px rgba(56, 189, 248, 0.2) !important; transform: translateY(-2px); }
+    .wf-connector { transition: border-color 0.4s ease, opacity 0.4s ease; opacity: 0.35; }
+    .wf-connector-active { border-color: #00ff66 !important; opacity: 1; }
+    .wf-packet { transition: left 0.6s linear, top 0.6s linear, opacity 0.2s ease; }
 
     /* Reduced Motion */
     @media (prefers-reduced-motion: reduce) {
       *, ::before, ::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
       .shiny-btn-red::after, .shiny-btn-green::after, .shiny-btn-purple::after, .shiny-btn-blue::after, .shiny-btn-amber::after,
-      .loop-active-flow, .svg-flow-line, .gus-float-anim, .typing-dot, .animate-marquee, .animate-ping, .animate-pulse, .spin-anim, .pipeline-flow-anim { animation: none !important; }
+      .loop-active-flow, .svg-flow-line, .gus-float-anim, .typing-dot, .animate-marquee, .animate-ping, .animate-pulse, .spin-anim { animation: none !important; }
       .marquee-container { overflow-x: auto !important; }
+      .wf-stage, .wf-packet { transition: none !important; }
     }
 
     /* Dev Mode Styles */
@@ -280,8 +266,7 @@
     .balloon-scale-shell.minimized .minimized-disc { display: flex !important; }
   </style>
 </head>
-
-  <body class="bg-carbon-900 text-slate-200 font-sans selection:bg-amber-500/20 selection:text-amber-400 min-h-[100dvh] relative overflow-x-hidden leading-relaxed mode-manager">
+<body class="bg-carbon-900 text-slate-200 font-sans selection:bg-amber-500/20 selection:text-amber-400 min-h-[100dvh] relative overflow-x-hidden leading-relaxed mode-manager">
 
   <canvas id="matrixCanvas" class="fixed inset-0 pointer-events-none z-20 opacity-0 transition-opacity duration-500"></canvas>
   <div class="fixed inset-0 bg-grid-pattern pointer-events-none z-0"></div>
@@ -407,7 +392,7 @@
           <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-amber-500/15 border border-amber-500/40 text-amber-400 text-[11px] font-mono font-bold uppercase"><i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Candidate Value Proposition</div>
           <h2 class="text-lg sm:text-xl font-extrabold text-white leading-snug">Enterprise Cloud Reliability Meets Production GenAI</h2>
           <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-            Architecting zero-trust AWS systems synchronized in real time with NYSE and Federal Reserve clearing feeds, coupled with modern applied AI platform delivery and resilient container governance.
+            Architecting zero-trust AWS systems synchronized in real time with post-trade financial infrastructure, coupled with modern applied AI platform delivery and resilient container governance.
           </p>
           <div class="pt-2.5 border-t border-carbon-700/80">
             <span class="text-[10px] font-mono text-slate-400 block mb-2 uppercase tracking-wider">Verified Credentials (Click to Verify on Credly):</span>
@@ -446,7 +431,7 @@
                 <span class="text-amber-400 font-bold shrink-0 text-xs">Dec '21 – Aug '24</span>
               </div>
               <ul class="space-y-1 text-slate-300 list-disc list-inside font-sans text-xs sm:text-sm leading-relaxed">
-                <li>Architected zero-trust AWS infrastructure &amp; reusable Terraform for NYSE/Fed clearing feeds.</li>
+                <li>Architected zero-trust AWS infrastructure &amp; reusable Terraform for post-trade financial clearing feeds.</li>
                 <li>Built Jenkins CI/CD pipelines enforcing KMS envelope encryption and zero-downtime RDS updates.</li>
               </ul>
             </div>
@@ -503,8 +488,7 @@
 
     </div>
   </div>
-
-    <!-- ============================================== -->
+  <!-- ============================================== -->
   <!-- VIEW 2 & 3: MANAGER & DEV PERSPECTIVES         -->
   <!-- ============================================== -->
   <div id="view-manager-dev" class="relative z-10">
@@ -607,7 +591,7 @@
                 <div class="space-y-2.5 font-mono text-[11px] sm:text-xs">
                   <div class="flex justify-between py-1 border-b border-carbon-800/90"><span class="text-slate-400">Total Experience:</span><span class="text-white font-bold">4 Years (3.5+ Yrs US)</span></div>
                   <div class="flex justify-between py-1 border-b border-carbon-800/90"><span class="text-slate-400">Recent Role Level:</span><span class="text-amber-400 font-bold">L5 Engineer (Cloud)</span></div>
-                  <div class="flex justify-between py-1 border-b border-carbon-800/90"><span class="text-slate-400">US Domain Focus:</span><span class="text-white font-semibold">NYSE / Fed Reserve Clearing Sync</span></div>
+                  <div class="flex justify-between py-1 border-b border-carbon-800/90"><span class="text-slate-400">US Domain Focus:</span><span class="text-white font-semibold">Post-trade financial infrastructure</span></div>
                   <div class="flex justify-between py-1 border-b border-carbon-800/90"><span class="text-slate-400">Primary Stack:</span><span class="text-emerald-400 font-semibold">AWS • Terraform • Java • Python • RAG</span></div>
                   <div class="flex justify-between py-1"><span class="text-slate-400">Base &amp; Mobility:</span><span class="text-white font-bold">Bengaluru // Anywhere India / Global</span></div>
                 </div>
@@ -641,7 +625,7 @@
   "experience": "4 Years (3.5+ Yrs US)",
   "iac_stack": ["Terraform", "Terragrunt", "Jenkins"],
   "runtime": ["RHEL Linux", "Docker", "Java 17", "Python"],
-  "domain": "NYSE & Fed Reserve Clearing Sync",
+  "domain": "Financial-market infrastructure",
   "mobility": "Bengaluru / Anywhere India / Global"
 }</code></pre>
               </div>
@@ -752,7 +736,6 @@
           </div>
         </div>
       </section>
-
       <!-- Section: Professional Experience & Architecture Deep Dives -->
       <section id="journey" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-14 border-b border-carbon-800 scroll-mt-20">
         <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-8 sm:mb-10 gap-6">
@@ -800,7 +783,7 @@
         </div>
 
         <!-- ========================================================================================= -->
-        <!-- MANAGER MODE: Smooth Collapsible Compartments (Distinct Employer vs Client Logo Sizes)     -->
+        <!-- MANAGER MODE: Smooth Collapsible Compartments (Distinct Employer vs Client Logo Sizes)    -->
         <!-- ========================================================================================= -->
         <div id="manager-ledger-cards" class="manager-only space-y-6">
           
@@ -808,14 +791,14 @@
           <details class="bg-carbon-900/95 border border-emerald-500/35 rounded-3xl shadow-2xl group" id="manager-compartment-1" open>
             <summary class="p-5 sm:p-7 pb-0 group-open:pb-5 border-b border-transparent group-open:border-carbon-800 transition-all flex items-center justify-between gap-4 relative select-none cursor-pointer outline-none">
               <div class="flex items-center gap-4 sm:gap-5">
-                <!-- Primary Employer Logo (Larger: w-14 sm:w-16) -->
-                <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-carbon-950 border border-emerald-500/50 flex items-center justify-center shadow-lg shrink-0 overflow-hidden p-2">
+                <!-- Primary Employer Logo (Larger: w-16 -> sm:w-[72px]) -->
+                <div class="w-16 h-16 sm:w-[72px] sm:h-[72px] rounded-2xl bg-carbon-950 border border-emerald-500/50 flex items-center justify-center shadow-lg shrink-0 overflow-hidden p-2">
                   <img src="assets/ascendion.png" alt="Ascendion" class="w-full h-full object-contain" onerror="resolveAsset(this, 'ascendion')">
                   <span class="asset-fallback hidden font-sans font-black text-2xl text-white">A</span>
                 </div>
-                <!-- Secondary Client Logo (Smaller: w-10 sm:w-12) -->
+                <!-- Secondary Client Logo (Smaller: w-[44px] -> sm:w-[53px]) -->
                 <div class="flex flex-col items-center shrink-0">
-                  <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-carbon-800 border border-emerald-500/30 flex items-center justify-center shadow-md overflow-hidden p-1.5" title="Enterprise Client: HP Inc.">
+                  <div class="w-[44px] h-[44px] sm:w-[53px] sm:h-[53px] rounded-xl bg-carbon-800 border border-emerald-500/30 flex items-center justify-center shadow-md overflow-hidden p-1.5" title="Enterprise Client: HP Inc.">
                     <img src="assets/hp.png" alt="HP Inc." class="w-full h-full object-contain" onerror="resolveAsset(this, 'hp')">
                     <span class="asset-fallback hidden font-sans font-bold text-[10px] sm:text-xs text-emerald-300 text-center leading-tight">HP<br>Inc.</span>
                   </div>
@@ -917,14 +900,14 @@
           <details class="bg-carbon-900/95 border border-amber-500/35 rounded-3xl shadow-2xl group">
             <summary class="p-5 sm:p-7 pb-0 group-open:pb-5 border-b border-transparent group-open:border-carbon-800 transition-all flex items-center justify-between gap-4 relative select-none cursor-pointer outline-none">
               <div class="flex items-center gap-4 sm:gap-5">
-                <!-- Primary Employer Logo (Larger: w-14 sm:w-16) -->
-                <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-carbon-950 border border-amber-500/50 flex items-center justify-center shadow-lg shrink-0 overflow-hidden p-2">
+                <!-- Primary Employer Logo (Larger: w-16 -> sm:w-[72px]) -->
+                <div class="w-16 h-16 sm:w-[72px] sm:h-[72px] rounded-2xl bg-carbon-950 border border-amber-500/50 flex items-center justify-center shadow-lg shrink-0 overflow-hidden p-2">
                   <img src="assets/eficens.png" alt="Eficens" class="w-full h-full object-contain" onerror="resolveAsset(this, 'eficens')">
                   <span class="asset-fallback hidden font-sans font-black text-2xl text-amber-400">E</span>
                 </div>
-                <!-- Secondary Client Logo (Smaller: w-10 sm:w-12) -->
+                <!-- Secondary Client Logo (Smaller: w-[44px] -> sm:w-[53px]) -->
                 <div class="flex flex-col items-center shrink-0">
-                  <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-carbon-800 border border-emerald-500/30 flex items-center justify-center shadow-md overflow-hidden p-1.5" title="US Financial Clearing Client">
+                  <div class="w-[44px] h-[44px] sm:w-[53px] sm:h-[53px] rounded-xl bg-carbon-800 border border-emerald-500/30 flex items-center justify-center shadow-md overflow-hidden p-1.5" title="US Financial Clearing Client">
                     <span class="font-sans font-bold text-[9px] sm:text-[10px] text-amber-300 text-center leading-tight">FinTech<br>Client</span>
                   </div>
                   <span class="text-[8px] font-mono text-slate-400 uppercase tracking-widest mt-1">FINTECH</span>
@@ -947,7 +930,7 @@
                   <span class="text-slate-300 font-semibold">SOMERSET, NEW JERSEY, USA</span>
                 </div>
                 <span class="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/40 text-emerald-300 text-[11px]">
-                  US Financial Clearing Client: NYSE &amp; Federal Reserve Sync
+                  US Financial Clearing Infrastructure
                 </span>
               </div>
 
@@ -956,7 +939,7 @@
                 <div class="p-4 sm:p-5 rounded-2xl bg-carbon-950/90 border border-carbon-800 space-y-2">
                   <span class="text-[11px] font-mono font-bold text-amber-400 uppercase tracking-wider block">ZERO-TRUST CLEARING INFRASTRUCTURE &amp; IaC</span>
                   <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                    Engineered reusable Terraform modules to provision core AWS infrastructure (EC2, VPC, RDS, S3), slashing deployment time by over 50% for post-trade clearing pipelines.
+                    Engineered reusable Terraform modules to provision core AWS infrastructure (EC2, VPC, RDS, S3), slashing deployment time by over 50% for post-trade financial clearing feeds.
                   </p>
                   <ul class="text-xs font-mono text-slate-400 space-y-1 pt-1 list-disc list-inside">
                     <li>Partnered with SecOps to enforce IAM PoLP for regulatory compliance</li>
@@ -1003,8 +986,8 @@
           <details class="bg-carbon-900/95 border border-sky-500/35 rounded-3xl shadow-2xl group">
             <summary class="p-5 sm:p-7 pb-0 group-open:pb-5 border-b border-transparent group-open:border-carbon-800 transition-all flex items-center justify-between gap-4 relative select-none cursor-pointer outline-none">
               <div class="flex items-center gap-4 sm:gap-5">
-                <!-- Primary Employer Logo (Larger: w-14 sm:w-16) -->
-                <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-carbon-950 border border-sky-500/50 flex items-center justify-center shadow-lg shrink-0 overflow-hidden p-2">
+                <!-- Primary Employer Logo (Larger: w-16 -> sm:w-[72px]) -->
+                <div class="w-16 h-16 sm:w-[72px] sm:h-[72px] rounded-2xl bg-carbon-950 border border-sky-500/50 flex items-center justify-center shadow-lg shrink-0 overflow-hidden p-2">
                   <img src="assets/lotusdata.png" alt="LotusData" class="w-full h-full object-contain" onerror="resolveAsset(this, 'lotusdata')">
                   <span class="asset-fallback hidden font-sans font-black text-2xl text-sky-400">LD</span>
                 </div>
@@ -1094,13 +1077,13 @@
               </div>
               <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-start">
                 <div class="lg:col-span-8 space-y-3">
-                  <!-- Hierarchical Logo Pair: Primary Company (w-10) > Client (w-7) -->
+                  <!-- Hierarchical Logo Pair: Primary Company (w-[44px] -> sm:w-12) > Client (w-[26px] -> sm:w-[31px]) -->
                   <div class="inline-flex items-center gap-2.5 mb-2 border-b border-carbon-800 pb-2.5 pr-4">
-                    <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-carbon-950 border border-emerald-500/50 flex items-center justify-center p-1.5 overflow-hidden shrink-0 shadow-md">
+                    <div class="w-[44px] h-[44px] sm:w-12 sm:h-12 rounded-xl bg-carbon-950 border border-emerald-500/50 flex items-center justify-center p-1.5 overflow-hidden shrink-0 shadow-md">
                       <img src="assets/ascendion.png" alt="Ascendion" class="w-full h-full object-contain" onerror="resolveAsset(this, 'ascendion')">
                       <span class="asset-fallback hidden font-sans font-black text-sm text-white">A</span>
                     </div>
-                    <div class="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-carbon-800 border border-emerald-500/30 flex items-center justify-center p-1 overflow-hidden shrink-0" title="Client: HP Inc.">
+                    <div class="w-[26px] h-[26px] sm:w-[31px] sm:h-[31px] rounded-lg bg-carbon-800 border border-emerald-500/30 flex items-center justify-center p-1 overflow-hidden shrink-0" title="Client: HP Inc.">
                       <img src="assets/hp.png" alt="HP Inc." class="w-full h-full object-contain" onerror="resolveAsset(this, 'hp')">
                       <span class="asset-fallback hidden font-sans font-bold text-[7px] text-emerald-300 text-center leading-none">HP</span>
                     </div>
@@ -1141,20 +1124,20 @@
               </div>
               <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-start">
                 <div class="lg:col-span-8 space-y-3">
-                  <!-- Hierarchical Logo Pair: Primary Company (w-10) > Client (w-7) -->
+                  <!-- Hierarchical Logo Pair: Primary Company (w-[44px] -> sm:w-12) > Client (w-[26px] -> sm:w-[31px]) -->
                   <div class="inline-flex items-center gap-2.5 mb-2 border-b border-carbon-800 pb-2.5 pr-4">
-                    <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-carbon-950 border border-amber-500/50 flex items-center justify-center p-1.5 overflow-hidden shrink-0 shadow-md">
+                    <div class="w-[44px] h-[44px] sm:w-12 sm:h-12 rounded-xl bg-carbon-950 border border-amber-500/50 flex items-center justify-center p-1.5 overflow-hidden shrink-0 shadow-md">
                       <img src="assets/eficens.png" alt="Eficens" class="w-full h-full object-contain" onerror="resolveAsset(this, 'eficens')">
                       <span class="asset-fallback hidden font-sans font-black text-sm text-amber-400">E</span>
                     </div>
-                    <div class="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-carbon-800 border border-emerald-500/30 flex items-center justify-center p-1 overflow-hidden shrink-0" title="US FinTech Clearing Client">
+                    <div class="w-[26px] h-[26px] sm:w-[31px] sm:h-[31px] rounded-lg bg-carbon-800 border border-emerald-500/30 flex items-center justify-center p-1 overflow-hidden shrink-0" title="US FinTech Clearing Client">
                       <span class="font-sans font-bold text-[6.5px] text-amber-300 text-center leading-none">FIN</span>
                     </div>
                     <h4 class="text-sm sm:text-base font-bold text-white leading-snug ml-1">Eficens Systems LLC — DevOps Engineer (US FinTech)</h4>
                   </div>
 
                   <ul class="space-y-2 text-slate-300 text-xs sm:text-sm list-disc list-inside leading-relaxed">
-                    <li><strong class="text-sky-400">Zero-Trust Terraform Blueprints:</strong> Engineered reusable IaC modules provisioning private multi-tier VPC topologies across environments syncing with NYSE &amp; Fed feeds.</li>
+                    <li><strong class="text-sky-400">Zero-Trust Terraform Blueprints:</strong> Engineered reusable IaC modules provisioning private multi-tier VPC topologies across environments syncing with regulated financial-market feeds.</li>
                     <li><strong class="text-amber-400">DependencyViolation Resolution:</strong> Decoupled inline security group blocks into standalone <code class="text-white">aws_security_group_rule</code> resources.</li>
                     <li><strong class="text-emerald-400">KMS Cryptographic Parity:</strong> Automated Jenkins pipelines enforcing KMS envelope encryption and zero-downtime RDS upgrades.</li>
                   </ul>
@@ -1171,7 +1154,7 @@
                     <span>↗</span>
                   </a>
                   <p class="text-[10px] text-slate-300 leading-snug">Multi-AZ resilience, VPC peering &amp; KMS HSM encryption.</p>
-                  <p class="text-[10px] text-sky-300/90 leading-snug italic">Helped design zero-trust VPC isolation for NYSE feeds.</p>
+                  <p class="text-[10px] text-sky-300/90 leading-snug italic">Helped design zero-trust VPC isolation for financial-market integrations.</p>
                 </div>
               </div>
             </div>
@@ -1184,9 +1167,9 @@
               </div>
               <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-start">
                 <div class="lg:col-span-8 space-y-3">
-                  <!-- Primary Employer Logo (w-10, No Client Box) -->
+                  <!-- Primary Employer Logo (w-[44px] -> sm:w-12, No Client Box) -->
                   <div class="inline-flex items-center gap-2.5 mb-2 border-b border-carbon-800 pb-2.5 pr-4">
-                    <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-carbon-950 border border-sky-500/50 flex items-center justify-center p-1.5 overflow-hidden shrink-0 shadow-md">
+                    <div class="w-[44px] h-[44px] sm:w-12 sm:h-12 rounded-xl bg-carbon-950 border border-sky-500/50 flex items-center justify-center p-1.5 overflow-hidden shrink-0 shadow-md">
                       <img src="assets/lotusdata.png" alt="LotusData" class="w-full h-full object-contain" onerror="resolveAsset(this, 'lotusdata')">
                       <span class="asset-fallback hidden font-sans font-black text-sm text-sky-400">LD</span>
                     </div>
@@ -1297,7 +1280,6 @@
           </div>
         </div>
       </section>
-
       <!-- Section 04: Operating Mindset & Direct Contact (Shrunk by ~25% + Dev Mode CI/CD View) -->
       <section id="contact" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
         <div class="rounded-3xl bg-gradient-to-br from-carbon-850 via-carbon-800 to-carbon-900 border border-carbon-700 p-4 sm:p-6 md:p-8 shadow-2xl">
@@ -1403,7 +1385,7 @@
                     </g>
                   </svg>
 
-                  <!-- Standard HTML Rounded-Full Circular Overlay (100% immune to SVG clipPath/foreignObject bugs) -->
+                  <!-- Standard HTML Rounded-Full Circular Overlay -->
                   <div style="left: 34.83%; top: 30.24%; width: 30.33%; height: 44.39%;" class="absolute rounded-full overflow-hidden border-2 border-sky-400/60 shadow-[0_0_25px_rgba(56,189,248,0.25)] bg-[#0b111e] flex items-center justify-center pointer-events-none">
                     <img src="assets/image_87bd4a.jpg" alt="US to India Cloud &amp; DevOps Journey" class="w-full h-full object-cover rounded-full" onerror="resolveAsset(this, 'image_87bd4a')">
                     <div class="asset-fallback hidden w-full h-full flex-col items-center justify-center bg-gradient-to-b from-[#0f172a] to-[#070b12] text-center p-3">
@@ -1416,92 +1398,106 @@
               </div>
             </div>
 
-            <!-- Dev Mode Exclusive: CI/CD Deployment Pipeline View (Shrunk ~25% & Lightweight) -->
-            <div class="lg:col-span-12 w-full dev-only space-y-5" style="display: none;">
+            <!-- Dev Mode Exclusive: Engineering Workflow (4-Stage Pipeline) -->
+            <div class="lg:col-span-12 w-full dev-only space-y-6" style="display: none;">
               <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[#00ff66]/25 pb-4">
                 <div class="space-y-1.5">
-                  <span class="text-[10px] sm:text-[11px] font-mono text-[#00ff66] uppercase tracking-wider block">HOW I WORK // CI/CD OPERATING PIPELINE</span>
+                  <span class="text-[10px] sm:text-[11px] font-mono text-[#00ff66] uppercase tracking-wider block">HOW I WORK // ENGINEERING WORKFLOW</span>
                   <h2 class="text-xl sm:text-2xl lg:text-3xl font-extrabold text-white leading-tight font-mono">
-                    Ready to trigger <span class="text-[#00ff66]">production deployment?</span>
+                    From evidence to a <span class="text-[#00ff66]">clear handoff.</span>
                   </h2>
                 </div>
                 <p class="text-slate-300 text-xs sm:text-[13px] font-mono max-w-md">
-                  &gt; Translating root-cause evidence into zero-drift IaC and clear team runbooks across Cloud, SRE &amp; GenAI squads.
+                  &gt; A practical approach to diagnosing, validating and communicating engineering changes.
                 </p>
               </div>
 
-              <!-- 3-Stage Connected Pipeline -->
-              <div class="flex flex-col md:flex-row items-stretch justify-between gap-0 font-mono text-xs w-full">
+              <!-- 4-Stage Connected Pipeline -->
+              <div class="flex flex-col md:flex-row items-stretch justify-between gap-0 font-mono text-xs w-full overflow-x-auto pb-2">
                 
-                <!-- Stage 1: build_context -->
-                <div class="w-full md:w-[31%] p-4 rounded-xl bg-black/95 border border-[#00ff66]/60 shadow-[0_0_18px_rgba(0,255,102,0.12)] flex flex-col justify-between">
+                <!-- Stage 01: inspect_context -->
+                <div id="wf-stage-1" class="wf-stage w-full md:w-[23%] p-3.5 rounded-xl bg-black/95 border border-[#00ff66]/40 flex flex-col justify-between shrink-0 min-w-[200px]">
                   <div>
-                    <div class="flex items-center justify-between gap-2 mb-2.5 border-b border-[#00ff66]/25 pb-2">
-                      <span class="text-[#00ff66] font-bold flex items-center gap-1.5"><i data-lucide="check-circle" class="w-3.5 h-3.5"></i> 01. build_context</span>
-                      <span class="px-1.5 py-0.5 rounded bg-[#00ff66]/15 text-[#00ff66] text-[9px]">PASSED (18s)</span>
+                    <div class="flex items-center justify-between gap-2 mb-2 border-b border-[#00ff66]/20 pb-2">
+                      <span class="text-[#00ff66] font-bold flex items-center gap-1.5">01. inspect_context</span>
                     </div>
-                    <p class="text-[11px] text-slate-300 leading-relaxed mb-2">
-                      Start with deterministic evidence—logs, exit codes, and syscall traces first, never guesswork.
+                    <p class="text-[10px] text-slate-300 leading-relaxed mb-3">
+                      Understand what changed before changing anything.
                     </p>
                   </div>
-                  <div class="text-[10px] text-slate-400 bg-[#030804] p-2 rounded border border-[#00ff66]/20">
-                    <div>$ verify_aws_certs --count=3 <span class="text-[#00ff66]">OK</span></div>
-                    <div>$ check_exp --yrs=4 <span class="text-[#00ff66]">OK</span></div>
+                  <div class="text-[9px] text-slate-400 bg-[#030804] p-1.5 rounded border border-[#00ff66]/20">
+                    <span class="text-[#00ff66] font-bold">EVIDENCE:</span> Logs · PR diffs · Configuration · Dependencies
                   </div>
                 </div>
 
                 <!-- Connector 1 -->
-                <div class="h-6 md:h-auto w-0.5 md:w-[3.5%] self-center pipeline-flow-anim shrink-0"></div>
+                <div id="wf-conn-1" class="wf-connector h-6 md:h-auto w-0.5 md:w-[2%] self-center border-l-2 md:border-l-0 md:border-t-2 border-dashed border-[#00ff66] shrink-0 relative">
+                  <div id="wf-packet-1" class="wf-packet absolute hidden w-2 h-2 rounded-full bg-[#00ff66] shadow-[0_0_8px_#00ff66]" style="top: -1px; left: 0;"></div>
+                </div>
 
-                <!-- Stage 2: run_diagnostics -->
-                <div class="w-full md:w-[31%] p-4 rounded-xl bg-black/95 border border-[#00ff66]/60 shadow-[0_0_18px_rgba(0,255,102,0.12)] flex flex-col justify-between">
+                <!-- Stage 02: trace_and_validate -->
+                <div id="wf-stage-2" class="wf-stage w-full md:w-[23%] p-3.5 rounded-xl bg-black/95 border border-[#00ff66]/40 flex flex-col justify-between shrink-0 min-w-[200px]">
                   <div>
-                    <div class="flex items-center justify-between gap-2 mb-2.5 border-b border-[#00ff66]/25 pb-2">
-                      <span class="text-[#00ff66] font-bold flex items-center gap-1.5"><i data-lucide="check-circle" class="w-3.5 h-3.5"></i> 02. run_diagnostics</span>
-                      <span class="px-1.5 py-0.5 rounded bg-[#00ff66]/15 text-[#00ff66] text-[9px]">PASSED (12s)</span>
+                    <div class="flex items-center justify-between gap-2 mb-2 border-b border-[#00ff66]/20 pb-2">
+                      <span class="text-[#00ff66] font-bold flex items-center gap-1.5">02. trace_and_validate</span>
                     </div>
-                    <p class="text-[11px] text-slate-300 leading-relaxed mb-2">
-                      Enforce zero-drift Terraform modules, canonical DTOs, and calm outage runbooks (VP Ed, Toastmasters D83).
+                    <p class="text-[10px] text-slate-300 leading-relaxed mb-3">
+                      Trace the issue across service and infrastructure boundaries, then validate the proposed fix.
                     </p>
                   </div>
-                  <div class="text-[10px] text-slate-400 bg-[#030804] p-2 rounded border border-[#00ff66]/20">
-                    <div>$ terraform_drift_scan <span class="text-[#00ff66]">0_DRIFT</span></div>
-                    <div>$ publish_runbook --sla=60m <span class="text-[#00ff66]">OK</span></div>
+                  <div class="text-[9px] text-slate-400 bg-[#030804] p-1.5 rounded border border-[#00ff66]/20">
+                    <span class="text-[#00ff66] font-bold">ANALYSIS:</span> Service dependencies · IaC changes · Health checks
                   </div>
                 </div>
 
                 <!-- Connector 2 -->
-                <div class="h-6 md:h-auto w-0.5 md:w-[3.5%] self-center pipeline-flow-anim shrink-0"></div>
+                <div id="wf-conn-2" class="wf-connector h-6 md:h-auto w-0.5 md:w-[2%] self-center border-l-2 md:border-l-0 md:border-t-2 border-dashed border-[#00ff66] shrink-0 relative">
+                  <div id="wf-packet-2" class="wf-packet absolute hidden w-2 h-2 rounded-full bg-[#00ff66] shadow-[0_0_8px_#00ff66]" style="top: -1px; left: 0;"></div>
+                </div>
 
-                <!-- Stage 3: deploy_candidate -->
-                <div class="w-full md:w-[31%] p-4 rounded-xl bg-carbon-950 border-2 border-[#00ff66] shadow-[0_0_24px_rgba(0,255,102,0.2)] flex flex-col justify-between">
+                <!-- Stage 03: review_change -->
+                <div id="wf-stage-3" class="wf-stage w-full md:w-[23%] p-3.5 rounded-xl bg-carbon-950 border border-amber-500/40 flex flex-col justify-between shrink-0 min-w-[200px]">
                   <div>
-                    <div class="flex items-center justify-between gap-2 mb-2.5 border-b border-[#00ff66]/30 pb-2">
-                      <span class="text-white font-bold flex items-center gap-1.5">
-                        <span class="w-2 h-2 rounded-full bg-[#00ff66] animate-ping"></span> 03. deploy_candidate
-                      </span>
-                      <span class="px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/40 text-[9px]">MANUAL_TRIGGER</span>
+                    <div class="flex items-center justify-between gap-2 mb-2 border-b border-amber-500/20 pb-2">
+                      <span class="text-amber-400 font-bold flex items-center gap-1.5">03. review_change</span>
                     </div>
-                    <p class="text-[11px] text-slate-300 leading-relaxed mb-3">
-                      Awaiting manual approval to initiate interview sync for DevOps, Cloud, SRE, or GenAI roles.
+                    <p class="text-[10px] text-slate-300 leading-relaxed mb-3">
+                      Check the change scope, access impact, operational risk and rollback path before proceeding.
                     </p>
                   </div>
-                  <div class="space-y-2">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                      <a href="mailto:msaivinay306@gmail.com" class="px-2.5 py-2 rounded-lg bg-[#00ff66] hover:bg-[#00ff66]/90 text-black font-bold text-[10.5px] flex items-center justify-center gap-1.5 transition-all cursor-pointer">
-                        &gt;_ send_email.sh
-                      </a>
-                      <button type="button" onclick="openCalendly()" class="px-2.5 py-2 rounded-lg bg-black hover:bg-[#00ff66]/15 text-[#00ff66] border border-[#00ff66]/60 font-bold text-[10.5px] flex items-center justify-center gap-1.5 transition-all cursor-pointer">
-                        &gt;_ schedule_call
-                      </button>
-                    </div>
-                    <div class="text-[10px] text-slate-400 pt-1 flex items-center justify-between border-t border-carbon-800">
-                      <a href="tel:+919899109594" class="text-[#00ff66] hover:underline">+91 9899109594</a>
-                      <a href="https://linkedin.com/in/sai-vinay-mullapudi" target="_blank" rel="noreferrer" class="text-[#00ff66] hover:underline">/in/sai-vinay-mullapudi</a>
-                    </div>
+                  <div class="text-[9px] text-slate-400 bg-[#0a0e17] p-1.5 rounded border border-amber-500/20">
+                    <span class="text-amber-400 font-bold">REVIEW GATE:</span> Scope · Access · Impact · Rollback
                   </div>
                 </div>
 
+                <!-- Connector 3 -->
+                <div id="wf-conn-3" class="wf-connector h-6 md:h-auto w-0.5 md:w-[2%] self-center border-l-2 md:border-l-0 md:border-t-2 border-dashed border-amber-500/50 shrink-0 relative">
+                  <div id="wf-packet-3" class="wf-packet absolute hidden w-2 h-2 rounded-full bg-amber-400 shadow-[0_0_8px_#fbbf24]" style="top: -1px; left: 0;"></div>
+                </div>
+
+                <!-- Stage 04: close_the_loop -->
+                <div id="wf-stage-4" class="wf-stage w-full md:w-[23%] p-3.5 rounded-xl bg-black/95 border border-[#38bdf8]/40 flex flex-col justify-between shrink-0 min-w-[200px]">
+                  <div>
+                    <div class="flex items-center justify-between gap-2 mb-2 border-b border-[#38bdf8]/20 pb-2">
+                      <span class="text-[#38bdf8] font-bold flex items-center gap-1.5">04. close_the_loop</span>
+                    </div>
+                    <p class="text-[10px] text-slate-300 leading-relaxed mb-3">
+                      Communicate what was found, what changed, what was verified and what needs to happen next.
+                    </p>
+                  </div>
+                  <div class="text-[9px] text-slate-400 bg-[#030804] p-1.5 rounded border border-[#38bdf8]/20">
+                    <span class="text-[#38bdf8] font-bold">HANDOFF:</span> Findings · Resolution · Next step
+                  </div>
+                </div>
+
+              </div>
+              
+              <!-- Replay Controls & Disclaimer -->
+              <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-2">
+                <button type="button" id="btnReplayWorkflow" onclick="replayWorkflowAnim()" class="px-3 py-1.5 rounded-lg bg-carbon-800 hover:bg-carbon-700 text-slate-300 hover:text-white border border-carbon-600 font-mono text-[10px] font-bold flex items-center gap-1.5 transition-colors cursor-pointer" aria-label="Replay workflow animation">
+                  ↻ Replay workflow
+                </button>
+                <span class="text-[9px] sm:text-[10px] text-slate-500 font-mono italic">Illustrative animation only — no deployment is executed.</span>
               </div>
             </div>
 
@@ -1838,6 +1834,7 @@
       </div>
     </div>
   </div>
+
   <!-- ============================================== -->
   <!-- FLOATING DEV CONSOLE MODAL (On-Demand)         -->
   <!-- ============================================== -->
@@ -2074,7 +2071,7 @@
           </div>`
       },
       'eficens-terraform': {
-        badge: "CASE 03 • US FINTECH (NYSE/FED SYNC)",
+        badge: "CASE 03 • US FINTECH (FINANCIAL CLEARING)",
         title: "Scaling Regulated FinTech AWS Environments & Zero-Downtime RDS",
         metric: "✓ Outcome: >50% Faster Provisioning • -15 Incidents/Mo",
         body: `
@@ -2290,7 +2287,6 @@
           pf_rAFCounter = 0;
           pf_rAFLastSecond = now;
           
-          /* Keep strip and dashboard gauge 100% synchronized */
           const fpsEl = document.getElementById('devFpsVal');
           if (fpsEl) fpsEl.textContent = `${pf_liveFps}`;
           updateGaugeDial('speedGaugeArc', 'speedGaugeNeedle', 'speedGaugeValueText', Math.min(120, pf_liveFps), 120, ' FPS');
@@ -2330,17 +2326,14 @@
       const heapEl = document.getElementById('telemetryHeapVal');
       const driftEl = document.getElementById('loopDriftVal');
 
-      /* 1. Timer Scheduling Delay */
       const tLoopStart = performance.now();
       setTimeout(() => {
         const drift = Math.max(0.1, performance.now() - tLoopStart - 10);
         if (driftEl) driftEl.textContent = `${drift.toFixed(1)} ms`;
       }, 10);
 
-      /* 2. JS Heap */
       if (heapEl) heapEl.textContent = readHonestHeapStatus();
 
-      /* 3. Network Information API + Live Bandwidth Speedometer */
       const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
       let netApiMbps = (conn && Number.isFinite(conn.downlink)) ? conn.downlink : null;
       let effType = (conn && conn.effectiveType) ? String(conn.effectiveType).toUpperCase() : null;
@@ -2354,7 +2347,6 @@
         if (netApiDetailEl) netApiDetailEl.textContent = 'Unsupported by Browser Engine';
       }
 
-      /* 4. HTTP RTT + Edge POP + Active Payload Throughput Measurement */
       const t0 = performance.now();
       let measuredRtt = null;
       let detectedPop = 'Same-Origin HTTP HEAD';
@@ -2378,11 +2370,9 @@
         }
       }
 
-      /* Synchronize Edge POP across both strip and modal */
       if (edgePopEl) edgePopEl.textContent = detectedPop;
       if (stripEdge) stripEdge.textContent = detectedPop;
 
-      /* Synchronize HTTP RTT across both strip and modal */
       if (measuredRtt !== null) {
         pf_rttSampleWindow.push(measuredRtt);
         if (pf_rttSampleWindow.length > 5) pf_rttSampleWindow.shift();
@@ -2400,7 +2390,6 @@
         if (jitterEl) jitterEl.textContent = 'N/A';
       }
 
-      /* 5. Active Client Bandwidth Speedometer (Measures document transfer rate when dashboard opens or re-samples) */
       if (forceSpeedTest || pf_lastMeasuredMbps === null) {
         try {
           const speedUrl = new URL(window.location.href);
@@ -2435,7 +2424,6 @@
       if (pf_httpIntervalId) { clearInterval(pf_httpIntervalId); pf_httpIntervalId = null; }
     }
 
-    /* True Timezone Abbreviation (e.g., IST, EST, PST instead of LOC) */
     function getLocalTimezoneAbbrev() {
       try {
         const iana = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
@@ -2494,7 +2482,7 @@
     };
 
     /* ========================================================================= */
-    /* 6. AIRHEAD BALLOON COMPANION (Dizzy Cooldown Lock Prevents Infinite Loop) */
+    /* 6. AIRHEAD BALLOON COMPANION                                              */
     /* ========================================================================= */
     let bln_isMinimized = false, bln_isIntroduced = false, bln_isDizzyLocked = false;
     let bln_dizzyCooldownUntil = 0;
@@ -2551,7 +2539,6 @@
         if (Math.abs(dx) > 4 || Math.abs(dy) > 4) hasMoved = true;
 
         const now = performance.now();
-        /* Ignore shake reversals while dizzy or in post-dizzy cooldown */
         if (!bln_isDizzyLocked && now > bln_dizzyCooldownUntil) {
           const swingDelta = e.clientX - swingAnchorX;
           if (Math.abs(swingDelta) >= 22) {
@@ -2610,7 +2597,7 @@
       const now = performance.now();
       if (bln_isDizzyLocked || now < bln_dizzyCooldownUntil) return;
       bln_isDizzyLocked = true;
-      bln_dizzyCooldownUntil = now + 4500; /* 2.8s dizzy + 1.7s immunity cooldown */
+      bln_dizzyCooldownUntil = now + 4500;
       bln_reversalTimestamps = [];
       setBalloonFace('dizzy', true);
       showToast('😵‍💫 <strong>Whoa!</strong> AirHead.cs~1.6 is dizzy from the high-G mouse shake!', 2800);
@@ -2739,7 +2726,7 @@
     }
 
     /* ========================================================================= */
-    /* 7. COPILOT CHAT & SANDBOX (With Working Barrel Roll & sudo hire sai)      */
+    /* 7. COPILOT CHAT & SANDBOX                                                 */
     /* ========================================================================= */
     let pf_isChatMinimized = window.innerWidth < 640;
     let pf_chatHistory = [];
@@ -2898,7 +2885,7 @@
     };
 
     /* ========================================================================= */
-    /* 8. MATRIX RAIN & INCIDENT SANDBOX CLI                                     */
+    /* 8. MATRIX RAIN, CLI SANDBOX & WORKFLOW REPLAY ANIMATION                   */
     /* ========================================================================= */
     let matrixTimer = null, rainDrops = [];
     const canvas = document.getElementById('matrixCanvas');
@@ -2945,6 +2932,47 @@
         if (btn) btn.innerHTML = `<i data-lucide="sparkles" class="w-3.5 h-3.5 text-[#00ff66]"></i><span class="text-[11px] text-[#00ff66] hidden sm:inline">Rain</span>`;
         if (window.lucide) lucide.createIcons();
       }
+    };
+
+    /* Replay Workflow Animation Controller */
+    let wf_animTimeouts = [];
+    window.replayWorkflowAnim = function() {
+      wf_animTimeouts.forEach(t => clearTimeout(t));
+      wf_animTimeouts = [];
+
+      const stages = [document.getElementById('wf-stage-1'), document.getElementById('wf-stage-2'), document.getElementById('wf-stage-3'), document.getElementById('wf-stage-4')];
+      const conns = [document.getElementById('wf-conn-1'), document.getElementById('wf-conn-2'), document.getElementById('wf-conn-3')];
+      
+      stages.forEach(s => { if(s) { s.classList.remove('wf-active', 'wf-active-amber', 'wf-active-final'); } });
+      conns.forEach(c => { if(c) c.classList.remove('wf-connector-active'); });
+
+      if (pf_isReducedMotion) {
+        stages.forEach(s => { if(s) s.classList.add('wf-active'); });
+        return;
+      }
+
+      /* Step 1: Stage 1 */
+      wf_animTimeouts.push(setTimeout(() => {
+        stages[0]?.classList.add('wf-active');
+      }, 100));
+
+      /* Step 2: Connector 1 -> Stage 2 */
+      wf_animTimeouts.push(setTimeout(() => {
+        conns[0]?.classList.add('wf-connector-active');
+        stages[1]?.classList.add('wf-active');
+      }, 700));
+
+      /* Step 3: Connector 2 -> Stage 3 (Amber Review Gate) */
+      wf_animTimeouts.push(setTimeout(() => {
+        conns[1]?.classList.add('wf-connector-active');
+        stages[2]?.classList.add('wf-active-amber');
+      }, 1300));
+
+      /* Step 4: Connector 3 -> Stage 4 (Blue Handoff) */
+      wf_animTimeouts.push(setTimeout(() => {
+        conns[2]?.classList.add('wf-connector-active');
+        stages[3]?.classList.add('wf-active-final');
+      }, 1900));
     };
 
     let activeCliAbortController = null, activeCliTimers = [];
