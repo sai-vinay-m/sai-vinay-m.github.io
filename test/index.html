@@ -111,6 +111,84 @@
       border: 1px solid rgba(49, 65, 97, 0.65); backdrop-filter: blur(14px); border-radius: 22px;
       transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
     }
+
+    /* 3D White Onboarding Arrow */
+    @keyframes superBounce3D {
+      0%, 100% { 
+        transform: translate(-50%, 0) scale(1.1); 
+        text-shadow: 0 4px 0 #94a3b8, 0 8px 15px rgba(255, 255, 255, 0.5); 
+      }
+      50% { 
+        transform: translate(-50%, -12px) scale(1); 
+        text-shadow: 0 12px 0 #64748b, 0 16px 20px rgba(255, 255, 255, 0.3); 
+      }
+    }
+    .onboarding-arrow-3d {
+      animation: superBounce3D 1.2s infinite cubic-bezier(0.4, 0, 0.2, 1);
+      transition: opacity 0.8s ease-out;
+      color: #ffffff;
+      font-size: 2.5rem;
+      line-height: 1;
+    }
+
+    /* Engineering Workflow Stage Styles */
+    .wf-stage { 
+      transition: all 0.4s ease; 
+      border-color: #1e293b !important; /* Subdued, fully readable baseline */
+    }
+    @keyframes wfPulse {
+      0% { box-shadow: 0 0 0 0 rgba(0, 255, 102, 0.4); }
+      70% { box-shadow: 0 0 0 10px rgba(0, 255, 102, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(0, 255, 102, 0); }
+    }
+    @keyframes wfPulseAmber {
+      0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.4); }
+      70% { box-shadow: 0 0 0 10px rgba(245, 158, 11, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+    }
+    
+    /* Active & Passed States */
+    .wf-running { border-color: #00ff66 !important; animation: wfPulse 1.2s infinite; transform: translateY(-2px); }
+    .wf-passed { border-color: #00ff66 !important; box-shadow: 0 0 15px rgba(0, 255, 102, 0.15) !important; transform: translateY(0); }
+    
+    .wf-running-amber { border-color: #f59e0b !important; animation: wfPulseAmber 1.2s infinite; transform: translateY(-2px); }
+    .wf-passed-amber { border-color: #f59e0b !important; box-shadow: 0 0 15px rgba(245, 158, 11, 0.15) !important; transform: translateY(0); }
+    
+    .wf-passed-blue { border-color: #38bdf8 !important; box-shadow: 0 0 18px rgba(56, 189, 248, 0.25) !important; transform: translateY(-2px); }
+
+    /* Connector Logic */
+    .wf-connector { border-color: #1e293b !important; transition: border-color 0.4s ease; }
+    .wf-connector-solid { border-color: #00ff66 !important; }
+    .wf-connector-solid-amber { border-color: #f59e0b !important; }
+    
+    @keyframes flowDashX { from { background-position: 0 0; } to { background-position: -24px 0; } }
+    @keyframes flowDashY { from { background-position: 0 0; } to { background-position: 0 -24px; } }
+    
+    .wf-connector-animating {
+      border-color: transparent !important;
+      background-image: linear-gradient(to right, #00ff66 50%, transparent 50%);
+      background-size: 12px 2px;
+      background-repeat: repeat-x;
+      animation: flowDashX 0.6s linear infinite;
+    }
+    .wf-connector-animating-amber {
+      border-color: transparent !important;
+      background-image: linear-gradient(to right, #f59e0b 50%, transparent 50%);
+      background-size: 12px 2px;
+      background-repeat: repeat-x;
+      animation: flowDashX 0.6s linear infinite;
+    }
+
+    @media (max-width: 768px) {
+      .wf-connector-animating { background-image: linear-gradient(to bottom, #00ff66 50%, transparent 50%); background-size: 2px 12px; background-repeat: repeat-y; animation: flowDashY 0.6s linear infinite; }
+      .wf-connector-animating-amber { background-image: linear-gradient(to bottom, #f59e0b 50%, transparent 50%); background-size: 2px 12px; background-repeat: repeat-y; animation: flowDashY 0.6s linear infinite; }
+    }
+
+    /* Reduced Motion overrides for workflow */
+    @media (prefers-reduced-motion: reduce) {
+      .wf-running, .wf-running-amber, .onboarding-arrow-3d, .wf-connector-animating, .wf-connector-animating-amber { animation: none !important; }
+      .wf-packet, .wf-stage { transition: none !important; }
+    }
     /* CI/CD Workflow Animation Enhancements */
 .wf-stage { 
   transition: all 0.3s ease; 
@@ -409,7 +487,7 @@
 
         <!-- Segmented Mode Switcher (With Desktop Onboarding Arrow) -->
         <div class="hidden sm:inline-flex items-center p-1 rounded-xl bg-carbon-950/95 border border-carbon-700/90 font-mono text-[10px] sm:text-[11px] shadow-inner shrink-0 relative">
-          <div id="modeOnboardingArrow" class="absolute -bottom-10 left-1/2 -translate-x-1/2 text-[#00ff66] font-extrabold text-2xl onboarding-arrow pointer-events-none z-50">↑</div>
+<div id="modeOnboardingArrow" class="absolute -bottom-14 left-1/2 -translate-x-1/2 onboarding-arrow-3d pointer-events-none z-50">↑</div>
           <button type="button" id="headerBtnHr" onclick="setPerspective('recruiter', true)" class="px-2.5 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 text-slate-400 hover:text-white whitespace-nowrap">
             <span>👔</span><span class="hidden xl:inline">HR Mode</span><span class="xl:hidden">HR</span>
           </button>
@@ -433,7 +511,7 @@
       <div class="flex items-center justify-end gap-1.5 sm:gap-2.5 shrink-0">
         <!-- Mobile Mode Switcher (With Mobile Onboarding Arrow) -->
         <div class="sm:hidden inline-flex items-center p-1 rounded-xl bg-carbon-950/90 border border-carbon-700/90 font-mono text-[9px] shadow-inner shrink-0 relative">
-          <div id="mobileModeOnboardingArrow" class="absolute -bottom-8 left-1/2 -translate-x-1/2 text-[#00ff66] font-extrabold text-xl onboarding-arrow pointer-events-none z-50">↑</div>
+        <div id="mobileModeOnboardingArrow" class="absolute -bottom-12 left-1/2 -translate-x-1/2 onboarding-arrow-3d pointer-events-none z-50 text-3xl">↑</div>
           <button type="button" id="mobileBtnHr" onclick="setPerspective('recruiter', true)" class="px-1.5 py-1 rounded text-slate-400 hover:text-white">HR</button>
           <button type="button" id="mobileBtnMgr" onclick="setPerspective('manager', true)" class="px-1.5 py-1 rounded bg-amber-500 text-carbon-950 font-bold">Mgr</button>
           <button type="button" id="mobileBtnDev" onclick="setPerspective('engineer', true)" class="px-1.5 py-1 rounded text-slate-400 hover:text-white">Dev</button>
@@ -1562,82 +1640,82 @@
                   &gt; A practical approach to diagnosing, validating and communicating engineering changes.
                 </p>
               </div>
-
-              <!-- 4-Stage Connected Pipeline -->
+              
+             <!-- 4-Stage Connected Pipeline (Dev Mode) -->
               <div class="flex flex-col md:flex-row items-stretch justify-between gap-0 font-mono text-xs w-full overflow-x-auto pb-2">
                 
                 <!-- Stage 01: inspect_context -->
-                <div id="wf-stage-1" class="wf-stage w-full md:w-[23%] p-3.5 rounded-xl bg-black/95 border border-[#00ff66]/40 flex flex-col justify-between shrink-0 min-w-[200px]">
+                <div id="wf-stage-1" class="wf-stage w-full md:w-[23%] p-4 rounded-xl bg-black/95 border-2 flex flex-col justify-between shrink-0 min-w-[210px]">
                   <div>
                     <div class="flex items-center justify-between gap-2 mb-2 border-b border-[#00ff66]/20 pb-2">
-                      <span class="text-[#00ff66] font-bold flex items-center gap-1.5">01. inspect_context</span>
+                      <span class="text-[#00ff66] font-bold flex items-center gap-1.5 text-[11px] sm:text-xs">01. inspect_context</span>
                     </div>
-                    <p class="text-[10px] text-slate-300 leading-relaxed mb-3">
+                    <p class="text-[11px] sm:text-[12px] text-slate-300 leading-relaxed mb-3">
                       Understand what changed before changing anything.
                     </p>
                   </div>
-                  <div class="text-[9px] text-slate-400 bg-[#030804] p-1.5 rounded border border-[#00ff66]/20">
-                    <span class="text-[#00ff66] font-bold">EVIDENCE:</span> Logs · PR diffs · Configuration · Dependencies
+                  <div class="text-[10px] sm:text-[11px] text-slate-400 bg-[#030804] p-2 rounded border border-[#00ff66]/20 leading-snug">
+                    <span class="text-[#00ff66] font-bold block mb-0.5">EVIDENCE:</span> Logs · PR diffs · Configuration · Dependencies
                   </div>
                 </div>
 
                 <!-- Connector 1 -->
-                <div id="wf-conn-1" class="wf-connector h-6 md:h-auto w-0.5 md:w-[2%] self-center border-l-2 md:border-l-0 md:border-t-2 border-dashed border-[#00ff66] shrink-0 relative">
-                  <div id="wf-packet-1" class="wf-packet absolute hidden w-2 h-2 rounded-full bg-[#00ff66] shadow-[0_0_8px_#00ff66]" style="top: -1px; left: 0;"></div>
+                <div id="wf-conn-1" class="wf-connector h-6 md:h-auto w-0.5 md:w-[2%] self-center border-l-2 md:border-l-0 md:border-t-2 border-dashed shrink-0 relative">
+                  <div id="wf-packet-1" class="absolute hidden w-2.5 h-2.5 rounded-full bg-[#00ff66] shadow-[0_0_8px_#00ff66]" style="top: -2px; left: -2px; z-index: 10;"></div>
                 </div>
 
                 <!-- Stage 02: trace_and_validate -->
-                <div id="wf-stage-2" class="wf-stage w-full md:w-[23%] p-3.5 rounded-xl bg-black/95 border border-[#00ff66]/40 flex flex-col justify-between shrink-0 min-w-[200px]">
+                <div id="wf-stage-2" class="wf-stage w-full md:w-[23%] p-4 rounded-xl bg-black/95 border-2 flex flex-col justify-between shrink-0 min-w-[210px]">
                   <div>
                     <div class="flex items-center justify-between gap-2 mb-2 border-b border-[#00ff66]/20 pb-2">
-                      <span class="text-[#00ff66] font-bold flex items-center gap-1.5">02. trace_and_validate</span>
+                      <span class="text-[#00ff66] font-bold flex items-center gap-1.5 text-[11px] sm:text-xs">02. trace_and_validate</span>
                     </div>
-                    <p class="text-[10px] text-slate-300 leading-relaxed mb-3">
+                    <p class="text-[11px] sm:text-[12px] text-slate-300 leading-relaxed mb-3">
                       Trace the issue across service and infrastructure boundaries, then validate the proposed fix.
                     </p>
                   </div>
-                  <div class="text-[9px] text-slate-400 bg-[#030804] p-1.5 rounded border border-[#00ff66]/20">
-                    <span class="text-[#00ff66] font-bold">ANALYSIS:</span> Service dependencies · IaC changes · Health checks
+                  <div class="text-[10px] sm:text-[11px] text-slate-400 bg-[#030804] p-2 rounded border border-[#00ff66]/20 leading-snug">
+                    <span class="text-[#00ff66] font-bold block mb-0.5">ANALYSIS:</span> Service dependencies · IaC changes · Health checks
                   </div>
                 </div>
 
                 <!-- Connector 2 -->
-                <div id="wf-conn-2" class="wf-connector h-6 md:h-auto w-0.5 md:w-[2%] self-center border-l-2 md:border-l-0 md:border-t-2 border-dashed border-[#00ff66] shrink-0 relative">
-                  <div id="wf-packet-2" class="wf-packet absolute hidden w-2 h-2 rounded-full bg-[#00ff66] shadow-[0_0_8px_#00ff66]" style="top: -1px; left: 0;"></div>
+                <div id="wf-conn-2" class="wf-connector h-6 md:h-auto w-0.5 md:w-[2%] self-center border-l-2 md:border-l-0 md:border-t-2 border-dashed shrink-0 relative">
+                  <div id="wf-packet-2" class="absolute hidden w-2.5 h-2.5 rounded-full bg-[#00ff66] shadow-[0_0_8px_#00ff66]" style="top: -2px; left: -2px; z-index: 10;"></div>
                 </div>
 
                 <!-- Stage 03: review_change -->
-                <div id="wf-stage-3" class="wf-stage w-full md:w-[23%] p-3.5 rounded-xl bg-carbon-950 border border-amber-500/40 flex flex-col justify-between shrink-0 min-w-[200px]">
+                <div id="wf-stage-3" class="wf-stage w-full md:w-[23%] p-4 rounded-xl bg-carbon-950 border-2 flex flex-col justify-between shrink-0 min-w-[210px]">
                   <div>
                     <div class="flex items-center justify-between gap-2 mb-2 border-b border-amber-500/20 pb-2">
-                      <span class="text-amber-400 font-bold flex items-center gap-1.5">03. review_change</span>
+                      <span class="text-amber-400 font-bold flex items-center gap-1.5 text-[11px] sm:text-xs">03. review_change</span>
                     </div>
-                    <p class="text-[10px] text-slate-300 leading-relaxed mb-3">
+                    <p class="text-[11px] sm:text-[12px] text-slate-300 leading-relaxed mb-3">
                       Check the change scope, access impact, operational risk and rollback path before proceeding.
                     </p>
                   </div>
-                  <div class="text-[9px] text-slate-400 bg-[#0a0e17] p-1.5 rounded border border-amber-500/20">
-                    <span class="text-amber-400 font-bold">REVIEW GATE:</span> Scope · Access · Impact · Rollback
+                  <div class="text-[10px] sm:text-[11px] text-slate-400 bg-[#0a0e17] p-2 rounded border border-amber-500/20 leading-snug">
+                    <span class="text-amber-400 font-bold block mb-0.5">REVIEW GATE:</span> Scope · Access · Impact · Rollback
                   </div>
                 </div>
 
                 <!-- Connector 3 -->
-                <div id="wf-conn-3" class="wf-connector h-6 md:h-auto w-0.5 md:w-[2%] self-center border-l-2 md:border-l-0 md:border-t-2 border-dashed border-amber-500/50 shrink-0 relative">
-                  <div id="wf-packet-3" class="wf-packet absolute hidden w-2 h-2 rounded-full bg-amber-400 shadow-[0_0_8px_#fbbf24]" style="top: -1px; left: 0;"></div>
+                <div id="wf-conn-3" class="wf-connector h-6 md:h-auto w-0.5 md:w-[2%] self-center border-l-2 md:border-l-0 md:border-t-2 border-dashed shrink-0 relative">
+                  <div id="wf-packet-3" class="absolute hidden w-2.5 h-2.5 rounded-full bg-amber-400 shadow-[0_0_8px_#fbbf24]" style="top: -2px; left: -2px; z-index: 10;"></div>
                 </div>
 
                 <!-- Stage 04: close_the_loop -->
-                <div id="wf-stage-4" class="wf-stage w-full md:w-[23%] p-3.5 rounded-xl bg-black/95 border border-[#38bdf8]/40 flex flex-col justify-between shrink-0 min-w-[200px]">
+                <div id="wf-stage-4" class="wf-stage w-full md:w-[23%] p-4 rounded-xl bg-black/95 border-2 flex flex-col justify-between shrink-0 min-w-[210px]">
                   <div>
                     <div class="flex items-center justify-between gap-2 mb-2 border-b border-[#38bdf8]/20 pb-2">
-                      <span class="text-[#38bdf8] font-bold flex items-center gap-1.5">04. close_the_loop</span>
+                      <span class="text-[#38bdf8] font-bold flex items-center gap-1.5 text-[11px] sm:text-xs">04. close_the_loop</span>
                     </div>
-                    <p class="text-[10px] text-slate-300 leading-relaxed mb-3">
+                    <p class="text-[11px] sm:text-[12px] text-slate-300 leading-relaxed mb-3">
                       Communicate what was found, what changed, what was verified and what needs to happen next.
                     </p>
                   </div>
-                  <div class="text-[9px] text-slate-400 bg-[#030804] p-1.5 rounded border border-[#38bdf8]/20">
-                    <span class="text-[#38bdf8] font-bold">HANDOFF:</span> Findings · Resolution · Next step
+                  <div class="text-[10px] sm:text-[11px] text-slate-400 bg-[#030804] p-2 rounded border border-[#38bdf8]/20 leading-snug">
+                    <span class="text-[#38bdf8] font-bold block mb-0.5">HANDOFF:</span> Findings · Resolution · Next step
                   </div>
                 </div>
 
@@ -3117,63 +3195,111 @@
     };
 
     /* Replay Workflow Animation Controller */
-   /* Replay CI/CD Workflow Animation Controller */
-let wf_animTimeouts = [];
-window.replayWorkflowAnim = function() {
-  // 1. Clear existing timeouts
-  wf_animTimeouts.forEach(t => clearTimeout(t));
-  wf_animTimeouts = [];
+/* Replay Workflow Animation Controller */
+    let wf_animTimeouts = [];
+    let wf_hasRun = false;
+    
+    window.replayWorkflowAnim = function() {
+      // Clear ongoing animations
+      wf_animTimeouts.forEach(t => clearTimeout(t));
+      wf_animTimeouts = [];
 
-  const stages = [
-    document.getElementById('wf-stage-1'), 
-    document.getElementById('wf-stage-2'), 
-    document.getElementById('wf-stage-3'), 
-    document.getElementById('wf-stage-4')
-  ];
-  const conns = [
-    document.getElementById('wf-conn-1'), 
-    document.getElementById('wf-conn-2'), 
-    document.getElementById('wf-conn-3')
-  ];
-  
-  // 2. Reset Pipeline to "Pending"
-  stages.forEach(s => { if(s) s.classList.remove('wf-running', 'wf-passed', 'wf-manual', 'wf-final'); });
-  conns.forEach(c => { if(c) c.classList.remove('wf-connector-active'); });
+      const stages = [document.getElementById('wf-stage-1'), document.getElementById('wf-stage-2'), document.getElementById('wf-stage-3'), document.getElementById('wf-stage-4')];
+      const conns = [document.getElementById('wf-conn-1'), document.getElementById('wf-conn-2'), document.getElementById('wf-conn-3')];
+      const packets = [document.getElementById('wf-packet-1'), document.getElementById('wf-packet-2'), document.getElementById('wf-packet-3')];
+      
+      // Reset classes
+      stages.forEach(s => { if(s) { s.classList.remove('wf-running', 'wf-passed', 'wf-running-amber', 'wf-passed-amber', 'wf-passed-blue'); }});
+      conns.forEach(c => { if(c) { c.classList.remove('wf-connector-animating', 'wf-connector-animating-amber', 'wf-connector-solid', 'wf-connector-solid-amber'); }});
+      
+      // Reset Packet Positions
+      const isMobile = window.innerWidth <= 768;
+      packets.forEach(p => {
+        if(p) {
+          p.style.transition = 'none';
+          p.style.left = '-2px'; p.style.top = '-2px';
+          p.style.display = 'none';
+          p.style.opacity = '0';
+          void p.offsetWidth; // Force Reflow
+        }
+      });
 
-  if (pf_isReducedMotion) {
-    stages.forEach(s => { if(s) s.classList.add('wf-passed'); });
-    return;
-  }
+      if (pf_isReducedMotion) {
+        if(stages[0]) stages[0].classList.add('wf-passed');
+        if(stages[1]) stages[1].classList.add('wf-passed');
+        if(stages[2]) stages[2].classList.add('wf-passed-amber');
+        if(stages[3]) stages[3].classList.add('wf-passed-blue');
+        return;
+      }
 
-  let delay = 100;
+      let t = 100;
+      
+      // Stage 1 (Inspect Context)
+      wf_animTimeouts.push(setTimeout(() => { if(stages[0]) stages[0].classList.add('wf-running'); }, t));
+      t += 1000;
 
-  // Stage 1: Build (Running -> Passed)
-  wf_animTimeouts.push(setTimeout(() => { stages[0]?.classList.add('wf-running'); }, delay));
-  delay += 1200; // Simulate processing time
-  wf_animTimeouts.push(setTimeout(() => { 
-    stages[0]?.classList.replace('wf-running', 'wf-passed'); 
-    conns[0]?.classList.add('wf-connector-active'); 
-  }, delay));
+      // Finish Stage 1, Animate Connector 1 & Packet 1
+      wf_animTimeouts.push(setTimeout(() => {
+        if(stages[0]) { stages[0].classList.replace('wf-running', 'wf-passed'); }
+        if(conns[0]) conns[0].classList.add('wf-connector-animating');
+        if(packets[0]) {
+          packets[0].style.display = 'block';
+          packets[0].style.opacity = '1';
+          packets[0].style.transition = 'left 0.8s linear, top 0.8s linear';
+          if(isMobile) { packets[0].style.top = '100%'; } else { packets[0].style.left = '100%'; }
+        }
+      }, t));
+      t += 800;
 
-  // Stage 2: Diagnostics (Running -> Passed)
-  delay += 400; // Wait for connector to "travel"
-  wf_animTimeouts.push(setTimeout(() => { stages[1]?.classList.add('wf-running'); }, delay));
-  delay += 1500; // Simulate test time
-  wf_animTimeouts.push(setTimeout(() => { 
-    stages[1]?.classList.replace('wf-running', 'wf-passed'); 
-    conns[1]?.classList.add('wf-connector-active'); 
-  }, delay));
+      // Stage 2 (Trace & Validate)
+      wf_animTimeouts.push(setTimeout(() => {
+        if(conns[0]) { conns[0].classList.remove('wf-connector-animating'); conns[0].classList.add('wf-connector-solid'); }
+        if(packets[0]) packets[0].style.opacity = '0';
+        if(stages[1]) stages[1].classList.add('wf-running');
+      }, t));
+      t += 1200;
 
-  // Stage 3: Manual Review Gate (Amber)
-  delay += 400;
-  wf_animTimeouts.push(setTimeout(() => { stages[2]?.classList.add('wf-manual'); }, delay));
-  delay += 1200; // Simulated wait for human approval
-  wf_animTimeouts.push(setTimeout(() => { conns[2]?.classList.add('wf-connector-active'); }, delay));
+      // Finish Stage 2, Animate Connector 2 & Packet 2
+      wf_animTimeouts.push(setTimeout(() => {
+        if(stages[1]) { stages[1].classList.replace('wf-running', 'wf-passed'); }
+        if(conns[1]) conns[1].classList.add('wf-connector-animating');
+        if(packets[1]) {
+          packets[1].style.display = 'block';
+          packets[1].style.opacity = '1';
+          packets[1].style.transition = 'left 0.8s linear, top 0.8s linear';
+          if(isMobile) { packets[1].style.top = '100%'; } else { packets[1].style.left = '100%'; }
+        }
+      }, t));
+      t += 800;
 
-  // Stage 4: Handoff / Deploy (Blue)
-  delay += 400;
-  wf_animTimeouts.push(setTimeout(() => { stages[3]?.classList.add('wf-final'); }, delay));
-};
+      // Stage 3 (Review Change)
+      wf_animTimeouts.push(setTimeout(() => {
+        if(conns[1]) { conns[1].classList.remove('wf-connector-animating'); conns[1].classList.add('wf-connector-solid'); }
+        if(packets[1]) packets[1].style.opacity = '0';
+        if(stages[2]) stages[2].classList.add('wf-running-amber');
+      }, t));
+      t += 1400; // Longer pause to emphasize the human check
+
+      // Finish Stage 3, Animate Connector 3 (Amber) & Packet 3
+      wf_animTimeouts.push(setTimeout(() => {
+        if(stages[2]) { stages[2].classList.replace('wf-running-amber', 'wf-passed-amber'); }
+        if(conns[2]) conns[2].classList.add('wf-connector-animating-amber');
+        if(packets[2]) {
+          packets[2].style.display = 'block';
+          packets[2].style.opacity = '1';
+          packets[2].style.transition = 'left 0.8s linear, top 0.8s linear';
+          if(isMobile) { packets[2].style.top = '100%'; } else { packets[2].style.left = '100%'; }
+        }
+      }, t));
+      t += 800;
+
+      // Stage 4 (Close the Loop)
+      wf_animTimeouts.push(setTimeout(() => {
+        if(conns[2]) { conns[2].classList.remove('wf-connector-animating-amber'); conns[2].classList.add('wf-connector-solid-amber'); }
+        if(packets[2]) packets[2].style.opacity = '0';
+        if(stages[3]) stages[3].classList.add('wf-passed-blue');
+      }, t));
+    };
 
     let activeCliAbortController = null, activeCliTimers = [];
     let isCase1Patched = false;
@@ -3330,6 +3456,26 @@ window.replayWorkflowAnim = function() {
       if (m === 'hr' || m === 'recruiter') setPerspective('recruiter', false);
       else if (m === 'dev' || m === 'engineer') setPerspective('engineer', false);
       else setPerspective('manager', false);
+
+      // Auto-hide 3D onboarding arrows after 7 seconds
+      setTimeout(() => {
+        const arr1 = document.getElementById('modeOnboardingArrow');
+        const arr2 = document.getElementById('mobileModeOnboardingArrow');
+        if (arr1) { arr1.style.opacity = '0'; setTimeout(() => arr1.remove(), 800); }
+        if (arr2) { arr2.style.opacity = '0'; setTimeout(() => arr2.remove(), 800); }
+      }, 7000);
+
+      // Trigger Workflow Animation exactly once when scrolling to #contact in Dev Mode
+      const contactSec = document.getElementById('contact');
+      if (contactSec) {
+        const obs = new IntersectionObserver((entries) => {
+          if (entries[0].isIntersecting && !wf_hasRun && pf_mode === 'engineer') {
+            wf_hasRun = true;
+            setTimeout(replayWorkflowAnim, 600); // Wait briefly after scrolling down
+          }
+        }, { threshold: 0.3 });
+        obs.observe(contactSec);
+      }
       
       // Auto-hide onboarding arrows after 5 seconds
       setTimeout(() => {
