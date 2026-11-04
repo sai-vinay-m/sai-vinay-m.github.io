@@ -154,11 +154,35 @@
     .shiny-btn-blue::after { background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.48), transparent); }
     .shiny-btn-amber::after { background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.42), transparent); }
 
+    /* Dev Mode CI/CD Pipeline Connector Flow */
+    @keyframes pipelineFlowDash {
+      from { stroke-dashoffset: 20; background-position: 0 0; }
+      to { stroke-dashoffset: 0; background-position: -20px 0; }
+    }
+    body.mode-dev .pipeline-flow-anim {
+      background-image: linear-gradient(to right, #00ff66 50%, transparent 50%);
+      background-size: 12px 2px;
+      background-repeat: repeat-x;
+      border: none !important;
+      height: 2px;
+      animation: pipelineFlowDash 1s linear infinite;
+    }
+    @media (max-width: 768px) {
+      body.mode-dev .pipeline-flow-anim {
+        background-image: linear-gradient(to bottom, #00ff66 50%, transparent 50%);
+        background-size: 2px 12px;
+        background-repeat: repeat-y;
+        height: 1.5rem;
+        width: 2px;
+        animation: pipelineFlowDash 1s linear infinite;
+      }
+    }
+
     /* Reduced Motion */
     @media (prefers-reduced-motion: reduce) {
       *, ::before, ::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
       .shiny-btn-red::after, .shiny-btn-green::after, .shiny-btn-purple::after, .shiny-btn-blue::after, .shiny-btn-amber::after,
-      .loop-active-flow, .svg-flow-line, .gus-float-anim, .typing-dot, .animate-marquee, .animate-ping, .animate-pulse, .spin-anim { animation: none !important; }
+      .loop-active-flow, .svg-flow-line, .gus-float-anim, .typing-dot, .animate-marquee, .animate-ping, .animate-pulse, .spin-anim, .pipeline-flow-anim { animation: none !important; }
       .marquee-container { overflow-x: auto !important; }
     }
 
@@ -254,34 +278,10 @@
     .balloon-scale-shell.minimized { width: 34px; height: 34px; cursor: pointer; }
     .balloon-scale-shell.minimized .balloon-container { display: none; }
     .balloon-scale-shell.minimized .minimized-disc { display: flex !important; }
-    /* Add to existing <style> tag */
-@keyframes pipelineFlowDash {
-  from { stroke-dashoffset: 20; background-position: 0 0; }
-  to { stroke-dashoffset: 0; background-position: -20px 0; }
-}
-
-body.mode-dev .pipeline-flow-anim {
-  background-image: linear-gradient(to right, #00ff66 50%, transparent 50%);
-  background-size: 12px 2px;
-  background-repeat: repeat-x;
-  border: none !important;
-  height: 2px;
-  animation: pipelineFlowDash 1s linear infinite;
-}
-
-@media (max-width: 768px) {
-  body.mode-dev .pipeline-flow-anim {
-    background-image: linear-gradient(to bottom, #00ff66 50%, transparent 50%);
-    background-size: 2px 12px;
-    background-repeat: repeat-y;
-    height: 2rem;
-    width: 2px;
-    animation: pipelineFlowDash 1s linear infinite;
-  }
-}
   </style>
 </head>
-<body class="bg-carbon-900 text-slate-200 font-sans selection:bg-amber-500/20 selection:text-amber-400 min-h-[100dvh] relative overflow-x-hidden leading-relaxed mode-manager">
+
+  <body class="bg-carbon-900 text-slate-200 font-sans selection:bg-amber-500/20 selection:text-amber-400 min-h-[100dvh] relative overflow-x-hidden leading-relaxed mode-manager">
 
   <canvas id="matrixCanvas" class="fixed inset-0 pointer-events-none z-20 opacity-0 transition-opacity duration-500"></canvas>
   <div class="fixed inset-0 bg-grid-pattern pointer-events-none z-0"></div>
@@ -504,7 +504,7 @@ body.mode-dev .pipeline-flow-anim {
     </div>
   </div>
 
-  <!-- ============================================== -->
+    <!-- ============================================== -->
   <!-- VIEW 2 & 3: MANAGER & DEV PERSPECTIVES         -->
   <!-- ============================================== -->
   <div id="view-manager-dev" class="relative z-10">
@@ -1298,149 +1298,52 @@ body.mode-dev .pipeline-flow-anim {
         </div>
       </section>
 
-      <!-- Section 04: Operating Mindset & Direct Contact -->
-<section id="contact" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
-  <!-- Reduced padding from p-6/12 to p-4/8 -->
-  <div class="rounded-3xl bg-gradient-to-br from-carbon-850 via-carbon-800 to-carbon-900 border border-carbon-700 p-4 sm:p-5 md:p-8 shadow-2xl">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
-      
-      <!-- Left Column (Manager Mode Only for Buttons/Text) -->
-      <div class="lg:col-span-6 space-y-4 sm:space-y-5 manager-only">
-        <span class="text-[10px] sm:text-[11px] font-mono text-amber-400 uppercase tracking-wider">HOW I WORK & DIRECT CONTACT</span>
-        <!-- Shrunk heading from 4xl to 3xl -->
-        <h2 class="text-xl sm:text-2xl lg:text-3xl font-extrabold text-white leading-tight font-sans">
-          Need an engineer who can bridge <span class="text-amber-400">Cloud, Code & GenAI?</span>
-        </h2>
-        <!-- Shrunk body text from lg to base -->
-        <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
-          I thrive in cross-functional delivery squads—bridging infrastructure and code—while retaining the focus to execute complex migrations autonomously. Shaped as <strong class="text-white font-semibold">VP Education at Toastmasters (D83)</strong>, I translate deep root-cause analysis into clear runbooks and calm outage command.
-        </p>
-        <p class="text-slate-300 text-[13px] sm:text-sm leading-relaxed">
-          Whether you're hiring for <strong class="text-white">DevOps, MLOps, Cloud Architecture, SRE, Platform Engineering, or Technical Sales Engineering</strong>, I’d love to connect.
-        </p>
-
-        <div class="flex flex-wrap items-center gap-3 pt-2">
-          <a href="mailto:msaivinay306@gmail.com" class="px-4 py-2.5 sm:px-5 sm:py-3 rounded-xl text-sm font-bold bg-amber-500 hover:bg-amber-400 text-carbon-950 flex items-center gap-2 transition-all shadow-[0_0_20px_rgba(245,158,11,0.3)]">
-            <i data-lucide="mail" class="w-4 h-4"></i> Email msaivinay306@gmail.com
-          </a>
-          <button type="button" onclick="openCalendly()" class="px-4 py-2.5 sm:px-5 sm:py-3 rounded-xl text-sm font-mono font-bold bg-carbon-850 hover:bg-carbon-800 text-white border border-amber-500/40 hover:border-amber-400 flex items-center gap-2 transition-all cursor-pointer">
-            <i data-lucide="calendar" class="w-4 h-4 text-amber-400"></i> Schedule Call
-          </button>
-        </div>
-        <div class="text-[10px] sm:text-[11px] font-mono text-slate-400 pt-1 flex flex-wrap items-center gap-1.5 sm:gap-2">
-          <span>Direct Phone:</span>
-          <span id="phoneContainer">
-            <button type="button" onclick="revealPhone()" class="text-amber-400 hover:underline cursor-pointer flex items-center gap-1"><i data-lucide="lock" class="w-3 h-3"></i> Reveal</button>
-          </span>
-          <span class="hidden sm:inline">•</span>
-          <span>LinkedIn: <a href="https://linkedin.com/in/sai-vinay-mullapudi" target="_blank" rel="noreferrer" class="text-amber-400 hover:underline">/in/sai-vinay-mullapudi</a></span>
-        </div>
-      </div>
-      <!-- Right Column: Manager Mode Loop -->
-      <div class="lg:col-span-6 w-full overflow-hidden manager-only">
-        <div class="rounded-2xl bg-carbon-950 border border-carbon-700 p-3 sm:p-4 shadow-2xl overflow-x-auto">
-          <!-- Reduced min-width constraint to shrink SVG -->
-          <div class="flex items-center justify-between text-[9px] sm:text-[10px] font-mono text-slate-400 mb-2 px-1 min-w-[360px]">
-            <span>CONTINUOUS_OPERATING_LOOP.SVG</span>
-            <span class="text-emerald-400">360° FEEDBACK ↻</span>
-          </div>
-          <div class="relative w-full min-w-[360px] rounded-xl bg-[#070b12] border border-carbon-800 overflow-hidden">
-            <!-- KEEP YOUR EXACT SVG CODE HERE (Line 615 to 661 from your latest_index.html) -->
-            <!-- Just paste the <svg>...</svg> and the <div class="absolute rounded-full..."> overlay inside here -->
-          </div>
-        </div>
-      </div>
-      <!-- Dev Mode CI/CD Pipeline View -->
-      <div class="lg:col-span-12 w-full dev-only space-y-4" style="display: none;">
-        
-        <!-- Dev Mode Header -->
-        <div class="space-y-2 mb-6">
-          <span class="text-[10px] sm:text-[11px] font-mono text-[#00ff66] uppercase tracking-wider block">CI/CD DEPLOYMENT PIPELINE</span>
-          <h2 class="text-xl sm:text-2xl lg:text-3xl font-extrabold text-white leading-tight font-mono">
-            Trigger the <span class="text-[#00ff66]">production deployment?</span>
-          </h2>
-          <p class="text-slate-400 text-xs sm:text-sm font-mono max-w-2xl">
-            > Awaiting manual approval to deploy candidate <span class="text-white">sai-vinay</span> to target environment <span class="text-white">enterprise-team</span>.
-          </p>
-        </div>
-
-        <!-- Pipeline Container -->
-        <div class="flex flex-col md:flex-row items-center justify-between gap-0 font-mono text-xs w-full overflow-x-auto pb-4">
-          
-          <!-- Node 1: Build & Context -->
-          <div class="relative z-10 w-full md:w-1/3 p-4 rounded-xl bg-black border-2 border-[#00ff66] shadow-[0_0_15px_rgba(0,255,102,0.15)] shrink-0 min-w-[250px]">
-            <div class="flex items-center gap-2 mb-3 border-b border-[#00ff66]/30 pb-2">
-              <i data-lucide="check-circle" class="w-4 h-4 text-[#00ff66]"></i>
-              <span class="text-[#00ff66] font-bold">1. build_context</span>
-              <span class="ml-auto text-[9px] text-slate-500">22s</span>
-            </div>
-            <ul class="space-y-1.5 text-slate-300 text-[10px] sm:text-[11px]">
-              <li><span class="text-slate-500">$</span> fetch credentials... <span class="text-[#00ff66]">OK</span></li>
-              <li><span class="text-slate-500">$</span> load architecture_skills... <span class="text-[#00ff66]">OK</span></li>
-              <li><span class="text-slate-500">$</span> verify 4_yrs_exp... <span class="text-[#00ff66]">OK</span></li>
-            </ul>
-          </div>
-          <!-- Connector 1 -->
-          <div class="h-8 md:h-0 w-0 md:w-8 border-l-2 md:border-l-0 md:border-t-2 border-dashed border-[#00ff66] pipeline-flow-anim shrink-0"></div>
-
-          <!-- Node 2: Diagnostics & Runbooks -->
-          <div class="relative z-10 w-full md:w-1/3 p-4 rounded-xl bg-black border-2 border-[#00ff66] shadow-[0_0_15px_rgba(0,255,102,0.15)] shrink-0 min-w-[250px]">
-            <div class="flex items-center gap-2 mb-3 border-b border-[#00ff66]/30 pb-2">
-              <i data-lucide="check-circle" class="w-4 h-4 text-[#00ff66]"></i>
-              <span class="text-[#00ff66] font-bold">2. run_diagnostics</span>
-              <span class="ml-auto text-[9px] text-slate-500">14s</span>
-            </div>
-            <ul class="space-y-1.5 text-slate-300 text-[10px] sm:text-[11px]">
-              <li><span class="text-slate-500">$</span> execute root_cause_analysis</li>
-              <li><span class="text-slate-500">></span> cross_functional_sync: <span class="text-[#00ff66]">TRUE</span></li>
-              <li><span class="text-slate-500">$</span> generate team_runbooks... <span class="text-[#00ff66]">OK</span></li>
-            </ul>
-          </div>
-
-          <!-- Connector 2 -->
-          <div class="h-8 md:h-0 w-0 md:w-8 border-l-2 md:border-l-0 md:border-t-2 border-dashed border-amber-500 opacity-60 shrink-0"></div>
-          <!-- Node 3: Manual Deploy (Action Node) -->
-          <div class="relative z-10 w-full md:w-1/3 p-4 rounded-xl bg-carbon-950 border-2 border-amber-500 shadow-[0_0_20px_rgba(245,158,11,0.2)] shrink-0 min-w-[250px]">
-            <div class="flex items-center gap-2 mb-3 border-b border-amber-500/30 pb-2">
-              <span class="relative flex h-3 w-3"><span class="animate-ping absolute h-full w-full rounded-full bg-amber-500 opacity-75"></span><span class="relative rounded-full h-3 w-3 bg-amber-500"></span></span>
-              <span class="text-amber-400 font-bold">3. manual_deploy</span>
-              <span class="ml-auto text-[9px] bg-amber-500/20 text-amber-300 px-1 rounded">PAUSED</span>
-            </div>
+      <!-- Section 04: Operating Mindset & Direct Contact (Shrunk by ~25% + Dev Mode CI/CD View) -->
+      <section id="contact" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+        <div class="rounded-3xl bg-gradient-to-br from-carbon-850 via-carbon-800 to-carbon-900 border border-carbon-700 p-4 sm:p-6 md:p-8 shadow-2xl">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
             
-            <p class="text-[10px] sm:text-[11px] text-slate-300 mb-3">
-              Requires manual approval to proceed with candidate interview sync.
-            </p>
-            
-            <div class="flex flex-col gap-2">
-              <!-- Re-used openCalendly() JS hook -->
-              <button type="button" onclick="openCalendly()" class="w-full px-3 py-2 rounded bg-[#00ff66]/15 hover:bg-[#00ff66] hover:text-black text-[#00ff66] font-bold border border-[#00ff66]/40 transition-colors flex items-center justify-center gap-2 cursor-pointer text-[11px]">
-                >_ ./trigger_interview.sh
-              </button>
-              
-              <!-- Standard Mailto Hook -->
-              <a href="mailto:msaivinay306@gmail.com" class="w-full px-3 py-2 rounded bg-carbon-900 hover:bg-carbon-800 text-slate-300 hover:text-white border border-carbon-700 transition-colors flex items-center justify-center gap-2 cursor-pointer text-[11px]">
-                >_ curl -X POST /api/email
-              </a>
+            <!-- Left Column: Manager Mode Text & Contact Actions -->
+            <div class="lg:col-span-6 space-y-4 sm:space-y-5 manager-only">
+              <span class="text-[10px] sm:text-[11px] font-mono text-amber-400 uppercase tracking-wider">HOW I WORK &amp; DIRECT CONTACT</span>
+              <h2 class="text-xl sm:text-2xl lg:text-3xl font-extrabold text-white leading-tight font-sans">
+                Need an engineer who can bridge <span class="text-amber-400">Cloud, Code &amp; GenAI?</span>
+              </h2>
+              <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                I thrive in cross-functional delivery squads—bridging infrastructure and code—while retaining the focus to execute complex migrations autonomously. Shaped as <strong class="text-white font-semibold">VP Education at Toastmasters (D83)</strong>, I translate deep root-cause analysis into clear runbooks and calm outage command.
+              </p>
+              <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                Whether you're hiring for <strong class="text-white">DevOps, MLOps, Cloud Architecture, SRE, Platform Engineering, or Technical Sales Engineering</strong>, I’d love to connect.
+              </p>
+
+              <div class="flex flex-wrap items-center gap-2.5 sm:gap-3 pt-1">
+                <a href="mailto:msaivinay306@gmail.com" class="px-4 py-2.5 sm:px-5 sm:py-3 rounded-xl text-xs sm:text-sm font-bold bg-amber-500 hover:bg-amber-400 text-carbon-950 flex items-center gap-2 transition-all shadow-[0_0_20px_rgba(245,158,11,0.3)]">
+                  <i data-lucide="mail" class="w-4 h-4"></i> Email msaivinay306@gmail.com
+                </a>
+                <button type="button" onclick="openCalendly()" class="px-4 py-2.5 sm:px-5 sm:py-3 rounded-xl text-xs sm:text-sm font-mono font-bold bg-carbon-850 hover:bg-carbon-800 text-white border border-amber-500/40 hover:border-amber-400 flex items-center gap-2 transition-all cursor-pointer">
+                  <i data-lucide="calendar" class="w-4 h-4 text-amber-400"></i> Schedule Call
+                </button>
+              </div>
+              <div class="text-[10px] sm:text-[11px] font-mono text-slate-400 pt-1 flex flex-wrap items-center gap-1.5 sm:gap-2">
+                <span>Direct Phone:</span>
+                <span id="phoneContainer">
+                  <button type="button" onclick="revealPhone()" class="text-amber-400 hover:underline cursor-pointer flex items-center gap-1"><i data-lucide="lock" class="w-3 h-3"></i> Click to Reveal</button>
+                </span>
+                <span class="hidden sm:inline">•</span>
+                <span class="w-full sm:w-auto mt-1 sm:mt-0">LinkedIn: <a href="https://linkedin.com/in/sai-vinay-mullapudi" target="_blank" rel="noreferrer" class="text-amber-400 hover:underline">/in/sai-vinay-mullapudi</a></span>
+              </div>
             </div>
-          </div>
 
-        </div>
-      </div>
-      
-    </div>
-  </div>
-</section>
-
-            <!-- True Circular 3-Arc Operating Loop with Rock-Solid HTML Circular Overlay -->
-            <div class="lg:col-span-6 w-full overflow-hidden">
-              <div class="rounded-2xl bg-carbon-950 border border-carbon-700 p-4 sm:p-5 shadow-2xl overflow-x-auto">
-                <div class="flex items-center justify-between text-[10px] sm:text-xs font-mono text-slate-400 mb-3 px-1 min-w-[480px]">
+            <!-- Right Column: Manager Mode True Circular 3-Arc Operating Loop (Shrunk ~25%) -->
+            <div class="lg:col-span-6 w-full overflow-hidden manager-only flex justify-center lg:justify-end">
+              <div class="w-full max-w-[440px] rounded-2xl bg-carbon-950 border border-carbon-700 p-3 sm:p-4 shadow-2xl overflow-x-auto">
+                <div class="flex items-center justify-between text-[9px] sm:text-[10px] font-mono text-slate-400 mb-2 px-1 min-w-[340px]">
                   <span>CONTINUOUS_OPERATING_LOOP.SVG</span>
                   <span class="text-emerald-400">360° FEEDBACK CYCLE ↻</span>
                 </div>
                 
                 <!-- Relative Wrapper Matches 600x410 Aspect Ratio Exactly -->
-                <div class="relative w-full min-w-[480px] rounded-xl bg-[#070b12] border border-carbon-800 overflow-hidden">
+                <div class="relative w-full min-w-[340px] rounded-xl bg-[#070b12] border border-carbon-800 overflow-hidden">
                   <svg viewBox="0 0 600 410" class="w-full h-auto block" xmlns="http://www.w3.org/2000/svg">
                     <defs>
                       <marker id="arrowAmber" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
@@ -1512,6 +1415,96 @@ body.mode-dev .pipeline-flow-anim {
                 </div>
               </div>
             </div>
+
+            <!-- Dev Mode Exclusive: CI/CD Deployment Pipeline View (Shrunk ~25% & Lightweight) -->
+            <div class="lg:col-span-12 w-full dev-only space-y-5" style="display: none;">
+              <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[#00ff66]/25 pb-4">
+                <div class="space-y-1.5">
+                  <span class="text-[10px] sm:text-[11px] font-mono text-[#00ff66] uppercase tracking-wider block">HOW I WORK // CI/CD OPERATING PIPELINE</span>
+                  <h2 class="text-xl sm:text-2xl lg:text-3xl font-extrabold text-white leading-tight font-mono">
+                    Ready to trigger <span class="text-[#00ff66]">production deployment?</span>
+                  </h2>
+                </div>
+                <p class="text-slate-300 text-xs sm:text-[13px] font-mono max-w-md">
+                  &gt; Translating root-cause evidence into zero-drift IaC and clear team runbooks across Cloud, SRE &amp; GenAI squads.
+                </p>
+              </div>
+
+              <!-- 3-Stage Connected Pipeline -->
+              <div class="flex flex-col md:flex-row items-stretch justify-between gap-0 font-mono text-xs w-full">
+                
+                <!-- Stage 1: build_context -->
+                <div class="w-full md:w-[31%] p-4 rounded-xl bg-black/95 border border-[#00ff66]/60 shadow-[0_0_18px_rgba(0,255,102,0.12)] flex flex-col justify-between">
+                  <div>
+                    <div class="flex items-center justify-between gap-2 mb-2.5 border-b border-[#00ff66]/25 pb-2">
+                      <span class="text-[#00ff66] font-bold flex items-center gap-1.5"><i data-lucide="check-circle" class="w-3.5 h-3.5"></i> 01. build_context</span>
+                      <span class="px-1.5 py-0.5 rounded bg-[#00ff66]/15 text-[#00ff66] text-[9px]">PASSED (18s)</span>
+                    </div>
+                    <p class="text-[11px] text-slate-300 leading-relaxed mb-2">
+                      Start with deterministic evidence—logs, exit codes, and syscall traces first, never guesswork.
+                    </p>
+                  </div>
+                  <div class="text-[10px] text-slate-400 bg-[#030804] p-2 rounded border border-[#00ff66]/20">
+                    <div>$ verify_aws_certs --count=3 <span class="text-[#00ff66]">OK</span></div>
+                    <div>$ check_exp --yrs=4 <span class="text-[#00ff66]">OK</span></div>
+                  </div>
+                </div>
+
+                <!-- Connector 1 -->
+                <div class="h-6 md:h-auto w-0.5 md:w-[3.5%] self-center pipeline-flow-anim shrink-0"></div>
+
+                <!-- Stage 2: run_diagnostics -->
+                <div class="w-full md:w-[31%] p-4 rounded-xl bg-black/95 border border-[#00ff66]/60 shadow-[0_0_18px_rgba(0,255,102,0.12)] flex flex-col justify-between">
+                  <div>
+                    <div class="flex items-center justify-between gap-2 mb-2.5 border-b border-[#00ff66]/25 pb-2">
+                      <span class="text-[#00ff66] font-bold flex items-center gap-1.5"><i data-lucide="check-circle" class="w-3.5 h-3.5"></i> 02. run_diagnostics</span>
+                      <span class="px-1.5 py-0.5 rounded bg-[#00ff66]/15 text-[#00ff66] text-[9px]">PASSED (12s)</span>
+                    </div>
+                    <p class="text-[11px] text-slate-300 leading-relaxed mb-2">
+                      Enforce zero-drift Terraform modules, canonical DTOs, and calm outage runbooks (VP Ed, Toastmasters D83).
+                    </p>
+                  </div>
+                  <div class="text-[10px] text-slate-400 bg-[#030804] p-2 rounded border border-[#00ff66]/20">
+                    <div>$ terraform_drift_scan <span class="text-[#00ff66]">0_DRIFT</span></div>
+                    <div>$ publish_runbook --sla=60m <span class="text-[#00ff66]">OK</span></div>
+                  </div>
+                </div>
+
+                <!-- Connector 2 -->
+                <div class="h-6 md:h-auto w-0.5 md:w-[3.5%] self-center pipeline-flow-anim shrink-0"></div>
+
+                <!-- Stage 3: deploy_candidate -->
+                <div class="w-full md:w-[31%] p-4 rounded-xl bg-carbon-950 border-2 border-[#00ff66] shadow-[0_0_24px_rgba(0,255,102,0.2)] flex flex-col justify-between">
+                  <div>
+                    <div class="flex items-center justify-between gap-2 mb-2.5 border-b border-[#00ff66]/30 pb-2">
+                      <span class="text-white font-bold flex items-center gap-1.5">
+                        <span class="w-2 h-2 rounded-full bg-[#00ff66] animate-ping"></span> 03. deploy_candidate
+                      </span>
+                      <span class="px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/40 text-[9px]">MANUAL_TRIGGER</span>
+                    </div>
+                    <p class="text-[11px] text-slate-300 leading-relaxed mb-3">
+                      Awaiting manual approval to initiate interview sync for DevOps, Cloud, SRE, or GenAI roles.
+                    </p>
+                  </div>
+                  <div class="space-y-2">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                      <a href="mailto:msaivinay306@gmail.com" class="px-2.5 py-2 rounded-lg bg-[#00ff66] hover:bg-[#00ff66]/90 text-black font-bold text-[10.5px] flex items-center justify-center gap-1.5 transition-all cursor-pointer">
+                        &gt;_ send_email.sh
+                      </a>
+                      <button type="button" onclick="openCalendly()" class="px-2.5 py-2 rounded-lg bg-black hover:bg-[#00ff66]/15 text-[#00ff66] border border-[#00ff66]/60 font-bold text-[10.5px] flex items-center justify-center gap-1.5 transition-all cursor-pointer">
+                        &gt;_ schedule_call
+                      </button>
+                    </div>
+                    <div class="text-[10px] text-slate-400 pt-1 flex items-center justify-between border-t border-carbon-800">
+                      <a href="tel:+919899109594" class="text-[#00ff66] hover:underline">+91 9899109594</a>
+                      <a href="https://linkedin.com/in/sai-vinay-mullapudi" target="_blank" rel="noreferrer" class="text-[#00ff66] hover:underline">/in/sai-vinay-mullapudi</a>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
@@ -1845,7 +1838,6 @@ body.mode-dev .pipeline-flow-anim {
       </div>
     </div>
   </div>
-
   <!-- ============================================== -->
   <!-- FLOATING DEV CONSOLE MODAL (On-Demand)         -->
   <!-- ============================================== -->
@@ -2262,6 +2254,7 @@ body.mode-dev .pipeline-flow-anim {
         if (!isMatrixRainMuted && !pf_isReducedMotion) startMatrixRain();
         setBalloonFace('hover');
         if (showNotification) showToast('💻 <strong>Developer Mode:</strong> Live Telemetry &amp; Incident Sandbox ready!');
+        if (window.lucide) lucide.createIcons();
       }
     };
     window.setMode = window.setPerspective;
