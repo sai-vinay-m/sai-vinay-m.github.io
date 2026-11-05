@@ -276,6 +276,148 @@
     .svg-flow-line { stroke-dasharray: 6 6; }
     body.mode-dev .svg-flow-line, .loop-active-flow { animation: svgPacketFlow 1s linear infinite; }
 
+    /* ==========================================================
+       HR MODE — WARM IVORY THEME
+       Scoped to Recruiter Mode only. Typography is unchanged.
+       ========================================================== */
+    body.mode-hr {
+      background-color: #eee9df !important;
+      color: #303b48 !important;
+      --hr-ivory: #eee9df;
+      --hr-paper: #faf7f0;
+      --hr-paper-soft: #f3eee4;
+      --hr-paper-deep: #eae4d9;
+      --hr-ink: #293746;
+      --hr-body: #505c69;
+      --hr-muted: #5e6a76;
+      --hr-line: #ddd5c8;
+      --hr-accent: #536d84;
+      --hr-accent-hover: #435b71;
+      --hr-accent-wash: #e8edf1;
+    }
+
+    body.mode-hr .bg-grid-pattern,
+    body.mode-hr .hero-glow { display: none !important; }
+
+    /* Shared navigation adopts the same quiet paper-and-ink palette. */
+    body.mode-hr header {
+      background: rgba(246, 242, 233, 0.97) !important;
+      border-color: var(--hr-line) !important;
+      color: var(--hr-ink) !important;
+      box-shadow: 0 2px 10px rgba(53, 45, 32, 0.045);
+    }
+    body.mode-hr header .bg-carbon-950,
+    body.mode-hr header .bg-carbon-900,
+    body.mode-hr header .bg-carbon-850,
+    body.mode-hr header .bg-carbon-800 {
+      background-color: #eee9df !important;
+      border-color: var(--hr-line) !important;
+    }
+    body.mode-hr header .text-white,
+    body.mode-hr header .text-slate-200,
+    body.mode-hr header .text-slate-300,
+    body.mode-hr header .text-slate-400 {
+      color: var(--hr-ink) !important;
+      text-shadow: none !important;
+    }
+    body.mode-hr header .text-amber-400,
+    body.mode-hr header .text-amber-300,
+    body.mode-hr header .text-emerald-400,
+    body.mode-hr header .text-sky-400 {
+      color: var(--hr-accent) !important;
+    }
+    body.mode-hr header .border-carbon-600,
+    body.mode-hr header .border-carbon-700,
+    body.mode-hr header .border-carbon-700\/70,
+    body.mode-hr header .border-amber-500\/50 {
+      border-color: var(--hr-line) !important;
+    }
+    body.mode-hr #headerBtnHr,
+    body.mode-hr #mobileBtnHr,
+    body.mode-hr #hrHeaderResumeBtn {
+      background-color: var(--hr-accent) !important;
+      color: #fffaf2 !important;
+      border-color: var(--hr-accent) !important;
+      box-shadow: none !important;
+    }
+    body.mode-hr #headerBtnManager,
+    body.mode-hr #headerBtnDev,
+    body.mode-hr #mobileBtnMgr,
+    body.mode-hr #mobileBtnDev {
+      color: #5d6874 !important;
+    }
+    body.mode-hr header a:hover,
+    body.mode-hr header button:hover {
+      color: var(--hr-accent-hover) !important;
+    }
+    body.mode-hr #customToast {
+      background: #faf7f0 !important;
+      color: var(--hr-ink) !important;
+      border-color: var(--hr-line) !important;
+      box-shadow: 0 10px 28px rgba(53, 45, 32, 0.12) !important;
+    }
+    body.mode-hr #customToastText { color: var(--hr-ink) !important; }
+
+    /* Resume surface and nested panels. */
+    body.mode-hr #view-hr { color: var(--hr-body) !important; }
+    body.mode-hr #view-hr .bento-card {
+      background: var(--hr-paper) !important;
+      background-image: none !important;
+      border: 1px solid var(--hr-line) !important;
+      box-shadow: 0 8px 22px rgba(53, 45, 32, 0.055) !important;
+      backdrop-filter: none !important;
+    }
+    body.mode-hr #view-hr .bg-carbon-950 { background-color: var(--hr-paper-deep) !important; }
+    body.mode-hr #view-hr .bg-carbon-900 { background-color: var(--hr-paper-soft) !important; }
+    body.mode-hr #view-hr .bg-carbon-850 { background-color: var(--hr-paper) !important; }
+    body.mode-hr #view-hr .bg-carbon-800 { background-color: #e9e3d8 !important; }
+    body.mode-hr #view-hr .bg-gradient-to-br {
+      background: var(--hr-paper) !important;
+      background-image: none !important;
+    }
+
+    body.mode-hr #view-hr .text-white,
+    body.mode-hr #view-hr .text-carbon-950 { color: var(--hr-ink) !important; text-shadow: none !important; }
+    body.mode-hr #view-hr .text-slate-200,
+    body.mode-hr #view-hr .text-slate-300 { color: var(--hr-body) !important; }
+    body.mode-hr #view-hr .text-slate-400,
+    body.mode-hr #view-hr .text-slate-500 { color: var(--hr-muted) !important; }
+    body.mode-hr #view-hr [class*="text-amber-"],
+    body.mode-hr #view-hr [class*="text-emerald-"],
+    body.mode-hr #view-hr [class*="text-sky-"],
+    body.mode-hr #view-hr [class*="text-purple-"],
+    body.mode-hr #view-hr [class*="text-red-"] { color: var(--hr-accent) !important; }
+
+    body.mode-hr #view-hr [class*="border-carbon-"],
+    body.mode-hr #view-hr [class*="border-amber-"],
+    body.mode-hr #view-hr [class*="border-emerald-"],
+    body.mode-hr #view-hr [class*="border-sky-"],
+    body.mode-hr #view-hr [class*="border-red-"] { border-color: var(--hr-line) !important; }
+
+    body.mode-hr #view-hr [class*="bg-amber-500/"],
+    body.mode-hr #view-hr [class*="bg-emerald-500/"],
+    body.mode-hr #view-hr [class*="bg-sky-500/"] { background-color: var(--hr-accent-wash) !important; }
+
+    body.mode-hr #view-hr .bg-amber-500 {
+      background-color: var(--hr-accent) !important;
+      color: #fffaf2 !important;
+      box-shadow: none !important;
+    }
+    body.mode-hr #view-hr [class~="hover:bg-amber-400"]:hover {
+      background-color: var(--hr-accent-hover) !important;
+      color: #fffaf2 !important;
+    }
+    body.mode-hr #view-hr [class~="hover:bg-carbon-700"]:hover {
+      background-color: #ded8cd !important;
+    }
+    body.mode-hr #view-hr [class*="hover:bg-emerald-500/" ]:hover,
+    body.mode-hr #view-hr [class*="hover:bg-amber-500/" ]:hover,
+    body.mode-hr #view-hr [class*="hover:bg-sky-500/" ]:hover {
+      background-color: #e3e9ed !important;
+    }
+    body.mode-hr #view-hr .shadow-md,
+    body.mode-hr #view-hr .shadow-xl { box-shadow: 0 3px 10px rgba(53, 45, 32, 0.08) !important; }
+
     /* Print Mode Hard Overrides (Fixes Dev Mode Blackout) */
     @media print {
       body { background: white !important; color: black !important; }
@@ -285,6 +427,26 @@
       .bento-card { background: white !important; border: 1px solid #ccc !important; box-shadow: none !important; break-inside: avoid; }
       .bg-grid-pattern, .hero-glow, #matrixCanvas, #portfolioChat, #balloonContainer, header, #view-manager-dev { display: none !important; }
       #view-hr { display: block !important; }
+      /* Preserve the original clean-white, low-ink resume when printed. */
+      body.mode-hr { background: white !important; color: black !important; }
+      body.mode-hr #view-hr .bento-card {
+        background: white !important;
+        background-image: none !important;
+        border: 1px solid #ccc !important;
+        box-shadow: none !important;
+      }
+      body.mode-hr #view-hr [class*="bg-carbon-"],
+      body.mode-hr #view-hr [class*="bg-amber-500/"],
+      body.mode-hr #view-hr [class*="bg-emerald-500/"],
+      body.mode-hr #view-hr [class*="bg-sky-500/"] {
+        background: white !important;
+        background-image: none !important;
+      }
+      body.mode-hr #view-hr [class*="text-"] {
+        color: black !important;
+        text-shadow: none !important;
+      }
+      body.mode-hr #view-hr [class*="border-"] { border-color: #ccc !important; }
       * { color: black !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     }
 
