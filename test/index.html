@@ -120,6 +120,15 @@
     details[open] .compartment-content { animation: fadeInDown 0.3s ease-out forwards; }
     @keyframes fadeInDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 
+    /* Custom Utilities (Restored) */
+    .scrollbar-hide::-webkit-scrollbar { display: none; }
+    .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+    
+    @keyframes typing { 0%, 100% { transform: translateY(0); opacity: 0.5; } 50% { transform: translateY(-4px); opacity: 1; } }
+    .typing-dot { animation: typing 1.4s infinite ease-in-out both; width: 4px; height: 4px; border-radius: 50%; background: #00ff66; display: inline-block; }
+    .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+    .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+
     /* Accessible Non-Clipped Tooltips */
     .a11y-tooltip-wrapper { position: relative; display: inline-flex; align-items: center; justify-content: center; }
     .a11y-tooltip-trigger { background: none; border: none; padding: 2px; cursor: pointer; border-radius: 9999px; outline: none; display: inline-flex; align-items: center; justify-content: center; }
@@ -168,7 +177,7 @@
       display: inline-block;
     }
 
-    /* CI/CD Engineering Workflow Animation CSS (Scoped) */
+    /* CI/CD Engineering Workflow Animation CSS */
     .wf-stage { transition: all 0.4s ease; border-color: #1e293b !important; }
     
     @keyframes wfPulse {
@@ -218,7 +227,7 @@
       .wf-connector-animating-amber { background-image: linear-gradient(to bottom, #f59e0b 50%, transparent 50%); background-size: 2px 12px; background-repeat: repeat-y; animation: flowDashY 0.6s linear infinite; }
     }
 
-    /* Dev Mode Engineering Dossiers (Inline Expansion CSS) */
+    /* Dev Mode Engineering Dossiers (Inline Expansion CSS - Margin Collapse Bug Fixed) */
     .dossier-expand-grid { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.35s cubic-bezier(0.4, 0, 0.2, 1); }
     .dossier-expand-grid.is-expanded { grid-template-rows: 1fr; }
     .dossier-expand-inner { overflow: hidden; }
@@ -267,8 +276,12 @@
     .svg-flow-line { stroke-dasharray: 6 6; }
     body.mode-dev .svg-flow-line, .loop-active-flow { animation: svgPacketFlow 1s linear infinite; }
 
+    /* Print Mode Hard Overrides (Fixes Dev Mode Blackout) */
     @media print {
       body { background: white !important; color: black !important; }
+      body.mode-dev h1, body.mode-dev h2, body.mode-dev h3, body.mode-dev h4, body.mode-dev .text-white, body.mode-dev .text-amber-400, body.mode-dev .text-emerald-400 { color: black !important; text-shadow: none !important; }
+      body.mode-dev .bg-amber-500 { background-color: #f1f5f9 !important; color: black !important; box-shadow: none !important; border: 1px solid #cbd5e1 !important; }
+      body.mode-dev::after { display: none !important; }
       .bento-card { background: white !important; border: 1px solid #ccc !important; box-shadow: none !important; break-inside: avoid; }
       .bg-grid-pattern, .hero-glow, #matrixCanvas, #portfolioChat, #balloonContainer, header, #view-manager-dev { display: none !important; }
       #view-hr { display: block !important; }
@@ -879,39 +892,39 @@
         </div>
 
         <!-- ========================================================================================= -->
-        <!-- MANAGER MODE: Smooth Collapsible Compartments (+35% Primary, +20% Client Logos)           -->
+        <!-- MANAGER MODE: Smooth Collapsible Compartments (-15% Sizing Adjustments Applied)           -->
         <!-- ========================================================================================= -->
-        <div id="manager-ledger-cards" class="manager-only space-y-6">
+        <div id="manager-ledger-cards" class="manager-only space-y-5">
           
           <!-- COMPARTMENT 1: ASCENDION -->
           <details class="bg-carbon-900/95 border border-emerald-500/35 rounded-3xl shadow-2xl group" id="manager-compartment-1" open>
-            <summary class="p-5 sm:p-7 pb-0 group-open:pb-5 border-b border-transparent group-open:border-carbon-800 transition-all flex items-center justify-between gap-4 relative select-none cursor-pointer outline-none">
-              <div class="flex items-center gap-4 sm:gap-5">
-                <div class="w-[76px] h-[76px] sm:w-[86px] sm:h-[86px] rounded-2xl bg-carbon-950 border border-emerald-500/50 flex items-center justify-center shadow-lg shrink-0 overflow-hidden p-2">
+            <summary class="p-4 sm:p-5 pb-0 group-open:pb-4 border-b border-transparent group-open:border-carbon-800 transition-all flex items-center justify-between gap-4 relative select-none cursor-pointer outline-none">
+              <div class="flex items-center gap-3 sm:gap-4">
+                <div class="w-[72px] h-[72px] sm:w-[76px] sm:h-[76px] rounded-2xl bg-carbon-950 border border-emerald-500/50 flex items-center justify-center shadow-lg shrink-0 overflow-hidden p-2">
                   <img src="assets/ascendion.png" alt="Ascendion" class="w-full h-full object-contain" onerror="resolveAsset(this, 'ascendion')">
                   <span class="asset-fallback hidden font-sans font-black text-2xl text-white">A</span>
                 </div>
                 <div class="flex flex-col items-center shrink-0">
-                  <div class="w-[48px] h-[48px] sm:w-[58px] sm:h-[58px] rounded-xl bg-carbon-800 border border-emerald-500/30 flex items-center justify-center shadow-md overflow-hidden p-1.5" title="Enterprise Client: HP Inc.">
+                  <div class="w-[44px] h-[44px] sm:w-[48px] sm:h-[48px] rounded-xl bg-carbon-800 border border-emerald-500/30 flex items-center justify-center shadow-md overflow-hidden p-1" title="Enterprise Client: HP Inc.">
                     <img src="assets/hp.png" alt="HP Inc." class="w-full h-full object-contain" onerror="resolveAsset(this, 'hp')">
-                    <span class="asset-fallback hidden font-sans font-bold text-[10px] sm:text-xs text-emerald-300 text-center leading-tight">HP<br>Inc.</span>
+                    <span class="asset-fallback hidden font-sans font-bold text-[9px] sm:text-[10px] text-emerald-300 text-center leading-tight">HP<br>Inc.</span>
                   </div>
                   <span class="text-[8px] font-mono text-slate-400 uppercase tracking-widest mt-1">CLIENT</span>
                 </div>
                 <div class="pl-1">
-                  <h3 class="text-xl sm:text-2xl font-extrabold text-white tracking-tight">Ascendion</h3>
-                  <p class="text-[11px] sm:text-xs font-mono text-amber-400 font-semibold mt-0.5">DevOps &amp; GenAI Engineer • L5 Engineer @ HP Inc.</p>
+                  <h3 class="text-lg sm:text-xl font-extrabold text-white tracking-tight">Ascendion</h3>
+                  <p class="text-[11px] sm:text-xs font-mono text-amber-400 font-semibold mt-0.5">DevOps &amp; GenAI Engineer • L5 @ HP Inc.</p>
                 </div>
               </div>
               <div class="flex items-center gap-3">
-                <span id="hint-accordion-1" class="hidden sm:block text-emerald-400 font-mono text-[10px] font-bold animate-pulse-subtle">Explore Executive Case Studies ↘</span>
+                <span id="hint-accordion-1" class="hidden sm:block text-emerald-400 font-mono text-[10px] font-bold animate-pulse-subtle">Explore Case Studies ↘</span>
                 <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-carbon-800 flex items-center justify-center shrink-0">
                   <i data-lucide="chevron-down" class="w-4 h-4 sm:w-5 sm:h-5 text-slate-400 collapse-icon"></i>
                 </div>
               </div>
             </summary>
-            <div class="compartment-content p-5 sm:p-7 pt-5 space-y-6">
-              <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-carbon-800 font-mono text-xs">
+            <div class="compartment-content p-4 sm:p-5 pt-4 space-y-5">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-carbon-800 font-mono text-xs">
                 <div class="flex flex-wrap items-center gap-2.5">
                   <span class="px-3 py-1 rounded-md bg-emerald-500 text-carbon-950 font-bold">DEC 2025 – AUG 2026</span>
                   <span class="text-slate-300 font-semibold">BENGALURU, INDIA</span>
@@ -921,41 +934,41 @@
                 </span>
               </div>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="p-4 sm:p-5 rounded-2xl bg-carbon-950/90 border border-carbon-800 space-y-2">
-                  <span class="text-[11px] font-mono font-bold text-emerald-400 uppercase tracking-wider block">SYSTEMIC SDLC AUTOMATION (AAVA GENAI)</span>
+                <div class="p-4 rounded-2xl bg-carbon-950/90 border border-carbon-800 space-y-2">
+                  <span class="text-[11px] font-mono font-bold text-emerald-400 uppercase tracking-wider block">SYSTEMIC SDLC AUTOMATION (AAVA)</span>
                   <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">Integrated LLMs, vector knowledge bases, and guardrail architectures into agentic SDLC workflows to eliminate deployment bottlenecks.</p>
                 </div>
-                <div class="p-4 sm:p-5 rounded-2xl bg-carbon-950/90 border border-carbon-800 space-y-2">
-                  <span class="text-[11px] font-mono font-bold text-amber-400 uppercase tracking-wider block">CROSS-STACK PLATFORM OWNERSHIP (HP INC.)</span>
+                <div class="p-4 rounded-2xl bg-carbon-950/90 border border-carbon-800 space-y-2">
+                  <span class="text-[11px] font-mono font-bold text-amber-400 uppercase tracking-wider block">CROSS-STACK PLATFORM OWNERSHIP</span>
                   <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">Balanced multi-account cloud governance with Java Spring Boot microservice refactoring under tight production SLAs.</p>
                 </div>
               </div>
               <div class="space-y-3 pt-1">
                 <span class="text-[10.5px] font-mono text-slate-400 uppercase tracking-wider block">PRODUCTION ISSUES UNTANGLED AT ASCENDION:</span>
-                <div class="p-4 sm:p-5 rounded-2xl bg-carbon-850/90 border border-red-500/35 transition-all flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                <div class="p-4 rounded-2xl bg-carbon-850/90 border border-red-500/35 transition-all flex flex-col lg:flex-row lg:items-center justify-between gap-4">
                   <div class="space-y-1.5 max-w-3xl">
                     <div class="flex items-center gap-2.5">
                       <span class="w-7 h-7 rounded-lg bg-red-500/20 text-red-400 font-mono font-bold text-xs flex items-center justify-center border border-red-500/40 shrink-0">01</span>
-                      <h4 class="text-base sm:text-lg font-bold text-white">Unblocking Multi-Service Release Pipelines Under a Live 1–Hour SLA</h4>
+                      <h4 class="text-[15px] sm:text-base font-bold text-white leading-tight">Unblocking Multi-Service Release Pipelines Under a Live 1–Hour SLA</h4>
                     </div>
-                    <p class="text-xs sm:text-sm text-slate-300 pl-9 leading-relaxed">Isolated an upstream Harbor base image regression blocking microservice releases in 45 minutes.</p>
+                    <p class="text-[11px] sm:text-xs text-slate-300 pl-9 leading-relaxed">Isolated an upstream Harbor base image regression blocking microservice releases in 45 minutes.</p>
                   </div>
                   <div class="pl-9 lg:pl-0 flex flex-col items-start lg:items-end gap-2 shrink-0">
-                    <button type="button" onclick="openExecCaseModal('ascendion-pipeline')" class="shiny-btn-red relative overflow-hidden px-4 py-2 rounded-xl bg-red-500/15 hover:bg-red-500 text-red-300 hover:text-white font-mono text-xs font-bold border border-red-500/50 shadow-[0_0_18px_rgba(239,68,68,0.25)] transition-all cursor-pointer flex items-center gap-2">
+                    <button type="button" onclick="openExecCaseModal('ascendion-pipeline')" class="shiny-btn-red relative overflow-hidden px-4 py-2 rounded-xl bg-red-500/15 hover:bg-red-500 text-red-300 hover:text-white font-mono text-[11px] sm:text-xs font-bold border border-red-500/50 shadow-[0_0_18px_rgba(239,68,68,0.25)] transition-all cursor-pointer flex items-center gap-2">
                       📊 View Executive Case Study ↗
                     </button>
                   </div>
                 </div>
-                <div class="p-4 sm:p-5 rounded-2xl bg-carbon-850/90 border border-purple-500/35 transition-all flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                <div class="p-4 rounded-2xl bg-carbon-850/90 border border-purple-500/35 transition-all flex flex-col lg:flex-row lg:items-center justify-between gap-4">
                   <div class="space-y-1.5 max-w-3xl">
                     <div class="flex items-center gap-2.5">
                       <span class="w-7 h-7 rounded-lg bg-purple-500/20 text-purple-400 font-mono font-bold text-xs flex items-center justify-center border border-purple-500/40 shrink-0">02</span>
-                      <h4 class="text-base sm:text-lg font-bold text-white">Unifying Divergent Microservice Data Identifiers</h4>
+                      <h4 class="text-[15px] sm:text-base font-bold text-white leading-tight">Unifying Divergent Microservice Data Identifiers</h4>
                     </div>
-                    <p class="text-xs sm:text-sm text-slate-300 pl-9 leading-relaxed">Consolidated product SKU schemas into a canonical DTO definition across renewal services.</p>
+                    <p class="text-[11px] sm:text-xs text-slate-300 pl-9 leading-relaxed">Consolidated product SKU schemas into a canonical DTO definition across renewal services.</p>
                   </div>
                   <div class="pl-9 lg:pl-0 flex flex-col items-start lg:items-end gap-2 shrink-0">
-                    <button type="button" onclick="openExecCaseModal('ascendion-java')" class="shiny-btn-purple relative overflow-hidden px-4 py-2 rounded-xl bg-purple-500/15 hover:bg-purple-500 text-purple-300 hover:text-white font-mono text-xs font-bold border border-purple-500/50 shadow-[0_0_18px_rgba(168,85,247,0.25)] transition-all cursor-pointer flex items-center gap-2">
+                    <button type="button" onclick="openExecCaseModal('ascendion-java')" class="shiny-btn-purple relative overflow-hidden px-4 py-2 rounded-xl bg-purple-500/15 hover:bg-purple-500 text-purple-300 hover:text-white font-mono text-[11px] sm:text-xs font-bold border border-purple-500/50 shadow-[0_0_18px_rgba(168,85,247,0.25)] transition-all cursor-pointer flex items-center gap-2">
                       📊 View Executive Case Study ↗
                     </button>
                   </div>
@@ -966,56 +979,56 @@
 
           <!-- COMPARTMENT 2: EFICENS SYSTEMS -->
           <details class="bg-carbon-900/95 border border-amber-500/35 rounded-3xl shadow-2xl group">
-            <summary class="p-5 sm:p-7 pb-0 group-open:pb-5 border-b border-transparent group-open:border-carbon-800 transition-all flex items-center justify-between gap-4 relative select-none cursor-pointer outline-none">
-              <div class="flex items-center gap-4 sm:gap-5">
-                <div class="w-[76px] h-[76px] sm:w-[86px] sm:h-[86px] rounded-2xl bg-carbon-950 border border-amber-500/50 flex items-center justify-center shadow-lg shrink-0 overflow-hidden p-2">
+            <summary class="p-4 sm:p-5 pb-0 group-open:pb-4 border-b border-transparent group-open:border-carbon-800 transition-all flex items-center justify-between gap-4 relative select-none cursor-pointer outline-none">
+              <div class="flex items-center gap-3 sm:gap-4">
+                <div class="w-[72px] h-[72px] sm:w-[76px] sm:h-[76px] rounded-2xl bg-carbon-950 border border-amber-500/50 flex items-center justify-center shadow-lg shrink-0 overflow-hidden p-2">
                   <img src="assets/eficens.png" alt="Eficens" class="w-full h-full object-contain" onerror="resolveAsset(this, 'eficens')">
                   <span class="asset-fallback hidden font-sans font-black text-2xl text-amber-400">E</span>
                 </div>
                 <div class="flex flex-col items-center shrink-0">
-                  <div class="w-[48px] h-[48px] sm:w-[58px] sm:h-[58px] rounded-xl bg-carbon-800 border border-emerald-500/30 flex items-center justify-center shadow-md overflow-hidden p-1.5" title="US Financial Clearing Client">
-                    <span class="font-sans font-bold text-[9px] sm:text-[10px] text-amber-300 text-center leading-tight">FinTech<br>Client</span>
+                  <div class="w-[44px] h-[44px] sm:w-[48px] sm:h-[48px] rounded-xl bg-carbon-800 border border-emerald-500/30 flex items-center justify-center shadow-md overflow-hidden p-1.5" title="US Financial Clearing Client">
+                    <span class="font-sans font-bold text-[8.5px] sm:text-[9.5px] text-amber-300 text-center leading-tight">FinTech<br>Client</span>
                   </div>
                   <span class="text-[8px] font-mono text-slate-400 uppercase tracking-widest mt-1">FINTECH</span>
                 </div>
                 <div class="pl-1">
-                  <h3 class="text-xl sm:text-2xl font-extrabold text-white tracking-tight">Eficens Systems LLC</h3>
-                  <p class="text-[11px] sm:text-xs font-mono text-amber-400 font-semibold mt-0.5">DevOps Engineer • Zero-Trust AWS &amp; Clearing Infrastructure</p>
+                  <h3 class="text-lg sm:text-xl font-extrabold text-white tracking-tight">Eficens Systems LLC</h3>
+                  <p class="text-[11px] sm:text-xs font-mono text-amber-400 font-semibold mt-0.5">DevOps Engineer • Zero-Trust AWS</p>
                 </div>
               </div>
               <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-carbon-800 flex items-center justify-center shrink-0">
                 <i data-lucide="chevron-down" class="w-4 h-4 sm:w-5 sm:h-5 text-slate-400 collapse-icon"></i>
               </div>
             </summary>
-            <div class="compartment-content p-5 sm:p-7 pt-5 space-y-6">
-              <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-carbon-800 font-mono text-xs">
+            <div class="compartment-content p-4 sm:p-5 pt-4 space-y-5">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-carbon-800 font-mono text-xs">
                 <div class="flex flex-wrap items-center gap-2.5">
                   <span class="px-3 py-1 rounded-md bg-amber-500 text-carbon-950 font-bold">DEC 2021 – AUG 2024</span>
                   <span class="text-slate-300 font-semibold">SOMERSET, NEW JERSEY, USA</span>
                 </div>
               </div>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="p-4 sm:p-5 rounded-2xl bg-carbon-950/90 border border-carbon-800 space-y-2">
-                  <span class="text-[11px] font-mono font-bold text-amber-400 uppercase tracking-wider block">ZERO-TRUST CLEARING INFRASTRUCTURE &amp; IaC</span>
+                <div class="p-4 rounded-2xl bg-carbon-950/90 border border-carbon-800 space-y-2">
+                  <span class="text-[11px] font-mono font-bold text-amber-400 uppercase tracking-wider block">ZERO-TRUST CLEARING INFRASTRUCTURE</span>
                   <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">Engineered reusable Terraform modules to provision core AWS infrastructure, slashing deployment time by over 50%.</p>
                 </div>
-                <div class="p-4 sm:p-5 rounded-2xl bg-carbon-950/90 border border-carbon-800 space-y-2">
-                  <span class="text-[11px] font-mono font-bold text-emerald-400 uppercase tracking-wider block">JENKINS CI/CD &amp; ZERO-DOWNTIME OPERATIONS</span>
+                <div class="p-4 rounded-2xl bg-carbon-950/90 border border-carbon-800 space-y-2">
+                  <span class="text-[11px] font-mono font-bold text-emerald-400 uppercase tracking-wider block">JENKINS CI/CD &amp; ZERO-DOWNTIME OPS</span>
                   <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">Integrated Terraform IaC changes into Jenkins CI/CD pipelines, optimizing cloud management.</p>
                 </div>
               </div>
               <div class="space-y-3 pt-1">
                 <span class="text-[10.5px] font-mono text-slate-400 uppercase tracking-wider block">PRODUCTION ISSUES UNTANGLED AT EFICENS SYSTEMS:</span>
-                <div class="p-4 sm:p-5 rounded-2xl bg-carbon-850/90 border border-emerald-500/35 transition-all flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                <div class="p-4 rounded-2xl bg-carbon-850/90 border border-emerald-500/35 transition-all flex flex-col lg:flex-row lg:items-center justify-between gap-4">
                   <div class="space-y-1.5 max-w-3xl">
                     <div class="flex items-center gap-2.5">
                       <span class="w-7 h-7 rounded-lg bg-emerald-500/20 text-emerald-400 font-mono font-bold text-xs flex items-center justify-center border border-emerald-500/40 shrink-0">03</span>
-                      <h4 class="text-base sm:text-lg font-bold text-white">Scaling Regulated FinTech AWS Environments &amp; Zero-Downtime RDS</h4>
+                      <h4 class="text-[15px] sm:text-base font-bold text-white leading-tight">Scaling Regulated FinTech AWS Environments &amp; Zero-Downtime RDS</h4>
                     </div>
-                    <p class="text-xs sm:text-sm text-slate-300 pl-9 leading-relaxed">Implemented reusable Terraform CI/CD pipelines and automated zero-downtime RDS upgrades.</p>
+                    <p class="text-[11px] sm:text-xs text-slate-300 pl-9 leading-relaxed">Implemented reusable Terraform CI/CD pipelines and automated zero-downtime RDS upgrades.</p>
                   </div>
                   <div class="pl-9 lg:pl-0 flex flex-col items-start lg:items-end gap-2 shrink-0">
-                    <button type="button" onclick="openExecCaseModal('eficens-terraform')" class="shiny-btn-green relative overflow-hidden px-4 py-2 rounded-xl bg-emerald-500/15 hover:bg-emerald-500 text-emerald-300 hover:text-carbon-950 font-mono text-xs font-bold border border-emerald-500/50 shadow-[0_0_18px_rgba(16,185,129,0.25)] transition-all cursor-pointer flex items-center gap-2">
+                    <button type="button" onclick="openExecCaseModal('eficens-terraform')" class="shiny-btn-green relative overflow-hidden px-4 py-2 rounded-xl bg-emerald-500/15 hover:bg-emerald-500 text-emerald-300 hover:text-carbon-950 font-mono text-[11px] sm:text-xs font-bold border border-emerald-500/50 shadow-[0_0_18px_rgba(16,185,129,0.25)] transition-all cursor-pointer flex items-center gap-2">
                       📊 View Executive Case Study ↗
                     </button>
                   </div>
@@ -1026,50 +1039,50 @@
 
           <!-- COMPARTMENT 3: LOTUSDATA LLP -->
           <details class="bg-carbon-900/95 border border-sky-500/35 rounded-3xl shadow-2xl group">
-            <summary class="p-5 sm:p-7 pb-0 group-open:pb-5 border-b border-transparent group-open:border-carbon-800 transition-all flex items-center justify-between gap-4 relative select-none cursor-pointer outline-none">
-              <div class="flex items-center gap-4 sm:gap-5">
-                <div class="w-[76px] h-[76px] sm:w-[86px] sm:h-[86px] rounded-2xl bg-carbon-950 border border-sky-500/50 flex items-center justify-center shadow-lg shrink-0 overflow-hidden p-2">
+            <summary class="p-4 sm:p-5 pb-0 group-open:pb-4 border-b border-transparent group-open:border-carbon-800 transition-all flex items-center justify-between gap-4 relative select-none cursor-pointer outline-none">
+              <div class="flex items-center gap-3 sm:gap-4">
+                <div class="w-[72px] h-[72px] sm:w-[76px] sm:h-[76px] rounded-2xl bg-carbon-950 border border-sky-500/50 flex items-center justify-center shadow-lg shrink-0 overflow-hidden p-2">
                   <img src="assets/lotusdata.png" alt="LotusData" class="w-full h-full object-contain" onerror="resolveAsset(this, 'lotusdata')">
                   <span class="asset-fallback hidden font-sans font-black text-2xl text-sky-400">LD</span>
                 </div>
                 <div class="pl-1">
-                  <h3 class="text-xl sm:text-2xl font-extrabold text-white tracking-tight">LotusData LLP</h3>
-                  <p class="text-[11px] sm:text-xs font-mono text-sky-400 font-semibold mt-0.5">Jr. System &amp; Cloud Administrator • Linux &amp; AWS Fleet Operations</p>
+                  <h3 class="text-lg sm:text-xl font-extrabold text-white tracking-tight">LotusData LLP</h3>
+                  <p class="text-[11px] sm:text-xs font-mono text-sky-400 font-semibold mt-0.5">Jr. System &amp; Cloud Administrator • Linux &amp; AWS</p>
                 </div>
               </div>
               <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-carbon-800 flex items-center justify-center shrink-0">
                 <i data-lucide="chevron-down" class="w-4 h-4 sm:w-5 sm:h-5 text-slate-400 collapse-icon"></i>
               </div>
             </summary>
-            <div class="compartment-content p-5 sm:p-7 pt-5 space-y-6">
-              <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-carbon-800 font-mono text-xs">
+            <div class="compartment-content p-4 sm:p-5 pt-4 space-y-5">
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-carbon-800 font-mono text-xs">
                 <div class="flex flex-wrap items-center gap-2.5">
                   <span class="px-3 py-1 rounded-md bg-sky-400 text-carbon-950 font-bold">MAR 2021 – DEC 2021</span>
                   <span class="text-slate-300 font-semibold">PRINCETON, NEW JERSEY, USA</span>
                 </div>
               </div>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="p-4 sm:p-5 rounded-2xl bg-carbon-950/90 border border-carbon-800 space-y-2">
-                  <span class="text-[11px] font-mono font-bold text-sky-400 uppercase tracking-wider block">HIGH-AVAILABILITY AWS FLEET GOVERNANCE</span>
+                <div class="p-4 rounded-2xl bg-carbon-950/90 border border-carbon-800 space-y-2">
+                  <span class="text-[11px] font-mono font-bold text-sky-400 uppercase tracking-wider block">HIGH-AVAILABILITY AWS FLEET</span>
                   <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">Administered and scaled a fleet of <strong class="text-white">200+ AWS instances</strong>, ensuring high availability.</p>
                 </div>
-                <div class="p-4 sm:p-5 rounded-2xl bg-carbon-950/90 border border-carbon-800 space-y-2">
-                  <span class="text-[11px] font-mono font-bold text-amber-400 uppercase tracking-wider block">RHEL KICKSTART &amp; ONLINE VFS / LVM OPS</span>
+                <div class="p-4 rounded-2xl bg-carbon-950/90 border border-carbon-800 space-y-2">
+                  <span class="text-[11px] font-mono font-bold text-amber-400 uppercase tracking-wider block">RHEL KICKSTART &amp; VFS / LVM OPS</span>
                   <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">Automated RedHat Linux deployments via Kickstart and dynamically managed filesystem expansion.</p>
                 </div>
               </div>
               <div class="space-y-3 pt-1">
                 <span class="text-[10.5px] font-mono text-slate-400 uppercase tracking-wider block">PRODUCTION ISSUES UNTANGLED AT LOTUSDATA LLP:</span>
-                <div class="p-4 sm:p-5 rounded-2xl bg-carbon-850/90 border border-sky-500/35 transition-all flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                <div class="p-4 rounded-2xl bg-carbon-850/90 border border-sky-500/35 transition-all flex flex-col lg:flex-row lg:items-center justify-between gap-4">
                   <div class="space-y-1.5 max-w-3xl">
                     <div class="flex items-center gap-2.5">
                       <span class="w-7 h-7 rounded-lg bg-sky-500/20 text-sky-400 font-mono font-bold text-xs flex items-center justify-center border border-sky-500/40 shrink-0">04</span>
-                      <h4 class="text-base sm:text-lg font-bold text-white">Sustaining 99% Uptime Across 200+ RedHat Linux &amp; Database Instances</h4>
+                      <h4 class="text-[15px] sm:text-base font-bold text-white leading-tight">Sustaining 99% Uptime Across 200+ RedHat Linux &amp; DB Instances</h4>
                     </div>
-                    <p class="text-xs sm:text-sm text-slate-300 pl-9 leading-relaxed">Reclaimed locked ghost storage online without interrupting active DB daemons.</p>
+                    <p class="text-[11px] sm:text-xs text-slate-300 pl-9 leading-relaxed">Reclaimed locked ghost storage online without interrupting active DB daemons.</p>
                   </div>
                   <div class="pl-9 lg:pl-0 flex flex-col items-start lg:items-end gap-2 shrink-0">
-                    <button type="button" onclick="openExecCaseModal('lotusdata-fleet')" class="shiny-btn-blue relative overflow-hidden px-4 py-2 rounded-xl bg-sky-500/15 hover:bg-sky-400 text-sky-300 hover:text-carbon-950 font-mono text-xs font-bold border border-sky-500/50 shadow-[0_0_18px_rgba(56,189,248,0.25)] transition-all cursor-pointer flex items-center gap-2">
+                    <button type="button" onclick="openExecCaseModal('lotusdata-fleet')" class="shiny-btn-blue relative overflow-hidden px-4 py-2 rounded-xl bg-sky-500/15 hover:bg-sky-400 text-sky-300 hover:text-carbon-950 font-mono text-[11px] sm:text-xs font-bold border border-sky-500/50 shadow-[0_0_18px_rgba(56,189,248,0.25)] transition-all cursor-pointer flex items-center gap-2">
                       📊 View Executive Case Study ↗
                     </button>
                   </div>
@@ -1080,7 +1093,7 @@
         </div>
 
         <!-- =================================================================================== -->
-        <!-- DEV MODE EXCLUSIVE: Engineering Dossiers (Continuous Vertical Work History)         -->
+        <!-- DEV MODE EXCLUSIVE: Engineering Dossiers (Balanced 25% Tightening + Fixed Margins)  -->
         <!-- =================================================================================== -->
         <div id="dev-sandbox-experience" class="dev-only" style="display: none;">
           <div class="flex flex-col space-y-12 sm:space-y-16">
@@ -1139,37 +1152,42 @@
                       <i data-lucide="terminal" class="w-3.5 h-3.5"></i> Inspect Incident 127 ↘
                     </button>
 
-                    <!-- Inline Investigation: Incident 127 (Scaled down to 75% width physically) -->
-                    <div id="inline-inc-127" class="dossier-expand-grid w-full lg:w-[75%]">
+                    <!-- Inline Investigation: Incident 127 (Scaled down to 85% width visually, padding fixes ghost gap) -->
+                    <div id="inline-inc-127" class="dossier-expand-grid w-full xl:w-[85%]">
                       <div class="dossier-expand-inner">
-                        <div class="mt-3 p-3.5 sm:p-4 bg-carbon-950 border border-carbon-800 rounded-xl space-y-3 text-[10px]">
-                          <div class="flex items-center justify-between font-mono text-slate-400 mb-1">
-                            <span class="flex items-center gap-2">
-                              <span class="px-2 py-0.5 rounded bg-red-500/20 text-red-400 font-bold border border-red-500/40">[INC-CONTAINER-127]</span>
-                              TOPOLOGY: HARBOR_BASE ➔ JVM_APP ➔ PROBE
-                            </span>
-                            <span id="case1StatusBadgeInline" class="px-2 py-0.5 rounded bg-red-500/20 text-red-400 border border-red-500/40 font-bold">EXIT CODE 127</span>
-                          </div>
-                          
-                          <svg viewBox="0 0 520 115" class="w-full h-auto my-1" xmlns="http://www.w3.org/2000/svg">
-                            <line x1="150" y1="55" x2="195" y2="55" stroke="#34d399" stroke-width="2.5" class="svg-flow-line"/><polygon points="198,55 190,50 190,60" fill="#34d399"/>
-                            <line id="case1SvgLine2Inline" x1="325" y1="55" x2="370" y2="55" stroke="#ef4444" stroke-width="2.5" class="svg-flow-line"/><polygon id="case1SvgArrow2Inline" points="373,55 365,50 365,60" fill="#ef4444"/>
-                            <g transform="translate(10, 22)"><rect id="case1SvgAppRectInline" width="140" height="66" rx="8" fill="#062c22" stroke="#34d399" stroke-width="1.5"/><text x="70" y="30" text-anchor="middle" fill="#6ee7b7" font-size="12" font-weight="bold">Spring App</text><text x="70" y="48" text-anchor="middle" fill="#34d399" font-size="10">Port 8080 OK (7.5s)</text></g>
-                            <g transform="translate(195, 22)"><rect id="case1SvgProbeRectInline" width="130" height="66" rx="8" fill="#3b0a0a" stroke="#ef4444" stroke-width="1.5"/><text x="65" y="30" text-anchor="middle" fill="#fca5a5" font-size="12" font-weight="bold">Health Probe</text><text id="case1SvgProbeTextInline" x="65" y="48" text-anchor="middle" fill="#f87171" font-size="10">curl missing (127)</text></g>
-                            <g transform="translate(370, 22)"><rect id="case1SvgRelRectInline" width="140" height="66" rx="8" fill="#161f33" stroke="#475569" stroke-width="1.5"/><text x="70" y="30" text-anchor="middle" fill="#e2e8f0" font-size="12" font-weight="bold">Release</text><text id="case1SvgRelTextInline" x="70" y="48" text-anchor="middle" fill="#94a3b8" font-size="10">Pipeline Blocked</text></g>
-                          </svg>
+                        <div class="pt-3 pb-2">
+                          <div class="p-3.5 sm:p-4 bg-carbon-950 border border-carbon-800 rounded-xl space-y-3 text-[10px]">
+                            
+                            <!-- Enlarged Identifier Pills -->
+                            <div class="flex items-center justify-between font-mono text-slate-400 mb-1">
+                              <span class="flex items-center gap-2">
+                                <span class="px-2.5 py-1 rounded bg-red-500/20 text-red-400 font-bold border border-red-500/40 text-[11px]">[INC-CONTAINER-127]</span>
+                                <span class="hidden sm:inline">TOPOLOGY: HARBOR_BASE ➔ JVM_APP ➔ PROBE</span>
+                              </span>
+                              <span id="case1StatusBadgeInline" class="px-2.5 py-1 rounded bg-red-500/20 text-red-400 border border-red-500/40 font-bold text-[11px]">EXIT CODE 127</span>
+                            </div>
+                            
+                            <!-- Appended 'Inline' to IDs to prevent DOM Collision -->
+                            <svg viewBox="0 0 520 115" class="w-full h-auto my-1" xmlns="http://www.w3.org/2000/svg">
+                              <line x1="150" y1="55" x2="195" y2="55" stroke="#34d399" stroke-width="2.5" class="svg-flow-line"/><polygon points="198,55 190,50 190,60" fill="#34d399"/>
+                              <line id="case1SvgLine2Inline" x1="325" y1="55" x2="370" y2="55" stroke="#ef4444" stroke-width="2.5" class="svg-flow-line"/><polygon id="case1SvgArrow2Inline" points="373,55 365,50 365,60" fill="#ef4444"/>
+                              <g transform="translate(10, 22)"><rect id="case1SvgAppRectInline" width="140" height="66" rx="8" fill="#062c22" stroke="#34d399" stroke-width="1.5"/><text x="70" y="30" text-anchor="middle" fill="#6ee7b7" font-size="12" font-weight="bold">Spring App</text><text x="70" y="48" text-anchor="middle" fill="#34d399" font-size="10">Port 8080 OK (7.5s)</text></g>
+                              <g transform="translate(195, 22)"><rect id="case1SvgProbeRectInline" width="130" height="66" rx="8" fill="#3b0a0a" stroke="#ef4444" stroke-width="1.5"/><text x="65" y="30" text-anchor="middle" fill="#fca5a5" font-size="12" font-weight="bold">Health Probe</text><text id="case1SvgProbeTextInline" x="65" y="48" text-anchor="middle" fill="#f87171" font-size="10">curl missing (127)</text></g>
+                              <g transform="translate(370, 22)"><rect id="case1SvgRelRectInline" width="140" height="66" rx="8" fill="#161f33" stroke="#475569" stroke-width="1.5"/><text x="70" y="30" text-anchor="middle" fill="#e2e8f0" font-size="12" font-weight="bold">Release</text><text id="case1SvgRelTextInline" x="70" y="48" text-anchor="middle" fill="#94a3b8" font-size="10">Pipeline Blocked</text></g>
+                            </svg>
 
-                          <!-- Restored Interactive Probe Repair -->
-                          <div class="flex items-center justify-between font-mono">
-                            <span class="text-slate-400">Interactive Probe Repair:</span>
-                            <button type="button" onclick="toggleCase1PatchInline()" id="btnCase1PatchInline" class="px-2.5 py-1 rounded bg-[#00ff66]/20 hover:bg-[#00ff66] hover:text-black text-[#00ff66] font-bold border border-[#00ff66]/40 transition-colors cursor-pointer text-[10px]">[ >_ Run Patch: +curl ]</button>
-                          </div>
+                            <!-- Restored Interactive Probe Repair -->
+                            <div class="flex items-center justify-between font-mono">
+                              <span class="text-slate-400 hidden sm:inline">Interactive Probe Repair:</span>
+                              <button type="button" onclick="toggleCase1PatchInline()" id="btnCase1PatchInline" class="px-2.5 py-1 rounded bg-[#00ff66]/20 hover:bg-[#00ff66] hover:text-black text-[#00ff66] font-bold border border-[#00ff66]/40 transition-colors cursor-pointer text-[10px] sm:text-[11px]">[ >_ Run Patch: +curl ]</button>
+                            </div>
 
-                          <!-- 15% Larger Topic Headings (w-9 h-9, text-sm) -->
-                          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
-                            <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-red-500/20 text-red-400 border border-red-500/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">01</span><p class="text-[10px] text-slate-300 font-sans leading-snug">Upstream image silently stripped the <code>curl</code> binary, causing readiness probes to return ExitCode 127 despite healthy app code.</p></div>
-                            <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-[#00ff66]/20 text-[#00ff66] border border-[#00ff66]/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">02</span><p class="text-[10px] text-slate-300 font-sans leading-snug">Injected <code>RUN apk add --no-cache curl</code> into the local Dockerfile before the health-check layer.</p></div>
-                            <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">03</span><p class="text-[10px] text-slate-300 font-sans leading-snug">Restored HTTP 200 OK signal in 45m. Rescued the live 60-minute deployment SLA and published runbook.</p></div>
+                            <!-- 15% Larger Topic Headings (w-9 h-9, text-[13px]/text-sm) -->
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+                              <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-red-500/20 text-red-400 border border-red-500/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">01</span><p class="text-[10.5px] text-slate-300 font-sans leading-snug">Upstream image silently stripped the <code>curl</code> binary, causing readiness probes to return ExitCode 127 despite healthy app code.</p></div>
+                              <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-[#00ff66]/20 text-[#00ff66] border border-[#00ff66]/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">02</span><p class="text-[10.5px] text-slate-300 font-sans leading-snug">Injected <code>RUN apk add --no-cache curl</code> into the local Dockerfile before the health-check layer.</p></div>
+                              <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">03</span><p class="text-[10.5px] text-slate-300 font-sans leading-snug">Restored HTTP 200 OK signal in 45m. Rescued the live 60-minute deployment SLA and published runbook.</p></div>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -1191,30 +1209,34 @@
                       <i data-lucide="file-code-2" class="w-3.5 h-3.5"></i> Inspect Java Diff ↘
                     </button>
                     
-                    <!-- Inline Investigation: Java Diff (Scaled down to 75% width physically) -->
-                    <div id="inline-java-diff" class="dossier-expand-grid w-full lg:w-[75%]">
+                    <!-- Inline Investigation: Java Diff (Scaled down to 85% width visually, padding fixes ghost gap) -->
+                    <div id="inline-java-diff" class="dossier-expand-grid w-full xl:w-[85%]">
                       <div class="dossier-expand-inner">
-                        <div class="mt-3 p-3.5 sm:p-4 bg-carbon-950 border border-carbon-800 rounded-xl space-y-3 text-[10px]">
-                          <div class="flex items-center justify-between font-mono text-slate-400 mb-1">
-                            <span class="flex items-center gap-2">
-                              <span class="px-2 py-0.5 rounded bg-purple-500/20 text-purple-400 font-bold border border-purple-500/40">[REFACTOR-SKU-286]</span>
-                              TOPOLOGY: EVENT_INGESTION ➔ DTO_CONVERGENCE
-                            </span>
-                            <span class="px-2 py-0.5 rounded bg-purple-500/20 text-purple-400 border border-purple-500/40 font-bold">CANONICAL ENTITY</span>
-                          </div>
+                        <div class="pt-3 pb-2">
+                          <div class="p-3.5 sm:p-4 bg-carbon-950 border border-carbon-800 rounded-xl space-y-3 text-[10px]">
+                            
+                            <!-- Enlarged Identifier Pills -->
+                            <div class="flex items-center justify-between font-mono text-slate-400 mb-1">
+                              <span class="flex items-center gap-2">
+                                <span class="px-2.5 py-1 rounded bg-purple-500/20 text-purple-400 font-bold border border-purple-500/40 text-[11px]">[REFACTOR-SKU-286]</span>
+                                <span class="hidden sm:inline">TOPOLOGY: EVENT_INGESTION ➔ DTO_CONVERGENCE</span>
+                              </span>
+                              <span class="px-2.5 py-1 rounded bg-purple-500/20 text-purple-400 border border-purple-500/40 font-bold text-[11px]">CANONICAL ENTITY</span>
+                            </div>
 
-                          <svg viewBox="0 0 520 125" class="w-full h-auto my-1" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M 175 35 L 295 62" stroke="#c084fc" stroke-width="2.2" fill="none" class="svg-flow-line"/><path d="M 175 90 L 295 62" stroke="#c084fc" stroke-width="2.2" fill="none" class="svg-flow-line"/><polygon points="300,62 290,56 290,68" fill="#34d399"/>
-                            <rect x="15" y="15" width="160" height="38" rx="6" fill="#2e1065" stroke="#a855f7" stroke-width="1.4"/><text x="95" y="38" text-anchor="middle" fill="#e9d5ff" font-size="11">parentSKU (Legacy)</text>
-                            <rect x="15" y="70" width="160" height="38" rx="6" fill="#2e1065" stroke="#a855f7" stroke-width="1.4"/><text x="95" y="93" text-anchor="middle" fill="#e9d5ff" font-size="11">parentProductSku</text>
-                            <rect x="305" y="27" width="195" height="70" rx="10" fill="#062c22" stroke="#34d399" stroke-width="1.8"/><text x="402" y="55" text-anchor="middle" fill="#6ee7b7" font-size="12.5" font-weight="bold">Canonical SKU</text><text x="402" y="74" text-anchor="middle" fill="#a7f3d0" font-size="10">Single Source of Truth</text>
-                          </svg>
+                            <svg viewBox="0 0 520 125" class="w-full h-auto my-1" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M 175 35 L 295 62" stroke="#c084fc" stroke-width="2.2" fill="none" class="svg-flow-line"/><path d="M 175 90 L 295 62" stroke="#c084fc" stroke-width="2.2" fill="none" class="svg-flow-line"/><polygon points="300,62 290,56 290,68" fill="#34d399"/>
+                              <rect x="15" y="15" width="160" height="38" rx="6" fill="#2e1065" stroke="#a855f7" stroke-width="1.4"/><text x="95" y="38" text-anchor="middle" fill="#e9d5ff" font-size="11">parentSKU (Legacy)</text>
+                              <rect x="15" y="70" width="160" height="38" rx="6" fill="#2e1065" stroke="#a855f7" stroke-width="1.4"/><text x="95" y="93" text-anchor="middle" fill="#e9d5ff" font-size="11">parentProductSku</text>
+                              <rect x="305" y="27" width="195" height="70" rx="10" fill="#062c22" stroke="#34d399" stroke-width="1.8"/><text x="402" y="55" text-anchor="middle" fill="#6ee7b7" font-size="12.5" font-weight="bold">Canonical SKU</text><text x="402" y="74" text-anchor="middle" fill="#a7f3d0" font-size="10">Single Source of Truth</text>
+                            </svg>
 
-                          <!-- 15% Larger Topic Headings -->
-                          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
-                            <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-red-500/20 text-red-400 border border-red-500/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">01</span><p class="text-[10px] text-slate-300 font-sans leading-snug">Microservices maintained inconsistent naming (<code>parentSKU</code> vs <code>parentProductSku</code>), duplicating mapping logic.</p></div>
-                            <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-purple-500/20 text-purple-400 border border-purple-500/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">02</span><p class="text-[10px] text-slate-300 font-sans leading-snug">Converged payload mapping onto a single canonical DTO identifier and deleted legacy adapter classes.</p></div>
-                            <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">03</span><p class="text-[10px] text-slate-300 font-sans leading-snug">315 lines added, 992 removed. Net reduction of 677 LOC with 100% green JUnit integration suites.</p></div>
+                            <!-- 15% Larger Topic Headings (w-9 h-9, text-[13px]/text-sm) -->
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+                              <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-red-500/20 text-red-400 border border-red-500/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">01</span><p class="text-[10.5px] text-slate-300 font-sans leading-snug">Microservices maintained inconsistent naming (<code>parentSKU</code> vs <code>parentProductSku</code>), duplicating mapping logic.</p></div>
+                              <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-purple-500/20 text-purple-400 border border-purple-500/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">02</span><p class="text-[10.5px] text-slate-300 font-sans leading-snug">Converged payload mapping onto a single canonical DTO identifier and deleted legacy adapter classes.</p></div>
+                              <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">03</span><p class="text-[10.5px] text-slate-300 font-sans leading-snug">315 lines added, 992 removed. Net reduction of 677 LOC with 100% green JUnit integration suites.</p></div>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -1295,32 +1317,36 @@
                       <i data-lucide="shield-alert" class="w-3.5 h-3.5"></i> Inspect IAC Audit 225 ↘
                     </button>
                     
-                    <!-- Inline Investigation: IAC Audit 225 -->
-                    <div id="inline-arn-225" class="dossier-expand-grid w-full lg:w-[75%]">
+                    <!-- Inline Investigation: IAC Audit 225 (Scaled down to 85% width visually, padding fixes ghost gap) -->
+                    <div id="inline-arn-225" class="dossier-expand-grid w-full xl:w-[85%]">
                       <div class="dossier-expand-inner">
-                        <div class="mt-3 p-3.5 sm:p-4 bg-carbon-950 border border-carbon-800 rounded-xl space-y-3 text-[10px]">
-                          <div class="flex items-center justify-between font-mono text-slate-400 mb-1">
-                            <span class="flex items-center gap-2">
-                              <span class="px-2 py-0.5 rounded bg-sky-500/20 text-sky-400 font-bold border border-sky-500/40">[IAC-AUDIT-225]</span>
-                              TOPOLOGY: TERRAGRUNT ➔ STG_ROLE vs PROD_ROLE
-                            </span>
-                            <span class="px-2 py-0.5 rounded bg-sky-500/20 text-sky-400 border border-sky-500/40 font-bold">CROSS-ACCOUNT INTERCEPT</span>
-                          </div>
+                        <div class="pt-3 pb-2">
+                          <div class="p-3.5 sm:p-4 bg-carbon-950 border border-carbon-800 rounded-xl space-y-3 text-[10px]">
+                            
+                            <!-- Enlarged Identifier Pills -->
+                            <div class="flex items-center justify-between font-mono text-slate-400 mb-1">
+                              <span class="flex items-center gap-2">
+                                <span class="px-2.5 py-1 rounded bg-sky-500/20 text-sky-400 font-bold border border-sky-500/40 text-[11px]">[IAC-AUDIT-225]</span>
+                                <span class="hidden sm:inline">TOPOLOGY: TERRAGRUNT ➔ STG_ROLE vs PROD_ROLE</span>
+                              </span>
+                              <span class="px-2.5 py-1 rounded bg-sky-500/20 text-sky-400 border border-sky-500/40 font-bold text-[11px]">CROSS-ACCOUNT INTERCEPT</span>
+                            </div>
 
-                          <div class="overflow-x-auto pb-2">
-                            <svg viewBox="0 0 600 115" class="w-full min-w-[500px] h-auto bg-[#080d16] rounded-xl border border-carbon-800 p-2" xmlns="http://www.w3.org/2000/svg">
-                              <line x1="160" y1="58" x2="230" y2="38" stroke="#f59e0b" stroke-width="2" class="svg-flow-line"/><line x1="160" y1="58" x2="230" y2="80" stroke="#34d399" stroke-width="2" class="svg-flow-line"/>
-                              <g transform="translate(10, 24)"><rect width="150" height="68" rx="8" fill="#172554" stroke="#60a5fa" stroke-width="1.5"/><text x="75" y="34" text-anchor="middle" fill="#bfdbfe" font-size="11" font-weight="bold">PR [IAC-AUDIT-225]</text></g>
-                              <g transform="translate(230, 10)"><rect width="350" height="44" rx="6" fill="#451a03" stroke="#f59e0b" stroke-width="1.5"/><text x="175" y="20" text-anchor="middle" fill="#fcd34d" font-size="9" font-weight="bold">INTERCEPTED: Staging Role in Prod HCL</text><text x="175" y="34" text-anchor="middle" fill="#fef08a" font-size="8">arn:aws:iam::126350******:role/stg-billing-events-service</text></g>
-                              <g transform="translate(230, 60)"><rect width="350" height="44" rx="6" fill="#062c22" stroke="#34d399" stroke-width="1.5"/><text x="175" y="20" text-anchor="middle" fill="#6ee7b7" font-size="9" font-weight="bold">CORRECTED: Account-Scoped Prod Principal</text><text x="175" y="34" text-anchor="middle" fill="#a7f3d0" font-size="8">arn:aws:iam::984120******:role/prod-billing-events-service</text></g>
-                            </svg>
-                          </div>
+                            <div class="overflow-x-auto pb-2">
+                              <svg viewBox="0 0 600 115" class="w-full min-w-[500px] h-auto bg-[#080d16] rounded-xl border border-carbon-800 p-2" xmlns="http://www.w3.org/2000/svg">
+                                <line x1="160" y1="58" x2="230" y2="38" stroke="#f59e0b" stroke-width="2" class="svg-flow-line"/><line x1="160" y1="58" x2="230" y2="80" stroke="#34d399" stroke-width="2" class="svg-flow-line"/>
+                                <g transform="translate(10, 24)"><rect width="150" height="68" rx="8" fill="#172554" stroke="#60a5fa" stroke-width="1.5"/><text x="75" y="34" text-anchor="middle" fill="#bfdbfe" font-size="11" font-weight="bold">PR [IAC-AUDIT-225]</text></g>
+                                <g transform="translate(230, 10)"><rect width="350" height="44" rx="6" fill="#451a03" stroke="#f59e0b" stroke-width="1.5"/><text x="175" y="20" text-anchor="middle" fill="#fcd34d" font-size="9" font-weight="bold">INTERCEPTED: Staging Role in Prod HCL</text><text x="175" y="34" text-anchor="middle" fill="#fef08a" font-size="8">arn:aws:iam::126350******:role/stg-billing-events-service</text></g>
+                                <g transform="translate(230, 60)"><rect width="350" height="44" rx="6" fill="#062c22" stroke="#34d399" stroke-width="1.5"/><text x="175" y="20" text-anchor="middle" fill="#6ee7b7" font-size="9" font-weight="bold">CORRECTED: Account-Scoped Prod Principal</text><text x="175" y="34" text-anchor="middle" fill="#a7f3d0" font-size="8">arn:aws:iam::984120******:role/prod-billing-events-service</text></g>
+                              </svg>
+                            </div>
 
-                          <!-- 15% Larger Topic Headings -->
-                          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
-                            <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-red-500/20 text-red-400 border border-red-500/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">01</span><p class="text-[10px] text-slate-300 font-sans leading-snug">Terragrunt configurations mistakenly mapped a staging IAM role ARN into production execution variables.</p></div>
-                            <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-sky-500/20 text-sky-400 border border-sky-500/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">02</span><p class="text-[10px] text-slate-300 font-sans leading-snug">Intercepted drift during CI/CD plan phase and dynamically injected account-scoped production principals.</p></div>
-                            <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">03</span><p class="text-[10px] text-slate-300 font-sans leading-snug">Blocked cross-environment violation, enforcing strict Zero-Trust boundaries before infrastructure was provisioned.</p></div>
+                            <!-- 15% Larger Topic Headings (w-9 h-9, text-[13px]/text-sm) -->
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+                              <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-red-500/20 text-red-400 border border-red-500/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">01</span><p class="text-[10.5px] text-slate-300 font-sans leading-snug">Terragrunt configurations mistakenly mapped a staging IAM role ARN into production execution variables.</p></div>
+                              <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-sky-500/20 text-sky-400 border border-sky-500/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">02</span><p class="text-[10.5px] text-slate-300 font-sans leading-snug">Intercepted drift during CI/CD plan phase and dynamically injected account-scoped production principals.</p></div>
+                              <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">03</span><p class="text-[10.5px] text-slate-300 font-sans leading-snug">Blocked cross-environment violation, enforcing strict Zero-Trust boundaries before infrastructure was provisioned.</p></div>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -1902,7 +1928,8 @@
       </div>
     </div>
   </div>
-  <!-- Audit 225 Modal -->
+
+<!-- Audit 225 Modal -->
   <div id="modal-arn" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
     <div class="bg-carbon-900 border border-carbon-700 max-w-3xl w-full rounded-2xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
       <div class="px-6 py-4 bg-carbon-850 border-b border-carbon-700 flex justify-between items-center">
@@ -1964,11 +1991,11 @@
       <div class="flex flex-col bg-black border-t border-[#00ff66]/30">
         <div class="flex flex-wrap items-center gap-1.5 px-3 sm:px-4 py-2 border-b border-carbon-800">
           <span class="text-[8px] text-slate-500 uppercase tracking-wide">Quick:</span>
-          <button type="button" onclick="runCliCommand('help')" class="px-1.5 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] text-[9px] cursor-pointer">help</button>
-          <button type="button" onclick="runCliCommand('ls -la')" class="px-1.5 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] text-[9px] cursor-pointer">ls</button>
-          <button type="button" onclick="runCliCommand('top')" class="px-1.5 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] text-[9px] cursor-pointer">top</button>
-          <button type="button" onclick="runCliCommand('./patch.sh')" class="px-1.5 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] text-[9px] cursor-pointer">./patch.sh</button>
-          <button type="button" onclick="runCliCommand('sudo hire sai')" class="px-1.5 py-0.5 rounded bg-amber-500/15 hover:bg-amber-400 hover:text-black text-amber-300 border border-amber-500/40 text-[9px] cursor-pointer">👑 sudo hire sai</button>
+          <button type="button" onclick="runCliCommand('help')" class="px-1.5 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] text-[9px] cursor-pointer transition-colors">help</button>
+          <button type="button" onclick="runCliCommand('ls -la')" class="px-1.5 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] text-[9px] cursor-pointer transition-colors">ls</button>
+          <button type="button" onclick="runCliCommand('top')" class="px-1.5 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] text-[9px] cursor-pointer transition-colors">top</button>
+          <button type="button" onclick="runCliCommand('./patch.sh')" class="px-1.5 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] text-[9px] cursor-pointer transition-colors">./patch.sh</button>
+          <button type="button" onclick="runCliCommand('sudo hire sai')" class="px-1.5 py-0.5 rounded bg-amber-500/15 hover:bg-amber-400 hover:text-black text-amber-300 border border-amber-500/40 text-[9px] cursor-pointer transition-colors">👑 sudo hire sai</button>
         </div>
         <div class="flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-3">
           <span id="cliPromptLabel" class="text-[#00ff66] font-bold shrink-0 text-[10px] sm:text-xs">sai@prod-bastion:/opt/incident-127$</span>
@@ -2024,7 +2051,7 @@
     </div>
 
     <div id="gusBalloon" class="balloon-scale-shell gus-float-anim relative" title="AirHead.cs~1.6 — Drag me around or click for trivia!">
-      <button id="btnMinimizeBalloon" type="button" onclick="toggleMinimize(event)" class="absolute -top-1.5 -left-1.5 z-30 w-5 h-5 rounded-full bg-carbon-800 border border-carbon-600 hover:border-amber-400 hover:text-white text-slate-300 text-[10px] font-mono flex items-center justify-center cursor-pointer shadow-md">✕</button>
+      <button id="btnMinimizeBalloon" type="button" onclick="toggleMinimize(event)" class="absolute -top-1.5 -left-1.5 z-30 w-5 h-5 rounded-full bg-carbon-800 border border-carbon-600 hover:border-amber-400 hover:text-white text-slate-300 text-[10px] font-mono flex items-center justify-center cursor-pointer shadow-md transition-colors">✕</button>
       <div class="minimized-disc hidden w-8 h-8 rounded-full bg-gradient-to-br from-[#d4fbff] to-[#477aa8] border-2 border-white/60 shadow-xl items-center justify-center font-mono font-bold text-xs text-carbon-950" onclick="toggleMinimize(event)">🎈</div>
       <div class="balloon-container">
         <div id="gusStick" class="balloon-stick"></div>
@@ -2058,13 +2085,13 @@
         </div>
       </div>
       <div class="px-3 pt-2 pb-1.5 bg-carbon-900 border-t border-carbon-800 flex gap-1.5 overflow-x-auto whitespace-nowrap text-[9.5px] font-mono scrollbar-hide">
-        <button type="button" onclick="sendQuickPrompt('What does cs~1.6 mean?')" class="px-2 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-purple-300 border border-carbon-700 cursor-pointer">🎮 cs~1.6?</button>
-        <button type="button" onclick="sendQuickPrompt('whoami')" class="px-2 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-amber-400 border border-carbon-700 cursor-pointer">☕ whoami</button>
-        <button type="button" onclick="sendQuickPrompt('sudo hire sai')" class="px-2 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-emerald-300 border border-carbon-700 cursor-pointer">👑 sudo hire sai</button>
+        <button type="button" onclick="sendQuickPrompt('What does cs~1.6 mean?')" class="px-2 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-purple-300 border border-carbon-700 cursor-pointer transition-colors">🎮 cs~1.6?</button>
+        <button type="button" onclick="sendQuickPrompt('whoami')" class="px-2 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-amber-400 border border-carbon-700 cursor-pointer transition-colors">☕ whoami</button>
+        <button type="button" onclick="sendQuickPrompt('sudo hire sai')" class="px-2 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-emerald-300 border border-carbon-700 cursor-pointer transition-colors">👑 sudo hire sai</button>
       </div>
       <div class="p-2 sm:p-3 bg-carbon-900 border-t border-carbon-700 flex gap-2">
         <input type="text" id="userInput" class="flex-1 bg-carbon-950 border border-carbon-700 focus:border-amber-500 rounded-xl px-3 py-2 text-[11px] sm:text-xs text-white outline-none font-sans placeholder-slate-500" placeholder="Ask about Vinay or type sudo hire sai..." autocomplete="off">
-        <button id="sendChatBtn" type="button" onclick="sendMessage()" class="px-3.5 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-carbon-950 font-bold text-[11px] font-mono cursor-pointer">Send</button>
+        <button id="sendChatBtn" type="button" onclick="sendMessage()" class="px-3.5 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-carbon-950 font-bold text-[11px] font-mono cursor-pointer transition-colors">Send</button>
       </div>
     </div>
   </div>
@@ -2205,6 +2232,11 @@
         trigger.addEventListener('focus', show);
         wrapper.addEventListener('mouseleave', hide);
         trigger.addEventListener('blur', hide);
+        trigger.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          wrapper.classList.contains('is-active') ? hide() : show();
+        });
       });
     }
 
@@ -2688,7 +2720,7 @@
     }
 
     /* ========================================================================= */
-    /* 7. COPILOT CHAT & SANDBOX                                                 */
+    /* 7. COPILOT CHAT                                                           */
     /* ========================================================================= */
     let pf_isChatMinimized = window.innerWidth < 640;
     let pf_chatHistory = [];
@@ -2955,7 +2987,7 @@
     };
 
     /* ========================================================================= */
-    /* 9. VIRTUAL FILE SYSTEM & SANDBOX CLI ENGINE                               */
+    /* 9. VIRTUAL FILE SYSTEM & SANDBOX CLI ENGINE (UNCUT)                       */
     /* ========================================================================= */
     let activeCliAbortController = null, activeCliTimers = [];
     let isCase1Patched = false, isCase1PatchedInline = false;
@@ -3246,7 +3278,7 @@
       const btn = document.getElementById('btnCase1PatchInline');
 
       if (isCase1PatchedInline) {
-        if (badge) { badge.textContent = "HTTP 200 OK"; badge.className = "px-2 py-0.5 rounded bg-[#00ff66]/20 text-[#00ff66] border border-[#00ff66]/40 font-bold"; }
+        if (badge) { badge.textContent = "HTTP 200 OK"; badge.className = "px-2.5 py-1 rounded bg-[#00ff66]/20 text-[#00ff66] border border-[#00ff66]/40 font-bold text-[11px]"; }
         if (pr) { pr.setAttribute('fill', '#062c22'); pr.setAttribute('stroke', '#00ff66'); }
         if (pt) { pt.textContent = "curl OK (200)"; pt.setAttribute('fill', '#00ff66'); }
         if (rr) { rr.setAttribute('fill', '#062c22'); rr.setAttribute('stroke', '#00ff66'); }
@@ -3255,7 +3287,7 @@
         if (btn) btn.textContent = "[ ↺ Rollback Patch ]";
         showToast('✓ Patch applied: curl binary restored in base image layer');
       } else {
-        if (badge) { badge.textContent = "EXIT CODE 127"; badge.className = "px-2 py-0.5 rounded bg-red-500/20 text-red-400 border border-red-500/40 font-bold"; }
+        if (badge) { badge.textContent = "EXIT CODE 127"; badge.className = "px-2.5 py-1 rounded bg-red-500/20 text-red-400 border border-red-500/40 font-bold text-[11px]"; }
         if (pr) { pr.setAttribute('fill', '#3b0a0a'); pr.setAttribute('stroke', '#ef4444'); }
         if (pt) { pt.textContent = "curl missing (127)"; pt.setAttribute('fill', '#f87171'); }
         if (rr) { rr.setAttribute('fill', '#161f33'); rr.setAttribute('stroke', '#475569'); }
