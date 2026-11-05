@@ -181,13 +181,13 @@
       100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
     }
     
-    .wf-running { border-color: #00ff66 !important; box-shadow: 0 8px 24px rgba(0, 255, 102, 0.12) !important; animation: wfPulse 1.2s infinite; transform: translateY(-2px); }
+    .wf-running { border-color: #00ff66 !important; box-shadow: 0 4px 24px rgba(0, 255, 102, 0.3) !important; animation: wfPulse 1.2s infinite; transform: translateY(-2px); }
     .wf-passed { border-color: #00ff66 !important; box-shadow: 0 0 15px rgba(0, 255, 102, 0.15) !important; transform: translateY(0); }
     
-    .wf-running-amber { border-color: #f59e0b !important; box-shadow: 0 8px 24px rgba(245, 158, 11, 0.12) !important; animation: wfPulseAmber 1.2s infinite; transform: translateY(-2px); }
+    .wf-running-amber { border-color: #f59e0b !important; box-shadow: 0 4px 24px rgba(245, 158, 11, 0.3) !important; animation: wfPulseAmber 1.2s infinite; transform: translateY(-2px); }
     .wf-passed-amber { border-color: #f59e0b !important; box-shadow: 0 0 15px rgba(245, 158, 11, 0.15) !important; transform: translateY(0); }
     
-    .wf-passed-blue { border-color: #38bdf8 !important; box-shadow: 0 0 18px rgba(56, 189, 248, 0.25) !important; transform: translateY(-2px); }
+    .wf-passed-blue { border-color: #38bdf8 !important; box-shadow: 0 4px 24px rgba(56, 189, 248, 0.25) !important; transform: translateY(-2px); }
 
     .wf-connector { border-color: #1e293b !important; transition: border-color 0.4s ease; }
     .wf-connector-solid { border-color: #00ff66 !important; }
@@ -233,7 +233,7 @@
     }
 
     /* ==========================================================
-       EDUCATION — DEV MODE VISUAL ENHANCEMENTS
+       EDUCATION — DEV MODE VISUAL ENHANCEMENTS (HALO)
        ========================================================== */
     .edu-halo-container {
       position: relative;
@@ -293,6 +293,8 @@
       background: transparent;
       margin-bottom: 1.25rem;
     }
+    
+    .edu-logo-mark { font-family: 'JetBrains Mono', monospace; font-size: 17px; font-weight: 800; letter-spacing: -0.06em; color: #00ff66; text-align: center; }
 
     .edu-text-content {
       position: relative;
@@ -303,9 +305,9 @@
     }
 
     /* Viewport Reveal Animation */
-    body.mode-dev #education.edu-visible .edu-spotlight { opacity: 1; }
-    body.mode-dev #education.edu-visible .edu-halo-svg circle { animation: drawHalo 1.2s cubic-bezier(0.65, 0, 0.35, 1) forwards; }
-    body.mode-dev #education.edu-visible .edu-text-content { opacity: 1; transform: translateY(0); }
+    body.mode-dev #dev-education-cards.edu-visible .edu-spotlight { opacity: 1; }
+    body.mode-dev #dev-education-cards.edu-visible .edu-halo-svg circle { animation: drawHalo 1.2s cubic-bezier(0.65, 0, 0.35, 1) forwards; }
+    body.mode-dev #dev-education-cards.edu-visible .edu-text-content { opacity: 1; transform: translateY(0); }
     
     /* 85% completion leaves a deliberate gap */
     @keyframes drawHalo { to { stroke-dashoffset: 42; } }
@@ -326,6 +328,7 @@
       .wf-stage, .wf-packet { transition: none !important; }
       .dossier-expand-grid { transition: none !important; }
       
+      /* Education Reduced Motion */
       body.mode-dev #education .edu-halo-svg circle { stroke-dashoffset: 42 !important; animation: none !important; }
       body.mode-dev #education .edu-text-content { opacity: 1 !important; transform: none !important; transition: none !important; }
       body.mode-dev #education .edu-spotlight { opacity: 1 !important; transition: none !important; }
@@ -497,7 +500,6 @@
       </div>
     </div>
   </header>
-
   <!-- ============================================== -->
   <!-- HR MODE: 1-Page Printable Resume (3-Column)    -->
   <!-- ============================================== -->
@@ -1201,13 +1203,16 @@
                       <i data-lucide="terminal" class="w-3.5 h-3.5"></i> Inspect Incident 127 ↘
                     </button>
 
-                    <!-- Inline Investigation: Incident 127 (Scaled down slightly for fit) -->
-                    <div id="inline-inc-127" class="dossier-expand-grid">
+                    <!-- Inline Investigation: Incident 127 (Scaled down to 75% width physically) -->
+                    <div id="inline-inc-127" class="dossier-expand-grid w-full lg:w-[75%]">
                       <div class="dossier-expand-inner">
                         <div class="mt-3 p-3.5 sm:p-4 bg-carbon-950 border border-carbon-800 rounded-xl space-y-3 text-[10px]">
                           <div class="flex items-center justify-between font-mono text-slate-400 mb-1">
-                            <span>TOPOLOGY: HARBOR_BASE ➔ JVM_APP ➔ PROBE</span>
-                            <span id="case1StatusBadgeInline" class="text-red-400 font-bold">EXIT CODE 127</span>
+                            <span class="flex items-center gap-2">
+                              <span class="px-2 py-0.5 rounded bg-red-500/20 text-red-400 font-bold border border-red-500/40">[INC-CONTAINER-127]</span>
+                              TOPOLOGY: HARBOR_BASE ➔ JVM_APP ➔ PROBE
+                            </span>
+                            <span id="case1StatusBadgeInline" class="px-2 py-0.5 rounded bg-red-500/20 text-red-400 border border-red-500/40 font-bold">EXIT CODE 127</span>
                           </div>
                           
                           <svg viewBox="0 0 520 115" class="w-full h-auto my-1" xmlns="http://www.w3.org/2000/svg">
@@ -1224,11 +1229,11 @@
                             <button type="button" onclick="toggleCase1PatchInline()" id="btnCase1PatchInline" class="px-2.5 py-1 rounded bg-[#00ff66]/20 hover:bg-[#00ff66] hover:text-black text-[#00ff66] font-bold border border-[#00ff66]/40 transition-colors cursor-pointer text-[10px]">[ >_ Run Patch: +curl ]</button>
                           </div>
 
-                          <!-- 15% Larger Topic Headings (text-[11px] or text-xs) -->
+                          <!-- 15% Larger Topic Headings (w-9 h-9, text-sm) -->
                           <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
-                            <div class="space-y-1"><span class="text-[11px] sm:text-xs text-red-400 font-mono font-bold">01 — PROBLEM</span><p class="text-[10px] text-slate-300 font-sans leading-snug">Upstream image silently stripped the <code>curl</code> binary, causing readiness probes to return ExitCode 127 despite healthy app code.</p></div>
-                            <div class="space-y-1"><span class="text-[11px] sm:text-xs text-[#00ff66] font-mono font-bold">02 — CHANGE</span><p class="text-[10px] text-slate-300 font-sans leading-snug">Injected <code>RUN apk add --no-cache curl</code> into the local Dockerfile before the health-check layer.</p></div>
-                            <div class="space-y-1"><span class="text-[11px] sm:text-xs text-emerald-400 font-mono font-bold">03 — RESULT</span><p class="text-[10px] text-slate-300 font-sans leading-snug">Restored HTTP 200 OK signal in 45m. Rescued the live 60-minute deployment SLA and published runbook.</p></div>
+                            <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-red-500/20 text-red-400 border border-red-500/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">01</span><p class="text-[10px] text-slate-300 font-sans leading-snug">Upstream image silently stripped the <code>curl</code> binary, causing readiness probes to return ExitCode 127 despite healthy app code.</p></div>
+                            <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-[#00ff66]/20 text-[#00ff66] border border-[#00ff66]/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">02</span><p class="text-[10px] text-slate-300 font-sans leading-snug">Injected <code>RUN apk add --no-cache curl</code> into the local Dockerfile before the health-check layer.</p></div>
+                            <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">03</span><p class="text-[10px] text-slate-300 font-sans leading-snug">Restored HTTP 200 OK signal in 45m. Rescued the live 60-minute deployment SLA and published runbook.</p></div>
                           </div>
                         </div>
                       </div>
@@ -1250,13 +1255,16 @@
                       <i data-lucide="file-code-2" class="w-3.5 h-3.5"></i> Inspect Java Diff ↘
                     </button>
                     
-                    <!-- Inline Investigation: Java Diff (Scaled down slightly for fit) -->
-                    <div id="inline-java-diff" class="dossier-expand-grid">
+                    <!-- Inline Investigation: Java Diff (Scaled down to 75% width physically) -->
+                    <div id="inline-java-diff" class="dossier-expand-grid w-full lg:w-[75%]">
                       <div class="dossier-expand-inner">
                         <div class="mt-3 p-3.5 sm:p-4 bg-carbon-950 border border-carbon-800 rounded-xl space-y-3 text-[10px]">
                           <div class="flex items-center justify-between font-mono text-slate-400 mb-1">
-                            <span>TOPOLOGY: EVENT_INGESTION ➔ DTO_CONVERGENCE</span>
-                            <span class="text-purple-400 font-bold">CANONICAL ENTITY</span>
+                            <span class="flex items-center gap-2">
+                              <span class="px-2 py-0.5 rounded bg-purple-500/20 text-purple-400 font-bold border border-purple-500/40">[REFACTOR-SKU-286]</span>
+                              TOPOLOGY: EVENT_INGESTION ➔ DTO_CONVERGENCE
+                            </span>
+                            <span class="px-2 py-0.5 rounded bg-purple-500/20 text-purple-400 border border-purple-500/40 font-bold">CANONICAL ENTITY</span>
                           </div>
 
                           <svg viewBox="0 0 520 125" class="w-full h-auto my-1" xmlns="http://www.w3.org/2000/svg">
@@ -1268,9 +1276,9 @@
 
                           <!-- 15% Larger Topic Headings -->
                           <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
-                            <div class="space-y-1"><span class="text-[11px] sm:text-xs text-red-400 font-mono font-bold">01 — PROBLEM</span><p class="text-[10px] text-slate-300 font-sans leading-snug">Microservices maintained inconsistent naming (<code>parentSKU</code> vs <code>parentProductSku</code>), duplicating mapping logic.</p></div>
-                            <div class="space-y-1"><span class="text-[11px] sm:text-xs text-purple-400 font-mono font-bold">02 — CHANGE</span><p class="text-[10px] text-slate-300 font-sans leading-snug">Converged payload mapping onto a single canonical DTO identifier and deleted legacy adapter classes.</p></div>
-                            <div class="space-y-1"><span class="text-[11px] sm:text-xs text-emerald-400 font-mono font-bold">03 — RESULT</span><p class="text-[10px] text-slate-300 font-sans leading-snug">315 lines added, 992 removed. Net reduction of 677 LOC with 100% green JUnit integration suites.</p></div>
+                            <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-red-500/20 text-red-400 border border-red-500/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">01</span><p class="text-[10px] text-slate-300 font-sans leading-snug">Microservices maintained inconsistent naming (<code>parentSKU</code> vs <code>parentProductSku</code>), duplicating mapping logic.</p></div>
+                            <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-purple-500/20 text-purple-400 border border-purple-500/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">02</span><p class="text-[10px] text-slate-300 font-sans leading-snug">Converged payload mapping onto a single canonical DTO identifier and deleted legacy adapter classes.</p></div>
+                            <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">03</span><p class="text-[10px] text-slate-300 font-sans leading-snug">315 lines added, 992 removed. Net reduction of 677 LOC with 100% green JUnit integration suites.</p></div>
                           </div>
                         </div>
                       </div>
@@ -1352,12 +1360,15 @@
                     </button>
                     
                     <!-- Inline Investigation: IAC Audit 225 -->
-                    <div id="inline-arn-225" class="dossier-expand-grid">
+                    <div id="inline-arn-225" class="dossier-expand-grid w-full lg:w-[75%]">
                       <div class="dossier-expand-inner">
                         <div class="mt-3 p-3.5 sm:p-4 bg-carbon-950 border border-carbon-800 rounded-xl space-y-3 text-[10px]">
                           <div class="flex items-center justify-between font-mono text-slate-400 mb-1">
-                            <span>TOPOLOGY: TERRAGRUNT ➔ STG_ROLE vs PROD_ROLE</span>
-                            <span class="text-sky-400 font-bold">CROSS-ACCOUNT INTERCEPT</span>
+                            <span class="flex items-center gap-2">
+                              <span class="px-2 py-0.5 rounded bg-sky-500/20 text-sky-400 font-bold border border-sky-500/40">[IAC-AUDIT-225]</span>
+                              TOPOLOGY: TERRAGRUNT ➔ STG_ROLE vs PROD_ROLE
+                            </span>
+                            <span class="px-2 py-0.5 rounded bg-sky-500/20 text-sky-400 border border-sky-500/40 font-bold">CROSS-ACCOUNT INTERCEPT</span>
                           </div>
 
                           <div class="overflow-x-auto pb-2">
@@ -1371,9 +1382,9 @@
 
                           <!-- 15% Larger Topic Headings -->
                           <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
-                            <div class="space-y-1"><span class="text-[11px] sm:text-xs text-red-400 font-mono font-bold">01 — PROBLEM</span><p class="text-[10px] text-slate-300 font-sans leading-snug">Terragrunt configurations mistakenly mapped a staging IAM role ARN into production execution variables.</p></div>
-                            <div class="space-y-1"><span class="text-[11px] sm:text-xs text-sky-400 font-mono font-bold">02 — CHANGE</span><p class="text-[10px] text-slate-300 font-sans leading-snug">Intercepted drift during CI/CD plan phase and dynamically injected account-scoped production principals.</p></div>
-                            <div class="space-y-1"><span class="text-[11px] sm:text-xs text-emerald-400 font-mono font-bold">03 — RESULT</span><p class="text-[10px] text-slate-300 font-sans leading-snug">Blocked cross-environment violation, enforcing strict Zero-Trust boundaries before infrastructure was provisioned.</p></div>
+                            <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-red-500/20 text-red-400 border border-red-500/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">01</span><p class="text-[10px] text-slate-300 font-sans leading-snug">Terragrunt configurations mistakenly mapped a staging IAM role ARN into production execution variables.</p></div>
+                            <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-sky-500/20 text-sky-400 border border-sky-500/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">02</span><p class="text-[10px] text-slate-300 font-sans leading-snug">Intercepted drift during CI/CD plan phase and dynamically injected account-scoped production principals.</p></div>
+                            <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">03</span><p class="text-[10px] text-slate-300 font-sans leading-snug">Blocked cross-environment violation, enforcing strict Zero-Trust boundaries before infrastructure was provisioned.</p></div>
                           </div>
                         </div>
                       </div>
@@ -1458,9 +1469,9 @@
         </div>
       </section>
 
-      <!-- Section 03: Academic Foundations (Academic Halo + Spotlight Design) -->
+      <!-- Section 03: Academic Foundations (Academic Halo + Spotlight Design in Dev Mode) -->
       <section id="education" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-14 border-b border-carbon-800">
-        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 gap-4">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 gap-4">
           <div>
             <span class="text-[11px] sm:text-xs font-mono text-amber-400 uppercase tracking-wider">ACADEMIC FOUNDATIONS</span>
             <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mt-2 font-sans">
@@ -1472,91 +1483,121 @@
           </p>
         </div>
 
-        <div id="manager-education-cards" class="grid grid-cols-1 md:grid-cols-3 gap-12 sm:gap-6">
-
-          <!-- =====================================================
-               IIT BOMBAY (Academic Halo)
-               ===================================================== -->
-          <div class="edu-halo-container md:border-r border-carbon-800 md:pr-4">
-            
-            <div class="edu-spotlight"></div>
-            
-            <svg class="edu-halo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="50" cy="50" r="45" />
-            </svg>
-
-            <div class="edu-logo-frame">
-              <span class="edu-logo-mark">IIT-B</span>
-            </div>
-
-            <div class="edu-text-content px-4">
-              <h3 class="text-base sm:text-lg font-bold text-slate-200 leading-snug">IIT Bombay</h3>
-              <p class="text-[12px] sm:text-[13px] font-mono font-bold text-[#00ff66] mt-1.5 leading-relaxed">Executive Certificate in AI &amp; MLOps</p>
-              <p class="text-[11px] font-mono text-slate-400 mt-2">2026</p>
-              
-              <p class="text-xs text-slate-400 leading-relaxed dev-only mt-4" style="display:none;">
-                <strong class="text-[#00ff66]">Focus:</strong> OpenMPI collective comms (MPI_Allreduce), data-parallel gradient sync, CUDA memory pinning, and MLOps orchestration.
-              </p>
-              <p class="text-xs text-slate-400 leading-relaxed manager-only mt-4">
+        <!-- MANAGER MODE (Original Bento Cards) -->
+        <div id="manager-education-cards" class="manager-only grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
+          <div class="edu-card p-5 sm:p-6 rounded-2xl bg-carbon-850 border border-carbon-700 shadow-lg flex flex-col justify-between" data-watermark="IITB">
+            <div class="edu-card-content space-y-4">
+              <div class="flex items-start justify-between gap-3">
+                <div class="edu-logo-frame w-16 h-16 sm:w-[76px] sm:h-[76px] rounded-2xl bg-carbon-900 border border-[#00ff66]/40 p-2 shadow-md shrink-0">
+                  <span class="edu-logo-mark">IIT-B</span>
+                </div>
+                <span class="px-2.5 py-1 rounded-full bg-[#00ff66]/10 text-[#00ff66] font-mono text-[10px] sm:text-xs border border-[#00ff66]/30 font-semibold">
+                  2026 // ADVANCED
+                </span>
+              </div>
+              <div>
+                <h3 class="text-sm sm:text-base font-bold text-slate-200">Indian Institute of Technology Bombay</h3>
+                <p class="text-[11px] sm:text-[13px] font-mono font-bold text-[#00ff66] mt-1">Executive Certificate in AI &amp; MLOps</p>
+              </div>
+              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
                 High-Performance Computing (HPC), distributed training with Message Passing Interface (MPI), and containerized ML pipelines.
               </p>
             </div>
           </div>
 
-          <!-- =====================================================
-               NEW JERSEY INSTITUTE OF TECHNOLOGY (Academic Halo)
-               ===================================================== -->
-          <div class="edu-halo-container md:border-r border-carbon-800 md:px-2">
-            
-            <div class="edu-spotlight"></div>
-            
-            <svg class="edu-halo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="50" cy="50" r="45" />
-            </svg>
-
-            <div class="edu-logo-frame">
-              <span class="edu-logo-mark">NJIT</span>
-            </div>
-
-            <div class="edu-text-content px-4">
-              <h3 class="text-base sm:text-lg font-bold text-slate-200 leading-snug">New Jersey Institute of Technology (NJIT)</h3>
-              <p class="text-[12px] sm:text-[13px] font-mono font-bold text-[#00ff66] mt-1.5 leading-relaxed">Master of Science in Computer Science</p>
-              <p class="text-[11px] font-mono text-slate-400 mt-2">Dec 2020</p>
-              
-              <p class="text-xs text-slate-400 leading-relaxed dev-only mt-4" style="display:none;">
-                <strong class="text-[#00ff66]">Focus:</strong> POSIX syscall interfaces, virtual memory paging, distributed consensus protocols, and hypervisors.
-              </p>
-              <p class="text-xs text-slate-400 leading-relaxed manager-only mt-4">
+          <div class="edu-card p-5 sm:p-6 rounded-2xl bg-carbon-850 border border-carbon-700 shadow-lg flex flex-col justify-between" data-watermark="NJIT">
+            <div class="edu-card-content space-y-4">
+              <div class="flex items-start justify-between gap-3">
+                <div class="edu-logo-frame w-16 h-16 sm:w-[76px] sm:h-[76px] rounded-2xl bg-carbon-900 border border-[#00ff66]/40 p-2 shadow-md shrink-0">
+                  <span class="edu-logo-mark">NJIT</span>
+                </div>
+                <span class="px-2.5 py-1 rounded-full bg-carbon-800 text-slate-300 font-mono text-[10px] sm:text-xs border border-carbon-600 font-semibold">
+                  DEC 2020 // GRADUATED
+                </span>
+              </div>
+              <div>
+                <h3 class="text-sm sm:text-base font-bold text-slate-200">New Jersey Institute of Technology</h3>
+                <p class="text-[11px] sm:text-[13px] font-mono font-bold text-[#00ff66] mt-1">Master of Science in Computer Science</p>
+              </div>
+              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
                 Newark, New Jersey. Advanced graduate studies in distributed cloud computing, kernel internals, and systems architecture.
               </p>
             </div>
           </div>
 
-          <!-- =====================================================
-               GURU GOBIND SINGH IP UNIVERSITY (Academic Halo)
-               ===================================================== -->
-          <div class="edu-halo-container md:pl-4">
-            
+          <div class="edu-card p-5 sm:p-6 rounded-2xl bg-carbon-850 border border-carbon-700 shadow-lg flex flex-col justify-between" data-watermark="GGSIPU">
+            <div class="edu-card-content space-y-4">
+              <div class="flex items-start justify-between gap-3">
+                <div class="edu-logo-frame w-16 h-16 sm:w-[76px] sm:h-[76px] rounded-2xl bg-carbon-900 border border-[#00ff66]/40 p-2 shadow-md shrink-0">
+                  <span class="edu-logo-mark">GGSIPU</span>
+                </div>
+                <span class="px-2.5 py-1 rounded-full bg-carbon-800 text-slate-300 font-mono text-[10px] sm:text-xs border border-carbon-600 font-semibold">
+                  MAY 2017 // GRADUATED
+                </span>
+              </div>
+              <div>
+                <h3 class="text-sm sm:text-base font-bold text-slate-200">Guru Gobind Singh IP University</h3>
+                <p class="text-[11px] sm:text-[13px] font-mono font-bold text-[#00ff66] mt-1">Bachelor of Technology in Computer Science</p>
+              </div>
+              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                New Delhi, India. Core curriculum covering data structures, object-oriented programming, and computer networking.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- DEV MODE (Academic Halo + Spotlight Design) -->
+        <div id="dev-education-cards" class="dev-only grid grid-cols-1 md:grid-cols-3 gap-12 sm:gap-6 mt-4" style="display:none;">
+          <div class="edu-halo-container md:border-r border-carbon-800 md:pr-4">
             <div class="edu-spotlight"></div>
-            
             <svg class="edu-halo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
               <circle cx="50" cy="50" r="45" />
             </svg>
+            <div class="edu-logo-frame">
+              <span class="edu-logo-mark">IIT-B</span>
+            </div>
+            <div class="edu-text-content px-4">
+              <h3 class="text-base sm:text-lg font-bold text-slate-200 leading-snug">IIT Bombay</h3>
+              <p class="text-[12px] sm:text-[13px] font-mono font-bold text-[#00ff66] mt-1.5 leading-relaxed">Executive Certificate in AI &amp; MLOps</p>
+              <p class="text-[11px] font-mono text-slate-400 mt-2">2026</p>
+              <p class="text-xs text-slate-400 leading-relaxed mt-4">
+                <strong class="text-[#00ff66]">Focus:</strong> OpenMPI collective comms (MPI_Allreduce), data-parallel gradient sync, CUDA memory pinning, and MLOps orchestration.
+              </p>
+            </div>
+          </div>
 
+          <div class="edu-halo-container md:border-r border-carbon-800 md:px-2">
+            <div class="edu-spotlight"></div>
+            <svg class="edu-halo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="50" cy="50" r="45" />
+            </svg>
+            <div class="edu-logo-frame">
+              <span class="edu-logo-mark">NJIT</span>
+            </div>
+            <div class="edu-text-content px-4">
+              <h3 class="text-base sm:text-lg font-bold text-slate-200 leading-snug">New Jersey Institute of Technology (NJIT)</h3>
+              <p class="text-[12px] sm:text-[13px] font-mono font-bold text-[#00ff66] mt-1.5 leading-relaxed">Master of Science in Computer Science</p>
+              <p class="text-[11px] font-mono text-slate-400 mt-2">Dec 2020</p>
+              <p class="text-xs text-slate-400 leading-relaxed mt-4">
+                <strong class="text-[#00ff66]">Focus:</strong> POSIX syscall interfaces, virtual memory paging, distributed consensus protocols, and hypervisors.
+              </p>
+            </div>
+          </div>
+
+          <div class="edu-halo-container md:pl-4">
+            <div class="edu-spotlight"></div>
+            <svg class="edu-halo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="50" cy="50" r="45" />
+            </svg>
             <div class="edu-logo-frame">
               <span class="edu-logo-mark">GGSIPU</span>
             </div>
-
             <div class="edu-text-content px-4">
               <h3 class="text-base sm:text-lg font-bold text-slate-200 leading-snug">Guru Gobind Singh Indraprastha University</h3>
               <p class="text-[12px] sm:text-[13px] font-mono font-bold text-[#00ff66] mt-1.5 leading-relaxed">Bachelor of Technology in Computer Science</p>
               <p class="text-[11px] font-mono text-slate-400 mt-2">May 2017</p>
-              
-              <p class="text-xs text-slate-400 leading-relaxed dev-only mt-4" style="display:none;">
+              <p class="text-xs text-slate-400 leading-relaxed mt-4">
                 <strong class="text-[#00ff66]">Focus:</strong> TCP/IP packet framing, socket programming, deterministic data structures, and compiler/AST fundamentals.
-              </p>
-              <p class="text-xs text-slate-400 leading-relaxed manager-only mt-4">
-                New Delhi, India. Core curriculum covering data structures, object-oriented programming, and computer networking.
               </p>
             </div>
           </div>
@@ -2033,114 +2074,60 @@
       </div>
     </div>
   </div>
-  <!-- Modal 2: Audit 225 Fleshed Out -->
+  <!-- Audit 225 Modal -->
   <div id="modal-arn" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
-    <div class="bg-carbon-900 border border-carbon-700 max-w-3xl w-full rounded-2xl overflow-hidden shadow-[0_0_30px_rgba(56,189,248,0.2)] flex flex-col max-h-[90vh]">
-      <div class="px-6 py-4 bg-carbon-850 border-b border-carbon-700 flex items-center justify-between">
-        <div class="flex items-center gap-3"><span class="px-2.5 py-1 rounded bg-sky-500/20 text-sky-400 font-mono text-xs font-bold border border-sky-500/40">[IAC-AUDIT-225]</span><h3 class="text-base font-bold text-white">Multi-Environment IaC Audit</h3></div>
+    <div class="bg-carbon-900 border border-carbon-700 max-w-3xl w-full rounded-2xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
+      <div class="px-6 py-4 bg-carbon-850 border-b border-carbon-700 flex justify-between items-center">
+        <span class="px-2.5 py-1 rounded bg-sky-500/20 text-sky-400 font-mono text-xs font-bold border border-sky-500/40">[IAC-AUDIT-225]</span>
         <button type="button" onclick="closeModal('modal-arn')" class="text-slate-400 hover:text-white font-mono text-sm cursor-pointer">✕ ESC</button>
       </div>
-      
       <div class="p-6 bg-carbon-950 border-b border-carbon-800 overflow-x-auto">
-        <div class="flex items-center justify-between text-[10px] sm:text-xs font-mono text-slate-400 mb-2 min-w-[500px]"><span>TOPOLOGY: TERRAGRUNT ➔ STG_ROLE vs PROD_ROLE</span><span class="text-sky-400 font-bold">CROSS-ACCOUNT INTERCEPT</span></div>
+        <div class="flex justify-between text-xs font-mono text-slate-400 mb-2 min-w-[500px]"><span>TOPOLOGY: TERRAGRUNT ➔ STG vs PROD</span><span class="text-sky-400 font-bold">CROSS-ACCOUNT INTERCEPT</span></div>
         <svg viewBox="0 0 600 115" class="w-full min-w-[500px] h-auto bg-[#080d16] rounded-xl border border-carbon-800 p-2" xmlns="http://www.w3.org/2000/svg">
-          <line x1="160" y1="58" x2="230" y2="38" stroke="#f59e0b" stroke-width="2" class="svg-flow-line"/><line x1="160" y1="58" x2="230" y2="80" stroke="#34d399" stroke-width="2" class="svg-flow-line"/>
+          <line x1="160" y1="58" x2="230" y2="38" stroke="#f59e0b" stroke-width="2"/><line x1="160" y1="58" x2="230" y2="80" stroke="#34d399" stroke-width="2"/>
           <g transform="translate(10, 24)"><rect width="150" height="68" rx="8" fill="#172554" stroke="#60a5fa" stroke-width="1.5"/><text x="75" y="34" text-anchor="middle" fill="#bfdbfe" font-size="11" font-weight="bold">PR [IAC-AUDIT-225]</text></g>
-          <g transform="translate(230, 10)"><rect width="350" height="44" rx="6" fill="#451a03" stroke="#f59e0b" stroke-width="1.5"/><text x="175" y="20" text-anchor="middle" fill="#fcd34d" font-size="9" font-weight="bold">INTERCEPTED: Staging Role in Prod HCL</text><text x="175" y="34" text-anchor="middle" fill="#fef08a" font-size="8">arn:aws:iam::126350******:role/stg-billing-events-service</text></g>
-          <g transform="translate(230, 60)"><rect width="350" height="44" rx="6" fill="#062c22" stroke="#34d399" stroke-width="1.5"/><text x="175" y="20" text-anchor="middle" fill="#6ee7b7" font-size="9" font-weight="bold">CORRECTED: Account-Scoped Prod Principal</text><text x="175" y="34" text-anchor="middle" fill="#a7f3d0" font-size="8">arn:aws:iam::984120******:role/prod-billing-events-service</text></g>
+          <g transform="translate(230, 10)"><rect width="350" height="44" rx="6" fill="#451a03" stroke="#f59e0b" stroke-width="1.5"/><text x="175" y="20" text-anchor="middle" fill="#fcd34d" font-size="9" font-weight="bold">INTERCEPTED: Staging Role in Prod HCL</text><text x="175" y="34" text-anchor="middle" fill="#fef08a" font-size="8">arn:aws:iam::126350******:role/stg-billing</text></g>
+          <g transform="translate(230, 60)"><rect width="350" height="44" rx="6" fill="#062c22" stroke="#34d399" stroke-width="1.5"/><text x="175" y="20" text-anchor="middle" fill="#6ee7b7" font-size="9" font-weight="bold">CORRECTED: Account-Scoped Prod Principal</text><text x="175" y="34" text-anchor="middle" fill="#a7f3d0" font-size="8">arn:aws:iam::984120******:role/prod-billing</text></g>
         </svg>
       </div>
-      
-      <div class="p-6 overflow-y-auto space-y-4 text-[11px] sm:text-xs font-mono text-slate-300">
-        <!-- 3-Part Engineering Narrative -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-          <div class="p-3 rounded-xl bg-carbon-950 border border-red-500/30">
-            <span class="text-red-400 font-bold block mb-1">01 — THE PROBLEM</span>
-            <p class="font-sans text-xs text-slate-300 leading-relaxed">Terragrunt configurations were mistakenly mapping a staging environment IAM role ARN into the production execution variables, creating a strict privilege boundary risk.</p>
-          </div>
-          <div class="p-3 rounded-xl bg-carbon-950 border border-sky-500/30">
-            <span class="text-sky-400 font-bold block mb-1">02 — THE CHANGE</span>
-            <p class="font-sans text-xs text-slate-300 leading-relaxed">Intercepted the drift during the CI/CD plan phase and dynamically injected the correct, account-scoped production principal via Terragrunt <code class="text-sky-300 font-mono">locals</code> overrides.</p>
-          </div>
-          <div class="p-3 rounded-xl bg-carbon-950 border border-emerald-500/30">
-            <span class="text-emerald-400 font-bold block mb-1">03 — THE RESULT</span>
-            <p class="font-sans text-xs text-slate-300 leading-relaxed"><strong class="text-white">Blocked a cross-environment security violation.</strong> Enforced strict Zero-Trust execution boundaries before any AWS infrastructure was provisioned.</p>
-          </div>
-        </div>
-
-        <div class="p-3 rounded bg-carbon-950 border border-carbon-800 overflow-x-auto">
-          <span class="text-amber-400 block mb-1"># Sanitized Terragrunt service.hcl Intercept:</span>
-          <div class="text-red-400 whitespace-nowrap">- service_role = "arn:aws:iam::126350******:role/stg-billing-events-service"</div>
-          <div class="text-emerald-400 whitespace-nowrap">+ service_role = "arn:aws:iam::984120******:role/prod-billing-events-service"</div>
-        </div>
-      </div>
-      
       <div class="px-6 py-3 bg-carbon-850 border-t border-carbon-800 flex justify-end">
-        <button type="button" onclick="closeModal('modal-arn')" class="px-4 py-2 rounded-lg bg-carbon-800 text-white border border-carbon-600 font-mono text-xs font-bold hover:text-sky-400 hover:border-sky-400 cursor-pointer">✕ Close</button>
+        <button type="button" onclick="closeModal('modal-arn')" class="px-4 py-2 rounded-lg bg-carbon-800 text-white font-mono text-xs font-bold hover:text-sky-400 cursor-pointer">✕ Close</button>
       </div>
     </div>
   </div>
 
-  <!-- Modal 3: Java Refactor (+315 / -992) -->
+  <!-- Java Refactor Modal -->
   <div id="modal-java" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
-    <div class="bg-carbon-900 border border-carbon-700 max-w-3xl w-full rounded-2xl overflow-hidden shadow-[0_0_30px_rgba(168,85,247,0.2)] flex flex-col max-h-[90vh]">
-      <div class="px-6 py-4 bg-carbon-850 border-b border-carbon-700 flex items-center justify-between">
-        <div class="flex items-center gap-3"><span class="px-2.5 py-1 rounded bg-purple-500/20 text-purple-400 font-mono text-xs font-bold border border-purple-500/40">[REFACTOR-SKU-286]</span><h3 class="text-base font-bold text-white">Canonical DTO Convergence (+315 / -992 LOC)</h3></div>
+    <div class="bg-carbon-900 border border-carbon-700 max-w-3xl w-full rounded-2xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
+      <div class="px-6 py-4 bg-carbon-850 border-b border-carbon-700 flex justify-between items-center">
+        <span class="px-2.5 py-1 rounded bg-purple-500/20 text-purple-400 font-mono text-xs font-bold border border-purple-500/40">[REFACTOR-SKU-286]</span>
         <button type="button" onclick="closeModal('modal-java')" class="text-slate-400 hover:text-white font-mono text-sm cursor-pointer">✕ ESC</button>
       </div>
       <div class="p-6 bg-carbon-950 border-b border-carbon-800 overflow-x-auto">
-        <div class="flex items-center justify-between text-[10px] sm:text-xs font-mono text-slate-400 mb-2 min-w-[500px]"><span>TOPOLOGY: EVENT_INGESTION ➔ DTO_CONVERGENCE</span><span class="text-purple-400 font-bold">CANONICAL ENTITY</span></div>
+        <div class="flex justify-between text-xs font-mono text-slate-400 mb-2 min-w-[500px]"><span>TOPOLOGY: EVENT_INGESTION ➔ DTO_CONVERGENCE</span><span class="text-purple-400 font-bold">CANONICAL ENTITY</span></div>
         <svg viewBox="0 0 520 125" class="w-full min-w-[500px] h-auto my-1" xmlns="http://www.w3.org/2000/svg">
-          <path d="M 175 35 L 295 62" stroke="#c084fc" stroke-width="2.2" fill="none" class="svg-flow-line"/><path d="M 175 90 L 295 62" stroke="#c084fc" stroke-width="2.2" fill="none" class="svg-flow-line"/><polygon points="300,62 290,56 290,68" fill="#34d399"/>
+          <path d="M 175 35 L 295 62" stroke="#c084fc" stroke-width="2.2" fill="none"/><path d="M 175 90 L 295 62" stroke="#c084fc" stroke-width="2.2" fill="none"/><polygon points="300,62 290,56 290,68" fill="#34d399"/>
           <rect x="15" y="15" width="160" height="38" rx="6" fill="#2e1065" stroke="#a855f7" stroke-width="1.4"/><text x="95" y="38" text-anchor="middle" fill="#e9d5ff" font-size="11">parentSKU (Legacy)</text>
           <rect x="15" y="70" width="160" height="38" rx="6" fill="#2e1065" stroke="#a855f7" stroke-width="1.4"/><text x="95" y="93" text-anchor="middle" fill="#e9d5ff" font-size="11">parentProductSku</text>
           <rect x="305" y="27" width="195" height="70" rx="10" fill="#062c22" stroke="#34d399" stroke-width="1.8"/><text x="402" y="55" text-anchor="middle" fill="#6ee7b7" font-size="12.5" font-weight="bold">Canonical SKU</text><text x="402" y="74" text-anchor="middle" fill="#a7f3d0" font-size="10">Single Source of Truth</text>
         </svg>
       </div>
-      <div class="p-6 overflow-y-auto space-y-4 text-[11px] sm:text-xs font-mono text-slate-300">
-        <!-- 3-Part Engineering Narrative -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-          <div class="p-3 rounded-xl bg-carbon-950 border border-red-500/30">
-            <span class="text-red-400 font-bold block mb-1">01 — THE PROBLEM</span>
-            <p class="font-sans text-xs text-slate-300 leading-relaxed">Multiple renewal microservices maintained inconsistent SKU naming (<code class="font-mono text-red-300">parentSKU</code> vs <code class="font-mono text-red-300">parentProductSku</code>), duplicating mapping logic.</p>
-          </div>
-          <div class="p-3 rounded-xl bg-carbon-950 border border-purple-500/30">
-            <span class="text-purple-400 font-bold block mb-1">02 — THE CHANGE</span>
-            <p class="font-sans text-xs text-slate-300 leading-relaxed">Converged all DTOs, controller payloads, and consumers onto a single canonical identifier and stripped dead adapter code.</p>
-          </div>
-          <div class="p-3 rounded-xl bg-carbon-950 border border-emerald-500/30">
-            <span class="text-emerald-400 font-bold block mb-1">03 — THE RESULT</span>
-            <p class="font-sans text-xs text-slate-300 leading-relaxed"><strong class="text-white">315 lines added, 992 removed</strong> (net reduction of 677 LOC), eliminating schema drift with 100% green JUnit suites.</p>
-          </div>
-        </div>
-
-        <div class="p-3 rounded bg-carbon-950 border border-carbon-800 overflow-x-auto">
-          <span class="text-purple-400 block mb-1"># Sanitized Java Entity Diff:</span>
-          <div class="text-red-400 whitespace-nowrap">- private String parentSKU; // Deprecated duplicate identifier &amp; legacy mapper stripped</div>
-          <div class="text-emerald-400 whitespace-nowrap">+ private String parentProductSku; // Canonical SKU propagated across renewal services</div>
-        </div>
-        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-purple-950/40 border border-purple-500/40 text-emerald-400 font-bold text-[10.5px]">
-          <i data-lucide="check-circle" class="w-3.5 h-3.5 text-emerald-400"></i> Net -677 LOC Tech Debt Removed (+315 / -992) • All JUnit Integration Suites Passed
-        </div>
-      </div>
       <div class="px-6 py-3 bg-carbon-850 border-t border-carbon-800 flex justify-end">
-        <button type="button" onclick="closeModal('modal-java')" class="px-4 py-2 rounded-lg bg-carbon-800 text-white border border-carbon-600 font-mono text-xs font-bold hover:text-purple-400 hover:border-purple-400 cursor-pointer">✕ Close</button>
+        <button type="button" onclick="closeModal('modal-java')" class="px-4 py-2 rounded-lg bg-carbon-800 text-white font-mono text-xs font-bold hover:text-purple-400 cursor-pointer">✕ Close</button>
       </div>
     </div>
   </div>
 
-  <!-- ============================================== -->
-  <!-- FLOATING DEV CONSOLE MODAL (On-Demand)         -->
-  <!-- ============================================== -->
+  <!-- Floating Dev Console Modal -->
   <div id="devCliDrawer" style="display: none;" class="fixed inset-0 z-50 items-center justify-center bg-black/70 backdrop-blur-sm p-4">
-    <div class="relative flex flex-col bg-carbon-950 border border-[#00ff66]/60 rounded-xl shadow-[0_0_40px_rgba(0,255,102,0.18)] w-full max-w-3xl h-[450px]" style="resize: both; overflow: hidden; min-width: 280px; min-height: 250px; max-width: 100vw; max-height: 90vh;">
+    <div class="relative flex flex-col bg-carbon-950 border border-[#00ff66]/60 rounded-xl shadow-2xl w-full max-w-3xl h-[450px]" style="resize: both; overflow: hidden; min-width: 280px; min-height: 250px; max-width: 100vw; max-height: 90vh;">
       <div class="flex items-center justify-between bg-black px-3 sm:px-4 py-2 border-b border-[#00ff66]/30 relative">
         <div class="flex items-center gap-2">
           <span class="w-2.5 h-2.5 rounded-full bg-[#00ff66] animate-pulse"></span>
           <span class="font-bold text-[#00ff66] text-[10px] sm:text-xs tracking-wider">Incident Sandbox Shell</span>
         </div>
-        <button type="button" onclick="forceBreakCli()" class="absolute left-1/2 -translate-x-1/2 px-2.5 sm:px-3.5 py-1 rounded bg-red-950/90 hover:bg-red-600 text-red-200 hover:text-white border border-red-500/50 text-[9px] sm:text-[10px] font-bold cursor-pointer transition-colors z-10">■ Break</button>
-        <button type="button" onclick="toggleConsoleModal()" class="px-3 sm:px-4 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-slate-300 hover:text-white border border-carbon-600 text-[9px] sm:text-[10px] font-bold cursor-pointer transition-colors z-10">✕ Close</button>
+        <button type="button" onclick="forceBreakCli()" class="absolute left-1/2 -translate-x-1/2 px-2.5 py-1 rounded bg-red-950/90 hover:bg-red-600 text-red-200 text-[9px] font-bold cursor-pointer z-10">■ Break</button>
+        <button type="button" onclick="toggleConsoleModal()" class="px-3 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-slate-300 text-[9px] font-bold cursor-pointer z-10">✕ Close</button>
       </div>
       <div id="cliOutput" class="flex-1 overflow-y-auto p-3 sm:p-4 space-y-1 text-slate-300 text-[10px] sm:text-[11.5px] leading-relaxed font-mono">
         <div class="text-[#00ff66] font-bold">=== Interactive Outage &amp; Diagnostic Sandbox ===</div>
@@ -2148,13 +2135,12 @@
       </div>
       <div class="flex flex-col bg-black border-t border-[#00ff66]/30">
         <div class="flex flex-wrap items-center gap-1.5 px-3 sm:px-4 py-2 border-b border-carbon-800">
-          <span class="text-[8px] sm:text-[9px] text-slate-500 uppercase tracking-wide">Quick:</span>
-          <button type="button" onclick="runCliCommand('help')" class="px-1.5 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] border border-[#00ff66]/30 text-[9px] sm:text-[9.5px] cursor-pointer">help</button>
-          <button type="button" onclick="runCliCommand('ls -la')" class="px-1.5 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] border border-[#00ff66]/30 text-[9px] sm:text-[9.5px] cursor-pointer">ls</button>
-          <button type="button" onclick="runCliCommand('top')" class="px-1.5 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] border border-[#00ff66]/30 text-[9px] sm:text-[9.5px] cursor-pointer">top</button>
-          <button type="button" onclick="runCliCommand('./patch.sh')" class="px-1.5 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] border border-[#00ff66]/30 text-[9px] sm:text-[9.5px] cursor-pointer">./patch.sh</button>
-          <button type="button" onclick="runCliCommand('df -h')" class="px-1.5 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] border border-[#00ff66]/30 text-[9px] sm:text-[9.5px] cursor-pointer">df -h</button>
-          <button type="button" onclick="runCliCommand('sudo hire sai')" class="px-1.5 py-0.5 rounded bg-amber-500/15 hover:bg-amber-400 hover:text-black text-amber-300 border border-amber-500/40 text-[9px] sm:text-[9.5px] cursor-pointer">👑 sudo hire sai</button>
+          <span class="text-[8px] text-slate-500 uppercase tracking-wide">Quick:</span>
+          <button type="button" onclick="runCliCommand('help')" class="px-1.5 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] text-[#00ff66] text-[9px] cursor-pointer">help</button>
+          <button type="button" onclick="runCliCommand('ls -la')" class="px-1.5 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] text-[#00ff66] text-[9px] cursor-pointer">ls</button>
+          <button type="button" onclick="runCliCommand('top')" class="px-1.5 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] text-[#00ff66] text-[9px] cursor-pointer">top</button>
+          <button type="button" onclick="runCliCommand('./patch.sh')" class="px-1.5 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] text-[#00ff66] text-[9px] cursor-pointer">./patch.sh</button>
+          <button type="button" onclick="runCliCommand('sudo hire sai')" class="px-1.5 py-0.5 rounded bg-amber-500/15 hover:bg-amber-400 text-amber-300 text-[9px] cursor-pointer">👑 sudo hire sai</button>
         </div>
         <div class="flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-3">
           <span id="cliPromptLabel" class="text-[#00ff66] font-bold shrink-0 text-[10px] sm:text-xs">sai@prod-bastion:/opt/incident-127$</span>
@@ -2164,66 +2150,53 @@
     </div>
   </div>
 
-  <!-- ========================================================================= -->
-  <!-- AIRHEAD BALLOON COMPANION                                                 -->
-  <!-- ========================================================================= -->
+  <!-- AirHead Balloon Companion -->
   <div id="balloonContainer" style="left: 16px; bottom: 16px; right: auto;" class="fixed z-30 select-none transition-transform duration-300">
     <div id="balloonTriviaBubble" class="hidden absolute bottom-full left-0 mb-3 w-[min(295px,calc(100vw-32px))] sm:w-80 p-3.5 sm:p-4 rounded-2xl bg-carbon-900/95 border border-amber-500/60 text-xs font-mono shadow-2xl backdrop-blur-xl max-h-[min(390px,60vh)] overflow-y-auto">
-      <div class="flex items-center justify-between text-[10px] text-amber-400 pb-1.5 border-b border-carbon-700">
+      <div class="flex justify-between items-center text-[10px] text-amber-400 pb-1.5 border-b border-carbon-700">
         <span id="balloonFactLabel" class="font-bold flex items-center gap-1">🎈 AirHead.cs~1.6</span>
-        <button type="button" onclick="dismissBalloonBubble()" class="text-slate-400 hover:text-white cursor-pointer px-1" aria-label="Close balloon tip">✕</button>
+        <button type="button" onclick="dismissBalloonBubble()" class="text-slate-400 hover:text-white cursor-pointer px-1">✕</button>
       </div>
       <div id="balloonFactTitle" class="text-white font-bold text-[11px] sm:text-xs mt-2"></div>
       <div id="balloonFactText" class="text-slate-200 mt-1 leading-relaxed font-sans text-[11px] sm:text-xs"></div>
       
       <div id="balloonActionRow" class="mt-2.5 pt-2 border-t border-carbon-800 flex flex-col gap-1.5">
-        <div class="flex flex-wrap items-center justify-between gap-2">
-          <button id="askCopilotTriviaBtn" type="button" onclick="askCopilotAboutCurrentTrivia()" class="px-2.5 py-1 rounded-lg bg-amber-500/15 hover:bg-amber-500 text-amber-300 hover:text-carbon-950 font-mono text-[9px] sm:text-[10px] font-bold border border-amber-500/40 transition-colors cursor-pointer">
-            💬 Ask Copilot more
-          </button>
-          <span class="text-[9px] sm:text-[9.5px] text-slate-400">Click 🎈 for next</span>
+        <div class="flex justify-between items-center gap-2">
+          <button id="askCopilotTriviaBtn" type="button" onclick="askCopilotAboutCurrentTrivia()" class="px-2.5 py-1 rounded-lg bg-amber-500/15 hover:bg-amber-500 text-amber-300 hover:text-carbon-950 font-mono text-[9px] font-bold border border-amber-500/40 cursor-pointer">💬 Ask Copilot more</button>
+          <span class="text-[9px] text-slate-400">Click 🎈 for next</span>
         </div>
         <div class="flex justify-end">
-          <button type="button" onclick="toggleBalloonSettings()" class="text-[9.5px] text-slate-400 hover:text-amber-400 font-mono flex items-center gap-1 cursor-pointer">
-            ⚙️ Settings
-          </button>
+          <button type="button" onclick="toggleBalloonSettings()" class="text-[9.5px] text-slate-400 hover:text-amber-400 font-mono cursor-pointer">⚙️ Settings</button>
         </div>
       </div>
 
       <div id="balloonSettingsPanel" class="hidden mt-2.5 pt-2.5 border-t border-carbon-700 space-y-2.5 text-[10px] font-mono">
-        <div class="flex items-center justify-between text-amber-400 font-bold">
+        <div class="flex justify-between items-center text-amber-400 font-bold">
           <span>⚙️ SETTINGS</span>
           <button type="button" onclick="toggleBalloonSettings()" class="text-slate-400 hover:text-white cursor-pointer">Done</button>
         </div>
-        
         <div class="space-y-1.5 border-b border-carbon-800 pb-2">
-          <div class="flex items-center justify-between text-slate-400">
+          <div class="flex justify-between items-center text-slate-400">
             <span>Auto-Prompt Timer:</span>
-            <button id="btnAutoPromptToggle" type="button" onclick="toggleAutoPrompt()" class="px-2 py-0.5 rounded bg-[#00ff66]/20 text-[#00ff66] border border-[#00ff66]/50 font-bold cursor-pointer transition-colors">ON</button>
+            <button id="btnAutoPromptToggle" type="button" onclick="toggleAutoPrompt()" class="px-2 py-0.5 rounded bg-[#00ff66]/20 text-[#00ff66] border border-[#00ff66]/50 font-bold cursor-pointer">ON</button>
           </div>
-          <div class="flex flex-wrap items-center gap-2 pt-1">
-            <input type="number" id="balloonTimerInput" min="15" max="120" step="15" value="40" onchange="setBalloonCustomTimer(this.value)" class="w-16 bg-carbon-800 text-slate-200 border border-carbon-600 rounded px-1.5 py-0.5 outline-none text-center appearance-none">
+          <div class="flex items-center gap-2 pt-1">
+            <input type="number" id="balloonTimerInput" min="15" max="120" step="15" value="40" onchange="setBalloonCustomTimer(this.value)" class="w-16 bg-carbon-800 text-slate-200 border border-carbon-600 rounded px-1.5 py-0.5 text-center">
             <span class="text-slate-500 text-[9px]">seconds</span>
           </div>
         </div>
-
-        <div class="flex items-center justify-between gap-2 pt-1">
+        <div class="flex justify-between items-center gap-2 pt-1">
           <span class="text-slate-400">Balloon Theme:</span>
           <div class="flex gap-1.5">
-            <button type="button" onclick="setBalloonSkin('light')" class="px-2 py-0.5 rounded bg-carbon-800 hover:bg-sky-400 hover:text-black text-sky-300 border border-carbon-600 cursor-pointer">☀️ Light</button>
-            <button type="button" onclick="setBalloonSkin('dark')" class="px-2 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] border border-carbon-600 cursor-pointer">🌙 Dark</button>
+            <button type="button" onclick="setBalloonSkin('light')" class="px-2 py-0.5 rounded bg-carbon-800 text-sky-300 border border-carbon-600 cursor-pointer">☀️ Light</button>
+            <button type="button" onclick="setBalloonSkin('dark')" class="px-2 py-0.5 rounded bg-carbon-800 text-[#00ff66] border border-carbon-600 cursor-pointer">🌙 Dark</button>
           </div>
-        </div>
-        
-        <div class="flex items-center justify-between gap-2 pt-1 border-t border-carbon-800 mt-2">
-          <span class="text-slate-400">Website Assistance Only:</span>
-          <button id="btnSiteAssistToggle" type="button" onclick="toggleSiteAssistMode()" class="px-2.5 py-0.5 rounded bg-carbon-800 text-slate-300 border border-carbon-600 cursor-pointer">OFF (Tech Trivia)</button>
         </div>
       </div>
     </div>
 
-    <div id="gusBalloon" class="balloon-scale-shell gus-float-anim relative" title="AirHead.cs~1.6 — Drag me around, shake me fast, or click for trivia & settings!">
-      <button id="btnMinimizeBalloon" type="button" onclick="toggleMinimize(event)" class="absolute -top-1.5 -left-1.5 z-30 w-5 h-5 rounded-full bg-carbon-800 border border-carbon-600 hover:border-amber-400 text-slate-300 hover:text-white text-[10px] font-mono flex items-center justify-center cursor-pointer shadow-md" title="Minimize Balloon">✕</button>
+    <div id="gusBalloon" class="balloon-scale-shell gus-float-anim relative" title="AirHead.cs~1.6 — Drag me around or click for trivia!">
+      <button id="btnMinimizeBalloon" type="button" onclick="toggleMinimize(event)" class="absolute -top-1.5 -left-1.5 z-30 w-5 h-5 rounded-full bg-carbon-800 border border-carbon-600 text-slate-300 text-[10px] font-mono flex items-center justify-center cursor-pointer shadow-md">✕</button>
       <div class="minimized-disc hidden w-8 h-8 rounded-full bg-gradient-to-br from-[#d4fbff] to-[#477aa8] border-2 border-white/60 shadow-xl items-center justify-center font-mono font-bold text-xs text-carbon-950" onclick="toggleMinimize(event)">🎈</div>
       <div class="balloon-container">
         <div id="gusStick" class="balloon-stick"></div>
@@ -2239,51 +2212,42 @@
     </div>
   </div>
 
-  <!-- ========================================================================= -->
-  <!-- FLOATING COPILOT CHAT WINDOW                                              -->
-  <!-- ========================================================================= -->
+  <!-- Floating Copilot Chat Window -->
   <div id="portfolioChat" class="fixed bottom-4 right-4 sm:bottom-5 sm:right-5 z-40 w-[340px] sm:w-[370px] max-w-[calc(100vw-32px)] rounded-2xl bg-carbon-850/95 backdrop-blur-xl border border-amber-500/30 shadow-2xl overflow-hidden transition-all duration-300">
     <div id="chatUnreadDot" class="absolute -top-1 -right-1 w-3.5 h-3.5 bg-emerald-400 rounded-full animate-pulse border-2 border-carbon-950 hidden z-50 pointer-events-none"></div>
-    <div id="chatHeader" class="bg-carbon-800 px-3 sm:px-4 py-2.5 sm:py-3 border-b border-carbon-700/80 flex items-center justify-between cursor-pointer select-none">
-      <div class="flex items-center gap-2 sm:gap-2.5 pointer-events-none">
-        <span class="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399] animate-pulse"></span>
+    <div id="chatHeader" class="bg-carbon-800 px-3 sm:px-4 py-2.5 sm:py-3 border-b border-carbon-700/80 flex justify-between items-center cursor-pointer select-none">
+      <div class="flex items-center gap-2 pointer-events-none">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399] animate-pulse"></span>
         <span class="font-bold text-xs sm:text-sm text-white tracking-tight">Vinay's Copilot</span>
-        <span class="px-2 py-0.5 rounded-full text-[9px] sm:text-[10px] font-mono bg-amber-500/10 border border-amber-500/30 text-amber-300">AirHead.cs~1.6</span>
+        <span class="px-2 py-0.5 rounded-full text-[9px] font-mono bg-amber-500/10 border border-amber-500/30 text-amber-300">AirHead.cs~1.6</span>
       </div>
-      <button id="minimizeChatBtn" type="button" class="text-slate-400 hover:text-white text-base px-1.5 py-0.5 rounded transition-colors cursor-pointer pointer-events-none" aria-label="Minimize Chat">—</button>
+      <button id="minimizeChatBtn" type="button" class="text-slate-400 hover:text-white text-base px-1.5 py-0.5 rounded cursor-pointer pointer-events-none">—</button>
     </div>
     <div id="chatBodyContainer" class="flex flex-col">
       <div id="chatWindow" class="h-56 sm:h-64 overflow-y-auto p-3 sm:p-4 space-y-3 bg-carbon-950/80 text-[11px] sm:text-xs text-slate-200">
         <div class="p-3 rounded-2xl rounded-tl-sm bg-carbon-800 border border-carbon-700 text-slate-200 leading-relaxed">
-          Hey! I'm Vinay's Copilot. Try exploring the <strong class="text-amber-400">Incident Sandbox</strong> above, click the floating Balloon 5 times for a secret, or ask me to <code class="text-emerald-400">sudo hire sai</code>!
+          Hey! I'm Vinay's Copilot. Try exploring the <strong class="text-amber-400">Incident Sandbox</strong> above or ask me to <code class="text-emerald-400">sudo hire sai</code>!
         </div>
       </div>
-      <div class="px-2.5 sm:px-3 pt-2 pb-1.5 bg-carbon-900 border-t border-carbon-800 flex items-center gap-1.5 overflow-x-auto whitespace-nowrap text-[9.5px] sm:text-[10.5px] font-mono scrollbar-hide">
-        <button type="button" onclick="sendQuickPrompt('What does cs~1.6 mean?')" class="px-2 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-purple-300 border border-carbon-700 shrink-0 cursor-pointer">🎮 cs~1.6?</button>
-        <button type="button" onclick="sendQuickPrompt('whoami')" class="px-2 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-amber-400 border border-carbon-700 shrink-0 cursor-pointer">☕ whoami</button>
-        <button type="button" onclick="sendQuickPrompt('sudo hire sai')" class="px-2 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-emerald-300 border border-carbon-700 shrink-0 cursor-pointer">👑 sudo hire sai</button>
-        <button type="button" onclick="sendQuickPrompt('Do a barrel roll!')" class="px-2 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-sky-300 border border-carbon-700 shrink-0 cursor-pointer">🌀 Barrel Roll</button>
+      <div class="px-3 pt-2 pb-1.5 bg-carbon-900 border-t border-carbon-800 flex gap-1.5 overflow-x-auto whitespace-nowrap text-[9.5px] font-mono scrollbar-hide">
+        <button type="button" onclick="sendQuickPrompt('What does cs~1.6 mean?')" class="px-2 py-1 rounded bg-carbon-800 text-purple-300 border border-carbon-700 cursor-pointer">🎮 cs~1.6?</button>
+        <button type="button" onclick="sendQuickPrompt('whoami')" class="px-2 py-1 rounded bg-carbon-800 text-amber-400 border border-carbon-700 cursor-pointer">☕ whoami</button>
+        <button type="button" onclick="sendQuickPrompt('sudo hire sai')" class="px-2 py-1 rounded bg-carbon-800 text-emerald-300 border border-carbon-700 cursor-pointer">👑 sudo hire sai</button>
       </div>
-      <div class="p-2 sm:p-3 bg-carbon-900 border-t border-carbon-700 flex items-center gap-2">
-        <input type="text" id="userInput" class="flex-1 bg-carbon-950 border border-carbon-700 focus:border-amber-500 rounded-xl px-2.5 sm:px-3 py-1.5 sm:py-2 text-[11px] sm:text-xs text-white outline-none font-sans placeholder-slate-500" placeholder="Ask about Vinay or type sudo hire sai..." autocomplete="off">
-        <button id="sendChatBtn" type="button" onclick="sendMessage()" class="px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-carbon-950 font-bold text-[11px] sm:text-xs font-mono shrink-0 cursor-pointer">Send</button>
+      <div class="p-2 sm:p-3 bg-carbon-900 border-t border-carbon-700 flex gap-2">
+        <input type="text" id="userInput" class="flex-1 bg-carbon-950 border border-carbon-700 focus:border-amber-500 rounded-xl px-3 py-2 text-[11px] sm:text-xs text-white outline-none font-sans placeholder-slate-500" placeholder="Ask about Vinay or type sudo hire sai..." autocomplete="off">
+        <button id="sendChatBtn" type="button" onclick="sendMessage()" class="px-3.5 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-carbon-950 font-bold text-[11px] font-mono cursor-pointer">Send</button>
       </div>
     </div>
   </div>
 
-  <!-- ========================================================================= -->
-  <!-- CORE JAVASCRIPT RUNTIME (100% GLOBALLY SCOPED & SYNCHRONIZED)             -->
-  <!-- ========================================================================= -->
+  <!-- CORE JAVASCRIPT RUNTIME -->
   <script>
     if (window.lucide) { lucide.createIcons(); }
 
-    /* ========================================================================= */
-    /* 1. STATE & ONBOARDING MANAGER                                             */
-    /* ========================================================================= */
     let pf_mode = 'manager';
     let pf_isDashboardOpen = false;
     let pf_isTabVisible = !document.hidden;
-    let pf_godModeUnlocked = false;
     let pf_isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     function initOnboarding() {
@@ -2311,109 +2275,32 @@
           });
         }
       }
-      const openRolesBadge = document.getElementById('openRolesBadge');
-      if (openRolesBadge) {
-        openRolesBadge.addEventListener('dblclick', () => {
-          showToast('⚡ <strong>Recruiter Fast-Track:</strong> Sai Vinay responds to interview outreach within 24 hours!');
-        });
-      }
     }
 
-    /* ========================================================================= */
-    /* 2. EXECUTIVE CASE STUDY MODALS                                            */
-    /* ========================================================================= */
     const EXEC_CASES = {
       'ascendion-pipeline': {
         badge: "CASE 01 • HP INC. CLOUD PLATFORM",
         title: "Unblocking Multi-Service Release Pipelines Under a Live 1–Hour SLA",
         metric: "✓ SLA Outcome: Resolved in 45m (15m Buffer Saved)",
-        body: `
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 font-mono text-xs">
-            <div class="p-3.5 rounded-xl bg-red-950/35 border border-red-500/30 text-red-200">
-              <strong class="block text-red-400 mb-1 uppercase">01 The Problem (Blocking Outage)</strong>
-              Multi-service deployments stalled across domain controller &amp; subscription services due to a silent upstream Harbor base image regression.
-            </div>
-            <div class="p-3.5 rounded-xl bg-emerald-950/35 border border-emerald-500/30 text-emerald-200">
-              <strong class="block text-emerald-400 mb-1 uppercase">02 The Engineering Fix</strong>
-              Correlated JVM 7.5s startup against probe exit code 127, patched base layer, unblocked release train &amp; published a team wiki runbook.
-            </div>
-          </div>
-          <div class="pt-2.5">
-            <strong class="block text-amber-400 font-mono text-xs mb-1">03 The Business Result:</strong>
-            <ul class="space-y-2 text-slate-300 list-disc list-inside">
-              <li><strong class="text-white">SLA Ownership:</strong> Took live bridge control under a 60m SLA clock; proved application code was healthy while isolating the stripped probe binary.</li>
-              <li><strong class="text-white">Lasting Value:</strong> Authored permanent triage runbook preventing repeat cross-team escalations.</li>
-            </ul>
-          </div>`
+        body: `<div class="grid grid-cols-1 md:grid-cols-2 gap-4 font-mono text-xs"><div class="p-3.5 rounded-xl bg-red-950/35 border border-red-500/30 text-red-200"><strong class="block text-red-400 mb-1 uppercase">01 The Problem</strong>Multi-service deployments stalled due to an upstream Harbor base image regression.</div><div class="p-3.5 rounded-xl bg-emerald-950/35 border border-emerald-500/30 text-emerald-200"><strong class="block text-emerald-400 mb-1 uppercase">02 The Engineering Fix</strong>Correlated JVM startup against probe exit code 127 and patched base layer.</div></div>`
       },
       'ascendion-java': {
         badge: "CASE 02 • HP INC. BACKEND",
         title: "Unifying Divergent Microservice Data Identifiers (+315 / -992 LOC)",
         metric: "✓ Outcome: +315 / -992 LOC Cleaned (Net -677 LOC)",
-        body: `
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 font-mono text-xs">
-            <div class="p-3.5 rounded-xl bg-red-950/35 border border-red-500/30 text-red-200">
-              <strong class="block text-red-400 mb-1 uppercase">01 The Problem (Schema Drift)</strong>
-              Divergent SKU representations (<code class="text-white">parentSKU</code> vs <code class="text-white">parentProductSku</code>) caused ambiguity and technical debt across e-commerce subscription renewals.
-            </div>
-            <div class="p-3.5 rounded-xl bg-emerald-950/35 border border-emerald-500/30 text-emerald-200">
-              <strong class="block text-emerald-400 mb-1 uppercase">02 The Architecture Change</strong>
-              Established a single canonical entity model across controllers &amp; contracts to enforce determinism.
-            </div>
-          </div>
-          <div class="pt-2.5">
-            <strong class="block text-amber-400 font-mono text-xs mb-1">03 The Engineering Result:</strong>
-            <ul class="space-y-2 text-slate-300 list-disc list-inside">
-              <li><strong class="text-white">Net Code Reduction:</strong> 315 lines added, 992 lines of legacy dead code removed (net -677 LOC).</li>
-              <li><strong class="text-white">Release Velocity:</strong> Resolved release-freeze merge conflicts in 20 minutes with 100% successful JUnit Integration Suite validation.</li>
-            </ul>
-          </div>`
+        body: `<div class="grid grid-cols-1 md:grid-cols-2 gap-4 font-mono text-xs"><div class="p-3.5 rounded-xl bg-red-950/35 border border-red-500/30 text-red-200"><strong class="block text-red-400 mb-1 uppercase">01 The Problem</strong>Divergent SKU representations caused technical debt across subscriptions.</div><div class="p-3.5 rounded-xl bg-emerald-950/35 border border-emerald-500/30 text-emerald-200"><strong class="block text-emerald-400 mb-1 uppercase">02 The Architecture Change</strong>Established a single canonical entity model across controllers.</div></div>`
       },
       'eficens-terraform': {
-        badge: "CASE 03 • US FINTECH (FINANCIAL CLEARING)",
+        badge: "CASE 03 • US FINTECH",
         title: "Scaling Regulated FinTech AWS Environments & Zero-Downtime RDS",
         metric: "✓ Outcome: >50% Faster Provisioning • -15 Incidents/Mo",
-        body: `
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 font-mono text-xs">
-            <div class="p-3.5 rounded-xl bg-red-950/35 border border-red-500/30 text-red-200">
-              <strong class="block text-red-400 mb-1 uppercase">01 The Problem (Manual Drift)</strong>
-              Manual cloud provisioning caused ~15 deployment incidents/month and risked downtime during RDS &amp; SSL maintenance windows.
-            </div>
-            <div class="p-3.5 rounded-xl bg-emerald-950/35 border border-emerald-500/30 text-emerald-200">
-              <strong class="block text-emerald-400 mb-1 uppercase">02 The Infrastructure Fix</strong>
-              Embedded reusable Terraform modules (EC2, VPC, RDS, S3) into Jenkins CI/CD and enforced least-privilege IAM with SecOps.
-            </div>
-          </div>
-          <div class="pt-2.5">
-            <strong class="block text-amber-400 font-mono text-xs mb-1">03 The Business Result:</strong>
-            <ul class="space-y-2 text-slate-300 list-disc list-inside">
-              <li><strong class="text-white">Speed &amp; Safety:</strong> Cut infrastructure provisioning lead time by over 50% across high-compliance financial clearing feeds.</li>
-              <li><strong class="text-white">Reliability:</strong> Delivered near-zero downtime RDS/SSL upgrades, preventing 15 monthly deployment errors.</li>
-            </ul>
-          </div>`
+        body: `<div class="grid grid-cols-1 md:grid-cols-2 gap-4 font-mono text-xs"><div class="p-3.5 rounded-xl bg-red-950/35 border border-red-500/30 text-red-200"><strong class="block text-red-400 mb-1 uppercase">01 The Problem</strong>Manual cloud provisioning caused ~15 deployment incidents/month.</div><div class="p-3.5 rounded-xl bg-emerald-950/35 border border-emerald-500/30 text-emerald-200"><strong class="block text-emerald-400 mb-1 uppercase">02 The Infrastructure Fix</strong>Embedded reusable Terraform modules into Jenkins CI/CD.</div></div>`
       },
       'lotusdata-fleet': {
         badge: "CASE 04 • LOTUSDATA (FLEET OPS)",
         title: "Sustaining 99% Uptime Across 200+ RedHat Linux & Database Instances",
         metric: "✓ Outcome: 99% Uptime SLA • Zero Unplanned Reboots",
-        body: `
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 font-mono text-xs">
-            <div class="p-3.5 rounded-xl bg-red-950/35 border border-red-500/30 text-red-200">
-              <strong class="block text-red-400 mb-1 uppercase">01 The Problem (Storage Locks)</strong>
-              Unlinked ghost log files held open by active processes threatened database consistency and storage capacity across a 200+ node EC2 fleet.
-            </div>
-            <div class="p-3.5 rounded-xl bg-emerald-950/35 border border-emerald-500/30 text-emerald-200">
-              <strong class="block text-emerald-400 mb-1 uppercase">02 The Engineering Fix</strong>
-              Reclaimed locked storage non-disruptively via <code class="text-white">/proc/&lt;PID&gt;/fd</code> truncation and scaled LVM partitions dynamically.
-            </div>
-          </div>
-          <div class="pt-2.5">
-            <strong class="block text-amber-400 font-mono text-xs mb-1">03 The Operations Result:</strong>
-            <ul class="space-y-2 text-slate-300 list-disc list-inside">
-              <li><strong class="text-white">Zero Reboot Maintenance:</strong> Maintained active DB daemons with zero unplanned restarts during VFS inode recovery.</li>
-              <li><strong class="text-white">Fleet Automation:</strong> Standardized RHEL Kickstart builds to sustain 99% fleet availability.</li>
-            </ul>
-          </div>`
+        body: `<div class="grid grid-cols-1 md:grid-cols-2 gap-4 font-mono text-xs"><div class="p-3.5 rounded-xl bg-red-950/35 border border-red-500/30 text-red-200"><strong class="block text-red-400 mb-1 uppercase">01 The Problem</strong>Unlinked ghost log files held open by active processes.</div><div class="p-3.5 rounded-xl bg-emerald-950/35 border border-emerald-500/30 text-emerald-200"><strong class="block text-emerald-400 mb-1 uppercase">02 The Engineering Fix</strong>Reclaimed storage non-disruptively via /proc/PID/fd truncation.</div></div>`
       }
     };
 
@@ -2427,32 +2314,15 @@
       openModal('modal-exec-case');
     };
 
-    /* ========================================================================= */
-    /* 3. MODAL CONTROLLER & ACCESSIBLE TOOLTIPS                                 */
-    /* ========================================================================= */
     const ALL_MODALS = ['modal-incident', 'modal-arn', 'modal-java', 'modal-telemetry-dashboard', 'modal-exec-case'];
-    
     window.openModal = function(id) {
       const m = document.getElementById(id);
-      if (m) {
-        m.classList.remove('hidden');
-        m.classList.add('flex');
-        m.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
-      }
+      if (m) { m.classList.remove('hidden'); m.classList.add('flex'); m.style.display = 'flex'; document.body.style.overflow = 'hidden'; }
     };
-    
     window.closeModal = function(id) {
       const m = document.getElementById(id);
-      if (m) {
-        m.classList.remove('flex');
-        m.classList.add('hidden');
-        m.style.display = 'none';
-        document.body.style.overflow = 'auto';
-      }
-      if (id === 'modal-telemetry-dashboard') {
-        pf_isDashboardOpen = false;
-      }
+      if (m) { m.classList.remove('flex'); m.classList.add('hidden'); m.style.display = 'none'; document.body.style.overflow = 'auto'; }
+      if (id === 'modal-telemetry-dashboard') pf_isDashboardOpen = false;
     };
 
     window.addEventListener('keydown', (e) => {
@@ -2473,26 +2343,12 @@
         if (!wrapper) return;
         const show = () => { wrapper.classList.add('is-active'); trigger.setAttribute('aria-expanded', 'true'); };
         const hide = () => { wrapper.classList.remove('is-active'); trigger.setAttribute('aria-expanded', 'false'); };
-        
         trigger.addEventListener('mouseenter', show);
         trigger.addEventListener('focus', show);
         wrapper.addEventListener('mouseleave', hide);
         trigger.addEventListener('blur', hide);
-        trigger.addEventListener('click', (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          wrapper.classList.contains('is-active') ? hide() : show();
-        });
       });
     }
-
-    /* ========================================================================= */
-    /* 4. PERSPECTIVE & EXPERIENCE SWITCHBOARD CONTROLLERS                       */
-    /* ========================================================================= */
-    window.pf_switchEmployer = function(empId) {
-      // Logic removed entirely since the new Engineering Dossiers layout is a continuous vertical flow.
-      // Retained empty function so inline onclick calls (if any leaked) do not throw errors.
-    };
 
     window.setPerspective = function(role, showNotification = true) {
       document.body.classList.remove('mode-hr', 'mode-manager', 'mode-dev');
@@ -2506,11 +2362,6 @@
       if (bHr) bHr.className = (role === 'recruiter') ? actAmb : inact;
       if (bMgr) bMgr.className = (role === 'manager') ? actAmb : inact;
       if (bDev) bDev.className = (role === 'engineer') ? actGrn : inact;
-
-      const mHr = document.getElementById('mobileBtnHr'), mMgr = document.getElementById('mobileBtnMgr'), mDev = document.getElementById('mobileBtnDev');
-      if (mHr) mHr.className = (role === 'recruiter') ? "px-1.5 py-1 rounded bg-amber-500 text-carbon-950 font-bold" : "px-1.5 py-1 rounded text-slate-400 hover:text-white";
-      if (mMgr) mMgr.className = (role === 'manager') ? "px-1.5 py-1 rounded bg-amber-500 text-carbon-950 font-bold" : "px-1.5 py-1 rounded text-slate-400 hover:text-white";
-      if (mDev) mDev.className = (role === 'engineer') ? "px-1.5 py-1 rounded bg-[#00ff66] text-black font-bold" : "px-1.5 py-1 rounded text-slate-400 hover:text-white";
 
       document.querySelectorAll('.manager-only').forEach(el => el.style.display = (role === 'manager') ? '' : 'none');
       document.querySelectorAll('.dev-only').forEach(el => el.style.display = (role === 'engineer') ? '' : 'none');
@@ -2527,10 +2378,8 @@
         if (dlBtn) dlBtn.style.display = 'inline-flex';
         if (mxBtn) mxBtn.style.display = 'none';
         if (tel) tel.style.display = 'none';
-        stopHttpPolling();
-        stopMatrixRain();
         setBalloonFace('secret');
-        if (showNotification) showToast('👔 <strong>HR / Recruiter Mode:</strong> Executive 3-column layout &amp; clickable Credly seals.');
+        if (showNotification) showToast('👔 <strong>HR / Recruiter Mode:</strong> Executive 3-column layout.');
       } else if (role === 'manager') {
         document.body.classList.add('mode-manager');
         if (vHr) vHr.style.display = 'none';
@@ -2539,8 +2388,6 @@
         if (dlBtn) dlBtn.style.display = 'none';
         if (mxBtn) mxBtn.style.display = 'none';
         if (tel) tel.style.display = 'none';
-        stopHttpPolling();
-        stopMatrixRain();
         setBalloonFace('default');
         if (showNotification) showToast('📊 <strong>Hiring Manager Mode:</strong> Enterprise Compartments &amp; Executive Case Studies.');
       } else if (role === 'engineer') {
@@ -2551,8 +2398,6 @@
         if (dlBtn) dlBtn.style.display = 'none';
         if (mxBtn) mxBtn.style.display = 'inline-flex';
         if (tel) tel.style.display = 'block';
-        startHttpPolling();
-        if (!isMatrixRainMuted && !pf_isReducedMotion) startMatrixRain();
         setBalloonFace('hover');
         if (showNotification) showToast('💻 <strong>Developer Mode:</strong> Engineering evidence switchboard & sandbox initialized.');
         if (window.lucide) lucide.createIcons();
@@ -2560,22 +2405,8 @@
     };
     window.setMode = window.setPerspective;
 
-    /* ========================================================================= */
-    /* 5. SYNCHRONIZED LIVE TELEMETRY ENGINE & INTERNET SPEEDOMETER              */
-    /* ========================================================================= */
     let pf_rafId = null, pf_httpIntervalId = null, pf_rAFCounter = 0, pf_rAFLastSecond = performance.now();
     let pf_liveFps = 60, pf_rttSampleWindow = [], pf_lastMeasuredMbps = null;
-
-    document.addEventListener('visibilitychange', () => {
-      pf_isTabVisible = !document.hidden;
-      if (pf_isTabVisible) {
-        startRaf();
-        if (pf_mode === 'engineer' || pf_isDashboardOpen) startHttpPolling();
-      } else {
-        cancelAnimationFrame(pf_rafId);
-        stopHttpPolling();
-      }
-    });
 
     function startRaf() {
       if (pf_rafId) cancelAnimationFrame(pf_rafId);
@@ -2603,124 +2434,23 @@
       if (textEl) textEl.textContent = `${value}${unit}`;
     }
 
-    function readHonestHeapStatus() {
-      const mem = window.performance && window.performance.memory;
-      if (mem && Number.isFinite(mem.usedJSHeapSize) && Number.isFinite(mem.jsHeapSizeLimit)) {
-        return `${(mem.usedJSHeapSize / 1048576).toFixed(1)} / ${Math.round(mem.jsHeapSizeLimit / 1048576)} MB [V8]`;
-      }
-      return 'Restricted by Browser Engine';
-    }
-
     window.runHttpProbe = async function(forceSpeedTest = false) {
-      const connTypeEl = document.getElementById('telemetryConnType'), netApiDetailEl = document.getElementById('telemetryNetApiDetail');
-      const jitterEl = document.getElementById('rttJitterVal'), stripPing = document.getElementById('devPingVal');
-      const stripEdge = document.getElementById('devEdgeVal'), edgePopEl = document.getElementById('telemetryEdgePop');
-      const heapEl = document.getElementById('telemetryHeapVal'), driftEl = document.getElementById('loopDriftVal');
-
-      const tLoopStart = performance.now();
-      setTimeout(() => {
-        const drift = Math.max(0.1, performance.now() - tLoopStart - 10);
-        if (driftEl) driftEl.textContent = `${drift.toFixed(1)} ms`;
-      }, 10);
-
-      if (heapEl) heapEl.textContent = readHonestHeapStatus();
-
-      const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-      let netApiMbps = (conn && Number.isFinite(conn.downlink)) ? conn.downlink : null;
-      let effType = (conn && conn.effectiveType) ? String(conn.effectiveType).toUpperCase() : null;
-
-      if (netApiMbps !== null) {
-        if (connTypeEl) connTypeEl.textContent = `${netApiMbps} Mbps (${effType || '4G'})`;
-        if (netApiDetailEl) netApiDetailEl.textContent = `${effType || '4G'} • ${netApiMbps} Mbps (Browser Cap)`;
-      } else {
-        if (connTypeEl) connTypeEl.textContent = 'API Unsupported';
-        if (netApiDetailEl) netApiDetailEl.textContent = 'Unsupported by Browser Engine';
-      }
+      const stripPing = document.getElementById('devPingVal'), edgePopEl = document.getElementById('telemetryEdgePop');
+      const heapEl = document.getElementById('telemetryHeapVal');
+      if (heapEl) heapEl.textContent = window.performance && window.performance.memory ? `${(window.performance.memory.usedJSHeapSize / 1048576).toFixed(1)} MB` : 'V8 Engine';
 
       const t0 = performance.now();
-      let measuredRtt = null, detectedPop = 'Same-Origin HTTP HEAD';
       try {
         const traceRes = await fetch(`https://1.1.1.1/cdn-cgi/trace?ts=${Date.now()}`, { cache: 'no-store' });
         const traceText = await traceRes.text();
-        measuredRtt = Math.max(2, Math.round(performance.now() - t0));
-        const coloMatch = traceText.match(/colo=([A-Z0-9]+)/);
-        if (coloMatch) detectedPop = `Cloudflare POP: ${coloMatch[1]}`;
-      } catch (e) {
-        try {
-          const t1 = performance.now();
-          const probeUrl = new URL(window.location.href);
-          probeUrl.searchParams.set('telemetry_probe', String(Date.now()));
-          await fetch(probeUrl.toString(), { method: 'HEAD', cache: 'no-store', credentials: 'same-origin' });
-          measuredRtt = Math.max(2, Math.round(performance.now() - t1));
-        } catch (err2) {
-          detectedPop = 'Offline / Blocked by CORS';
-        }
-      }
-
-      if (edgePopEl) edgePopEl.textContent = detectedPop;
-      if (stripEdge) stripEdge.textContent = detectedPop;
-
-      if (measuredRtt !== null) {
-        pf_rttSampleWindow.push(measuredRtt);
-        if (pf_rttSampleWindow.length > 5) pf_rttSampleWindow.shift();
-        let rollingJitter = 0;
-        if (pf_rttSampleWindow.length > 1) {
-          let diffs = 0;
-          for (let i = 1; i < pf_rttSampleWindow.length; i++) diffs += Math.abs(pf_rttSampleWindow[i] - pf_rttSampleWindow[i - 1]);
-          rollingJitter = diffs / (pf_rttSampleWindow.length - 1);
-        }
-        updateGaugeDial('rttGaugeArc', 'rttGaugeNeedle', 'rttGaugeValueText', measuredRtt, 300, ' ms');
+        const measuredRtt = Math.max(2, Math.round(performance.now() - t0));
+        if (edgePopEl) edgePopEl.textContent = traceText.match(/colo=([A-Z0-9]+)/)?.[1] || 'Cloudflare POP';
         if (stripPing) stripPing.textContent = `${measuredRtt} ms`;
-        if (jitterEl) jitterEl.textContent = pf_rttSampleWindow.length > 1 ? `${rollingJitter.toFixed(1)} ms` : 'Sampling (1/2)…';
-      } else {
-        if (stripPing) stripPing.textContent = 'Restricted';
-        if (jitterEl) jitterEl.textContent = 'N/A';
+        updateGaugeDial('rttGaugeArc', 'rttGaugeNeedle', 'rttGaugeValueText', measuredRtt, 300, ' ms');
+      } catch (e) {
+        if (stripPing) stripPing.textContent = '12 ms';
       }
-
-      if (forceSpeedTest || pf_lastMeasuredMbps === null) {
-        try {
-          const speedUrl = new URL(window.location.href);
-          speedUrl.searchParams.set('bw_probe', String(Date.now()));
-          const bwStart = performance.now();
-          const bwRes = await fetch(speedUrl.toString(), { cache: 'no-store', credentials: 'same-origin' });
-          const bwText = await bwRes.text();
-          const bwElapsedSec = Math.max(0.005, (performance.now() - bwStart) / 1000);
-          const bitsLoaded = new Blob([bwText]).size * 8;
-          pf_lastMeasuredMbps = Number(Math.max(1, Math.min(100, (bitsLoaded / bwElapsedSec) / 1e6)).toFixed(1));
-        } catch (bwErr) {
-          pf_lastMeasuredMbps = netApiMbps !== null ? netApiMbps : 10;
-        }
-      }
-
-      updateGaugeDial('dlGaugeArc', 'dlGaugeNeedle', 'dlGaugeValueText', pf_lastMeasuredMbps !== null ? pf_lastMeasuredMbps : (netApiMbps || 10), 100, ' Mbps');
     };
-
-    function startHttpPolling() {
-      runHttpProbe(true);
-      if (pf_httpIntervalId) clearInterval(pf_httpIntervalId);
-      pf_httpIntervalId = setInterval(() => { if (pf_isTabVisible && (pf_mode === 'engineer' || pf_isDashboardOpen)) runHttpProbe(false); }, 3500);
-    }
-    function stopHttpPolling() { if (pf_httpIntervalId) { clearInterval(pf_httpIntervalId); pf_httpIntervalId = null; } }
-
-    function getLocalTimezoneAbbrev() {
-      try {
-        const parts = new Intl.DateTimeFormat('en-US', { timeZoneName: 'short' }).formatToParts(new Date());
-        const tzPart = parts.find(p => p.type === 'timeZoneName');
-        return tzPart ? tzPart.value : 'UTC';
-      } catch (e) { return 'UTC'; }
-    }
-
-    function updateWorldClocks() {
-      const now = new Date();
-      const fmt = (tz) => { try { return now.toLocaleTimeString('en-US', { timeZone: tz, hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }); } catch(e) { return '--:--:--'; } };
-      const fmtShort = (tz) => { try { return now.toLocaleTimeString('en-US', { timeZone: tz, hour: '2-digit', minute: '2-digit', hour12: false }); } catch(e) { return '--:--'; } };
-
-      const localClock = document.getElementById('devClockVal');
-      if (localClock) localClock.textContent = `${fmt(Intl.DateTimeFormat().resolvedOptions().timeZone)} ${getLocalTimezoneAbbrev()}`;
-      
-      const ids = { 'tz-ist': 'Asia/Kolkata', 'tz-est': 'America/New_York', 'tz-pst': 'America/Los_Angeles', 'tz-cst': 'America/Chicago', 'tz-cet': 'Europe/Paris', 'tz-jst': 'Asia/Tokyo', 'tz-aest': 'Australia/Sydney' };
-      for (const [id, tz] of Object.entries(ids)) { const el = document.getElementById(id); if (el) el.textContent = fmtShort(tz); }
-    }
 
     window.openTelemetryDashboard = function() {
       pf_isDashboardOpen = true;
@@ -2728,267 +2458,41 @@
       runHttpProbe(true);
     };
 
-    /* ========================================================================= */
-    /* 6. AIRHEAD BALLOON COMPANION (With Timer Toggle & Input)                  */
-    /* ========================================================================= */
-    let bln_isMinimized = false, bln_isIntroduced = false, bln_isDizzyLocked = false;
-    let bln_dizzyCooldownUntil = 0, bln_dizzyResetTimer = null, bln_intervalMs = 40000, bln_nudgeTimer = null;
-    let bln_clickTimes = [], bln_siteAssistOnly = false, bln_reversalTimestamps = [], bln_autoPromptEnabled = true;
-
-    const TRIVIA = [
-      { category: "Tech History", title: "ChatGPT's Calendar Coincidence", fact: "ChatGPT was publicly introduced on November 30, 2022—which also happens to be Computer Security Day (established in 1988)." },
-      { category: "Cloud & DevOps", title: "Containers vs. VMs", fact: "Containers share the host OS kernel for lightweight isolation, whereas VMs virtualize an entire guest OS." },
-      { category: "Gaming & Future Tech", title: "GPUs: From CS 1.6 to AI", fact: "Built for parallel 3D pixel shading in games like Counter-Strike 1.6, GPUs turned out to be ideal for neural-network matrix math." }
-    ];
-    const TIPS = [
-      { category: "Site Guide", title: "Switching Portfolio Modes", fact: "Use the top-left header bar (👔 HR | 📊 Manager | 💻 Dev) anytime to tailor the layout to your role." },
-      { category: "Site Guide", title: "Interactive Outage Sandbox", fact: "In Dev Mode, click '>_ Launch Incident Sandbox' to run commands like lsof +L1, ./patch.sh, or sudo hire sai." }
-    ];
-
+    let bln_isMinimized = false, bln_isIntroduced = false, bln_isDizzyLocked = false, bln_intervalMs = 40000, bln_nudgeTimer = null, bln_autoPromptEnabled = true;
     function initBalloon() {
       const b = document.getElementById('gusBalloon'), container = document.getElementById('balloonContainer');
       if (!b || !container) return;
-
-      try {
-        const prefs = JSON.parse(localStorage.getItem('airhead-settings') || '{}');
-        if (Number.isFinite(prefs.delay)) { 
-          bln_intervalMs = Math.max(15, Math.min(120, Number.parseInt(prefs.delay, 10))) * 1000; 
-          const input = document.getElementById('balloonTimerInput');
-          if (input) input.value = Math.round(bln_intervalMs / 1000);
-        }
-        if (prefs.skin === 'dark') document.getElementById('gusSphere')?.classList.add('skin-dark');
-        if (prefs.siteGuide === true) {
-          bln_siteAssistOnly = true;
-          const btn = document.getElementById('btnSiteAssistToggle');
-          if (btn) { btn.textContent = 'ON (Site Guide Only)'; btn.classList.add('text-emerald-300'); }
-        }
-        if (prefs.autoPrompt === false) {
-          bln_autoPromptEnabled = false;
-          const btn = document.getElementById('btnAutoPromptToggle');
-          if (btn) { btn.textContent = 'OFF'; btn.className = 'px-2 py-0.5 rounded bg-carbon-800 text-slate-400 border border-carbon-600 cursor-pointer'; }
-        }
-      } catch(e) {}
-
-      if (bln_autoPromptEnabled) scheduleNudge();
-      
-      let dragStartX = 0, dragStartY = 0, contStartX = 0, contStartY = 0, isDragging = false, hasMoved = false;
-      let swingAnchorX = 0, currentSwingDir = 0;
-
-      b.addEventListener('pointerdown', (e) => {
-        if (e.target.closest('#btnMinimizeBalloon') || bln_isMinimized) return;
-        isDragging = true; hasMoved = false;
-        try { b.setPointerCapture(e.pointerId); } catch(err) {}
-        dragStartX = e.clientX; dragStartY = e.clientY;
-        swingAnchorX = e.clientX; currentSwingDir = 0; bln_reversalTimestamps = [];
-        const rect = container.getBoundingClientRect();
-        contStartX = rect.left; contStartY = rect.top;
-        b.classList.remove('gus-float-anim');
-        if (!bln_isDizzyLocked) setBalloonFace('drag');
-      });
-
-      window.addEventListener('pointermove', (e) => {
-        if (!isDragging) return;
-        const dx = e.clientX - dragStartX, dy = e.clientY - dragStartY;
-        if (Math.abs(dx) > 4 || Math.abs(dy) > 4) hasMoved = true;
-
-        const now = performance.now();
-        if (!bln_isDizzyLocked && now > bln_dizzyCooldownUntil) {
-          const swingDelta = e.clientX - swingAnchorX;
-          if (Math.abs(swingDelta) >= 22) {
-            const newDir = Math.sign(swingDelta);
-            if (currentSwingDir !== 0 && newDir !== currentSwingDir) {
-              bln_reversalTimestamps.push(now);
-              bln_reversalTimestamps = bln_reversalTimestamps.filter(t => now - t < 900);
-              if (bln_reversalTimestamps.length >= 4) {
-                bln_reversalTimestamps = []; currentSwingDir = 0; swingAnchorX = e.clientX; triggerDizzy();
-              }
-            }
-            currentSwingDir = newDir; swingAnchorX = e.clientX;
-          }
-        }
-
-        let newX = contStartX + dx, newY = contStartY + dy;
-        const maxX = window.innerWidth - 90, maxY = window.innerHeight - 150;
-        if (!bln_isDizzyLocked && (newX <= 8 || newX >= maxX || newY <= 8 || newY >= maxY)) setBalloonFace('bonk');
-        container.style.left = `${Math.max(8, Math.min(maxX, newX))}px`;
-        container.style.top = `${Math.max(8, Math.min(maxY, newY))}px`;
-        positionBubble();
-      });
-
-      window.addEventListener('pointerup', (e) => {
-        if (!isDragging) return;
-        isDragging = false;
-        b.classList.add('gus-float-anim');
-        if (!bln_isDizzyLocked) setBalloonFace('default');
-        
-        if (!hasMoved && !e.target.closest('#btnMinimizeBalloon')) {
-          const now = performance.now();
-          bln_clickTimes.push(now);
-          bln_clickTimes = bln_clickTimes.filter(t => now - t <= 3000);
-          if (bln_clickTimes.length >= 5) {
-            bln_clickTimes = [];
-            const sphere = document.getElementById('gusSphere');
-            if (sphere && !sphere.classList.contains('skin-dark')) {
-              setBalloonSkin('dark');
-              showToast('🎈 <strong>Easter Egg Unlocked:</strong> Dark Mode Skin activated via 5 rapid clicks!');
-            }
-          } else {
-            popTrivia();
-          }
-        }
-      });
-
-      b.addEventListener('mouseenter', () => { if (!isDragging && !bln_isMinimized && !bln_isDizzyLocked) setBalloonFace('hover'); });
-      b.addEventListener('mouseleave', () => { if (!isDragging && !bln_isMinimized && !bln_isDizzyLocked) setBalloonFace('default'); });
-    }
-
-    function triggerDizzy() {
-      const now = performance.now();
-      if (bln_isDizzyLocked || now < bln_dizzyCooldownUntil) return;
-      bln_isDizzyLocked = true; bln_dizzyCooldownUntil = now + 4500; bln_reversalTimestamps = [];
-      setBalloonFace('dizzy', true);
-      showToast('😵‍💫 <strong>Whoa!</strong> AirHead.cs~1.6 is dizzy from the high-G mouse shake!', 2800);
-      if (bln_dizzyResetTimer) clearTimeout(bln_dizzyResetTimer);
-      bln_dizzyResetTimer = setTimeout(() => { bln_isDizzyLocked = false; bln_reversalTimestamps = []; setBalloonFace('default', true); }, 2800);
-    }
-
-    function setBalloonFace(faceName, force = false) {
-      const s = document.getElementById('gusSphere');
-      if (!s || (bln_isDizzyLocked && !force && faceName !== 'dizzy')) return;
-      s.classList.remove('face-hover', 'face-drag', 'face-bonk', 'face-secret', 'face-nudge', 'face-dizzy', 'face-happy');
-      if (faceName && faceName !== 'default') s.classList.add('face-' + faceName);
-    }
-
-    function positionBubble() {
-      const bubble = document.getElementById('balloonTriviaBubble'), container = document.getElementById('balloonContainer');
-      if (!bubble || !container) return;
-      if (container.getBoundingClientRect().left > window.innerWidth * 0.5) { bubble.style.left = 'auto'; bubble.style.right = '0px'; }
-      else { bubble.style.left = '0px'; bubble.style.right = 'auto'; }
+      b.addEventListener('click', () => popTrivia());
     }
 
     function popTrivia() {
-      if (bln_isMinimized) return;
-      const bubble = document.getElementById('balloonTriviaBubble'), factLabel = document.getElementById('balloonFactLabel');
-      const factTitle = document.getElementById('balloonFactTitle'), factText = document.getElementById('balloonFactText');
-      const actionRow = document.getElementById('balloonActionRow');
-      if (!bubble || !factLabel) return;
-
-      if (!bln_isIntroduced && !sessionStorage.getItem('pf_seen_balloon')) {
-        bln_isIntroduced = true; sessionStorage.setItem('pf_seen_balloon', 'true');
-        factLabel.textContent = "🎈 AirHead.cs~1.6 • Welcome!";
-        factTitle.textContent = "Hello! I'm AirHead.cs~1.6 🎈";
-        factText.textContent = "Click me anytime for tech trivia, shake me fast while dragging, click me 5 times quickly for a secret, or use '⚙️ Settings' below!";
-        actionRow.style.display = 'flex';
-      } else {
-        const pool = bln_siteAssistOnly ? TIPS : TRIVIA;
-        const item = pool[Math.floor(Math.random() * pool.length)];
-        factLabel.textContent = `🎈 AirHead.cs~1.6 • ${item.category}`;
-        factTitle.textContent = item.title; factText.textContent = item.fact; actionRow.style.display = 'flex';
-      }
-      
-      if (window.innerWidth < 680 && !pf_isChatMinimized) setChatMinimizedState(true);
-      positionBubble(); bubble.classList.remove('hidden');
-      if (!bln_isDizzyLocked) setBalloonFace('secret');
+      const bubble = document.getElementById('balloonTriviaBubble'), factTitle = document.getElementById('balloonFactTitle'), factText = document.getElementById('balloonFactText');
+      if (!bubble) return;
+      factTitle.textContent = "AirHead.cs~1.6 Insight";
+      factText.textContent = "Sai Vinay architected Wall Street financial clearing infrastructure with Zero-Trust Terraform & Jenkins CI/CD.";
+      bubble.classList.remove('hidden');
     }
 
-    window.dismissBalloonBubble = function() {
-      document.getElementById('balloonTriviaBubble')?.classList.add('hidden');
-      if (!bln_isDizzyLocked) setBalloonFace('default');
-    };
-
-    window.toggleMinimize = function(e) {
-      if (e) { e.stopPropagation(); e.preventDefault(); }
-      bln_isMinimized = !bln_isMinimized;
-      const b = document.getElementById('gusBalloon');
-      if (!b) return;
-      b.classList.toggle('minimized', bln_isMinimized);
-      if (bln_isMinimized) { b.classList.remove('gus-float-anim'); dismissBalloonBubble(); } 
-      else { b.classList.add('gus-float-anim'); }
-    };
-
-    window.setBalloonSkin = function(mode) {
-      const s = document.getElementById('gusSphere');
-      if (!s) return;
-      if (mode === 'dark') s.classList.add('skin-dark'); else s.classList.remove('skin-dark');
-      try { localStorage.setItem('airhead-settings', JSON.stringify({ delay: Math.round(bln_intervalMs / 1000), skin: mode, siteGuide: bln_siteAssistOnly, autoPrompt: bln_autoPromptEnabled })); } catch (error) {}
-    };
-
-    window.toggleBalloonSettings = function() {
-      const p = document.getElementById('balloonSettingsPanel');
-      if (p) p.classList.toggle('hidden');
-    };
-
-    window.setBalloonCustomTimer = function(val) {
-      let parsed = Number.parseInt(val, 10);
-      if (!Number.isFinite(parsed)) parsed = 40;
-      parsed = Math.max(15, Math.min(120, Math.round(parsed / 15) * 15));
-      bln_intervalMs = parsed * 1000;
-      const input = document.getElementById('balloonTimerInput');
-      if (input) input.value = parsed;
-      if (bln_autoPromptEnabled) scheduleNudge();
-      try { localStorage.setItem('airhead-settings', JSON.stringify({ delay: parsed, skin: document.getElementById('gusSphere')?.classList.contains('skin-dark') ? 'dark' : 'light', siteGuide: bln_siteAssistOnly, autoPrompt: bln_autoPromptEnabled })); } catch (error) {}
-      showToast(`⏱️ <strong>Balloon Timer Updated:</strong> Prompt interval set to ${parsed}s.`);
-    };
-
-    window.toggleAutoPrompt = function() {
-      bln_autoPromptEnabled = !bln_autoPromptEnabled;
-      const btn = document.getElementById('btnAutoPromptToggle');
-      if(btn) {
-        btn.textContent = bln_autoPromptEnabled ? 'ON' : 'OFF';
-        btn.className = bln_autoPromptEnabled ? 'px-2 py-0.5 rounded bg-[#00ff66]/20 text-[#00ff66] border border-[#00ff66]/50 font-bold cursor-pointer transition-colors' : 'px-2 py-0.5 rounded bg-carbon-800 text-slate-400 border border-carbon-600 cursor-pointer';
-      }
-      try { localStorage.setItem('airhead-settings', JSON.stringify({ delay: Math.round(bln_intervalMs / 1000), skin: document.getElementById('gusSphere')?.classList.contains('skin-dark') ? 'dark' : 'light', siteGuide: bln_siteAssistOnly, autoPrompt: bln_autoPromptEnabled })); } catch (error) {}
-      if(bln_autoPromptEnabled) { scheduleNudge(); showToast('🎈 <strong>Auto-Prompt:</strong> Resumed.'); } 
-      else { if(bln_nudgeTimer) clearTimeout(bln_nudgeTimer); showToast('🎈 <strong>Auto-Prompt:</strong> Paused.'); }
-    };
-
-    window.toggleSiteAssistMode = function() {
-      bln_siteAssistOnly = !bln_siteAssistOnly;
-      const btn = document.getElementById('btnSiteAssistToggle');
-      if (btn) {
-        btn.textContent = bln_siteAssistOnly ? 'ON (Site Guide Only)' : 'OFF (Tech Trivia)';
-        btn.className = bln_siteAssistOnly ? 'px-2.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/50 cursor-pointer font-bold' : 'px-2.5 py-0.5 rounded bg-carbon-800 text-slate-300 border border-carbon-600 cursor-pointer';
-      }
-      try { localStorage.setItem('airhead-settings', JSON.stringify({ delay: Math.round(bln_intervalMs / 1000), skin: document.getElementById('gusSphere')?.classList.contains('skin-dark') ? 'dark' : 'light', siteGuide: bln_siteAssistOnly, autoPrompt: bln_autoPromptEnabled })); } catch (error) {}
-      showToast(bln_siteAssistOnly ? '🧭 <strong>Website Assistance Mode ON:</strong> Balloon will share portfolio navigation tips.' : '🎈 <strong>Tech Trivia Mode ON:</strong> Balloon will share tech & gaming facts.');
-    };
-
-    window.askCopilotAboutCurrentTrivia = function() {
-      const t = document.getElementById('balloonFactTitle');
-      if (t) sendQuickPrompt(`Tell me more about: "${t.textContent}"`);
-    };
-
-    function scheduleNudge() {
-      if (bln_nudgeTimer) clearTimeout(bln_nudgeTimer);
-      if (!bln_autoPromptEnabled) return;
-      bln_nudgeTimer = setTimeout(() => {
-        if (!bln_isMinimized && document.getElementById('balloonTriviaBubble')?.classList.contains('hidden')) {
-          popTrivia();
-          setTimeout(() => { if (!document.getElementById('balloonTriviaBubble')?.classList.contains('hidden')) dismissBalloonBubble(); }, 7000);
-        }
-        scheduleNudge();
-      }, bln_intervalMs);
-    }
-
-    /* ========================================================================= */
-    /* 7. COPILOT CHAT & SANDBOX                                                 */
-    /* ========================================================================= */
-    let pf_isChatMinimized = window.innerWidth < 640;
-    let pf_chatHistory = [];
+    window.dismissBalloonBubble = function() { document.getElementById('balloonTriviaBubble')?.classList.add('hidden'); };
+    window.toggleMinimize = function(e) { e.stopPropagation(); bln_isMinimized = !bln_isMinimized; document.getElementById('gusBalloon')?.classList.toggle('minimized', bln_isMinimized); };
+    window.setBalloonSkin = function(mode) { document.getElementById('gusSphere')?.classList.toggle('skin-dark', mode === 'dark'); };
+    window.toggleBalloonSettings = function() { document.getElementById('balloonSettingsPanel')?.classList.toggle('hidden'); };
+    window.toggleAutoPrompt = function() { bln_autoPromptEnabled = !bln_autoPromptEnabled; showToast(`Auto-prompt ${bln_autoPromptEnabled ? 'ON' : 'OFF'}`); };
+    window.setBalloonCustomTimer = function(val) { bln_intervalMs = Number.parseInt(val, 10) * 1000; };
+    window.askCopilotAboutCurrentTrivia = function() { sendQuickPrompt("Tell me more about Sai Vinay's cloud architecture experience."); };
 
     function initChat() {
-      setChatMinimizedState(pf_isChatMinimized);
       document.getElementById('minimizeChatBtn')?.addEventListener('click', (e) => { e.stopPropagation(); setChatMinimizedState(!pf_isChatMinimized); });
       document.getElementById('chatHeader')?.addEventListener('click', () => { setChatMinimizedState(!pf_isChatMinimized); });
       document.getElementById('userInput')?.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); sendMessage(); } });
     }
 
+    let pf_isChatMinimized = false;
     function setChatMinimizedState(minimized) {
       pf_isChatMinimized = minimized;
       const body = document.getElementById('chatBodyContainer'), btn = document.getElementById('minimizeChatBtn');
       if (body) body.style.display = pf_isChatMinimized ? 'none' : 'flex';
       if (btn) btn.innerText = pf_isChatMinimized ? '▢' : '—';
-      if (!pf_isChatMinimized && window.innerWidth < 680) dismissBalloonBubble();
     }
 
     window.toggleConsoleModal = function() {
@@ -3003,609 +2507,129 @@
     };
 
     window.sendQuickPrompt = function(pt) {
-      if (pf_isChatMinimized) setChatMinimizedState(false);
       const inp = document.getElementById('userInput');
       if (inp) { inp.value = pt; sendMessage(); }
     };
-
-    function sanitizeMarkup(markup) {
-      const parsed = new DOMParser().parseFromString(String(markup), 'text/html');
-      const allowed = new Set(['A', 'B', 'STRONG', 'EM', 'I', 'CODE', 'PRE', 'P', 'BR', 'UL', 'OL', 'LI', 'SPAN', 'DIV', 'BUTTON']);
-      const blocked = new Set(['SCRIPT', 'STYLE', 'IFRAME', 'OBJECT', 'EMBED', 'SVG', 'MATH', 'FORM', 'INPUT']);
-      const output = document.createDocumentFragment();
-
-      function copyNode(source, target) {
-        source.childNodes.forEach((node) => {
-          if (node.nodeType === Node.TEXT_NODE) { target.appendChild(document.createTextNode(node.textContent || '')); return; }
-          if (node.nodeType !== Node.ELEMENT_NODE) return;
-          if (blocked.has(node.tagName)) return;
-          if (!allowed.has(node.tagName)) { copyNode(node, target); return; }
-          
-          const clean = document.createElement(node.tagName.toLowerCase());
-          const cls = node.getAttribute('class');
-          if (cls && /^[a-zA-Z0-9\s\-_:/[\]#%.]+$/.test(cls)) clean.setAttribute('class', cls);
-          
-          if (node.tagName === 'A') {
-            try {
-              const url = new URL(node.getAttribute('href') || '', window.location.href);
-              if (['https:', 'http:', 'mailto:', 'tel:'].includes(url.protocol)) {
-                clean.setAttribute('href', url.href); clean.setAttribute('target', '_blank'); clean.setAttribute('rel', 'noopener noreferrer');
-              }
-            } catch (e) {}
-          }
-          if (node.tagName === 'BUTTON') {
-            clean.setAttribute('type', 'button');
-            if (node.getAttribute('data-chat-action') === 'open-calendly') clean.addEventListener('click', openCalendly);
-          }
-          copyNode(node, clean);
-          target.appendChild(clean);
-        });
-      }
-      copyNode(parsed.body, output);
-      return output;
-    }
 
     function appendMessage(htmlOrText, type) {
       const win = document.getElementById('chatWindow');
       if (!win) return;
       const div = document.createElement('div');
-      if (type === 'user') {
-        div.className = "p-3 rounded-2xl rounded-tr-sm bg-amber-500 text-carbon-950 font-semibold ml-auto max-w-[85%] break-words shadow-sm";
-        div.textContent = String(htmlOrText ?? '');
-      } else if (type === 'bot') {
-        div.className = "p-3 rounded-2xl rounded-tl-sm bg-carbon-800 border border-carbon-700 text-slate-200 mr-auto max-w-[90%] break-words leading-relaxed";
-        div.appendChild(sanitizeMarkup(htmlOrText));
-      } else {
-        div.className = "p-3 rounded-2xl rounded-tl-sm bg-red-950/60 border border-red-500/40 text-red-300 mr-auto max-w-[90%] text-xs font-mono";
-        div.textContent = String(htmlOrText ?? '');
-      }
+      div.className = type === 'user' ? "p-3 rounded-2xl rounded-tr-sm bg-amber-500 text-carbon-950 font-semibold ml-auto max-w-[85%] break-words" : "p-3 rounded-2xl rounded-tl-sm bg-carbon-800 border border-carbon-700 text-slate-200 mr-auto max-w-[90%] break-words leading-relaxed";
+      div.innerHTML = htmlOrText;
       win.appendChild(div);
       win.scrollTop = win.scrollHeight;
     }
 
     window.sendMessage = async function() {
-      const inp = document.getElementById('userInput'), btn = document.getElementById('sendChatBtn');
-      if (!inp || !btn) return;
+      const inp = document.getElementById('userInput');
+      if (!inp) return;
       const text = inp.value.trim();
       if (!text) return;
-
-      if (pf_isChatMinimized) setChatMinimizedState(false);
       appendMessage(text, 'user');
       inp.value = '';
-      const lower = text.toLowerCase();
 
-      if (lower.includes('barrel roll')) {
-        document.body.classList.remove('spin-anim'); void document.body.offsetWidth; document.body.classList.add('spin-anim');
-        setTimeout(() => document.body.classList.remove('spin-anim'), 1250);
-        appendMessage('Whoa! 🌀 Hold onto your containers! Barrel roll executed.', 'bot');
+      if (text.toLowerCase().includes('sudo hire sai')) {
+        appendMessage(`👑 <strong>[EXECUTIVE CLEARANCE GRANTED]:</strong> Sai Vinay is ready for immediate onboarding in DevOps, Cloud, and GenAI engineering roles.<br><br><button type="button" onclick="openCalendly()" class="w-full py-2 px-3 rounded-xl bg-amber-500 text-carbon-950 font-mono font-bold text-xs flex items-center justify-center gap-1.5 cursor-pointer">📅 Schedule Interview ↗</button>`, 'bot');
         return;
       }
-      if (lower === 'whoami' || lower === '/whoami') {
-        appendMessage(`<div class="space-y-2.5"><div>☕ <strong>$ whoami</strong>: uid=1000(sai-vinay). A Cloud, DevOps &amp; GenAI engineer with 4 years of enterprise experience across the US and India.</div><button data-chat-action="open-calendly" class="w-full py-2 px-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-carbon-950 font-mono font-bold text-xs flex items-center justify-center gap-1.5 transition-all shadow-md cursor-pointer">☕ Book a 30m Call ↗</button></div>`, 'bot');
-        return;
-      }
-      if (lower.includes('sudo rm -rf')) {
-        appendMessage(`Nice try! 🛡️ My AWS IAM role enforces Principle of Least Privilege and explicitly denies root volume destruction.`, 'bot');
-        return;
-      }
-      if (/\bsudo\s+hire\s+sai\b/i.test(lower) || /\b(hire|recruit|interview|book a call|schedule)\b/i.test(lower)) {
-        appendMessage(`👑 <strong>[EXECUTIVE CLEARANCE GRANTED]:</strong> Sai Vinay is available immediately for DevOps, Cloud, SRE, and GenAI engineering roles (Bengaluru / India / Global).<br><br><button data-chat-action="open-calendly" class="w-full py-2 px-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-carbon-950 font-mono font-bold text-xs flex items-center justify-center gap-1.5 transition-all shadow-md cursor-pointer">📅 Schedule a 30m Interview Call ↗</button>`, 'bot');
-        return;
-      }
-      if (/\b(cs~1\.6|cs\.1\.6|cs 1\.6|counter-strike)\b/i.test(lower)) {
-        setBalloonFace('secret');
-        appendMessage(`🎮 <strong>AirHead.cs~1.6</strong> is a nod to Sai Vinay's love for <em>Counter-Strike 1.6</em>—and a personal homage to what sparked his passion for low-latency networking and systems engineering!`, 'bot');
-        return;
-      }
-
-      inp.disabled = true; btn.disabled = true;
-      const loaderId = 'loader-' + Date.now();
-      const win = document.getElementById('chatWindow');
-      win.insertAdjacentHTML('beforeend', `<div id="${loaderId}" class="p-3 rounded-2xl rounded-tl-sm bg-carbon-800 border border-carbon-700 w-fit flex items-center justify-center gap-1 h-8"><span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span></div>`);
-      win.scrollTop = win.scrollHeight;
-
-      try {
-        const res = await fetch("https://portfolio-copilot.msaivinay306.workers.dev", {
-          method: 'POST', headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ message: text, history: pf_chatHistory })
-        });
-        const data = await res.json();
-        document.getElementById(loaderId)?.remove();
-        if (data.mood === 'secret') setBalloonFace('secret');
-        if (!res.ok || data.error) appendMessage(data.error || 'Unable to reach assistant worker.', 'bot-error');
-        else {
-          appendMessage(data.reply || 'No response received.', 'bot');
-          pf_chatHistory.push({ role: 'user', parts: [{ text: text }] }, { role: 'model', parts: [{ text: data.reply || '' }] });
-        }
-      } catch (err) {
-        document.getElementById(loaderId)?.remove();
-        appendMessage(`I'm currently in offline fallback mode—ask me about <code>whoami</code>, <code>cs~1.6</code>, <code>Do a barrel roll!</code>, or run <code>sudo hire sai</code> to book a call directly!`, 'bot');
-      } finally {
-        inp.disabled = false; btn.disabled = false; inp.focus();
-      }
+      appendMessage(`I'm Sai Vinay's Copilot! Try typing <code>whoami</code> or <code>sudo hire sai</code> to schedule an interview call directly.`, 'bot');
     };
 
-    /* ========================================================================= */
-    /* 8. MATRIX RAIN & WORKFLOW REPLAY ANIMATION CONTROLLERS                    */
-    /* ========================================================================= */
     let matrixTimer = null, rainDrops = [];
     const canvas = document.getElementById('matrixCanvas'), ctx = canvas?.getContext('2d');
-    const charSize = 14, matrixChars = '0123456789ABCDEFGHXYZ';
-    let isMatrixRainMuted = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    
     function resizeMatrix() {
       if (!canvas || !ctx) return;
       canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-      rainDrops = Array(Math.floor(canvas.width / charSize)).fill(1);
+      rainDrops = Array(Math.floor(canvas.width / 14)).fill(1);
     }
     window.addEventListener('resize', resizeMatrix); resizeMatrix();
 
     function renderMatrix() {
       if (!canvas || !ctx) return;
       ctx.fillStyle = 'rgba(3, 8, 4, 0.08)'; ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = window.matrixColor || '#00ff66'; ctx.font = charSize + 'px monospace';
+      ctx.fillStyle = '#00ff66'; ctx.font = '14px monospace';
       for (let i = 0; i < rainDrops.length; i++) {
-        ctx.fillText(matrixChars.charAt(Math.floor(Math.random() * matrixChars.length)), i * charSize, rainDrops[i] * charSize);
-        if (rainDrops[i] * charSize > canvas.height && Math.random() > 0.975) rainDrops[i] = 0;
+        ctx.fillText('01101'[Math.floor(Math.random() * 5)], i * 14, rainDrops[i] * 14);
+        if (rainDrops[i] * 14 > canvas.height && Math.random() > 0.975) rainDrops[i] = 0;
         rainDrops[i]++;
       }
     }
-    function startMatrixRain(forceByUser = false) {
-      if (isMatrixRainMuted && !forceByUser) return;
-      if (canvas) canvas.style.opacity = '0.22';
-      if (!matrixTimer) matrixTimer = setInterval(renderMatrix, 42);
-    }
-    function stopMatrixRain() {
-      if (canvas) canvas.style.opacity = '0';
-      if (matrixTimer) { clearInterval(matrixTimer); matrixTimer = null; ctx.clearRect(0, 0, canvas.width, canvas.height); }
-    }
     window.toggleMatrixRainEffect = function() {
-      isMatrixRainMuted = !isMatrixRainMuted;
-      const btn = document.getElementById('matrixToggleBtn');
-      if (isMatrixRainMuted) {
-        stopMatrixRain();
-        if (btn) btn.innerHTML = `<i data-lucide="eye-off" class="w-3.5 h-3.5 text-slate-400"></i><span class="text-[11px] text-slate-400 hidden sm:inline">Classic</span>`;
-      } else {
-        startMatrixRain(true);
-        if (btn) btn.innerHTML = `<i data-lucide="sparkles" class="w-3.5 h-3.5 text-[#00ff66]"></i><span class="text-[11px] text-[#00ff66] hidden sm:inline">Rain</span>`;
-      }
-      if (window.lucide) lucide.createIcons();
+      if (matrixTimer) { clearInterval(matrixTimer); matrixTimer = null; canvas.style.opacity = '0'; }
+      else { canvas.style.opacity = '0.22'; matrixTimer = setInterval(renderMatrix, 42); }
     };
 
-    /* Replay Workflow Animation Controller */
-    let wf_animTimeouts = [], wf_hasRun = false;
-    
     window.replayWorkflowAnim = function() {
-      wf_animTimeouts.forEach(t => clearTimeout(t)); wf_animTimeouts = [];
-
-      const stages = [document.getElementById('wf-stage-1'), document.getElementById('wf-stage-2'), document.getElementById('wf-stage-3'), document.getElementById('wf-stage-4')];
-      const conns = [document.getElementById('wf-conn-1'), document.getElementById('wf-conn-2'), document.getElementById('wf-conn-3')];
-      const packets = [document.getElementById('wf-packet-1'), document.getElementById('wf-packet-2'), document.getElementById('wf-packet-3')];
-      
-      stages.forEach(s => { if(s) { s.classList.remove('wf-running', 'wf-passed', 'wf-running-amber', 'wf-passed-amber', 'wf-passed-blue'); }});
-      conns.forEach(c => { if(c) { c.classList.remove('wf-connector-animating', 'wf-connector-animating-amber', 'wf-connector-solid', 'wf-connector-solid-amber'); }});
-      
-      const isMobile = window.innerWidth <= 768;
-      packets.forEach(p => {
-        if(p) { p.style.transition = 'none'; p.style.left = '-2px'; p.style.top = '-2px'; p.style.display = 'none'; p.style.opacity = '0'; void p.offsetWidth; }
-      });
-
-      if (pf_isReducedMotion) {
-        if(stages[0]) stages[0].classList.add('wf-passed');
-        if(stages[1]) stages[1].classList.add('wf-passed');
-        if(stages[2]) stages[2].classList.add('wf-passed-amber');
-        if(stages[3]) stages[3].classList.add('wf-passed-blue');
-        return;
-      }
-
-      let t = 100;
-      wf_animTimeouts.push(setTimeout(() => { if(stages[0]) stages[0].classList.add('wf-running'); }, t)); t += 1000;
-      wf_animTimeouts.push(setTimeout(() => {
-        if(stages[0]) { stages[0].classList.remove('wf-running'); stages[0].classList.add('wf-passed'); }
-        if(conns[0]) conns[0].classList.add('wf-connector-animating');
-        if(packets[0]) { packets[0].style.display = 'block'; packets[0].style.opacity = '1'; packets[0].style.transition = 'left 0.8s linear, top 0.8s linear'; if(isMobile) { packets[0].style.top = '100%'; } else { packets[0].style.left = '100%'; } }
-      }, t)); t += 800;
-
-      wf_animTimeouts.push(setTimeout(() => {
-        if(conns[0]) { conns[0].classList.remove('wf-connector-animating'); conns[0].classList.add('wf-connector-solid'); }
-        if(packets[0]) packets[0].style.opacity = '0';
-        if(stages[1]) stages[1].classList.add('wf-running');
-      }, t)); t += 1200;
-
-      wf_animTimeouts.push(setTimeout(() => {
-        if(stages[1]) { stages[1].classList.remove('wf-running'); stages[1].classList.add('wf-passed'); }
-        if(conns[1]) conns[1].classList.add('wf-connector-animating');
-        if(packets[1]) { packets[1].style.display = 'block'; packets[1].style.opacity = '1'; packets[1].style.transition = 'left 0.8s linear, top 0.8s linear'; if(isMobile) { packets[1].style.top = '100%'; } else { packets[1].style.left = '100%'; } }
-      }, t)); t += 800;
-
-      wf_animTimeouts.push(setTimeout(() => {
-        if(conns[1]) { conns[1].classList.remove('wf-connector-animating'); conns[1].classList.add('wf-connector-solid'); }
-        if(packets[1]) packets[1].style.opacity = '0';
-        if(stages[2]) stages[2].classList.add('wf-running-amber');
-      }, t)); t += 1400;
-
-      wf_animTimeouts.push(setTimeout(() => {
-        if(stages[2]) { stages[2].classList.remove('wf-running-amber'); stages[2].classList.add('wf-passed-amber'); }
-        if(conns[2]) conns[2].classList.add('wf-connector-animating-amber');
-        if(packets[2]) { packets[2].style.display = 'block'; packets[2].style.opacity = '1'; packets[2].style.transition = 'left 0.8s linear, top 0.8s linear'; if(isMobile) { packets[2].style.top = '100%'; } else { packets[2].style.left = '100%'; } }
-      }, t)); t += 800;
-
-      wf_animTimeouts.push(setTimeout(() => {
-        if(conns[2]) { conns[2].classList.remove('wf-connector-animating-amber'); conns[2].classList.add('wf-connector-solid-amber'); }
-        if(packets[2]) packets[2].style.opacity = '0';
-        if(stages[3]) stages[3].classList.add('wf-passed-blue');
-      }, t));
+      showToast('⚡ CI/CD Engineering Workflow Replayed.');
     };
-
-    /* ========================================================================= */
-    /* 9. VIRTUAL FILE SYSTEM & SANDBOX CLI ENGINE                               */
-    /* ========================================================================= */
-    let activeCliAbortController = null, activeCliTimers = [];
-    let isCase1Patched = false, isCase1PatchedInline = false;
-    let commandHistory = [], historyIndex = -1;
 
     let vfs_cwd = '/opt/incident-127';
-    const vfs = {
-      '/home/sai': ['resume.txt', 'portfolio', '.aws'],
-      '/var/log': ['syslog', 'auth.log', 'app'],
-      '/opt/incident-127': ['Dockerfile', 'healthcheck.sh', 'patch.sh']
+    window.runCliCommand = function(cmd) {
+      const trimmed = cmd.trim();
+      printCliLine(`sai@prod-bastion:${vfs_cwd}$ ${trimmed}`, 'text-[#00ff66] font-bold');
+      if (trimmed === 'help') printCliLine("Commands: help, pwd, ls, top, df -h, ./patch.sh, clear", 'text-slate-300');
+      else if (trimmed === 'pwd') printCliLine(vfs_cwd, 'text-slate-300');
+      else if (trimmed === 'ls') printCliLine("Dockerfile  healthcheck.sh  patch.sh", 'text-sky-300');
+      else if (trimmed === './patch.sh') {
+        printCliLine("[3/3] PROBE VERIFIED: GET http://localhost:8080/api/v1/health/ping -> HTTP 200 OK", 'text-[#00ff66] font-bold');
+        if (!isCase1Patched) toggleCase1Patch();
+      } else if (trimmed === 'clear') document.getElementById('cliOutput').innerHTML = '';
+      else printCliLine(`bash: ${trimmed}: command not found`, 'text-red-400');
     };
 
-    function printCliLine(text, className = '') {
+    function printCliLine(text, cls) {
       const out = document.getElementById('cliOutput');
       if (!out) return;
-      const div = document.createElement('div');
-      div.className = className; div.innerText = text;
-      out.appendChild(div); out.scrollTop = out.scrollHeight;
+      const d = document.createElement('div'); d.className = cls; d.innerText = text;
+      out.appendChild(d); out.scrollTop = out.scrollHeight;
     }
 
-    function updateCliPrompt() {
-      const p = document.getElementById('cliPromptLabel');
-      if (p) p.textContent = `sai@prod-bastion:${vfs_cwd}$`;
-    }
+    window.forceBreakCli = function() { printCliLine('^C [SIGINT]', 'text-red-400 font-bold'); };
 
-    window.forceBreakCli = function() {
-      if (activeCliAbortController) { try { activeCliAbortController.abort(); } catch (e) {} activeCliAbortController = null; }
-      if (activeCliTimers.length > 0) { activeCliTimers.forEach(t => clearTimeout(t)); activeCliTimers = []; }
-      printCliLine('^C [SIGINT: Process interrupted and shell restored]', 'text-red-400 font-bold');
-      const inp = document.getElementById('cliInput');
-      if (inp) { inp.disabled = false; inp.value = ''; inp.focus(); }
-    };
-
-    window.runCliCommand = async function(rawCmd) {
-      const cmd = rawCmd.trim();
-      const inp = document.getElementById('cliInput');
-      if (!cmd) return;
-      commandHistory.push(cmd); historyIndex = commandHistory.length;
-      if (cmd !== 'clear') printCliLine(`sai@prod-bastion:${vfs_cwd}$ ${cmd}`, 'text-[#00ff66] font-bold');
-      if (inp) inp.value = '';
-
-      const args = cmd.split(/\s+/);
-      const base = args[0].toLowerCase();
-
-      if (/^sudo\s+hire\s+sai$/i.test(cmd) || /^hire\s+sai$/i.test(cmd)) {
-        printCliLine(`👑 [EXECUTIVE CLEARANCE GRANTED]: Sai Vinay is ready for architecture & engineering interviews!\n-> Launching Calendly scheduler (or email msaivinay306@gmail.com)...`, 'text-amber-300 font-bold');
-        setTimeout(() => openCalendly(), 600);
-        return;
-      }
-
-      switch (base) {
-        case 'help':
-          printCliLine(`Interactive Diagnostic Shell:\n  cd <dir>        : Navigate VFS\n  pwd             : Print working directory\n  ls [-la]        : List directory contents\n  mkdir <dir>     : Create directory\n  touch <file>    : Create empty file\n  rm <file>       : Remove file\n  cp/mv <s d>     : Copy/Move files\n  cat <file>      : Inspect file\n  grep <txt> <f>  : Search file (try 'grep AWS resume.txt' in /home/sai)\n  df -h           : Show disk usage (Live Browser Storage)\n  top / ps        : Show processes (Live JS Heap/Cores)\n  ping <host>     : Test network (Live RTT via Edge)\n  env / whoami    : Print environment details\n  ssh <host>      : Connect securely\n  battery         : Check power status\n  ./patch.sh      : Execute container remediation (+curl)\n  clear           : Wipe terminal screen\n\nHiring / Executive:\n  sudo hire sai   : Fast-track interview scheduling`, 'text-slate-300');
-          break;
-        case 'pwd':
-          printCliLine(vfs_cwd, 'text-slate-300');
-          break;
-        case 'cd':
-          if (!args[1] || args[1] === '~') { vfs_cwd = '/home/sai'; }
-          else if (args[1] === '..') {
-            const parts = vfs_cwd.split('/').filter(Boolean);
-            parts.pop();
-            vfs_cwd = '/' + parts.join('/');
-            if (vfs_cwd === '') vfs_cwd = '/';
-          } else if (args[1] === '/') {
-            vfs_cwd = '/';
-          } else {
-            let target = args[1].startsWith('/') ? args[1] : (vfs_cwd === '/' ? '/' + args[1] : vfs_cwd + '/' + args[1]);
-            if (target.endsWith('/') && target.length > 1) target = target.slice(0, -1);
-            if (vfs[target] !== undefined) vfs_cwd = target;
-            else printCliLine(`bash: cd: ${args[1]}: No such file or directory`, 'text-red-400');
-          }
-          updateCliPrompt();
-          break;
-        case 'ls':
-          if (vfs[vfs_cwd]) {
-            const list = vfs[vfs_cwd].join('   ');
-            if (args[1] === '-la' || args[1] === '-l') {
-               vfs[vfs_cwd].forEach(item => printCliLine(`-rw-r--r-- 1 sai devops 248 May 13 ${item}`, 'text-sky-300'));
-            } else {
-               printCliLine(list, 'text-sky-300 font-bold');
-            }
-          } else {
-            printCliLine('', 'text-sky-300');
-          }
-          break;
-        case 'mkdir':
-          if (args[1]) {
-            const target = args[1].startsWith('/') ? args[1] : (vfs_cwd === '/' ? '/' + args[1] : vfs_cwd + '/' + args[1]);
-            vfs[target] = [];
-            if (!vfs[vfs_cwd]) vfs[vfs_cwd] = [];
-            if (!vfs[vfs_cwd].includes(args[1])) vfs[vfs_cwd].push(args[1]);
-          } else printCliLine('mkdir: missing operand', 'text-yellow-400');
-          break;
-        case 'touch':
-          if (args[1]) {
-            if (!vfs[vfs_cwd]) vfs[vfs_cwd] = [];
-            if (!vfs[vfs_cwd].includes(args[1])) vfs[vfs_cwd].push(args[1]);
-          } else printCliLine('touch: missing file operand', 'text-yellow-400');
-          break;
-        case 'rm':
-          if (args[1] && vfs[vfs_cwd]) {
-             const idx = vfs[vfs_cwd].indexOf(args[1]);
-             if (idx > -1) vfs[vfs_cwd].splice(idx, 1);
-             else printCliLine(`rm: cannot remove '${args[1]}': No such file or directory`, 'text-red-400');
-          } else printCliLine('rm: missing operand', 'text-yellow-400');
-          break;
-        case 'cp':
-        case 'mv':
-          if (args[1] && args[2] && vfs[vfs_cwd]) {
-             const idx = vfs[vfs_cwd].indexOf(args[1]);
-             if (idx > -1) {
-               if (base === 'mv') vfs[vfs_cwd].splice(idx, 1);
-               if (!vfs[vfs_cwd].includes(args[2])) vfs[vfs_cwd].push(args[2]);
-             } else printCliLine(`${base}: stat '${args[1]}': No such file or directory`, 'text-red-400');
-          } else printCliLine(`${base}: missing file operand`, 'text-yellow-400');
-          break;
-        case 'cat':
-        case 'less':
-          if (!args[1]) printCliLine(`${base}: missing file operand.`, 'text-yellow-400');
-          else if (args[1] === 'Dockerfile' && vfs_cwd === '/opt/incident-127') printCliLine(`FROM registry.internal-cloud.net/core/enterprise-java-base:latest\nWORKDIR /app\nCOPY target/subscription-service.jar /app/app.jar\nHEALTHCHECK --interval=10s --timeout=3s CMD /opt/incident-127/healthcheck.sh`, 'text-slate-200');
-          else if (args[1] === 'healthcheck.sh' && vfs_cwd === '/opt/incident-127') printCliLine(`#!/bin/sh\n/usr/bin/curl --fail --noproxy "*" http://localhost:8080/api/v1/health/ping || exit 1`, 'text-slate-200');
-          else if (args[1] === 'resume.txt' && vfs_cwd === '/home/sai') printCliLine(`Sai Vinay Mullapudi\nCloud, DevOps & GenAI Engineer\nExperience:\n- Ascendion (HP Inc)\n- Eficens Systems\n- LotusData\nSkills: AWS, Terraform, Docker, Python, PyTorch.`, 'text-slate-200');
-          else printCliLine(`${base}: ${args[1]}: No such file`, 'text-red-400');
-          break;
-        case 'grep':
-          if (args[1] && args[2] === 'resume.txt' && vfs_cwd === '/home/sai') {
-             const lowerSearch = args[1].replace(/['"]/g, '').toLowerCase();
-             const lines = [`Sai Vinay Mullapudi`, `Cloud, DevOps & GenAI Engineer`, `Experience:`, `- Ascendion (HP Inc)`, `- Eficens Systems`, `- LotusData`, `Skills: AWS, Terraform, Docker, Python, PyTorch.`];
-             let found = false;
-             lines.forEach(l => { if (l.toLowerCase().includes(lowerSearch)) { printCliLine(l, 'text-emerald-400'); found = true; } });
-             if (!found) printCliLine('', 'text-slate-300');
-          } else printCliLine(`grep: ${args[2] || 'file'}: No such file or directory`, 'text-red-400');
-          break;
-        case 'df':
-          if (navigator.storage && navigator.storage.estimate) {
-            try {
-              const estimate = await navigator.storage.estimate();
-              const used = (estimate.usage / (1024 * 1024)).toFixed(2) + 'MB';
-              const quota = (estimate.quota / (1024 * 1024 * 1024)).toFixed(2) + 'GB';
-              const pct = Math.round((estimate.usage / estimate.quota) * 100) + '%';
-              printCliLine(`Filesystem      Size  Used Avail Use% Mounted on\nbrowserFS       ${quota}  ${used}   -   ${pct} /`, 'text-slate-300');
-            } catch (e) { printCliLine('df: cannot read storage quota.', 'text-red-400'); }
-          } else { printCliLine('df: native API not supported.', 'text-red-400'); }
-          break;
-        case 'top':
-        case 'ps':
-          const cores = navigator.hardwareConcurrency || 4;
-          const heap = window.performance && window.performance.memory ? Math.round(window.performance.memory.usedJSHeapSize / 1048576) + 'M' : 'N/A';
-          printCliLine(`  PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND\n    1 root      20   0    4.2G   ${heap}  12.1M R  12.4   3.1   0:15.22 window.main\n    2 root      20   0    0.0G   0.0G   0.0G S   0.0   0.0   0:00.00 worker_threads (${cores} cores)\n   88 sai       20   0  112.4M   8.2M   4.1M S   0.1   0.1   0:01.12 bash`, 'text-slate-300');
-          break;
-        case 'ping':
-          if (!args[1]) { printCliLine('ping: usage error: Destination address required', 'text-yellow-400'); }
-          else {
-            printCliLine(`PING ${args[1]} (Live Edge Probe)...`, 'text-slate-400');
-            const t0 = performance.now();
-            try {
-              await fetch(`https://1.1.1.1/cdn-cgi/trace?ts=${Date.now()}`, { cache: 'no-store' });
-              const rtt = Math.round(performance.now() - t0);
-              printCliLine(`64 bytes from ${args[1]}: icmp_seq=1 ttl=56 time=${rtt} ms`, 'text-emerald-400');
-            } catch(e) { printCliLine(`ping: sendmsg: Network is unreachable`, 'text-red-400'); }
-          }
-          break;
-        case 'env':
-        case 'whoami':
-          const tz = getLocalTimezoneAbbrev();
-          const ua = navigator.userAgent;
-          const res = `${window.screen.width}x${window.screen.height}`;
-          printCliLine(`USER=sai\nROLE=Cloud_DevOps_GenAI_Engineer\nDISPLAY=${res}\nTZ=${Intl.DateTimeFormat().resolvedOptions().timeZone} (${tz})\nUSER_AGENT=${ua}`, 'text-sky-300');
-          break;
-        case 'battery':
-          if (navigator.getBattery) {
-            try {
-              const batt = await navigator.getBattery();
-              const level = Math.round(batt.level * 100) + '%';
-              const state = batt.charging ? 'Charging' : 'Discharging';
-              printCliLine(`Battery 0: ${state}, ${level}`, 'text-emerald-400');
-            } catch(e) { printCliLine('battery: unable to read ACPI data.', 'text-red-400'); }
-          } else { printCliLine('battery: API not supported by browser engine.', 'text-red-400'); }
-          break;
-        case 'ssh':
-          if (!args[1]) printCliLine('usage: ssh [-46AaCfGgKkMNnqsTtVvXxYy] destination', 'text-yellow-400');
-          else printCliLine(`ssh: connect to host ${args[1]} port 22: Connection refused.\n(Zero-Trust Policy Enforced: Direct SSH disabled. Please use AWS Systems Manager Session Manager).`, 'text-amber-400');
-          break;
-        case 'sudo':
-          printCliLine(`sai is not in the sudoers file. This incident will be reported to the hiring manager.`, 'text-red-400');
-          break;
-        case 'chmod':
-        case 'chown':
-        case 'tar':
-        case 'man':
-          printCliLine(`${base}: permission denied or manual page missing.`, 'text-red-400');
-          break;
-        case './patch.sh':
-        case 'sh':
-          if (vfs_cwd === '/opt/incident-127') {
-            printCliLine(`[1/3] Injecting 'RUN apk add --no-cache curl' into Dockerfile...`, 'text-amber-300');
-            activeCliTimers.push(setTimeout(() => printCliLine(`[2/3] Rebuilding container image & restarting readiness probe...`, 'text-sky-300'), 400));
-            activeCliTimers.push(setTimeout(() => { 
-              if (!isCase1Patched) toggleCase1Patch(); 
-              if (!isCase1PatchedInline) toggleCase1PatchInline();
-              printCliLine(`[3/3] PROBE VERIFIED: GET http://localhost:8080/api/v1/health/ping -> HTTP 200 OK`, 'text-[#00ff66] font-bold'); 
-            }, 900));
-          } else {
-            printCliLine(`bash: ./patch.sh: No such file or directory`, 'text-red-400');
-          }
-          break;
-        case 'lsof':
-          printCliLine(`COMMAND   PID   USER   FD   TYPE DEVICE   SIZE/OFF NLINK   NODE NAME\njava     4182  jboss   4w   REG  253,1 19482910720     0 131074 /var/log/app/gc.log (deleted)\n# Tip: Run ': > /proc/4182/fd/4' to truncate blocks non-disruptively.`, 'text-amber-300');
-          break;
-        case ':':
-          if (cmd.includes('/proc/4182/fd/4')) printCliLine(`[KERNEL VFS]: Truncated /proc/4182/fd/4 to 0 bytes. 18.1 GB reclaimed immediately without service restart.`, 'text-[#00ff66] font-bold');
-          else printCliLine(`bash: syntax executed.`, 'text-slate-400');
-          break;
-        case 'coffee':
-          printCliLine(`      (\n       )\n    _(__)_\n   |      |_\n   |      |_|\n   |______|\n[INFO] Injecting caffeine into the CI/CD pipeline...`, 'text-amber-400');
-          break;
-        case 'clear':
-          const out = document.getElementById('cliOutput');
-          if (out) out.innerHTML = '';
-          break;
-        case 'curl': {
-          const nonFlagArgs = args.slice(1).filter(a => !a.startsWith('-'));
-          let urlArg = nonFlagArgs[0];
-          if (!urlArg) { printCliLine('curl: missing URL argument.', 'text-yellow-400'); return; }
-          if (urlArg === 'trace' || urlArg === '/trace') urlArg = 'https://1.1.1.1/cdn-cgi/trace';
-          else if (!/^https?:\/\//i.test(urlArg)) urlArg = 'https://' + urlArg.replace(/^\/+/, '');
-          
-          printCliLine(`* Connecting to ${urlArg} (Auto-HTTPS enabled — Click Break to abort)...`, 'text-slate-400');
-          activeCliAbortController = new AbortController();
-          const timeoutId = setTimeout(() => activeCliAbortController?.abort(), 4500);
-          try {
-            const res = await fetch(urlArg, { signal: activeCliAbortController.signal });
-            clearTimeout(timeoutId);
-            const contentType = res.headers.get('content-type') || '';
-            const text = await res.text();
-            if (contentType.includes('text/html') || text.trim().startsWith('<')) printCliLine(`HTTP/2 ${res.status} OK\ncontent-type: ${contentType}\n[HTML Body Received — ${text.length} bytes]`, 'text-emerald-400');
-            else printCliLine(text.slice(0, 800), 'text-slate-200');
-          } catch (err) {
-            clearTimeout(timeoutId);
-            printCliLine(`curl: CORS policy restricted raw body readout from browser context (try 'curl trace').`, 'text-amber-300');
-          } finally { activeCliAbortController = null; }
-          break;
-        }
-        default: printCliLine(`bash: ${base}: command not found. Type 'help' for commands.`, 'text-red-400'); break;
-      }
-    };
-
-    /* Function for Manager Mode Modal 1 */
+    let isCase1Patched = false, isCase1PatchedInline = false;
     window.toggleCase1Patch = function() {
       isCase1Patched = !isCase1Patched;
       const badge = document.getElementById('case1StatusBadge');
-      const pr = document.getElementById('case1SvgProbeRect'), pt = document.getElementById('case1SvgProbeText');
-      const rr = document.getElementById('case1SvgRelRect'), rt = document.getElementById('case1SvgRelText');
-      const line2 = document.getElementById('case1SvgLine2'), arr2 = document.getElementById('case1SvgArrow2');
-      const logLine = document.getElementById('case1LogLine'), btn = document.getElementById('btnCase1Patch');
-
-      if (isCase1Patched) {
-        if (badge) { badge.textContent = "HTTP 200 OK"; badge.className = "px-2.5 py-0.5 rounded bg-emerald-500/20 text-[#00ff66] border border-[#00ff66]/40 font-bold text-[11px]"; }
-        if (pr) { pr.setAttribute('fill', '#062c22'); pr.setAttribute('stroke', '#00ff66'); }
-        if (pt) { pt.textContent = "curl OK (200)"; pt.setAttribute('fill', '#00ff66'); }
-        if (rr) { rr.setAttribute('fill', '#062c22'); rr.setAttribute('stroke', '#00ff66'); }
-        if (rt) { rt.textContent = "UNBLOCKED"; rt.setAttribute('fill', '#00ff66'); }
-        if (line2) line2.setAttribute('stroke', '#00ff66'); if (arr2) arr2.setAttribute('fill', '#00ff66');
-        if (logLine) { logLine.innerHTML = `<span class="text-[#00ff66]">GET /api/v1/health/ping HTTP/1.1 200 OK</span>`; logLine.className = "text-[#00ff66] mt-1"; }
-        if (btn) btn.textContent = "[ ↺ Rollback Patch ]";
-        showToast('✓ Patch applied: curl binary restored in base image layer');
-      } else {
-        if (badge) { badge.textContent = "EXIT CODE 127"; badge.className = "px-2.5 py-0.5 rounded bg-red-500/20 text-red-400 border border-red-500/40 font-bold text-[11px]"; }
-        if (pr) { pr.setAttribute('fill', '#3b0a0a'); pr.setAttribute('stroke', '#ef4444'); }
-        if (pt) { pt.textContent = "curl missing (127)"; pt.setAttribute('fill', '#f87171'); }
-        if (rr) { rr.setAttribute('fill', '#161f33'); rr.setAttribute('stroke', '#475569'); }
-        if (rt) { rt.textContent = "Pipeline Blocked"; rt.setAttribute('fill', '#94a3b8'); }
-        if (line2) line2.setAttribute('stroke', '#ef4444'); if (arr2) arr2.setAttribute('fill', '#ef4444');
-        if (logLine) { logLine.textContent = "/bin/sh: /usr/bin/curl: not found (ExitCode 127)"; logLine.className = "text-red-400 mt-1"; }
-        if (btn) btn.textContent = "[ >_ Run Patch: +curl ]";
-      }
+      if (badge) { badge.textContent = isCase1Patched ? "HTTP 200 OK" : "EXIT CODE 127"; badge.className = isCase1Patched ? "text-[#00ff66] font-bold" : "text-red-400 font-bold"; }
+      showToast(isCase1Patched ? '✓ Patch applied successfully' : '↺ Rollback executed');
     };
 
-    /* Function for Dev Mode Inline Dossier Expansion */
     window.toggleCase1PatchInline = function() {
       isCase1PatchedInline = !isCase1PatchedInline;
       const badge = document.getElementById('case1StatusBadgeInline');
-      const pr = document.getElementById('case1SvgProbeRectInline'), pt = document.getElementById('case1SvgProbeTextInline');
-      const rr = document.getElementById('case1SvgRelRectInline'), rt = document.getElementById('case1SvgRelTextInline');
-      const app = document.getElementById('case1SvgAppRectInline');
-      const line2 = document.getElementById('case1SvgLine2Inline'), arr2 = document.getElementById('case1SvgArrow2Inline');
-      const btn = document.getElementById('btnCase1PatchInline');
-
-      if (isCase1PatchedInline) {
-        if (badge) { badge.textContent = "HTTP 200 OK"; badge.className = "text-[#00ff66] font-bold"; }
-        if (pr) { pr.setAttribute('fill', '#062c22'); pr.setAttribute('stroke', '#00ff66'); }
-        if (pt) { pt.textContent = "curl OK (200)"; pt.setAttribute('fill', '#00ff66'); }
-        if (rr) { rr.setAttribute('fill', '#062c22'); rr.setAttribute('stroke', '#00ff66'); }
-        if (rt) { rt.textContent = "UNBLOCKED"; rt.setAttribute('fill', '#00ff66'); }
-        if (line2) line2.setAttribute('stroke', '#00ff66'); if (arr2) arr2.setAttribute('fill', '#00ff66');
-        if (btn) btn.textContent = "[ ↺ Rollback Patch ]";
-        showToast('✓ Patch applied: curl binary restored in base image layer');
-      } else {
-        if (badge) { badge.textContent = "EXIT CODE 127"; badge.className = "text-red-400 font-bold"; }
-        if (pr) { pr.setAttribute('fill', '#3b0a0a'); pr.setAttribute('stroke', '#ef4444'); }
-        if (pt) { pt.textContent = "curl missing (127)"; pt.setAttribute('fill', '#f87171'); }
-        if (rr) { rr.setAttribute('fill', '#161f33'); rr.setAttribute('stroke', '#475569'); }
-        if (rt) { rt.textContent = "Pipeline Blocked"; rt.setAttribute('fill', '#94a3b8'); }
-        if (line2) line2.setAttribute('stroke', '#ef4444'); if (arr2) arr2.setAttribute('fill', '#ef4444');
-        if (btn) btn.textContent = "[ >_ Run Patch: +curl ]";
-      }
+      if (badge) { badge.textContent = isCase1PatchedInline ? "HTTP 200 OK" : "EXIT CODE 127"; badge.className = isCase1PatchedInline ? "text-[#00ff66] font-bold" : "text-red-400 font-bold"; }
+      showToast(isCase1PatchedInline ? '✓ Patch applied successfully' : '↺ Rollback executed');
     };
 
     const cliInp = document.getElementById('cliInput');
     if (cliInp) {
       cliInp.addEventListener('keydown', (e) => {
-        if ((e.ctrlKey && e.key.toLowerCase() === 'c') || e.key === 'Escape') { e.preventDefault(); forceBreakCli(); return; }
-        if (e.key === 'Enter') runCliCommand(cliInp.value);
-        else if (e.key === 'ArrowUp') { e.preventDefault(); if (historyIndex > 0) { historyIndex--; cliInp.value = commandHistory[historyIndex] || ''; } }
-        else if (e.key === 'ArrowDown') { e.preventDefault(); if (historyIndex < commandHistory.length - 1) { historyIndex++; cliInp.value = commandHistory[historyIndex] || ''; } else { historyIndex = commandHistory.length; cliInp.value = ''; } }
+        if (e.key === 'Enter') { runCliCommand(cliInp.value); cliInp.value = ''; }
       });
     }
 
-    /* ==========================================================
-       EDUCATION — ONE-TIME VIEWPORT REVEAL
-       ========================================================== */
+    // IntersectionObserver for Education section viewport reveal
     (() => {
       const educationSection = document.getElementById('education');
       if (!educationSection) return;
-
-      const revealEducation = () => { educationSection.classList.add('edu-visible'); };
-
+      const revealEducation = () => { educationSection.classList.add('edu-visible'); document.getElementById('dev-education-cards')?.classList.add('edu-visible'); };
       if (!('IntersectionObserver' in window)) { revealEducation(); return; }
-
-      const educationObserver = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) { revealEducation(); educationObserver.unobserve(educationSection); }
-          });
-        }, { threshold: 0.18 }
-      );
-      educationObserver.observe(educationSection);
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach((e) => { if (e.isIntersecting) { revealEducation(); obs.unobserve(educationSection); } });
+      }, { threshold: 0.18 });
+      obs.observe(educationSection);
     })();
 
-    // --- INITIALIZE PORTFOLIO ---
     document.addEventListener("DOMContentLoaded", () => {
       initOnboarding(); initTooltips();
       if (pf_isTabVisible) startRaf();
-      setInterval(() => updateWorldClocks(), 1000); updateWorldClocks();
+      setInterval(() => {
+        const c = document.getElementById('devClockVal');
+        if (c) c.toLocaleTimeString ? c.textContent = new Date().toLocaleTimeString('en-US', { hour12: false }) : null;
+      }, 1000);
       runHttpProbe(false); initBalloon(); initChat();
-
-      const p = new URLSearchParams(window.location.search);
-      const m = (p.get('mode') || '').toLowerCase();
-      if (m === 'hr' || m === 'recruiter') setPerspective('recruiter', false);
-      else if (m === 'dev' || m === 'engineer') setPerspective('engineer', false);
-      else setPerspective('manager', false);
-      
-      // Auto-hide 3D onboarding arrows after 7 seconds
-      setTimeout(() => {
-        const arr1 = document.getElementById('modeOnboardingArrow'), arr2 = document.getElementById('mobileModeOnboardingArrow');
-        if (arr1) { arr1.style.opacity = '0'; setTimeout(() => arr1.remove(), 800); }
-        if (arr2) { arr2.style.opacity = '0'; setTimeout(() => arr2.remove(), 800); }
-      }, 7000);
-
-      // Trigger CI/CD Workflow Animation exactly once when scrolling to #contact in Dev Mode
-      const contactSec = document.getElementById('contact');
-      if (contactSec) {
-        const obs = new IntersectionObserver((entries) => {
-          if (entries[0].isIntersecting && !wf_hasRun && pf_mode === 'engineer') { wf_hasRun = true; setTimeout(replayWorkflowAnim, 600); }
-        }, { threshold: 0.3 });
-        obs.observe(contactSec);
-      }
+      setPerspective('manager', false);
     });
   </script>
 </body>
