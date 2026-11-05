@@ -266,31 +266,43 @@
 
     /* HR Mode Complete Theme Overrides */
     body.mode-hr { background-color: #EEE9DF !important; color: #1e293b !important; }
-    body.mode-hr .bg-carbon-950, body.mode-hr .bg-carbon-900, body.mode-hr .bg-carbon-850, body.mode-hr .bg-carbon-800 { background-color: #FAF7F0 !important; border-color: #d1d5db !important; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05) !important; }
+    
+    /* Kill the dark gradients on the main cards */
+    body.mode-hr .bento-card { 
+      background: #FAF7F0 !important; 
+      border-color: #d1d5db !important; 
+      box-shadow: 0 4px 15px rgba(0,0,0,0.03) !important; 
+    }
+    
+    /* Lighten nested blocks (Education, Experience items) */
+    body.mode-hr .bg-carbon-950, 
+    body.mode-hr .bg-carbon-900, 
+    body.mode-hr .bg-carbon-850, 
+    body.mode-hr .bg-carbon-800 { 
+      background: #ffffff !important; 
+      border-color: #e2e8f0 !important; 
+    }
+    
+    /* Fix Typography Contrast */
     body.mode-hr h1, body.mode-hr h2, body.mode-hr h3, body.mode-hr h4, body.mode-hr .text-white { color: #0f172a !important; text-shadow: none !important; }
-    body.mode-hr .text-slate-200, body.mode-hr .text-slate-300 { color: #334155 !important; }
+    body.mode-hr .text-slate-200, body.mode-hr .text-slate-300 { color: #334155 !important; font-weight: 500; }
     body.mode-hr .text-slate-400, body.mode-hr .text-slate-500 { color: #475569 !important; }
+    
+    /* Convert Neon Accents to Slate Blue */
     body.mode-hr .text-amber-400, body.mode-hr .text-emerald-400, body.mode-hr .text-sky-400, body.mode-hr .text-red-400, body.mode-hr .text-purple-400 { color: #536D84 !important; }
-    body.mode-hr .bg-amber-500, body.mode-hr .bg-amber-500\/10, body.mode-hr .bg-amber-500\/15, body.mode-hr .bg-emerald-500\/15, body.mode-hr .bg-sky-500\/15 { background-color: #e2e8f0 !important; color: #1e293b !important; border-color: #cbd5e1 !important;}
-    body.mode-hr .bg-carbon-800 { background-color: #e2e8f0 !important; }
-    body.mode-hr header { background-color: rgba(238, 233, 223, 0.95) !important; border-bottom: 1px solid #d1d5db !important; }
+    
+    /* Neutralize Buttons and Badges */
+    body.mode-hr .bg-amber-500, body.mode-hr .bg-amber-500\/10, body.mode-hr .bg-amber-500\/15, body.mode-hr .bg-emerald-500\/15, body.mode-hr .bg-sky-500\/15 { 
+      background: #e2e8f0 !important; 
+      color: #1e293b !important; 
+      border-color: #cbd5e1 !important;
+      box-shadow: none !important;
+    }
+    
+    /* Header and Borders */
+    body.mode-hr header { background: rgba(238, 233, 223, 0.95) !important; border-bottom: 1px solid #d1d5db !important; }
     body.mode-hr .border-carbon-800, body.mode-hr .border-carbon-700 { border-color: #cbd5e1 !important; }
-
-    /* Dev Mode Styles (Increased Brightness) */
-    body.mode-dev { background-color: #030804 !important; color: #a7f3d0 !important; font-family: 'JetBrains Mono', monospace !important; }
-    body.mode-dev .bg-carbon-950, body.mode-dev .bg-carbon-900, body.mode-dev .bg-carbon-850, body.mode-dev .bg-carbon-800 { background-color: #050e07 !important; border-color: rgba(0, 255, 102, 0.32) !important; }
-    
-    body.mode-dev h1, body.mode-dev h2, body.mode-dev h3, body.mode-dev h4, body.mode-dev .text-white { color: #ffffff !important; text-shadow: 0 0 12px rgba(255, 255, 255, 0.6), 0 0 22px rgba(0, 255, 102, 0.35); }
-    body.mode-dev .text-slate-200, body.mode-dev .text-slate-300 { color: #f8fafc !important; font-weight: 500; }
-    body.mode-dev .text-slate-400 { color: #e2e8f0 !important; }
-    
-    body.mode-dev .text-amber-400, body.mode-dev .text-amber-300, body.mode-dev .text-emerald-400 { color: #00ff66 !important; }
-    body.mode-dev .bg-amber-500 { background-color: #00ff66 !important; color: #020603 !important; box-shadow: 0 0 20px rgba(0, 255, 102, 0.45) !important; }
-    body.mode-dev::after { content: " "; display: block; position: fixed; inset: 0; z-index: 25; pointer-events: none; background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.22) 50%); background-size: 100% 4px; }
-
-    @keyframes svgPacketFlow { from { stroke-dashoffset: 36; } to { stroke-dashoffset: 0; } }
-    .svg-flow-line { stroke-dasharray: 6 6; }
-    body.mode-dev .svg-flow-line, .loop-active-flow { animation: svgPacketFlow 1s linear infinite; }
+    body.mode-hr .asset-fallback { color: #1e293b !important; }
 
     /* Print Mode Hard Overrides (Fixes Dev Mode Blackout) */
     @media print {
