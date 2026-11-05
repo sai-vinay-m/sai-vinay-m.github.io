@@ -130,15 +130,15 @@
     .typing-dot:nth-child(2) { animation-delay: -0.16s; }
 
     /* Accessible Non-Clipped Tooltips */
-    .a11y-tooltip-wrapper { position: relative; display: inline-flex; align-items: center; justify-content: center; }
+    .a11y-tooltip-wrapper { position: relative; display: inline-flex; align-items: center; justify-content: center; z-index: 50; }
     .a11y-tooltip-trigger { background: none; border: none; padding: 2px; cursor: pointer; border-radius: 9999px; outline: none; display: inline-flex; align-items: center; justify-content: center; }
     .a11y-tooltip-trigger:focus-visible { box-shadow: 0 0 0 2px #00ff66; }
     .a11y-tooltip-content {
       position: absolute; top: calc(100% + 8px); left: 50%; transform: translateX(-50%);
       width: 230px; background-color: #101624; color: #e2e8f0; font-size: 10.5px; font-family: 'Plus Jakarta Sans', sans-serif;
       padding: 9px 11px; border: 1px solid #00ff66; border-radius: 8px; box-shadow: 0 14px 30px rgba(0,0,0,0.85);
-      z-index: 9999; text-transform: none; font-weight: 500; letter-spacing: normal; line-height: 1.45; text-align: left;
-      opacity: 0; visibility: hidden; transition: opacity 0.18s ease, visibility 0.18s ease; pointer-events: none;
+      z-index: 99999; text-transform: none; font-weight: 500; letter-spacing: normal; line-height: 1.45; text-align: left;
+      opacity: 0; visibility: hidden; transition: opacity 0.18s ease, visibility 0.18s ease; pointer-events: none; white-space: normal;
     }
     .a11y-tooltip-content.tooltip-right { left: auto; right: 0; transform: none; }
     .a11y-tooltip-content.tooltip-left { left: 0; right: auto; transform: none; }
@@ -264,45 +264,60 @@
       body.mode-dev #education .edu-spotlight { opacity: 1 !important; transition: none !important; }
     }
 
-    /* HR Mode Complete Theme Overrides */
+    /* GLOBAL SVG ANIMATION FIX */
+    @keyframes svgPacketFlow { 100% { stroke-dashoffset: -24; } }
+    .svg-flow-line, .loop-active-flow { stroke-dasharray: 8 8 !important; animation: svgPacketFlow 1s linear infinite !important; }
+
+    /* ========================================================= */
+    /* HR MODE THEME: WARM IVORY, PARCHMENT & SLATE BLUE         */
+    /* ========================================================= */
     body.mode-hr { background-color: #EEE9DF !important; color: #1e293b !important; }
     
-    /* Kill the dark gradients on the main cards */
+    /* Remove dark gradients/borders from all cards */
     body.mode-hr .bento-card { 
       background: #FAF7F0 !important; 
-      border-color: #d1d5db !important; 
-      box-shadow: 0 4px 15px rgba(0,0,0,0.03) !important; 
+      border-color: #D6D1C4 !important; 
+      box-shadow: 0 6px 20px rgba(0,0,0,0.03) !important; 
+    }
+    body.mode-hr .bg-carbon-950, body.mode-hr .bg-carbon-900, body.mode-hr .bg-carbon-850, body.mode-hr .bg-carbon-800 { 
+      background: #ffffff !important; border-color: #e2e8f0 !important; box-shadow: 0 2px 10px rgba(0,0,0,0.02) !important; 
     }
     
-    /* Lighten nested blocks (Education, Experience items) */
-    body.mode-hr .bg-carbon-950, 
-    body.mode-hr .bg-carbon-900, 
-    body.mode-hr .bg-carbon-850, 
-    body.mode-hr .bg-carbon-800 { 
-      background: #ffffff !important; 
-      border-color: #e2e8f0 !important; 
+    /* Typography Overrides */
+    body.mode-hr h1, body.mode-hr h2, body.mode-hr h3, body.mode-hr h4, body.mode-hr .text-white { color: #0f172a !important; text-shadow: none !important; font-weight: 800 !important; }
+    body.mode-hr .text-slate-200, body.mode-hr .text-slate-300 { color: #334155 !important; font-weight: 500 !important; }
+    body.mode-hr .text-slate-400, body.mode-hr .text-slate-500 { color: #64748b !important; }
+    
+    /* Accent Conversion */
+    body.mode-hr .text-amber-400, body.mode-hr .text-emerald-400, body.mode-hr .text-sky-400, body.mode-hr .text-red-400, body.mode-hr .text-purple-400 { 
+      color: #536D84 !important; font-weight: 700 !important; drop-shadow: none !important; 
     }
     
-    /* Fix Typography Contrast */
-    body.mode-hr h1, body.mode-hr h2, body.mode-hr h3, body.mode-hr h4, body.mode-hr .text-white { color: #0f172a !important; text-shadow: none !important; }
-    body.mode-hr .text-slate-200, body.mode-hr .text-slate-300 { color: #334155 !important; font-weight: 500; }
-    body.mode-hr .text-slate-400, body.mode-hr .text-slate-500 { color: #475569 !important; }
-    
-    /* Convert Neon Accents to Slate Blue */
-    body.mode-hr .text-amber-400, body.mode-hr .text-emerald-400, body.mode-hr .text-sky-400, body.mode-hr .text-red-400, body.mode-hr .text-purple-400 { color: #536D84 !important; }
-    
-    /* Neutralize Buttons and Badges */
+    /* Button / Badge Conversions */
     body.mode-hr .bg-amber-500, body.mode-hr .bg-amber-500\/10, body.mode-hr .bg-amber-500\/15, body.mode-hr .bg-emerald-500\/15, body.mode-hr .bg-sky-500\/15 { 
-      background: #e2e8f0 !important; 
-      color: #1e293b !important; 
-      border-color: #cbd5e1 !important;
-      box-shadow: none !important;
+      background: #536D84 !important; color: #ffffff !important; border: none !important; box-shadow: 0 4px 12px rgba(83,109,132,0.3) !important; 
     }
+    body.mode-hr .bg-carbon-800 { background: #e2e8f0 !important; color: #334155 !important; }
     
-    /* Header and Borders */
-    body.mode-hr header { background: rgba(238, 233, 223, 0.95) !important; border-bottom: 1px solid #d1d5db !important; }
+    /* Header & General UI */
+    body.mode-hr header { background: rgba(238, 233, 223, 0.95) !important; border-bottom: 1px solid #D6D1C4 !important; }
     body.mode-hr .border-carbon-800, body.mode-hr .border-carbon-700 { border-color: #cbd5e1 !important; }
     body.mode-hr .asset-fallback { color: #1e293b !important; }
+    body.mode-hr .text-amber-400:hover, body.mode-hr .hover\:text-amber-400:hover { color: #3b4d5e !important; }
+
+    /* ========================================================= */
+    /* DEV MODE STYLES (Increased Brightness)                    */
+    /* ========================================================= */
+    body.mode-dev { background-color: #030804 !important; color: #a7f3d0 !important; font-family: 'JetBrains Mono', monospace !important; }
+    body.mode-dev .bg-carbon-950, body.mode-dev .bg-carbon-900, body.mode-dev .bg-carbon-850, body.mode-dev .bg-carbon-800 { background-color: #050e07 !important; border-color: rgba(0, 255, 102, 0.32) !important; }
+    
+    body.mode-dev h1, body.mode-dev h2, body.mode-dev h3, body.mode-dev h4, body.mode-dev .text-white { color: #ffffff !important; text-shadow: 0 0 12px rgba(255, 255, 255, 0.6), 0 0 22px rgba(0, 255, 102, 0.35); }
+    body.mode-dev .text-slate-200, body.mode-dev .text-slate-300 { color: #f8fafc !important; font-weight: 500; }
+    body.mode-dev .text-slate-400 { color: #e2e8f0 !important; }
+    
+    body.mode-dev .text-amber-400, body.mode-dev .text-amber-300, body.mode-dev .text-emerald-400 { color: #00ff66 !important; }
+    body.mode-dev .bg-amber-500 { background-color: #00ff66 !important; color: #020603 !important; box-shadow: 0 0 20px rgba(0, 255, 102, 0.45) !important; }
+    body.mode-dev::after { content: " "; display: block; position: fixed; inset: 0; z-index: 25; pointer-events: none; background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.22) 50%); background-size: 100% 4px; }
 
     /* Print Mode Hard Overrides (Fixes Dev Mode Blackout) */
     @media print {
@@ -1201,6 +1216,7 @@
                               <span id="case1StatusBadgeInline" class="px-2.5 py-1 rounded bg-red-500/20 text-red-400 border border-red-500/40 font-bold text-[11px]">EXIT CODE 127</span>
                             </div>
                             
+                            <!-- Appended 'Inline' to IDs to prevent DOM Collision -->
                             <svg viewBox="0 0 520 115" class="w-full h-auto my-1" xmlns="http://www.w3.org/2000/svg">
                               <line x1="150" y1="55" x2="195" y2="55" stroke="#34d399" stroke-width="2.5" class="svg-flow-line"/><polygon points="198,55 190,50 190,60" fill="#34d399"/>
                               <line id="case1SvgLine2Inline" x1="325" y1="55" x2="370" y2="55" stroke="#ef4444" stroke-width="2.5" class="svg-flow-line"/><polygon id="case1SvgArrow2Inline" points="373,55 365,50 365,60" fill="#ef4444"/>
@@ -1217,9 +1233,9 @@
 
                             <!-- Topic Headings (+10% Text Size to text-[11.5px] / text-xs) -->
                             <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
-                              <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-red-500/20 text-red-400 border border-red-500/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">01</span><p class="text-[11.5px] sm:text-xs text-slate-200 font-sans leading-relaxed">Upstream image silently stripped the <code>curl</code> binary, causing readiness probes to return ExitCode 127 despite healthy app code.</p></div>
-                              <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-[#00ff66]/20 text-[#00ff66] border border-[#00ff66]/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">02</span><p class="text-[11.5px] sm:text-xs text-slate-200 font-sans leading-relaxed">Injected <code>RUN apk add --no-cache curl</code> into the local Dockerfile before the health-check layer.</p></div>
-                              <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">03</span><p class="text-[11.5px] sm:text-xs text-slate-200 font-sans leading-relaxed">Restored HTTP 200 OK signal in 45m. Rescued the live 60-minute deployment SLA and published runbook.</p></div>
+                              <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-[#00ff66]/20 text-[#00ff66] border border-[#00ff66]/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">01</span><p class="text-[11.5px] sm:text-xs text-slate-200 font-sans leading-relaxed">Upstream image silently stripped the <code>curl</code> binary, causing readiness probes to return ExitCode 127 despite healthy app code.</p></div>
+                              <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-red-500/20 text-red-400 border border-red-500/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">02</span><p class="text-[11.5px] sm:text-xs text-slate-200 font-sans leading-relaxed">Injected <code>RUN apk add --no-cache curl</code> into the local Dockerfile before the health-check layer.</p></div>
+                              <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-purple-500/20 text-purple-400 border border-purple-500/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">03</span><p class="text-[11.5px] sm:text-xs text-slate-200 font-sans leading-relaxed">Restored HTTP 200 OK signal in 45m. Rescued the live 60-minute deployment SLA and published runbook.</p></div>
                             </div>
                           </div>
                         </div>
@@ -1266,9 +1282,9 @@
 
                             <!-- Topic Headings (+10% Text Size) -->
                             <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
-                              <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-red-500/20 text-red-400 border border-red-500/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">01</span><p class="text-[11.5px] sm:text-xs text-slate-200 font-sans leading-relaxed">Microservices maintained inconsistent naming (<code>parentSKU</code> vs <code>parentProductSku</code>), duplicating mapping logic.</p></div>
-                              <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-purple-500/20 text-purple-400 border border-purple-500/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">02</span><p class="text-[11.5px] sm:text-xs text-slate-200 font-sans leading-relaxed">Converged payload mapping onto a single canonical DTO identifier and deleted legacy adapter classes.</p></div>
-                              <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">03</span><p class="text-[11.5px] sm:text-xs text-slate-200 font-sans leading-relaxed">315 lines added, 992 removed. Net reduction of 677 LOC with 100% green JUnit integration suites.</p></div>
+                              <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-[#00ff66]/20 text-[#00ff66] border border-[#00ff66]/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">01</span><p class="text-[11.5px] sm:text-xs text-slate-200 font-sans leading-relaxed">Microservices maintained inconsistent naming (<code>parentSKU</code> vs <code>parentProductSku</code>), duplicating mapping logic.</p></div>
+                              <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-red-500/20 text-red-400 border border-red-500/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">02</span><p class="text-[11.5px] sm:text-xs text-slate-200 font-sans leading-relaxed">Converged payload mapping onto a single canonical DTO identifier and deleted legacy adapter classes.</p></div>
+                              <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-purple-500/20 text-purple-400 border border-purple-500/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">03</span><p class="text-[11.5px] sm:text-xs text-slate-200 font-sans leading-relaxed">315 lines added, 992 removed. Net reduction of 677 LOC with 100% green JUnit integration suites.</p></div>
                             </div>
                           </div>
                         </div>
@@ -1375,9 +1391,9 @@
 
                             <!-- Topic Headings (+10% Text Size) -->
                             <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
-                              <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-red-500/20 text-red-400 border border-red-500/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">01</span><p class="text-[11.5px] sm:text-xs text-slate-200 font-sans leading-relaxed">Terragrunt configurations mistakenly mapped a staging IAM role ARN into production execution variables.</p></div>
-                              <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-sky-500/20 text-sky-400 border border-sky-500/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">02</span><p class="text-[11.5px] sm:text-xs text-slate-200 font-sans leading-relaxed">Intercepted drift during CI/CD plan phase and dynamically injected account-scoped production principals.</p></div>
-                              <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">03</span><p class="text-[11.5px] sm:text-xs text-slate-200 font-sans leading-relaxed">Blocked cross-environment violation, enforcing strict Zero-Trust boundaries before infrastructure was provisioned.</p></div>
+                              <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-[#00ff66]/20 text-[#00ff66] border border-[#00ff66]/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">01</span><p class="text-[11.5px] sm:text-xs text-slate-200 font-sans leading-relaxed">Terragrunt configurations mistakenly mapped a staging IAM role ARN into production execution variables.</p></div>
+                              <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-amber-500/20 text-amber-400 border border-amber-500/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">02</span><p class="text-[11.5px] sm:text-xs text-slate-200 font-sans leading-relaxed">Intercepted drift during CI/CD plan phase and dynamically injected account-scoped production principals.</p></div>
+                              <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-sky-500/20 text-sky-400 border border-sky-500/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">03</span><p class="text-[11.5px] sm:text-xs text-slate-200 font-sans leading-relaxed">Blocked cross-environment violation, enforcing strict Zero-Trust boundaries before infrastructure was provisioned.</p></div>
                             </div>
                           </div>
                         </div>
@@ -2080,7 +2096,7 @@
           <button type="button" onclick="runCliCommand('help')" class="px-1.5 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] text-[9px] cursor-pointer transition-colors">help</button>
           <button type="button" onclick="runCliCommand('ls -la')" class="px-1.5 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] text-[9px] cursor-pointer transition-colors">ls</button>
           <button type="button" onclick="runCliCommand('top')" class="px-1.5 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] text-[9px] cursor-pointer transition-colors">top</button>
-          <button type="button" onclick="runCliCommand('curl trace')" class="px-1.5 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] text-[9px] cursor-pointer transition-colors">trace</button>
+          <button type="button" onclick="runCliCommand('trace google.com')" class="px-1.5 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] text-[9px] cursor-pointer transition-colors">trace</button>
           <button type="button" onclick="runCliCommand('./patch.sh')" class="px-1.5 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] text-[9px] cursor-pointer transition-colors">./patch.sh</button>
           <button type="button" onclick="runCliCommand('sudo hire sai')" class="px-1.5 py-0.5 rounded bg-amber-500/15 hover:bg-amber-400 hover:text-black text-amber-300 border border-amber-500/40 text-[9px] cursor-pointer transition-colors">👑 sudo hire sai</button>
         </div>
@@ -3234,17 +3250,32 @@
           if (!args[1]) { printCliLine('ping: usage error: Destination address required', 'text-yellow-400'); }
           else {
             printCliLine(`PING ${args[1]} (Live Edge Probe)...`, 'text-slate-400');
-            const t0 = performance.now();
-            try {
-              await fetch(`https://1.1.1.1/cdn-cgi/trace?ts=${Date.now()}`, { cache: 'no-store' });
-              const rtt = Math.round(performance.now() - t0);
-              printCliLine(`64 bytes from ${args[1]}: icmp_seq=1 ttl=56 time=${rtt} ms`, 'text-emerald-400');
-            } catch(e) { printCliLine(`ping: sendmsg: Network is unreachable`, 'text-red-400'); }
+            const target = args[1].toLowerCase();
+            // CORS Sandbox Interceptor
+            if (target.includes('google.com') || target.includes('yahoo.com') || target.includes('github.com')) {
+               activeCliTimers.push(setTimeout(() => printCliLine(`64 bytes from ${target}: icmp_seq=1 ttl=115 time=${Math.floor(Math.random() * 20 + 10)} ms`, 'text-emerald-400'), 400));
+               activeCliTimers.push(setTimeout(() => printCliLine(`64 bytes from ${target}: icmp_seq=2 ttl=115 time=${Math.floor(Math.random() * 20 + 10)} ms`, 'text-emerald-400'), 1400));
+               activeCliTimers.push(setTimeout(() => printCliLine(`64 bytes from ${target}: icmp_seq=3 ttl=115 time=${Math.floor(Math.random() * 20 + 10)} ms`, 'text-emerald-400'), 2400));
+            } else {
+              const t0 = performance.now();
+              try {
+                await fetch(`https://1.1.1.1/cdn-cgi/trace?ts=${Date.now()}`, { cache: 'no-store' });
+                const rtt = Math.round(performance.now() - t0);
+                printCliLine(`64 bytes from ${args[1]}: icmp_seq=1 ttl=56 time=${rtt} ms`, 'text-emerald-400');
+              } catch(e) { printCliLine(`ping: sendmsg: Network is unreachable (CORS Blocked). Try 'ping google.com' for interceptor sandbox.`, 'text-red-400'); }
+            }
           }
           break;
         case 'trace':
-          printCliLine(`* Executing diagnostic edge trace...`, 'text-slate-400');
-          runCliCommand(`curl ${args[1] || 'trace'}`);
+        case 'traceroute':
+          if (!args[1]) { printCliLine(`${base}: missing host operand`, 'text-yellow-400'); }
+          else {
+            printCliLine(`traceroute to ${args[1]} (93.184.216.34), 30 hops max, 60 byte packets`, 'text-slate-300');
+            activeCliTimers.push(setTimeout(() => printCliLine(` 1  10.0.0.1 (10.0.0.1)  1.123 ms`, 'text-slate-400'), 300));
+            activeCliTimers.push(setTimeout(() => printCliLine(` 2  edge-router-01.isp.net (192.168.1.254)  4.456 ms`, 'text-slate-400'), 800));
+            activeCliTimers.push(setTimeout(() => printCliLine(` 3  core-backbone.global.net (172.16.2.1)  12.332 ms`, 'text-slate-400'), 1300));
+            activeCliTimers.push(setTimeout(() => printCliLine(` 4  ${args[1]} (93.184.216.34)  ${Math.floor(Math.random() * 15 + 15)}.421 ms`, 'text-[#00ff66] font-bold'), 1800));
+          }
           break;
         case 'env':
         case 'whoami':
@@ -3312,6 +3343,13 @@
           else if (!/^https?:\/\//i.test(urlArg)) urlArg = 'https://' + urlArg.replace(/^\/+/, '');
           
           printCliLine(`* Connecting to ${urlArg} (Auto-HTTPS enabled — Click Break to abort)...`, 'text-slate-400');
+          
+          // Sandbox Interceptor
+          if (urlArg.includes('google.com') || urlArg.includes('yahoo.com') || urlArg.includes('github.com')) {
+             activeCliTimers.push(setTimeout(() => printCliLine(`HTTP/2 200 OK\ncontent-type: text/html; charset=UTF-8\n\n<!doctype html><html itemscope="" itemtype="http://schema.org/WebPage" lang="en"><head><meta charset="UTF-8"><title>Mocked Intercept Response</title></head><body>... [Truncated by Sandbox Interceptor] ...</body></html>`, 'text-emerald-400'), 600));
+             return;
+          }
+
           activeCliAbortController = new AbortController();
           const timeoutId = setTimeout(() => activeCliAbortController?.abort(), 4500);
           try {
@@ -3323,7 +3361,8 @@
             else printCliLine(text.slice(0, 800), 'text-slate-200');
           } catch (err) {
             clearTimeout(timeoutId);
-            printCliLine(`curl: CORS policy restricted raw body readout from browser context (try 'curl trace').`, 'text-amber-300');
+            printCliLine(`curl: CORS policy restricted raw body readout from browser context. Intercepting with sandbox fallback...`, 'text-amber-300');
+            activeCliTimers.push(setTimeout(() => printCliLine(`HTTP/2 200 OK\n[Simulated Sandbox Response for ${urlArg}]`, 'text-emerald-400'), 400));
           } finally { activeCliAbortController = null; }
           break;
         }
