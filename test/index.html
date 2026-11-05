@@ -217,47 +217,18 @@
     }
 
     /* ==========================================================
-       DEV MODE EXPERIENCE SWITCHBOARD (GIT-DIFF INSPIRED)
+       DEV MODE ENGINEERING DOSSIERS (INLINE EXPANSION CSS)
        ========================================================== */
-    .dev-employer-btn {
-      transition: all 0.2s ease;
-      border-color: #1e293b;
+    .dossier-expand-grid {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    .dev-employer-btn[aria-pressed="true"] {
-      border-color: #00ff66;
-      background-color: rgba(0, 255, 102, 0.05);
-      box-shadow: inset 3px 0 0 #00ff66;
+    .dossier-expand-grid.is-expanded {
+      grid-template-rows: 1fr;
     }
-    .dev-employer-btn:hover:not([aria-pressed="true"]) {
-      border-color: rgba(0, 255, 102, 0.4);
-      background-color: rgba(0, 255, 102, 0.02);
-    }
-    .dev-diff-row {
-      position: relative;
-      border-left: 2px solid #00ff66;
-      background: rgba(0, 255, 102, 0.03);
-      padding: 0.85rem 1rem 0.85rem 2rem;
-      border-radius: 0 0.5rem 0.5rem 0;
-    }
-    .dev-diff-row::before {
-      content: '+';
-      position: absolute;
-      left: 0.6rem;
-      top: 0.85rem;
-      color: #00ff66;
-      font-weight: bold;
-      font-family: 'JetBrains Mono', monospace;
-    }
-    .dev-panel-content {
-      opacity: 0;
-      transform: translateX(10px);
-      transition: opacity 0.25s ease, transform 0.25s ease;
-      display: none;
-    }
-    .dev-panel-content.is-active {
-      display: block;
-      opacity: 1;
-      transform: translateX(0);
+    .dossier-expand-inner {
+      overflow: hidden;
     }
 
     /* ==========================================================
@@ -343,9 +314,7 @@
       .onboarding-arrow-3d, .wf-running, .wf-running-amber, .wf-connector-animating, .wf-connector-animating-amber { animation: none !important; }
       .marquee-container { overflow-x: auto !important; }
       .wf-stage, .wf-packet { transition: none !important; }
-      
-      /* Dev Experience Switchboard Reduced Motion */
-      .dev-panel-content { transition: none !important; transform: none !important; }
+      .dossier-expand-grid { transition: none !important; }
       
       /* Education Reduced Motion */
       body.mode-dev #education .edu-card,
@@ -921,7 +890,7 @@
         <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-8 sm:mb-10 gap-6">
           <div class="space-y-4">
             <span class="text-[11px] sm:text-xs font-mono text-amber-400 uppercase tracking-wider manager-only">PROFESSIONAL EXPERIENCE &amp; ARCHITECTURE DEEP DIVES</span>
-            <span class="text-[11px] sm:text-xs font-mono text-[#00ff66] uppercase tracking-wider dev-only" style="display:none;">ENGINEERING EVIDENCE &amp; ROOT-CAUSE ANALYSIS</span>
+            <span class="text-[11px] sm:text-xs font-mono text-[#00ff66] uppercase tracking-wider dev-only" style="display:none;">ENGINEERING DOSSIERS &amp; EVIDENCE</span>
             
             <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white manager-only font-sans">
               Progression backed by <span class="text-amber-400">verified credentials.</span>
@@ -1243,190 +1212,306 @@
         </div>
 
         <!-- =================================================================================== -->
-        <!-- DEV MODE EXCLUSIVE: Experience Switchboard (Master/Detail Layout + Git-Diff Styling)-->
+        <!-- DEV MODE EXCLUSIVE: Engineering Dossiers (Continuous Vertical Work History)         -->
         <!-- =================================================================================== -->
-        <div id="dev-sandbox-experience" class="dev-only space-y-6" style="display: none;">
-          <div class="flex flex-col md:flex-row gap-6 lg:gap-8 items-start relative">
+        <div id="dev-sandbox-experience" class="dev-only" style="display: none;">
+          <div class="flex flex-col space-y-12 sm:space-y-16">
             
-            <!-- Left Column: Compact Employer Selector (Scrollable horizontally on mobile) -->
-            <div class="w-full md:w-4/12 flex flex-row md:flex-col gap-3 overflow-x-auto pb-2 md:pb-0 shrink-0 sticky top-24" role="tablist">
+            <!-- DOSSIER 1: ASCENDION -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10 pt-8 sm:pt-10 border-t border-[#00ff66]/10 first:border-0 first:pt-0">
               
-              <!-- Selector 1: Ascendion -->
-              <button type="button" id="btn-emp-ascendion" aria-pressed="true" onclick="pf_switchEmployer('ascendion')" class="dev-employer-btn flex items-center gap-3 p-3 rounded-xl border bg-black/60 cursor-pointer min-w-[240px] md:min-w-0 text-left outline-none focus-visible:ring-2 focus-visible:ring-[#00ff66]">
-                <div class="w-12 h-12 rounded-lg bg-carbon-950 border border-emerald-500/50 flex items-center justify-center shrink-0 p-1">
-                  <img src="assets/ascendion.png" alt="Ascendion" class="w-full h-full object-contain" onerror="resolveAsset(this, 'ascendion')">
-                  <span class="asset-fallback hidden font-sans font-bold text-white">A</span>
+              <!-- Identity (Left Column) -->
+              <div class="md:col-span-4 lg:col-span-3 flex flex-col gap-4">
+                <div class="flex items-center gap-3">
+                  <!-- Employer Logo -->
+                  <div class="w-[76px] h-[76px] sm:w-[86px] sm:h-[86px] rounded-2xl bg-carbon-950 border border-emerald-500/50 flex items-center justify-center shadow-md p-1.5 shrink-0 overflow-hidden">
+                    <img src="assets/ascendion.png" alt="Ascendion" class="w-full h-full object-contain" onerror="resolveAsset(this, 'ascendion')">
+                    <span class="asset-fallback hidden font-sans font-black text-2xl text-white">A</span>
+                  </div>
+                  <!-- Client Logo -->
+                  <div class="w-12 h-12 rounded-xl bg-carbon-800 border border-emerald-500/30 flex items-center justify-center p-1 shadow-sm shrink-0 overflow-hidden" title="Client: HP Inc.">
+                    <img src="assets/hp.png" alt="HP Inc." class="w-full h-full object-contain" onerror="resolveAsset(this, 'hp')">
+                    <span class="asset-fallback hidden font-sans font-bold text-[9px] text-emerald-300 leading-none">HP</span>
+                  </div>
                 </div>
-                <div class="flex-1 min-w-0">
-                  <div class="text-sm font-bold text-white truncate">Ascendion</div>
-                  <div class="text-[10px] font-mono text-slate-400 truncate mt-0.5">Dec '25 – Aug '26</div>
+                <div>
+                  <h3 class="text-xl sm:text-2xl font-bold text-white tracking-tight leading-snug">Ascendion</h3>
+                  <p class="text-[13px] sm:text-sm font-mono text-[#00ff66] font-semibold mt-1">DevOps &amp; GenAI Engineer<br>(L5 @ HP Inc.)</p>
+                  <div class="text-[11px] sm:text-xs font-mono text-slate-400 mt-2.5 space-y-0.5">
+                    <div>Dec 2025 – Aug 2026</div>
+                    <div>Bengaluru, India</div>
+                  </div>
                 </div>
-              </button>
+              </div>
 
-              <!-- Selector 2: Eficens -->
-              <button type="button" id="btn-emp-eficens" aria-pressed="false" onclick="pf_switchEmployer('eficens')" class="dev-employer-btn flex items-center gap-3 p-3 rounded-xl border bg-black/60 cursor-pointer min-w-[240px] md:min-w-0 text-left outline-none focus-visible:ring-2 focus-visible:ring-[#00ff66]">
-                <div class="w-12 h-12 rounded-lg bg-carbon-950 border border-amber-500/50 flex items-center justify-center shrink-0 p-1">
-                  <img src="assets/eficens.png" alt="Eficens" class="w-full h-full object-contain" onerror="resolveAsset(this, 'eficens')">
-                  <span class="asset-fallback hidden font-sans font-bold text-amber-400">E</span>
+              <!-- Evidence (Right Column) -->
+              <div class="md:col-span-8 lg:col-span-9 space-y-7">
+                
+                <!-- Evidence Row 1 -->
+                <div class="space-y-1.5">
+                  <h4 class="text-[13px] sm:text-sm font-mono font-bold text-white flex items-start gap-2">
+                    <span class="text-[#00ff66] shrink-0 font-black">+</span> AAVA GenAI Core Workflows
+                  </h4>
+                  <p class="text-sm font-sans text-slate-300 leading-relaxed pl-[18px] sm:pl-4 border-l-2 border-[#00ff66]/40 ml-1">
+                    Integrated LLMs, vector knowledge bases, guardrail architectures, and agentic SDLC pipelines.
+                  </p>
                 </div>
-                <div class="flex-1 min-w-0">
-                  <div class="text-sm font-bold text-white truncate">Eficens Systems LLC</div>
-                  <div class="text-[10px] font-mono text-slate-400 truncate mt-0.5">Dec '21 – Aug '24</div>
-                </div>
-              </button>
 
-              <!-- Selector 3: LotusData -->
-              <button type="button" id="btn-emp-lotusdata" aria-pressed="false" onclick="pf_switchEmployer('lotusdata')" class="dev-employer-btn flex items-center gap-3 p-3 rounded-xl border bg-black/60 cursor-pointer min-w-[240px] md:min-w-0 text-left outline-none focus-visible:ring-2 focus-visible:ring-[#00ff66]">
-                <div class="w-12 h-12 rounded-lg bg-carbon-950 border border-sky-500/50 flex items-center justify-center shrink-0 p-1">
+                <!-- Evidence Row 2 -->
+                <div class="space-y-1.5">
+                  <h4 class="text-[13px] sm:text-sm font-mono font-bold text-white flex items-start gap-2">
+                    <span class="text-[#00ff66] shrink-0 font-black">+</span> Container Layer Debugging
+                  </h4>
+                  <div class="pl-[18px] sm:pl-4 border-l-2 border-[#00ff66]/40 ml-1 space-y-3">
+                    <p class="text-sm font-sans text-slate-300 leading-relaxed">
+                      Triaged embedded Tomcat vs. readiness probe failures on port 8080 (ExitCode 127) under live SLAs.
+                    </p>
+                    <button type="button" onclick="document.getElementById('inline-inc-127').classList.toggle('is-expanded'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');" aria-expanded="false" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-[#00ff66]/10 hover:bg-[#00ff66]/20 text-[#00ff66] border border-[#00ff66]/30 text-[11px] sm:text-xs font-mono font-bold transition-colors cursor-pointer focus-visible:ring-2 focus-visible:ring-[#00ff66] outline-none">
+                      <i data-lucide="terminal" class="w-3.5 h-3.5"></i> Inspect Incident 127 ↘
+                    </button>
+
+                    <!-- Inline Investigation: Incident 127 -->
+                    <div id="inline-inc-127" class="dossier-expand-grid">
+                      <div class="dossier-expand-inner">
+                        <div class="mt-3 p-4 sm:p-5 bg-carbon-950 border border-carbon-800 rounded-xl space-y-4">
+                          <div class="flex items-center justify-between text-[10px] sm:text-xs font-mono text-slate-400 mb-1">
+                            <span>TOPOLOGY: HARBOR_BASE_IMAGE ➔ JVM_APP ➔ PROBE</span>
+                            <span class="text-red-400 font-bold">EXIT CODE 127</span>
+                          </div>
+                          
+                          <svg viewBox="0 0 520 115" class="w-full h-auto my-1" xmlns="http://www.w3.org/2000/svg">
+                            <line x1="150" y1="55" x2="195" y2="55" stroke="#34d399" stroke-width="2.5" class="svg-flow-line"/><polygon points="198,55 190,50 190,60" fill="#34d399"/>
+                            <line x1="325" y1="55" x2="370" y2="55" stroke="#ef4444" stroke-width="2.5" class="svg-flow-line"/><polygon points="373,55 365,50 365,60" fill="#ef4444"/>
+                            <g transform="translate(10, 22)"><rect width="140" height="66" rx="8" fill="#062c22" stroke="#34d399" stroke-width="1.5"/><text x="70" y="30" text-anchor="middle" fill="#6ee7b7" font-size="12" font-weight="bold">Spring App</text><text x="70" y="48" text-anchor="middle" fill="#34d399" font-size="10">Port 8080 OK (7.5s)</text></g>
+                            <g transform="translate(195, 22)"><rect width="130" height="66" rx="8" fill="#3b0a0a" stroke="#ef4444" stroke-width="1.5"/><text x="65" y="30" text-anchor="middle" fill="#fca5a5" font-size="12" font-weight="bold">Health Probe</text><text x="65" y="48" text-anchor="middle" fill="#f87171" font-size="10">curl missing (127)</text></g>
+                            <g transform="translate(370, 22)"><rect width="140" height="66" rx="8" fill="#161f33" stroke="#475569" stroke-width="1.5"/><text x="70" y="30" text-anchor="middle" fill="#e2e8f0" font-size="12" font-weight="bold">Release</text><text x="70" y="48" text-anchor="middle" fill="#94a3b8" font-size="10">Pipeline Blocked</text></g>
+                          </svg>
+
+                          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+                            <div class="space-y-1"><span class="text-[10px] text-red-400 font-mono font-bold">01 — PROBLEM</span><p class="text-[11px] text-slate-300 font-sans leading-snug">Upstream image silently stripped the <code>curl</code> binary, causing readiness probes to return ExitCode 127 despite healthy app code.</p></div>
+                            <div class="space-y-1"><span class="text-[10px] text-[#00ff66] font-mono font-bold">02 — CHANGE</span><p class="text-[11px] text-slate-300 font-sans leading-snug">Injected <code>RUN apk add --no-cache curl</code> into the local Dockerfile before the health-check layer.</p></div>
+                            <div class="space-y-1"><span class="text-[10px] text-emerald-400 font-mono font-bold">03 — RESULT</span><p class="text-[11px] text-slate-300 font-sans leading-snug">Restored HTTP 200 OK signal in 45m. Rescued the live 60-minute deployment SLA and published runbook.</p></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Evidence Row 3 -->
+                <div class="space-y-1.5">
+                  <h4 class="text-[13px] sm:text-sm font-mono font-bold text-white flex items-start gap-2">
+                    <span class="text-[#00ff66] shrink-0 font-black">+</span> Java SKU Refactoring (+315 / -992 LOC)
+                  </h4>
+                  <div class="pl-[18px] sm:pl-4 border-l-2 border-[#00ff66]/40 ml-1 space-y-3">
+                    <p class="text-sm font-sans text-slate-300 leading-relaxed">
+                      Consolidated divergent product SKU identifiers into a canonical DTO model across renewal microservices.
+                    </p>
+                    <button type="button" onclick="document.getElementById('inline-java-diff').classList.toggle('is-expanded'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');" aria-expanded="false" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-[#00ff66]/10 hover:bg-[#00ff66]/20 text-[#00ff66] border border-[#00ff66]/30 text-[11px] sm:text-xs font-mono font-bold transition-colors cursor-pointer focus-visible:ring-2 focus-visible:ring-[#00ff66] outline-none">
+                      <i data-lucide="file-code-2" class="w-3.5 h-3.5"></i> Inspect Java Diff ↘
+                    </button>
+                    
+                    <!-- Inline Investigation: Java Diff -->
+                    <div id="inline-java-diff" class="dossier-expand-grid">
+                      <div class="dossier-expand-inner">
+                        <div class="mt-3 p-4 sm:p-5 bg-carbon-950 border border-carbon-800 rounded-xl space-y-4">
+                          <div class="flex items-center justify-between text-[10px] sm:text-xs font-mono text-slate-400 mb-1">
+                            <span>TOPOLOGY: EVENT_INGESTION ➔ DTO_CONVERGENCE</span>
+                            <span class="text-purple-400 font-bold">CANONICAL ENTITY</span>
+                          </div>
+
+                          <svg viewBox="0 0 520 125" class="w-full h-auto my-1" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M 175 35 L 295 62" stroke="#c084fc" stroke-width="2.2" fill="none" class="svg-flow-line"/><path d="M 175 90 L 295 62" stroke="#c084fc" stroke-width="2.2" fill="none" class="svg-flow-line"/><polygon points="300,62 290,56 290,68" fill="#34d399"/>
+                            <rect x="15" y="15" width="160" height="38" rx="6" fill="#2e1065" stroke="#a855f7" stroke-width="1.4"/><text x="95" y="38" text-anchor="middle" fill="#e9d5ff" font-size="11">parentSKU (Legacy)</text>
+                            <rect x="15" y="70" width="160" height="38" rx="6" fill="#2e1065" stroke="#a855f7" stroke-width="1.4"/><text x="95" y="93" text-anchor="middle" fill="#e9d5ff" font-size="11">parentProductSku</text>
+                            <rect x="305" y="27" width="195" height="70" rx="10" fill="#062c22" stroke="#34d399" stroke-width="1.8"/><text x="402" y="55" text-anchor="middle" fill="#6ee7b7" font-size="12.5" font-weight="bold">Canonical SKU</text><text x="402" y="74" text-anchor="middle" fill="#a7f3d0" font-size="10">Single Source of Truth</text>
+                          </svg>
+
+                          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+                            <div class="space-y-1"><span class="text-[10px] text-red-400 font-mono font-bold">01 — PROBLEM</span><p class="text-[11px] text-slate-300 font-sans leading-snug">Microservices maintained inconsistent naming (<code>parentSKU</code> vs <code>parentProductSku</code>), duplicating mapping logic.</p></div>
+                            <div class="space-y-1"><span class="text-[10px] text-purple-400 font-mono font-bold">02 — CHANGE</span><p class="text-[11px] text-slate-300 font-sans leading-snug">Converged payload mapping onto a single canonical DTO identifier and deleted legacy adapter classes.</p></div>
+                            <div class="space-y-1"><span class="text-[10px] text-emerald-400 font-mono font-bold">03 — RESULT</span><p class="text-[11px] text-slate-300 font-sans leading-snug">315 lines added, 992 removed. Net reduction of 677 LOC with 100% green JUnit integration suites.</p></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Credential -->
+                <div class="pt-2">
+                  <a href="https://www.credly.com/badges/20f333e6-76e8-431a-9603-c22408681cd8" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-3 py-1.5 rounded bg-carbon-900 border border-carbon-700 hover:border-[#00ff66]/50 text-[#00ff66] font-mono font-bold text-[11px] transition-colors focus-visible:ring-2 focus-visible:ring-[#00ff66] outline-none">
+                    <i data-lucide="check-circle" class="w-3.5 h-3.5"></i> Verified: AWS ML Engineer Associate
+                  </a>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- DOSSIER 2: EFICENS SYSTEMS -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10 pt-8 sm:pt-10 border-t border-[#00ff66]/10">
+              
+              <!-- Identity (Left Column) -->
+              <div class="md:col-span-4 lg:col-span-3 flex flex-col gap-4">
+                <div class="flex items-center gap-3">
+                  <!-- Employer Logo -->
+                  <div class="w-[76px] h-[76px] sm:w-[86px] sm:h-[86px] rounded-2xl bg-carbon-950 border border-amber-500/50 flex items-center justify-center shadow-md p-1.5 shrink-0 overflow-hidden">
+                    <img src="assets/eficens.png" alt="Eficens" class="w-full h-full object-contain" onerror="resolveAsset(this, 'eficens')">
+                    <span class="asset-fallback hidden font-sans font-black text-2xl text-amber-400">E</span>
+                  </div>
+                  <!-- Client Logo Placeholder -->
+                  <div class="w-12 h-12 rounded-xl bg-carbon-800 border border-emerald-500/30 flex items-center justify-center p-1 shadow-sm shrink-0 overflow-hidden" title="US Financial Clearing Client">
+                    <span class="font-sans font-bold text-[8px] text-amber-300 leading-none">FIN</span>
+                  </div>
+                </div>
+                <div>
+                  <h3 class="text-xl sm:text-2xl font-bold text-white tracking-tight leading-snug">Eficens Systems LLC</h3>
+                  <p class="text-[13px] sm:text-sm font-mono text-[#00ff66] font-semibold mt-1">DevOps Engineer<br>(US FinTech)</p>
+                  <div class="text-[11px] sm:text-xs font-mono text-slate-400 mt-2.5 space-y-0.5">
+                    <div>Dec 2021 – Aug 2024</div>
+                    <div>New York area</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Evidence (Right Column) -->
+              <div class="md:col-span-8 lg:col-span-9 space-y-7">
+                
+                <!-- Evidence Row 1 -->
+                <div class="space-y-1.5">
+                  <h4 class="text-[13px] sm:text-sm font-mono font-bold text-white flex items-start gap-2">
+                    <span class="text-[#00ff66] shrink-0 font-black">+</span> Zero-Trust Terraform Blueprints
+                  </h4>
+                  <p class="text-sm font-sans text-slate-300 leading-relaxed pl-[18px] sm:pl-4 border-l-2 border-[#00ff66]/40 ml-1">
+                    Engineered reusable IaC modules provisioning private multi-tier VPC topologies across environments syncing with regulated financial-market feeds.
+                  </p>
+                </div>
+
+                <!-- Evidence Row 2 -->
+                <div class="space-y-1.5">
+                  <h4 class="text-[13px] sm:text-sm font-mono font-bold text-white flex items-start gap-2">
+                    <span class="text-[#00ff66] shrink-0 font-black">+</span> DependencyViolation Resolution
+                  </h4>
+                  <p class="text-sm font-sans text-slate-300 leading-relaxed pl-[18px] sm:pl-4 border-l-2 border-[#00ff66]/40 ml-1">
+                    Decoupled inline security-group blocks into standalone <code>aws_security_group_rule</code> resources.
+                  </p>
+                </div>
+
+                <!-- Evidence Row 3 -->
+                <div class="space-y-1.5">
+                  <h4 class="text-[13px] sm:text-sm font-mono font-bold text-white flex items-start gap-2">
+                    <span class="text-[#00ff66] shrink-0 font-black">+</span> KMS Cryptographic Parity
+                  </h4>
+                  <div class="pl-[18px] sm:pl-4 border-l-2 border-[#00ff66]/40 ml-1 space-y-3">
+                    <p class="text-sm font-sans text-slate-300 leading-relaxed">
+                      Automated Jenkins pipelines enforcing KMS envelope encryption and zero-downtime RDS upgrades.
+                    </p>
+                    <button type="button" onclick="document.getElementById('inline-arn-225').classList.toggle('is-expanded'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');" aria-expanded="false" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-[#00ff66]/10 hover:bg-[#00ff66]/20 text-[#00ff66] border border-[#00ff66]/30 text-[11px] sm:text-xs font-mono font-bold transition-colors cursor-pointer focus-visible:ring-2 focus-visible:ring-[#00ff66] outline-none">
+                      <i data-lucide="shield-alert" class="w-3.5 h-3.5"></i> Inspect IAC Audit 225 ↘
+                    </button>
+                    
+                    <!-- Inline Investigation: IAC Audit 225 -->
+                    <div id="inline-arn-225" class="dossier-expand-grid">
+                      <div class="dossier-expand-inner">
+                        <div class="mt-3 p-4 sm:p-5 bg-carbon-950 border border-carbon-800 rounded-xl space-y-4">
+                          <div class="flex items-center justify-between text-[10px] sm:text-xs font-mono text-slate-400 mb-1">
+                            <span>TOPOLOGY: TERRAGRUNT ➔ STG_ROLE vs PROD_ROLE</span>
+                            <span class="text-sky-400 font-bold">CROSS-ACCOUNT INTERCEPT</span>
+                          </div>
+
+                          <div class="overflow-x-auto pb-2">
+                            <svg viewBox="0 0 600 115" class="w-full min-w-[500px] h-auto bg-[#080d16] rounded-xl border border-carbon-800 p-2" xmlns="http://www.w3.org/2000/svg">
+                              <line x1="160" y1="58" x2="230" y2="38" stroke="#f59e0b" stroke-width="2" class="svg-flow-line"/><line x1="160" y1="58" x2="230" y2="80" stroke="#34d399" stroke-width="2" class="svg-flow-line"/>
+                              <g transform="translate(10, 24)"><rect width="150" height="68" rx="8" fill="#172554" stroke="#60a5fa" stroke-width="1.5"/><text x="75" y="34" text-anchor="middle" fill="#bfdbfe" font-size="11" font-weight="bold">PR [IAC-AUDIT-225]</text></g>
+                              <g transform="translate(230, 10)"><rect width="350" height="44" rx="6" fill="#451a03" stroke="#f59e0b" stroke-width="1.5"/><text x="175" y="20" text-anchor="middle" fill="#fcd34d" font-size="9" font-weight="bold">INTERCEPTED: Staging Role in Prod HCL</text><text x="175" y="34" text-anchor="middle" fill="#fef08a" font-size="8">arn:aws:iam::126350******:role/stg-billing-events-service</text></g>
+                              <g transform="translate(230, 60)"><rect width="350" height="44" rx="6" fill="#062c22" stroke="#34d399" stroke-width="1.5"/><text x="175" y="20" text-anchor="middle" fill="#6ee7b7" font-size="9" font-weight="bold">CORRECTED: Account-Scoped Prod Principal</text><text x="175" y="34" text-anchor="middle" fill="#a7f3d0" font-size="8">arn:aws:iam::984120******:role/prod-billing-events-service</text></g>
+                            </svg>
+                          </div>
+
+                          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+                            <div class="space-y-1"><span class="text-[10px] text-red-400 font-mono font-bold">01 — PROBLEM</span><p class="text-[11px] text-slate-300 font-sans leading-snug">Terragrunt configurations mistakenly mapped a staging IAM role ARN into production execution variables.</p></div>
+                            <div class="space-y-1"><span class="text-[10px] text-sky-400 font-mono font-bold">02 — CHANGE</span><p class="text-[11px] text-slate-300 font-sans leading-snug">Intercepted drift during CI/CD plan phase and dynamically injected account-scoped production principals.</p></div>
+                            <div class="space-y-1"><span class="text-[10px] text-emerald-400 font-mono font-bold">03 — RESULT</span><p class="text-[11px] text-slate-300 font-sans leading-snug">Blocked cross-environment violation, enforcing strict Zero-Trust boundaries before infrastructure was provisioned.</p></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Credential -->
+                <div class="pt-2">
+                  <a href="https://www.credly.com/badges/af2f25bd-7fbe-4e21-92fc-4c39f8e92cf7" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-3 py-1.5 rounded bg-carbon-900 border border-carbon-700 hover:border-[#00ff66]/50 text-[#00ff66] font-mono font-bold text-[11px] transition-colors focus-visible:ring-2 focus-visible:ring-[#00ff66] outline-none">
+                    <i data-lucide="check-circle" class="w-3.5 h-3.5"></i> Verified: AWS Sol. Architect Associate
+                  </a>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- DOSSIER 3: LOTUSDATA -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10 pt-8 sm:pt-10 border-t border-[#00ff66]/10">
+              
+              <!-- Identity (Left Column) -->
+              <div class="md:col-span-4 lg:col-span-3 flex flex-col gap-4">
+                <!-- Employer Logo -->
+                <div class="w-[76px] h-[76px] sm:w-[86px] sm:h-[86px] rounded-2xl bg-carbon-950 border border-sky-500/50 flex items-center justify-center shadow-md p-1.5 shrink-0 overflow-hidden">
                   <img src="assets/lotusdata.png" alt="LotusData" class="w-full h-full object-contain" onerror="resolveAsset(this, 'lotusdata')">
-                  <span class="asset-fallback hidden font-sans font-bold text-sky-400">LD</span>
+                  <span class="asset-fallback hidden font-sans font-black text-2xl text-sky-400">LD</span>
                 </div>
-                <div class="flex-1 min-w-0">
-                  <div class="text-sm font-bold text-white truncate">LotusData LLP</div>
-                  <div class="text-[10px] font-mono text-slate-400 truncate mt-0.5">Mar '21 – Dec '21</div>
+                <div>
+                  <h3 class="text-xl sm:text-2xl font-bold text-white tracking-tight leading-snug">LotusData LLP</h3>
+                  <p class="text-[13px] sm:text-sm font-mono text-[#00ff66] font-semibold mt-1">Jr. System / Cloud Administrator</p>
+                  <div class="text-[11px] sm:text-xs font-mono text-slate-400 mt-2.5 space-y-0.5">
+                    <div>Mar 2021 – Dec 2021</div>
+                    <div>Princeton, New Jersey, USA</div>
+                  </div>
                 </div>
-              </button>
+              </div>
 
+              <!-- Evidence (Right Column) -->
+              <div class="md:col-span-8 lg:col-span-9 space-y-7">
+                
+                <!-- Evidence Row 1 -->
+                <div class="space-y-1.5">
+                  <h4 class="text-[13px] sm:text-sm font-mono font-bold text-white flex items-start gap-2">
+                    <span class="text-[#00ff66] shrink-0 font-black">+</span> High-Availability AWS Fleet
+                  </h4>
+                  <p class="text-sm font-sans text-slate-300 leading-relaxed pl-[18px] sm:pl-4 border-l-2 border-[#00ff66]/40 ml-1">
+                    Administration and scaling of 200+ AWS instances, sustaining 99% system uptime through proactive CloudWatch monitoring.
+                  </p>
+                </div>
+
+                <!-- Evidence Row 2 -->
+                <div class="space-y-1.5">
+                  <h4 class="text-[13px] sm:text-sm font-mono font-bold text-white flex items-start gap-2">
+                    <span class="text-[#00ff66] shrink-0 font-black">+</span> Online VFS &amp; LVM Expansion
+                  </h4>
+                  <p class="text-sm font-sans text-slate-300 leading-relaxed pl-[18px] sm:pl-4 border-l-2 border-[#00ff66]/40 ml-1">
+                    Dynamically managed filesystem scaling and non-disruptive inode recovery using <code>lvextend -r</code> and <code>lsof +L1</code> with 0 reboot overhead.
+                  </p>
+                </div>
+
+                <!-- Evidence Row 3 -->
+                <div class="space-y-1.5">
+                  <h4 class="text-[13px] sm:text-sm font-mono font-bold text-white flex items-start gap-2">
+                    <span class="text-[#00ff66] shrink-0 font-black">+</span> Automated OS Provisioning
+                  </h4>
+                  <p class="text-sm font-sans text-slate-300 leading-relaxed pl-[18px] sm:pl-4 border-l-2 border-[#00ff66]/40 ml-1">
+                    Standardized RedHat Linux bare-metal installations using Kickstart pre/post scripts.
+                  </p>
+                </div>
+
+                <!-- Credential -->
+                <div class="pt-2">
+                  <a href="https://www.credly.com/badges/582be29e-4701-41a4-b4bb-638b1d675fc2" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-3 py-1.5 rounded bg-carbon-900 border border-carbon-700 hover:border-[#00ff66]/50 text-[#00ff66] font-mono font-bold text-[11px] transition-colors focus-visible:ring-2 focus-visible:ring-[#00ff66] outline-none">
+                    <i data-lucide="check-circle" class="w-3.5 h-3.5"></i> Verified: AWS Cloud Practitioner
+                  </a>
+                </div>
+
+              </div>
             </div>
-
-            <!-- Right Column: Detail Panels -->
-            <div class="w-full md:w-8/12 relative min-h-[460px]">
-              
-              <!-- Detail Panel: Ascendion -->
-              <div id="panel-emp-ascendion" class="dev-panel-content is-active w-full">
-                <!-- Header -->
-                <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-6 pb-4 border-b border-carbon-800">
-                  <div class="flex items-center gap-3">
-                    <div class="w-14 h-14 sm:w-[76px] sm:h-[76px] rounded-xl bg-carbon-950 border border-emerald-500/50 flex items-center justify-center shrink-0 p-1.5 shadow-md">
-                      <img src="assets/ascendion.png" alt="Ascendion" class="w-full h-full object-contain" onerror="resolveAsset(this, 'ascendion')">
-                      <span class="asset-fallback hidden font-sans font-bold text-lg text-white">A</span>
-                    </div>
-                    <div class="w-[42px] h-[42px] rounded-lg bg-carbon-800 border border-emerald-500/30 flex items-center justify-center p-1 shrink-0 -ml-5 shadow-sm" title="Client: HP Inc.">
-                      <img src="assets/hp.png" alt="HP Inc." class="w-full h-full object-contain" onerror="resolveAsset(this, 'hp')">
-                      <span class="asset-fallback hidden font-sans font-bold text-[8px] text-emerald-300 leading-none">HP</span>
-                    </div>
-                  </div>
-                  <div>
-                    <h3 class="text-base sm:text-lg font-bold text-white leading-snug">Ascendion — DevOps &amp; GenAI Engineer</h3>
-                    <p class="text-[11px] sm:text-xs font-mono text-[#00ff66] mt-0.5">L5 Engineer (Client: HP Inc.) • Dec '25 – Aug '26</p>
-                  </div>
-                </div>
-
-                <!-- Engineering Evidence (Git Diff Inspired) -->
-                <div class="space-y-4 mb-6">
-                  <div class="dev-diff-row">
-                    <strong class="text-white text-xs sm:text-sm font-sans block mb-1">AAVA GenAI Core Workflows</strong>
-                    <p class="text-slate-300 text-[11px] sm:text-xs font-sans leading-relaxed">Integrated LLMs, vector knowledge bases, and guardrail token architectures into agentic SDLC pipelines.</p>
-                  </div>
-                  <div class="dev-diff-row">
-                    <strong class="text-white text-xs sm:text-sm font-sans block mb-1">Container Layer Debugging</strong>
-                    <p class="text-slate-300 text-[11px] sm:text-xs font-sans leading-relaxed">Triaged embedded Tomcat vs. readiness probe failures on port 8080 (ExitCode 127) under live SLAs.</p>
-                  </div>
-                  <div class="dev-diff-row">
-                    <strong class="text-white text-xs sm:text-sm font-sans block mb-1">Java SKU Refactoring (+315 / -992 LOC)</strong>
-                    <p class="text-slate-300 text-[11px] sm:text-xs font-sans leading-relaxed">Consolidated divergent product SKU identifiers into a canonical DTO model across renewal microservices.</p>
-                  </div>
-                </div>
-
-                <!-- Deep Dives & Credentials -->
-                <div class="flex flex-wrap items-center gap-3 border-t border-carbon-800 pt-5">
-                  <button type="button" onclick="event.stopPropagation(); openModal('modal-incident')" class="px-3.5 py-2 rounded-lg bg-[#00ff66]/10 hover:bg-[#00ff66] text-[#00ff66] hover:text-black font-mono text-[10px] sm:text-xs font-bold border border-[#00ff66]/50 transition-colors cursor-pointer flex items-center gap-2">
-                    <i data-lucide="terminal" class="w-3.5 h-3.5"></i> Inspect Incident 127
-                  </button>
-                  <button type="button" onclick="event.stopPropagation(); openModal('modal-java')" class="px-3.5 py-2 rounded-lg bg-[#00ff66]/10 hover:bg-[#00ff66] text-[#00ff66] hover:text-black font-mono text-[10px] sm:text-xs font-bold border border-[#00ff66]/50 transition-colors cursor-pointer flex items-center gap-2">
-                    <i data-lucide="file-code-2" class="w-3.5 h-3.5"></i> Inspect Diff: +315 / -992
-                  </button>
-                  <a href="https://www.credly.com/badges/20f333e6-76e8-431a-9603-c22408681cd8" target="_blank" rel="noopener noreferrer" class="ml-auto px-2.5 py-1 rounded bg-carbon-900 border border-carbon-700 text-[#00ff66] font-mono font-bold text-[10px] flex items-center gap-1.5 hover:border-[#00ff66]/50 transition-colors">
-                    <i data-lucide="check-circle" class="w-3 h-3"></i> AWS ML Engineer
-                  </a>
-                </div>
-              </div>
-
-              <!-- Detail Panel: Eficens -->
-              <div id="panel-emp-eficens" class="dev-panel-content w-full absolute top-0 left-0">
-                <!-- Header -->
-                <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-6 pb-4 border-b border-carbon-800">
-                  <div class="flex items-center gap-3">
-                    <div class="w-14 h-14 sm:w-[76px] sm:h-[76px] rounded-xl bg-carbon-950 border border-amber-500/50 flex items-center justify-center shrink-0 p-1.5 shadow-md">
-                      <img src="assets/eficens.png" alt="Eficens" class="w-full h-full object-contain" onerror="resolveAsset(this, 'eficens')">
-                      <span class="asset-fallback hidden font-sans font-bold text-lg text-amber-400">E</span>
-                    </div>
-                    <div class="w-[42px] h-[42px] rounded-lg bg-carbon-800 border border-emerald-500/30 flex items-center justify-center p-1 shrink-0 -ml-5 shadow-sm" title="US Financial Clearing Client">
-                      <span class="font-sans font-bold text-[7px] text-amber-300 leading-none">FIN</span>
-                    </div>
-                  </div>
-                  <div>
-                    <h3 class="text-base sm:text-lg font-bold text-white leading-snug">Eficens Systems LLC — DevOps Engineer</h3>
-                    <p class="text-[11px] sm:text-xs font-mono text-[#00ff66] mt-0.5">US FinTech Client • Dec '21 – Aug '24</p>
-                  </div>
-                </div>
-
-                <!-- Engineering Evidence (Git Diff Inspired) -->
-                <div class="space-y-4 mb-6">
-                  <div class="dev-diff-row">
-                    <strong class="text-white text-xs sm:text-sm font-sans block mb-1">Zero-Trust Terraform Blueprints</strong>
-                    <p class="text-slate-300 text-[11px] sm:text-xs font-sans leading-relaxed">Engineered reusable IaC modules provisioning private multi-tier VPC topologies across environments syncing with regulated financial-market feeds.</p>
-                  </div>
-                  <div class="dev-diff-row">
-                    <strong class="text-white text-xs sm:text-sm font-sans block mb-1">DependencyViolation Resolution</strong>
-                    <p class="text-slate-300 text-[11px] sm:text-xs font-sans leading-relaxed">Decoupled inline security group blocks into standalone <code>aws_security_group_rule</code> resources.</p>
-                  </div>
-                  <div class="dev-diff-row">
-                    <strong class="text-white text-xs sm:text-sm font-sans block mb-1">KMS Cryptographic Parity</strong>
-                    <p class="text-slate-300 text-[11px] sm:text-xs font-sans leading-relaxed">Automated Jenkins pipelines enforcing KMS envelope encryption and zero-downtime RDS upgrades.</p>
-                  </div>
-                </div>
-
-                <!-- Deep Dives & Credentials -->
-                <div class="flex flex-wrap items-center gap-3 border-t border-carbon-800 pt-5">
-                  <button type="button" onclick="event.stopPropagation(); openModal('modal-arn')" class="px-3.5 py-2 rounded-lg bg-[#00ff66]/10 hover:bg-[#00ff66] text-[#00ff66] hover:text-black font-mono text-[10px] sm:text-xs font-bold border border-[#00ff66]/50 transition-colors cursor-pointer flex items-center gap-2">
-                    <i data-lucide="shield-alert" class="w-3.5 h-3.5"></i> Inspect Audit: IAC-225
-                  </button>
-                  <a href="https://www.credly.com/badges/af2f25bd-7fbe-4e21-92fc-4c39f8e92cf7" target="_blank" rel="noopener noreferrer" class="ml-auto px-2.5 py-1 rounded bg-carbon-900 border border-carbon-700 text-[#00ff66] font-mono font-bold text-[10px] flex items-center gap-1.5 hover:border-[#00ff66]/50 transition-colors">
-                    <i data-lucide="check-circle" class="w-3 h-3"></i> AWS Sol. Architect
-                  </a>
-                </div>
-              </div>
-
-              <!-- Detail Panel: LotusData -->
-              <div id="panel-emp-lotusdata" class="dev-panel-content w-full absolute top-0 left-0">
-                <!-- Header -->
-                <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-6 pb-4 border-b border-carbon-800">
-                  <div class="w-14 h-14 sm:w-[76px] sm:h-[76px] rounded-xl bg-carbon-950 border border-sky-500/50 flex items-center justify-center shrink-0 p-1.5 shadow-md">
-                    <img src="assets/lotusdata.png" alt="LotusData" class="w-full h-full object-contain" onerror="resolveAsset(this, 'lotusdata')">
-                    <span class="asset-fallback hidden font-sans font-bold text-lg text-sky-400">LD</span>
-                  </div>
-                  <div>
-                    <h3 class="text-base sm:text-lg font-bold text-white leading-snug">LotusData LLP — Jr. Cloud Administrator</h3>
-                    <p class="text-[11px] sm:text-xs font-mono text-[#00ff66] mt-0.5">Mar '21 – Dec '21</p>
-                  </div>
-                </div>
-
-                <!-- Engineering Evidence (Git Diff Inspired) -->
-                <div class="space-y-4 mb-6">
-                  <div class="dev-diff-row">
-                    <strong class="text-white text-xs sm:text-sm font-sans block mb-1">High-Availability AWS Fleet</strong>
-                    <p class="text-slate-300 text-[11px] sm:text-xs font-sans leading-relaxed">Administered and scaled a fleet of 200+ AWS instances, sustaining 99% uptime via CloudWatch monitoring.</p>
-                  </div>
-                  <div class="dev-diff-row">
-                    <strong class="text-white text-xs sm:text-sm font-sans block mb-1">Online VFS &amp; LVM Expansion</strong>
-                    <p class="text-slate-300 text-[11px] sm:text-xs font-sans leading-relaxed">Dynamically managed filesystem scaling and non-disruptive inode recovery using <code>lvextend -r</code> and <code>lsof +L1</code> with 0 reboot overhead.</p>
-                  </div>
-                  <div class="dev-diff-row">
-                    <strong class="text-white text-xs sm:text-sm font-sans block mb-1">Automated OS Provisioning</strong>
-                    <p class="text-slate-300 text-[11px] sm:text-xs font-sans leading-relaxed">Standardized RedHat Linux bare-metal installations using Kickstart pre/post scripts.</p>
-                  </div>
-                </div>
-
-                <!-- Deep Dives & Credentials -->
-                <div class="flex flex-wrap items-center gap-3 border-t border-carbon-800 pt-5">
-                  <a href="https://www.credly.com/badges/582be29e-4701-41a4-b4bb-638b1d675fc2" target="_blank" rel="noopener noreferrer" class="ml-auto px-2.5 py-1 rounded bg-carbon-900 border border-carbon-700 text-[#00ff66] font-mono font-bold text-[10px] flex items-center gap-1.5 hover:border-[#00ff66]/50 transition-colors">
-                    <i data-lucide="check-circle" class="w-3 h-3"></i> AWS Cloud Practitioner
-                  </a>
-                </div>
-              </div>
-
-            </div>
+            
           </div>
         </div>
       </section>
@@ -1957,7 +2042,7 @@
     </div>
   </div>
 
-  <!-- Modal 1: Incident 127 Fleshed Out -->
+  <!-- Modal 1: Incident 127 Fleshed Out (Manager Mode Fallback) -->
   <div id="modal-incident" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
     <div class="bg-carbon-900 border border-carbon-700 max-w-3xl w-full rounded-2xl overflow-hidden shadow-[0_0_30px_rgba(0,255,102,0.15)] flex flex-col max-h-[90vh]">
       <div class="px-6 py-4 bg-carbon-850 border-b border-carbon-700 flex items-center justify-between">
@@ -2141,7 +2226,7 @@
   </div>
 
   <!-- ========================================================================= -->
-  <!-- AIRHEAD BALLOON COMPANION (With custom timer input and toggle)            -->
+  <!-- AIRHEAD BALLOON COMPANION                                                 -->
   <!-- ========================================================================= -->
   <div id="balloonContainer" style="left: 16px; bottom: 16px; right: auto;" class="fixed z-30 select-none transition-transform duration-300">
     <div id="balloonTriviaBubble" class="hidden absolute bottom-full left-0 mb-3 w-[min(295px,calc(100vw-32px))] sm:w-80 p-3.5 sm:p-4 rounded-2xl bg-carbon-900/95 border border-amber-500/60 text-xs font-mono shadow-2xl backdrop-blur-xl max-h-[min(390px,60vh)] overflow-y-auto">
