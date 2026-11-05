@@ -120,7 +120,7 @@
     details[open] .compartment-content { animation: fadeInDown 0.3s ease-out forwards; }
     @keyframes fadeInDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 
-    /* Custom Utilities (Restored) */
+    /* Custom Utilities */
     .scrollbar-hide::-webkit-scrollbar { display: none; }
     .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
     
@@ -177,7 +177,7 @@
       display: inline-block;
     }
 
-    /* CI/CD Engineering Workflow Animation CSS */
+    /* CI/CD Engineering Workflow Animation CSS (Updated Amber Contrast) */
     .wf-stage { transition: all 0.4s ease; border-color: #1e293b !important; }
     
     @keyframes wfPulse {
@@ -186,22 +186,22 @@
       100% { box-shadow: 0 0 0 0 rgba(0, 255, 102, 0); }
     }
     @keyframes wfPulseAmber {
-      0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.4); }
-      70% { box-shadow: 0 0 0 10px rgba(245, 158, 11, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+      0% { box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.6); }
+      70% { box-shadow: 0 0 0 12px rgba(251, 191, 36, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(251, 191, 36, 0); }
     }
     
     .wf-running { border-color: #00ff66 !important; box-shadow: 0 4px 24px rgba(0, 255, 102, 0.3) !important; animation: wfPulse 1.2s infinite; transform: translateY(-2px); }
     .wf-passed { border-color: #00ff66 !important; box-shadow: 0 0 15px rgba(0, 255, 102, 0.15) !important; transform: translateY(0); }
     
-    .wf-running-amber { border-color: #f59e0b !important; box-shadow: 0 4px 24px rgba(245, 158, 11, 0.3) !important; animation: wfPulseAmber 1.2s infinite; transform: translateY(-2px); }
-    .wf-passed-amber { border-color: #f59e0b !important; box-shadow: 0 0 15px rgba(245, 158, 11, 0.15) !important; transform: translateY(0); }
+    .wf-running-amber { border-color: #fbbf24 !important; box-shadow: 0 4px 28px rgba(251, 191, 36, 0.45) !important; animation: wfPulseAmber 1.2s infinite; transform: translateY(-2px); background-color: #120f06 !important; }
+    .wf-passed-amber { border-color: #fbbf24 !important; box-shadow: 0 0 18px rgba(251, 191, 36, 0.25) !important; transform: translateY(0); }
     
     .wf-passed-blue { border-color: #38bdf8 !important; box-shadow: 0 4px 24px rgba(56, 189, 248, 0.25) !important; transform: translateY(-2px); }
 
     .wf-connector { border-color: #1e293b !important; transition: border-color 0.4s ease; }
     .wf-connector-solid { border-color: #00ff66 !important; }
-    .wf-connector-solid-amber { border-color: #f59e0b !important; }
+    .wf-connector-solid-amber { border-color: #fbbf24 !important; }
     .wf-packet { transition: left 0.6s linear, top 0.6s linear, opacity 0.2s ease; }
 
     @keyframes flowDashX { from { background-position: 0 0; } to { background-position: -24px 0; } }
@@ -216,7 +216,7 @@
     }
     .wf-connector-animating-amber {
       border-color: transparent !important;
-      background-image: linear-gradient(to right, #f59e0b 50%, transparent 50%);
+      background-image: linear-gradient(to right, #fbbf24 50%, transparent 50%);
       background-size: 12px 2px;
       background-repeat: repeat-x;
       animation: flowDashX 0.6s linear infinite;
@@ -224,7 +224,7 @@
 
     @media (max-width: 768px) {
       .wf-connector-animating { background-image: linear-gradient(to bottom, #00ff66 50%, transparent 50%); background-size: 2px 12px; background-repeat: repeat-y; animation: flowDashY 0.6s linear infinite; }
-      .wf-connector-animating-amber { background-image: linear-gradient(to bottom, #f59e0b 50%, transparent 50%); background-size: 2px 12px; background-repeat: repeat-y; animation: flowDashY 0.6s linear infinite; }
+      .wf-connector-animating-amber { background-image: linear-gradient(to bottom, #fbbf24 50%, transparent 50%); background-size: 2px 12px; background-repeat: repeat-y; animation: flowDashY 0.6s linear infinite; }
     }
 
     /* Dev Mode Engineering Dossiers */
@@ -264,10 +264,26 @@
       body.mode-dev #education .edu-spotlight { opacity: 1 !important; transition: none !important; }
     }
 
-    /* Dev Mode Styles */
+    /* HR Mode Complete Theme Overrides */
+    body.mode-hr { background-color: #EEE9DF !important; color: #1e293b !important; }
+    body.mode-hr .bg-carbon-950, body.mode-hr .bg-carbon-900, body.mode-hr .bg-carbon-850, body.mode-hr .bg-carbon-800 { background-color: #FAF7F0 !important; border-color: #d1d5db !important; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05) !important; }
+    body.mode-hr h1, body.mode-hr h2, body.mode-hr h3, body.mode-hr h4, body.mode-hr .text-white { color: #0f172a !important; text-shadow: none !important; }
+    body.mode-hr .text-slate-200, body.mode-hr .text-slate-300 { color: #334155 !important; }
+    body.mode-hr .text-slate-400, body.mode-hr .text-slate-500 { color: #475569 !important; }
+    body.mode-hr .text-amber-400, body.mode-hr .text-emerald-400, body.mode-hr .text-sky-400, body.mode-hr .text-red-400, body.mode-hr .text-purple-400 { color: #536D84 !important; }
+    body.mode-hr .bg-amber-500, body.mode-hr .bg-amber-500\/10, body.mode-hr .bg-amber-500\/15, body.mode-hr .bg-emerald-500\/15, body.mode-hr .bg-sky-500\/15 { background-color: #e2e8f0 !important; color: #1e293b !important; border-color: #cbd5e1 !important;}
+    body.mode-hr .bg-carbon-800 { background-color: #e2e8f0 !important; }
+    body.mode-hr header { background-color: rgba(238, 233, 223, 0.95) !important; border-bottom: 1px solid #d1d5db !important; }
+    body.mode-hr .border-carbon-800, body.mode-hr .border-carbon-700 { border-color: #cbd5e1 !important; }
+
+    /* Dev Mode Styles (Increased Brightness) */
     body.mode-dev { background-color: #030804 !important; color: #a7f3d0 !important; font-family: 'JetBrains Mono', monospace !important; }
     body.mode-dev .bg-carbon-950, body.mode-dev .bg-carbon-900, body.mode-dev .bg-carbon-850, body.mode-dev .bg-carbon-800 { background-color: #050e07 !important; border-color: rgba(0, 255, 102, 0.32) !important; }
-    body.mode-dev h1, body.mode-dev h2, body.mode-dev h3, body.mode-dev h4, body.mode-dev .text-white { color: #00ff66 !important; text-shadow: 0 0 10px rgba(0, 255, 102, 0.32); }
+    
+    body.mode-dev h1, body.mode-dev h2, body.mode-dev h3, body.mode-dev h4, body.mode-dev .text-white { color: #ffffff !important; text-shadow: 0 0 12px rgba(255, 255, 255, 0.6), 0 0 22px rgba(0, 255, 102, 0.35); }
+    body.mode-dev .text-slate-200, body.mode-dev .text-slate-300 { color: #f8fafc !important; font-weight: 500; }
+    body.mode-dev .text-slate-400 { color: #e2e8f0 !important; }
+    
     body.mode-dev .text-amber-400, body.mode-dev .text-amber-300, body.mode-dev .text-emerald-400 { color: #00ff66 !important; }
     body.mode-dev .bg-amber-500 { background-color: #00ff66 !important; color: #020603 !important; box-shadow: 0 0 20px rgba(0, 255, 102, 0.45) !important; }
     body.mode-dev::after { content: " "; display: block; position: fixed; inset: 0; z-index: 25; pointer-events: none; background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.22) 50%); background-size: 100% 4px; }
@@ -275,148 +291,6 @@
     @keyframes svgPacketFlow { from { stroke-dashoffset: 36; } to { stroke-dashoffset: 0; } }
     .svg-flow-line { stroke-dasharray: 6 6; }
     body.mode-dev .svg-flow-line, .loop-active-flow { animation: svgPacketFlow 1s linear infinite; }
-
-    /* ==========================================================
-       HR MODE — WARM IVORY THEME
-       Scoped to Recruiter Mode only. Typography is unchanged.
-       ========================================================== */
-    body.mode-hr {
-      background-color: #eee9df !important;
-      color: #303b48 !important;
-      --hr-ivory: #eee9df;
-      --hr-paper: #faf7f0;
-      --hr-paper-soft: #f3eee4;
-      --hr-paper-deep: #eae4d9;
-      --hr-ink: #293746;
-      --hr-body: #505c69;
-      --hr-muted: #5e6a76;
-      --hr-line: #ddd5c8;
-      --hr-accent: #536d84;
-      --hr-accent-hover: #435b71;
-      --hr-accent-wash: #e8edf1;
-    }
-
-    body.mode-hr .bg-grid-pattern,
-    body.mode-hr .hero-glow { display: none !important; }
-
-    /* Shared navigation adopts the same quiet paper-and-ink palette. */
-    body.mode-hr header {
-      background: rgba(246, 242, 233, 0.97) !important;
-      border-color: var(--hr-line) !important;
-      color: var(--hr-ink) !important;
-      box-shadow: 0 2px 10px rgba(53, 45, 32, 0.045);
-    }
-    body.mode-hr header .bg-carbon-950,
-    body.mode-hr header .bg-carbon-900,
-    body.mode-hr header .bg-carbon-850,
-    body.mode-hr header .bg-carbon-800 {
-      background-color: #eee9df !important;
-      border-color: var(--hr-line) !important;
-    }
-    body.mode-hr header .text-white,
-    body.mode-hr header .text-slate-200,
-    body.mode-hr header .text-slate-300,
-    body.mode-hr header .text-slate-400 {
-      color: var(--hr-ink) !important;
-      text-shadow: none !important;
-    }
-    body.mode-hr header .text-amber-400,
-    body.mode-hr header .text-amber-300,
-    body.mode-hr header .text-emerald-400,
-    body.mode-hr header .text-sky-400 {
-      color: var(--hr-accent) !important;
-    }
-    body.mode-hr header .border-carbon-600,
-    body.mode-hr header .border-carbon-700,
-    body.mode-hr header .border-carbon-700\/70,
-    body.mode-hr header .border-amber-500\/50 {
-      border-color: var(--hr-line) !important;
-    }
-    body.mode-hr #headerBtnHr,
-    body.mode-hr #mobileBtnHr,
-    body.mode-hr #hrHeaderResumeBtn {
-      background-color: var(--hr-accent) !important;
-      color: #fffaf2 !important;
-      border-color: var(--hr-accent) !important;
-      box-shadow: none !important;
-    }
-    body.mode-hr #headerBtnManager,
-    body.mode-hr #headerBtnDev,
-    body.mode-hr #mobileBtnMgr,
-    body.mode-hr #mobileBtnDev {
-      color: #5d6874 !important;
-    }
-    body.mode-hr header a:hover,
-    body.mode-hr header button:hover {
-      color: var(--hr-accent-hover) !important;
-    }
-    body.mode-hr #customToast {
-      background: #faf7f0 !important;
-      color: var(--hr-ink) !important;
-      border-color: var(--hr-line) !important;
-      box-shadow: 0 10px 28px rgba(53, 45, 32, 0.12) !important;
-    }
-    body.mode-hr #customToastText { color: var(--hr-ink) !important; }
-
-    /* Resume surface and nested panels. */
-    body.mode-hr #view-hr { color: var(--hr-body) !important; }
-    body.mode-hr #view-hr .bento-card {
-      background: var(--hr-paper) !important;
-      background-image: none !important;
-      border: 1px solid var(--hr-line) !important;
-      box-shadow: 0 8px 22px rgba(53, 45, 32, 0.055) !important;
-      backdrop-filter: none !important;
-    }
-    body.mode-hr #view-hr .bg-carbon-950 { background-color: var(--hr-paper-deep) !important; }
-    body.mode-hr #view-hr .bg-carbon-900 { background-color: var(--hr-paper-soft) !important; }
-    body.mode-hr #view-hr .bg-carbon-850 { background-color: var(--hr-paper) !important; }
-    body.mode-hr #view-hr .bg-carbon-800 { background-color: #e9e3d8 !important; }
-    body.mode-hr #view-hr .bg-gradient-to-br {
-      background: var(--hr-paper) !important;
-      background-image: none !important;
-    }
-
-    body.mode-hr #view-hr .text-white,
-    body.mode-hr #view-hr .text-carbon-950 { color: var(--hr-ink) !important; text-shadow: none !important; }
-    body.mode-hr #view-hr .text-slate-200,
-    body.mode-hr #view-hr .text-slate-300 { color: var(--hr-body) !important; }
-    body.mode-hr #view-hr .text-slate-400,
-    body.mode-hr #view-hr .text-slate-500 { color: var(--hr-muted) !important; }
-    body.mode-hr #view-hr [class*="text-amber-"],
-    body.mode-hr #view-hr [class*="text-emerald-"],
-    body.mode-hr #view-hr [class*="text-sky-"],
-    body.mode-hr #view-hr [class*="text-purple-"],
-    body.mode-hr #view-hr [class*="text-red-"] { color: var(--hr-accent) !important; }
-
-    body.mode-hr #view-hr [class*="border-carbon-"],
-    body.mode-hr #view-hr [class*="border-amber-"],
-    body.mode-hr #view-hr [class*="border-emerald-"],
-    body.mode-hr #view-hr [class*="border-sky-"],
-    body.mode-hr #view-hr [class*="border-red-"] { border-color: var(--hr-line) !important; }
-
-    body.mode-hr #view-hr [class*="bg-amber-500/"],
-    body.mode-hr #view-hr [class*="bg-emerald-500/"],
-    body.mode-hr #view-hr [class*="bg-sky-500/"] { background-color: var(--hr-accent-wash) !important; }
-
-    body.mode-hr #view-hr .bg-amber-500 {
-      background-color: var(--hr-accent) !important;
-      color: #fffaf2 !important;
-      box-shadow: none !important;
-    }
-    body.mode-hr #view-hr [class~="hover:bg-amber-400"]:hover {
-      background-color: var(--hr-accent-hover) !important;
-      color: #fffaf2 !important;
-    }
-    body.mode-hr #view-hr [class~="hover:bg-carbon-700"]:hover {
-      background-color: #ded8cd !important;
-    }
-    body.mode-hr #view-hr [class*="hover:bg-emerald-500/" ]:hover,
-    body.mode-hr #view-hr [class*="hover:bg-amber-500/" ]:hover,
-    body.mode-hr #view-hr [class*="hover:bg-sky-500/" ]:hover {
-      background-color: #e3e9ed !important;
-    }
-    body.mode-hr #view-hr .shadow-md,
-    body.mode-hr #view-hr .shadow-xl { box-shadow: 0 3px 10px rgba(53, 45, 32, 0.08) !important; }
 
     /* Print Mode Hard Overrides (Fixes Dev Mode Blackout) */
     @media print {
@@ -427,26 +301,6 @@
       .bento-card { background: white !important; border: 1px solid #ccc !important; box-shadow: none !important; break-inside: avoid; }
       .bg-grid-pattern, .hero-glow, #matrixCanvas, #portfolioChat, #balloonContainer, header, #view-manager-dev { display: none !important; }
       #view-hr { display: block !important; }
-      /* Preserve the original clean-white, low-ink resume when printed. */
-      body.mode-hr { background: white !important; color: black !important; }
-      body.mode-hr #view-hr .bento-card {
-        background: white !important;
-        background-image: none !important;
-        border: 1px solid #ccc !important;
-        box-shadow: none !important;
-      }
-      body.mode-hr #view-hr [class*="bg-carbon-"],
-      body.mode-hr #view-hr [class*="bg-amber-500/"],
-      body.mode-hr #view-hr [class*="bg-emerald-500/"],
-      body.mode-hr #view-hr [class*="bg-sky-500/"] {
-        background: white !important;
-        background-image: none !important;
-      }
-      body.mode-hr #view-hr [class*="text-"] {
-        color: black !important;
-        text-shadow: none !important;
-      }
-      body.mode-hr #view-hr [class*="border-"] { border-color: #ccc !important; }
       * { color: black !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     }
 
@@ -557,7 +411,7 @@
           <div id="modeOnboardingWrapper" class="absolute top-full mt-3 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-none z-50 transition-opacity duration-1000">
             <div class="onboarding-arrow-3d">↑</div>
             <div class="bg-amber-400 text-carbon-950 font-bold font-mono text-xs px-3 py-1.5 rounded-xl shadow-[0_10px_25px_rgba(245,158,11,0.5)] whitespace-nowrap mt-1">
-              Use the toggle to switch between modes
+              Use the switch to toggle view
             </div>
           </div>
 
@@ -611,7 +465,6 @@
       </div>
     </div>
   </header>
-
   <!-- ============================================== -->
   <!-- HR MODE: 1-Page Printable Resume (3-Column)    -->
   <!-- ============================================== -->
@@ -637,16 +490,16 @@
 
         <div class="border-t border-carbon-700/80 pt-3.5 space-y-2.5 font-mono">
           <span class="text-xs font-bold text-amber-400 uppercase tracking-wider block">Education</span>
-          <div class="p-2.5 rounded-xl bg-carbon-900 border border-carbon-800 flex items-center gap-3">
-            <div class="w-10 h-10 rounded-lg bg-carbon-800 border border-emerald-500/40 p-1 flex items-center justify-center shrink-0"><span class="text-[10px] font-bold text-emerald-400">IIT-B</span></div>
+          <div class="p-2.5 rounded-xl bg-carbon-900 border border-carbon-800 flex items-center gap-3.5">
+            <div class="w-[54px] h-[54px] rounded-lg bg-carbon-800 border border-emerald-500/40 p-1 flex items-center justify-center shrink-0"><span class="text-[11px] font-bold text-emerald-400">IIT-B</span></div>
             <div class="min-w-0"><div class="text-xs font-bold text-white truncate">IIT Bombay</div><div class="text-[10px] text-amber-300 truncate">Exec. AI &amp; MLOps (2026)</div></div>
           </div>
-          <div class="p-2.5 rounded-xl bg-carbon-900 border border-carbon-800 flex items-center gap-3">
-            <div class="w-10 h-10 rounded-lg bg-carbon-800 border border-red-500/40 p-1 flex items-center justify-center shrink-0"><span class="text-[10px] font-bold text-red-400">NJIT</span></div>
+          <div class="p-2.5 rounded-xl bg-carbon-900 border border-carbon-800 flex items-center gap-3.5">
+            <div class="w-[54px] h-[54px] rounded-lg bg-carbon-800 border border-red-500/40 p-1 flex items-center justify-center shrink-0"><span class="text-[11px] font-bold text-red-400">NJIT</span></div>
             <div class="min-w-0"><div class="text-xs font-bold text-white truncate">NJIT (USA)</div><div class="text-[10px] text-amber-300 truncate">M.S. Comp Sci (2020)</div></div>
           </div>
-          <div class="p-2.5 rounded-xl bg-carbon-900 border border-carbon-800 flex items-center gap-3">
-            <div class="w-10 h-10 rounded-lg bg-carbon-800 border border-amber-500/40 p-1 flex items-center justify-center shrink-0"><span class="text-[10px] font-bold text-amber-400">GGSIPU</span></div>
+          <div class="p-2.5 rounded-xl bg-carbon-900 border border-carbon-800 flex items-center gap-3.5">
+            <div class="w-[54px] h-[54px] rounded-lg bg-carbon-800 border border-amber-500/40 p-1 flex items-center justify-center shrink-0"><span class="text-[11px] font-bold text-amber-400">GGSIPU</span></div>
             <div class="min-w-0"><div class="text-xs font-bold text-white truncate">GGSIPU (India)</div><div class="text-[10px] text-amber-300 truncate">B.Tech Comp Sci (2017)</div></div>
           </div>
         </div>
@@ -1041,15 +894,15 @@
               </a>
             </div>
 
-            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mt-2 dev-only" style="display:none;">
-              Architecture backed by <span class="text-[#00ff66]">verified credentials.</span>
+            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold mt-2 dev-only text-white" style="display:none;">
+              Architecture backed by <span class="text-[#00ff66] drop-shadow-[0_0_12px_rgba(0,255,102,0.4)]">verified credentials.</span>
             </h2>
           </div>
 
           <p class="text-slate-300 text-sm sm:text-base max-w-md border-l-2 border-emerald-500/50 pl-3 sm:pl-4 py-0.5 leading-relaxed manager-only shrink-0">
             How <strong class="text-white font-semibold">foundational Linux administration</strong> evolved into <strong class="text-emerald-400 font-semibold">Wall Street financial DevOps</strong> and <strong class="text-emerald-400 font-semibold">L5 enterprise cloud engineering</strong>.
           </p>
-          <p class="text-slate-300 text-sm sm:text-base max-w-md border-l-2 border-[#00ff66]/50 pl-3 sm:pl-4 py-0.5 leading-relaxed dev-only shrink-0" style="display:none;">
+          <p class="text-slate-200 text-sm sm:text-base max-w-md border-l-2 border-[#00ff66]/50 pl-3 sm:pl-4 py-0.5 leading-relaxed dev-only shrink-0" style="display:none;">
             Exploring the commit history behind zero-trust Terraform, runtime container triage, and PyTorch guardrails.
           </p>
         </div>
@@ -1279,11 +1132,17 @@
                   </div>
                 </div>
                 <div>
-                  <h3 class="text-xl sm:text-2xl font-bold text-white tracking-tight leading-snug">Ascendion</h3>
-                  <p class="text-[13px] sm:text-sm font-mono text-[#00ff66] font-semibold mt-1">DevOps &amp; GenAI Engineer<br>(L5 @ HP Inc.)</p>
+                  <h3 class="text-xl sm:text-2xl font-bold text-[#00ff66] tracking-tight leading-snug drop-shadow-[0_0_8px_rgba(0,255,102,0.3)]">Ascendion</h3>
+                  <p class="text-[13px] sm:text-sm font-mono text-slate-200 font-semibold mt-1">DevOps &amp; GenAI Engineer<br>(L5 @ HP Inc.)</p>
                   <div class="text-[11px] sm:text-xs font-mono text-slate-400 mt-2.5 space-y-0.5">
                     <div>Dec 2025 – Aug 2026</div>
                     <div>Bengaluru, India</div>
+                  </div>
+                  <!-- Moved Credential -->
+                  <div class="pt-3">
+                    <a href="https://www.credly.com/badges/20f333e6-76e8-431a-9603-c22408681cd8" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-2.5 py-1.5 rounded-lg bg-carbon-900 border border-carbon-700 hover:border-[#00ff66]/50 text-[#00ff66] font-mono font-bold text-[10px] sm:text-[11px] transition-colors focus-visible:ring-2 focus-visible:ring-[#00ff66] outline-none shadow-md">
+                      <i data-lucide="check-circle" class="w-3.5 h-3.5"></i> AWS ML Engineer
+                    </a>
                   </div>
                 </div>
               </div>
@@ -1296,7 +1155,7 @@
                   <h4 class="text-[13px] sm:text-sm font-mono font-bold text-[#00ff66] flex items-start gap-2">
                     <span class="shrink-0 font-black">+</span> AAVA GenAI Core Workflows
                   </h4>
-                  <p class="text-sm font-sans text-slate-300 leading-relaxed pl-[18px] sm:pl-4 border-l-2 border-[#00ff66]/40 ml-1">
+                  <p class="text-sm font-sans text-slate-200 leading-relaxed pl-[18px] sm:pl-4 border-l-2 border-[#00ff66]/40 ml-1">
                     Integrated LLMs, vector knowledge bases, guardrail architectures, and agentic SDLC pipelines.
                   </p>
                 </div>
@@ -1307,7 +1166,7 @@
                     <span class="shrink-0 font-black">+</span> Container Layer Debugging
                   </h4>
                   <div class="pl-[18px] sm:pl-4 border-l-2 border-red-500/40 ml-1 space-y-3">
-                    <p class="text-sm font-sans text-slate-300 leading-relaxed">
+                    <p class="text-sm font-sans text-slate-200 leading-relaxed">
                       Triaged embedded Tomcat vs. readiness probe failures on port 8080 (ExitCode 127) under live SLAs.
                     </p>
                     <button type="button" onclick="document.getElementById('inline-inc-127').classList.toggle('is-expanded'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');" aria-expanded="false" class="shiny-btn-red group relative overflow-hidden inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/30 text-[11px] sm:text-xs font-mono font-bold transition-colors cursor-pointer focus-visible:ring-2 focus-visible:ring-red-400 outline-none">
@@ -1315,7 +1174,7 @@
                       <i data-lucide="terminal" class="w-3.5 h-3.5"></i> Inspect Incident 127 ↘
                     </button>
 
-                    <!-- Inline Investigation: Incident 127 (Scaled down to 85% width visually, padding fixes ghost gap) -->
+                    <!-- Inline Investigation: Incident 127 -->
                     <div id="inline-inc-127" class="dossier-expand-grid w-full xl:w-[85%]">
                       <div class="dossier-expand-inner">
                         <div class="pt-3 pb-2">
@@ -1330,7 +1189,6 @@
                               <span id="case1StatusBadgeInline" class="px-2.5 py-1 rounded bg-red-500/20 text-red-400 border border-red-500/40 font-bold text-[11px]">EXIT CODE 127</span>
                             </div>
                             
-                            <!-- Appended 'Inline' to IDs to prevent DOM Collision -->
                             <svg viewBox="0 0 520 115" class="w-full h-auto my-1" xmlns="http://www.w3.org/2000/svg">
                               <line x1="150" y1="55" x2="195" y2="55" stroke="#34d399" stroke-width="2.5" class="svg-flow-line"/><polygon points="198,55 190,50 190,60" fill="#34d399"/>
                               <line id="case1SvgLine2Inline" x1="325" y1="55" x2="370" y2="55" stroke="#ef4444" stroke-width="2.5" class="svg-flow-line"/><polygon id="case1SvgArrow2Inline" points="373,55 365,50 365,60" fill="#ef4444"/>
@@ -1345,11 +1203,11 @@
                               <button type="button" onclick="toggleCase1PatchInline()" id="btnCase1PatchInline" class="px-2.5 py-1 rounded bg-[#00ff66]/20 hover:bg-[#00ff66] hover:text-black text-[#00ff66] font-bold border border-[#00ff66]/40 transition-colors cursor-pointer text-[10px] sm:text-[11px]">[ >_ Run Patch: +curl ]</button>
                             </div>
 
-                            <!-- 15% Larger Topic Headings (w-9 h-9, text-[13px]/text-sm) -->
+                            <!-- Topic Headings (+10% Text Size to text-[11.5px] / text-xs) -->
                             <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
-                              <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-red-500/20 text-red-400 border border-red-500/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">01</span><p class="text-[10.5px] text-slate-300 font-sans leading-snug">Upstream image silently stripped the <code>curl</code> binary, causing readiness probes to return ExitCode 127 despite healthy app code.</p></div>
-                              <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-[#00ff66]/20 text-[#00ff66] border border-[#00ff66]/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">02</span><p class="text-[10.5px] text-slate-300 font-sans leading-snug">Injected <code>RUN apk add --no-cache curl</code> into the local Dockerfile before the health-check layer.</p></div>
-                              <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">03</span><p class="text-[10.5px] text-slate-300 font-sans leading-snug">Restored HTTP 200 OK signal in 45m. Rescued the live 60-minute deployment SLA and published runbook.</p></div>
+                              <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-red-500/20 text-red-400 border border-red-500/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">01</span><p class="text-[11.5px] sm:text-xs text-slate-200 font-sans leading-relaxed">Upstream image silently stripped the <code>curl</code> binary, causing readiness probes to return ExitCode 127 despite healthy app code.</p></div>
+                              <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-[#00ff66]/20 text-[#00ff66] border border-[#00ff66]/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">02</span><p class="text-[11.5px] sm:text-xs text-slate-200 font-sans leading-relaxed">Injected <code>RUN apk add --no-cache curl</code> into the local Dockerfile before the health-check layer.</p></div>
+                              <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">03</span><p class="text-[11.5px] sm:text-xs text-slate-200 font-sans leading-relaxed">Restored HTTP 200 OK signal in 45m. Rescued the live 60-minute deployment SLA and published runbook.</p></div>
                             </div>
                           </div>
                         </div>
@@ -1364,7 +1222,7 @@
                     <span class="shrink-0 font-black">+</span> Java SKU Refactoring (+315 / -992 LOC)
                   </h4>
                   <div class="pl-[18px] sm:pl-4 border-l-2 border-purple-500/40 ml-1 space-y-3">
-                    <p class="text-sm font-sans text-slate-300 leading-relaxed">
+                    <p class="text-sm font-sans text-slate-200 leading-relaxed">
                       Consolidated divergent product SKU identifiers into a canonical DTO model across renewal microservices.
                     </p>
                     <button type="button" onclick="document.getElementById('inline-java-diff').classList.toggle('is-expanded'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');" aria-expanded="false" class="shiny-btn-purple group relative overflow-hidden inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-purple-500/10 hover:bg-purple-500/20 text-purple-400 border border-purple-500/30 text-[11px] sm:text-xs font-mono font-bold transition-colors cursor-pointer focus-visible:ring-2 focus-visible:ring-purple-400 outline-none">
@@ -1372,7 +1230,7 @@
                       <i data-lucide="file-code-2" class="w-3.5 h-3.5"></i> Inspect Java Diff ↘
                     </button>
                     
-                    <!-- Inline Investigation: Java Diff (Scaled down to 85% width visually, padding fixes ghost gap) -->
+                    <!-- Inline Investigation: Java Diff -->
                     <div id="inline-java-diff" class="dossier-expand-grid w-full xl:w-[85%]">
                       <div class="dossier-expand-inner">
                         <div class="pt-3 pb-2">
@@ -1394,24 +1252,17 @@
                               <rect x="305" y="27" width="195" height="70" rx="10" fill="#062c22" stroke="#34d399" stroke-width="1.8"/><text x="402" y="55" text-anchor="middle" fill="#6ee7b7" font-size="12.5" font-weight="bold">Canonical SKU</text><text x="402" y="74" text-anchor="middle" fill="#a7f3d0" font-size="10">Single Source of Truth</text>
                             </svg>
 
-                            <!-- 15% Larger Topic Headings (w-9 h-9, text-[13px]/text-sm) -->
+                            <!-- Topic Headings (+10% Text Size) -->
                             <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
-                              <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-red-500/20 text-red-400 border border-red-500/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">01</span><p class="text-[10.5px] text-slate-300 font-sans leading-snug">Microservices maintained inconsistent naming (<code>parentSKU</code> vs <code>parentProductSku</code>), duplicating mapping logic.</p></div>
-                              <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-purple-500/20 text-purple-400 border border-purple-500/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">02</span><p class="text-[10.5px] text-slate-300 font-sans leading-snug">Converged payload mapping onto a single canonical DTO identifier and deleted legacy adapter classes.</p></div>
-                              <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">03</span><p class="text-[10.5px] text-slate-300 font-sans leading-snug">315 lines added, 992 removed. Net reduction of 677 LOC with 100% green JUnit integration suites.</p></div>
+                              <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-red-500/20 text-red-400 border border-red-500/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">01</span><p class="text-[11.5px] sm:text-xs text-slate-200 font-sans leading-relaxed">Microservices maintained inconsistent naming (<code>parentSKU</code> vs <code>parentProductSku</code>), duplicating mapping logic.</p></div>
+                              <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-purple-500/20 text-purple-400 border border-purple-500/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">02</span><p class="text-[11.5px] sm:text-xs text-slate-200 font-sans leading-relaxed">Converged payload mapping onto a single canonical DTO identifier and deleted legacy adapter classes.</p></div>
+                              <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">03</span><p class="text-[11.5px] sm:text-xs text-slate-200 font-sans leading-relaxed">315 lines added, 992 removed. Net reduction of 677 LOC with 100% green JUnit integration suites.</p></div>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-
-                <!-- Credential -->
-                <div class="pt-2 border-l-2 border-transparent ml-1 pl-4">
-                  <a href="https://www.credly.com/badges/20f333e6-76e8-431a-9603-c22408681cd8" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-3 py-1.5 rounded bg-carbon-900 border border-carbon-700 hover:border-[#00ff66]/50 text-[#00ff66] font-mono font-bold text-[11px] transition-colors focus-visible:ring-2 focus-visible:ring-[#00ff66] outline-none">
-                    <i data-lucide="check-circle" class="w-3.5 h-3.5"></i> Verified: AWS ML Engineer Associate
-                  </a>
                 </div>
 
               </div>
@@ -1434,11 +1285,17 @@
                   </div>
                 </div>
                 <div>
-                  <h3 class="text-xl sm:text-2xl font-bold text-white tracking-tight leading-snug">Eficens Systems LLC</h3>
-                  <p class="text-[13px] sm:text-sm font-mono text-[#00ff66] font-semibold mt-1">DevOps Engineer<br>(US FinTech)</p>
+                  <h3 class="text-xl sm:text-2xl font-bold text-[#00ff66] tracking-tight leading-snug drop-shadow-[0_0_8px_rgba(0,255,102,0.3)]">Eficens Systems LLC</h3>
+                  <p class="text-[13px] sm:text-sm font-mono text-slate-200 font-semibold mt-1">DevOps Engineer<br>(US FinTech)</p>
                   <div class="text-[11px] sm:text-xs font-mono text-slate-400 mt-2.5 space-y-0.5">
                     <div>Dec 2021 – Aug 2024</div>
                     <div>New York area</div>
+                  </div>
+                  <!-- Moved Credential -->
+                  <div class="pt-3">
+                    <a href="https://www.credly.com/badges/af2f25bd-7fbe-4e21-92fc-4c39f8e92cf7" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-2.5 py-1.5 rounded-lg bg-carbon-900 border border-carbon-700 hover:border-[#00ff66]/50 text-[#00ff66] font-mono font-bold text-[10px] sm:text-[11px] transition-colors focus-visible:ring-2 focus-visible:ring-[#00ff66] outline-none shadow-md">
+                      <i data-lucide="check-circle" class="w-3.5 h-3.5"></i> AWS Sol. Architect
+                    </a>
                   </div>
                 </div>
               </div>
@@ -1451,7 +1308,7 @@
                   <h4 class="text-[13px] sm:text-sm font-mono font-bold text-[#00ff66] flex items-start gap-2">
                     <span class="shrink-0 font-black">+</span> Zero-Trust Terraform Blueprints
                   </h4>
-                  <p class="text-sm font-sans text-slate-300 leading-relaxed pl-[18px] sm:pl-4 border-l-2 border-[#00ff66]/40 ml-1">
+                  <p class="text-sm font-sans text-slate-200 leading-relaxed pl-[18px] sm:pl-4 border-l-2 border-[#00ff66]/40 ml-1">
                     Engineered reusable IaC modules provisioning private multi-tier VPC topologies across environments syncing with regulated financial-market feeds.
                   </p>
                 </div>
@@ -1461,7 +1318,7 @@
                   <h4 class="text-[13px] sm:text-sm font-mono font-bold text-amber-400 flex items-start gap-2">
                     <span class="shrink-0 font-black">+</span> DependencyViolation Resolution
                   </h4>
-                  <p class="text-sm font-sans text-slate-300 leading-relaxed pl-[18px] sm:pl-4 border-l-2 border-amber-500/40 ml-1">
+                  <p class="text-sm font-sans text-slate-200 leading-relaxed pl-[18px] sm:pl-4 border-l-2 border-amber-500/40 ml-1">
                     Decoupled inline security-group blocks into standalone <code>aws_security_group_rule</code> resources.
                   </p>
                 </div>
@@ -1472,7 +1329,7 @@
                     <span class="shrink-0 font-black">+</span> KMS Cryptographic Parity
                   </h4>
                   <div class="pl-[18px] sm:pl-4 border-l-2 border-sky-500/40 ml-1 space-y-3">
-                    <p class="text-sm font-sans text-slate-300 leading-relaxed">
+                    <p class="text-sm font-sans text-slate-200 leading-relaxed">
                       Automated Jenkins pipelines enforcing KMS envelope encryption and zero-downtime RDS upgrades.
                     </p>
                     <button type="button" onclick="document.getElementById('inline-arn-225').classList.toggle('is-expanded'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');" aria-expanded="false" class="shiny-btn-blue group relative overflow-hidden inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-sky-500/10 hover:bg-sky-500/20 text-sky-400 border border-sky-500/30 text-[11px] sm:text-xs font-mono font-bold transition-colors cursor-pointer focus-visible:ring-2 focus-visible:ring-sky-400 outline-none">
@@ -1480,7 +1337,7 @@
                       <i data-lucide="shield-alert" class="w-3.5 h-3.5"></i> Inspect IAC Audit 225 ↘
                     </button>
                     
-                    <!-- Inline Investigation: IAC Audit 225 (Scaled down to 85% width visually, padding fixes ghost gap) -->
+                    <!-- Inline Investigation: IAC Audit 225 -->
                     <div id="inline-arn-225" class="dossier-expand-grid w-full xl:w-[85%]">
                       <div class="dossier-expand-inner">
                         <div class="pt-3 pb-2">
@@ -1504,24 +1361,17 @@
                               </svg>
                             </div>
 
-                            <!-- 15% Larger Topic Headings (w-9 h-9, text-[13px]/text-sm) -->
+                            <!-- Topic Headings (+10% Text Size) -->
                             <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
-                              <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-red-500/20 text-red-400 border border-red-500/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">01</span><p class="text-[10.5px] text-slate-300 font-sans leading-snug">Terragrunt configurations mistakenly mapped a staging IAM role ARN into production execution variables.</p></div>
-                              <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-sky-500/20 text-sky-400 border border-sky-500/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">02</span><p class="text-[10.5px] text-slate-300 font-sans leading-snug">Intercepted drift during CI/CD plan phase and dynamically injected account-scoped production principals.</p></div>
-                              <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">03</span><p class="text-[10.5px] text-slate-300 font-sans leading-snug">Blocked cross-environment violation, enforcing strict Zero-Trust boundaries before infrastructure was provisioned.</p></div>
+                              <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-red-500/20 text-red-400 border border-red-500/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">01</span><p class="text-[11.5px] sm:text-xs text-slate-200 font-sans leading-relaxed">Terragrunt configurations mistakenly mapped a staging IAM role ARN into production execution variables.</p></div>
+                              <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-sky-500/20 text-sky-400 border border-sky-500/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">02</span><p class="text-[11.5px] sm:text-xs text-slate-200 font-sans leading-relaxed">Intercepted drift during CI/CD plan phase and dynamically injected account-scoped production principals.</p></div>
+                              <div class="space-y-1.5"><span class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 flex items-center justify-center font-mono font-bold text-[13px] sm:text-sm mb-2">03</span><p class="text-[11.5px] sm:text-xs text-slate-200 font-sans leading-relaxed">Blocked cross-environment violation, enforcing strict Zero-Trust boundaries before infrastructure was provisioned.</p></div>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-
-                <!-- Credential -->
-                <div class="pt-2 border-l-2 border-transparent ml-1 pl-4">
-                  <a href="https://www.credly.com/badges/af2f25bd-7fbe-4e21-92fc-4c39f8e92cf7" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-3 py-1.5 rounded bg-carbon-900 border border-carbon-700 hover:border-[#00ff66]/50 text-[#00ff66] font-mono font-bold text-[11px] transition-colors focus-visible:ring-2 focus-visible:ring-[#00ff66] outline-none">
-                    <i data-lucide="check-circle" class="w-3.5 h-3.5"></i> Verified: AWS Sol. Architect Associate
-                  </a>
                 </div>
 
               </div>
@@ -1538,11 +1388,17 @@
                   <span class="asset-fallback hidden font-sans font-black text-2xl text-sky-400">LD</span>
                 </div>
                 <div>
-                  <h3 class="text-xl sm:text-2xl font-bold text-white tracking-tight leading-snug">LotusData LLP</h3>
-                  <p class="text-[13px] sm:text-sm font-mono text-[#00ff66] font-semibold mt-1">Jr. System / Cloud Administrator</p>
+                  <h3 class="text-xl sm:text-2xl font-bold text-[#00ff66] tracking-tight leading-snug drop-shadow-[0_0_8px_rgba(0,255,102,0.3)]">LotusData LLP</h3>
+                  <p class="text-[13px] sm:text-sm font-mono text-slate-200 font-semibold mt-1">Jr. System / Cloud Administrator</p>
                   <div class="text-[11px] sm:text-xs font-mono text-slate-400 mt-2.5 space-y-0.5">
                     <div>Mar 2021 – Dec 2021</div>
                     <div>Princeton, New Jersey, USA</div>
+                  </div>
+                  <!-- Moved Credential -->
+                  <div class="pt-3">
+                    <a href="https://www.credly.com/badges/582be29e-4701-41a4-b4bb-638b1d675fc2" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-2.5 py-1.5 rounded-lg bg-carbon-900 border border-carbon-700 hover:border-[#00ff66]/50 text-[#00ff66] font-mono font-bold text-[10px] sm:text-[11px] transition-colors focus-visible:ring-2 focus-visible:ring-[#00ff66] outline-none shadow-md">
+                      <i data-lucide="check-circle" class="w-3.5 h-3.5"></i> AWS Cloud Practitioner
+                    </a>
                   </div>
                 </div>
               </div>
@@ -1555,7 +1411,7 @@
                   <h4 class="text-[13px] sm:text-sm font-mono font-bold text-[#00ff66] flex items-start gap-2">
                     <span class="shrink-0 font-black">+</span> High-Availability AWS Fleet
                   </h4>
-                  <p class="text-sm font-sans text-slate-300 leading-relaxed pl-[18px] sm:pl-4 border-l-2 border-[#00ff66]/40 ml-1">
+                  <p class="text-sm font-sans text-slate-200 leading-relaxed pl-[18px] sm:pl-4 border-l-2 border-[#00ff66]/40 ml-1">
                     Administration and scaling of 200+ AWS instances, sustaining 99% system uptime through proactive CloudWatch monitoring.
                   </p>
                 </div>
@@ -1565,7 +1421,7 @@
                   <h4 class="text-[13px] sm:text-sm font-mono font-bold text-amber-400 flex items-start gap-2">
                     <span class="shrink-0 font-black">+</span> Online VFS &amp; LVM Expansion
                   </h4>
-                  <p class="text-sm font-sans text-slate-300 leading-relaxed pl-[18px] sm:pl-4 border-l-2 border-amber-500/40 ml-1">
+                  <p class="text-sm font-sans text-slate-200 leading-relaxed pl-[18px] sm:pl-4 border-l-2 border-amber-500/40 ml-1">
                     Dynamically managed filesystem scaling and non-disruptive inode recovery using <code>lvextend -r</code> and <code>lsof +L1</code> with 0 reboot overhead.
                   </p>
                 </div>
@@ -1575,16 +1431,9 @@
                   <h4 class="text-[13px] sm:text-sm font-mono font-bold text-sky-400 flex items-start gap-2">
                     <span class="shrink-0 font-black">+</span> Automated OS Provisioning
                   </h4>
-                  <p class="text-sm font-sans text-slate-300 leading-relaxed pl-[18px] sm:pl-4 border-l-2 border-sky-500/40 ml-1">
+                  <p class="text-sm font-sans text-slate-200 leading-relaxed pl-[18px] sm:pl-4 border-l-2 border-sky-500/40 ml-1">
                     Standardized RedHat Linux bare-metal installations using Kickstart pre/post scripts.
                   </p>
-                </div>
-
-                <!-- Credential -->
-                <div class="pt-2 border-l-2 border-transparent ml-1 pl-4">
-                  <a href="https://www.credly.com/badges/582be29e-4701-41a4-b4bb-638b1d675fc2" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-3 py-1.5 rounded bg-carbon-900 border border-carbon-700 hover:border-[#00ff66]/50 text-[#00ff66] font-mono font-bold text-[11px] transition-colors focus-visible:ring-2 focus-visible:ring-[#00ff66] outline-none">
-                    <i data-lucide="check-circle" class="w-3.5 h-3.5"></i> Verified: AWS Cloud Practitioner
-                  </a>
                 </div>
 
               </div>
@@ -1682,10 +1531,10 @@
               <span class="edu-logo-mark">IIT-B</span>
             </div>
             <div class="edu-text-content px-4">
-              <h3 class="text-base sm:text-lg font-bold text-slate-200 leading-snug">IIT Bombay</h3>
+              <h3 class="text-base sm:text-lg font-bold text-slate-200 leading-snug">Indian Institute of Technology - Bombay</h3>
               <p class="text-[12px] sm:text-[13px] font-mono font-bold text-[#00ff66] mt-1.5 leading-relaxed">Executive Certificate in AI &amp; MLOps</p>
               <p class="text-[11px] font-mono text-slate-400 mt-2">2026</p>
-              <p class="text-xs text-slate-400 leading-relaxed mt-4">
+              <p class="text-xs text-slate-300 leading-relaxed mt-4">
                 <strong class="text-[#00ff66]">Focus:</strong> OpenMPI collective comms (MPI_Allreduce), data-parallel gradient sync, CUDA memory pinning, and MLOps orchestration.
               </p>
             </div>
@@ -1703,7 +1552,7 @@
               <h3 class="text-base sm:text-lg font-bold text-slate-200 leading-snug">New Jersey Institute of Technology (NJIT)</h3>
               <p class="text-[12px] sm:text-[13px] font-mono font-bold text-[#00ff66] mt-1.5 leading-relaxed">Master of Science in Computer Science</p>
               <p class="text-[11px] font-mono text-slate-400 mt-2">Dec 2020</p>
-              <p class="text-xs text-slate-400 leading-relaxed mt-4">
+              <p class="text-xs text-slate-300 leading-relaxed mt-4">
                 <strong class="text-[#00ff66]">Focus:</strong> POSIX syscall interfaces, virtual memory paging, distributed consensus protocols, and hypervisors.
               </p>
             </div>
@@ -1721,7 +1570,7 @@
               <h3 class="text-base sm:text-lg font-bold text-slate-200 leading-snug">Guru Gobind Singh Indraprastha University</h3>
               <p class="text-[12px] sm:text-[13px] font-mono font-bold text-[#00ff66] mt-1.5 leading-relaxed">Bachelor of Technology in Computer Science</p>
               <p class="text-[11px] font-mono text-slate-400 mt-2">May 2017</p>
-              <p class="text-xs text-slate-400 leading-relaxed mt-4">
+              <p class="text-xs text-slate-300 leading-relaxed mt-4">
                 <strong class="text-[#00ff66]">Focus:</strong> TCP/IP packet framing, socket programming, deterministic data structures, and compiler/AST fundamentals.
               </p>
             </div>
@@ -1843,7 +1692,7 @@
                     From evidence to a <span class="text-[#00ff66]">clear handoff.</span>
                   </h2>
                 </div>
-                <p class="text-slate-300 text-xs sm:text-[13px] font-mono max-w-md">
+                <p class="text-slate-200 text-xs sm:text-[13px] font-mono max-w-md">
                   &gt; A practical approach to diagnosing, validating and communicating engineering changes.
                 </p>
               </div>
@@ -1856,7 +1705,7 @@
                     <div class="flex items-center justify-between gap-2 mb-2 border-b border-[#00ff66]/20 pb-2">
                       <span class="text-[#00ff66] font-bold flex items-center gap-1.5 text-[11px] sm:text-xs">01. inspect_context</span>
                     </div>
-                    <p class="text-[11px] sm:text-[12px] text-slate-300 leading-relaxed mb-3">
+                    <p class="text-[11px] sm:text-[12px] text-slate-200 leading-relaxed mb-3">
                       Understand what changed before changing anything.
                     </p>
                   </div>
@@ -1874,7 +1723,7 @@
                     <div class="flex items-center justify-between gap-2 mb-2 border-b border-[#00ff66]/20 pb-2">
                       <span class="text-[#00ff66] font-bold flex items-center gap-1.5 text-[11px] sm:text-xs">02. trace_and_validate</span>
                     </div>
-                    <p class="text-[11px] sm:text-[12px] text-slate-300 leading-relaxed mb-3">
+                    <p class="text-[11px] sm:text-[12px] text-slate-200 leading-relaxed mb-3">
                       Trace the issue across service and infrastructure boundaries, then validate the proposed fix.
                     </p>
                   </div>
@@ -1892,7 +1741,7 @@
                     <div class="flex items-center justify-between gap-2 mb-2 border-b border-amber-500/20 pb-2">
                       <span class="text-amber-400 font-bold flex items-center gap-1.5 text-[11px] sm:text-xs">03. review_change</span>
                     </div>
-                    <p class="text-[11px] sm:text-[12px] text-slate-300 leading-relaxed mb-3">
+                    <p class="text-[11px] sm:text-[12px] text-slate-200 leading-relaxed mb-3">
                       Check the change scope, access impact, operational risk and rollback path before proceeding.
                     </p>
                   </div>
@@ -1910,7 +1759,7 @@
                     <div class="flex items-center justify-between gap-2 mb-2 border-b border-[#38bdf8]/20 pb-2">
                       <span class="text-[#38bdf8] font-bold flex items-center gap-1.5 text-[11px] sm:text-xs">04. close_the_loop</span>
                     </div>
-                    <p class="text-[11px] sm:text-[12px] text-slate-300 leading-relaxed mb-3">
+                    <p class="text-[11px] sm:text-[12px] text-slate-200 leading-relaxed mb-3">
                       Communicate what was found, what changed, what was verified and what needs to happen next.
                     </p>
                   </div>
@@ -1922,7 +1771,7 @@
               </div>
               
               <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-2">
-                <button type="button" id="btnReplayWorkflow" onclick="replayWorkflowAnim()" class="px-3 py-1.5 rounded-lg bg-carbon-800 hover:bg-carbon-700 text-slate-300 hover:text-white border border-carbon-600 font-mono text-[10px] font-bold flex items-center gap-1.5 transition-colors cursor-pointer" aria-label="Replay workflow animation">
+                <button type="button" id="btnReplayWorkflow" onclick="replayWorkflowAnim()" class="px-3 py-1.5 rounded-lg bg-carbon-800 hover:bg-carbon-700 text-slate-200 hover:text-white border border-carbon-600 font-mono text-[10px] font-bold flex items-center gap-1.5 transition-colors cursor-pointer" aria-label="Replay workflow animation">
                   ↻ Replay workflow
                 </button>
                 <span class="text-[9px] sm:text-[10px] text-slate-500 font-mono italic">Illustrative animation only — no deployment is executed.</span>
@@ -1962,6 +1811,7 @@
       
       <div class="p-5 sm:p-6 overflow-y-auto space-y-5 bg-[#030804]">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <!-- HTTP Head RTT Dial -->
           <div class="p-4 sm:p-5 rounded-xl bg-black border border-[#00ff66]/30 flex flex-col items-center text-center space-y-2.5 relative">
             <div class="flex flex-col items-center gap-1.5">
               <span class="px-1.5 py-0.5 rounded bg-[#00ff66]/15 text-[#00ff66] text-[9px] font-bold border border-[#00ff66]/40">MEASURED</span>
@@ -1987,6 +1837,7 @@
             </div>
           </div>
 
+          <!-- Browser rAF Cadence Dial -->
           <div class="p-4 sm:p-5 rounded-xl bg-black border border-[#00ff66]/30 flex flex-col items-center text-center space-y-2.5 relative">
             <div class="flex flex-col items-center gap-1.5">
               <span class="px-1.5 py-0.5 rounded bg-[#00ff66]/15 text-[#00ff66] text-[9px] font-bold border border-[#00ff66]/40">MEASURED</span>
@@ -2012,6 +1863,7 @@
             </div>
           </div>
 
+          <!-- Client Bandwidth Dial -->
           <div class="p-4 sm:p-5 rounded-xl bg-black border border-[#00ff66]/30 flex flex-col items-center text-center space-y-2.5 relative">
             <div class="flex flex-col items-center gap-1.5">
               <span id="dlBadgeLabel" class="px-1.5 py-0.5 rounded bg-amber-500/15 text-amber-300 text-[9px] font-bold border border-amber-500/40">LIVE SPEEDOMETER</span>
@@ -2036,10 +1888,44 @@
           </div>
         </div>
 
+        <!-- System Details Grid with Explanatory Tooltips -->
         <div class="p-3.5 rounded-xl bg-black border border-carbon-800 grid grid-cols-1 sm:grid-cols-3 gap-3 text-[11px]">
-          <div><span class="text-slate-400 text-[9.5px] uppercase block mb-0.5">EDGE POP</span><strong id="telemetryEdgePop" class="text-[#00ff66]">Detecting POP…</strong></div>
-          <div><span class="text-slate-400 text-[9.5px] uppercase block mb-0.5">NET INFO API</span><strong id="telemetryNetApiDetail" class="text-amber-300">Checking API…</strong></div>
-          <div><span class="text-slate-400 text-[9.5px] uppercase block mb-0.5">JS HEAP</span><strong id="telemetryHeapVal" class="text-sky-300">Checking…</strong></div>
+          <div>
+            <span class="flex items-center gap-1 text-slate-400 text-[9.5px] uppercase mb-0.5">
+              EDGE POP
+              <div class="a11y-tooltip-wrapper inline-flex">
+                <button type="button" class="a11y-tooltip-trigger" aria-expanded="false" aria-label="Explanation of Edge POP">
+                  <span class="inline-flex items-center justify-center w-3 h-3 rounded-full border border-slate-500 text-slate-400 text-[8px] font-mono lowercase font-bold leading-none select-none hover:text-[#00ff66] hover:border-[#00ff66]">i</span>
+                </button>
+                <div class="a11y-tooltip-content tooltip-up">Identifies the specific Cloudflare Point of Presence handling your request network edge.</div>
+              </div>
+            </span>
+            <strong id="telemetryEdgePop" class="text-[#00ff66]">Detecting POP…</strong>
+          </div>
+          <div>
+            <span class="flex items-center gap-1 text-slate-400 text-[9.5px] uppercase mb-0.5">
+              NET INFO API
+              <div class="a11y-tooltip-wrapper inline-flex">
+                <button type="button" class="a11y-tooltip-trigger" aria-expanded="false" aria-label="Explanation of Net Info API">
+                  <span class="inline-flex items-center justify-center w-3 h-3 rounded-full border border-slate-500 text-slate-400 text-[8px] font-mono lowercase font-bold leading-none select-none hover:text-[#00ff66] hover:border-[#00ff66]">i</span>
+                </button>
+                <div class="a11y-tooltip-content tooltip-up">Hardware-reported Effective Connection Type via NetworkInformation API (often throttled by browsers).</div>
+              </div>
+            </span>
+            <strong id="telemetryNetApiDetail" class="text-amber-300">Checking API…</strong>
+          </div>
+          <div>
+            <span class="flex items-center gap-1 text-slate-400 text-[9.5px] uppercase mb-0.5">
+              JS HEAP
+              <div class="a11y-tooltip-wrapper inline-flex">
+                <button type="button" class="a11y-tooltip-trigger" aria-expanded="false" aria-label="Explanation of JS Heap">
+                  <span class="inline-flex items-center justify-center w-3 h-3 rounded-full border border-slate-500 text-slate-400 text-[8px] font-mono lowercase font-bold leading-none select-none hover:text-[#00ff66] hover:border-[#00ff66]">i</span>
+                </button>
+                <div class="a11y-tooltip-content tooltip-up tooltip-right">Displays active V8 JavaScript memory allocated vs total memory available on the client device.</div>
+              </div>
+            </span>
+            <strong id="telemetryHeapVal" class="text-sky-300">Checking…</strong>
+          </div>
         </div>
       </div>
 
@@ -2094,15 +1980,15 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
           <div class="p-3 rounded-xl bg-carbon-950 border border-red-500/30">
             <span class="text-red-400 font-bold block mb-1">01 — THE PROBLEM</span>
-            <p class="font-sans text-xs text-slate-300 leading-relaxed">An upstream base image update silently stripped the <code class="text-red-300 font-mono">curl</code> binary. The Spring Boot readiness probe failed with <code class="text-red-300 font-mono">ExitCode 127</code>, freezing the pipeline deployment despite the app being healthy.</p>
+            <p class="font-sans text-xs text-slate-200 leading-relaxed">An upstream base image update silently stripped the <code class="text-red-300 font-mono">curl</code> binary. The Spring Boot readiness probe failed with <code class="text-red-300 font-mono">ExitCode 127</code>, freezing the pipeline deployment despite the app being healthy.</p>
           </div>
           <div class="p-3 rounded-xl bg-carbon-950 border border-[#00ff66]/30">
             <span class="text-[#00ff66] font-bold block mb-1">02 — THE CHANGE</span>
-            <p class="font-sans text-xs text-slate-300 leading-relaxed">Bypassed the upstream regression by injecting <code class="text-[#00ff66] font-mono">RUN apk add --no-cache curl</code> directly into the local Dockerfile layers prior to health-check execution.</p>
+            <p class="font-sans text-xs text-slate-200 leading-relaxed">Bypassed the upstream regression by injecting <code class="text-[#00ff66] font-mono">RUN apk add --no-cache curl</code> directly into the local Dockerfile layers prior to health-check execution.</p>
           </div>
           <div class="p-3 rounded-xl bg-carbon-950 border border-emerald-500/30">
             <span class="text-emerald-400 font-bold block mb-1">03 — THE RESULT</span>
-            <p class="font-sans text-xs text-slate-300 leading-relaxed">Re-established the <strong class="text-white">HTTP 200 OK</strong> health signal in 45 minutes. Saved the 60-minute SLA release window and published a permanent triage runbook.</p>
+            <p class="font-sans text-xs text-slate-200 leading-relaxed">Re-established the <strong class="text-white">HTTP 200 OK</strong> health signal in 45 minutes. Saved the 60-minute SLA release window and published a permanent triage runbook.</p>
           </div>
         </div>
 
@@ -2169,8 +2055,8 @@
           <span class="w-2.5 h-2.5 rounded-full bg-[#00ff66] animate-pulse"></span>
           <span class="font-bold text-[#00ff66] text-[10px] sm:text-xs tracking-wider">Incident Sandbox Shell</span>
         </div>
-        <button type="button" onclick="forceBreakCli()" class="absolute left-1/2 -translate-x-1/2 px-2.5 py-1 rounded bg-red-950/90 hover:bg-red-600 text-red-200 text-[9px] font-bold cursor-pointer z-10">■ Break</button>
-        <button type="button" onclick="toggleConsoleModal()" class="px-3 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-slate-300 text-[9px] font-bold cursor-pointer z-10">✕ Close</button>
+        <button type="button" onclick="forceBreakCli()" class="absolute left-1/2 -translate-x-1/2 px-2.5 py-1 rounded bg-red-950/90 hover:bg-red-600 text-red-200 text-[9px] font-bold cursor-pointer z-10 transition-colors">■ Break</button>
+        <button type="button" onclick="toggleConsoleModal()" class="px-3 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-slate-300 text-[9px] font-bold cursor-pointer z-10 transition-colors">✕ Close</button>
       </div>
       <div id="cliOutput" class="flex-1 overflow-y-auto p-3 sm:p-4 space-y-1 text-slate-300 text-[10px] sm:text-[11.5px] leading-relaxed font-mono">
         <div class="text-[#00ff66] font-bold">=== Interactive Outage &amp; Diagnostic Sandbox ===</div>
@@ -2182,12 +2068,13 @@
           <button type="button" onclick="runCliCommand('help')" class="px-1.5 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] text-[9px] cursor-pointer transition-colors">help</button>
           <button type="button" onclick="runCliCommand('ls -la')" class="px-1.5 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] text-[9px] cursor-pointer transition-colors">ls</button>
           <button type="button" onclick="runCliCommand('top')" class="px-1.5 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] text-[9px] cursor-pointer transition-colors">top</button>
+          <button type="button" onclick="runCliCommand('curl trace')" class="px-1.5 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] text-[9px] cursor-pointer transition-colors">trace</button>
           <button type="button" onclick="runCliCommand('./patch.sh')" class="px-1.5 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] text-[9px] cursor-pointer transition-colors">./patch.sh</button>
           <button type="button" onclick="runCliCommand('sudo hire sai')" class="px-1.5 py-0.5 rounded bg-amber-500/15 hover:bg-amber-400 hover:text-black text-amber-300 border border-amber-500/40 text-[9px] cursor-pointer transition-colors">👑 sudo hire sai</button>
         </div>
         <div class="flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-3">
           <span id="cliPromptLabel" class="text-[#00ff66] font-bold shrink-0 text-[10px] sm:text-xs">sai@prod-bastion:/opt/incident-127$</span>
-          <input type="text" id="cliInput" class="flex-1 bg-transparent border-none outline-none text-[#00ff66] font-mono text-[10px] sm:text-xs" autocomplete="off">
+          <input type="text" id="cliInput" class="flex-1 bg-transparent border-none outline-none text-[#00ff66] font-mono text-[10px] sm:text-xs" autocomplete="off" spellcheck="false">
         </div>
       </div>
     </div>
@@ -2198,7 +2085,7 @@
     <div id="balloonTriviaBubble" class="hidden absolute bottom-full left-0 mb-3 w-[min(295px,calc(100vw-32px))] sm:w-80 p-3.5 sm:p-4 rounded-2xl bg-carbon-900/95 border border-amber-500/60 text-xs font-mono shadow-2xl backdrop-blur-xl max-h-[min(390px,60vh)] overflow-y-auto">
       <div class="flex justify-between items-center text-[10px] text-amber-400 pb-1.5 border-b border-carbon-700">
         <span id="balloonFactLabel" class="font-bold flex items-center gap-1">🎈 AirHead.cs~1.6</span>
-        <button type="button" onclick="dismissBalloonBubble()" class="text-slate-400 hover:text-white cursor-pointer px-1">✕</button>
+        <button type="button" onclick="dismissBalloonBubble()" class="text-slate-400 hover:text-white cursor-pointer px-1 transition-colors">✕</button>
       </div>
       <div id="balloonFactTitle" class="text-white font-bold text-[11px] sm:text-xs mt-2"></div>
       <div id="balloonFactText" class="text-slate-200 mt-1 leading-relaxed font-sans text-[11px] sm:text-xs"></div>
@@ -2209,19 +2096,19 @@
           <span class="text-[9px] text-slate-400">Click 🎈 for next</span>
         </div>
         <div class="flex justify-end">
-          <button type="button" onclick="toggleBalloonSettings()" class="text-[9.5px] text-slate-400 hover:text-amber-400 font-mono cursor-pointer">⚙️ Settings</button>
+          <button type="button" onclick="toggleBalloonSettings()" class="text-[9.5px] text-slate-400 hover:text-amber-400 font-mono cursor-pointer transition-colors">⚙️ Settings</button>
         </div>
       </div>
 
       <div id="balloonSettingsPanel" class="hidden mt-2.5 pt-2.5 border-t border-carbon-700 space-y-2.5 text-[10px] font-mono">
         <div class="flex justify-between items-center text-amber-400 font-bold">
           <span>⚙️ SETTINGS</span>
-          <button type="button" onclick="toggleBalloonSettings()" class="text-slate-400 hover:text-white cursor-pointer">Done</button>
+          <button type="button" onclick="toggleBalloonSettings()" class="text-slate-400 hover:text-white cursor-pointer transition-colors">Done</button>
         </div>
         <div class="space-y-1.5 border-b border-carbon-800 pb-2">
           <div class="flex justify-between items-center text-slate-400">
             <span>Auto-Prompt Timer:</span>
-            <button id="btnAutoPromptToggle" type="button" onclick="toggleAutoPrompt()" class="px-2 py-0.5 rounded bg-[#00ff66]/20 text-[#00ff66] border border-[#00ff66]/50 font-bold cursor-pointer">ON</button>
+            <button id="btnAutoPromptToggle" type="button" onclick="toggleAutoPrompt()" class="px-2 py-0.5 rounded bg-[#00ff66]/20 text-[#00ff66] border border-[#00ff66]/50 font-bold cursor-pointer transition-colors">ON</button>
           </div>
           <div class="flex items-center gap-2 pt-1">
             <input type="number" id="balloonTimerInput" min="15" max="120" step="15" value="40" onchange="setBalloonCustomTimer(this.value)" class="w-16 bg-carbon-800 text-slate-200 border border-carbon-600 rounded px-1.5 py-0.5 text-center outline-none">
@@ -2240,7 +2127,7 @@
 
     <div id="gusBalloon" class="balloon-scale-shell gus-float-anim relative" title="AirHead.cs~1.6 — Drag me around or click for trivia!">
       <button id="btnMinimizeBalloon" type="button" onclick="toggleMinimize(event)" class="absolute -top-1.5 -left-1.5 z-30 w-5 h-5 rounded-full bg-carbon-800 border border-carbon-600 hover:border-amber-400 hover:text-white text-slate-300 text-[10px] font-mono flex items-center justify-center cursor-pointer shadow-md transition-colors">✕</button>
-      <div class="minimized-disc hidden w-8 h-8 rounded-full bg-gradient-to-br from-[#d4fbff] to-[#477aa8] border-2 border-white/60 shadow-xl items-center justify-center font-mono font-bold text-xs text-carbon-950" onclick="toggleMinimize(event)">🎈</div>
+      <div class="minimized-disc hidden w-8 h-8 rounded-full bg-gradient-to-br from-[#d4fbff] to-[#477aa8] border-2 border-white/60 shadow-xl items-center justify-center font-mono font-bold text-xs text-carbon-950 cursor-pointer" onclick="toggleMinimize(event)">🎈</div>
       <div class="balloon-container">
         <div id="gusStick" class="balloon-stick"></div>
         <div id="gusSphere" class="gus-balloon">
@@ -2264,7 +2151,7 @@
         <span class="font-bold text-xs sm:text-sm text-white tracking-tight">Vinay's Copilot</span>
         <span class="px-2 py-0.5 rounded-full text-[9px] font-mono bg-amber-500/10 border border-amber-500/30 text-amber-300">AirHead.cs~1.6</span>
       </div>
-      <button id="minimizeChatBtn" type="button" class="text-slate-400 hover:text-white text-base px-1.5 py-0.5 rounded cursor-pointer pointer-events-none">—</button>
+      <button id="minimizeChatBtn" type="button" class="text-slate-400 hover:text-white text-base px-1.5 py-0.5 rounded cursor-pointer pointer-events-none transition-colors">—</button>
     </div>
     <div id="chatBodyContainer" class="flex flex-col">
       <div id="chatWindow" class="h-56 sm:h-64 overflow-y-auto p-3 sm:p-4 space-y-3 bg-carbon-950/80 text-[11px] sm:text-xs text-slate-200">
@@ -2278,7 +2165,7 @@
         <button type="button" onclick="sendQuickPrompt('sudo hire sai')" class="px-2 py-1 rounded bg-carbon-800 hover:bg-carbon-700 text-emerald-300 border border-carbon-700 cursor-pointer transition-colors">👑 sudo hire sai</button>
       </div>
       <div class="p-2 sm:p-3 bg-carbon-900 border-t border-carbon-700 flex gap-2">
-        <input type="text" id="userInput" class="flex-1 bg-carbon-950 border border-carbon-700 focus:border-amber-500 rounded-xl px-3 py-2 text-[11px] sm:text-xs text-white outline-none font-sans placeholder-slate-500" placeholder="Ask about Vinay or type sudo hire sai..." autocomplete="off">
+        <input type="text" id="userInput" class="flex-1 bg-carbon-950 border border-carbon-700 focus:border-amber-500 rounded-xl px-3 py-2 text-[11px] sm:text-xs text-white outline-none font-sans placeholder-slate-500 transition-colors" placeholder="Ask about Vinay or type sudo hire sai..." autocomplete="off">
         <button id="sendChatBtn" type="button" onclick="sendMessage()" class="px-3.5 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-carbon-950 font-bold text-[11px] font-mono cursor-pointer transition-colors">Send</button>
       </div>
     </div>
@@ -2362,10 +2249,14 @@
     window.openExecCaseModal = function(id) {
       const data = EXEC_CASES[id];
       if (!data) return;
-      document.getElementById('execModalBadge').textContent = data.badge;
-      document.getElementById('execModalTitle').textContent = data.title;
-      document.getElementById('execModalBody').innerHTML = data.body;
-      document.getElementById('execModalFooterMetric').textContent = data.metric;
+      const b = document.getElementById('execModalBadge');
+      const t = document.getElementById('execModalTitle');
+      const m = document.getElementById('execModalFooterMetric');
+      const bdy = document.getElementById('execModalBody');
+      if (b) b.textContent = data.badge;
+      if (t) t.textContent = data.title;
+      if (m) m.textContent = data.metric;
+      if (bdy) bdy.innerHTML = data.body;
       openModal('modal-exec-case');
     };
 
@@ -3228,7 +3119,7 @@
 
       switch (base) {
         case 'help':
-          printCliLine(`Interactive Diagnostic Shell:\n  cd <dir>        : Navigate VFS\n  pwd             : Print working directory\n  ls [-la]        : List directory contents\n  mkdir <dir>     : Create directory\n  touch <file>    : Create empty file\n  rm <file>       : Remove file\n  cp/mv <s d>     : Copy/Move files\n  cat <file>      : Inspect file\n  grep <txt> <f>  : Search file (try 'grep AWS resume.txt' in /home/sai)\n  df -h           : Show disk usage (Live Browser Storage)\n  top / ps        : Show processes (Live JS Heap/Cores)\n  ping <host>     : Test network (Live RTT via Edge)\n  env / whoami    : Print environment details\n  ssh <host>      : Connect securely\n  battery         : Check power status\n  ./patch.sh      : Execute container remediation (+curl)\n  clear           : Wipe terminal screen\n\nHiring / Executive:\n  sudo hire sai   : Fast-track interview scheduling`, 'text-slate-300');
+          printCliLine(`Interactive Diagnostic Shell:\n  cd <dir>        : Navigate VFS\n  pwd             : Print working directory\n  ls [-la]        : List directory contents\n  mkdir <dir>     : Create directory\n  touch <file>    : Create empty file\n  rm <file>       : Remove file\n  cp/mv <s d>     : Copy/Move files\n  cat <file>      : Inspect file\n  grep <txt> <f>  : Search file (try 'grep AWS resume.txt' in /home/sai)\n  df -h           : Show disk usage (Live Browser Storage)\n  top / ps        : Show processes (Live JS Heap/Cores)\n  ping <host>     : Test network (Live RTT via Edge)\n  trace <host>    : Check edge POP routing (Live)\n  env / whoami    : Print environment details\n  ssh <host>      : Connect securely\n  battery         : Check power status\n  ./patch.sh      : Execute container remediation (+curl)\n  clear           : Wipe terminal screen\n\nHiring / Executive:\n  sudo hire sai   : Fast-track interview scheduling`, 'text-slate-300');
           break;
         case 'pwd':
           printCliLine(vfs_cwd, 'text-slate-300');
@@ -3338,6 +3229,10 @@
               printCliLine(`64 bytes from ${args[1]}: icmp_seq=1 ttl=56 time=${rtt} ms`, 'text-emerald-400');
             } catch(e) { printCliLine(`ping: sendmsg: Network is unreachable`, 'text-red-400'); }
           }
+          break;
+        case 'trace':
+          printCliLine(`* Executing diagnostic edge trace...`, 'text-slate-400');
+          runCliCommand(`curl ${args[1] || 'trace'}`);
           break;
         case 'env':
         case 'whoami':
