@@ -276,22 +276,29 @@
     .svg-flow-line, .loop-active-flow { stroke-dasharray: 8 8 !important; animation: svgPacketFlow 1s linear infinite !important; }
 
     /* ========================================================= */
-    /* HR MODE THEME: 3-BENTO BLUE ON DEEP OBSIDIAN */
+    /* HR MODE THEME: DEEP SLATE & ZINC */
     /* ========================================================= */
-    body.mode-hr { background-color: #0F172A !important; color: #1E293B !important; background-image: none !important; }
+    body.mode-hr { background-color: #0B0F19 !important; color: #E4E4E7 !important; background-image: none !important; }
     body.mode-hr .bg-grid-pattern, body.mode-hr .hero-glow { display: none !important; }
     
     /* Header */
-    body.mode-hr header { background: #163E78 !important; border-bottom: none !important; color: #FFFFFF !important; }
+    body.mode-hr header { background: #0B0F19 !important; border-bottom: 1px solid #27272A !important; color: #FFFFFF !important; }
     body.mode-hr header .text-white, body.mode-hr header .text-slate-900, body.mode-hr header h1 { color: #FFFFFF !important; }
-    body.mode-hr header .text-slate-400, body.mode-hr header .text-slate-300, body.mode-hr header a, body.mode-hr header .text-xs { color: #A9CFFF !important; }
-    body.mode-hr header .bg-carbon-800 { background: #28578B !important; border-color: #315D91 !important; color: #FFFFFF !important; }
-    body.mode-hr header .asset-fallback { color: #163E78 !important; }
-    body.mode-hr header .border-carbon-600 { border-color: #315D91 !important; }
+    body.mode-hr header .text-slate-400, body.mode-hr header .text-slate-300, body.mode-hr header a, body.mode-hr header .text-xs { color: #A1A1AA !important; }
+    body.mode-hr header .bg-carbon-800 { background: #161B26 !important; border-color: #27272A !important; color: #FFFFFF !important; }
+    body.mode-hr header .asset-fallback { color: #A1A1AA !important; }
+    body.mode-hr header .border-carbon-600 { border-color: #27272A !important; }
     
+    /* Active Mode Switcher fixes */
+    body.mode-hr header #headerBtnHr.bg-\[\#0F6E6A\] { background: #27272A !important; color: #FFFFFF !important; border-color: #3F3F46 !important; }
+    body.mode-hr header #mobileBtnHr.bg-\[\#0F6E6A\] { background: #27272A !important; color: #FFFFFF !important; border-color: #3F3F46 !important; }
+    
+    /* Header CTAs */
+    body.mode-hr header a.bg-carbon-800:hover, body.mode-hr header button.bg-carbon-800:hover { background: #27272A !important; color: #FFFFFF !important; }
+
     /* 3 Bento Boxes (Left, Middle, Right) */
     body.mode-hr aside, body.mode-hr .lg\:col-span-6 > div.bg-white, body.mode-hr .lg\:col-span-3.rounded-2xl {
-      background: #163E78 !important; border-color: #315D91 !important; color: #FFFFFF !important; box-shadow: 0 8px 32px rgba(0,0,0,0.4) !important;
+      background: #161B26 !important; border: 1px solid #27272A !important; color: #FFFFFF !important; box-shadow: none !important;
     }
     
     /* Text overrides on Dark Panels (Left, Middle outer, Right) */
@@ -302,55 +309,58 @@
     }
     body.mode-hr aside .text-slate-600, body.mode-hr aside .text-slate-500, body.mode-hr aside .text-slate-700,
     body.mode-hr .lg\:col-span-6 > div.bg-white > p, body.mode-hr .lg\:col-span-6 > div.bg-white .text-slate-500,
+    body.mode-hr .lg\:col-span-6 .bg-slate-50 .text-slate-700, 
     body.mode-hr .lg\:col-span-3 .text-slate-600, body.mode-hr .lg\:col-span-3 .text-slate-700 {
-      color: #A9CFFF !important;
+      color: #A1A1AA !important;
     }
     
     /* Left Bento Sub-elements */
-    body.mode-hr aside .bg-slate-50 { background: #28578B !important; border-color: #315D91 !important; color: #FFFFFF !important; }
+    body.mode-hr aside .bg-slate-50 { background: transparent !important; border: none !important; color: #FFFFFF !important; padding:0 !important; }
     body.mode-hr aside .bg-slate-50 .text-slate-900 { color: #FFFFFF !important; }
-    body.mode-hr aside .border-slate-100, body.mode-hr aside .border-slate-200, body.mode-hr aside .border-t { border-color: #315D91 !important; }
-    body.mode-hr aside .text-\[\#1e40af\] { color: #A9CFFF !important; font-weight: 700 !important; }
-    body.mode-hr aside .border-4.border-\[\#1e40af\]\/30 { border-color: rgba(40, 87, 139, 0.5) !important; }
+    body.mode-hr aside .border-slate-100, body.mode-hr aside .border-slate-200, body.mode-hr aside .border-t { border-color: #27272A !important; }
+    body.mode-hr aside .text-\[\#1e40af\] { color: #E4E4E7 !important; font-weight: 500 !important; }
+    body.mode-hr aside .border-4.border-\[\#1e40af\]\/30 { border-color: #27272A !important; }
+    body.mode-hr aside .w-\[73px\].h-\[73px\] { background: rgba(255, 255, 255, 0.05) !important; border: 1px solid #27272A !important; }
     
     /* Center Column Specifics */
-    body.mode-hr #cvp-card .bg-\[\#163E78\], body.mode-hr #cvp-card .bg-\[\#1E40AF\] { background: #28578B !important; border:none !important; color:#fff !important; }
-    body.mode-hr .lg\:col-span-6 .bg-slate-50 { background: #DCEBFA !important; border-color: #B9CDE3 !important; }
-    body.mode-hr .lg\:col-span-6 .bg-slate-50 .text-slate-900 { color: #0B1F36 !important; font-weight: 800 !important; text-shadow: none !important; }
-    body.mode-hr .lg\:col-span-6 .bg-slate-50 .text-slate-700 { color: #334155 !important; }
-    body.mode-hr .lg\:col-span-6 .bg-slate-50 .text-\[\#1e40af\] { color: #163E78 !important; }
-    body.mode-hr .lg\:col-span-6 .border-slate-200 { border-color: #315D91 !important; }
-    body.mode-hr .lg\:col-span-6 > div.bg-white .text-\[\#1e40af\] { color: #A9CFFF !important; }
+    body.mode-hr #cvp-card .bg-\[\#163E78\], body.mode-hr #cvp-card .bg-\[\#1E40AF\] { background: rgba(255, 255, 255, 0.05) !important; border: 1px solid #27272A !important; color:#E4E4E7 !important; }
+    body.mode-hr .lg\:col-span-6 .bg-slate-50 { background: #18181B !important; border-color: #27272A !important; }
+    body.mode-hr .lg\:col-span-6 .bg-slate-50 .text-slate-900 { color: #FFFFFF !important; font-weight: 700 !important; text-shadow: none !important; }
+    body.mode-hr .lg\:col-span-6 .bg-slate-50 .text-\[\#1e40af\] { color: #A1A1AA !important; font-weight: 500 !important; }
+    body.mode-hr .lg\:col-span-6 .border-slate-200 { border-color: #27272A !important; }
+    body.mode-hr .lg\:col-span-6 > div.bg-white .text-\[\#1e40af\] { color: #E4E4E7 !important; font-weight: 600 !important; }
     
     /* Right Column Specifics */
-    body.mode-hr .lg\:col-span-3 .bg-slate-50 { background: #28578B !important; border-color: #315D91 !important; color: #FFFFFF !important; }
-    body.mode-hr .lg\:col-span-3 .text-\[\#1e40af\] { color: #A9CFFF !important; }
-    body.mode-hr .lg\:col-span-3 .border-slate-200 { border-color: #315D91 !important; }
+    body.mode-hr .lg\:col-span-3 .bg-slate-50 { background: rgba(255, 255, 255, 0.05) !important; border: 1px solid #27272A !important; color: #E4E4E7 !important; }
+    body.mode-hr .lg\:col-span-3 .text-\[\#1e40af\] { color: #FFFFFF !important; font-weight: 600 !important; }
+    body.mode-hr .lg\:col-span-3 .border-slate-200 { border-color: #27272A !important; }
 
     /* Accents & Buttons */
-    body.mode-hr a.bg-\[\#1e40af\] { background: #28578B !important; color: #FFFFFF !important; border: none !important; }
-    body.mode-hr a.bg-\[\#1e40af\]:hover { background: #315D91 !important; }
-    body.mode-hr button.bg-slate-50 { background: #DCEBFA !important; color: #0B1F36 !important; border-color: #B9CDE3 !important; }
-    body.mode-hr button.bg-slate-50:hover { background: #FFFFFF !important; }
+    body.mode-hr a.bg-\[\#1e40af\] { background: #FFFFFF !important; color: #000000 !important; border: none !important; font-weight: 600 !important; }
+    body.mode-hr a.bg-\[\#1e40af\]:hover { background: #E4E4E7 !important; }
+    body.mode-hr button.bg-slate-50 { background: #10B981 !important; color: #000000 !important; border: none !important; font-weight: 600 !important; }
+    body.mode-hr button.bg-slate-50:hover { background: #34D399 !important; }
+    body.mode-hr .text-emerald-400 { color: #10B981 !important; }
     
     /* Secondary CTA / Badges (Verified Credentials) */
-    body.mode-hr #cvp-card a.bg-slate-50 { background: #28578B !important; border-color: #315D91 !important; color: #A9CFFF !important; box-shadow: none !important; }
-    body.mode-hr #cvp-card a.bg-slate-50 .text-\[\#1e40af\] { color: #A9CFFF !important; }
-    body.mode-hr #cvp-card a.bg-slate-50:hover { background: #315D91 !important; }
+    body.mode-hr #cvp-card a.bg-slate-50 { background: rgba(255, 255, 255, 0.05) !important; border-color: #27272A !important; color: #E4E4E7 !important; box-shadow: none !important; }
+    body.mode-hr #cvp-card a.bg-slate-50 .text-\[\#1e40af\] { color: #E4E4E7 !important; }
+    body.mode-hr #cvp-card a.bg-slate-50:hover { background: #27272A !important; }
     
     /* Copilot (HR Mode) */
-    body.mode-hr #portfolioChat { background: #163E78 !important; border-color: #315D91 !important; }
-    body.mode-hr #chatHeader { background: #0B1F36 !important; color: #FFFFFF !important; border-bottom: none !important; }
-    body.mode-hr #chatHeader .text-amber-300 { color: #A9CFFF !important; border-color: #315D91 !important; background: #28578B !important; }
-    body.mode-hr #chatWindow { background: #0F172A !important; color: #E2E8F0 !important; }
-    body.mode-hr #chatWindow .bg-carbon-800, body.mode-hr #portfolioChat .bg-carbon-800 { background: #DCEBFA !important; color: #0B1F36 !important; border-color: #B9CDE3 !important; }
-    body.mode-hr #chatWindow .bg-amber-500, body.mode-hr #sendChatBtn { background: #163E78 !important; color: #FFFFFF !important; border: none !important; }
-    body.mode-hr #chatWindow .bg-red-950\/60 { background: #fee2e2 !important; color: #991b1b !important; border-color: #fca5a5 !important; }
-    body.mode-hr #portfolioChat .bg-carbon-900 { background: #163E78 !important; border-color: #315D91 !important; }
-    body.mode-hr #userInput { background: #0F172A !important; border-color: #315D91 !important; color: #E2E8F0 !important; }
-    body.mode-hr #portfolioChat .text-amber-400, body.mode-hr #portfolioChat .text-emerald-300, body.mode-hr #portfolioChat .text-purple-300, body.mode-hr #portfolioChat .text-sky-300 { color: #A9CFFF !important; }
+    body.mode-hr #portfolioChat { background: #161B26 !important; border-color: #27272A !important; }
+    body.mode-hr #chatHeader { background: #0B0F19 !important; color: #FFFFFF !important; border-bottom: 1px solid #27272A !important; }
+    body.mode-hr #chatHeader .text-amber-300 { color: #A1A1AA !important; border-color: #27272A !important; background: #161B26 !important; }
+    body.mode-hr #chatWindow { background: #0B0F19 !important; color: #E4E4E7 !important; }
+    body.mode-hr #chatWindow .bg-carbon-800, body.mode-hr #portfolioChat .bg-carbon-800 { background: #18181B !important; color: #E4E4E7 !important; border-color: #27272A !important; }
+    body.mode-hr #chatWindow .bg-amber-500, body.mode-hr #sendChatBtn { background: #10B981 !important; color: #000000 !important; border: none !important; font-weight: 600 !important; }
+    body.mode-hr #chatWindow .bg-red-950\/60 { background: #27272A !important; color: #FCA5A5 !important; border-color: #3F3F46 !important; }
+    body.mode-hr #portfolioChat .bg-carbon-900 { background: #161B26 !important; border-color: #27272A !important; }
+    body.mode-hr #userInput { background: #0B0F19 !important; border-color: #27272A !important; color: #FFFFFF !important; }
+    body.mode-hr #userInput::placeholder { color: #52525B !important; }
+    body.mode-hr #portfolioChat .text-amber-400, body.mode-hr #portfolioChat .text-emerald-300, body.mode-hr #portfolioChat .text-purple-300, body.mode-hr #portfolioChat .text-sky-300 { color: #E4E4E7 !important; }
 
-    /* ========================================================= */
+    /* Print Mode Hard Overrides (Fixes Dev Mode Blackout) */
 /* DEV MODE STYLES (Increased Brightness)                    */
     /* ========================================================= */
     body.mode-dev { background-color: #030804 !important; color: #a7f3d0 !important; font-family: 'JetBrains Mono', monospace !important; }
