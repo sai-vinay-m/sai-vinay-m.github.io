@@ -278,83 +278,81 @@
     /* ========================================================= */
     /* HR MODE THEME: OPTION B (BLUE-DOMINANT EXECUTIVE)       */
     /* ========================================================= */
-    body.mode-hr { background-color: #0B1F36 !important; color: #FFFFFF !important; background-image: none !important; }
+    body.mode-hr { background-color: #F4F5F0 !important; color: #1E293B !important; background-image: none !important; }
     body.mode-hr .bg-grid-pattern, body.mode-hr .hero-glow { display: none !important; }
     
-    /* Header */
-    body.mode-hr header { background: #163E78 !important; border-bottom: 1px solid #315D91 !important; color: #FFFFFF !important; }
-    body.mode-hr header .text-white, body.mode-hr header .text-slate-900, body.mode-hr header h1 { color: #FFFFFF !important; }
-    body.mode-hr header .text-slate-400, body.mode-hr header .text-slate-300, body.mode-hr header a, body.mode-hr header .text-xs { color: #A9CFFF !important; }
-    body.mode-hr header .bg-carbon-800 { background: #28578B !important; border-color: #315D91 !important; color: #FFFFFF !important; }
-    body.mode-hr header .asset-fallback { color: #163E78 !important; }
-    body.mode-hr header .text-amber-400:hover, body.mode-hr header .hover\:text-amber-400:hover { color: #FFFFFF !important; }
-
-    /* Structural Bento Boxes (Left, Middle, Right) */
-    body.mode-hr aside, body.mode-hr .lg\:col-span-6 > div.bg-white, body.mode-hr .lg\:col-span-3.rounded-2xl {
-      background: #163E78 !important; border-color: #315D91 !important; color: #FFFFFF !important; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.2) !important;
+    /* General Cards */
+    body.mode-hr .bento-card, body.mode-hr .bg-white { 
+      background: #F8FAFC !important; border-color: #D7E2F0 !important; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05) !important; 
     }
-
-    /* Common Typography on Dark Panels (Left & Right) */
+    
+    /* Header */
+    body.mode-hr header { background: #163E78 !important; border-bottom: none !important; color: #FFFFFF !important; }
+    body.mode-hr header .text-white, body.mode-hr header .text-slate-900, body.mode-hr header h1 { color: #FFFFFF !important; }
+    body.mode-hr header .text-slate-400, body.mode-hr header .text-slate-300, body.mode-hr header a, body.mode-hr header .text-xs { color: #DBEAFE !important; }
+    body.mode-hr header .bg-carbon-800 { background: #315D91 !important; border-color: #1E40AF !important; color: #FFFFFF !important; }
+    body.mode-hr header .asset-fallback { color: #163E78 !important; }
+    body.mode-hr header .border-carbon-600 { border-color: #315D91 !important; }
+    
+    /* Left Column (Profile) & Right Column (Tech Stack) */
+    body.mode-hr aside, body.mode-hr .lg\:col-span-3.rounded-2xl {
+      background: #163E78 !important; border-color: #315D91 !important; color: #FFFFFF !important;
+    }
     body.mode-hr aside h1, body.mode-hr aside h2, body.mode-hr aside h3, body.mode-hr aside .text-slate-900,
     body.mode-hr .lg\:col-span-3 h1, body.mode-hr .lg\:col-span-3 h3, body.mode-hr .lg\:col-span-3 .text-slate-900 {
       color: #FFFFFF !important; text-shadow: none !important;
     }
     body.mode-hr aside .text-slate-600, body.mode-hr aside .text-slate-500, body.mode-hr aside .text-slate-700,
-    body.mode-hr .lg\:col-span-3 .text-slate-600, body.mode-hr .lg\:col-span-3 .text-slate-700 {
-      color: #A9CFFF !important; font-weight: 500 !important;
+    body.mode-hr .lg\:col-span-3 .text-slate-700 {
+      color: #DBEAFE !important;
+    }
+    body.mode-hr aside .bg-slate-50, body.mode-hr .lg\:col-span-3 .bg-slate-50 {
+      background: #315D91 !important; border-color: #1E40AF !important; color: #FFFFFF !important;
+    }
+    body.mode-hr aside .border-slate-100, body.mode-hr aside .border-slate-200, body.mode-hr .lg\:col-span-3 .border-slate-200 {
+      border-color: #1E40AF !important;
     }
     
-    /* Left Bento Internal Elements */
-    body.mode-hr aside .text-\[\#1e40af\] { color: #A9CFFF !important; }
-    body.mode-hr aside .border-4.border-\[\#1e40af\]\/30 { border-color: #315D91 !important; }
-    body.mode-hr aside .border-t.border-slate-200, body.mode-hr aside .border-b.border-slate-100 { border-color: #315D91 !important; }
-    body.mode-hr aside .bg-slate-50 { background: #28578B !important; border-color: #315D91 !important; color: #FFFFFF !important; }
-    body.mode-hr aside .bg-slate-50 .text-slate-900 { color: #FFFFFF !important; }
-    body.mode-hr aside .bg-slate-50 .text-slate-500 { color: #A9CFFF !important; }
-    body.mode-hr aside .bg-white.border-slate-200 { background: #DCEBFA !important; border-color: #B9CDE3 !important; }
-    body.mode-hr aside .bg-white.border-slate-200 .text-\[\#1e40af\] { color: #0B1F36 !important; }
+    /* Center Column (Experience) */
+    body.mode-hr .lg\:col-span-6 .bg-white {
+      background: #F8FAFC !important; border-color: #D7E2F0 !important; color: #1E293B !important;
+    }
+    body.mode-hr .lg\:col-span-6 .text-slate-900 { color: #1E293B !important; font-weight: 800 !important; text-shadow: none !important; }
+    body.mode-hr .lg\:col-span-6 .text-slate-600, body.mode-hr .lg\:col-span-6 .text-slate-700 { color: #475569 !important; }
+    body.mode-hr .lg\:col-span-6 .bg-slate-50 { background: #F4F7FC !important; border-color: #D7E2F0 !important; }
+    body.mode-hr .lg\:col-span-6 .border-slate-200 { border-color: #D7E2F0 !important; }
     
-    /* Left Bento CTAs */
-    body.mode-hr aside a.bg-\[\#1e40af\] { background: #28578B !important; border: 1px solid #315D91 !important; color: #FFFFFF !important; }
-    body.mode-hr aside a.bg-\[\#1e40af\]:hover { background: #315D91 !important; }
-    body.mode-hr aside button.bg-slate-50 { background: #DCEBFA !important; border-color: #B9CDE3 !important; color: #0B1F36 !important; }
-    body.mode-hr aside button.bg-slate-50:hover { background: #FFFFFF !important; }
-
-    /* Middle Bento (Experience Content) */
-    body.mode-hr .lg\:col-span-6 .bg-white { background: #163E78 !important; border-color: #315D91 !important; color: #FFFFFF !important; }
-    body.mode-hr .lg\:col-span-6 .text-slate-900 { color: #FFFFFF !important; text-shadow: none !important; }
-    body.mode-hr .lg\:col-span-6 .text-slate-600 { color: #A9CFFF !important; }
-    body.mode-hr .lg\:col-span-6 .border-slate-200 { border-color: #315D91 !important; }
-    body.mode-hr .lg\:col-span-6 .text-slate-500 { color: #A9CFFF !important; }
-    body.mode-hr .lg\:col-span-6 .text-\[\#1e40af\] { color: #FFFFFF !important; }
+    /* Accents & Buttons */
+    body.mode-hr .text-amber-400, body.mode-hr .text-emerald-400, body.mode-hr .text-sky-400, body.mode-hr .text-red-400, body.mode-hr .text-purple-400 {
+      color: #1E40AF !important; font-weight: 700 !important; drop-shadow: none !important;
+    }
+    body.mode-hr .bg-blue-50 { background: #DBEAFE !important; color: #1E40AF !important; border-color: #D7E2F0 !important; }
+    body.mode-hr .text-\[\#1e40af\] { color: #1E40AF !important; }
+    body.mode-hr .border-4.border-\[\#1e40af\]\/30 { border-color: rgba(30, 64, 175, 0.3) !important; }
     
-    /* Middle Bento Sub-Cards (Credentials & Experience Items) */
-    body.mode-hr .lg\:col-span-6 .bg-slate-50 { background: #DCEBFA !important; border-color: #B9CDE3 !important; color: #0B1F36 !important; }
-    body.mode-hr .lg\:col-span-6 .bg-slate-50 .text-slate-900 { color: #0B1F36 !important; }
-    body.mode-hr .lg\:col-span-6 .bg-slate-50 .text-\[\#1e40af\] { color: #1E40AF !important; }
-    body.mode-hr .lg\:col-span-6 .bg-slate-50 .text-slate-700 { color: #334155 !important; }
-    body.mode-hr .lg\:col-span-6 .bg-slate-50:hover { background: #FFFFFF !important; }
-
-    /* Middle Bento CVP Banner */
-    body.mode-hr #cvp-card .bg-\[\#1E40AF\] { background: #28578B !important; color: #FFFFFF !important; border: 1px solid #315D91 !important; }
-
-    /* Right Bento (Tech Stack) */
-    body.mode-hr .lg\:col-span-3 .text-\[\#1e40af\] { color: #FFFFFF !important; }
-    body.mode-hr .lg\:col-span-3 .border-slate-200 { border-color: #315D91 !important; }
-    body.mode-hr .lg\:col-span-3 .bg-slate-50 { background: #28578B !important; border-color: #315D91 !important; color: #FFFFFF !important; }
+    body.mode-hr #cvp-card { background-color: #F4F5F0 !important; } /* Soft Ivory */
+    
+    /* Primary CTA */
+    body.mode-hr .bg-\[\#1e40af\] { background: #1E40AF !important; color: #FFFFFF !important; border: none !important; }
+    body.mode-hr .bg-\[\#1e40af\]:hover { background: #163E78 !important; }
+    
+    /* Secondary CTA / Badges */
+    body.mode-hr .bg-amber-500, body.mode-hr .bg-amber-500\/10, body.mode-hr .bg-emerald-500\/15, body.mode-hr .bg-sky-500\/15 {
+      background: #DBEAFE !important; color: #1E40AF !important; border: 1px solid #D7E2F0 !important; box-shadow: none !important;
+    }
     
     /* Copilot (HR Mode) */
-    body.mode-hr #portfolioChat { background: #163E78 !important; border-color: #315D91 !important; }
-    body.mode-hr #chatHeader { background: #0B1F36 !important; color: #FFFFFF !important; border-bottom: 1px solid #315D91 !important; }
-    body.mode-hr #chatHeader .text-amber-300 { color: #A9CFFF !important; border-color: #315D91 !important; background: #28578B !important; }
-    body.mode-hr #chatWindow { background: #163E78 !important; color: #FFFFFF !important; }
-    body.mode-hr #chatWindow .bg-carbon-800 { background: #DCEBFA !important; color: #0B1F36 !important; border-color: #B9CDE3 !important; }
-    body.mode-hr #chatWindow .bg-amber-500 { background: #28578B !important; color: #FFFFFF !important; border: 1px solid #315D91 !important; }
-    body.mode-hr #portfolioChat .bg-carbon-900 { background: #163E78 !important; border-color: #315D91 !important; }
-    body.mode-hr #portfolioChat .bg-carbon-800.hover\:bg-carbon-700 { background: #28578B !important; border-color: #315D91 !important; color: #FFFFFF !important; }
-    body.mode-hr #userInput { background: #DCEBFA !important; border-color: #B9CDE3 !important; color: #0B1F36 !important; }
-    body.mode-hr #userInput::placeholder { color: #475569 !important; }
-    body.mode-hr #sendChatBtn { background: #28578B !important; color: #FFFFFF !important; border: 1px solid #315D91 !important; }
+    body.mode-hr #portfolioChat { background: #F8FAFC !important; border-color: #D7E2F0 !important; }
+    body.mode-hr #chatHeader { background: #163E78 !important; color: #FFFFFF !important; border-bottom: none !important; }
+    body.mode-hr #chatWindow { background: #F4F7FC !important; color: #1E293B !important; }
+    body.mode-hr #chatWindow .bg-carbon-800 { background: #DBEAFE !important; color: #1E293B !important; border-color: #D7E2F0 !important; }
+    body.mode-hr #chatWindow .bg-amber-500 { background: #1E40AF !important; color: #FFFFFF !important; }
+    body.mode-hr #chatWindow .bg-red-950\/60 { background: #fee2e2 !important; color: #991b1b !important; border-color: #fca5a5 !important; }
+    body.mode-hr #portfolioChat .bg-carbon-900 { background: #F8FAFC !important; border-color: #D7E2F0 !important; }
+    body.mode-hr #userInput { background: #F4F7FC !important; border-color: #D7E2F0 !important; color: #1E293B !important; }
+    body.mode-hr #sendChatBtn { background: #1E40AF !important; color: #FFFFFF !important; }
+    body.mode-hr #portfolioChat .text-amber-400, body.mode-hr #portfolioChat .text-emerald-300, body.mode-hr #portfolioChat .text-purple-300, body.mode-hr #portfolioChat .text-sky-300 { color: #1E40AF !important; }
+    body.mode-hr #portfolioChat .bg-carbon-800 { background: #DBEAFE !important; border-color: #D7E2F0 !important; }
 
     /* ========================================================= */
 /* DEV MODE STYLES (Increased Brightness)                    */
@@ -363,16 +361,19 @@
     body.mode-dev .bg-carbon-950, body.mode-dev .bg-carbon-900, body.mode-dev .bg-carbon-850, body.mode-dev .bg-carbon-800 { background-color: #050e07 !important; border-color: rgba(0, 255, 102, 0.32) !important; }
     
     body.mode-dev h1, body.mode-dev h2, body.mode-dev h3, body.mode-dev .text-white { color: #ffffff !important; text-shadow: 0 0 15px rgba(255, 255, 255, 0.95), 0 0 25px rgba(255, 255, 255, 0.6); }
-    body.mode-dev .text-slate-200 { color: #ffffff !important; font-weight: 500; text-shadow: 0 0 2px rgba(255, 255, 255, 0.65); }
-    body.mode-dev .text-slate-300 { color: #f8fafc !important; font-weight: 500; }
+    body.mode-dev .text-slate-200, body.mode-dev .text-slate-300 { color: #f8fafc !important; font-weight: 500; }
     body.mode-dev .text-slate-400 { color: #e2e8f0 !important; }
     
     body.mode-dev .text-amber-400, body.mode-dev .text-amber-300, body.mode-dev .text-emerald-400 { color: #00ff66 !important; }
     body.mode-dev .bg-amber-500 { background-color: #00ff66 !important; color: #020603 !important; box-shadow: 0 0 20px rgba(0, 255, 102, 0.45) !important; }
     body.mode-dev::after { content: " "; display: block; position: fixed; inset: 0; z-index: 25; pointer-events: none; background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.22) 50%); background-size: 100% 4px; }
 
+    body.mode-dev .dev-one-liner { color: #ffffff !important; font-weight: 600 !important; text-shadow: 0 0 3px rgba(255,255,255,0.9), 0 0 8px rgba(255,255,255,0.4) !important; }
     body.mode-dev .dev-nyse-text { color: #00ff66 !important; text-shadow: 0 0 12px rgba(0, 255, 102, 0.4) !important; }
-    body.mode-dev #dev-sandbox-experience p.text-slate-200 { color: #ffffff !important; font-weight: 600 !important; text-shadow: 0 0 4px rgba(255,255,255,0.8), 0 0 10px rgba(255,255,255,0.5) !important; }
+    
+
+    body.mode-dev h1 span.text-\[\#00ff66\] { text-shadow: 0 0 15px rgba(0, 255, 102, 0.6) !important; color: #00ff66 !important; }
+    body.mode-dev h2 span.text-\[\#00ff66\] { text-shadow: 0 0 12px rgba(0, 255, 102, 0.5) !important; color: #00ff66 !important; }
 
     /* Print Mode Hard Overrides (Fixes Dev Mode Blackout) */
     @media print {
@@ -595,7 +596,7 @@
       <!-- Center Column: Value Prop & Enterprise Work Experience -->
       <div class="lg:col-span-6 space-y-4">
         <div id="cvp-card" class="rounded-2xl p-4 sm:p-5 bg-white border border-slate-200 shadow-sm space-y-2.5">
-          <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#1E40AF] text-white shadow-sm text-[11px] font-mono font-bold uppercase border-none"><i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Candidate Value Proposition</div>
+          <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#163E78] text-white shadow-sm text-[11px] font-mono font-bold uppercase border-none"><i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Candidate Value Proposition</div>
           <h2 class="text-lg sm:text-xl font-extrabold text-slate-900 leading-snug">Enterprise Cloud Reliability Meets Production GenAI</h2>
           <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
             Architecting zero-trust AWS systems synchronized in real time with post-trade financial infrastructure, coupled with modern applied AI platform delivery and resilient container governance.
@@ -1237,7 +1238,7 @@
                   <h4 class="text-[13px] sm:text-sm font-mono font-bold text-[#00ff66] flex items-start gap-2">
                     <span class="shrink-0 font-black">+</span> AAVA GenAI Core Workflows
                   </h4>
-                  <p class="text-sm font-sans text-slate-200 leading-relaxed pl-[18px] sm:pl-4 border-l-2 border-[#00ff66]/40 ml-1">
+                  <p class="dev-one-liner text-sm font-sans text-slate-200 leading-relaxed pl-[18px] sm:pl-4 border-l-2 border-[#00ff66]/40 ml-1">
                     Integrated LLMs, vector knowledge bases, guardrail architectures, and agentic SDLC pipelines.
                   </p>
                 </div>
@@ -1391,7 +1392,7 @@
                   <h4 class="text-[13px] sm:text-sm font-mono font-bold text-[#00ff66] flex items-start gap-2">
                     <span class="shrink-0 font-black">+</span> Zero-Trust Terraform Blueprints
                   </h4>
-                  <p class="text-sm font-sans text-slate-200 leading-relaxed pl-[18px] sm:pl-4 border-l-2 border-[#00ff66]/40 ml-1">
+                  <p class="dev-one-liner text-sm font-sans text-slate-200 leading-relaxed pl-[18px] sm:pl-4 border-l-2 border-[#00ff66]/40 ml-1">
                     Engineered reusable IaC modules provisioning private multi-tier VPC topologies across environments syncing with regulated financial-market feeds.
                   </p>
                 </div>
@@ -1401,7 +1402,7 @@
                   <h4 class="text-[13px] sm:text-sm font-mono font-bold text-amber-400 flex items-start gap-2">
                     <span class="shrink-0 font-black">+</span> DependencyViolation Resolution
                   </h4>
-                  <p class="text-sm font-sans text-slate-200 leading-relaxed pl-[18px] sm:pl-4 border-l-2 border-amber-500/40 ml-1">
+                  <p class="dev-one-liner text-sm font-sans text-slate-200 leading-relaxed pl-[18px] sm:pl-4 border-l-2 border-amber-500/40 ml-1">
                     Decoupled inline security-group blocks into standalone <code>aws_security_group_rule</code> resources.
                   </p>
                 </div>
@@ -1494,7 +1495,7 @@
                   <h4 class="text-[13px] sm:text-sm font-mono font-bold text-[#00ff66] flex items-start gap-2">
                     <span class="shrink-0 font-black">+</span> High-Availability AWS Fleet
                   </h4>
-                  <p class="text-sm font-sans text-slate-200 leading-relaxed pl-[18px] sm:pl-4 border-l-2 border-[#00ff66]/40 ml-1">
+                  <p class="dev-one-liner text-sm font-sans text-slate-200 leading-relaxed pl-[18px] sm:pl-4 border-l-2 border-[#00ff66]/40 ml-1">
                     Administration and scaling of 200+ AWS instances, sustaining 99% system uptime through proactive CloudWatch monitoring.
                   </p>
                 </div>
@@ -1504,7 +1505,7 @@
                   <h4 class="text-[13px] sm:text-sm font-mono font-bold text-amber-400 flex items-start gap-2">
                     <span class="shrink-0 font-black">+</span> Online VFS &amp; LVM Expansion
                   </h4>
-                  <p class="text-sm font-sans text-slate-200 leading-relaxed pl-[18px] sm:pl-4 border-l-2 border-amber-500/40 ml-1">
+                  <p class="dev-one-liner text-sm font-sans text-slate-200 leading-relaxed pl-[18px] sm:pl-4 border-l-2 border-amber-500/40 ml-1">
                     Dynamically managed filesystem scaling and non-disruptive inode recovery using <code>lvextend -r</code> and <code>lsof +L1</code> with 0 reboot overhead.
                   </p>
                 </div>
@@ -1514,7 +1515,7 @@
                   <h4 class="text-[13px] sm:text-sm font-mono font-bold text-sky-400 flex items-start gap-2">
                     <span class="shrink-0 font-black">+</span> Automated OS Provisioning
                   </h4>
-                  <p class="text-sm font-sans text-slate-200 leading-relaxed pl-[18px] sm:pl-4 border-l-2 border-sky-500/40 ml-1">
+                  <p class="dev-one-liner text-sm font-sans text-slate-200 leading-relaxed pl-[18px] sm:pl-4 border-l-2 border-sky-500/40 ml-1">
                     Standardized RedHat Linux bare-metal installations using Kickstart pre/post scripts.
                   </p>
                 </div>
@@ -2410,7 +2411,7 @@
       pf_mode = role;
       
       const inact = "px-2.5 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 text-slate-400 hover:text-white whitespace-nowrap";
-      const actHr = "px-2.5 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 bg-[#163E78] text-white font-bold shadow-sm border border-[#315D91] whitespace-nowrap";
+      const actHr = "px-2.5 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 bg-[#1E40AF] text-white font-bold shadow-sm whitespace-nowrap";
       const actAmb = "px-2.5 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 bg-amber-500 text-carbon-950 font-bold shadow-sm whitespace-nowrap";
       const actGrn = "px-2.5 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 bg-[#00ff66] text-black font-bold shadow-[0_0_12px_rgba(0,255,102,0.4)] whitespace-nowrap";
       
@@ -2420,7 +2421,7 @@
       if (bDev) bDev.className = (role === 'engineer') ? actGrn : inact;
 
       const mHr = document.getElementById('mobileBtnHr'), mMgr = document.getElementById('mobileBtnMgr'), mDev = document.getElementById('mobileBtnDev');
-      if (mHr) mHr.className = (role === 'recruiter') ? "px-1.5 py-1 rounded bg-[#163E78] text-white font-bold border border-[#315D91]" : "px-1.5 py-1 rounded text-slate-400 hover:text-white";
+      if (mHr) mHr.className = (role === 'recruiter') ? "px-1.5 py-1 rounded bg-[#1E40AF] text-white font-bold" : "px-1.5 py-1 rounded text-slate-400 hover:text-white";
       if (mMgr) mMgr.className = (role === 'manager') ? "px-1.5 py-1 rounded bg-amber-500 text-carbon-950 font-bold" : "px-1.5 py-1 rounded text-slate-400 hover:text-white";
       if (mDev) mDev.className = (role === 'engineer') ? "px-1.5 py-1 rounded bg-[#00ff66] text-black font-bold" : "px-1.5 py-1 rounded text-slate-400 hover:text-white";
 
