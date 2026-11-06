@@ -276,90 +276,79 @@
     .svg-flow-line, .loop-active-flow { stroke-dasharray: 8 8 !important; animation: svgPacketFlow 1s linear infinite !important; }
 
     /* ========================================================= */
-    /* ===== HR MODE: paper and ink, one teal accent ===== */
-    body.mode-hr {
-      --hr-bg:#F4F5F7; --hr-surface:#FFFFFF; --hr-ink:#14181F;
-      --hr-muted:#4B5563; --hr-meta:#5B6472; --hr-rule:#D9DDE3;
-      --hr-accent:#0F6E6A; --hr-accent-hover:#0A5754; --hr-accent-tint:#E6F2F1;
-      background:var(--hr-bg) !important; background-image:none !important;
-      color:var(--hr-ink) !important; font-family:'Plus Jakarta Sans',system-ui,sans-serif !important;
+    /* HR MODE THEME: 3-BENTO BLUE ON IVORY */
+    /* ========================================================= */
+    body.mode-hr { background-color: #F4F5F0 !important; color: #1E293B !important; background-image: none !important; }
+    body.mode-hr .bg-grid-pattern, body.mode-hr .hero-glow { display: none !important; }
+    
+    /* Header */
+    body.mode-hr header { background: #163E78 !important; border-bottom: none !important; color: #FFFFFF !important; }
+    body.mode-hr header .text-white, body.mode-hr header .text-slate-900, body.mode-hr header h1 { color: #FFFFFF !important; }
+    body.mode-hr header .text-slate-400, body.mode-hr header .text-slate-300, body.mode-hr header a, body.mode-hr header .text-xs { color: #A9CFFF !important; }
+    body.mode-hr header .bg-carbon-800 { background: #28578B !important; border-color: #315D91 !important; color: #FFFFFF !important; }
+    body.mode-hr header .asset-fallback { color: #163E78 !important; }
+    body.mode-hr header .border-carbon-600 { border-color: #315D91 !important; }
+    
+    /* 3 Bento Boxes (Left, Middle, Right) */
+    body.mode-hr aside, body.mode-hr .lg\:col-span-6 > div.bg-white, body.mode-hr .lg\:col-span-3.rounded-2xl {
+      background: #163E78 !important; border-color: #315D91 !important; color: #FFFFFF !important; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1) !important;
     }
-    html:has(body.mode-hr) { background:#F4F5F7; }
-    body.mode-hr .bg-grid-pattern, body.mode-hr .hero-glow,
-    body.mode-hr #matrixCanvas, body.mode-hr #balloonContainer { display:none !important; }
+    
+    /* Text overrides on Dark Panels (Left, Middle outer, Right) */
+    body.mode-hr aside h1, body.mode-hr aside h2, body.mode-hr aside h3, body.mode-hr aside .text-slate-900,
+    body.mode-hr .lg\:col-span-6 > div.bg-white > h2, body.mode-hr .lg\:col-span-6 > div.bg-white > h3,
+    body.mode-hr .lg\:col-span-3 h1, body.mode-hr .lg\:col-span-3 h3, body.mode-hr .lg\:col-span-3 .text-slate-900 {
+      color: #FFFFFF !important; text-shadow: none !important;
+    }
+    body.mode-hr aside .text-slate-600, body.mode-hr aside .text-slate-500, body.mode-hr aside .text-slate-700,
+    body.mode-hr .lg\:col-span-6 > div.bg-white > p, body.mode-hr .lg\:col-span-6 > div.bg-white .text-slate-500,
+    body.mode-hr .lg\:col-span-3 .text-slate-600, body.mode-hr .lg\:col-span-3 .text-slate-700 {
+      color: #A9CFFF !important;
+    }
+    
+    /* Left Bento Sub-elements */
+    body.mode-hr aside .bg-slate-50 { background: #28578B !important; border-color: #315D91 !important; color: #FFFFFF !important; }
+    body.mode-hr aside .bg-slate-50 .text-slate-900 { color: #FFFFFF !important; }
+    body.mode-hr aside .border-slate-100, body.mode-hr aside .border-slate-200, body.mode-hr aside .border-t { border-color: #315D91 !important; }
+    body.mode-hr aside .text-\[\#1e40af\] { color: #A9CFFF !important; font-weight: 700 !important; }
+    body.mode-hr aside .border-4.border-\[\#1e40af\]\/30 { border-color: rgba(40, 87, 139, 0.5) !important; }
+    
+    /* Center Column Specifics */
+    body.mode-hr #cvp-card .bg-\[\#163E78\], body.mode-hr #cvp-card .bg-\[\#1E40AF\] { background: #28578B !important; border:none !important; color:#fff !important; }
+    body.mode-hr .lg\:col-span-6 .bg-slate-50 { background: #DCEBFA !important; border-color: #B9CDE3 !important; }
+    body.mode-hr .lg\:col-span-6 .bg-slate-50 .text-slate-900 { color: #0B1F36 !important; font-weight: 800 !important; text-shadow: none !important; }
+    body.mode-hr .lg\:col-span-6 .bg-slate-50 .text-slate-700 { color: #334155 !important; }
+    body.mode-hr .lg\:col-span-6 .bg-slate-50 .text-\[\#1e40af\] { color: #163E78 !important; }
+    body.mode-hr .lg\:col-span-6 .border-slate-200 { border-color: #315D91 !important; }
+    body.mode-hr .lg\:col-span-6 > div.bg-white .text-\[\#1e40af\] { color: #A9CFFF !important; }
+    
+    /* Right Column Specifics */
+    body.mode-hr .lg\:col-span-3 .bg-slate-50 { background: #28578B !important; border-color: #315D91 !important; color: #FFFFFF !important; }
+    body.mode-hr .lg\:col-span-3 .text-\[\#1e40af\] { color: #A9CFFF !important; }
+    body.mode-hr .lg\:col-span-3 .border-slate-200 { border-color: #315D91 !important; }
 
-    /* Header (shared element, so it needs overrides) */
-    body.mode-hr header { background:rgba(255,255,255,.94) !important; border-bottom:1px solid var(--hr-rule) !important; }
-    body.mode-hr header .text-white, body.mode-hr header a { color:var(--hr-ink) !important; }
-    body.mode-hr header .text-slate-300, body.mode-hr header .text-slate-400 { color:var(--hr-muted) !important; }
-    body.mode-hr header .bg-carbon-800 { background:var(--hr-accent-tint) !important; border-color:var(--hr-accent) !important; color:var(--hr-accent) !important; }
-    body.mode-hr header .bg-carbon-950\/95 { background:#EEF0F3 !important; border-color:var(--hr-rule) !important; }
-    body.mode-hr header button { color:var(--hr-muted) !important; }
-    body.mode-hr header .bg-amber-500 { background:var(--hr-accent) !important; color:#fff !important; box-shadow:none !important; }
-    body.mode-hr #hrHeaderResumeBtn { color:#fff !important; }
-    body.mode-hr #hrHeaderResumeBtn:hover { background:var(--hr-accent-hover) !important; }
-
-    /* Layout */
-    .hr-wrap { max-width:1120px; margin:0 auto; padding:32px 20px 64px; display:grid; gap:24px; grid-template-columns:1fr; }
-    @media (min-width:1024px){ .hr-wrap { grid-template-columns:minmax(0,8fr) minmax(0,4fr); align-items:start; } .hr-side { position:sticky; top:96px; } }
-
-    /* Sheet */
-    .hr-sheet { background:var(--hr-surface); border:1px solid var(--hr-rule); border-radius:16px; padding:32px; }
-    .hr-intro { display:flex; gap:20px; align-items:center; }
-    .hr-photo { width:88px; height:88px; border-radius:50%; overflow:hidden; flex:none; background:var(--hr-accent-tint);
-      display:flex; align-items:center; justify-content:center; color:var(--hr-accent); font-weight:800; font-size:28px; }
-    .hr-photo img { width:100%; height:100%; object-fit:cover; }
-    .hr-name { font-size:clamp(28px,4vw,36px); line-height:1.17; font-weight:800; letter-spacing:-.02em; color:var(--hr-ink); }
-    .hr-title { font-size:18px; line-height:26px; font-weight:600; color:var(--hr-ink); margin-top:2px; }
-    .hr-summary { font-size:15px; line-height:24px; color:var(--hr-muted); max-width:68ch; margin-top:20px; }
-    .hr-facts { display:flex; flex-wrap:wrap; gap:8px 24px; margin-top:16px; font-size:13px; line-height:20px; color:var(--hr-muted); }
-    .hr-facts strong { color:var(--hr-ink); font-weight:600; }
-
-    .hr-section { border-top:1px solid var(--hr-rule); margin-top:28px; padding-top:24px; }
-    .hr-h2 { font-size:18px; line-height:24px; font-weight:700; color:var(--hr-ink); margin:0 0 4px; }
-    .hr-job { padding:20px 0; border-bottom:1px solid var(--hr-rule); }
-    .hr-job:last-child { border-bottom:0; padding-bottom:0; }
-    .hr-job-head { display:flex; flex-direction:column; gap:2px; }
-    @media (min-width:640px){ .hr-job-head { flex-direction:row; justify-content:space-between; align-items:baseline; gap:16px; } }
-    .hr-company { font-size:16px; line-height:24px; font-weight:700; color:var(--hr-ink); }
-    .hr-company span { font-weight:500; color:var(--hr-muted); }
-    .hr-dates { font-family:'JetBrains Mono',monospace; font-size:13px; line-height:20px; font-weight:500; color:var(--hr-meta); white-space:nowrap; }
-    .hr-job ul { margin:10px 0 0; padding-left:18px; list-style:disc; }
-    .hr-job li { font-size:15px; line-height:24px; color:var(--hr-muted); max-width:68ch; }
-    .hr-job li + li { margin-top:6px; }
-    .hr-job li::marker { color:var(--hr-accent); }
-
-    /* Sidebar */
-    .hr-panel { background:var(--hr-surface); border:1px solid var(--hr-rule); border-radius:16px; padding:20px; }
-    .hr-panel + .hr-panel { margin-top:16px; }
-    .hr-panel h3 { font-size:15px; line-height:22px; font-weight:700; color:var(--hr-ink); margin:0 0 12px; }
-    .hr-skill { font-size:14px; line-height:22px; color:var(--hr-muted); }
-    .hr-skill + .hr-skill { margin-top:10px; }
-    .hr-skill strong { display:block; color:var(--hr-ink); font-weight:600; }
-    .hr-edu { font-size:14px; line-height:22px; color:var(--hr-muted); }
-    .hr-edu + .hr-edu { margin-top:10px; }
-    .hr-edu strong { display:block; color:var(--hr-ink); font-weight:600; }
-    .hr-cert { display:flex; align-items:center; gap:8px; font-size:14px; line-height:22px; font-weight:600; color:var(--hr-accent); text-decoration:none; padding:4px 0; }
-    .hr-cert:hover { color:var(--hr-accent-hover); text-decoration:underline; }
-
-    /* Buttons */
-    .hr-btn { display:flex; align-items:center; justify-content:center; gap:8px; height:44px; border-radius:8px; font-size:14px; font-weight:700;
-      text-decoration:none; cursor:pointer; transition:background-color .15s, color .15s, border-color .15s; }
-    .hr-btn-primary { background:var(--hr-accent); color:#fff; border:1px solid var(--hr-accent); }
-    .hr-btn-primary:hover { background:var(--hr-accent-hover); border-color:var(--hr-accent-hover); }
-    .hr-btn-secondary { background:#fff; color:var(--hr-accent); border:1px solid var(--hr-accent); }
-    .hr-btn-secondary:hover { background:var(--hr-accent-tint); }
-    body.mode-hr #view-hr a:focus-visible, body.mode-hr #view-hr button:focus-visible { outline:2px solid var(--hr-accent); outline-offset:2px; }
-
-    /* Copilot in HR Mode */
-    body.mode-hr #portfolioChat { background:#fff !important; border:1px solid var(--hr-rule) !important; box-shadow:0 8px 24px rgba(20,24,31,.12) !important; }
-    body.mode-hr #chatHeader { background:#fff !important; color:var(--hr-ink) !important; border-bottom:1px solid var(--hr-rule) !important; }
-    body.mode-hr #chatWindow { background:var(--hr-bg) !important; color:var(--hr-ink) !important; }
-    body.mode-hr #chatWindow .bg-carbon-800, body.mode-hr #portfolioChat .bg-carbon-800 { background:var(--hr-accent-tint) !important; color:var(--hr-ink) !important; border-color:var(--hr-rule) !important; }
-    body.mode-hr #chatWindow .bg-amber-500, body.mode-hr #sendChatBtn { background:var(--hr-accent) !important; color:#fff !important; }
-    body.mode-hr #userInput { background:#fff !important; border-color:var(--hr-rule) !important; color:var(--hr-ink) !important; }
-    body.mode-hr #portfolioChat .text-amber-400, body.mode-hr #portfolioChat .text-emerald-300,
-    body.mode-hr #portfolioChat .text-purple-300, body.mode-hr #portfolioChat .text-sky-300 { color:var(--hr-accent) !important; }
+    /* Accents & Buttons */
+    body.mode-hr a.bg-\[\#1e40af\] { background: #28578B !important; color: #FFFFFF !important; border: none !important; }
+    body.mode-hr a.bg-\[\#1e40af\]:hover { background: #315D91 !important; }
+    body.mode-hr button.bg-slate-50 { background: #DCEBFA !important; color: #0B1F36 !important; border-color: #B9CDE3 !important; }
+    body.mode-hr button.bg-slate-50:hover { background: #FFFFFF !important; }
+    
+    /* Secondary CTA / Badges (Verified Credentials) */
+    body.mode-hr #cvp-card a.bg-slate-50 { background: #28578B !important; border-color: #315D91 !important; color: #A9CFFF !important; box-shadow: none !important; }
+    body.mode-hr #cvp-card a.bg-slate-50 .text-\[\#1e40af\] { color: #A9CFFF !important; }
+    body.mode-hr #cvp-card a.bg-slate-50:hover { background: #315D91 !important; }
+    
+    /* Copilot (HR Mode) */
+    body.mode-hr #portfolioChat { background: #163E78 !important; border-color: #315D91 !important; }
+    body.mode-hr #chatHeader { background: #0B1F36 !important; color: #FFFFFF !important; border-bottom: none !important; }
+    body.mode-hr #chatHeader .text-amber-300 { color: #A9CFFF !important; border-color: #315D91 !important; background: #28578B !important; }
+    body.mode-hr #chatWindow { background: #F4F5F0 !important; color: #1E293B !important; }
+    body.mode-hr #chatWindow .bg-carbon-800, body.mode-hr #portfolioChat .bg-carbon-800 { background: #DCEBFA !important; color: #0B1F36 !important; border-color: #B9CDE3 !important; }
+    body.mode-hr #chatWindow .bg-amber-500, body.mode-hr #sendChatBtn { background: #163E78 !important; color: #FFFFFF !important; border: none !important; }
+    body.mode-hr #chatWindow .bg-red-950\/60 { background: #fee2e2 !important; color: #991b1b !important; border-color: #fca5a5 !important; }
+    body.mode-hr #portfolioChat .bg-carbon-900 { background: #163E78 !important; border-color: #315D91 !important; }
+    body.mode-hr #userInput { background: #F4F5F0 !important; border-color: #B9CDE3 !important; color: #0B1F36 !important; }
+    body.mode-hr #portfolioChat .text-amber-400, body.mode-hr #portfolioChat .text-emerald-300, body.mode-hr #portfolioChat .text-purple-300, body.mode-hr #portfolioChat .text-sky-300 { color: #A9CFFF !important; }
 
     /* ========================================================= */
 /* DEV MODE STYLES (Increased Brightness)                    */
@@ -385,11 +374,6 @@
     /* Print Mode Hard Overrides (Fixes Dev Mode Blackout) */
     @media print {
       body { background: white !important; color: black !important; }
-      body.mode-hr .hr-wrap { display:block; padding:0; }
-      body.mode-hr .hr-sheet, body.mode-hr .hr-panel { border:0; padding:0; }
-      body.mode-hr .hr-side { position:static; margin-top:16px; }
-      body.mode-hr .hr-btn { display:none; }
-      
       body.mode-dev h1, body.mode-dev h2, body.mode-dev h3, body.mode-dev h4, body.mode-dev .text-white, body.mode-dev .text-amber-400, body.mode-dev .text-emerald-400 { color: black !important; text-shadow: none !important; }
       body.mode-dev .bg-amber-500 { background-color: #f1f5f9 !important; color: black !important; box-shadow: none !important; border: 1px solid #cbd5e1 !important; }
       body.mode-dev::after { display: none !important; }
@@ -563,101 +547,150 @@
   <!-- ============================================== -->
   <!-- HR MODE: 1-Page Printable Resume (3-Column)    -->
   <!-- ============================================== -->
-  <div id="view-hr" style="display: none;" class="relative z-10">
-  <div class="hr-wrap">
-
-    <main class="hr-sheet">
-      <div class="hr-intro">
-        <div class="hr-photo">
-          <img src="assets/sai-vinay.png" alt="Sai Vinay Mullapudi" onerror="resolveAsset(this, 'sai-vinay')">
-          <span class="asset-fallback hidden">SV</span>
-        </div>
-        <div>
-          <h1 class="hr-name">Sai Vinay Mullapudi</h1>
-          <p class="hr-title">DevOps, Cloud and GenAI engineer</p>
-        </div>
-      </div>
-
-      <p class="hr-summary">Four years building and running AWS platforms for fintech and enterprise teams: zero-trust infrastructure with Terraform, CI/CD pipelines, and applied GenAI workflows.</p>
-
-      <div class="hr-facts">
-        <span><strong>Looking for:</strong> DevOps, Cloud, SRE</span>
-        <span><strong>Based in:</strong> Bengaluru, open to India and global roles</span>
-        <span><strong>Available:</strong> immediately</span>
-      </div>
-
-      <section class="hr-section">
-        <h2 class="hr-h2">Experience</h2>
-
-        <article class="hr-job">
-          <div class="hr-job-head">
-            <div class="hr-company">Ascendion <span>DevOps and GenAI Engineer, HP Inc. engagement</span></div>
-            <div class="hr-dates">Dec 2025 – Aug 2026</div>
+  <div id="view-hr" style="display: none;" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+      
+      <!-- Left Column: Profile & Education -->
+      <aside class="lg:col-span-3 rounded-2xl p-5 sm:p-6 space-y-5 bg-white border border-slate-200 shadow-sm">
+        <div class="flex flex-col items-center text-center">
+          <div class="w-36 h-36 sm:w-40 sm:h-40 rounded-full overflow-hidden border-4 border-[#1e40af]/30 mb-3 bg-slate-50 shadow-sm flex items-center justify-center">
+            <img src="assets/sai-vinay.png" alt="Sai Vinay" class="w-full h-full object-cover" onerror="resolveAsset(this, 'sai-vinay')">
+            <span class="asset-fallback hidden font-mono font-bold text-4xl text-[#1e40af]">SV</span>
           </div>
-          <ul>
-            <li>Integrated LLMs, vector knowledge bases and guardrails into agentic SDLC workflows.</li>
-            <li>Standardized multi-account IAM roles and Terraform governance across containerized platform workloads.</li>
-          </ul>
-        </article>
+          <h1 class="text-xl sm:text-2xl font-extrabold text-slate-900 leading-tight">Sai Vinay Mullapudi</h1>
+          <p class="text-xs font-mono text-[#1e40af] font-bold mt-1">4 Yrs Enterprise (US &amp; India)</p>
+        </div>
 
-        <article class="hr-job">
-          <div class="hr-job-head">
-            <div class="hr-company">Eficens Systems LLC <span>DevOps Engineer, US fintech</span></div>
-            <div class="hr-dates">Dec 2021 – Aug 2024</div>
+        <div class="border-t border-slate-200 pt-3.5 space-y-1.5 text-xs font-mono text-slate-600">
+          <div class="flex items-center justify-between py-1 border-b border-slate-100"><span class="text-slate-500">Target:</span><span class="text-slate-900 font-semibold">DevOps/Cloud/SRE</span></div>
+          <div class="flex items-center justify-between py-1 border-b border-slate-100"><span class="text-slate-500">Mobility:</span><span class="text-slate-900 font-medium">Bengaluru / India / Global</span></div>
+          <div class="flex items-center justify-between py-1"><span class="text-slate-500">Availability:</span><span class="text-[#1e40af] font-bold">Immediate</span></div>
+        </div>
+
+        <div class="border-t border-slate-200 pt-3.5 space-y-2.5 font-mono">
+          <span class="text-xs font-bold text-[#1e40af] uppercase tracking-wider block">Education</span>
+          <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200 flex items-center gap-3.5">
+            <div class="w-[73px] h-[73px] rounded-lg bg-white border border-slate-200 p-1 flex items-center justify-center shrink-0"><span class="text-[11px] font-bold text-[#1e40af]">IIT-B</span></div>
+            <div class="min-w-0"><div class="text-xs font-bold text-slate-900 truncate">IIT Bombay</div><div class="text-[10px] text-slate-500 truncate">Exec. AI &amp; MLOps (2026)</div></div>
           </div>
-          <ul>
-            <li>Architected zero-trust AWS infrastructure and reusable Terraform for post-trade financial clearing feeds.</li>
-            <li>Built Jenkins CI/CD pipelines enforcing KMS envelope encryption and zero-downtime RDS updates.</li>
-          </ul>
-        </article>
-
-        <article class="hr-job">
-          <div class="hr-job-head">
-            <div class="hr-company">LotusData LLP <span>Jr. Cloud Administrator, New Jersey</span></div>
-            <div class="hr-dates">Mar 2021 – Dec 2021</div>
+          <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200 flex items-center gap-3.5">
+            <div class="w-[73px] h-[73px] rounded-lg bg-white border border-slate-200 p-1 flex items-center justify-center shrink-0"><span class="text-[11px] font-bold text-[#1e40af]">NJIT</span></div>
+            <div class="min-w-0"><div class="text-xs font-bold text-slate-900 truncate">NJIT (USA)</div><div class="text-[10px] text-slate-500 truncate">M.S. Comp Sci (2020)</div></div>
           </div>
-          <ul>
-            <li>Maintained 99% availability across a 200+ instance AWS EC2 cluster through automated lifecycle governance.</li>
-            <li>Automated RedHat Linux bare-metal provisioning and administered non-disruptive online LVM storage.</li>
-          </ul>
-        </article>
-      </section>
-    </main>
+          <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200 flex items-center gap-3.5">
+            <div class="w-[73px] h-[73px] rounded-lg bg-white border border-slate-200 p-1 flex items-center justify-center shrink-0"><span class="text-[11px] font-bold text-[#1e40af]">GGSIPU</span></div>
+            <div class="min-w-0"><div class="text-xs font-bold text-slate-900 truncate">GGSIPU (India)</div><div class="text-[10px] text-slate-500 truncate">B.Tech Comp Sci (2017)</div></div>
+          </div>
+        </div>
 
-    <aside class="hr-side">
-      <div class="hr-panel">
-        <h3>Contact</h3>
-        <div style="display:grid; gap:8px;">
-          <a class="hr-btn hr-btn-primary" href="mailto:msaivinay306@gmail.com"><i data-lucide="mail" class="w-4 h-4"></i> Email me</a>
-          <button type="button" class="hr-btn hr-btn-secondary" onclick="openCalendly()"><i data-lucide="calendar" class="w-4 h-4"></i> Book a call</button>
+        <div class="pt-1 flex flex-col gap-2">
+          <a href="mailto:msaivinay306@gmail.com" class="w-full py-2.5 rounded-xl bg-[#1e40af] hover:bg-blue-900 text-white font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-md"><i data-lucide="mail" class="w-4 h-4"></i> Direct Email</a>
+          <button type="button" onclick="openCalendly()" class="w-full py-2.5 rounded-xl bg-slate-50 hover:bg-slate-100 text-[#1e40af] font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm border border-slate-200 cursor-pointer"><i data-lucide="calendar" class="w-4 h-4"></i> Book a Call</button>
+        </div>
+      </aside>
+
+      <!-- Center Column: Value Prop & Enterprise Work Experience -->
+      <div class="lg:col-span-6 space-y-4">
+        <div id="cvp-card" class="rounded-2xl p-4 sm:p-5 bg-white border border-slate-200 shadow-sm space-y-2.5">
+          <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#163E78] text-white shadow-sm text-[11px] font-mono font-bold uppercase border-none"><i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Candidate Value Proposition</div>
+          <h2 class="text-lg sm:text-xl font-extrabold text-slate-900 leading-snug">Enterprise Cloud Reliability Meets Production GenAI</h2>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            Architecting zero-trust AWS systems synchronized in real time with post-trade financial infrastructure, coupled with modern applied AI platform delivery and resilient container governance.
+          </p>
+          <div class="pt-2.5 border-t border-slate-200">
+            <span class="text-[10px] font-mono text-slate-500 block mb-2 uppercase tracking-wider">Verified Credentials (Click to Verify on Credly):</span>
+            <div class="grid grid-cols-3 gap-1.5 items-center">
+              <a href="https://www.credly.com/badges/20f333e6-76e8-431a-9603-c22408681cd8" target="_blank" rel="noopener noreferrer" class="px-2 py-1 rounded bg-slate-50 hover:bg-slate-100 border border-slate-200 text-[9.5px] sm:text-[10.5px] font-bold text-[#1e40af] flex items-center justify-center gap-1 whitespace-nowrap truncate transition-colors shadow-sm">
+                <i data-lucide="check-circle" class="w-3 h-3 shrink-0"></i><span class="truncate">AWS ML Engineer</span>
+              </a>
+              <a href="https://www.credly.com/badges/af2f25bd-7fbe-4e21-92fc-4c39f8e92cf7" target="_blank" rel="noopener noreferrer" class="px-2 py-1 rounded bg-slate-50 hover:bg-slate-100 border border-slate-200 text-[9.5px] sm:text-[10.5px] font-bold text-[#1e40af] flex items-center justify-center gap-1 whitespace-nowrap truncate transition-colors shadow-sm">
+                <i data-lucide="check-circle" class="w-3 h-3 shrink-0"></i><span class="truncate">AWS Sol. Architect</span>
+              </a>
+              <a href="https://www.credly.com/badges/582be29e-4701-41a4-b4bb-638b1d675fc2" target="_blank" rel="noopener noreferrer" class="px-2 py-1 rounded bg-slate-50 hover:bg-slate-100 border border-slate-200 text-[9.5px] sm:text-[10.5px] font-bold text-[#1e40af] flex items-center justify-center gap-1 whitespace-nowrap truncate transition-colors shadow-sm">
+                <i data-lucide="check-circle" class="w-3 h-3 shrink-0"></i><span class="truncate">AWS Cloud Pract.</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-2xl p-5 sm:p-6 bg-white border border-slate-200 shadow-sm space-y-4">
+          <h3 class="text-base font-bold font-mono text-slate-900 uppercase tracking-wider flex items-center gap-2 border-b border-slate-200 pb-2.5">
+            <i data-lucide="briefcase" class="w-5 h-5 text-[#1e40af]"></i> Professional Experience
+          </h3>
+          <div class="space-y-4 font-mono text-sm">
+            <div class="p-3.5 sm:p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-1.5">
+              <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1">
+                <strong class="text-slate-900 text-xs sm:text-sm">Ascendion — DevOps &amp; GenAI Engineer (L5 @ HP Inc.)</strong>
+                <span class="text-[#1e40af] font-bold shrink-0 text-xs">Dec '25 – Aug '26</span>
+              </div>
+              <ul class="space-y-1 text-slate-700 list-disc list-inside font-sans text-xs sm:text-sm leading-relaxed">
+                <li>Integrated LLMs, vector knowledge bases, and guardrail architectures into agentic SDLC workflows.</li>
+                <li>Standardized multi-account IAM roles and Terraform governance across containerized platform workloads.</li>
+              </ul>
+            </div>
+            <div class="p-3.5 sm:p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-1.5">
+              <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1">
+                <strong class="text-slate-900 text-xs sm:text-sm">Eficens Systems LLC — DevOps Engineer (US FinTech)</strong>
+                <span class="text-[#1e40af] font-bold shrink-0 text-xs">Dec '21 – Aug '24</span>
+              </div>
+              <ul class="space-y-1 text-slate-700 list-disc list-inside font-sans text-xs sm:text-sm leading-relaxed">
+                <li>Architected zero-trust AWS infrastructure &amp; reusable Terraform for post-trade financial clearing feeds.</li>
+                <li>Built Jenkins CI/CD pipelines enforcing KMS envelope encryption and zero-downtime RDS updates.</li>
+              </ul>
+            </div>
+            <div class="p-3.5 sm:p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-1.5">
+              <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1">
+                <strong class="text-slate-900 text-xs sm:text-sm">LotusData LLP — Jr. Cloud Administrator (NJ, USA)</strong>
+                <span class="text-[#1e40af] font-bold shrink-0 text-xs">Mar '21 – Dec '21</span>
+              </div>
+              <ul class="space-y-1 text-slate-700 list-disc list-inside font-sans text-xs sm:text-sm leading-relaxed">
+                <li>Maintained 99% availability across a 200+ AWS EC2 instance cluster through automated lifecycle governance.</li>
+                <li>Automated RedHat Linux bare-metal provisioning and administered non-disruptive online LVM storage.</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="hr-panel">
-        <h3>AWS certifications</h3>
-        <a class="hr-cert" href="https://www.credly.com/badges/20f333e6-76e8-431a-9603-c22408681cd8" target="_blank" rel="noopener noreferrer"><i data-lucide="check-circle" class="w-4 h-4"></i> Machine Learning Engineer</a>
-        <a class="hr-cert" href="https://www.credly.com/badges/af2f25bd-7fbe-4e21-92fc-4c39f8e92cf7" target="_blank" rel="noopener noreferrer"><i data-lucide="check-circle" class="w-4 h-4"></i> Solutions Architect</a>
-        <a class="hr-cert" href="https://www.credly.com/badges/582be29e-4701-41a4-b4bb-638b1d675fc2" target="_blank" rel="noopener noreferrer"><i data-lucide="check-circle" class="w-4 h-4"></i> Cloud Practitioner</a>
+      <!-- Right Column: Core Tech Stack -->
+      <div class="lg:col-span-3 rounded-2xl p-5 sm:p-6 bg-white border border-slate-200 shadow-sm space-y-5">
+        <h3 class="text-sm font-bold font-mono text-slate-900 uppercase tracking-wider flex items-center gap-2 border-b border-slate-200 pb-3">
+          <i data-lucide="cpu" class="w-4 h-4 text-[#1e40af]"></i> Core Technical Stack
+        </h3>
+        <div class="space-y-5 text-sm font-mono">
+          <div class="space-y-2"><span class="text-[#1e40af] font-bold block text-xs uppercase">Cloud &amp; IaC</span>
+            <div class="flex flex-col gap-1.5 text-xs text-slate-700">
+              <span class="px-2.5 py-1.5 rounded bg-slate-50 border border-slate-200">AWS (VPC, IAM, KMS)</span>
+              <span class="px-2.5 py-1.5 rounded bg-slate-50 border border-slate-200">Terraform &amp; Terragrunt</span>
+              <span class="px-2.5 py-1.5 rounded bg-slate-50 border border-slate-200">Zero-Trust Security</span>
+            </div>
+          </div>
+          <div class="space-y-2"><span class="text-[#1e40af] font-bold block text-xs uppercase">DevOps &amp; Containers</span>
+            <div class="flex flex-col gap-1.5 text-xs text-slate-700">
+              <span class="px-2.5 py-1.5 rounded bg-slate-50 border border-slate-200">Docker &amp; Harbor</span>
+              <span class="px-2.5 py-1.5 rounded bg-slate-50 border border-slate-200">Jenkins CI/CD</span>
+              <span class="px-2.5 py-1.5 rounded bg-slate-50 border border-slate-200">Azure DevOps</span>
+              <span class="px-2.5 py-1.5 rounded bg-slate-50 border border-slate-200">RedHat Linux / LVM</span>
+            </div>
+          </div>
+          <div class="space-y-2"><span class="text-[#1e40af] font-bold block text-xs uppercase">Backend Engineering</span>
+            <div class="flex flex-col gap-1.5 text-xs text-slate-700">
+              <span class="px-2.5 py-1.5 rounded bg-slate-50 border border-slate-200">Java 17 (Spring Boot)</span>
+              <span class="px-2.5 py-1.5 rounded bg-slate-50 border border-slate-200">Maven &amp; JUnit</span>
+              <span class="px-2.5 py-1.5 rounded bg-slate-50 border border-slate-200">Python &amp; Bash</span>
+            </div>
+          </div>
+          <div class="space-y-2"><span class="text-[#1e40af] font-bold block text-xs uppercase">Applied GenAI</span>
+            <div class="flex flex-col gap-1.5 text-xs text-slate-700">
+              <span class="px-2.5 py-1.5 rounded bg-slate-50 border border-slate-200">Agentic RAG Workflows</span>
+              <span class="px-2.5 py-1.5 rounded bg-slate-50 border border-slate-200">PyTorch &amp; Datadog</span>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="hr-panel">
-        <h3>Skills</h3>
-        <div class="hr-skill"><strong>Cloud and IaC</strong>AWS (VPC, IAM, KMS), Terraform, Terragrunt, zero-trust security</div>
-        <div class="hr-skill"><strong>DevOps and containers</strong>Docker, Harbor, Jenkins, Azure DevOps, RedHat Linux</div>
-        <div class="hr-skill"><strong>Backend</strong>Java 17 (Spring Boot), Maven, JUnit, Python, Bash</div>
-        <div class="hr-skill"><strong>Applied GenAI</strong>Agentic RAG workflows, PyTorch, Datadog</div>
-      </div>
-
-      <div class="hr-panel">
-        <h3>Education</h3>
-        <div class="hr-edu"><strong>IIT Bombay, Certificate in AI and MLOps</strong>In progress, 2026</div>
-        <div class="hr-edu"><strong>NJIT, M.S. Computer Science</strong>2020</div>
-        <div class="hr-edu"><strong>GGSIPU, B.Tech Computer Science</strong>2017</div>
-      </div>
-    </aside>
-
+    </div>
   </div>
-</div>
 
   <!-- ============================================== -->
   <!-- VIEW 2 & 3: MANAGER & DEV PERSPECTIVES         -->
@@ -2374,7 +2407,7 @@
       pf_mode = role;
       
       const inact = "px-2.5 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 text-slate-400 hover:text-white whitespace-nowrap";
-      const actHr = "px-2.5 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 bg-[#1E40AF] text-white font-bold shadow-sm whitespace-nowrap";
+      const actHr = "px-2.5 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 bg-[#163E78] text-white font-bold shadow-sm border border-[#315D91] whitespace-nowrap";
       const actAmb = "px-2.5 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 bg-amber-500 text-carbon-950 font-bold shadow-sm whitespace-nowrap";
       const actGrn = "px-2.5 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 bg-[#00ff66] text-black font-bold shadow-[0_0_12px_rgba(0,255,102,0.4)] whitespace-nowrap";
       
@@ -2384,7 +2417,7 @@
       if (bDev) bDev.className = (role === 'engineer') ? actGrn : inact;
 
       const mHr = document.getElementById('mobileBtnHr'), mMgr = document.getElementById('mobileBtnMgr'), mDev = document.getElementById('mobileBtnDev');
-      if (mHr) mHr.className = (role === 'recruiter') ? "px-1.5 py-1 rounded bg-[#1E40AF] text-white font-bold" : "px-1.5 py-1 rounded text-slate-400 hover:text-white";
+      if (mHr) mHr.className = (role === 'recruiter') ? "px-1.5 py-1 rounded bg-[#163E78] text-white font-bold border border-[#315D91]" : "px-1.5 py-1 rounded text-slate-400 hover:text-white";
       if (mMgr) mMgr.className = (role === 'manager') ? "px-1.5 py-1 rounded bg-amber-500 text-carbon-950 font-bold" : "px-1.5 py-1 rounded text-slate-400 hover:text-white";
       if (mDev) mDev.className = (role === 'engineer') ? "px-1.5 py-1 rounded bg-[#00ff66] text-black font-bold" : "px-1.5 py-1 rounded text-slate-400 hover:text-white";
 
