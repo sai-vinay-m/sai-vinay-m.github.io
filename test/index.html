@@ -3087,7 +3087,7 @@
       const conns = [document.getElementById('wf-conn-1'), document.getElementById('wf-conn-2'), document.getElementById('wf-conn-3')];
       const packets = [document.getElementById('wf-packet-1'), document.getElementById('wf-packet-2'), document.getElementById('wf-packet-3')];
       
-      stages.forEach(s => { if(s) { s.classList.remove('wf-running', 'wf-passed', 'wf-running-amber', 'wf-passed-amber', 'wf-passed-blue'); }});
+      stages.forEach(s => { if(s) { s.classList.remove('wf-running', 'wf-passed', 'wf-running-amber', 'wf-passed-amber', 'wf-running-blue', 'wf-passed-blue'); }});
       conns.forEach(c => { if(c) { c.classList.remove('wf-connector-animating', 'wf-connector-animating-amber', 'wf-connector-solid', 'wf-connector-solid-amber'); }});
       
       const isMobile = window.innerWidth <= 768;
@@ -3099,11 +3099,7 @@
         if(stages[0]) stages[0].classList.add('wf-passed');
         if(stages[1]) stages[1].classList.add('wf-passed');
         if(stages[2]) stages[2].classList.add('wf-passed-amber');
-        if(stages[3]) stages[3].classList.add('wf-running-blue');
-      }, t)); t += 1200;
-
-      wf_animTimeouts.push(setTimeout(() => {
-        if(stages[3]) { stages[3].classList.remove('wf-running-blue'); stages[3].classList.add('wf-passed-blue'); }
+        if(stages[3]) stages[3].classList.add('wf-passed-blue');
         return;
       }
 
