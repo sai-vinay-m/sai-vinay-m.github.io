@@ -2350,21 +2350,28 @@
     /* ========================================================================= */
     /* 4. PERSPECTIVE SWITCHBOARD                                                */
     /* ========================================================================= */
-    window.setPerspective = function(role, showNotification = true) {
+window.setPerspective = function(role, showNotification = true) {
       document.body.classList.remove('mode-hr', 'mode-manager', 'mode-dev');
       pf_mode = role;
       
       const inact = "px-2.5 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 text-slate-400 hover:text-white whitespace-nowrap";
+      
+      // Added dedicated HR active state (Royal Blue & White)
+      const actHr = "px-2.5 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 bg-[#1e40af] text-white font-bold shadow-sm whitespace-nowrap";
       const actAmb = "px-2.5 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 bg-amber-500 text-carbon-950 font-bold shadow-sm whitespace-nowrap";
       const actGrn = "px-2.5 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 bg-[#00ff66] text-black font-bold shadow-[0_0_12px_rgba(0,255,102,0.4)] whitespace-nowrap";
       
       const bHr = document.getElementById('headerBtnHr'), bMgr = document.getElementById('headerBtnManager'), bDev = document.getElementById('headerBtnDev');
-      if (bHr) bHr.className = (role === 'recruiter') ? actAmb : inact;
+      
+      // Apply the new actHr variable when recruiter is selected
+      if (bHr) bHr.className = (role === 'recruiter') ? actHr : inact;
       if (bMgr) bMgr.className = (role === 'manager') ? actAmb : inact;
       if (bDev) bDev.className = (role === 'engineer') ? actGrn : inact;
 
       const mHr = document.getElementById('mobileBtnHr'), mMgr = document.getElementById('mobileBtnMgr'), mDev = document.getElementById('mobileBtnDev');
-      if (mHr) mHr.className = (role === 'recruiter') ? "px-1.5 py-1 rounded bg-amber-500 text-carbon-950 font-bold" : "px-1.5 py-1 rounded text-slate-400 hover:text-white";
+      
+      // Update Mobile HR toggle to use Royal Blue instead of Amber
+      if (mHr) mHr.className = (role === 'recruiter') ? "px-1.5 py-1 rounded bg-[#1e40af] text-white font-bold" : "px-1.5 py-1 rounded text-slate-400 hover:text-white";
       if (mMgr) mMgr.className = (role === 'manager') ? "px-1.5 py-1 rounded bg-amber-500 text-carbon-950 font-bold" : "px-1.5 py-1 rounded text-slate-400 hover:text-white";
       if (mDev) mDev.className = (role === 'engineer') ? "px-1.5 py-1 rounded bg-[#00ff66] text-black font-bold" : "px-1.5 py-1 rounded text-slate-400 hover:text-white";
 
