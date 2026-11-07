@@ -285,81 +285,98 @@
     .svg-flow-line, .loop-active-flow { stroke-dasharray: 8 8 !important; animation: svgPacketFlow 1s linear infinite !important; }
 
     /* ========================================================= */
-   /* ========================================================= */
-    /* HR MODE THEME: TWO-TONE (NAVY SIDEBAR, WHITE CANVAS)      */
+    /* HR MODE THEME: WARM EXECUTIVE (Cream, Espresso, Terracotta, Navy) */
     /* ========================================================= */
-    body.mode-hr { background-color: #F8FAFC !important; color: #334155 !important; background-image: none !important; }
+    body.mode-hr { background-color: #FAFAF9 !important; color: #44403C !important; background-image: none !important; }
     body.mode-hr .bg-grid-pattern, body.mode-hr .hero-glow { display: none !important; }
     
-    /* Header (Light/Crisp) */
-    body.mode-hr header { background: rgba(255, 255, 255, 0.95) !important; border-bottom: 1px solid #E2E8F0 !important; }
-    body.mode-hr header .text-white, body.mode-hr header .text-slate-900, body.mode-hr header h1 { color: #0F172A !important; }
-    body.mode-hr header .text-slate-400, body.mode-hr header .text-slate-300, body.mode-hr header a { color: #64748B !important; }
-    body.mode-hr header .bg-carbon-800 { background: #F1F5F9 !important; border-color: #E2E8F0 !important; color: #0F172A !important; }
-    body.mode-hr header .asset-fallback { color: #1D4ED8 !important; }
+    /* Header (Warm White / Cream) */
+    body.mode-hr header { background: rgba(255, 255, 255, 0.96) !important; border-bottom: 1px solid #E7E5E4 !important; }
+    body.mode-hr header .text-white, body.mode-hr header .text-slate-900, body.mode-hr header h1 { color: #292524 !important; }
+    body.mode-hr header .text-slate-400, body.mode-hr header .text-slate-300, body.mode-hr header a, body.mode-hr header .text-xs { color: #78716C !important; }
+    body.mode-hr header .bg-carbon-800 { background: #F5F5F4 !important; border-color: #D6D3D1 !important; color: #292524 !important; }
+    body.mode-hr header .asset-fallback { color: #9A3412 !important; }
+    body.mode-hr header .border-carbon-600 { border-color: #E7E5E4 !important; }
     
-    /* Mode Switcher Buttons */
-    body.mode-hr header #headerBtnHr, body.mode-hr header #mobileBtnHr { background: #1D4ED8 !important; color: #FFFFFF !important; border-color: #1E40AF !important; box-shadow: 0 2px 4px rgba(29, 78, 216, 0.2) !important; }
-    body.mode-hr header a.bg-carbon-800:hover, body.mode-hr header button.bg-carbon-800:hover { background: #EFF6FF !important; color: #1D4ED8 !important; border-color: #BFDBFE !important; }
+    /* Active Mode Switcher fixes */
+    body.mode-hr header #headerBtnHr { background: #9A3412 !important; color: #FFFFFF !important; border-color: #7C2D12 !important; box-shadow: 0 2px 4px rgba(154, 52, 18, 0.2) !important; }
+    body.mode-hr header #mobileBtnHr { background: #9A3412 !important; color: #FFFFFF !important; border-color: #7C2D12 !important; }
+    
+    /* Header CTAs */
+    body.mode-hr header a.bg-carbon-800:hover, body.mode-hr header button.bg-carbon-800:hover { background: #FFF7ED !important; color: #9A3412 !important; border-color: #FED7AA !important; }
 
-    /* Left Sidebar: Deep Navy Blue */
+    /* Left Sidebar: Deep Navy/Slate to contrast the warm canvas */
     body.mode-hr aside {
-      background: #0F172A !important; border: 1px solid #1E293B !important; box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.5) !important;
+      background: #1E293B !important; border: 1px solid #0F172A !important; box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.3) !important;
     }
-    body.mode-hr aside h1 { color: #FFFFFF !important; }
-    body.mode-hr aside p.text-\[\#1e40af\] { color: #38BDF8 !important; } 
-    body.mode-hr aside .text-slate-500 { color: #94A3B8 !important; } 
-    body.mode-hr aside .text-slate-900 { color: #F1F5F9 !important; font-weight: 600 !important; } 
+    body.mode-hr aside h1 { color: #F8FAFC !important; }
+    body.mode-hr aside p.text-\[\#1e40af\] { color: #FDBA74 !important; } /* Warm orange for 4 yrs exp */
+    body.mode-hr aside .text-slate-500 { color: #94A3B8 !important; } /* Labels */
+    body.mode-hr aside .text-slate-900 { color: #F1F5F9 !important; font-weight: 600 !important; } /* Values */
     body.mode-hr aside .border-slate-100, body.mode-hr aside .border-slate-200, body.mode-hr aside .border-t { border-color: #334155 !important; }
-    body.mode-hr aside span.text-\[\#1e40af\] { color: #38BDF8 !important; }
+    body.mode-hr aside span.text-\[\#1e40af\] { color: #FDBA74 !important; font-weight: 700 !important; }
     
     /* Left Sidebar: Avatar & Education Cards */
     body.mode-hr aside .w-\[73px\].h-\[73px\] { background: #0F172A !important; border-color: #334155 !important; }
-    body.mode-hr aside .w-\[73px\].h-\[73px\] span { color: #38BDF8 !important; }
-    body.mode-hr aside .border-4.border-\[\#1e40af\]\/30 { border-color: rgba(56, 189, 248, 0.2) !important; background: #1E293B !important; }
-    body.mode-hr aside .bg-slate-50 { background: #1E293B !important; border-color: #334155 !important; color: #F1F5F9 !important; }
+    body.mode-hr aside .w-\[73px\].h-\[73px\] span { color: #FDBA74 !important; }
+    body.mode-hr aside .border-4.border-\[\#1e40af\]\/30 { border-color: rgba(253, 186, 116, 0.3) !important; background: #334155 !important; }
+    body.mode-hr aside .bg-slate-50 { background: #0F172A !important; border: 1px solid #334155 !important; color: #E2E8F0 !important; }
     body.mode-hr aside .bg-slate-50 .text-slate-900 { color: #F8FAFC !important; }
     
     /* Left Sidebar: Buttons */
-    body.mode-hr aside a.bg-\[\#1e40af\] { background: #38BDF8 !important; color: #0F172A !important; font-weight: 700 !important; }
-    body.mode-hr aside a.bg-\[\#1e40af\]:hover { background: #7DD3FC !important; }
-    body.mode-hr aside button.bg-slate-50 { background: transparent !important; color: #38BDF8 !important; border: 1px solid #38BDF8 !important; font-weight: 700 !important; }
-    body.mode-hr aside button.bg-slate-50:hover { background: rgba(56, 189, 248, 0.1) !important; }
+    body.mode-hr aside a.bg-\[\#1e40af\] { background: #FDBA74 !important; color: #1E293B !important; font-weight: 700 !important; }
+    body.mode-hr aside a.bg-\[\#1e40af\]:hover { background: #FFEDD5 !important; }
+    body.mode-hr aside button.bg-slate-50 { background: transparent !important; color: #FDBA74 !important; border: 1px solid #FDBA74 !important; font-weight: 700 !important; }
+    body.mode-hr aside button.bg-slate-50:hover { background: rgba(253, 186, 116, 0.15) !important; }
 
-    /* Center & Right Canvas: Crisp White */
+    /* Center & Right Canvas: Warm Paper / Cream */
     body.mode-hr .lg\:col-span-6 > div.bg-white, body.mode-hr .lg\:col-span-3.rounded-2xl {
-      background: #FFFFFF !important; border: 1px solid #E2E8F0 !important; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05) !important;
+      background: #FFFFFF !important; border: 1px solid #E7E5E4 !important; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.02) !important;
     }
     body.mode-hr .lg\:col-span-6 > div.bg-white > h2, body.mode-hr .lg\:col-span-6 > div.bg-white > h3,
     body.mode-hr .lg\:col-span-3 h1, body.mode-hr .lg\:col-span-3 h3, body.mode-hr .lg\:col-span-3 .text-slate-900,
     body.mode-hr .lg\:col-span-6 .bg-slate-50 .text-slate-900 {
-      color: #0F172A !important; text-shadow: none !important; font-weight: 700 !important;
+      color: #292524 !important; text-shadow: none !important; font-weight: 700 !important;
     }
     body.mode-hr .lg\:col-span-6 > div.bg-white > p, body.mode-hr .lg\:col-span-6 > div.bg-white .text-slate-500,
     body.mode-hr .lg\:col-span-6 .bg-slate-50 .text-slate-700, body.mode-hr .lg\:col-span-3 .text-slate-600, body.mode-hr .lg\:col-span-3 .text-slate-700 {
-      color: #475569 !important;
+      color: #57534E !important;
     }
-    body.mode-hr .lg\:col-span-6 .bg-slate-50 { background: #F8FAFC !important; border-color: #E2E8F0 !important; }
-    body.mode-hr .lg\:col-span-6 .border-slate-200, body.mode-hr .lg\:col-span-3 .border-slate-200 { border-color: #E2E8F0 !important; }
+    body.mode-hr .lg\:col-span-6 .bg-slate-50 { background: #FAFAF9 !important; border-color: #E7E5E4 !important; }
+    body.mode-hr .lg\:col-span-6 .border-slate-200, body.mode-hr .lg\:col-span-3 .border-slate-200 { border-color: #E7E5E4 !important; }
     
-    /* Center/Right Accents (Royal Blue) */
-    body.mode-hr #cvp-card .bg-\[\#163E78\], body.mode-hr #cvp-card .bg-\[\#1E40AF\] { background: #EFF6FF !important; border: 1px solid #BFDBFE !important; color: #1D4ED8 !important; }
-    body.mode-hr .text-\[\#1e40af\] { color: #1D4ED8 !important; font-weight: 700 !important; }
-    body.mode-hr #cvp-card a.bg-slate-50 { background: #FFFFFF !important; border-color: #E2E8F0 !important; color: #334155 !important; box-shadow: 0 1px 2px rgba(0,0,0,0.05) !important; }
-    body.mode-hr #cvp-card a.bg-slate-50:hover { background: #F8FAFC !important; border-color: #CBD5E1 !important; }
+    /* Center/Right Accents (Terracotta / Warm Rust) */
+    body.mode-hr #cvp-card .bg-\[\#163E78\], body.mode-hr #cvp-card .bg-\[\#1E40AF\] { background: #FFF7ED !important; border: 1px solid #FED7AA !important; color: #9A3412 !important; }
+    body.mode-hr .lg\:col-span-6 > div.bg-white .text-\[\#1e40af\], body.mode-hr .lg\:col-span-6 .bg-slate-50 .text-\[\#1e40af\], body.mode-hr .lg\:col-span-3 .text-\[\#1e40af\] { color: #9A3412 !important; font-weight: 700 !important; }
+    
+    /* Right side tech stack pills background update */
+    body.mode-hr .lg\:col-span-3 .bg-slate-50 { background: #F5F5F4 !important; border: 1px solid #E7E5E4 !important; color: #44403C !important; }
 
-    /* Copilot (Light Mode) */
-    body.mode-hr #portfolioChat { background: #FFFFFF !important; border-color: #E2E8F0 !important; box-shadow: 0 10px 25px rgba(0,0,0,0.1) !important; }
-    body.mode-hr #chatHeader { background: #F8FAFC !important; color: #0F172A !important; border-bottom: 1px solid #E2E8F0 !important; }
-    body.mode-hr #chatHeader .text-amber-300 { color: #1D4ED8 !important; border-color: #BFDBFE !important; background: #EFF6FF !important; }
-    body.mode-hr #chatWindow { background: #FFFFFF !important; color: #334155 !important; }
-    body.mode-hr #chatWindow .bg-carbon-800, body.mode-hr #portfolioChat .bg-carbon-800 { background: #F1F5F9 !important; color: #0F172A !important; border-color: #E2E8F0 !important; }
-    body.mode-hr #chatWindow .bg-amber-500, body.mode-hr #sendChatBtn { background: #1D4ED8 !important; color: #FFFFFF !important; border: none !important; }
-    body.mode-hr #chatWindow .bg-red-950\/60 { background: #FEF2F2 !important; color: #EF4444 !important; border-color: #FECACA !important; }
-    body.mode-hr #portfolioChat .bg-carbon-900 { background: #F8FAFC !important; border-color: #E2E8F0 !important; }
-    body.mode-hr #userInput { background: #FFFFFF !important; border-color: #E2E8F0 !important; color: #0F172A !important; }
-    body.mode-hr #userInput::placeholder { color: #94A3B8 !important; }
-    body.mode-hr #portfolioChat .text-amber-400, body.mode-hr #portfolioChat .text-emerald-300, body.mode-hr #portfolioChat .text-purple-300, body.mode-hr #portfolioChat .text-sky-300 { color: #1D4ED8 !important; }
+    /* Accents & Buttons in main canvas */
+    body.mode-hr a.bg-\[\#1e40af\] { background: #9A3412 !important; color: #FFFFFF !important; border: none !important; font-weight: 700 !important; }
+    body.mode-hr a.bg-\[\#1e40af\]:hover { background: #7C2D12 !important; }
+    body.mode-hr button.bg-slate-50 { background: #FFFFFF !important; color: #9A3412 !important; border: 1px solid #9A3412 !important; font-weight: 700 !important; box-shadow: none !important; }
+    body.mode-hr button.bg-slate-50:hover { background: #FFF7ED !important; }
+    body.mode-hr .text-emerald-400 { color: #059669 !important; } /* A warmer green */
+    
+    /* Secondary CTA / Badges (Verified Credentials) */
+    body.mode-hr #cvp-card a.bg-slate-50 { background: #FFFFFF !important; border-color: #E7E5E4 !important; color: #44403C !important; box-shadow: 0 1px 2px rgba(0,0,0,0.05) !important; }
+    body.mode-hr #cvp-card a.bg-slate-50 .text-\[\#1e40af\] { color: #9A3412 !important; }
+    body.mode-hr #cvp-card a.bg-slate-50:hover { background: #FAFAF9 !important; border-color: #D6D3D1 !important; }
+    
+    /* Copilot (Warm Mode) */
+    body.mode-hr #portfolioChat { background: #FFFFFF !important; border-color: #E7E5E4 !important; box-shadow: 0 10px 25px rgba(0,0,0,0.1) !important; }
+    body.mode-hr #chatHeader { background: #FAFAF9 !important; color: #292524 !important; border-bottom: 1px solid #E7E5E4 !important; }
+    body.mode-hr #chatHeader .text-amber-300 { color: #9A3412 !important; border-color: #FED7AA !important; background: #FFF7ED !important; }
+    body.mode-hr #chatWindow { background: #FFFFFF !important; color: #44403C !important; }
+    body.mode-hr #chatWindow .bg-carbon-800, body.mode-hr #portfolioChat .bg-carbon-800 { background: #F5F5F4 !important; color: #292524 !important; border-color: #E7E5E4 !important; }
+    body.mode-hr #chatWindow .bg-amber-500, body.mode-hr #sendChatBtn { background: #9A3412 !important; color: #FFFFFF !important; border: none !important; font-weight: 700 !important; }
+    body.mode-hr #chatWindow .bg-red-950\/60 { background: #FEF2F2 !important; color: #DC2626 !important; border-color: #FECACA !important; }
+    body.mode-hr #portfolioChat .bg-carbon-900 { background: #FAFAF9 !important; border-color: #E7E5E4 !important; }
+    body.mode-hr #userInput { background: #FFFFFF !important; border-color: #E7E5E4 !important; color: #292524 !important; }
+    body.mode-hr #userInput::placeholder { color: #A8A29E !important; }
+    body.mode-hr #portfolioChat .text-amber-400, body.mode-hr #portfolioChat .text-emerald-300, body.mode-hr #portfolioChat .text-purple-300, body.mode-hr #portfolioChat .text-sky-300 { color: #9A3412 !important; }
+
     /* ========================================================= */
 /* DEV MODE STYLES (Increased Brightness)                    */
     /* ========================================================= */
@@ -2419,8 +2436,8 @@
       document.body.classList.remove('mode-hr', 'mode-manager', 'mode-dev');
       pf_mode = role;
       
-     const inact = "px-2.5 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 text-slate-400 hover:text-white whitespace-nowrap";
-      const actHr = "px-2.5 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 bg-[#1D4ED8] text-white font-bold border border-[#1E40AF] shadow-sm whitespace-nowrap";
+      const inact = "px-2.5 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 text-slate-400 hover:text-white whitespace-nowrap";
+      const actHr = "px-2.5 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 bg-[#9A3412] text-white font-bold border border-[#7C2D12] shadow-sm whitespace-nowrap";
       const actAmb = "px-2.5 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 bg-amber-500 text-carbon-950 font-bold shadow-sm whitespace-nowrap";
       const actGrn = "px-2.5 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 bg-[#00ff66] text-black font-bold shadow-[0_0_12px_rgba(0,255,102,0.4)] whitespace-nowrap";
       
@@ -2430,7 +2447,7 @@
       if (bDev) bDev.className = (role === 'engineer') ? actGrn : inact;
 
       const mHr = document.getElementById('mobileBtnHr'), mMgr = document.getElementById('mobileBtnMgr'), mDev = document.getElementById('mobileBtnDev');
-      if (mHr) mHr.className = (role === 'recruiter') ? "px-1.5 py-1 rounded bg-[#1D4ED8] text-white font-bold border border-[#1E40AF]" : "px-1.5 py-1 rounded text-slate-400 hover:text-white";
+      if (mHr) mHr.className = (role === 'recruiter') ? "px-1.5 py-1 rounded bg-[#9A3412] text-white font-bold border border-[#7C2D12]" : "px-1.5 py-1 rounded text-slate-400 hover:text-white";
       if (mMgr) mMgr.className = (role === 'manager') ? "px-1.5 py-1 rounded bg-amber-500 text-carbon-950 font-bold" : "px-1.5 py-1 rounded text-slate-400 hover:text-white";
       if (mDev) mDev.className = (role === 'engineer') ? "px-1.5 py-1 rounded bg-[#00ff66] text-black font-bold" : "px-1.5 py-1 rounded text-slate-400 hover:text-white";
 
