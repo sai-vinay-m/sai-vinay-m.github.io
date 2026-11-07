@@ -285,90 +285,82 @@
     .svg-flow-line, .loop-active-flow { stroke-dasharray: 8 8 !important; animation: svgPacketFlow 1s linear infinite !important; }
 
     /* ========================================================= */
-    /* ========================================================= */
     /* HR MODE THEME: OPTION A (CRISP LIGHT THEME)               */
     /* ========================================================= */
-    body.mode-hr { background-color: #F1F5F9 !important; color: #334155 !important; background-image: none !important; }
+    /* ========================================================= */
+    /* HR MODE THEME: TWO-TONE (NAVY SIDEBAR, WHITE CANVAS)      */
+    /* ========================================================= */
+    body.mode-hr { background-color: #F8FAFC !important; color: #334155 !important; background-image: none !important; }
     body.mode-hr .bg-grid-pattern, body.mode-hr .hero-glow { display: none !important; }
     
-    /* Header */
-    body.mode-hr header { background: rgba(255, 255, 255, 0.95) !important; border-bottom: 1px solid #E2E8F0 !important; color: #0F172A !important; }
+    /* Header (Light/Crisp) */
+    body.mode-hr header { background: rgba(255, 255, 255, 0.95) !important; border-bottom: 1px solid #E2E8F0 !important; }
     body.mode-hr header .text-white, body.mode-hr header .text-slate-900, body.mode-hr header h1 { color: #0F172A !important; }
-    body.mode-hr header .text-slate-400, body.mode-hr header .text-slate-300, body.mode-hr header a, body.mode-hr header .text-xs { color: #64748B !important; }
-    body.mode-hr header .bg-carbon-800 { background: #F8FAFC !important; border-color: #E2E8F0 !important; color: #0F172A !important; }
+    body.mode-hr header .text-slate-400, body.mode-hr header .text-slate-300, body.mode-hr header a { color: #64748B !important; }
+    body.mode-hr header .bg-carbon-800 { background: #F1F5F9 !important; border-color: #E2E8F0 !important; color: #0F172A !important; }
     body.mode-hr header .asset-fallback { color: #1D4ED8 !important; }
-    body.mode-hr header .border-carbon-600 { border-color: #E2E8F0 !important; }
     
-    /* Active Mode Switcher fixes */
-    body.mode-hr header #headerBtnHr { background: #1D4ED8 !important; color: #FFFFFF !important; border-color: #1E40AF !important; box-shadow: 0 2px 4px rgba(29, 78, 216, 0.2) !important; }
-    body.mode-hr header #mobileBtnHr { background: #1D4ED8 !important; color: #FFFFFF !important; border-color: #1E40AF !important; }
-    
-    /* Header CTAs */
+    /* Mode Switcher Buttons */
+    body.mode-hr header #headerBtnHr, body.mode-hr header #mobileBtnHr { background: #1D4ED8 !important; color: #FFFFFF !important; border-color: #1E40AF !important; box-shadow: 0 2px 4px rgba(29, 78, 216, 0.2) !important; }
     body.mode-hr header a.bg-carbon-800:hover, body.mode-hr header button.bg-carbon-800:hover { background: #EFF6FF !important; color: #1D4ED8 !important; border-color: #BFDBFE !important; }
 
-    /* 3 Bento Boxes (Left, Middle, Right) - Crisp White Panels */
-    body.mode-hr aside, body.mode-hr .lg\:col-span-6 > div.bg-white, body.mode-hr .lg\:col-span-3.rounded-2xl {
-      background: #FFFFFF !important; border: 1px solid #E2E8F0 !important; color: #0F172A !important; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05) !important;
+    /* Left Sidebar: Deep Navy Blue */
+    body.mode-hr aside {
+      background: #0F172A !important; border: 1px solid #1E293B !important; box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.5) !important;
     }
+    body.mode-hr aside h1 { color: #FFFFFF !important; }
+    body.mode-hr aside p.text-\[\#1e40af\] { color: #38BDF8 !important; } /* 4 Yrs Enterprise */
+    body.mode-hr aside .text-slate-500 { color: #94A3B8 !important; } /* Labels */
+    body.mode-hr aside .text-slate-900 { color: #F1F5F9 !important; font-weight: 600 !important; } /* Values */
+    body.mode-hr aside .border-slate-100, body.mode-hr aside .border-slate-200, body.mode-hr aside .border-t { border-color: #334155 !important; }
+    body.mode-hr aside span.text-\[\#1e40af\].uppercase { color: #38BDF8 !important; font-weight: 700 !important; }
     
-    /* Text overrides on Dark Panels (Left, Middle outer, Right) */
-    body.mode-hr aside h1, body.mode-hr aside h2, body.mode-hr aside h3, body.mode-hr aside .text-slate-900,
-    body.mode-hr .lg\:col-span-6 > div.bg-white > h2, body.mode-hr .lg\:col-span-6 > div.bg-white > h3,
-    body.mode-hr .lg\:col-span-3 h1, body.mode-hr .lg\:col-span-3 h3, body.mode-hr .lg\:col-span-3 .text-slate-900 {
-      color: #0F172A !important; text-shadow: none !important;
+    /* Left Sidebar: Avatar & Education Cards */
+    body.mode-hr aside .w-\[73px\].h-\[73px\] { background: #0F172A !important; border-color: #334155 !important; }
+    body.mode-hr aside .w-\[73px\].h-\[73px\] span { color: #38BDF8 !important; }
+    body.mode-hr aside .border-4.border-\[\#1e40af\]\/30 { border-color: rgba(56, 189, 248, 0.2) !important; background: #1E293B !important; }
+    body.mode-hr aside .bg-slate-50 { background: #1E293B !important; border-color: #334155 !important; }
+    
+    /* Left Sidebar: Buttons */
+    body.mode-hr aside a.bg-\[\#1e40af\] { background: #38BDF8 !important; color: #0F172A !important; font-weight: 700 !important; }
+    body.mode-hr aside a.bg-\[\#1e40af\]:hover { background: #7DD3FC !important; }
+    body.mode-hr aside button.bg-slate-50 { background: transparent !important; color: #38BDF8 !important; border: 1px solid #38BDF8 !important; font-weight: 700 !important; }
+    body.mode-hr aside button.bg-slate-50:hover { background: rgba(56, 189, 248, 0.1) !important; }
+
+    /* Center & Right Canvas: Crisp White */
+    body.mode-hr .lg\:col-span-6 > div.bg-white, body.mode-hr .lg\:col-span-3.rounded-2xl {
+      background: #FFFFFF !important; border: 1px solid #E2E8F0 !important; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05) !important;
     }
-    body.mode-hr aside .text-slate-600, body.mode-hr aside .text-slate-500, body.mode-hr aside .text-slate-700,
+    body.mode-hr .lg\:col-span-6 > div.bg-white > h2, body.mode-hr .lg\:col-span-6 > div.bg-white > h3,
+    body.mode-hr .lg\:col-span-3 h1, body.mode-hr .lg\:col-span-3 h3, body.mode-hr .lg\:col-span-3 .text-slate-900,
+    body.mode-hr .lg\:col-span-6 .bg-slate-50 .text-slate-900 {
+      color: #0F172A !important; text-shadow: none !important; font-weight: 700 !important;
+    }
     body.mode-hr .lg\:col-span-6 > div.bg-white > p, body.mode-hr .lg\:col-span-6 > div.bg-white .text-slate-500,
-    body.mode-hr .lg\:col-span-6 .bg-slate-50 .text-slate-700, 
-    body.mode-hr .lg\:col-span-3 .text-slate-600, body.mode-hr .lg\:col-span-3 .text-slate-700 {
+    body.mode-hr .lg\:col-span-6 .bg-slate-50 .text-slate-700, body.mode-hr .lg\:col-span-3 .text-slate-600, body.mode-hr .lg\:col-span-3 .text-slate-700 {
       color: #475569 !important;
     }
-    
-    /* Left Bento Sub-elements */
-    body.mode-hr aside .bg-slate-50 { background: #F8FAFC !important; border: 1px solid #E2E8F0 !important; color: #0F172A !important; }
-    body.mode-hr aside .bg-slate-50 .text-slate-900 { color: #0F172A !important; }
-    body.mode-hr aside .border-slate-100, body.mode-hr aside .border-slate-200, body.mode-hr aside .border-t { border-color: #E2E8F0 !important; }
-    body.mode-hr aside .text-\[\#1e40af\] { color: #1D4ED8 !important; font-weight: 700 !important; }
-    body.mode-hr aside .border-4.border-\[\#1e40af\]\/30 { border-color: #DBEAFE !important; }
-    body.mode-hr aside .w-\[73px\].h-\[73px\] { background: #FFFFFF !important; border: 1px solid #E2E8F0 !important; }
-    
-    /* Center Column Specifics */
-    body.mode-hr #cvp-card .bg-\[\#163E78\], body.mode-hr #cvp-card .bg-\[\#1E40AF\] { background: #EFF6FF !important; border: 1px solid #BFDBFE !important; color: #1D4ED8 !important; }
     body.mode-hr .lg\:col-span-6 .bg-slate-50 { background: #F8FAFC !important; border-color: #E2E8F0 !important; }
-    body.mode-hr .lg\:col-span-6 .bg-slate-50 .text-slate-900 { color: #0F172A !important; font-weight: 700 !important; text-shadow: none !important; }
-    body.mode-hr .lg\:col-span-6 .bg-slate-50 .text-\[\#1e40af\] { color: #1D4ED8 !important; font-weight: 600 !important; }
-    body.mode-hr .lg\:col-span-6 .border-slate-200 { border-color: #E2E8F0 !important; }
-    body.mode-hr .lg\:col-span-6 > div.bg-white .text-\[\#1e40af\] { color: #1D4ED8 !important; font-weight: 700 !important; }
+    body.mode-hr .lg\:col-span-6 .border-slate-200, body.mode-hr .lg\:col-span-3 .border-slate-200 { border-color: #E2E8F0 !important; }
     
-    /* Right Column Specifics */
-    body.mode-hr .lg\:col-span-3 .bg-slate-50 { background: #F8FAFC !important; border: 1px solid #E2E8F0 !important; color: #334155 !important; }
-    body.mode-hr .lg\:col-span-3 .text-\[\#1e40af\] { color: #1D4ED8 !important; font-weight: 700 !important; }
-    body.mode-hr .lg\:col-span-3 .border-slate-200 { border-color: #E2E8F0 !important; }
-
-    /* Accents & Buttons */
-    body.mode-hr a.bg-\[\#1e40af\] { background: #1D4ED8 !important; color: #FFFFFF !important; border: none !important; font-weight: 700 !important; }
-    body.mode-hr a.bg-\[\#1e40af\]:hover { background: #1E40AF !important; }
-    body.mode-hr button.bg-slate-50 { background: #FFFFFF !important; color: #1D4ED8 !important; border: 1px solid #1D4ED8 !important; font-weight: 700 !important; box-shadow: none !important; }
-    body.mode-hr button.bg-slate-50:hover { background: #EFF6FF !important; }
-    body.mode-hr .text-emerald-400 { color: #10B981 !important; }
-    
-    /* Secondary CTA / Badges (Verified Credentials) */
+    /* Center/Right Accents (Royal Blue) */
+    body.mode-hr #cvp-card .bg-\[\#163E78\], body.mode-hr #cvp-card .bg-\[\#1E40AF\] { background: #EFF6FF !important; border: 1px solid #BFDBFE !important; color: #1D4ED8 !important; }
+    body.mode-hr .text-\[\#1e40af\] { color: #1D4ED8 !important; font-weight: 700 !important; }
     body.mode-hr #cvp-card a.bg-slate-50 { background: #FFFFFF !important; border-color: #E2E8F0 !important; color: #334155 !important; box-shadow: 0 1px 2px rgba(0,0,0,0.05) !important; }
-    body.mode-hr #cvp-card a.bg-slate-50 .text-\[\#1e40af\] { color: #1D4ED8 !important; }
     body.mode-hr #cvp-card a.bg-slate-50:hover { background: #F8FAFC !important; border-color: #CBD5E1 !important; }
-    
-    /* Copilot (HR Mode) */
+
+    /* Copilot (Light Mode) */
     body.mode-hr #portfolioChat { background: #FFFFFF !important; border-color: #E2E8F0 !important; box-shadow: 0 10px 25px rgba(0,0,0,0.1) !important; }
     body.mode-hr #chatHeader { background: #F8FAFC !important; color: #0F172A !important; border-bottom: 1px solid #E2E8F0 !important; }
     body.mode-hr #chatHeader .text-amber-300 { color: #1D4ED8 !important; border-color: #BFDBFE !important; background: #EFF6FF !important; }
     body.mode-hr #chatWindow { background: #FFFFFF !important; color: #334155 !important; }
     body.mode-hr #chatWindow .bg-carbon-800, body.mode-hr #portfolioChat .bg-carbon-800 { background: #F1F5F9 !important; color: #0F172A !important; border-color: #E2E8F0 !important; }
-    body.mode-hr #chatWindow .bg-amber-500, body.mode-hr #sendChatBtn { background: #1D4ED8 !important; color: #FFFFFF !important; border: none !important; font-weight: 700 !important; }
+    body.mode-hr #chatWindow .bg-amber-500, body.mode-hr #sendChatBtn { background: #1D4ED8 !important; color: #FFFFFF !important; border: none !important; }
     body.mode-hr #chatWindow .bg-red-950\/60 { background: #FEF2F2 !important; color: #EF4444 !important; border-color: #FECACA !important; }
     body.mode-hr #portfolioChat .bg-carbon-900 { background: #F8FAFC !important; border-color: #E2E8F0 !important; }
     body.mode-hr #userInput { background: #FFFFFF !important; border-color: #E2E8F0 !important; color: #0F172A !important; }
     body.mode-hr #userInput::placeholder { color: #94A3B8 !important; }
-    body.mode-hr #portfolioChat .text-amber-400, body.mode-hr #portfolioChat .text-emerald-300, body.mode-hr #portfolioChat .text-purple-300, body.mode-hr #portfolioChat .text-sky-300 { color: #1D4ED8 !important; }
+    body.mode-hr #portfolioChat .text-amber-400, body.mode-hr #portfolioChat .text-emerald-300, body.mode-hr #portfolioChat .text-purple-300 { color: #1D4ED8 !important; }
 
     /* ========================================================= */
 /* DEV MODE STYLES (Increased Brightness)                    */
