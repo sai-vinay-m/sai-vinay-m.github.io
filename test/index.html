@@ -302,14 +302,19 @@
     /* GLOBAL SVG ANIMATION FIX */
     @keyframes svgPacketFlow { 100% { stroke-dashoffset: -24; } }
     .svg-flow-line, .loop-active-flow { stroke-dasharray: 8 8 !important; animation: svgPacketFlow 1s linear infinite !important; }
-
+    
     /* ========================================================= */
-    /* HR MODE THEME: TRUE NAVY, ICY BLUE, IVORY CANVAS          */
+    /* HR MODE THEME: TRUE NAVY, ICY BLUE, GRAYSCALE CANVAS      */
     /* ========================================================= */
-    body.mode-hr { background-color: #FFFFF0 !important; color: #0F172A !important; background-image: none !important; }
+    body.mode-hr { background-color: #E2E8F0 !important; color: #0F172A !important; background-image: none !important; }
     body.mode-hr .bg-grid-pattern, body.mode-hr .hero-glow { display: none !important; }
     
     /* 1. TOPMOST PANEL: Header -> Navy */
+    body.mode-hr header { 
+      background: #0F172A !important; 
+      border-bottom: 1px solid rgba(56, 189, 248, 0.4) !important; 
+      box-shadow: 0 4px 25px rgba(56, 189, 248, 0.25) !important; 
+    }
     body.mode-hr header { background: #0F172A !important; border-bottom: 1px solid #1E293B !important; }
     body.mode-hr header * { color: #F8FAFC !important; }
     body.mode-hr header .bg-amber-500 { background: #38BDF8 !important; color: #0F172A !important; border: none !important; font-weight: 800 !important; }
@@ -323,6 +328,12 @@
     body.mode-hr header #headerBtnManager, body.mode-hr header #headerBtnDev { background: transparent !important; color: #94A3B8 !important; border-color: transparent !important; }
     
     /* 2. LEFT PANEL (ASIDE) -> Navy */
+    /* 2. LEFT PANEL (ASIDE) -> Navy with Icy Glow */
+    body.mode-hr aside { 
+      background: #0F172A !important; 
+      border: 1px solid rgba(56, 189, 248, 0.4) !important; 
+      box-shadow: 0 0 25px rgba(56, 189, 248, 0.2) !important; 
+    }
     body.mode-hr aside { background: #0F172A !important; border: 1px solid #1E293B !important; box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.4) !important; }
     body.mode-hr aside h1 { color: #FFFFFF !important; }
     body.mode-hr aside .text-slate-900 { color: #F8FAFC !important; font-weight: 700 !important; text-shadow: none !important; }
@@ -338,6 +349,12 @@
     body.mode-hr aside button.bg-slate-50 { background: transparent !important; color: #38BDF8 !important; border: 1px solid #38BDF8 !important; }
     
     /* 3. RIGHT PANEL (Tech Stack) -> Navy */
+    /* 3. RIGHT PANEL (Tech Stack) -> Navy with Icy Glow */
+    body.mode-hr div.lg\:col-span-3:not(aside) { 
+      background: #0F172A !important; 
+      border: 1px solid rgba(56, 189, 248, 0.4) !important; 
+      box-shadow: 0 0 25px rgba(56, 189, 248, 0.2) !important; 
+    }
     body.mode-hr div.lg\:col-span-3:not(aside) { background: #0F172A !important; border: 1px solid #1E293B !important; box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.4) !important; }
     body.mode-hr div.lg\:col-span-3:not(aside) h3 { color: #FFFFFF !important; border-color: #1E293B !important; }
     body.mode-hr div.lg\:col-span-3:not(aside) .text-\[\#1e40af\] { color: #38BDF8 !important; }
@@ -345,6 +362,11 @@
     body.mode-hr div.lg\:col-span-3:not(aside) i { color: #38BDF8 !important; }
     
     /* 4. TOP CENTER PANEL (CVP Card) -> Navy */
+    body.mode-hr #cvp-card { 
+      background: #0F172A !important; 
+      border: 1px solid rgba(56, 189, 248, 0.4) !important; 
+      box-shadow: 0 0 25px rgba(56, 189, 248, 0.2) !important; 
+    }
     body.mode-hr #cvp-card { background: #0F172A !important; border: 1px solid #1E293B !important; box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.4) !important; }
     body.mode-hr #cvp-card h2 { color: #FFFFFF !important; text-shadow: none !important; font-weight: 800 !important; }
     body.mode-hr #cvp-card p { color: #BAE6FD !important; }
@@ -356,6 +378,11 @@
     body.mode-hr #cvp-card a.bg-slate-50:hover { background: #0F172A !important; }
     
    /* 5. MAIN CENTER PANEL (Experience) -> Navy */
+    body.mode-hr .lg\:col-span-6 > div:not(#cvp-card) { 
+      background: #0F172A !important; 
+      border: 1px solid rgba(56, 189, 248, 0.4) !important; 
+      box-shadow: 0 0 25px rgba(56, 189, 248, 0.2) !important; 
+    }
     body.mode-hr .lg\:col-span-6 > div:not(#cvp-card) { background: #0F172A !important; border: 1px solid #1E293B !important; box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.4) !important; }
     body.mode-hr .lg\:col-span-6 > div:not(#cvp-card) h3 { color: #FFFFFF !important; border-color: #1E293B !important; font-weight: 800 !important; }
     body.mode-hr .lg\:col-span-6 > div:not(#cvp-card) i { color: #38BDF8 !important; }
