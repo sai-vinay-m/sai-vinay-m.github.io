@@ -177,7 +177,7 @@
       display: inline-block;
     }
 
-    /* CI/CD Engineering Workflow Animation CSS (Updated Amber Contrast) */
+    /* CI/CD Engineering Workflow Animation CSS (Green -> Amber -> Blue) */
     .wf-stage { transition: all 0.4s ease; border-color: #1e293b !important; }
     
     @keyframes wfPulse {
@@ -190,6 +190,11 @@
       70% { box-shadow: 0 4px 28px rgba(251, 191, 36, 0.45), 0 0 0 12px rgba(251, 191, 36, 0); }
       100% { box-shadow: 0 4px 28px rgba(251, 191, 36, 0.45), 0 0 0 0 rgba(251, 191, 36, 0); }
     }
+    @keyframes wfPulseBlue {
+      0% { box-shadow: 0 4px 24px rgba(56, 189, 248, 0.45), 0 0 0 0 rgba(56, 189, 248, 0.6); }
+      70% { box-shadow: 0 4px 24px rgba(56, 189, 248, 0.45), 0 0 0 12px rgba(56, 189, 248, 0); }
+      100% { box-shadow: 0 4px 24px rgba(56, 189, 248, 0.45), 0 0 0 0 rgba(56, 189, 248, 0); }
+    }
     
     .wf-running { border-color: #00ff66 !important; box-shadow: 0 4px 24px rgba(0, 255, 102, 0.3) !important; animation: wfPulse 1.2s infinite; transform: translateY(-2px); }
     .wf-passed { border-color: #00ff66 !important; box-shadow: 0 0 15px rgba(0, 255, 102, 0.15) !important; transform: translateY(0); }
@@ -197,18 +202,13 @@
     .wf-running-amber { border-color: #fbbf24 !important; box-shadow: 0 4px 28px rgba(251, 191, 36, 0.45) !important; animation: wfPulseAmber 1.2s infinite; transform: translateY(-2px); background-color: #120f06 !important; }
     .wf-passed-amber { border-color: #fbbf24 !important; box-shadow: 0 0 18px rgba(251, 191, 36, 0.25) !important; transform: translateY(0); }
     
-    
-    @keyframes wfPulseBlue {
-      0% { box-shadow: 0 4px 24px rgba(56, 189, 248, 0.45), 0 0 0 0 rgba(56, 189, 248, 0.6); }
-      70% { box-shadow: 0 4px 24px rgba(56, 189, 248, 0.45), 0 0 0 12px rgba(56, 189, 248, 0); }
-      100% { box-shadow: 0 4px 24px rgba(56, 189, 248, 0.45), 0 0 0 0 rgba(56, 189, 248, 0); }
-    }
     .wf-running-blue { border-color: #38bdf8 !important; box-shadow: 0 4px 24px rgba(56, 189, 248, 0.45) !important; animation: wfPulseBlue 1.2s infinite; transform: translateY(-2px); background-color: #0c2a40 !important; }
-    .wf-passed-blue { border-color: #38bdf8 !important; box-shadow: 0 4px 24px rgba(56, 189, 248, 0.25) !important; transform: translateY(-2px); }
+    .wf-passed-blue { border-color: #38bdf8 !important; box-shadow: 0 4px 24px rgba(56, 189, 248, 0.25) !important; transform: translateY(0); }
 
-    .wf-connector { border-color: #1e293b !important; transition: border-color 0.4s ease; }
-    .wf-connector-solid { border-color: #00ff66 !important; }
-    .wf-connector-solid-amber { border-color: #fbbf24 !important; }
+    .wf-connector { border-color: #1e293b !important; transition: border-color 0.35s ease; }
+    .wf-connector-solid { border-style: solid !important; border-color: #00ff66 !important; background-image: none !important; animation: none !important; }
+    .wf-connector-solid-amber { border-style: solid !important; border-color: #fbbf24 !important; background-image: none !important; animation: none !important; }
+    .wf-connector-solid-blue { border-style: solid !important; border-color: #38bdf8 !important; background-image: none !important; animation: none !important; }
     .wf-packet { transition: left 0.6s linear, top 0.6s linear, opacity 0.2s ease; }
 
     @keyframes flowDashX { from { background-position: 0 0; } to { background-position: -24px 0; } }
@@ -217,21 +217,29 @@
     .wf-connector-animating {
       border-color: transparent !important;
       background-image: linear-gradient(to right, #00ff66 50%, transparent 50%);
-      background-size: 12px 2px;
+      background-size: 10px 2px;
       background-repeat: repeat-x;
-      animation: flowDashX 0.6s linear infinite;
+      animation: flowDashX 0.45s linear infinite;
     }
     .wf-connector-animating-amber {
       border-color: transparent !important;
       background-image: linear-gradient(to right, #fbbf24 50%, transparent 50%);
-      background-size: 12px 2px;
+      background-size: 10px 2px;
       background-repeat: repeat-x;
-      animation: flowDashX 0.6s linear infinite;
+      animation: flowDashX 0.45s linear infinite;
+    }
+    .wf-connector-animating-blue {
+      border-color: transparent !important;
+      background-image: linear-gradient(to right, #38bdf8 50%, transparent 50%);
+      background-size: 10px 2px;
+      background-repeat: repeat-x;
+      animation: flowDashX 0.45s linear infinite;
     }
 
     @media (max-width: 768px) {
-      .wf-connector-animating { background-image: linear-gradient(to bottom, #00ff66 50%, transparent 50%); background-size: 2px 12px; background-repeat: repeat-y; animation: flowDashY 0.6s linear infinite; }
-      .wf-connector-animating-amber { background-image: linear-gradient(to bottom, #fbbf24 50%, transparent 50%); background-size: 2px 12px; background-repeat: repeat-y; animation: flowDashY 0.6s linear infinite; }
+      .wf-connector-animating { background-image: linear-gradient(to bottom, #00ff66 50%, transparent 50%); background-size: 2px 10px; background-repeat: repeat-y; animation: flowDashY 0.45s linear infinite; }
+      .wf-connector-animating-amber { background-image: linear-gradient(to bottom, #fbbf24 50%, transparent 50%); background-size: 2px 10px; background-repeat: repeat-y; animation: flowDashY 0.45s linear infinite; }
+      .wf-connector-animating-blue { background-image: linear-gradient(to bottom, #38bdf8 50%, transparent 50%); background-size: 2px 10px; background-repeat: repeat-y; animation: flowDashY 0.45s linear infinite; }
     }
 
     /* Dev Mode Engineering Dossiers */
@@ -262,7 +270,7 @@
       *, ::before, ::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
       .shiny-btn-red::after, .shiny-btn-green::after, .shiny-btn-purple::after, .shiny-btn-blue::after, .shiny-btn-amber::after,
       .loop-active-flow, .svg-flow-line, .gus-float-anim, .typing-dot, .animate-marquee, .animate-ping, .animate-pulse, .spin-anim, 
-      .onboarding-arrow-3d, .wf-running, .wf-running-amber, .wf-connector-animating, .wf-connector-animating-amber { animation: none !important; }
+      .onboarding-arrow-3d, .wf-running, .wf-running-amber, .wf-running-blue, .wf-connector-animating, .wf-connector-animating-amber, .wf-connector-animating-blue { animation: none !important; }
       .marquee-container { overflow-x: auto !important; }
       .wf-stage, .wf-packet { transition: none !important; }
       .dossier-expand-grid { transition: none !important; }
@@ -276,29 +284,30 @@
     .svg-flow-line, .loop-active-flow { stroke-dasharray: 8 8 !important; animation: svgPacketFlow 1s linear infinite !important; }
 
     /* ========================================================= */
-    /* HR MODE THEME: DEEP OXFORD BLUE */
     /* ========================================================= */
-    body.mode-hr { background-color: #0A192F !important; color: #E2E8F0 !important; background-image: none !important; }
+    /* HR MODE THEME: OPTION B (PRO DARK CHARCOAL/ZINC + BLUE)   */
+    /* ========================================================= */
+    body.mode-hr { background-color: #09090B !important; color: #E4E4E7 !important; background-image: none !important; }
     body.mode-hr .bg-grid-pattern, body.mode-hr .hero-glow { display: none !important; }
     
     /* Header */
-    body.mode-hr header { background: #0A192F !important; border-bottom: 1px solid #163E78 !important; color: #FFFFFF !important; }
+    body.mode-hr header { background: rgba(9, 9, 11, 0.92) !important; border-bottom: 1px solid #27272A !important; color: #FFFFFF !important; }
     body.mode-hr header .text-white, body.mode-hr header .text-slate-900, body.mode-hr header h1 { color: #FFFFFF !important; }
-    body.mode-hr header .text-slate-400, body.mode-hr header .text-slate-300, body.mode-hr header a, body.mode-hr header .text-xs { color: #94A3B8 !important; }
-    body.mode-hr header .bg-carbon-800 { background: #163E78 !important; border-color: #28578B !important; color: #FFFFFF !important; }
-    body.mode-hr header .asset-fallback { color: #94A3B8 !important; }
-    body.mode-hr header .border-carbon-600 { border-color: #28578B !important; }
+    body.mode-hr header .text-slate-400, body.mode-hr header .text-slate-300, body.mode-hr header a, body.mode-hr header .text-xs { color: #A1A1AA !important; }
+    body.mode-hr header .bg-carbon-800 { background: #18181B !important; border-color: #27272A !important; color: #FFFFFF !important; }
+    body.mode-hr header .asset-fallback { color: #3B82F6 !important; }
+    body.mode-hr header .border-carbon-600 { border-color: #27272A !important; }
     
     /* Active Mode Switcher fixes */
-    body.mode-hr header #headerBtnHr { background: #163E78 !important; color: #FFFFFF !important; border-color: #28578B !important; }
-    body.mode-hr header #mobileBtnHr { background: #163E78 !important; color: #FFFFFF !important; border-color: #28578B !important; }
+    body.mode-hr header #headerBtnHr { background: #3B82F6 !important; color: #FFFFFF !important; border-color: #2563EB !important; }
+    body.mode-hr header #mobileBtnHr { background: #3B82F6 !important; color: #FFFFFF !important; border-color: #2563EB !important; }
     
     /* Header CTAs */
-    body.mode-hr header a.bg-carbon-800:hover, body.mode-hr header button.bg-carbon-800:hover { background: #28578B !important; color: #FFFFFF !important; }
+    body.mode-hr header a.bg-carbon-800:hover, body.mode-hr header button.bg-carbon-800:hover { background: #27272A !important; color: #FFFFFF !important; border-color: #3B82F6 !important; }
 
-    /* 3 Bento Boxes (Left, Middle, Right) */
+    /* 3 Bento Boxes (Left, Middle, Right) - Elevated Zinc #18181B on #09090B Canvas */
     body.mode-hr aside, body.mode-hr .lg\:col-span-6 > div.bg-white, body.mode-hr .lg\:col-span-3.rounded-2xl {
-      background: #112240 !important; border: 1px solid #233554 !important; color: #FFFFFF !important; box-shadow: none !important;
+      background: #18181B !important; border: 1px solid #27272A !important; color: #FFFFFF !important; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45) !important;
     }
     
     /* Text overrides on Dark Panels (Left, Middle outer, Right) */
@@ -311,72 +320,73 @@
     body.mode-hr .lg\:col-span-6 > div.bg-white > p, body.mode-hr .lg\:col-span-6 > div.bg-white .text-slate-500,
     body.mode-hr .lg\:col-span-6 .bg-slate-50 .text-slate-700, 
     body.mode-hr .lg\:col-span-3 .text-slate-600, body.mode-hr .lg\:col-span-3 .text-slate-700 {
-      color: #94A3B8 !important;
+      color: #A1A1AA !important;
     }
     
     /* Left Bento Sub-elements */
-    body.mode-hr aside .bg-slate-50 { background: transparent !important; border: none !important; color: #FFFFFF !important; padding:0 !important; }
+    body.mode-hr aside .bg-slate-50 { background: #09090B !important; border: 1px solid #27272A !important; color: #FFFFFF !important; }
     body.mode-hr aside .bg-slate-50 .text-slate-900 { color: #FFFFFF !important; }
-    body.mode-hr aside .border-slate-100, body.mode-hr aside .border-slate-200, body.mode-hr aside .border-t { border-color: #233554 !important; }
-    body.mode-hr aside .text-\[\#1e40af\] { color: #64FFDA !important; font-weight: 500 !important; }
-    body.mode-hr aside .border-4.border-\[\#1e40af\]\/30 { border-color: #233554 !important; }
-    body.mode-hr aside .w-\[73px\].h-\[73px\] { background: rgba(100, 255, 218, 0.05) !important; border: 1px solid #233554 !important; }
-    body.mode-hr aside .w-\[73px\].h-\[73px\] { background: rgba(100, 255, 218, 0.05) !important; border: 1px solid #233554 !important; }
+    body.mode-hr aside .border-slate-100, body.mode-hr aside .border-slate-200, body.mode-hr aside .border-t { border-color: #27272A !important; }
+    body.mode-hr aside .text-\[\#1e40af\] { color: #60A5FA !important; font-weight: 600 !important; }
+    body.mode-hr aside .border-4.border-\[\#1e40af\]\/30 { border-color: #3B82F6 !important; }
+    body.mode-hr aside .w-\[73px\].h-\[73px\] { background: #18181B !important; border: 1px solid #27272A !important; }
     
     /* Center Column Specifics */
-    body.mode-hr #cvp-card .bg-\[\#163E78\], body.mode-hr #cvp-card .bg-\[\#1E40AF\] { background: rgba(100, 255, 218, 0.05) !important; border: 1px solid #233554 !important; color:#E2E8F0 !important; }
-    body.mode-hr .lg\:col-span-6 .bg-slate-50 { background: #0A192F !important; border-color: #233554 !important; }
+    body.mode-hr #cvp-card .bg-\[\#163E78\], body.mode-hr #cvp-card .bg-\[\#1E40AF\] { background: rgba(59, 130, 246, 0.15) !important; border: 1px solid rgba(59, 130, 246, 0.4) !important; color: #60A5FA !important; }
+    body.mode-hr .lg\:col-span-6 .bg-slate-50 { background: #09090B !important; border-color: #27272A !important; }
     body.mode-hr .lg\:col-span-6 .bg-slate-50 .text-slate-900 { color: #FFFFFF !important; font-weight: 700 !important; text-shadow: none !important; }
-    body.mode-hr .lg\:col-span-6 .bg-slate-50 .text-\[\#1e40af\] { color: #94A3B8 !important; font-weight: 500 !important; }
-    body.mode-hr .lg\:col-span-6 .border-slate-200 { border-color: #233554 !important; }
-    body.mode-hr .lg\:col-span-6 > div.bg-white .text-\[\#1e40af\] { color: #64FFDA !important; font-weight: 600 !important; }
+    body.mode-hr .lg\:col-span-6 .bg-slate-50 .text-\[\#1e40af\] { color: #60A5FA !important; font-weight: 600 !important; }
+    body.mode-hr .lg\:col-span-6 .border-slate-200 { border-color: #27272A !important; }
+    body.mode-hr .lg\:col-span-6 > div.bg-white .text-\[\#1e40af\] { color: #60A5FA !important; font-weight: 600 !important; }
     
     /* Right Column Specifics */
-    body.mode-hr .lg\:col-span-3 .bg-slate-50 { background: rgba(100, 255, 218, 0.05) !important; border: 1px solid #233554 !important; color: #E2E8F0 !important; }
-    body.mode-hr .lg\:col-span-3 .text-\[\#1e40af\] { color: #FFFFFF !important; font-weight: 600 !important; }
-    body.mode-hr .lg\:col-span-3 .border-slate-200 { border-color: #233554 !important; }
+    body.mode-hr .lg\:col-span-3 .bg-slate-50 { background: #09090B !important; border: 1px solid #27272A !important; color: #E4E4E7 !important; }
+    body.mode-hr .lg\:col-span-3 .text-\[\#1e40af\] { color: #60A5FA !important; font-weight: 600 !important; }
+    body.mode-hr .lg\:col-span-3 .border-slate-200 { border-color: #27272A !important; }
 
     /* Accents & Buttons */
-    body.mode-hr a.bg-\[\#1e40af\] { background: #FFFFFF !important; color: #0A192F !important; border: none !important; font-weight: 600 !important; }
-    body.mode-hr a.bg-\[\#1e40af\]:hover { background: #E2E8F0 !important; }
-    body.mode-hr button.bg-slate-50 { background: #64FFDA !important; color: #0A192F !important; border: none !important; font-weight: 600 !important; }
-    body.mode-hr button.bg-slate-50:hover { background: #00E6B8 !important; }
-    body.mode-hr .text-emerald-400 { color: #64FFDA !important; }
+    body.mode-hr a.bg-\[\#1e40af\] { background: #3B82F6 !important; color: #FFFFFF !important; border: none !important; font-weight: 600 !important; }
+    body.mode-hr a.bg-\[\#1e40af\]:hover { background: #2563EB !important; }
+    body.mode-hr button.bg-slate-50 { background: #09090B !important; color: #60A5FA !important; border: 1px solid #3B82F6 !important; font-weight: 600 !important; }
+    body.mode-hr button.bg-slate-50:hover { background: rgba(59, 130, 246, 0.15) !important; }
+    body.mode-hr .text-emerald-400 { color: #10B981 !important; }
     
     /* Secondary CTA / Badges (Verified Credentials) */
-    body.mode-hr #cvp-card a.bg-slate-50 { background: rgba(100, 255, 218, 0.05) !important; border-color: #233554 !important; color: #E2E8F0 !important; box-shadow: none !important; }
-    body.mode-hr #cvp-card a.bg-slate-50 .text-\[\#1e40af\] { color: #E2E8F0 !important; }
-    body.mode-hr #cvp-card a.bg-slate-50:hover { background: #233554 !important; }
+    body.mode-hr #cvp-card a.bg-slate-50 { background: #09090B !important; border-color: #27272A !important; color: #E4E4E7 !important; box-shadow: none !important; }
+    body.mode-hr #cvp-card a.bg-slate-50 .text-\[\#1e40af\] { color: #60A5FA !important; }
+    body.mode-hr #cvp-card a.bg-slate-50:hover { background: #27272A !important; border-color: #3B82F6 !important; }
     
     /* Copilot (HR Mode) */
-    body.mode-hr #portfolioChat { background: #112240 !important; border-color: #233554 !important; }
-    body.mode-hr #chatHeader { background: #0A192F !important; color: #FFFFFF !important; border-bottom: 1px solid #233554 !important; }
-    body.mode-hr #chatHeader .text-amber-300 { color: #94A3B8 !important; border-color: #233554 !important; background: #112240 !important; }
-    body.mode-hr #chatWindow { background: #0A192F !important; color: #E2E8F0 !important; }
-    body.mode-hr #chatWindow .bg-carbon-800, body.mode-hr #portfolioChat .bg-carbon-800 { background: #112240 !important; color: #E2E8F0 !important; border-color: #233554 !important; }
-    body.mode-hr #chatWindow .bg-amber-500, body.mode-hr #sendChatBtn { background: #64FFDA !important; color: #0A192F !important; border: none !important; font-weight: 600 !important; }
-    body.mode-hr #chatWindow .bg-red-950\/60 { background: #233554 !important; color: #FCA5A5 !important; border-color: #112240 !important; }
-    body.mode-hr #portfolioChat .bg-carbon-900 { background: #112240 !important; border-color: #233554 !important; }
-    body.mode-hr #userInput { background: #0A192F !important; border-color: #233554 !important; color: #FFFFFF !important; }
-    body.mode-hr #userInput::placeholder { color: #64748B !important; }
-    body.mode-hr #portfolioChat .text-amber-400, body.mode-hr #portfolioChat .text-emerald-300, body.mode-hr #portfolioChat .text-purple-300, body.mode-hr #portfolioChat .text-sky-300 { color: #E2E8F0 !important; }
+    body.mode-hr #portfolioChat { background: #18181B !important; border-color: #27272A !important; }
+    body.mode-hr #chatHeader { background: #09090B !important; color: #FFFFFF !important; border-bottom: 1px solid #27272A !important; }
+    body.mode-hr #chatHeader .text-amber-300 { color: #60A5FA !important; border-color: rgba(59, 130, 246, 0.4) !important; background: rgba(59, 130, 246, 0.1) !important; }
+    body.mode-hr #chatWindow { background: #09090B !important; color: #E4E4E7 !important; }
+    body.mode-hr #chatWindow .bg-carbon-800, body.mode-hr #portfolioChat .bg-carbon-800 { background: #18181B !important; color: #E4E4E7 !important; border-color: #27272A !important; }
+    body.mode-hr #chatWindow .bg-amber-500, body.mode-hr #sendChatBtn { background: #3B82F6 !important; color: #FFFFFF !important; border: none !important; font-weight: 600 !important; }
+    body.mode-hr #chatWindow .bg-red-950\/60 { background: #27272A !important; color: #FCA5A5 !important; border-color: #3F3F46 !important; }
+    body.mode-hr #portfolioChat .bg-carbon-900 { background: #18181B !important; border-color: #27272A !important; }
+    body.mode-hr #userInput { background: #09090B !important; border-color: #27272A !important; color: #FFFFFF !important; }
+    body.mode-hr #userInput::placeholder { color: #71717A !important; }
+    body.mode-hr #portfolioChat .text-amber-400, body.mode-hr #portfolioChat .text-emerald-300, body.mode-hr #portfolioChat .text-purple-300, body.mode-hr #portfolioChat .text-sky-300 { color: #60A5FA !important; }
+
     /* ========================================================= */
 /* DEV MODE STYLES (Increased Brightness)                    */
     /* ========================================================= */
     body.mode-dev { background-color: #030804 !important; color: #a7f3d0 !important; font-family: 'JetBrains Mono', monospace !important; }
     body.mode-dev .bg-carbon-950, body.mode-dev .bg-carbon-900, body.mode-dev .bg-carbon-850, body.mode-dev .bg-carbon-800 { background-color: #050e07 !important; border-color: rgba(0, 255, 102, 0.32) !important; }
     
-    body.mode-dev h1, body.mode-dev h2, body.mode-dev h3, body.mode-dev .text-white { color: #ffffff !important; text-shadow: 0 0 15px rgba(255, 255, 255, 0.95), 0 0 25px rgba(255, 255, 255, 0.6); }
-    body.mode-dev .text-slate-200 { color: #ffffff !important; font-weight: 500; text-shadow: 0 0 2px rgba(255, 255, 255, 0.65); }
-    body.mode-dev .text-slate-300 { color: #f8fafc !important; font-weight: 500; }
-    body.mode-dev .text-slate-400 { color: #e2e8f0 !important; }
+    body.mode-dev h1, body.mode-dev h2, body.mode-dev h3, body.mode-dev .text-white { color: #ffffff !important; text-shadow: none !important; }
+    body.mode-dev .text-slate-200 { color: #f1f5f9 !important; font-weight: 400; text-shadow: none !important; }
+    body.mode-dev .text-slate-300 { color: #e2e8f0 !important; font-weight: 400; }
+    body.mode-dev .text-slate-400 { color: #cbd5e1 !important; }
     
     body.mode-dev .text-amber-400, body.mode-dev .text-amber-300, body.mode-dev .text-emerald-400 { color: #00ff66 !important; }
     body.mode-dev .bg-amber-500 { background-color: #00ff66 !important; color: #020603 !important; box-shadow: 0 0 20px rgba(0, 255, 102, 0.45) !important; }
     body.mode-dev::after { content: " "; display: block; position: fixed; inset: 0; z-index: 25; pointer-events: none; background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.22) 50%); background-size: 100% 4px; }
 
-    body.mode-dev .dev-nyse-text { color: #00ff66 !important; text-shadow: 0 0 12px rgba(0, 255, 102, 0.4) !important; }
-    body.mode-dev #dev-sandbox-experience p.text-slate-200 { color: #ffffff !important; font-weight: 600 !important; text-shadow: 0 0 4px rgba(255,255,255,0.8), 0 0 10px rgba(255,255,255,0.5) !important; }
+    body.mode-dev .dev-nyse-text { color: #00ff66 !important; text-shadow: none !important; }
+    body.mode-dev #dev-sandbox-experience p.dev-one-liner,
+    body.mode-dev #dev-sandbox-experience p.text-slate-200 { color: #ffffff !important; font-weight: 600 !important; text-shadow: none !important; }
 
     /* Print Mode Hard Overrides (Fixes Dev Mode Blackout) */
     @media print {
@@ -1825,7 +1835,7 @@
                 </div>
 
                 <div id="wf-conn-2" class="wf-connector h-6 md:h-auto w-0.5 md:w-[2%] self-center border-l-2 md:border-l-0 md:border-t-2 border-dashed shrink-0 relative">
-                  <div id="wf-packet-2" class="absolute hidden w-2.5 h-2.5 rounded-full bg-[#00ff66] shadow-[0_0_8px_#00ff66]" style="top: -2px; left: -2px; z-index: 10;"></div>
+                  <div id="wf-packet-2" class="absolute hidden w-2.5 h-2.5 rounded-full bg-amber-400 shadow-[0_0_8px_#fbbf24]" style="top: -2px; left: -2px; z-index: 10;"></div>
                 </div>
 
                 <div id="wf-stage-3" class="wf-stage w-full md:w-[23%] p-4 rounded-xl bg-carbon-950 border-2 flex flex-col justify-between shrink-0 min-w-[210px]">
@@ -1843,7 +1853,7 @@
                 </div>
 
                 <div id="wf-conn-3" class="wf-connector h-6 md:h-auto w-0.5 md:w-[2%] self-center border-l-2 md:border-l-0 md:border-t-2 border-dashed shrink-0 relative">
-                  <div id="wf-packet-3" class="absolute hidden w-2.5 h-2.5 rounded-full bg-amber-400 shadow-[0_0_8px_#fbbf24]" style="top: -2px; left: -2px; z-index: 10;"></div>
+                  <div id="wf-packet-3" class="absolute hidden w-2.5 h-2.5 rounded-full bg-[#38bdf8] shadow-[0_0_8px_#38bdf8]" style="top: -2px; left: -2px; z-index: 10;"></div>
                 </div>
 
                 <div id="wf-stage-4" class="wf-stage w-full md:w-[23%] p-4 rounded-xl bg-black/95 border-2 flex flex-col justify-between shrink-0 min-w-[210px]">
@@ -2162,6 +2172,7 @@
           <button type="button" onclick="runCliCommand('top')" class="px-1.5 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] text-[9px] cursor-pointer transition-colors">top</button>
           <button type="button" onclick="runCliCommand('trace google.com')" class="px-1.5 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] text-[9px] cursor-pointer transition-colors">trace</button>
           <button type="button" onclick="runCliCommand('./patch.sh')" class="px-1.5 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] text-[9px] cursor-pointer transition-colors">./patch.sh</button>
+          <button type="button" onclick="runCliCommand('godmode')" class="px-1.5 py-0.5 rounded bg-yellow-500/15 hover:bg-yellow-400 hover:text-black text-yellow-300 border border-yellow-500/40 text-[9px] cursor-pointer transition-colors" title="Konami Code Shortcut (↑↑↓↓←→←→BA)">⚡ godmode</button>
           <button type="button" onclick="runCliCommand('sudo hire sai')" class="px-1.5 py-0.5 rounded bg-amber-500/15 hover:bg-amber-400 hover:text-black text-amber-300 border border-amber-500/40 text-[9px] cursor-pointer transition-colors">👑 sudo hire sai</button>
         </div>
         <div class="flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-3">
@@ -2419,7 +2430,7 @@
       pf_mode = role;
       
       const inact = "px-2.5 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 text-slate-400 hover:text-white whitespace-nowrap";
-      const actHr = "px-2.5 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 bg-[#163E78] text-white font-bold border border-[#28578B] shadow-sm whitespace-nowrap";
+      const actHr = "px-2.5 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 bg-[#3B82F6] text-white font-bold border border-[#2563EB] shadow-sm whitespace-nowrap";
       const actAmb = "px-2.5 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 bg-amber-500 text-carbon-950 font-bold shadow-sm whitespace-nowrap";
       const actGrn = "px-2.5 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 bg-[#00ff66] text-black font-bold shadow-[0_0_12px_rgba(0,255,102,0.4)] whitespace-nowrap";
       
@@ -2429,7 +2440,7 @@
       if (bDev) bDev.className = (role === 'engineer') ? actGrn : inact;
 
       const mHr = document.getElementById('mobileBtnHr'), mMgr = document.getElementById('mobileBtnMgr'), mDev = document.getElementById('mobileBtnDev');
-      if (mHr) mHr.className = (role === 'recruiter') ? "px-1.5 py-1 rounded bg-[#163E78] text-white font-bold border border-[#28578B]" : "px-1.5 py-1 rounded text-slate-400 hover:text-white";
+      if (mHr) mHr.className = (role === 'recruiter') ? "px-1.5 py-1 rounded bg-[#3B82F6] text-white font-bold border border-[#2563EB]" : "px-1.5 py-1 rounded text-slate-400 hover:text-white";
       if (mMgr) mMgr.className = (role === 'manager') ? "px-1.5 py-1 rounded bg-amber-500 text-carbon-950 font-bold" : "px-1.5 py-1 rounded text-slate-400 hover:text-white";
       if (mDev) mDev.className = (role === 'engineer') ? "px-1.5 py-1 rounded bg-[#00ff66] text-black font-bold" : "px-1.5 py-1 rounded text-slate-400 hover:text-white";
 
@@ -3103,65 +3114,72 @@
       const conns = [document.getElementById('wf-conn-1'), document.getElementById('wf-conn-2'), document.getElementById('wf-conn-3')];
       const packets = [document.getElementById('wf-packet-1'), document.getElementById('wf-packet-2'), document.getElementById('wf-packet-3')];
       
-      stages.forEach(s => { if(s) { s.classList.remove('wf-running', 'wf-passed', 'wf-running-amber', 'wf-passed-amber', 'wf-running-blue', 'wf-passed-blue'); }});
-      conns.forEach(c => { if(c) { c.classList.remove('wf-connector-animating', 'wf-connector-animating-amber', 'wf-connector-solid', 'wf-connector-solid-amber'); }});
+      stages.forEach(s => { if (s) s.classList.remove('wf-running', 'wf-passed', 'wf-running-amber', 'wf-passed-amber', 'wf-running-blue', 'wf-passed-blue'); });
+      conns.forEach(c => { if (c) c.classList.remove('wf-connector-animating', 'wf-connector-animating-amber', 'wf-connector-animating-blue', 'wf-connector-solid', 'wf-connector-solid-amber', 'wf-connector-solid-blue'); });
       
       const isMobile = window.innerWidth <= 768;
       packets.forEach(p => {
-        if(p) { p.style.transition = 'none'; p.style.left = '-2px'; p.style.top = '-2px'; p.style.display = 'none'; p.style.opacity = '0'; void p.offsetWidth; }
+        if (p) { p.style.transition = 'none'; p.style.left = '-2px'; p.style.top = '-2px'; p.style.display = 'none'; p.style.opacity = '0'; void p.offsetWidth; }
       });
 
       if (pf_isReducedMotion) {
-        if(stages[0]) stages[0].classList.add('wf-passed');
-        if(stages[1]) stages[1].classList.add('wf-passed');
-        if(stages[2]) stages[2].classList.add('wf-passed-amber');
-        if(stages[3]) stages[3].classList.add('wf-passed-blue');
+        if (stages[0]) stages[0].classList.add('wf-passed');
+        if (conns[0]) conns[0].classList.add('wf-connector-solid');
+        if (stages[1]) stages[1].classList.add('wf-passed');
+        if (conns[1]) conns[1].classList.add('wf-connector-solid-amber');
+        if (stages[2]) stages[2].classList.add('wf-passed-amber');
+        if (conns[2]) conns[2].classList.add('wf-connector-solid-blue');
+        if (stages[3]) stages[3].classList.add('wf-passed-blue');
         return;
       }
 
       let t = 100;
-      wf_animTimeouts.push(setTimeout(() => { if(stages[0]) stages[0].classList.add('wf-running'); }, t)); t += 1000;
+      // Stage 1: Green
+      wf_animTimeouts.push(setTimeout(() => { if (stages[0]) stages[0].classList.add('wf-running'); }, t)); t += 900;
+      
+      // Connector 1: Dotted Green -> Stabilises to Solid Green before Stage 2
       wf_animTimeouts.push(setTimeout(() => {
-        if(stages[0]) { stages[0].classList.remove('wf-running'); stages[0].classList.add('wf-passed'); }
-        if(conns[0]) conns[0].classList.add('wf-connector-animating');
-        if(packets[0]) { packets[0].style.display = 'block'; packets[0].style.opacity = '1'; packets[0].style.transition = 'left 0.8s linear, top 0.8s linear'; if(isMobile) { packets[0].style.top = '100%'; } else { packets[0].style.left = '100%'; } }
-      }, t)); t += 800;
+        if (stages[0]) { stages[0].classList.remove('wf-running'); stages[0].classList.add('wf-passed'); }
+        if (conns[0]) conns[0].classList.add('wf-connector-animating');
+        if (packets[0]) { packets[0].style.display = 'block'; packets[0].style.opacity = '1'; packets[0].style.transition = 'left 0.75s linear, top 0.75s linear'; if (isMobile) packets[0].style.top = '100%'; else packets[0].style.left = '100%'; }
+      }, t)); t += 750;
 
       wf_animTimeouts.push(setTimeout(() => {
-        if(conns[0]) { conns[0].classList.remove('wf-connector-animating'); conns[0].classList.add('wf-connector-solid'); }
-        if(packets[0]) packets[0].style.opacity = '0';
-        if(stages[1]) stages[1].classList.add('wf-running');
-      }, t)); t += 1200;
+        if (conns[0]) { conns[0].classList.remove('wf-connector-animating'); conns[0].classList.add('wf-connector-solid'); }
+        if (packets[0]) packets[0].style.opacity = '0';
+        if (stages[1]) stages[1].classList.add('wf-running');
+      }, t)); t += 1000;
+
+      // Connector 2: Dotted Amber -> Stabilises to Solid Amber before Stage 3
+      wf_animTimeouts.push(setTimeout(() => {
+        if (stages[1]) { stages[1].classList.remove('wf-running'); stages[1].classList.add('wf-passed'); }
+        if (conns[1]) conns[1].classList.add('wf-connector-animating-amber');
+        if (packets[1]) { packets[1].style.display = 'block'; packets[1].style.opacity = '1'; packets[1].style.transition = 'left 0.75s linear, top 0.75s linear'; if (isMobile) packets[1].style.top = '100%'; else packets[1].style.left = '100%'; }
+      }, t)); t += 750;
 
       wf_animTimeouts.push(setTimeout(() => {
-        if(stages[1]) { stages[1].classList.remove('wf-running'); stages[1].classList.add('wf-passed'); }
-        if(conns[1]) conns[1].classList.add('wf-connector-animating');
-        if(packets[1]) { packets[1].style.display = 'block'; packets[1].style.opacity = '1'; packets[1].style.transition = 'left 0.8s linear, top 0.8s linear'; if(isMobile) { packets[1].style.top = '100%'; } else { packets[1].style.left = '100%'; } }
-      }, t)); t += 800;
+        if (conns[1]) { conns[1].classList.remove('wf-connector-animating-amber'); conns[1].classList.add('wf-connector-solid-amber'); }
+        if (packets[1]) packets[1].style.opacity = '0';
+        if (stages[2]) stages[2].classList.add('wf-running-amber');
+      }, t)); t += 1100;
+
+      // Connector 3: Dotted Blue -> Stabilises to Solid Blue before Stage 4
+      wf_animTimeouts.push(setTimeout(() => {
+        if (stages[2]) { stages[2].classList.remove('wf-running-amber'); stages[2].classList.add('wf-passed-amber'); }
+        if (conns[2]) conns[2].classList.add('wf-connector-animating-blue');
+        if (packets[2]) { packets[2].style.display = 'block'; packets[2].style.opacity = '1'; packets[2].style.transition = 'left 0.75s linear, top 0.75s linear'; if (isMobile) packets[2].style.top = '100%'; else packets[2].style.left = '100%'; }
+      }, t)); t += 750;
 
       wf_animTimeouts.push(setTimeout(() => {
-        if(conns[1]) { conns[1].classList.remove('wf-connector-animating'); conns[1].classList.add('wf-connector-solid'); }
-        if(packets[1]) packets[1].style.opacity = '0';
-        if(stages[2]) stages[2].classList.add('wf-running-amber');
-      }, t)); t += 1400;
+        if (conns[2]) { conns[2].classList.remove('wf-connector-animating-blue'); conns[2].classList.add('wf-connector-solid-blue'); }
+        if (packets[2]) packets[2].style.opacity = '0';
+        if (stages[3]) stages[3].classList.add('wf-running-blue');
+      }, t)); t += 1000;
 
       wf_animTimeouts.push(setTimeout(() => {
-        if(stages[2]) { stages[2].classList.remove('wf-running-amber'); stages[2].classList.add('wf-passed-amber'); }
-        if(conns[2]) conns[2].classList.add('wf-connector-animating-amber');
-        if(packets[2]) { packets[2].style.display = 'block'; packets[2].style.opacity = '1'; packets[2].style.transition = 'left 0.8s linear, top 0.8s linear'; if(isMobile) { packets[2].style.top = '100%'; } else { packets[2].style.left = '100%'; } }
-      }, t)); t += 800;
-
-      wf_animTimeouts.push(setTimeout(() => {
-        if(conns[2]) { conns[2].classList.remove('wf-connector-animating-amber'); conns[2].classList.add('wf-connector-solid-amber'); }
-        if(packets[2]) packets[2].style.opacity = '0';
-        if(stages[3]) stages[3].classList.add('wf-running-blue');
-      }, t)); t += 1200;
-
-      wf_animTimeouts.push(setTimeout(() => {
-        if(stages[3]) { stages[3].classList.remove('wf-running-blue'); stages[3].classList.add('wf-passed-blue'); }
+        if (stages[3]) { stages[3].classList.remove('wf-running-blue'); stages[3].classList.add('wf-passed-blue'); }
       }, t));
     };
-
     /* ========================================================================= */
     /* 9. VIRTUAL FILE SYSTEM & SANDBOX CLI ENGINE (UNCUT)                       */
     /* ========================================================================= */
@@ -3214,6 +3232,32 @@
         return;
       }
 
+      let isGodModeUnlocked = false;
+    window.triggerGodMode = function() {
+      isGodModeUnlocked = !isGodModeUnlocked;
+      window.matrixColor = isGodModeUnlocked ? '#fbbf24' : '#00ff66';
+      if (isGodModeUnlocked) {
+        if (pf_mode !== 'engineer') setPerspective('engineer', false);
+        startMatrixRain(true);
+        setBalloonFace('happy');
+        showToast('⚡ <strong>GOD MODE UNLOCKED:</strong> Golden Matrix Rain & Root Sudo Clearance Activated!', 4500);
+      } else {
+        showToast('🛡️ <strong>God Mode Deactivated:</strong> Standard PoLP IAM restored.', 3000);
+      }
+    };
+
+    // Konami Code Listener (Up, Up, Down, Down, Left, Right, Left, Right, B, A)
+    const konamiSeq = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+    let konamiIdx = 0;
+    window.addEventListener('keydown', (e) => {
+      const k = e.key.length === 1 ? e.key.toLowerCase() : e.key;
+      if (k === konamiSeq[konamiIdx]) {
+        konamiIdx++;
+        if (konamiIdx === konamiSeq.length) { konamiIdx = 0; window.triggerGodMode(); }
+      } else {
+        konamiIdx = (k === konamiSeq[0]) ? 1 : 0;
+      }
+    });
       switch (base) {
         case 'help':
           printCliLine(`Interactive Diagnostic Shell:\n  cd <dir>        : Navigate VFS\n  pwd             : Print working directory\n  ls [-la]        : List directory contents\n  mkdir <dir>     : Create directory\n  touch <file>    : Create empty file\n  rm <file>       : Remove file\n  cp/mv <s d>     : Copy/Move files\n  cat <file>      : Inspect file\n  grep <txt> <f>  : Search file (try 'grep AWS resume.txt' in /home/sai)\n  df -h           : Show disk usage (Live Browser Storage)\n  top / ps        : Show processes (Live JS Heap/Cores)\n  ping <host>     : Test network (Live RTT via Edge)\n  trace <host>    : Check edge POP routing (Live)\n  env / whoami    : Print environment details\n  ssh <host>      : Connect securely\n  battery         : Check power status\n  ./patch.sh      : Execute container remediation (+curl)\n  clear           : Wipe terminal screen\n\nHiring / Executive:\n  sudo hire sai   : Fast-track interview scheduling`, 'text-slate-300');
@@ -3367,8 +3411,17 @@
           if (!args[1]) printCliLine('usage: ssh [-46AaCfGgKkMNnqsTtVvXxYy] destination', 'text-yellow-400');
           else printCliLine(`ssh: connect to host ${args[1]} port 22: Connection refused.\n(Zero-Trust Policy Enforced: Direct SSH disabled. Please use AWS Systems Manager Session Manager).`, 'text-amber-400');
           break;
+        case 'godmode':
+        case 'konami':
+          window.triggerGodMode();
+          printCliLine(isGodModeUnlocked ? `⚡ [GOD MODE ACTIVE]: Golden Matrix Rain enabled & root sudoers clearance granted.` : `🛡️ [GOD MODE OFF]: Standard IAM permissions restored.`, 'text-amber-300 font-bold');
+          break;
         case 'sudo':
-          printCliLine(`sai is not in the sudoers file. This incident will be reported to the hiring manager.`, 'text-red-400');
+          if (isGodModeUnlocked) {
+            printCliLine(`⚡ [ROOT CLEARANCE GRANTED]: Executing '${args.slice(1).join(' ') || 'su -'}' with administrative privileges... OK.`, 'text-amber-300 font-bold');
+          } else {
+            printCliLine(`sai is not in the sudoers file. Tip: Type 'godmode' (or press ↑↑↓↓←→←→BA) to unlock Root Clearance & Golden Matrix Rain.`, 'text-red-400');
+          }
           break;
         case 'chmod':
         case 'chown':
