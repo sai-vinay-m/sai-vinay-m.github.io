@@ -196,14 +196,15 @@
       100% { box-shadow: 0 4px 24px rgba(56, 189, 248, 0.45), 0 0 0 0 rgba(56, 189, 248, 0); }
     }
     
-    .wf-running { border-color: #00ff66 !important; box-shadow: 0 4px 24px rgba(0, 255, 102, 0.3) !important; animation: wfPulse 1.2s infinite; transform: translateY(-2px); }
+    
+    .wf-running { border-color: #00ff66 !important; box-shadow: 0 0 24px rgba(0, 255, 102, 0.5) !important; animation: wfPulse 1.2s infinite; transform: translateY(-2px); position: relative; z-index: 10; }
     .wf-passed { border-color: #00ff66 !important; box-shadow: 0 0 15px rgba(0, 255, 102, 0.15) !important; transform: translateY(0); }
     
-    .wf-running-amber { border-color: #fbbf24 !important; box-shadow: 0 4px 28px rgba(251, 191, 36, 0.45) !important; animation: wfPulseAmber 1.2s infinite; transform: translateY(-2px); background-color: #120f06 !important; }
-    .wf-passed-amber { border-color: #fbbf24 !important; box-shadow: 0 0 18px rgba(251, 191, 36, 0.25) !important; transform: translateY(0); }
+    .wf-running-amber { border-color: #fbbf24 !important; box-shadow: 0 0 24px rgba(251, 191, 36, 0.5) !important; animation: wfPulseAmber 1.2s infinite; transform: translateY(-2px); position: relative; z-index: 10; }
+    .wf-passed-amber { border-color: #fbbf24 !important; box-shadow: 0 0 15px rgba(251, 191, 36, 0.15) !important; transform: translateY(0); }
     
-    .wf-running-blue { border-color: #38bdf8 !important; box-shadow: 0 4px 24px rgba(56, 189, 248, 0.45) !important; animation: wfPulseBlue 1.2s infinite; transform: translateY(-2px); background-color: #0c2a40 !important; }
-    .wf-passed-blue { border-color: #38bdf8 !important; box-shadow: 0 4px 24px rgba(56, 189, 248, 0.25) !important; transform: translateY(0); }
+    .wf-running-blue { border-color: #38bdf8 !important; box-shadow: 0 0 24px rgba(56, 189, 248, 0.5) !important; animation: wfPulseBlue 1.2s infinite; transform: translateY(-2px); position: relative; z-index: 10; }
+    .wf-passed-blue { border-color: #38bdf8 !important; box-shadow: 0 0 15px rgba(56, 189, 248, 0.15) !important; transform: translateY(0); }
 
     .wf-connector { border-color: #1e293b !important; transition: border-color 0.35s ease; }
     .wf-connector-solid { border-style: solid !important; border-color: #00ff66 !important; background-image: none !important; animation: none !important; }
@@ -285,89 +286,89 @@
 
     /* ========================================================= */
     /* ========================================================= */
-    /* HR MODE THEME: OPTION B (PRO DARK CHARCOAL/ZINC + BLUE)   */
+    /* HR MODE THEME: OPTION A (CRISP LIGHT THEME)               */
     /* ========================================================= */
-    body.mode-hr { background-color: #09090B !important; color: #E4E4E7 !important; background-image: none !important; }
+    body.mode-hr { background-color: #F1F5F9 !important; color: #334155 !important; background-image: none !important; }
     body.mode-hr .bg-grid-pattern, body.mode-hr .hero-glow { display: none !important; }
     
     /* Header */
-    body.mode-hr header { background: rgba(9, 9, 11, 0.92) !important; border-bottom: 1px solid #27272A !important; color: #FFFFFF !important; }
-    body.mode-hr header .text-white, body.mode-hr header .text-slate-900, body.mode-hr header h1 { color: #FFFFFF !important; }
-    body.mode-hr header .text-slate-400, body.mode-hr header .text-slate-300, body.mode-hr header a, body.mode-hr header .text-xs { color: #A1A1AA !important; }
-    body.mode-hr header .bg-carbon-800 { background: #18181B !important; border-color: #27272A !important; color: #FFFFFF !important; }
-    body.mode-hr header .asset-fallback { color: #3B82F6 !important; }
-    body.mode-hr header .border-carbon-600 { border-color: #27272A !important; }
+    body.mode-hr header { background: rgba(255, 255, 255, 0.95) !important; border-bottom: 1px solid #E2E8F0 !important; color: #0F172A !important; }
+    body.mode-hr header .text-white, body.mode-hr header .text-slate-900, body.mode-hr header h1 { color: #0F172A !important; }
+    body.mode-hr header .text-slate-400, body.mode-hr header .text-slate-300, body.mode-hr header a, body.mode-hr header .text-xs { color: #64748B !important; }
+    body.mode-hr header .bg-carbon-800 { background: #F8FAFC !important; border-color: #E2E8F0 !important; color: #0F172A !important; }
+    body.mode-hr header .asset-fallback { color: #1D4ED8 !important; }
+    body.mode-hr header .border-carbon-600 { border-color: #E2E8F0 !important; }
     
     /* Active Mode Switcher fixes */
-    body.mode-hr header #headerBtnHr { background: #3B82F6 !important; color: #FFFFFF !important; border-color: #2563EB !important; }
-    body.mode-hr header #mobileBtnHr { background: #3B82F6 !important; color: #FFFFFF !important; border-color: #2563EB !important; }
+    body.mode-hr header #headerBtnHr { background: #1D4ED8 !important; color: #FFFFFF !important; border-color: #1E40AF !important; box-shadow: 0 2px 4px rgba(29, 78, 216, 0.2) !important; }
+    body.mode-hr header #mobileBtnHr { background: #1D4ED8 !important; color: #FFFFFF !important; border-color: #1E40AF !important; }
     
     /* Header CTAs */
-    body.mode-hr header a.bg-carbon-800:hover, body.mode-hr header button.bg-carbon-800:hover { background: #27272A !important; color: #FFFFFF !important; border-color: #3B82F6 !important; }
+    body.mode-hr header a.bg-carbon-800:hover, body.mode-hr header button.bg-carbon-800:hover { background: #EFF6FF !important; color: #1D4ED8 !important; border-color: #BFDBFE !important; }
 
-    /* 3 Bento Boxes (Left, Middle, Right) - Elevated Zinc #18181B on #09090B Canvas */
+    /* 3 Bento Boxes (Left, Middle, Right) - Crisp White Panels */
     body.mode-hr aside, body.mode-hr .lg\:col-span-6 > div.bg-white, body.mode-hr .lg\:col-span-3.rounded-2xl {
-      background: #18181B !important; border: 1px solid #27272A !important; color: #FFFFFF !important; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45) !important;
+      background: #FFFFFF !important; border: 1px solid #E2E8F0 !important; color: #0F172A !important; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05) !important;
     }
     
     /* Text overrides on Dark Panels (Left, Middle outer, Right) */
     body.mode-hr aside h1, body.mode-hr aside h2, body.mode-hr aside h3, body.mode-hr aside .text-slate-900,
     body.mode-hr .lg\:col-span-6 > div.bg-white > h2, body.mode-hr .lg\:col-span-6 > div.bg-white > h3,
     body.mode-hr .lg\:col-span-3 h1, body.mode-hr .lg\:col-span-3 h3, body.mode-hr .lg\:col-span-3 .text-slate-900 {
-      color: #FFFFFF !important; text-shadow: none !important;
+      color: #0F172A !important; text-shadow: none !important;
     }
     body.mode-hr aside .text-slate-600, body.mode-hr aside .text-slate-500, body.mode-hr aside .text-slate-700,
     body.mode-hr .lg\:col-span-6 > div.bg-white > p, body.mode-hr .lg\:col-span-6 > div.bg-white .text-slate-500,
     body.mode-hr .lg\:col-span-6 .bg-slate-50 .text-slate-700, 
     body.mode-hr .lg\:col-span-3 .text-slate-600, body.mode-hr .lg\:col-span-3 .text-slate-700 {
-      color: #A1A1AA !important;
+      color: #475569 !important;
     }
     
     /* Left Bento Sub-elements */
-    body.mode-hr aside .bg-slate-50 { background: #09090B !important; border: 1px solid #27272A !important; color: #FFFFFF !important; }
-    body.mode-hr aside .bg-slate-50 .text-slate-900 { color: #FFFFFF !important; }
-    body.mode-hr aside .border-slate-100, body.mode-hr aside .border-slate-200, body.mode-hr aside .border-t { border-color: #27272A !important; }
-    body.mode-hr aside .text-\[\#1e40af\] { color: #60A5FA !important; font-weight: 600 !important; }
-    body.mode-hr aside .border-4.border-\[\#1e40af\]\/30 { border-color: #3B82F6 !important; }
-    body.mode-hr aside .w-\[73px\].h-\[73px\] { background: #18181B !important; border: 1px solid #27272A !important; }
+    body.mode-hr aside .bg-slate-50 { background: #F8FAFC !important; border: 1px solid #E2E8F0 !important; color: #0F172A !important; }
+    body.mode-hr aside .bg-slate-50 .text-slate-900 { color: #0F172A !important; }
+    body.mode-hr aside .border-slate-100, body.mode-hr aside .border-slate-200, body.mode-hr aside .border-t { border-color: #E2E8F0 !important; }
+    body.mode-hr aside .text-\[\#1e40af\] { color: #1D4ED8 !important; font-weight: 700 !important; }
+    body.mode-hr aside .border-4.border-\[\#1e40af\]\/30 { border-color: #DBEAFE !important; }
+    body.mode-hr aside .w-\[73px\].h-\[73px\] { background: #FFFFFF !important; border: 1px solid #E2E8F0 !important; }
     
     /* Center Column Specifics */
-    body.mode-hr #cvp-card .bg-\[\#163E78\], body.mode-hr #cvp-card .bg-\[\#1E40AF\] { background: rgba(59, 130, 246, 0.15) !important; border: 1px solid rgba(59, 130, 246, 0.4) !important; color: #60A5FA !important; }
-    body.mode-hr .lg\:col-span-6 .bg-slate-50 { background: #09090B !important; border-color: #27272A !important; }
-    body.mode-hr .lg\:col-span-6 .bg-slate-50 .text-slate-900 { color: #FFFFFF !important; font-weight: 700 !important; text-shadow: none !important; }
-    body.mode-hr .lg\:col-span-6 .bg-slate-50 .text-\[\#1e40af\] { color: #60A5FA !important; font-weight: 600 !important; }
-    body.mode-hr .lg\:col-span-6 .border-slate-200 { border-color: #27272A !important; }
-    body.mode-hr .lg\:col-span-6 > div.bg-white .text-\[\#1e40af\] { color: #60A5FA !important; font-weight: 600 !important; }
+    body.mode-hr #cvp-card .bg-\[\#163E78\], body.mode-hr #cvp-card .bg-\[\#1E40AF\] { background: #EFF6FF !important; border: 1px solid #BFDBFE !important; color: #1D4ED8 !important; }
+    body.mode-hr .lg\:col-span-6 .bg-slate-50 { background: #F8FAFC !important; border-color: #E2E8F0 !important; }
+    body.mode-hr .lg\:col-span-6 .bg-slate-50 .text-slate-900 { color: #0F172A !important; font-weight: 700 !important; text-shadow: none !important; }
+    body.mode-hr .lg\:col-span-6 .bg-slate-50 .text-\[\#1e40af\] { color: #1D4ED8 !important; font-weight: 600 !important; }
+    body.mode-hr .lg\:col-span-6 .border-slate-200 { border-color: #E2E8F0 !important; }
+    body.mode-hr .lg\:col-span-6 > div.bg-white .text-\[\#1e40af\] { color: #1D4ED8 !important; font-weight: 700 !important; }
     
     /* Right Column Specifics */
-    body.mode-hr .lg\:col-span-3 .bg-slate-50 { background: #09090B !important; border: 1px solid #27272A !important; color: #E4E4E7 !important; }
-    body.mode-hr .lg\:col-span-3 .text-\[\#1e40af\] { color: #60A5FA !important; font-weight: 600 !important; }
-    body.mode-hr .lg\:col-span-3 .border-slate-200 { border-color: #27272A !important; }
+    body.mode-hr .lg\:col-span-3 .bg-slate-50 { background: #F8FAFC !important; border: 1px solid #E2E8F0 !important; color: #334155 !important; }
+    body.mode-hr .lg\:col-span-3 .text-\[\#1e40af\] { color: #1D4ED8 !important; font-weight: 700 !important; }
+    body.mode-hr .lg\:col-span-3 .border-slate-200 { border-color: #E2E8F0 !important; }
 
     /* Accents & Buttons */
-    body.mode-hr a.bg-\[\#1e40af\] { background: #3B82F6 !important; color: #FFFFFF !important; border: none !important; font-weight: 600 !important; }
-    body.mode-hr a.bg-\[\#1e40af\]:hover { background: #2563EB !important; }
-    body.mode-hr button.bg-slate-50 { background: #09090B !important; color: #60A5FA !important; border: 1px solid #3B82F6 !important; font-weight: 600 !important; }
-    body.mode-hr button.bg-slate-50:hover { background: rgba(59, 130, 246, 0.15) !important; }
+    body.mode-hr a.bg-\[\#1e40af\] { background: #1D4ED8 !important; color: #FFFFFF !important; border: none !important; font-weight: 700 !important; }
+    body.mode-hr a.bg-\[\#1e40af\]:hover { background: #1E40AF !important; }
+    body.mode-hr button.bg-slate-50 { background: #FFFFFF !important; color: #1D4ED8 !important; border: 1px solid #1D4ED8 !important; font-weight: 700 !important; box-shadow: none !important; }
+    body.mode-hr button.bg-slate-50:hover { background: #EFF6FF !important; }
     body.mode-hr .text-emerald-400 { color: #10B981 !important; }
     
     /* Secondary CTA / Badges (Verified Credentials) */
-    body.mode-hr #cvp-card a.bg-slate-50 { background: #09090B !important; border-color: #27272A !important; color: #E4E4E7 !important; box-shadow: none !important; }
-    body.mode-hr #cvp-card a.bg-slate-50 .text-\[\#1e40af\] { color: #60A5FA !important; }
-    body.mode-hr #cvp-card a.bg-slate-50:hover { background: #27272A !important; border-color: #3B82F6 !important; }
+    body.mode-hr #cvp-card a.bg-slate-50 { background: #FFFFFF !important; border-color: #E2E8F0 !important; color: #334155 !important; box-shadow: 0 1px 2px rgba(0,0,0,0.05) !important; }
+    body.mode-hr #cvp-card a.bg-slate-50 .text-\[\#1e40af\] { color: #1D4ED8 !important; }
+    body.mode-hr #cvp-card a.bg-slate-50:hover { background: #F8FAFC !important; border-color: #CBD5E1 !important; }
     
     /* Copilot (HR Mode) */
-    body.mode-hr #portfolioChat { background: #18181B !important; border-color: #27272A !important; }
-    body.mode-hr #chatHeader { background: #09090B !important; color: #FFFFFF !important; border-bottom: 1px solid #27272A !important; }
-    body.mode-hr #chatHeader .text-amber-300 { color: #60A5FA !important; border-color: rgba(59, 130, 246, 0.4) !important; background: rgba(59, 130, 246, 0.1) !important; }
-    body.mode-hr #chatWindow { background: #09090B !important; color: #E4E4E7 !important; }
-    body.mode-hr #chatWindow .bg-carbon-800, body.mode-hr #portfolioChat .bg-carbon-800 { background: #18181B !important; color: #E4E4E7 !important; border-color: #27272A !important; }
-    body.mode-hr #chatWindow .bg-amber-500, body.mode-hr #sendChatBtn { background: #3B82F6 !important; color: #FFFFFF !important; border: none !important; font-weight: 600 !important; }
-    body.mode-hr #chatWindow .bg-red-950\/60 { background: #27272A !important; color: #FCA5A5 !important; border-color: #3F3F46 !important; }
-    body.mode-hr #portfolioChat .bg-carbon-900 { background: #18181B !important; border-color: #27272A !important; }
-    body.mode-hr #userInput { background: #09090B !important; border-color: #27272A !important; color: #FFFFFF !important; }
-    body.mode-hr #userInput::placeholder { color: #71717A !important; }
-    body.mode-hr #portfolioChat .text-amber-400, body.mode-hr #portfolioChat .text-emerald-300, body.mode-hr #portfolioChat .text-purple-300, body.mode-hr #portfolioChat .text-sky-300 { color: #60A5FA !important; }
+    body.mode-hr #portfolioChat { background: #FFFFFF !important; border-color: #E2E8F0 !important; box-shadow: 0 10px 25px rgba(0,0,0,0.1) !important; }
+    body.mode-hr #chatHeader { background: #F8FAFC !important; color: #0F172A !important; border-bottom: 1px solid #E2E8F0 !important; }
+    body.mode-hr #chatHeader .text-amber-300 { color: #1D4ED8 !important; border-color: #BFDBFE !important; background: #EFF6FF !important; }
+    body.mode-hr #chatWindow { background: #FFFFFF !important; color: #334155 !important; }
+    body.mode-hr #chatWindow .bg-carbon-800, body.mode-hr #portfolioChat .bg-carbon-800 { background: #F1F5F9 !important; color: #0F172A !important; border-color: #E2E8F0 !important; }
+    body.mode-hr #chatWindow .bg-amber-500, body.mode-hr #sendChatBtn { background: #1D4ED8 !important; color: #FFFFFF !important; border: none !important; font-weight: 700 !important; }
+    body.mode-hr #chatWindow .bg-red-950\/60 { background: #FEF2F2 !important; color: #EF4444 !important; border-color: #FECACA !important; }
+    body.mode-hr #portfolioChat .bg-carbon-900 { background: #F8FAFC !important; border-color: #E2E8F0 !important; }
+    body.mode-hr #userInput { background: #FFFFFF !important; border-color: #E2E8F0 !important; color: #0F172A !important; }
+    body.mode-hr #userInput::placeholder { color: #94A3B8 !important; }
+    body.mode-hr #portfolioChat .text-amber-400, body.mode-hr #portfolioChat .text-emerald-300, body.mode-hr #portfolioChat .text-purple-300, body.mode-hr #portfolioChat .text-sky-300 { color: #1D4ED8 !important; }
 
     /* ========================================================= */
 /* DEV MODE STYLES (Increased Brightness)                    */
@@ -2172,7 +2173,6 @@
           <button type="button" onclick="runCliCommand('top')" class="px-1.5 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] text-[9px] cursor-pointer transition-colors">top</button>
           <button type="button" onclick="runCliCommand('trace google.com')" class="px-1.5 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] text-[9px] cursor-pointer transition-colors">trace</button>
           <button type="button" onclick="runCliCommand('./patch.sh')" class="px-1.5 py-0.5 rounded bg-carbon-800 hover:bg-[#00ff66] hover:text-black text-[#00ff66] text-[9px] cursor-pointer transition-colors">./patch.sh</button>
-          <button type="button" onclick="runCliCommand('godmode')" class="px-1.5 py-0.5 rounded bg-yellow-500/15 hover:bg-yellow-400 hover:text-black text-yellow-300 border border-yellow-500/40 text-[9px] cursor-pointer transition-colors" title="Konami Code Shortcut (↑↑↓↓←→←→BA)">⚡ godmode</button>
           <button type="button" onclick="runCliCommand('sudo hire sai')" class="px-1.5 py-0.5 rounded bg-amber-500/15 hover:bg-amber-400 hover:text-black text-amber-300 border border-amber-500/40 text-[9px] cursor-pointer transition-colors">👑 sudo hire sai</button>
         </div>
         <div class="flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-3">
@@ -2430,7 +2430,7 @@
       pf_mode = role;
       
       const inact = "px-2.5 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 text-slate-400 hover:text-white whitespace-nowrap";
-      const actHr = "px-2.5 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 bg-[#3B82F6] text-white font-bold border border-[#2563EB] shadow-sm whitespace-nowrap";
+      const actHr = "px-2.5 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 bg-[#1D4ED8] text-white font-bold border border-[#1E40AF] shadow-sm whitespace-nowrap";
       const actAmb = "px-2.5 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 bg-amber-500 text-carbon-950 font-bold shadow-sm whitespace-nowrap";
       const actGrn = "px-2.5 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 bg-[#00ff66] text-black font-bold shadow-[0_0_12px_rgba(0,255,102,0.4)] whitespace-nowrap";
       
@@ -2440,7 +2440,7 @@
       if (bDev) bDev.className = (role === 'engineer') ? actGrn : inact;
 
       const mHr = document.getElementById('mobileBtnHr'), mMgr = document.getElementById('mobileBtnMgr'), mDev = document.getElementById('mobileBtnDev');
-      if (mHr) mHr.className = (role === 'recruiter') ? "px-1.5 py-1 rounded bg-[#3B82F6] text-white font-bold border border-[#2563EB]" : "px-1.5 py-1 rounded text-slate-400 hover:text-white";
+      if (mHr) mHr.className = (role === 'recruiter') ? "px-1.5 py-1 rounded bg-[#1D4ED8] text-white font-bold border border-[#1E40AF]" : "px-1.5 py-1 rounded text-slate-400 hover:text-white";
       if (mMgr) mMgr.className = (role === 'manager') ? "px-1.5 py-1 rounded bg-amber-500 text-carbon-950 font-bold" : "px-1.5 py-1 rounded text-slate-400 hover:text-white";
       if (mDev) mDev.className = (role === 'engineer') ? "px-1.5 py-1 rounded bg-[#00ff66] text-black font-bold" : "px-1.5 py-1 rounded text-slate-400 hover:text-white";
 
@@ -3134,48 +3134,52 @@
       }
 
       let t = 100;
-      // Stage 1: Green
-      wf_animTimeouts.push(setTimeout(() => { if (stages[0]) stages[0].classList.add('wf-running'); }, t)); t += 900;
+      // Stage 1: Inspect (Green Glow)
+      wf_animTimeouts.push(setTimeout(() => { if (stages[0]) stages[0].classList.add('wf-running'); }, t)); t += 1200;
       
-      // Connector 1: Dotted Green -> Stabilises to Solid Green before Stage 2
+      // Connector 1: Transferring to Stage 2
       wf_animTimeouts.push(setTimeout(() => {
         if (stages[0]) { stages[0].classList.remove('wf-running'); stages[0].classList.add('wf-passed'); }
         if (conns[0]) conns[0].classList.add('wf-connector-animating');
         if (packets[0]) { packets[0].style.display = 'block'; packets[0].style.opacity = '1'; packets[0].style.transition = 'left 0.75s linear, top 0.75s linear'; if (isMobile) packets[0].style.top = '100%'; else packets[0].style.left = '100%'; }
       }, t)); t += 750;
 
+      // Stage 2: Validate (Green Glow)
       wf_animTimeouts.push(setTimeout(() => {
         if (conns[0]) { conns[0].classList.remove('wf-connector-animating'); conns[0].classList.add('wf-connector-solid'); }
         if (packets[0]) packets[0].style.opacity = '0';
         if (stages[1]) stages[1].classList.add('wf-running');
-      }, t)); t += 1000;
+      }, t)); t += 1200;
 
-      // Connector 2: Dotted Amber -> Stabilises to Solid Amber before Stage 3
+      // Connector 2: Transferring to Stage 3 (Amber)
       wf_animTimeouts.push(setTimeout(() => {
         if (stages[1]) { stages[1].classList.remove('wf-running'); stages[1].classList.add('wf-passed'); }
         if (conns[1]) conns[1].classList.add('wf-connector-animating-amber');
         if (packets[1]) { packets[1].style.display = 'block'; packets[1].style.opacity = '1'; packets[1].style.transition = 'left 0.75s linear, top 0.75s linear'; if (isMobile) packets[1].style.top = '100%'; else packets[1].style.left = '100%'; }
       }, t)); t += 750;
 
+      // Stage 3: Review Gate (Amber Glow)
       wf_animTimeouts.push(setTimeout(() => {
         if (conns[1]) { conns[1].classList.remove('wf-connector-animating-amber'); conns[1].classList.add('wf-connector-solid-amber'); }
         if (packets[1]) packets[1].style.opacity = '0';
         if (stages[2]) stages[2].classList.add('wf-running-amber');
-      }, t)); t += 1100;
+      }, t)); t += 1200;
 
-      // Connector 3: Dotted Blue -> Stabilises to Solid Blue before Stage 4
+      // Connector 3: Transferring to Stage 4 (Blue)
       wf_animTimeouts.push(setTimeout(() => {
         if (stages[2]) { stages[2].classList.remove('wf-running-amber'); stages[2].classList.add('wf-passed-amber'); }
         if (conns[2]) conns[2].classList.add('wf-connector-animating-blue');
         if (packets[2]) { packets[2].style.display = 'block'; packets[2].style.opacity = '1'; packets[2].style.transition = 'left 0.75s linear, top 0.75s linear'; if (isMobile) packets[2].style.top = '100%'; else packets[2].style.left = '100%'; }
       }, t)); t += 750;
 
+      // Stage 4: Handoff (Blue Glow)
       wf_animTimeouts.push(setTimeout(() => {
         if (conns[2]) { conns[2].classList.remove('wf-connector-animating-blue'); conns[2].classList.add('wf-connector-solid-blue'); }
         if (packets[2]) packets[2].style.opacity = '0';
         if (stages[3]) stages[3].classList.add('wf-running-blue');
-      }, t)); t += 1000;
+      }, t)); t += 1200;
 
+      // Finish Pipeline
       wf_animTimeouts.push(setTimeout(() => {
         if (stages[3]) { stages[3].classList.remove('wf-running-blue'); stages[3].classList.add('wf-passed-blue'); }
       }, t));
@@ -3232,33 +3236,7 @@
         return;
       }
 
-      let isGodModeUnlocked = false;
-    window.triggerGodMode = function() {
-      isGodModeUnlocked = !isGodModeUnlocked;
-      window.matrixColor = isGodModeUnlocked ? '#fbbf24' : '#00ff66';
-      if (isGodModeUnlocked) {
-        if (pf_mode !== 'engineer') setPerspective('engineer', false);
-        startMatrixRain(true);
-        setBalloonFace('happy');
-        showToast('⚡ <strong>GOD MODE UNLOCKED:</strong> Golden Matrix Rain & Root Sudo Clearance Activated!', 4500);
-      } else {
-        showToast('🛡️ <strong>God Mode Deactivated:</strong> Standard PoLP IAM restored.', 3000);
-      }
-    };
-
-    // Konami Code Listener (Up, Up, Down, Down, Left, Right, Left, Right, B, A)
-    const konamiSeq = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
-    let konamiIdx = 0;
-    window.addEventListener('keydown', (e) => {
-      const k = e.key.length === 1 ? e.key.toLowerCase() : e.key;
-      if (k === konamiSeq[konamiIdx]) {
-        konamiIdx++;
-        if (konamiIdx === konamiSeq.length) { konamiIdx = 0; window.triggerGodMode(); }
-      } else {
-        konamiIdx = (k === konamiSeq[0]) ? 1 : 0;
-      }
-    });
-      switch (base) {
+            switch (base) {
         case 'help':
           printCliLine(`Interactive Diagnostic Shell:\n  cd <dir>        : Navigate VFS\n  pwd             : Print working directory\n  ls [-la]        : List directory contents\n  mkdir <dir>     : Create directory\n  touch <file>    : Create empty file\n  rm <file>       : Remove file\n  cp/mv <s d>     : Copy/Move files\n  cat <file>      : Inspect file\n  grep <txt> <f>  : Search file (try 'grep AWS resume.txt' in /home/sai)\n  df -h           : Show disk usage (Live Browser Storage)\n  top / ps        : Show processes (Live JS Heap/Cores)\n  ping <host>     : Test network (Live RTT via Edge)\n  trace <host>    : Check edge POP routing (Live)\n  env / whoami    : Print environment details\n  ssh <host>      : Connect securely\n  battery         : Check power status\n  ./patch.sh      : Execute container remediation (+curl)\n  clear           : Wipe terminal screen\n\nHiring / Executive:\n  sudo hire sai   : Fast-track interview scheduling`, 'text-slate-300');
           break;
@@ -3411,17 +3389,8 @@
           if (!args[1]) printCliLine('usage: ssh [-46AaCfGgKkMNnqsTtVvXxYy] destination', 'text-yellow-400');
           else printCliLine(`ssh: connect to host ${args[1]} port 22: Connection refused.\n(Zero-Trust Policy Enforced: Direct SSH disabled. Please use AWS Systems Manager Session Manager).`, 'text-amber-400');
           break;
-        case 'godmode':
-        case 'konami':
-          window.triggerGodMode();
-          printCliLine(isGodModeUnlocked ? `⚡ [GOD MODE ACTIVE]: Golden Matrix Rain enabled & root sudoers clearance granted.` : `🛡️ [GOD MODE OFF]: Standard IAM permissions restored.`, 'text-amber-300 font-bold');
-          break;
         case 'sudo':
-          if (isGodModeUnlocked) {
-            printCliLine(`⚡ [ROOT CLEARANCE GRANTED]: Executing '${args.slice(1).join(' ') || 'su -'}' with administrative privileges... OK.`, 'text-amber-300 font-bold');
-          } else {
-            printCliLine(`sai is not in the sudoers file. Tip: Type 'godmode' (or press ↑↑↓↓←→←→BA) to unlock Root Clearance & Golden Matrix Rain.`, 'text-red-400');
-          }
+          printCliLine(`sai is not in the sudoers file. This incident will be reported to the hiring manager.`, 'text-red-400');
           break;
         case 'chmod':
         case 'chown':
