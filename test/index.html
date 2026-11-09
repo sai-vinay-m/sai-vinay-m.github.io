@@ -1280,13 +1280,13 @@
 
     #rttGaugeArc, #dlGaugeArc, #speedGaugeArc { transition: stroke-dashoffset 420ms cubic-bezier(0.22, 1, 0.36, 1); }
 
-    #rttGaugeNeedle, #dlGaugeNeedle, #speedGaugeNeedle {
+    /* Needle position is expressed as SVG line endpoints, not a transformed group.
 
-      transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+       This keeps each pointer anchored at the gauge center in every viewport. */
 
-      transform-box: view-box;
+    #rttGaugeNeedle line, #dlGaugeNeedle line, #speedGaugeNeedle line {
 
-      transform-origin: 110px 110px;
+      transition: x2 420ms cubic-bezier(0.22, 1, 0.36, 1), y2 420ms cubic-bezier(0.22, 1, 0.36, 1);
 
     }
 
@@ -1304,7 +1304,9 @@
 
     @media (prefers-reduced-motion: reduce) {
 
-      #rttGaugeArc, #dlGaugeArc, #speedGaugeArc, #rttGaugeNeedle, #dlGaugeNeedle, #speedGaugeNeedle { transition: none !important; }
+      #rttGaugeArc, #dlGaugeArc, #speedGaugeArc,
+
+      #rttGaugeNeedle line, #dlGaugeNeedle line, #speedGaugeNeedle line { transition: none !important; }
 
       #telemetrySampleStatus.is-sampling::before { animation: none !important; }
 
@@ -1394,7 +1396,17 @@
 
     /* ========================================================= */
 
-    body.mode-hr { background: linear-gradient(180deg, #EAF3F8 0%, #EEF2F6 175px, #EEF2F6 100%) fixed !important; color: #0F172A !important; }
+    body.mode-hr {
+
+      background-color: #E3E8EE !important;
+
+      background-image: linear-gradient(180deg, #DCEAF3 0%, #E3E8EE 210px, #E3E8EE 100%) !important;
+
+      background-attachment: fixed !important;
+
+      color: #0F172A !important;
+
+    }
 
     body.mode-hr .bg-grid-pattern, body.mode-hr .hero-glow, body.mode-hr #devCircuitOverlay { display: none !important; }
 
@@ -1554,7 +1566,35 @@
 
     /* Copilot overrides to fit theme */
 
-    body.mode-hr #portfolioChat { width: 232px !important; max-width: calc(100vw - 24px) !important; background: #0F172A !important; border-color: rgba(148, 163, 184, 0.58) !important; box-shadow: 0 3px 15px rgba(15, 23, 42, 0.12) !important; }
+    body.mode-hr #portfolioChat {
+
+      width: 232px !important;
+
+      max-width: calc(100vw - 24px) !important;
+
+      transform: scale(1.35) !important;
+
+      transform-origin: bottom right !important;
+
+      background: #0F172A !important;
+
+      border-color: rgba(148, 163, 184, 0.58) !important;
+
+      box-shadow: 0 3px 15px rgba(15, 23, 42, 0.12) !important;
+
+    }
+
+    @media (max-width: 360px) {
+
+      body.mode-hr #portfolioChat { transform: scale(1.2) !important; }
+
+    }
+
+    @media (max-width: 300px) {
+
+      body.mode-hr #portfolioChat { transform: scale(1.05) !important; }
+
+    }
 
     body.mode-hr #chatHeader { background: #0F172A !important; color: #FFFFFF !important; border-bottom: 1px solid #1E293B !important; padding: 9px 10px !important; }
 
@@ -4714,7 +4754,7 @@
 
               <text x="15" y="128" fill="#64748b" font-size="9">0ms</text><text x="182" y="128" fill="#64748b" font-size="9">300ms</text>
 
-              <g id="rttGaugeNeedle" transform="rotate(-70 110 110)"><line x1="110" y1="110" x2="110" y2="32" stroke="#38bdf8" stroke-width="3" stroke-linecap="round"/><circle cx="110" cy="110" r="6" fill="#38bdf8"/></g>
+              <g id="rttGaugeNeedle"><line x1="110" y1="110" x2="110" y2="32" stroke="#38bdf8" stroke-width="3" stroke-linecap="round"/><circle cx="110" cy="110" r="6" fill="#38bdf8"/></g>
 
               <text id="rttGaugeValueText" x="110" y="96" text-anchor="middle" fill="#ffffff" font-size="17" font-weight="bold">-- ms</text>
 
@@ -4764,7 +4804,7 @@
 
               <text x="15" y="128" fill="#64748b" font-size="9">0</text><text x="180" y="128" fill="#64748b" font-size="9">120fps</text>
 
-              <g id="speedGaugeNeedle" transform="rotate(0 110 110)"><line x1="110" y1="110" x2="110" y2="32" stroke="#00ff66" stroke-width="3" stroke-linecap="round"/><circle cx="110" cy="110" r="6" fill="#00ff66"/></g>
+              <g id="speedGaugeNeedle"><line x1="110" y1="110" x2="110" y2="32" stroke="#00ff66" stroke-width="3" stroke-linecap="round"/><circle cx="110" cy="110" r="6" fill="#00ff66"/></g>
 
               <text id="speedGaugeValueText" x="110" y="96" text-anchor="middle" fill="#ffffff" font-size="17" font-weight="bold">60 FPS</text>
 
@@ -4814,7 +4854,7 @@
 
               <text x="15" y="128" fill="#64748b" font-size="9">0</text><text x="172" y="128" fill="#64748b" font-size="9">100Mbps</text>
 
-              <g id="dlGaugeNeedle" transform="rotate(-70 110 110)"><line x1="110" y1="110" x2="110" y2="32" stroke="#f59e0b" stroke-width="3" stroke-linecap="round"/><circle cx="110" cy="110" r="6" fill="#f59e0b"/></g>
+              <g id="dlGaugeNeedle"><line x1="110" y1="110" x2="110" y2="32" stroke="#f59e0b" stroke-width="3" stroke-linecap="round"/><circle cx="110" cy="110" r="6" fill="#f59e0b"/></g>
 
               <text id="dlGaugeValueText" x="110" y="96" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold">-- Mbps</text>
 
@@ -5946,19 +5986,43 @@
 
     }
 
+    function setGaugeNeedle(needleGroup, ratio) {
+
+      const line = needleGroup?.querySelector('line');
+
+      if (!line) return;
+
+      const safeRatio = Math.max(0, Math.min(1, Number.isFinite(ratio) ? ratio : 0));
+
+      const angle = (-90 + safeRatio * 180) * (Math.PI / 180);
+
+      const radius = 78;
+
+      const x2 = 110 + (Math.sin(angle) * radius);
+
+      const y2 = 110 - (Math.cos(angle) * radius);
+
+      line.setAttribute('x2', x2.toFixed(2));
+
+      line.setAttribute('y2', y2.toFixed(2));
+
+    }
+
     function updateGaugeDial(arcId, needleId, textId, value, maxVal, unit) {
 
-      const ratio = Math.max(0, Math.min(1, value / maxVal));
+      const safeValue = Number.isFinite(Number(value)) ? Number(value) : 0;
+
+      const safeMax = Number.isFinite(Number(maxVal)) && Number(maxVal) > 0 ? Number(maxVal) : 1;
+
+      const ratio = Math.max(0, Math.min(1, safeValue / safeMax));
 
       const offset = 283 - (ratio * 283);
-
-      const angle = -90 + (ratio * 180);
 
       const arcEl = document.getElementById(arcId), needleEl = document.getElementById(needleId), textEl = document.getElementById(textId);
 
       if (arcEl) arcEl.setAttribute('stroke-dashoffset', String(Math.round(offset)));
 
-      if (needleEl) needleEl.setAttribute('transform', `rotate(${angle.toFixed(1)} 110 110)`);
+      setGaugeNeedle(needleEl, ratio);
 
       if (textEl) textEl.textContent = `${value}${unit}`;
 
@@ -6080,7 +6144,7 @@
 
           if (arc) arc.setAttribute('stroke-dashoffset', '283');
 
-          if (needle) needle.setAttribute('transform', 'rotate(-90 110 110)');
+          setGaugeNeedle(needle, 0);
 
           if (value) value.textContent = 'N/A';
 
@@ -6171,6 +6235,14 @@
           if (jitterEl) jitterEl.textContent = 'N/A';
 
           const value = document.getElementById('rttGaugeValueText');
+
+          const arc = document.getElementById('rttGaugeArc');
+
+          const needle = document.getElementById('rttGaugeNeedle');
+
+          if (arc) arc.setAttribute('stroke-dashoffset', '283');
+
+          setGaugeNeedle(needle, 0);
 
           if (value) value.textContent = 'N/A';
 
