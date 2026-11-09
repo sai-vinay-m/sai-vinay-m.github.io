@@ -772,35 +772,6 @@ body.mode-hr .lg\:col-span-6 > div:not(#cvp-card) .bg-slate-50 { background: #1E
 body.mode-hr .lg\:col-span-6 > div:not(#cvp-card) .text-slate-900 { color: #F8FAFC !important; font-weight: 800 !important; text-shadow: none !important; }
 body.mode-hr .lg\:col-span-6 > div:not(#cvp-card) .text-\[\#1e40af\] { color: #38BDF8 !important; font-weight: 700 !important; }
 body.mode-hr .lg\:col-span-6 > div:not(#cvp-card) .text-slate-700 { color: #BAE6FD !important; }
-/* Copilot overrides to fit theme */
-body.mode-hr #portfolioChat {
-width: 232px !important;
-max-width: calc(100vw - 24px) !important;
-transform: scale(1.35) !important;
-transform-origin: bottom right !important;
-background: #0F172A !important;
-border-color: rgba(148, 163, 184, 0.58) !important;
-box-shadow: 0 3px 15px rgba(15, 23, 42, 0.12) !important;
-}
-@media (max-width: 360px) {
-body.mode-hr #portfolioChat { transform: scale(1.2) !important; }
-}
-@media (max-width: 300px) {
-body.mode-hr #portfolioChat { transform: scale(1.05) !important; }
-}
-body.mode-hr #chatHeader { background: #0F172A !important; color: #FFFFFF !important; border-bottom: 1px solid #1E293B !important; padding: 9px 10px !important; }
-body.mode-hr #chatHeader > div { min-width: 0 !important; gap: 6px !important; }
-body.mode-hr #chatHeader .tracking-tight { font-size: 11px !important; white-space: nowrap; }
-body.mode-hr #chatHeader .rounded-full { flex-shrink: 0; }
-body.mode-hr #chatHeader .text-amber-300 { color: #38BDF8 !important; background: transparent !important; }
-body.mode-hr #chatWindow { background: #E2E8F0 !important; color: #0F172A !important; }
-body.mode-hr #chatWindow .bg-carbon-800 { background: #F8FAFC !important; color: #0F172A !important; border-color: #CBD5E1 !important; }
-body.mode-hr #chatWindow .bg-amber-500 { background: #0F172A !important; color: #FFFFFF !important; font-weight: 800 !important; }
-body.mode-hr #portfolioChat .bg-carbon-900 { background: #F8FAFC !important; border-color: #CBD5E1 !important; }
-body.mode-hr #userInput { background: #FFFFFF !important; border-color: #CBD5E1 !important; color: #0F172A !important; }
-body.mode-hr #userInput::placeholder { color: #94A3B8 !important; }
-body.mode-hr #sendChatBtn { background: #0F172A !important; color: #FFFFFF !important; font-weight: 700 !important; border: none !important; }
-body.mode-hr #portfolioChat .text-amber-400, body.mode-hr #portfolioChat .text-emerald-300, body.mode-hr #portfolioChat .text-purple-300, body.mode-hr #portfolioChat .text-sky-300 { color: #0369A1 !important; }
 body.mode-hr #balloonContainer { display: none !important; }
 body.mode-hr footer { background: #0F172A !important; border-top: 1px solid rgba(56, 189, 248, 0.4) !important; color: #94A3B8 !important; box-shadow: 0 -4px 25px rgba(56, 189, 248, 0.15) !important; }
 body.mode-hr footer a { color: #BAE6FD !important; }
@@ -1063,7 +1034,7 @@ Toggle view
 <div class="border-t border-slate-200 pt-3.5 space-y-2.5 font-mono">
 <span class="text-xs font-bold text-[#1e40af] uppercase tracking-wider block">Education</span>
 <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200 flex items-center gap-3.5">
-<div class="w-[73px] h-[73px] rounded-lg bg-white border border-slate-200 p-1 flex items-center justify-center shrink-0"><img src="assets/logos/iitb-crest.png" alt="Indian Institute of Technology Bombay logo" class="w-full h-full object-contain"></div>
+<div class="w-[73px] h-[73px] rounded-lg bg-white border border-slate-200 p-1 flex items-center justify-center shrink-0"><img src="assets/logos/iitb.png" alt="Indian Institute of Technology Bombay logo" class="w-full h-full object-contain"></div>
 <div class="min-w-0"><div class="text-xs font-bold text-slate-900 truncate">IIT Bombay</div><div class="text-[10px] text-slate-500 truncate">Exec. AI &amp; MLOps (2026)</div></div>
 </div>
 <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200 flex items-center gap-3.5">
@@ -1354,79 +1325,79 @@ See How I Solve Problems ↘
 <!-- Track 1 -->
 <div class="flex items-center gap-3 sm:gap-4">
 <div class="flex items-center gap-2.5 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-xs sm:text-sm font-semibold text-slate-200">
-<img src="assets/logos/aws-wordmark.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg'" alt="AWS" class="w-6 h-6 object-contain bg-white rounded-md p-0.5"> Amazon Web Services
+<img src="assets/logos/aws-wordmark-white.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg'" alt="AWS" class="w-6 h-6 object-contain"> Amazon Web Services
 </div>
 <div class="flex items-center gap-2.5 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-xs sm:text-sm font-semibold text-slate-200">
-<img src="assets/logos/terra.png" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/terraform/844FBA'" alt="Terraform" class="w-5 h-5 object-contain"> Terraform &amp; Terragrunt
+<img src="assets/logos/terraform.svg" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/terraform/844FBA'" alt="Terraform" class="w-5 h-5 object-contain"> Terraform &amp; Terragrunt
 </div>
 <div class="flex items-center gap-2.5 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-xs sm:text-sm font-semibold text-slate-200">
-<img src="assets/logos/jenkins.jpg" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/jenkins/D24939'" alt="Jenkins" class="w-5 h-5 object-contain"> Jenkins CI/CD
+<img src="assets/logos/jenkins.svg" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/jenkins/D24939'" alt="Jenkins" class="w-5 h-5 object-contain"> Jenkins CI/CD
 </div>
 <div class="flex items-center gap-2.5 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-xs sm:text-sm font-semibold text-slate-200">
-<img src="assets/logos/java.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg'" alt="Java" class="w-5 h-5 object-contain"> Java (Spring Boot)
+<img src="assets/logos/java.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg'" alt="Java" class="w-5 h-5 object-contain"> Java (Spring Boot)
 </div>
 <div class="flex items-center gap-2.5 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-xs sm:text-sm font-semibold text-slate-200">
-<img src="assets/logos/docker.png" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/docker/2496ED'" alt="Docker" class="w-5 h-5 object-contain"> Docker
+<img src="assets/logos/docker.svg" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/docker/2496ED'" alt="Docker" class="w-5 h-5 object-contain"> Docker
 </div>
 <div class="flex items-center gap-2.5 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-xs sm:text-sm font-semibold text-slate-200">
-<img src="assets/logos/harbor.jpg" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/harbor/60B932'" alt="Harbor" class="w-5 h-5 object-contain"> Harbor Registry
+<img src="assets/logos/harbor.svg" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/harbor/60B932'" alt="Harbor" class="w-5 h-5 object-contain"> Harbor Registry
 </div>
 <div class="flex items-center gap-2.5 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-xs sm:text-sm font-semibold text-slate-200">
-<img src="assets/logos/azure.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azuredevops/azuredevops-original.svg'" alt="Azure DevOps" class="w-5 h-5 object-contain"> Azure DevOps
+<img src="assets/logos/azure-devops.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azuredevops/azuredevops-original.svg'" alt="Azure DevOps" class="w-5 h-5 object-contain"> Azure DevOps
 </div>
 <div class="flex items-center gap-2.5 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-xs sm:text-sm font-semibold text-slate-200">
-<img src="assets/logos/python.png" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/python/3776AB'" alt="Python" class="w-5 h-5 object-contain"> Python &amp; Bash
+<img src="assets/logos/python.svg" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/python/3776AB'" alt="Python" class="w-5 h-5 object-contain"> Python &amp; Bash
 </div>
 <div class="flex items-center gap-2.5 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-xs sm:text-sm font-semibold text-slate-200">
 <img src="assets/logos/pytorch.svg" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/pytorch/EE4C2C'" alt="PyTorch" class="w-5 h-5 object-contain"> PyTorch &amp; Agentic RAG
 </div>
 <div class="flex items-center gap-2.5 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-xs sm:text-sm font-semibold text-slate-200">
-<img src="assets/logos/datadog.png" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/datadog/632CA6'" alt="Datadog" class="w-5 h-5 object-contain"> Datadog APM
+<img src="assets/logos/datadog.svg" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/datadog/632CA6'" alt="Datadog" class="w-5 h-5 object-contain"> Datadog APM
 </div>
 <div class="flex items-center gap-2.5 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-xs sm:text-sm font-semibold text-slate-200">
-<img src="assets/logos/splunk.jpg" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/splunk/65A637'" alt="Splunk" class="w-5 h-5 object-contain"> Splunk
+<img src="assets/logos/splunk.svg" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/splunk/65A637'" alt="Splunk" class="w-5 h-5 object-contain"> Splunk
 </div>
 <div class="flex items-center gap-2.5 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-xs sm:text-sm font-semibold text-slate-200">
-<img src="assets/logos/linux.jpg" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/redhat/EE0000'" alt="RedHat Linux" class="w-5 h-5 object-contain"> RedHat Linux &amp; LVM
+<img src="assets/logos/linux.svg" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/redhat/EE0000'" alt="RedHat Linux" class="w-5 h-5 object-contain"> RedHat Linux &amp; LVM
 </div>
 </div>
 <!-- Track 2 Duplicate -->
 <div class="flex items-center gap-3 sm:gap-4" aria-hidden="true">
 <div class="flex items-center gap-2.5 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-xs sm:text-sm font-semibold text-slate-200">
-<img src="assets/logos/aws-wordmark.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg'" alt="AWS" class="w-6 h-6 object-contain bg-white rounded-md p-0.5"> Amazon Web Services
+<img src="assets/logos/aws-wordmark-white.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg'" alt="AWS" class="w-6 h-6 object-contain"> Amazon Web Services
 </div>
 <div class="flex items-center gap-2.5 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-xs sm:text-sm font-semibold text-slate-200">
-<img src="assets/logos/terra.png" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/terraform/844FBA'" alt="Terraform" class="w-5 h-5 object-contain"> Terraform &amp; Terragrunt
+<img src="assets/logos/terraform.svg" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/terraform/844FBA'" alt="Terraform" class="w-5 h-5 object-contain"> Terraform &amp; Terragrunt
 </div>
 <div class="flex items-center gap-2.5 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-xs sm:text-sm font-semibold text-slate-200">
-<img src="assets/logos/jenkins.jpg" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/jenkins/D24939'" alt="Jenkins" class="w-5 h-5 object-contain"> Jenkins CI/CD
+<img src="assets/logos/jenkins.svg" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/jenkins/D24939'" alt="Jenkins" class="w-5 h-5 object-contain"> Jenkins CI/CD
 </div>
 <div class="flex items-center gap-2.5 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-xs sm:text-sm font-semibold text-slate-200">
-<img src="assets/logos/java.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg'" alt="Java" class="w-5 h-5 object-contain"> Java (Spring Boot)
+<img src="assets/logos/java.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg'" alt="Java" class="w-5 h-5 object-contain"> Java (Spring Boot)
 </div>
 <div class="flex items-center gap-2.5 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-xs sm:text-sm font-semibold text-slate-200">
-<img src="assets/logos/docker.png" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/docker/2496ED'" alt="Docker" class="w-5 h-5 object-contain"> Docker
+<img src="assets/logos/docker.svg" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/docker/2496ED'" alt="Docker" class="w-5 h-5 object-contain"> Docker
 </div>
 <div class="flex items-center gap-2.5 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-xs sm:text-sm font-semibold text-slate-200">
-<img src="assets/logos/harbor.jpg" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/harbor/60B932'" alt="Harbor" class="w-5 h-5 object-contain"> Harbor Registry
+<img src="assets/logos/harbor.svg" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/harbor/60B932'" alt="Harbor" class="w-5 h-5 object-contain"> Harbor Registry
 </div>
 <div class="flex items-center gap-2.5 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-xs sm:text-sm font-semibold text-slate-200">
-<img src="assets/logos/azure.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azuredevops/azuredevops-original.svg'" alt="Azure DevOps" class="w-5 h-5 object-contain"> Azure DevOps
+<img src="assets/logos/azure-devops.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azuredevops/azuredevops-original.svg'" alt="Azure DevOps" class="w-5 h-5 object-contain"> Azure DevOps
 </div>
 <div class="flex items-center gap-2.5 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-xs sm:text-sm font-semibold text-slate-200">
-<img src="assets/logos/python.png" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/python/3776AB'" alt="Python" class="w-5 h-5 object-contain"> Python &amp; Bash
+<img src="assets/logos/python.svg" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/python/3776AB'" alt="Python" class="w-5 h-5 object-contain"> Python &amp; Bash
 </div>
 <div class="flex items-center gap-2.5 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-xs sm:text-sm font-semibold text-slate-200">
 <img src="assets/logos/pytorch.svg" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/pytorch/EE4C2C'" alt="PyTorch" class="w-5 h-5 object-contain"> PyTorch &amp; Agentic RAG
 </div>
 <div class="flex items-center gap-2.5 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-xs sm:text-sm font-semibold text-slate-200">
-<img src="assets/logos/datadog.png" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/datadog/632CA6'" alt="Datadog" class="w-5 h-5 object-contain"> Datadog APM
+<img src="assets/logos/datadog.svg" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/datadog/632CA6'" alt="Datadog" class="w-5 h-5 object-contain"> Datadog APM
 </div>
 <div class="flex items-center gap-2.5 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-xs sm:text-sm font-semibold text-slate-200">
-<img src="assets/logos/splunk.jpg" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/splunk/65A637'" alt="Splunk" class="w-5 h-5 object-contain"> Splunk
+<img src="assets/logos/splunk.svg" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/splunk/65A637'" alt="Splunk" class="w-5 h-5 object-contain"> Splunk
 </div>
 <div class="flex items-center gap-2.5 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-carbon-850 border border-carbon-700 text-xs sm:text-sm font-semibold text-slate-200">
-<img src="assets/logos/linux.jpg" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/redhat/EE0000'" alt="RedHat Linux" class="w-5 h-5 object-contain"> RedHat Linux &amp; LVM
+<img src="assets/logos/linux.svg" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/redhat/EE0000'" alt="RedHat Linux" class="w-5 h-5 object-contain"> RedHat Linux &amp; LVM
 </div>
 </div>
 </div>
@@ -1444,19 +1415,19 @@ Progression backed by <span class="text-amber-400">verified credentials.</span>
 <!-- Large Image-Only AWS Certification Badges (Manager Mode) -->
 <div class="manager-only flex flex-wrap items-center gap-4 pt-2">
 <a href="https://www.credly.com/badges/20f333e6-76e8-431a-9603-c22408681cd8" target="_blank" rel="noopener noreferrer" title="Verify AWS MLA" class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-carbon-850 hover:bg-emerald-500/15 border-2 border-emerald-500/50 hover:border-emerald-400 flex items-center justify-center shadow-xl transition-all hover:-translate-y-1">
-<img src="assets/logos/aws-mla.webp" alt="AWS MLA" class="w-full h-full object-contain p-2 drop-shadow-md" onerror="resolveAsset(this, 'aws-mla')">
+<img src="assets/badges/aws-mla.png" alt="AWS MLA" class="w-full h-full object-contain p-2 drop-shadow-md" onerror="resolveAsset(this, 'aws-mla')">
 <div class="asset-fallback hidden w-full h-full flex-col items-center justify-center text-center p-2">
 <svg class="w-12 h-12" viewBox="0 0 64 64" fill="none"><polygon points="32,4 58,18 58,46 32,60 6,46 6,18" fill="#064e3b" stroke="#34d399" stroke-width="3"/><text x="32" y="36" text-anchor="middle" fill="#a7f3d0" font-family="JetBrains Mono, monospace" font-size="14" font-weight="700">MLA</text></svg>
 </div>
 </a>
 <a href="https://www.credly.com/badges/af2f25bd-7fbe-4e21-92fc-4c39f8e92cf7" target="_blank" rel="noopener noreferrer" title="Verify AWS SAA" class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-carbon-850 hover:bg-amber-500/15 border-2 border-amber-500/50 hover:border-amber-400 flex items-center justify-center shadow-xl transition-all hover:-translate-y-1">
-<img src="assets/logos/aws-saa.png" alt="AWS SAA" class="w-full h-full object-contain p-2 drop-shadow-md" onerror="resolveAsset(this, 'aws-saa')">
+<img src="assets/badges/aws-saa.png" alt="AWS SAA" class="w-full h-full object-contain p-2 drop-shadow-md" onerror="resolveAsset(this, 'aws-saa')">
 <div class="asset-fallback hidden w-full h-full flex-col items-center justify-center text-center p-2">
 <svg class="w-12 h-12" viewBox="0 0 64 64" fill="none"><polygon points="32,4 58,18 58,46 32,60 6,46 6,18" fill="#451a03" stroke="#fbbf24" stroke-width="3"/><text x="32" y="36" text-anchor="middle" fill="#fde68a" font-family="JetBrains Mono, monospace" font-size="14" font-weight="700">SAA</text></svg>
 </div>
 </a>
 <a href="https://www.credly.com/badges/582be29e-4701-41a4-b4bb-638b1d675fc2" target="_blank" rel="noopener noreferrer" title="Verify AWS CCP" class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-carbon-850 hover:bg-sky-500/15 border-2 border-sky-500/50 hover:border-sky-400 flex items-center justify-center shadow-xl transition-all hover:-translate-y-1">
-<img src="assets/logos/aws-cpp.webp" alt="AWS CCP" class="w-full h-full object-contain p-2 drop-shadow-md" onerror="resolveAsset(this, 'aws-cpp')">
+<img src="assets/logos/aws-cpp.webp" alt="AWS Certified Cloud Practitioner badge" class="w-full h-full object-contain p-2 drop-shadow-md" onerror="resolveAsset(this, 'aws-cpp')">
 <div class="asset-fallback hidden w-full h-full flex-col items-center justify-center text-center p-2">
 <svg class="w-12 h-12" viewBox="0 0 64 64" fill="none"><polygon points="32,4 58,18 58,46 32,60 6,46 6,18" fill="#0c2a40" stroke="#38bdf8" stroke-width="3"/><text x="32" y="36" text-anchor="middle" fill="#bae6fd" font-family="JetBrains Mono, monospace" font-size="14" font-weight="700">CCP</text></svg>
 </div>
@@ -1992,7 +1963,7 @@ Academic qualifications spanning <strong class="text-white font-semibold">United
 <div class="edu-card-content space-y-4">
 <div class="flex items-start justify-between gap-3">
 <div class="edu-logo-frame w-16 h-16 sm:w-[76px] sm:h-[76px] rounded-2xl bg-carbon-900 border border-[#00ff66]/40 p-2 shadow-md shrink-0">
-<img src="assets/logos/iitb-crest.png" alt="Indian Institute of Technology Bombay logo" class="w-full h-full object-contain">
+<img src="assets/logos/iitb.png" alt="Indian Institute of Technology Bombay logo" class="w-full h-full object-contain">
 </div>
 <span class="px-2.5 py-1 rounded-full bg-[#00ff66]/10 text-[#00ff66] font-mono text-[10px] sm:text-xs border border-[#00ff66]/30 font-semibold">
 2026 // ADVANCED
@@ -2054,7 +2025,7 @@ New Delhi, India. Core curriculum covering data structures, object-oriented prog
 <circle cx="50" cy="50" r="45" />
 </svg>
 <div class="edu-logo-frame">
-<img src="assets/logos/iitb-crest.png" alt="Indian Institute of Technology Bombay logo" class="w-[76px] h-[76px] object-contain rounded-full bg-white p-2 shadow-lg">
+<img src="assets/logos/iitb.png" alt="Indian Institute of Technology Bombay logo" class="w-20 h-20 object-contain">
 </div>
 <div class="edu-text-content px-4">
 <h3 class="text-base sm:text-lg font-bold text-slate-200 leading-snug">Indian Institute of Technology - Bombay</h3>
@@ -2071,7 +2042,7 @@ New Delhi, India. Core curriculum covering data structures, object-oriented prog
 <circle cx="50" cy="50" r="45" />
 </svg>
 <div class="edu-logo-frame">
-<img src="assets/logos/njit.png" alt="New Jersey Institute of Technology logo" class="w-[76px] h-[76px] object-contain rounded-full bg-white p-2 shadow-lg">
+<img src="assets/logos/njit.png" alt="New Jersey Institute of Technology logo" class="w-20 h-20 object-contain">
 </div>
 <div class="edu-text-content px-4">
 <h3 class="text-base sm:text-lg font-bold text-slate-200 leading-snug">New Jersey Institute of Technology (NJIT)</h3>
@@ -2088,7 +2059,7 @@ New Delhi, India. Core curriculum covering data structures, object-oriented prog
 <circle cx="50" cy="50" r="45" />
 </svg>
 <div class="edu-logo-frame">
-<img src="assets/logos/ggsipu.jpg" alt="Guru Gobind Singh Indraprastha University logo" class="w-[76px] h-[76px] object-contain rounded-full bg-white p-2 shadow-lg">
+<img src="assets/logos/ggsipu.jpg" alt="Guru Gobind Singh Indraprastha University logo" class="w-20 h-20 object-contain">
 </div>
 <div class="edu-text-content px-4">
 <h3 class="text-base sm:text-lg font-bold text-slate-200 leading-snug">Guru Gobind Singh Indraprastha University</h3>
@@ -2880,7 +2851,6 @@ bln_nudgeTimer = null;
 const balloonBubble = document.getElementById('balloonTriviaBubble');
 if (balloonBubble) balloonBubble.classList.add('hidden');
 setBalloonFace('secret');
-setChatMinimizedState(true);
 if (showNotification) showToast('👔 <strong>HR / Recruiter Mode:</strong> Executive 3-column layout.');
 } else if (role === 'manager') {
 document.body.classList.add('mode-manager');
